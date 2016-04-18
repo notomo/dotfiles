@@ -53,6 +53,7 @@ NeoBundle 'kana/vim-operator-replace'
 
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'mattn/emmet-vim'
 
 call neobundle#end()
 NeoBundleCheck
