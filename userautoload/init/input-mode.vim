@@ -5,12 +5,12 @@ inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
-inoremap <C-x> <C-a>
+" inoremap <C-x> <C-a>
 inoremap <C-z> <C-@>
 inoremap <C-a> <C-r>=MyExecExCommand('normal ^')<CR>
 inoremap <C-e> <END>
 inoremap <C-b> <BS>
-inoremap <C-d> <Del>
+inoremap <C-x> <Del>
 inoremap <TAB> <C-t>
 inoremap <S-TAB> <C-d>
 inoremap <C-v> <C-r>"
@@ -34,6 +34,12 @@ inoremap <silent> <M-b> <C-Left>
 inoremap <silent> <M-f> <C-Right>
 inoremap <C-r> <Nop>
 inoremap <C-s> _
+inoremap <C-d> $
+snoremap <C-d> $
+inoremap <M-a> ->
+inoremap <M-e> =
+inoremap <M-i> $this
+
 
 """"""""""""""""""""""""""""""
 "IMEの状態とカーソル位置保存のため<C-r>を使用してコマンドを実行。

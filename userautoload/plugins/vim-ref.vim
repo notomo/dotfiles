@@ -1,3 +1,4 @@
 
-let g:ref_phpmanual_path = 'C:\Users\tmn\Dropbox\phpmanual'
-" nmap <Space>k <Plug>(ref-keyword)
+let g:ref_phpmanual_path = '~/.vim/phpmanual'
+nmap <Space>k <Plug>(ref-keyword)
+inoremap <C-k> <Up>
