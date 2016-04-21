@@ -24,6 +24,7 @@ onoremap jj <ESC>
 vnoremap v <ESC>
 nnoremap ‚¢ i
 nnoremap <Space>i I
+snoremap jj <ESC>
 
 
 " nnoremap <TAB> >>
