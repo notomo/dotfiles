@@ -1,5 +1,6 @@
 
 set shortmess+=I
+set guioptions+=b
 set vb t_vb=
 set guioptions-=T
 set guioptions-=m

@@ -15,3 +15,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+" スニペットファイルの場所指定
+let g:neosnippet#snippets_directory='~/.vim/snippets/'
+

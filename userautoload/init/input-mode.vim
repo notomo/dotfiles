@@ -4,7 +4,6 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
-
 inoremap <C-x> <C-a>
 inoremap <C-z> <C-@>
 inoremap <C-a> <C-r>=MyExecExCommand('normal ^')<CR>
@@ -33,16 +32,6 @@ inoremap <silent> <C-o> <C-g>u<C-r>=MyExecExCommand('normal o')<CR>
 inoremap <silent> <M-b> <C-Left>
 inoremap <silent> <M-f> <C-Right>
 inoremap <C-r> <Nop>
-inoremap <C-s> _
-inoremap <C-d> $
-snoremap <C-d> $
-inoremap <M-a> ->
-inoremap <M-d> =>
-inoremap <M-e> =
-inoremap <M-i> $this
-inoremap <M-p> []<Left>
-inoremap <M-s> ()<Left>
-inoremap <M-q> ''<Left>
 
 inoremap [input] <Nop>
 imap j<Space> [input]
@@ -60,31 +49,36 @@ inoremap [input]n #
 inoremap [input]h ^
 inoremap [input]d $
 inoremap [input]c :
-inoremap [input]k *
+inoremap [input]x *
 inoremap [input]r %
 inoremap [input]o <Bar>
 inoremap [input]w ""<Left>
 inoremap [input]p []<Left>
-inoremap [input]P &
+inoremap [input]P <><Left>
+inoremap [input]A &
 inoremap [input]s ()<Left>
 inoremap [input]S {}<Left>
 inoremap [input]q ''<Left>
 inoremap [input]g <End>
-inoremap [input]t <Home>
-inoremap [input]x <Del>
-inoremap [input]; <BS>
-inoremap [input]j '
-inoremap [input]f "
-inoremap [input];a 1
-inoremap [input];s 2
-inoremap [input];d 3
-inoremap [input];f 4
-inoremap [input];g 5
-inoremap [input];h 6
-inoremap [input];j 7
-inoremap [input];k 8
-inoremap [input];l 9
-inoremap [input];; 10
+inoremap [input]t j
+inoremap [input]f <Del>
+inoremap [input]j <BS>
+inoremap [input]k <Home>
+inoremap [input]; <CR>
+inoremap [input], '
+inoremap [input]/ "
+inoremap [input]z `
+inoremap [input]v @
+inoremap [input].a 1
+inoremap [input].s 2
+inoremap [input].d 3
+inoremap [input].f 4
+inoremap [input].g 5
+inoremap [input].h 6
+inoremap [input].j 7
+inoremap [input].k 8
+inoremap [input].l 9
+inoremap [input].; 10
 inoremap [input]<Space> j<Space>
 
 

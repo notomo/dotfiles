@@ -1,10 +1,10 @@
 
 
-"ƒEƒBƒ“ƒhƒE‚ğÅ‘å‰»‚µ‚Ä‹N“®
+"ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æœ€å¤§åŒ–ã—ã¦èµ·å‹•
 au GUIEnter * simalt ~x
-"“ú–{Œê“ü—Í‚ğƒŠƒZƒbƒg
+"æ—¥æœ¬èªå…¥åŠ›ã‚’ãƒªã‚»ãƒƒãƒˆ
 au BufNewFile,BufRead * set iminsert=0
-" u“ú–{Œê“ü—ÍŒÅ’èƒ‚[ƒhv‚Ì“®ìƒ‚[ƒh
+" ã€Œæ—¥æœ¬èªå…¥åŠ›å›ºå®šãƒ¢ãƒ¼ãƒ‰ã€ã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰
 let IM_CtrlMode = 4
 
 let g:yankring_n_keys = 'Y D'
@@ -13,9 +13,9 @@ let g:yankring_n_keys = 'Y D'
 
 set nowrap
 
-set showtabline=2 " ƒ^ƒu‚ğí‚É•\¦
-set guioptions-=e " gVim‚Å‚àƒeƒLƒXƒgƒx[ƒX‚Ìƒ^ƒuƒy[ƒW‚ğg‚¤
-" set incsearch  " ƒCƒ“ƒNƒŠƒƒ“ƒ^ƒ‹ƒT[ƒ`‚ğs‚¤
+set showtabline=2 " ã‚¿ãƒ–ã‚’å¸¸ã«è¡¨ç¤º
+set guioptions-=e " gVimã§ã‚‚ãƒ†ã‚­ã‚¹ãƒˆãƒ™ãƒ¼ã‚¹ã®ã‚¿ãƒ–ãƒšãƒ¼ã‚¸ã‚’ä½¿ã†
+" set incsearch  " ã‚¤ãƒ³ã‚¯ãƒªãƒ¡ãƒ³ã‚¿ãƒ«ã‚µãƒ¼ãƒã‚’è¡Œã†
 set ignorecase
 set smartcase
 
@@ -24,21 +24,21 @@ if expand("%:t") !~ ".*\.tex"
 endif
 
 set ruler
-set number         " s”Ô†‚ğ•\¦‚·‚é
-set whichwrap=b,s,h,l,<,>,[,]  " s“ªs––‚Ì¶‰EˆÚ“®‚Ås‚ğ‚Ü‚½‚®
-set cursorline     " ƒJ[ƒ\ƒ‹s‚Ì”wŒiF‚ğ•Ï‚¦‚é
+set number         " è¡Œç•ªå·ã‚’è¡¨ç¤ºã™ã‚‹
+set whichwrap=b,s,h,l,<,>,[,]  " è¡Œé ­è¡Œæœ«ã®å·¦å³ç§»å‹•ã§è¡Œã‚’ã¾ãŸã
+set cursorline     " ã‚«ãƒ¼ã‚½ãƒ«è¡Œã®èƒŒæ™¯è‰²ã‚’å¤‰ãˆã‚‹
 set nolist
-set laststatus=2   " ƒXƒe[ƒ^ƒXs‚ğí‚É•\¦
-set cmdheight=2    " ƒƒbƒZ[ƒW•\¦—“‚ğ2sŠm•Û
-set scrolloff=8                "ã‰º8s‚Ì‹ŠE‚ğŠm•Û
-set showmatch      " ‘Î‰‚·‚éŠ‡ŒÊ‚ğ‹­’²•\¦
+set laststatus=2   " ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¡Œã‚’å¸¸ã«è¡¨ç¤º
+set cmdheight=2    " ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸è¡¨ç¤ºæ¬„ã‚’2è¡Œç¢ºä¿
+set scrolloff=8                "ä¸Šä¸‹8è¡Œã®è¦–ç•Œã‚’ç¢ºä¿
+set showmatch      " å¯¾å¿œã™ã‚‹æ‹¬å¼§ã‚’å¼·èª¿è¡¨ç¤º
 set wildmenu
 set showcmd
-set autoread   "ŠO•”‚Åƒtƒ@ƒCƒ‹‚É•ÏX‚ª‚³‚ê‚½ê‡‚Í“Ç‚İ‚È‚¨‚·
-set hidden     " •Û‘¶‚³‚ê‚Ä‚¢‚È‚¢ƒtƒ@ƒCƒ‹‚ª‚ ‚é‚Æ‚«‚Å‚à•Ê‚Ìƒtƒ@ƒCƒ‹‚ğŠJ‚­‚±‚Æ‚ªo—ˆ‚é
-set switchbuf=useopen   " V‚µ‚­ŠJ‚­‘ã‚í‚è‚É‚·‚Å‚ÉŠJ‚¢‚Ä‚ ‚éƒoƒbƒtƒ@‚ğŠJ‚­
+set autoread   "å¤–éƒ¨ã§ãƒ•ã‚¡ã‚¤ãƒ«ã«å¤‰æ›´ãŒã•ã‚ŒãŸå ´åˆã¯èª­ã¿ãªãŠã™
+set hidden     " ä¿å­˜ã•ã‚Œã¦ã„ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚‹ã¨ãã§ã‚‚åˆ¥ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ãã“ã¨ãŒå‡ºæ¥ã‚‹
+set switchbuf=useopen   " æ–°ã—ãé–‹ãä»£ã‚ã‚Šã«ã™ã§ã«é–‹ã„ã¦ã‚ã‚‹ãƒãƒƒãƒ•ã‚¡ã‚’é–‹ã
 
-" ‘Î‰Š‡ŒÊ‚É'<'‚Æ'>'‚ÌƒyƒA‚ğ’Ç‰Á
+" å¯¾å¿œæ‹¬å¼§ã«'<'ã¨'>'ã®ãƒšã‚¢ã‚’è¿½åŠ 
 set matchpairs& matchpairs+=<:>
 set shiftwidth=4
 set softtabstop=4
@@ -53,9 +53,9 @@ set grepprg=grep\ -rnIH
 set wrapscan
 set nobackup
 set noundofile
-"ƒXƒƒbƒvƒtƒ@ƒCƒ‹—p‚ÌƒfƒBƒŒƒNƒgƒŠ
+"ã‚¹ãƒ¯ãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«ç”¨ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 set directory=$HOME/vimbackup
-"ƒtƒ@ƒCƒ‹•Û‘¶ƒ_ƒCƒAƒƒO‚Ì‰ŠúƒfƒBƒŒƒNƒgƒŠ‚ğƒoƒbƒtƒ@ƒtƒ@ƒCƒ‹ˆÊ’u‚Éİ’è
+"ãƒ•ã‚¡ã‚¤ãƒ«ä¿å­˜ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®åˆæœŸãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’ãƒãƒƒãƒ•ã‚¡ãƒ•ã‚¡ã‚¤ãƒ«ä½ç½®ã«è¨­å®š
 set browsedir=buffer 
 
 let $PATH = $PATH . ';C:\MinGW64\bin;C:\MinGW64\msys\1.0\bin'

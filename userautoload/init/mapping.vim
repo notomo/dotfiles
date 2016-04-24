@@ -86,6 +86,7 @@ nnoremap <Space>. @:
 vnoremap <Space>. @:
 
 nnoremap <Space>gs :<C-u>%s///g<Left><Left><Left><C-r><C-w><Right>
+nnoremap <Space>gv <Right>byegv:<C-u>'<,'>s///g<Left><Left><Left><C-r>"<Right>
 
 nnoremap <C-a> ^
 nnoremap <C-e> $
@@ -104,7 +105,12 @@ nnoremap <silent> <S-k> :<C-u>keepjumps normal {<CR>
 
 nnoremap <silent> <F5> <Esc>:<C-u>source $MYVIMRC<CR>:<C-u>source $MYGVIMRC<CR>:<C-u>nohlsearch<CR>
 
-nnoremap <F7> :<C-u>CdCurrent<CR>
+nnoremap <Space>gn :<C-u>CdCurrent<CR>
 
 nnoremap <Space>fm :<C-u>SM 4<CR>
 nnoremap <Space>fr :<C-u>SM 0<CR>
+
+nnoremap ef :<C-u>set fenc=utf8<CR>
+nnoremap es :<C-u>:NeoSnippetEdit<CR>
+
+nnoremap <C-S-q> :<C-u>q!<CR>

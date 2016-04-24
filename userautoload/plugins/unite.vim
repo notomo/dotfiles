@@ -38,6 +38,7 @@ autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
 	"ESCでuniteを終了
 	nmap <buffer> <ESC> <Plug>(unite_exit)
+	imap <buffer> jq <Plug>(unite_exit)
 	"入力モードのときjjでノーマルモードに移動
 	imap <buffer> jj <Plug>(unite_insert_leave)
 	"入力モードのときctrl+wでバックスラッシュも削除
@@ -51,5 +52,9 @@ function! s:unite_my_settings()"{{{
 	"ctrl+oでその場所に開く
 	nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 	inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+    inoremap <buffer> <C-b> <BS>
+    inoremap <buffer> <C-d> <Del>
+    inoremap <buffer> <C-h> <Left>
+    inoremap <buffer> <C-l> <Right>
 endfunction"}}}
 
