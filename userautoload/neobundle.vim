@@ -1,5 +1,5 @@
 
-" vim‹N“®‚Ì‚İruntimepath‚Éneobundle.vim‚ğ’Ç‰Á
+" vimèµ·å‹•æ™‚ã®ã¿runtimepathã«neobundle.vimã‚’è¿½åŠ 
 if has('vim_starting')
     set nocompatible
     set runtimepath+=~/.vim/bundle/neobundle.vim
@@ -7,8 +7,8 @@ if has('vim_starting')
     "set runtimepath+=~/.vim/after
 endif
 
-" neobundle.vim‚Ì‰Šú‰» 
-" NeoBundle‚ğXV‚·‚é‚½‚ß‚Ìİ’è
+" neobundle.vimã®åˆæœŸåŒ– 
+" NeoBundleã‚’æ›´æ–°ã™ã‚‹ãŸã‚ã®è¨­å®š
 call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
@@ -54,6 +54,10 @@ NeoBundle 'kana/vim-operator-replace'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'mattn/emmet-vim'
-
+NeoBundle 'vim-scripts/camelcasemotion'
+" NeoBundle 'haya14busa/vim-migemo'
+NeoBundle 'haya14busa/incsearch.vim'
+" NeoBundle 'haya14busa/incsearch-migemo.vim'
+NeoBundle 'osyo-manga/vim-anzu'
 call neobundle#end()
 NeoBundleCheck

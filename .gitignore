@@ -1,0 +1,7 @@
+/tmp/backup/*
+/tmp/swap/*
+/tmp/undo/*
+!.gitkeep
+dict/cp932/
+dict/utf-8/
+/tmp/viminfo.txt

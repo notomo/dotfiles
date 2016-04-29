@@ -9,7 +9,10 @@ nmap <Leader>s [shell]
 vmap <Leader>s [shell]
 
 "シェルを起動
-nnoremap <silent> [shell]r :<C-u>CdCurrent<CR>:VimShell<CR>
+" nnoremap <silent> [shell]r :<C-u>CdCurrent<CR>:VimShell<CR>
+nnoremap <silent> [shell]r :<C-u>VimShellBufferDir<CR>
+"シェルを終了
+nmap <silent> [shell]x <Plug>(vimshell_exit)
 "シェルを新しく起動
 nnoremap <silent> [shell]c :<C-u>CdCurrent<CR>:VimShellCreate<CR>
 "シェルを新しいタブで起動

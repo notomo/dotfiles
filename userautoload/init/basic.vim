@@ -1,5 +1,4 @@
 
-
 "ウィンドウを最大化して起動
 au GUIEnter * simalt ~x
 "日本語入力をリセット
@@ -18,6 +17,7 @@ set guioptions-=e " gVimでもテキストベースのタブページを使う
 " set incsearch  " インクリメンタルサーチを行う
 set ignorecase
 set smartcase
+set hlsearch
 
 if expand("%:t") !~ ".*\.tex"
     set autoindent
@@ -51,12 +51,22 @@ set clipboard=unnamed
 set grepprg=grep\ -rnIH 
 
 set wrapscan
-set nobackup
-set noundofile
+" set nobackup
+" バックアップファイル用のディレクトリ
+set backupdir=~/.vim/tmp/backup/
+" set noundofile
+set undodir=~/.vim/tmp/undo/
 "スワップファイル用のディレクトリ
-set directory=$HOME/vimbackup
+set directory=~/.vim/tmp/swap/
 "ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
 set browsedir=buffer 
 
+set viminfo+=n~/.vim/tmp/viminfo.txt
+
 let $PATH = $PATH . ';C:\MinGW64\bin;C:\MinGW64\msys\1.0\bin'
 set statusline=%F%m%r%h%w\%=[COL=%c]\[FTYPE=%Y]\[ENC=%{&enc}]\[FENC=%{&fileencoding}]\[FORMAT=%{&ff}]
+
+augroup new_file_utf8
+    autocmd!
+    autocmd BufNewFile * set fileencoding=UTF-8
+augroup End

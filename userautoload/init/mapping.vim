@@ -60,11 +60,11 @@ vnoremap ;  :
 vnoremap :  ;
 
 " 前のバッファへ移動
-nnoremap <Leader>b <C-^>
+nnoremap <Space>b <C-^>
 
-noremap gh H8k
-noremap gl L8j
-noremap gm M
+" noremap gh H8k
+" noremap gl L8j
+" noremap gm M
 noremap ge $
 noremap ga ^
 noremap gt 0
@@ -76,7 +76,7 @@ nnoremap gO g;
 nnoremap gI g,
 nnoremap <C-i> <C-i>
 nnoremap <C-o> <C-o>
-nnoremap gj zzM
+nnoremap ej zzM
 
 nnoremap <silent> <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 nnoremap <silent> <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
@@ -105,7 +105,7 @@ nnoremap <silent> <S-k> :<C-u>keepjumps normal {<CR>
 
 nnoremap <silent> <F5> <Esc>:<C-u>source $MYVIMRC<CR>:<C-u>source $MYGVIMRC<CR>:<C-u>nohlsearch<CR>
 
-nnoremap <Space>gn :<C-u>CdCurrent<CR>
+nnoremap <Leader>cd :<C-u>CdCurrent<CR>
 
 nnoremap <Space>fm :<C-u>SM 4<CR>
 nnoremap <Space>fr :<C-u>SM 0<CR>
@@ -114,3 +114,6 @@ nnoremap ef :<C-u>set fenc=utf8<CR>
 nnoremap es :<C-u>:NeoSnippetEdit<CR>
 
 nnoremap <C-S-q> :<C-u>q!<CR>
+nnoremap <Space>l <S-v>
+nnoremap <Space>h <C-v>
+nnoremap gz G
