@@ -152,6 +152,8 @@ NeoBundleLazy 'osyo-manga/vim-anzu',{
 \}
 
 NeoBundle 'thinca/vim-zenspace'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'kmnk/vim-unite-giti'
 
 " NeoBundle 'scrooloose/nerdtree'
 " NeoBundle 'kana/vim-textobj-indent'

@@ -9,3 +9,4 @@ nnoremap <Leader>gbl :<C-u>Gblame<CR>
 nnoremap <Leader>grn :<C-u>Gmove<Space>
 nnoremap <Leader>grm :<C-u>Gremove<CR>
 nnoremap <Leader>gcd :<C-u>Gcd<CR>
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
