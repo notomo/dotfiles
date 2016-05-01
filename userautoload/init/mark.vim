@@ -6,7 +6,7 @@
 
 " 基本マップ
 nnoremap [mark] <Nop>
-nmap m [mark]
+nmap <Sapce>m [mark]
 
 " 現在位置をマーク
 if !exists('g:markrement_char')

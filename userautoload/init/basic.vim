@@ -25,6 +25,7 @@ endif
 
 set ruler
 set number         " 行番号を表示する
+set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
 set cursorline     " カーソル行の背景色を変える
 set nolist
@@ -70,3 +71,4 @@ augroup new_file_utf8
     autocmd!
     autocmd BufNewFile * set fileencoding=UTF-8
 augroup End
+

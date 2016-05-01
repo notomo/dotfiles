@@ -14,15 +14,12 @@ function! s:incsearch_keymap()
     IncSearchNoreMap <Tab> <Over>(incsearch-next)
     IncSearchNoreMap <S-Tab>  <Over>(incsearch-prev)
     " IncSearchNoreMap <Tab> <Over>(buffer-complete)
-    " IncSearchNoreMap <S-Tab> <Over>(buffer-complete-prev)
     IncSearchNoreMap <C-j> <Down>
     " IncSearchNoreMap <C-j> <Over>(buffer-complete)
     IncSearchNoreMap <C-k> <Up>
+    IncSearchNoreMap <Space> <CR>
+    IncSearchNoreMap <S-Space> <Space>
     " IncSearchNoreMap <C-k> <Over>(buffer-complete-prev)
     IncSearchNoreMap <C-n>  <Over>(incsearch-scroll-f)
     IncSearchNoreMap <C-p>    <Over>(incsearch-scroll-b)
 endfunction
-
-" highlight IncSearchCursor ctermfg=0 ctermbg=9 guifg=#000000 guibg=#FF0000
-" highlight IncSearchMatchReverse ctermfg=242 guifg=#000000 guifg=#777777
-" highlight IncSearchMatch ctermfg=81 guifg=#000000 guifg=#66D9EF

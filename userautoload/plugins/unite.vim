@@ -52,6 +52,9 @@ function! s:unite_my_settings()"{{{
 	"ctrl+oでその場所に開く
 	nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 	inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+	"ctrl+tでタブで開く
+	nnoremap <silent> <buffer> <expr> <C-t> unite#do_action('tabopen')
+	inoremap <silent> <buffer> <expr> <C-t> unite#do_action('tabopen')
     inoremap <buffer> <C-b> <BS>
     inoremap <buffer> <C-d> <Del>
     inoremap <buffer> <C-h> <Left>

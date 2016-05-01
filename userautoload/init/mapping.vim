@@ -14,7 +14,6 @@ nnoremap <Space>gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><L
 nnoremap <Space>gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
 
 let g:mapleader=","
-nnoremap <Leader>i :<C-u>QuickRun <
 
 inoremap <silent> jj <ESC>
 " 日本語入力で”っj”と入力してもEnterキーで確定させればインサートモードを抜ける
@@ -36,11 +35,11 @@ vnoremap <Space>id <
 
 noremap <CR> o<ESC>
 nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
-nnoremap <Space>e :<C-u>e 
+nnoremap <Space>e :<C-u>e<Space>
 nnoremap <Space>w :<C-u>w<CR>
 nnoremap <Space>q :<C-u>q<CR>
 nnoremap <Space>Q :<C-u>q!<CR>
-nnoremap <Space>r :<C-u>file 
+nnoremap <Space>r :<C-u>file<Space>
 nnoremap <C-S-F9> :<C-u>qa<CR>
 
 nnoremap k   gk
@@ -52,7 +51,7 @@ vnoremap j   gj
 " vnoremap gk  k
 " vnoremap gj  j
 
-nnoremap <BS> i<BS><Right><ESC>
+" nnoremap <BS> i<BS><Right><ESC>
 
 nnoremap ;  :
 nnoremap :  ;
@@ -67,7 +66,7 @@ nnoremap <Space>b <C-^>
 " noremap gm M
 noremap ge $
 noremap ga ^
-noremap gt 0
+noremap gh 0
 noremap g; ;
 noremap g, ,
 nnoremap go <C-o>
@@ -117,3 +116,9 @@ nnoremap <C-S-q> :<C-u>q!<CR>
 nnoremap <Space>l <S-v>
 nnoremap <Space>h <C-v>
 nnoremap gz G
+nnoremap <Space>j gu
+nnoremap <Space>k gU
+vnoremap <Space>j gu
+vnoremap <Space>k gU
+
+nnoremap <F7> :%s/ *$//<CR>

@@ -12,12 +12,48 @@ endif
 call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Yggdroot/indentLine'
+NeoBundleLazy 'Yggdroot/indentLine',{
+\   'autoload':{
+\       'filetypes':['python','php']
+\   }
+\}
+
 NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+
+NeoBundleLazy 'davidhalter/jedi-vim',{
+\   'autoload':{
+\       'filetypes':['python']
+\   } 
+\}
+
+NeoBundleLazy 'joonty/vdebug',{
+\   'autoload':{
+\       'filetypes':['php']
+\   }
+\}
+
+NeoBundleLazy "tyru/caw.vim",{
+\   'autoload':{
+\       'mappings':['<Plug>(caw:hatpos:toggle)']
+\   }
+\}
+
+NeoBundleLazy 'thinca/vim-quickrun',{
+\   'autoload':{
+\       'commands':['QuickRun'],
+\       'mappings':['<Plug>(quickrun)']
+\   }
+\}
+
 NeoBundle 'fuenor/im_control.vim'
-NeoBundle 'Shougo/vimshell'
+NeoBundleLazy 'Shougo/vimshell',{
+\   'autoload':{
+\       'commands':['VimShell','VimShellTab','VimShellCreate','VimShellBufferDir','VimShellInteractive','VimShellSendString']
+\   }
+\}
+
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'windows' : 'tools\\update-dll-mingw',
@@ -27,37 +63,100 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
-NeoBundle 'thinca/vim-ref'
+
+NeoBundleLazy 'thinca/vim-ref',{
+\   'autoload':{
+\       'mappings':['<Plug>(ref-keyword)']
+\   }
+\}
+
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tacroe/unite-mark'
 NeoBundle 'Shougo/neomru.vim'
-
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'scrooloose/nerdtree'
-
-NeoBundle 'LeafCage/qutefinger.vim'
-NeoBundle "tyru/caw.vim.git"
-
-NeoBundle 'Lokaltog/vim-easymotion'
-
 NeoBundle 'Shougo/unite-outline'
 
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'kana/vim-textobj-indent'
-NeoBundle 'bps/vim-textobj-python'
-NeoBundle 'kana/vim-textobj-underscore'
-NeoBundle 'kana/vim-operator-user'
-NeoBundle 'rhysd/vim-operator-surround'
-NeoBundle 'kana/vim-textobj-line'
-NeoBundle 'kana/vim-operator-replace'
+NeoBundleLazy 'scrooloose/syntastic',{
+\   'autoload':{
+\       'filetypes':['python','php']
+\   }
+\}
 
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'vim-scripts/camelcasemotion'
+NeoBundleLazy 'Shougo/vimfiler.vim',{
+\   'autoload':{
+\       'commands':['VimFilerBufferDir']
+\   }
+\}
+
+NeoBundleLazy 'LeafCage/qutefinger.vim',{
+\   'autoload':{
+\       'mappings':['<Plug>(qutefinger-toggle-mode)','<Plug>(qutefinger-next)','<Plug>(qutefinger-prev)','<Plug>(qutefinger-toggle-win)','<Plug>(qutefinger-first)']
+\   }
+\}
+
+NeoBundleLazy 'Lokaltog/vim-easymotion',{
+\   'autoload':{
+\       'mappings':['<Plug>(easymotion-bd-fl)','<Plug>(easymotion-bd-tl)','<Plug>(easymotion-j)',
+\                   '<Plug>(easymotion-k)','<Plug>(easymotion-bd-jk)','<Plug>(easymotion-lineanywhere)','<Plug>(easymotion-bd-w)']
+\   }
+\}
+
+NeoBundle 'kana/vim-operator-user'
+NeoBundle 'kana/vim-textobj-user'
+
+NeoBundleLazy 'kana/vim-textobj-line',{
+\   'autoload':{
+\       'mappings':['<Plug>(textobj-line-a)','<Plug>(textobj-line-i)']
+\   }
+\}
+
+NeoBundleLazy 'bps/vim-textobj-python',{
+\   'autoload':{
+\       'filetypes':['python']
+\   } 
+\}
+
+NeoBundleLazy 'rhysd/vim-operator-surround',{
+\   'autoload':{
+\       'mappings':['<Plug>(operator-surround-append)','<Plug>(operator-surround-delete)','<Plug>(operator-surround-replace)']
+\   }
+\}
+
+NeoBundleLazy 'kana/vim-operator-replace',{
+\   'autoload':{
+\       'mappings':['<Plug>(operator-replace)']
+\   }
+\}
+
+NeoBundleLazy 'mattn/emmet-vim',{
+\   'autoload':{
+\       'filetypes':['html','css','php']
+\   }
+\}
+
+NeoBundleLazy 'vim-scripts/camelcasemotion',{
+\   'autoload':{
+\       'mappings':['<Plug>CamelCaseMotion_w','<Plug>CamelCaseMotion_b','<Plug>CamelCaseMotion_e']
+\   }
+\}
+
+NeoBundleLazy 'haya14busa/incsearch.vim',{
+\   'autoload':{
+\       'mappings':['<Plug>(incsearch-forward)','<Plug>(incsearch-nohl-n)','<Plug>(incsearch-nohl-N)']
+\   }
+\}
+
+NeoBundleLazy 'osyo-manga/vim-anzu',{
+\   'autoload':{
+\       'mappings':['<Plug>(anzu-n-with-echo)']
+\   }
+\}
+
+NeoBundle 'thinca/vim-zenspace'
+
+" NeoBundle 'scrooloose/nerdtree'
+" NeoBundle 'kana/vim-textobj-indent'
 " NeoBundle 'haya14busa/vim-migemo'
-NeoBundle 'haya14busa/incsearch.vim'
 " NeoBundle 'haya14busa/incsearch-migemo.vim'
-NeoBundle 'osyo-manga/vim-anzu'
+
 call neobundle#end()
 NeoBundleCheck

@@ -1,8 +1,4 @@
 
-let g:vimshell_prompt_expr = 'getcwd()." > "'
-let g:vimshell_prompt_pattern = '^\f\+ > '
-let g:vimshell_user_prompt = 'getcwd()'
-
 nnoremap [shell] <Nop>
 vnoremap [shell] <Nop>
 nmap <Leader>s [shell]
@@ -28,6 +24,9 @@ nnoremap <silent> [shell]s :VimShellSendString<CR>
 "非同期で開いたインタプリタに選択行を評価させる
 vnoremap <silent> [shell]s :VimShellSendString<CR>
 
+let g:vimshell_prompt_expr = 'getcwd()." > "'
+let g:vimshell_prompt_pattern = '^\f\+ > '
+" let g:vimshell_user_prompt = 'getcwd()'
 "shellを開いている間のキーマッピング
 autocmd FileType vimshell call s:shell_my_settings()
 function! s:shell_my_settings()"{{{
