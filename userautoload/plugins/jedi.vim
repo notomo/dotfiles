@@ -21,5 +21,6 @@ function! s:bundle.hooks.on_source(bundle)
     let g:jedi#force_py_version = 3
     " docstring‚Í•\Ž¦‚µ‚È‚¢
     setlocal completeopt-=preview
+    let g:jedi#goto_command='<Nop>'
 endfunction
 unlet s:bundle

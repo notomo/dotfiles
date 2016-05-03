@@ -74,6 +74,8 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'tacroe/unite-mark'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite-outline'
+NeoBundle 'kmnk/vim-unite-giti'
+NeoBundle 'tsukkee/unite-tag'
 
 NeoBundleLazy 'scrooloose/syntastic',{
 \   'autoload':{
@@ -153,7 +155,18 @@ NeoBundleLazy 'osyo-manga/vim-anzu',{
 
 NeoBundle 'thinca/vim-zenspace'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'kmnk/vim-unite-giti'
+
+NeoBundleLazy 'tyru/restart.vim',{
+\   'autoload':{
+\       'commands':["Restart"]
+\   }
+\}
+
+NeoBundleLazy 'soramugi/auto-ctags.vim',{
+\   'autoload':{
+\       'commands':['Ctags']
+\   }
+\}
 
 " NeoBundle 'scrooloose/nerdtree'
 " NeoBundle 'kana/vim-textobj-indent'

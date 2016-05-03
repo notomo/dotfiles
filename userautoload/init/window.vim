@@ -4,9 +4,13 @@ nnoremap [move] <Nop>
 nmap m [move]
 
 nnoremap [move]h <C-w>h
+nnoremap [move]a <C-w>h
 nnoremap [move]j <C-w>j
+nnoremap [move]s <C-w>j
 nnoremap [move]k <C-w>k
+nnoremap [move]d <C-w>k
 nnoremap [move]l <C-w>l
+nnoremap [move]f <C-w>l
 nnoremap [move]w <C-w><C-w>
 nnoremap [move]p <C-w>p
 
@@ -16,6 +20,7 @@ nmap <Space>s [split]
 nnoremap [split]o :<C-u>only<CR>
 nnoremap [split]h :<C-u>split<CR>
 nnoremap [split]v :<C-u>vsplit<CR>
+nnoremap [split]s :<C-u>vsplit<CR>
 nnoremap [split]p <C-w>z
 
 " Shift + 矢印でウィンドウサイズを変更

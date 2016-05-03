@@ -24,8 +24,15 @@ function! s:vimfiler_my_settings()
     " nmap <buffer> l <Plug>(vimfiler_expand_or_edit)
     " nmap <buffer> l <Plug>(vimfiler_expand_tree)
     nmap <buffer> r <Plug>(vimfiler_preview_file)
+    nnoremap <silent><buffer><expr> t vimfiler#do_action("tabopen")
+    " nnoremap <silent><buffer><expr> n vimfiler#do_action("persist_open")
+    nmap <buffer> a <Plug>(vimfiler_choose_action)
     nnoremap <buffer><silent>/ :<C-u>Unite file -default-action=vimfiler<CR>
 endfunction
-
  " Edit file by tabedit.
 " let g:vimfiler_edit_action = 'tabopen'
+
+function! s:my_preview()
+    normal <Plug>(vimfiler_smart_l)
+    normal <C-w>p
+endfunction

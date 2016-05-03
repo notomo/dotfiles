@@ -2,6 +2,7 @@ nnoremap <Leader>gd :<C-u>Gdiff<CR>
 nnoremap <Leader>gs :<C-u>Gstatus<CR>
 nnoremap <Leader>gl :<C-u>Glog<CR>
 nnoremap <Leader>ga :<C-u>Gwrite<CR>
+nnoremap <Leader>gA :<C-u>Git add .<CR>
 nnoremap <Leader>gc :<C-u>Gcommit<CR>
 nnoremap <Leader>gC :<C-u>Git commit --amend<CR>
 nnoremap <Leader>gP :<C-u>Gpush<Space>

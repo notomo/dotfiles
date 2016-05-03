@@ -107,13 +107,11 @@ nnoremap <silent> <F5> <Esc>:<C-u>source $MYVIMRC<CR>:<C-u>source $MYGVIMRC<CR>:
 
 nnoremap <Leader>cd :<C-u>CdCurrent<CR>
 
-nnoremap <Space>fm :<C-u>SM 4<CR>
-nnoremap <Space>fr :<C-u>SM 0<CR>
+nnoremap <Leader>fm :<C-u>SM 4<CR>
+nnoremap <Leader>fr :<C-u>SM 0<CR>
 
-nnoremap ef :<C-u>set fenc=utf8<CR>
-nnoremap es :<C-u>:NeoSnippetEdit<CR>
 
-nnoremap <C-S-q> :<C-u>q!<CR>
+nnoremap <C-S-q> :<C-u>qa!<CR>
 nnoremap <Space>l <S-v>
 nnoremap <Space>h <C-v>
 nnoremap gz G
@@ -122,4 +120,19 @@ nnoremap <Space>k gU
 vnoremap <Space>j gu
 vnoremap <Space>k gU
 
-nnoremap <F7> :%s/ *$//<CR>
+nnoremap <F8> :%s/ *$//<CR>
+
+nnoremap [file_encode] <Nop>
+nmap <Space>f [file_encode]
+
+nnoremap [file_encode]i :<C-u>set fileencoding=
+nnoremap [file_encode]u :<C-u>set fileencoding=utf8<CR>
+nnoremap [file_encode]e :<C-u>set fileencoding=euc-jp<CR>
+nnoremap [file_encode]s :<C-u>set fileencoding=shift_jis<CR>
+nnoremap [file_encode]od :<C-u>set fileformat=dos<CR>
+nnoremap [file_encode]om :<C-u>set fileformat=mac<CR>
+nnoremap [file_encode]ou :<C-u>set fileformat=unix<CR>
+
+nnoremap <Leader>do :<C-u>UniteWithCursorWord -immediately tag<CR>
+nnoremap <Leader>dv :<C-u>vsplit<CR><C-w>l:UniteWithCursorWord -immediately tag<CR>
+nnoremap <Leader>dh :<C-u>hsplit<CR><C-w>j:UniteWithCursorWord -immediately tag<CR>
