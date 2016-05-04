@@ -18,9 +18,9 @@ NeoBundleLazy 'Yggdroot/indentLine',{
 \   }
 \}
 
-NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/neocomplete.vim'
 
 NeoBundleLazy 'davidhalter/jedi-vim',{
 \   'autoload':{

@@ -1,1 +1,1 @@
-nnoremap <C-S-F3> :<C-u>Ctags<CR>
+nnoremap <C-F3> :<C-u>Ctags<CR>
