@@ -136,3 +136,5 @@ nnoremap [file_encode]ou :<C-u>set fileformat=unix<CR>
 nnoremap <Leader>do :<C-u>UniteWithCursorWord -immediately tag<CR>
 nnoremap <Leader>dv :<C-u>vsplit<CR><C-w>l:UniteWithCursorWord -immediately tag<CR>
 nnoremap <Leader>dh :<C-u>hsplit<CR><C-w>j:UniteWithCursorWord -immediately tag<CR>
+
+nnoremap <Leader>di :<C-u>Diff<Space>

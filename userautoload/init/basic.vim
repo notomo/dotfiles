@@ -72,3 +72,15 @@ augroup new_file_utf8
     autocmd BufNewFile * set fileencoding=UTF-8
 augroup End
 
+function! s:vimdiff_in_newtab(...)
+  if a:0 == 1
+    tabedit %:p
+    exec 'rightbelow vertical diffsplit ' . a:1
+  else
+    exec 'tabedit ' . a:1
+    for l:file in a:000[1 :]
+      exec 'rightbelow vertical diffsplit ' . l:file
+    endfor
+  endif
+endfunction
+command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)

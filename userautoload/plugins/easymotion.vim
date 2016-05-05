@@ -5,6 +5,7 @@ function! s:bundle.hooks.on_source(bundle)
     let g:EasyMotion_enter_jump_first = 1
     let g:EasyMotion_move_highlight = 1
     let g:EasyMotion_landing_highlight = 0
+    let g:EasyMotion_inc_highlight=1
 endfunction
 unlet s:bundle
 
@@ -15,3 +16,4 @@ map gk <Plug>(easymotion-k)
 map gl <Plug>(easymotion-bd-jk)
 map gn <Plug>(easymotion-lineanywhere)
 map gw <Plug>(easymotion-bd-w)
+

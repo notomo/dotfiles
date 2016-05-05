@@ -23,3 +23,15 @@ function! s:incsearch_keymap()
     IncSearchNoreMap <C-n>  <Over>(incsearch-scroll-f)
     IncSearchNoreMap <C-p>    <Over>(incsearch-scroll-b)
 endfunction
+
+function! s:config_easymotion(...) abort
+  return extend(copy({
+  \   'modules': [incsearch#config#easymotion#module()],
+  \   'keymap': {"\<Space>": '<Over>(easymotion)'},
+  \   'pattern': "\'.*\'\\|\".*\"",
+  \   'is_expr': 0,
+  \   'is_stay': 0
+  \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> gq incsearch#go(<SID>config_easymotion())

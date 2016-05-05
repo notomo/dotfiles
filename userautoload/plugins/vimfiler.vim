@@ -9,7 +9,6 @@ function! s:bundle.hooks.on_source(bundle)
     call vimfiler#custom#profile('default', 'context', {
     \ 'safe' : 0,
     \ 'simple' : 1,
-    \ 'explorer' : 1,
     \ 'no-quit' : 1,
     \ })
     let g:vimfiler_enable_auto_cd = 1

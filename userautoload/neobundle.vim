@@ -4,7 +4,7 @@ if has('vim_starting')
     set nocompatible
     set runtimepath+=~/.vim/bundle/neobundle.vim
     set runtimepath+=~/.vim/
-    "set runtimepath+=~/.vim/after
+    set runtimepath+=~/.vim/after
 endif
 
 " neobundle.vimの初期化 
@@ -71,11 +71,36 @@ NeoBundleLazy 'thinca/vim-ref',{
 \}
 
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'tacroe/unite-mark'
+
 NeoBundle 'Shougo/neomru.vim'
+" NeoBundleLazy 'Shougo/neomru.vim',{
+" \   'autoload':{
+" \       'unite-sources':['neomru/file']
+" \   }
+" \}
+
+NeoBundle 'tacroe/unite-mark'
+" NeoBundleLazy 'tacroe/unite-mark',{
+" \   'autoload':{
+" \       'unite-sources':['mark']
+" \   }
+" \}
+
 NeoBundle 'Shougo/unite-outline'
+" NeoBundleLazy 'Shougo/unite-outline',{
+" \   'autoload':{
+" \       'unite-sources':['outline']
+" \   }
+" \}
+
 NeoBundle 'kmnk/vim-unite-giti'
+
 NeoBundle 'tsukkee/unite-tag'
+" NeoBundleLazy 'tsukkee/unite-tag',{
+" \   'autoload':{
+" \       'unite-sources':['tag']
+" \   }
+" \}
 
 NeoBundleLazy 'scrooloose/syntastic',{
 \   'autoload':{
@@ -97,7 +122,7 @@ NeoBundleLazy 'LeafCage/qutefinger.vim',{
 
 NeoBundleLazy 'Lokaltog/vim-easymotion',{
 \   'autoload':{
-\       'mappings':['<Plug>(easymotion-bd-fl)','<Plug>(easymotion-bd-tl)','<Plug>(easymotion-j)',
+\       'mappings':['<Plug>(easymotion-bd-fl)','<Plug>(easymotion-bd-tl)','<Plug>(easymotion-j)','<Plug>(easymotion-s2)','<Plug>(easymotion-sn)',
 \                   '<Plug>(easymotion-k)','<Plug>(easymotion-bd-jk)','<Plug>(easymotion-lineanywhere)','<Plug>(easymotion-bd-w)']
 \   }
 \}
@@ -143,7 +168,8 @@ NeoBundleLazy 'vim-scripts/camelcasemotion',{
 
 NeoBundleLazy 'haya14busa/incsearch.vim',{
 \   'autoload':{
-\       'mappings':['<Plug>(incsearch-forward)','<Plug>(incsearch-nohl-n)','<Plug>(incsearch-nohl-N)']
+\       'mappings':['<Plug>(incsearch-forward)','<Plug>(incsearch-nohl-n)','<Plug>(incsearch-nohl-N)'],
+\       'function_prefix':['incsearch'],
 \   }
 \}
 
@@ -165,6 +191,20 @@ NeoBundleLazy 'tyru/restart.vim',{
 NeoBundleLazy 'soramugi/auto-ctags.vim',{
 \   'autoload':{
 \       'commands':['Ctags']
+\   }
+\}
+
+NeoBundleLazy 'sgur/vim-py3diff',{
+\   'autoload':{
+\       'commands':['Diff']
+\   }
+\}
+
+NeoBundleLazy 'haya14busa/incsearch-easymotion.vim',{
+\   'depends':['incsearch.vim','vim-easymotion'],
+\   'autoload':{
+\       'mappings':['<Plug>(incsearch-easymotion-/)'],
+\       'function_prefix':['incsearch'],
 \   }
 \}
 

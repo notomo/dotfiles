@@ -1,8 +1,16 @@
-snippet     attr
+snippet property
+abbr @property
+options     head
+	@property
+	def ${1:#name}(self):
+	    return self._$1
+	${0}
+
+snippet     selfx
 abbr        self.x=x
-options     word
-    self.${1:x}=$1${0}
-    
+options     head
+	self.${1:x}=$1
+	${0}
 
 snippet     #!
 abbr        #!/usr/bin/env python3
@@ -16,7 +24,7 @@ abbr        class Class(...): ...
 options     head
 	class ${1:#:name}(${2:object}):
 		def __init__(self,${3}):
-			${0:pass}test
+			${0:pass}
 
 snippet     classd
 abbr        class Class(...): "..."
