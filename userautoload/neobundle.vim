@@ -18,9 +18,17 @@ NeoBundleLazy 'Yggdroot/indentLine',{
 \   }
 \}
 
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/neocomplete.vim'
+NeoBundleLazy 'Shougo/neocomplete.vim',{
+\   'on_i' : 1
+\}
+
+NeoBundleLazy 'Shougo/neosnippet',{
+\   'on_i' : 1
+\}
+
+NeoBundleLazy 'Shougo/neosnippet-snippets',{
+\   'depends' : ['neosnippet'],
+\}
 
 NeoBundleLazy 'davidhalter/jedi-vim',{
 \   'autoload':{
@@ -47,7 +55,10 @@ NeoBundleLazy 'thinca/vim-quickrun',{
 \   }
 \}
 
-NeoBundle 'fuenor/im_control.vim'
+NeoBundleLazy 'fuenor/im_control.vim',{
+\   'on_i' : 1
+\}
+
 NeoBundleLazy 'Shougo/vimshell',{
 \   'autoload':{
 \       'commands':['VimShell','VimShellTab','VimShellCreate','VimShellBufferDir','VimShellInteractive','VimShellSendString']
@@ -70,37 +81,41 @@ NeoBundleLazy 'thinca/vim-ref',{
 \   }
 \}
 
-NeoBundle 'Shougo/unite.vim'
+NeoBundleLazy 'Shougo/unite.vim',{
+\   'autoload':{
+\       'commands':['Unite','UniteBookmarkAdd','UniteWithBufferDir','UniteWithCursorWord']
+\   }
+\}
 
-NeoBundle 'Shougo/neomru.vim'
-" NeoBundleLazy 'Shougo/neomru.vim',{
-" \   'autoload':{
-" \       'unite-sources':['neomru/file']
-" \   }
-" \}
+NeoBundleLazy 'Shougo/neomru.vim',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
 
-NeoBundle 'tacroe/unite-mark'
-" NeoBundleLazy 'tacroe/unite-mark',{
-" \   'autoload':{
-" \       'unite-sources':['mark']
-" \   }
-" \}
+NeoBundleLazy 'tacroe/unite-mark',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
 
-NeoBundle 'Shougo/unite-outline'
-" NeoBundleLazy 'Shougo/unite-outline',{
-" \   'autoload':{
-" \       'unite-sources':['outline']
-" \   }
-" \}
+NeoBundleLazy 'Shougo/unite-outline',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
 
-NeoBundle 'kmnk/vim-unite-giti'
+NeoBundleLazy 'kmnk/vim-unite-giti',{
+\   'autoload':{
+\       'on_source':['unite.vim']
+\   }
+\}
 
-NeoBundle 'tsukkee/unite-tag'
-" NeoBundleLazy 'tsukkee/unite-tag',{
-" \   'autoload':{
-" \       'unite-sources':['tag']
-" \   }
-" \}
+NeoBundleLazy 'tsukkee/unite-tag',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
 
 NeoBundleLazy 'scrooloose/syntastic',{
 \   'autoload':{
@@ -205,6 +220,13 @@ NeoBundleLazy 'haya14busa/incsearch-easymotion.vim',{
 \   'autoload':{
 \       'mappings':['<Plug>(incsearch-easymotion-/)'],
 \       'function_prefix':['incsearch'],
+\   }
+\}
+
+NeoBundleLazy 'tyru/open-browser.vim',{
+\   'autoload':{
+\       'mappings':['tyru/open-browser.vim'],
+\       'commands':['OpenBrowserSearch','OpenBrowser','OpenBrowserCurrent']
 \   }
 \}
 

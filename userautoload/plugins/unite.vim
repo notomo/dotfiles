@@ -3,17 +3,21 @@
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
 
-"unite general settings
-call unite#custom_default_action('file', 'tabopen')
+let s:bundle=neobundle#get('unite.vim')
+function! s:bundle.hooks.on_source(bundle)
+    "unite general settings
+    call unite#custom_default_action('file', 'tabopen')
 
-"インサートモードで開始
-let g:unite_enable_start_insert = 1
+    "インサートモードで開始
+    let g:unite_enable_start_insert = 1
 
-"最近開いたファイル履歴の保存数
-let g:unite_source_file_mru_limit = 50
+    "最近開いたファイル履歴の保存数
+    let g:unite_source_file_mru_limit = 200
 
-"file_mruの表示フォーマットを指定。空にすると表示スピードが高速化される
-let g:unite_source_file_mru_filename_format = ''
+    "file_mruの表示フォーマットを指定。空にすると表示スピードが高速化される
+    let g:unite_source_file_mru_filename_format = ''
+endfunction
+unlet s:bundle
 
 "現在開いているファイルのディレクトリ下のファイル一覧。
 "開いていない場合はカレントディレクトリ
@@ -32,6 +36,14 @@ nnoremap <silent> [unite]m :<C-u>Unite -no-split mark<CR>
 nnoremap <silent> [unite]s :<C-u>Unite -no-split bookmark<CR>
 "ブックマークに追加
 nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+
+
+nnoremap <silent> [unite]gb :<C-u>Unite giti/branch<CR>
+nnoremap <silent> [unite]gB :<C-u>Unite giti/branch_all<CR>
+nnoremap <silent> [unite]gc :<C-u>Unite giti/config<CR>
+nnoremap <silent> [unite]gl :<C-u>Unite giti/log<CR>
+nnoremap <silent> [unite]gs :<C-u>Unite giti/status<CR>
+
 
 "uniteを開いている間のキーマッピング
 autocmd FileType unite call s:unite_my_settings()

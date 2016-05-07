@@ -3,8 +3,8 @@ nnoremap x "_x
 
 nnoremap <F1> <Nop>
 
-nnoremap <S-C-F7> :<C-u>%s/ã€/,/g<CR>
-nnoremap <S-C-F8> :<C-u>%s/ã€‚/\./g<CR>
+nnoremap <S-C-F7> :<C-u>%s/A/,/g<CR>
+nnoremap <S-C-F8> :<C-u>%s/B/\./g<CR>
 " nnoremap <Space>b g;
 " nnoremap <Space>f g,
 nnoremap <Space>v gv
@@ -16,13 +16,13 @@ nnoremap <Space>gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><L
 let g:mapleader=","
 
 inoremap <silent> jj <ESC>
-" æ—¥æœ¬èªå…¥åŠ›ã§â€ã£jâ€ã¨å…¥åŠ›ã—ã¦ã‚‚Enterã‚­ãƒ¼ã§ç¢ºå®šã•ã›ã‚Œã°ã‚¤ãƒ³ã‚µãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã‚’æŠœã‘ã‚‹
-inoremap <silent> ã£ï½Š <ESC>
-inoremap <silent> ï½Šï½Š <ESC>
+" “ú–{Œê“ü—Í‚Åh‚Ájh‚Æ“ü—Í‚µ‚Ä‚àEnterƒL[‚ÅŠm’è‚³‚¹‚ê‚ÎƒCƒ“ƒT[ƒgƒ‚[ƒh‚ğ”²‚¯‚é
+inoremap <silent> ‚Á‚Š <ESC>
+inoremap <silent> ‚Š‚Š <ESC>
 cnoremap <silent> jj <C-u><ESC>
 onoremap jj <ESC>
 vnoremap v <ESC>
-nnoremap ã„ i
+nnoremap ‚¢ i
 nnoremap <Space>i I
 snoremap jj <ESC>
 
@@ -59,7 +59,7 @@ nnoremap :  ;
 vnoremap ;  :
 vnoremap :  ;
 
-" å‰ã®ãƒãƒƒãƒ•ã‚¡ã¸ç§»å‹•
+" ‘O‚Ìƒoƒbƒtƒ@‚ÖˆÚ“®
 nnoremap <Space>b <C-^>
 
 " noremap gh H8k
@@ -138,3 +138,5 @@ nnoremap <Leader>dv :<C-u>vsplit<CR><C-w>l:UniteWithCursorWord -immediately tag<
 nnoremap <Leader>dh :<C-u>hsplit<CR><C-w>j:UniteWithCursorWord -immediately tag<CR>
 
 nnoremap <Leader>di :<C-u>Diff<Space>
+
+nnoremap <Leader>x dlp

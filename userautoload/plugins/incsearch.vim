@@ -1,7 +1,9 @@
 " map /  <Plug>(incsearch-migemo-/)
 let g:incsearch#auto_nohlsearch = 1
-map /  <Plug>(incsearch-forward)
-nmap <Space>/ <Plug>(incsearch-forward)<C-r><C-w>
+" map /  <Plug>(incsearch-forward)
+map / <Plug>(incsearch-easymotion-/)
+" nmap <Space>/ <Plug>(incsearch-forward)<C-r><C-w>
+nmap <Space>/ <Plug>(incsearch-easymotion-/)<C-r><C-w>
 map   n <Plug>(incsearch-nohl-n)
 map   N <Plug>(incsearch-nohl-N)
 nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)

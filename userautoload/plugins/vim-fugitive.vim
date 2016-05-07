@@ -1,14 +1,20 @@
-nnoremap <Leader>gd :<C-u>Gdiff<CR>
-nnoremap <Leader>gs :<C-u>Gstatus<CR>
-nnoremap <Leader>gl :<C-u>Glog<CR>
-nnoremap <Leader>ga :<C-u>Gwrite<CR>
-nnoremap <Leader>gA :<C-u>Git add .<CR>
-nnoremap <Leader>gx :<C-u>Git<Space>
-nnoremap <Leader>gc :<C-u>Gcommit<CR>
-nnoremap <Leader>gC :<C-u>Git commit --amend<CR>
-nnoremap <Leader>gP :<C-u>Gpush<Space>
-nnoremap <Leader>gbl :<C-u>Gblame<CR>
-nnoremap <Leader>grn :<C-u>Gmove<Space>
-nnoremap <Leader>grm :<C-u>Gremove<CR>
-nnoremap <Leader>gcd :<C-u>Gcd<CR>
+
+nnoremap [git] <Nop>
+nmap <Leader>g [git]
+
+nnoremap [git]d :<C-u>Gdiff<CR>
+nnoremap [git]s :<C-u>Gstatus<CR>
+nnoremap [git]l :<C-u>Glog<CR>
+nnoremap [git]a :<C-u>Gwrite<CR>
+nnoremap [git]A :<C-u>Git add .<CR>
+nnoremap [git]x :<C-u>Git<Space>
+nnoremap [git]c :<C-u>Gcommit<CR>
+nnoremap [git]C :<C-u>Git commit --amend<CR>
+nnoremap [git]P :<C-u>Gpush<Space>
+nnoremap [git]bl :<C-u>Gblame<CR>
+nnoremap [git]rn :<C-u>Gmove<Space>
+nnoremap [git]rm :<C-u>Gremove<CR>
+nnoremap [git]cd :<C-u>Gcd<CR>
+nnoremap [git]g :<C-u>Ggrep  \| copen<Left><Left><Left><Left><Left><Left><Left><Left>
+
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}

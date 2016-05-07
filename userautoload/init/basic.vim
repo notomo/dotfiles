@@ -67,9 +67,10 @@ set viminfo+=n~/.vim/tmp/viminfo.txt
 let $PATH = $PATH . ';C:\MinGW64\bin;C:\MinGW64\msys\1.0\bin'
 set statusline=%F%m%r%h%w\%=[COL=%c]\[FTYPE=%Y]\[ENC=%{&enc}]\[FENC=%{&fileencoding}]\[FORMAT=%{&ff}]
 
-augroup new_file_utf8
+augroup new_file_utf8_unix
     autocmd!
     autocmd BufNewFile * set fileencoding=UTF-8
+    autocmd BufNewFile * set fileformat=unix
 augroup End
 
 function! s:vimdiff_in_newtab(...)
@@ -84,3 +85,11 @@ function! s:vimdiff_in_newtab(...)
   endif
 endfunction
 command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)
+
+if v:servername == 'GVIM1'
+    let file = expand('%:p')
+    bwipeout
+    call remote_send('GVIM', '<ESC>:tabnew ' .file .'<CR>')
+    call remote_foreground('GVIM')
+    quit
+endif

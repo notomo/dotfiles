@@ -6,6 +6,7 @@ function! s:bundle.hooks.on_source(bundle)
     let g:EasyMotion_move_highlight = 1
     let g:EasyMotion_landing_highlight = 0
     let g:EasyMotion_inc_highlight=1
+    let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmf;'
 endfunction
 unlet s:bundle
 
