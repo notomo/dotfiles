@@ -37,6 +37,8 @@ nnoremap <silent> [unite]s :<C-u>Unite -no-split bookmark<CR>
 "ブックマークに追加
 nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 
+" nnoremap <silent> [unite]k :<C-u>Unite -no-split output:map|map!|lmap<CR>
+
 
 nnoremap <silent> [unite]gb :<C-u>Unite giti/branch<CR>
 nnoremap <silent> [unite]gB :<C-u>Unite giti/branch_all<CR>

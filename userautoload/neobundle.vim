@@ -230,6 +230,13 @@ NeoBundleLazy 'tyru/open-browser.vim',{
 \   }
 \}
 
+" NeoBundle 'stephpy/vim-php-cs-fixer'
+NeoBundleLazy 'stephpy/vim-php-cs-fixer',{
+\   'autoload':{
+\       'filetypes':['php']
+\   }
+\}
+
 " NeoBundle 'scrooloose/nerdtree'
 " NeoBundle 'kana/vim-textobj-indent'
 " NeoBundle 'haya14busa/vim-migemo'

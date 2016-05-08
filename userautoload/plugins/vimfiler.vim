@@ -3,7 +3,6 @@ nnoremap <silent> <Space>to :<C-u>VimFilerBufferDir -quit<CR>
 "現在開いているバッファをIDE風に開く
 nnoremap <Space>tl :<C-u>:CdCurrent<CR>:VimFilerBufferDir -split -simple -toggle -no-quit -winwidth=35<CR>
 
-
 let s:bundle=neobundle#get('vimfiler.vim')
 function! s:bundle.hooks.on_source(bundle)
     call vimfiler#custom#profile('default', 'context', {
@@ -20,7 +19,8 @@ function! s:bundle.hooks.on_source(bundle)
 endfunction
 unlet s:bundle
 
-augroup vimrc
+augroup vimfiler
+    autocmd!
     autocmd FileType vimfiler call s:vimfiler_my_settings()
 augroup END
 function! s:vimfiler_my_settings()
@@ -35,11 +35,8 @@ function! s:vimfiler_my_settings()
     nmap <buffer> q <Plug>(vimfiler_exit)
     nmap <buffer> Q <Plug>(vimfiler_hide)
     nmap <buffer> e <Plug>(vimfiler_edit_file)
-    " nmap <buffer> l <Plug>(vimfiler_expand_or_edit)
-    " nmap <buffer> l <Plug>(vimfiler_expand_tree)
     nmap <buffer> v <Plug>(vimfiler_preview_file)
     nnoremap <silent><buffer><expr> t vimfiler#do_action("tabopen")
-    " nnoremap <silent><buffer><expr> n vimfiler#do_action("persist_open")
     nmap <buffer> a <Plug>(vimfiler_choose_action)
     nnoremap <buffer><silent> u <C-w>l:<C-u>Unite file<CR>
     nmap <buffer> X <Plug>(vimfiler_execute_system_associated)

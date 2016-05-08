@@ -1,3 +1,17 @@
+snippet connect
+abbr qt connect
+options head
+	self.${1}.connect(self.${2})
+
+snippet class_Qt
+abbr qt class
+options head
+	class ${1:#:name}(${2:QWidget}):
+		def __init__(self,${3:parent=None}):
+            $1.__init__(self,${4:parent=parent})
+			${0:pass}
+
+
 snippet property
 abbr @property
 options     head

@@ -12,7 +12,7 @@
 
 let s:bundle=neobundle#get('jedi-vim')
 function! s:bundle.hooks.on_source(bundle)
-    let g:jedi#completions_enabled = 0
+    let g:jedi#completions_enabled = 1
     let g:jedi#auto_vim_configuration = 0
     let g:jedi#rename_command = '<Nop>'
     let g:jedi#popup_select_first = 0

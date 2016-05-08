@@ -23,7 +23,8 @@ function! s:bundle.hooks.on_source(bundle)
 
     let g:neocomplete#delimiter_patterns               = {'php': ['->', '::', '\']}
     let g:neocomplete#max_keyword_width                = 30
-    let g:neocomplete#sources                          = {'_': ['file','neosnippet','dictionary','buffer']}
+    " let g:neocomplete#sources                          = {'_': ['file','neosnippet','dictionary','buffer']}
+    let g:neocomplete#sources                          = {'_': ['dictionary','file','neosnippet','buffer']}
 
     " ユーザー定義スニペット保存ディレクトリ
     let g:neocomplete#snippets_dir ='~/.vim/snippets'
