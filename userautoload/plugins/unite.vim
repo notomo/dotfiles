@@ -8,33 +8,33 @@ function! s:bundle.hooks.on_source(bundle)
     "unite general settings
     call unite#custom_default_action('file', 'tabopen')
 
-    "ƒCƒ“ƒT[ƒgƒ‚[ƒh‚ÅŠJn
+    "ã‚¤ãƒ³ã‚µãƒ¼ãƒˆãƒ¢ãƒ¼ãƒ‰ã§é–‹å§‹
     let g:unite_enable_start_insert = 1
 
-    "Å‹ßŠJ‚¢‚½ƒtƒ@ƒCƒ‹—š—ğ‚Ì•Û‘¶”
+    "æœ€è¿‘é–‹ã„ãŸãƒ•ã‚¡ã‚¤ãƒ«å±¥æ­´ã®ä¿å­˜æ•°
     let g:unite_source_file_mru_limit = 200
 
-    "file_mru‚Ì•\¦ƒtƒH[ƒ}ƒbƒg‚ğw’èB‹ó‚É‚·‚é‚Æ•\¦ƒXƒs[ƒh‚ª‚‘¬‰»‚³‚ê‚é
+    "file_mruã®è¡¨ç¤ºãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’æŒ‡å®šã€‚ç©ºã«ã™ã‚‹ã¨è¡¨ç¤ºã‚¹ãƒ”ãƒ¼ãƒ‰ãŒé«˜é€ŸåŒ–ã•ã‚Œã‚‹
     let g:unite_source_file_mru_filename_format = ''
 endfunction
 unlet s:bundle
 
-"Œ»İŠJ‚¢‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚ÌƒfƒBƒŒƒNƒgƒŠ‰º‚Ìƒtƒ@ƒCƒ‹ˆê——B
-"ŠJ‚¢‚Ä‚¢‚È‚¢ê‡‚ÍƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ
+"ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªä¸‹ã®ãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§ã€‚
+"é–‹ã„ã¦ã„ãªã„å ´åˆã¯ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -no-split -buffer-name=files file<CR>
-"ƒoƒbƒtƒ@ˆê——
+"ãƒãƒƒãƒ•ã‚¡ä¸€è¦§
 nnoremap <silent> [unite]b :<C-u>Unite -no-split buffer<CR>
-"ƒNƒ‰ƒXEŠÖ”iƒAƒEƒgƒ‰ƒCƒ“jˆê——
+"ã‚¯ãƒ©ã‚¹ãƒ»é–¢æ•°ï¼ˆã‚¢ã‚¦ãƒˆãƒ©ã‚¤ãƒ³ï¼‰ä¸€è¦§
 nnoremap <silent> [unite]o :<C-u>Unite -no-split outline<CR>
-"ƒŒƒWƒXƒ^ˆê——
+"ãƒ¬ã‚¸ã‚¹ã‚¿ä¸€è¦§
 nnoremap <silent> [unite]c :<C-u>Unite -no-split -buffer-name=register register<CR>
-"Å‹ßg—p‚µ‚½ƒtƒ@ƒCƒ‹ˆê——
+"æœ€è¿‘ä½¿ç”¨ã—ãŸãƒ•ã‚¡ã‚¤ãƒ«ä¸€è¦§
 nnoremap <silent> [unite]r :<C-u>Unite -no-split file_mru<CR>
-"ƒ}[ƒNˆê——
+"ãƒãƒ¼ã‚¯ä¸€è¦§
 nnoremap <silent> [unite]m :<C-u>Unite -no-split mark<CR>
-"ƒuƒbƒNƒ}[ƒNˆê——
+"ãƒ–ãƒƒã‚¯ãƒãƒ¼ã‚¯ä¸€è¦§
 nnoremap <silent> [unite]s :<C-u>Unite -no-split bookmark<CR>
-"ƒuƒbƒNƒ}[ƒN‚É’Ç‰Á
+"ãƒ–ãƒƒã‚¯ãƒãƒ¼ã‚¯ã«è¿½åŠ 
 nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 
 " nnoremap <silent> [unite]k :<C-u>Unite -no-split output:map|map!|lmap<CR>
@@ -47,26 +47,29 @@ nnoremap <silent> [unite]gl :<C-u>Unite giti/log<CR>
 nnoremap <silent> [unite]gs :<C-u>Unite giti/status<CR>
 
 
-"unite‚ğŠJ‚¢‚Ä‚¢‚éŠÔ‚ÌƒL[ƒ}ƒbƒsƒ“ƒO
+"uniteã‚’é–‹ã„ã¦ã„ã‚‹é–“ã®ã‚­ãƒ¼ãƒãƒƒãƒ”ãƒ³ã‚°
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
 	imap <buffer> jq <Plug>(unite_exit)
-	"“ü—Íƒ‚[ƒh‚Ì‚Æ‚«jj‚Åƒm[ƒ}ƒ‹ƒ‚[ƒh‚ÉˆÚ“®
+	"å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã®ã¨ãjjã§ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã«ç§»å‹•
 	imap <buffer> jj <Plug>(unite_insert_leave)
-	"ctrl+h‚Åc‚É•ªŠ„‚µ‚ÄŠJ‚­
+	"ctrl+hã§ç¸¦ã«åˆ†å‰²ã—ã¦é–‹ã
 	nnoremap <silent> <buffer> <expr> <C-h> unite#do_action('split')
 	inoremap <silent> <buffer> <expr> <C-h> unite#do_action('split')
-	"ctrl+v‚Å‰¡‚É•ªŠ„‚µ‚ÄŠJ‚­
+	"ctrl+vã§æ¨ªã«åˆ†å‰²ã—ã¦é–‹ã
 	nnoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
 	inoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
-	"ctrl+o‚Å‚»‚ÌêŠ‚ÉŠJ‚­
+	"ctrl+oã§ãã®å ´æ‰€ã«é–‹ã
 	nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 	inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
-	"ctrl+t‚Åƒ^ƒu‚ÅŠJ‚­
+	"ctrl+tã§ã‚¿ãƒ–ã§é–‹ã
 	nnoremap <silent> <buffer> <expr> <C-t> unite#do_action('tabopen')
 	inoremap <silent> <buffer> <expr> <C-t> unite#do_action('tabopen')
 
 	nnoremap <silent> <buffer> <expr> v unite#do_action('persist_open')
+
+    nnoremap <silent> <buffer> <expr> ga unite#do_action('add') 
+    nnoremap <silent> <buffer> <expr> ge unite#do_action('reset_head') 
 
     inoremap <buffer> <C-b> <BS>
     inoremap <buffer> <C-d> <Del>

@@ -237,6 +237,7 @@ NeoBundleLazy 'stephpy/vim-php-cs-fixer',{
 \   }
 \}
 
+NeoBundle 'tpope/vim-dispatch'
 " NeoBundle 'scrooloose/nerdtree'
 " NeoBundle 'kana/vim-textobj-indent'
 " NeoBundle 'haya14busa/vim-migemo'
