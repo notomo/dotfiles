@@ -69,7 +69,13 @@ function! s:unite_my_settings()"{{{
 	nnoremap <silent> <buffer> <expr> v unite#do_action('persist_open')
 
     nnoremap <silent> <buffer> <expr> ga unite#do_action('add') 
-    nnoremap <silent> <buffer> <expr> ge unite#do_action('reset_head') 
+    nnoremap <silent> <buffer> <expr> gu unite#do_action('unstage') 
+    nnoremap <silent> <buffer> <expr> gi unite#do_action('ignore') 
+    nnoremap <silent> <buffer> <expr> gm unite#do_action('merge') 
+    nnoremap <silent> <buffer> <expr> gC unite#do_action('commit') 
+    nnoremap <silent> <buffer> <expr> gs unite#do_action('switch') 
+    nnoremap <silent> <buffer> <expr> gA unite#do_action('amend') 
+    nnoremap <silent> <buffer> <expr> gR unite#do_action('revert') 
 
     inoremap <buffer> <C-b> <BS>
     inoremap <buffer> <C-d> <Del>

@@ -12,6 +12,8 @@ nnoremap [git]c :<C-u>Gcommit<CR>
 nnoremap [git]C :<C-u>Git commit --amend<CR>
 nnoremap [git]P :<C-u>Gpush<Space>
 nnoremap [git]t :Dispatch git log<Space>
+nnoremap [git]F :!git fetch<CR>
+nnoremap [git]m :!git merge origin/
 nnoremap [git]bl :<C-u>Gblame<CR>
 nnoremap [git]rn :<C-u>Gmove<Space>
 nnoremap [git]rm :<C-u>Gremove<CR>
