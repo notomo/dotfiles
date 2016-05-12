@@ -31,7 +31,7 @@ inoremap <silent> <C-o> <C-g>u<C-r>=MyExecExCommand('normal o')<CR>
 
 inoremap <silent> <M-b> <C-Left>
 inoremap <silent> <M-f> <C-Right>
-inoremap <C-r> <Nop>
+" inoremap <C-r> <Nop>
 
 inoremap j<Space>a ->
 inoremap j<Space>i =>

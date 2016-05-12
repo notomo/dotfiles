@@ -140,3 +140,5 @@ nnoremap <Leader>dh :<C-u>hsplit<CR><C-w>j:UniteWithCursorWord -immediately tag<
 nnoremap <Leader>di :<C-u>Diff<Space>
 
 nnoremap <Leader>x dlp
+
+nnoremap q <Nop>
