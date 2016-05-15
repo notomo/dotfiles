@@ -117,6 +117,13 @@ NeoBundleLazy 'tsukkee/unite-tag',{
 \   }
 \}
 
+NeoBundleLazy 'Shougo/unite-session',{
+\   'autoload':{
+\       'on_source': 'unite.vim',
+\       'commands' : ['UniteSessionSave','UniteSessionLoad']
+\   }
+\}
+
 NeoBundleLazy 'scrooloose/syntastic',{
 \   'autoload':{
 \       'filetypes':['python','php']
@@ -243,6 +250,8 @@ NeoBundleLazy 'stephpy/vim-php-cs-fixer',{
 " NeoBundle 'haya14busa/incsearch-migemo.vim'
 
 NeoBundle 'lambdalisue/vim-gita'
+
+NeoBundle 'h1mesuke/vim-alignta'
 
 call neobundle#end()
 NeoBundleCheck

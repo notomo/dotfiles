@@ -32,10 +32,13 @@ nnoremap <silent> [unite]c :<C-u>Unite -no-split -buffer-name=register register<
 nnoremap <silent> [unite]r :<C-u>Unite -no-split file_mru<CR>
 "マーク一覧
 nnoremap <silent> [unite]m :<C-u>Unite -no-split mark<CR>
-"ブックマーク一覧
-nnoremap <silent> [unite]s :<C-u>Unite -no-split bookmark<CR>
+" ブックマーク一覧
+" nnoremap <silent> [unite]s :<C-u>Unite -no-split bookmark<CR>
 "ブックマークに追加
-nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+" nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+nnoremap [unite]v :<C-u>UniteSessionSave<CR>
+nnoremap <silent> [unite]l :<C-u>UniteSessionLoad<CR>
+nnoremap <silent> [unite]s :<C-u>Unite -no-split session<CR>
 
 " nnoremap <silent> [unite]k :<C-u>Unite -no-split output:map|map!|lmap<CR>
 

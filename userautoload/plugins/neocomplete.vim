@@ -1,19 +1,19 @@
 
 let s:bundle=neobundle#get('neocomplete.vim')
 function! s:bundle.hooks.on_source(bundle)
-    " ‹N“®‚É—LŒø‰»
+    " èµ·å‹•æ™‚ã«æœ‰åŠ¹åŒ–
     let g:neocomplete#enable_at_startup = 1
-    " ‘å•¶š‚ª“ü—Í‚³‚ê‚é‚Ü‚Å‘å•¶š¬•¶š‚Ì‹æ•Ê‚ğ–³‹‚·‚é
+    " å¤§æ–‡å­—ãŒå…¥åŠ›ã•ã‚Œã‚‹ã¾ã§å¤§æ–‡å­—å°æ–‡å­—ã®åŒºåˆ¥ã‚’ç„¡è¦–ã™ã‚‹
     let g:neocomplete#enable_smart_case = 1
-    " _(ƒAƒ“ƒ_[ƒXƒRƒA)‹æØ‚è‚Ì•âŠ®‚ğ—LŒø‰»
+    " _(ã‚¢ãƒ³ãƒ€ãƒ¼ã‚¹ã‚³ã‚¢)åŒºåˆ‡ã‚Šã®è£œå®Œã‚’æœ‰åŠ¹åŒ–
     let g:neocomplete#enable_underbar_completion = 1
     let g:neocomplete#enable_camel_case_completion  =  1
-    " ƒ|ƒbƒvƒAƒbƒvƒƒjƒ…[‚Å•\¦‚³‚ê‚éŒó•â‚Ì”
+    " ãƒãƒƒãƒ—ã‚¢ãƒƒãƒ—ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã§è¡¨ç¤ºã•ã‚Œã‚‹å€™è£œã®æ•°
     let g:neocomplete#max_list = 8
-    " ƒVƒ“ƒ^ƒbƒNƒX‚ğƒLƒƒƒbƒVƒ…‚·‚é‚Æ‚«‚ÌÅ¬•¶š’·
+    " ã‚·ãƒ³ã‚¿ãƒƒã‚¯ã‚¹ã‚’ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã™ã‚‹ã¨ãã®æœ€å°æ–‡å­—é•·
     let g:neocomplete#sources#syntax#min_keyword_length = 3
-    " •âŠ®‚ğ•\¦‚·‚éÅ¬•¶š”
-    let g:neocomplete#auto_completion_start_length = 3
+    " è£œå®Œã‚’è¡¨ç¤ºã™ã‚‹æœ€å°æ–‡å­—æ•°
+    let g:neocomplete#auto_completion_start_length = 2
     let g:neocomplete#enable_complete_select = 1
     let g:neocomplete#enable_auto_select = 0
 
@@ -21,12 +21,11 @@ function! s:bundle.hooks.on_source(bundle)
     let g:neocomplete#enable_auto_close_preview        = 3
     let g:neocomplete#enable_auto_delimiter            = 1
 
-    let g:neocomplete#delimiter_patterns               = {'php': ['->', '::', '\']}
+    let g:neocomplete#delimiter_patterns               = {'php': ['->', '::', '\'],'python':['.',',']}
     let g:neocomplete#max_keyword_width                = 30
-    " let g:neocomplete#sources                          = {'_': ['file','neosnippet','dictionary','buffer']}
-    let g:neocomplete#sources                          = {'_': ['dictionary','file','neosnippet','buffer']}
+    let g:neocomplete#sources                          = {'_': ['file','neosnippet','dictionary','buffer']}
 
-    " ƒ†[ƒU[’è‹`ƒXƒjƒyƒbƒg•Û‘¶ƒfƒBƒŒƒNƒgƒŠ
+    " ãƒ¦ãƒ¼ã‚¶ãƒ¼å®šç¾©ã‚¹ãƒ‹ãƒšãƒƒãƒˆä¿å­˜ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
     let g:neocomplete#snippets_dir ='~/.vim/snippets'
 
     let g:neocomplete#sources#buffer#cache_limit_size  = 50000
@@ -39,5 +38,8 @@ function! s:bundle.hooks.on_source(bundle)
     endif
 
     " let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+    let g:neocomplete#force_omni_input_patterns.python =
+                    \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \),\?\w*'
+    let g:neocomplete#force_overwrite_completefunc = 1
 endfunction
 unlet s:bundle

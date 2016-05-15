@@ -25,3 +25,5 @@ function! s:bundle.hooks.on_source(bundle)
     setlocal omnifunc=jedi#completions
 endfunction
 unlet s:bundle
+nnoremap <Space>im yyp0wWDi<Space>import<Space>
+nnoremap <Space>ia 0wyE/from <C-r>" import<CR><C-o>$ByE<C-i>$a,<ESC>p:noh<CR><C-o>dd<C-i>

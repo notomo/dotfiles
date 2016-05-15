@@ -11,6 +11,11 @@ options head
             $1.__init__(self,${4:parent=parent})
 			${0:pass}
 
+snippet init
+abbr __init__
+options head
+	${1:#:super_class}.__init__(self${2})
+	${0}
 
 snippet property
 abbr @property
@@ -87,6 +92,14 @@ options     head
 	else:
 		${0:pass}
 
+snippet     ifelse
+abbr        ifelse: ...
+options     head
+	if ${1:#:condition}:
+		${2:#:pass}
+	else:
+		${0:#:pass}
+
 snippet     with_open
 alias       fileidiom
 options     head
@@ -99,7 +112,7 @@ options     head
 	for ${1:#:value} in ${2:#:list}:
 		${0:pass}
 
-snippet     if
+snippet     ifonly
 abbr        if ...: ...
 options     head
 	if ${1:#:condition}:
