@@ -142,7 +142,7 @@ function! VerticalTagOpen() abort
     try
         execute "tag ".expand("<cword>")
         execute "vsplit"
-        execute "b #"
+        execute "normal \<C-o>"
     catch
         echo "Not found tag"
     endtry
@@ -176,8 +176,8 @@ function! GitCtags() abort
     if l:git_folder[-4:]==?".git"
         execute "cd ".l:git_root
         let l:tags_path=l:git_folder.'/tags'
-        execute "set tags=".l:tags_path.";"
-        execute "!start ctags -f ".l:tags_path." -R"
+        execute "set tags+=".l:tags_path.";"
+        execute "!start ctags --sort=yes --append=no -f ".l:tags_path." -R ".l:git_root
         execute "cd ".l:current_folder
     else
         echomsg "None .git error"
