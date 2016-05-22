@@ -210,12 +210,6 @@ NeoBundleLazy 'tyru/restart.vim',{
 \   }
 \}
 
-NeoBundleLazy 'soramugi/auto-ctags.vim',{
-\   'autoload':{
-\       'commands':['Ctags']
-\   }
-\}
-
 NeoBundleLazy 'sgur/vim-py3diff',{
 \   'autoload':{
 \       'commands':['Diff']
@@ -232,7 +226,7 @@ NeoBundleLazy 'haya14busa/incsearch-easymotion.vim',{
 
 NeoBundleLazy 'tyru/open-browser.vim',{
 \   'autoload':{
-\       'mappings':['tyru/open-browser.vim'],
+\       'mappings':['<Plug>(openbrowser-smart-search)'],
 \       'commands':['OpenBrowserSearch','OpenBrowser','OpenBrowserCurrent']
 \   }
 \}
@@ -248,10 +242,15 @@ NeoBundleLazy 'stephpy/vim-php-cs-fixer',{
 " NeoBundle 'kana/vim-textobj-indent'
 " NeoBundle 'haya14busa/vim-migemo'
 " NeoBundle 'haya14busa/incsearch-migemo.vim'
+" NeoBundle 'tmhedberg/matchit'
 
 NeoBundle 'lambdalisue/vim-gita'
 
-NeoBundle 'h1mesuke/vim-alignta'
+NeoBundleLazy 'h1mesuke/vim-alignta',{
+\   'autoload':{
+\       'commands':['Alignta']
+\   }
+\}
 
 call neobundle#end()
 NeoBundleCheck

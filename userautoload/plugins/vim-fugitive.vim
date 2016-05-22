@@ -3,7 +3,7 @@ nnoremap [git] <Nop>
 nmap <Leader>g [git]
 
 nnoremap [git]d :<C-u>Gdiff<CR>
-nnoremap [git]s :<C-u>Gstatus<CR>
+nnoremap [git]s :<C-u>Gstatus<CR>:only<CR>
 nnoremap [git]l :<C-u>Glog<CR>
 nnoremap [git]a :<C-u>Gwrite<CR>
 nnoremap [git]A :<C-u>Git add .<CR>

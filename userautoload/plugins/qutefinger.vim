@@ -9,4 +9,6 @@ nmap [quickfix]p <Plug>(qutefinger-prev)
 " nmap [quickfix]N <Plug>(qutefinger-newer)
 nmap [quickfix]x <Plug>(qutefinger-toggle-win)
 nmap [quickfix]f <Plug>(qutefinger-first)
+nmap [quickfix]l <Plug>(qutefinger-last)
+" nmap [quickfix]l :<C-u>clast
 

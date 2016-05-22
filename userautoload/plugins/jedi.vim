@@ -10,6 +10,7 @@
 " docstring‚Í•\Ž¦‚µ‚È‚¢
 " autocmd FileType python setlocal completeopt-=preview
 
+set completeopt-=preview
 let s:bundle=neobundle#get('jedi-vim')
 function! s:bundle.hooks.on_source(bundle)
     let g:jedi#completions_enabled = 1
@@ -20,7 +21,6 @@ function! s:bundle.hooks.on_source(bundle)
     let g:jedi#force_py_version = 3
     " docstring‚Í•\Ž¦‚µ‚È‚¢
     setlocal completeopt-=preview
-    " set completeopt-=preview
     let g:jedi#goto_command='<Nop>'
     setlocal omnifunc=jedi#completions
 endfunction

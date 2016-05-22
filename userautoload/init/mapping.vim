@@ -169,3 +169,19 @@ imap <3-MiddleMouse> <Nop>
 map <4-MiddleMouse> <Nop>
 imap <4-MiddleMouse> <Nop>
 
+function! GitCtags() abort
+    let l:git_root=system("git rev-parse --show-toplevel | tr -d '\\n'")
+    let l:git_folder=l:git_root."/.git"
+    let l:current_folder=getcwd()
+    if l:git_folder[-4:]==?".git"
+        execute "cd ".l:git_root
+        let l:tags_path=l:git_folder.'/tags'
+        execute "set tags=".l:tags_path.";"
+        execute "!start ctags -f ".l:tags_path." -R"
+        execute "cd ".l:current_folder
+    else
+        echomsg "None .git error"
+    endif
+endfunction
+command! GitaCtagsCommand call GitCtags()
+nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
