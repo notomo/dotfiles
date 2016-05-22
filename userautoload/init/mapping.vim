@@ -8,10 +8,13 @@ nnoremap <S-C-F8> :<C-u>%s/ÅB/\./g<CR>
 " nnoremap <Space>b g;
 " nnoremap <Space>f g,
 nnoremap <Space>v gv
-nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
-nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
-nnoremap <Space>Gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
-nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
+
+" nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
+" nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
+" nnoremap <Space>Gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
+" nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
+
+nnoremap <Space>G :<C-u>grep  **/*.<Left><Left><Left><Left><Left><Left>
 
 let g:mapleader=","
 
@@ -24,7 +27,6 @@ onoremap jj <ESC>
 vnoremap v <ESC>
 nnoremap Ç¢ i
 snoremap jj <ESC>
-
 
 " nnoremap <TAB> >>
 " nnoremap <S-TAB> <<
@@ -132,9 +134,24 @@ nnoremap [file_encode]od :<C-u>set fileformat=dos<CR>
 nnoremap [file_encode]om :<C-u>set fileformat=mac<CR>
 nnoremap [file_encode]ou :<C-u>set fileformat=unix<CR>
 
-nnoremap <Leader>do :<C-u>UniteWithCursorWord -immediately tag<CR>
-nnoremap <Leader>dv :<C-u>vsplit<CR><C-w>l:UniteWithCursorWord -immediately tag<CR>
-nnoremap <Leader>dh :<C-u>hsplit<CR><C-w>j:UniteWithCursorWord -immediately tag<CR>
+" nnoremap <Leader>do :<C-u>UniteWithCursorWord -immediately tag<CR>
+" nnoremap <Leader>dv :<C-u>vsplit<CR><C-w>l:UniteWithCursorWord -immediately tag<CR>
+" nnoremap <Leader>dh :<C-u>hsplit<CR><C-w>j:UniteWithCursorWord -immediately tag<CR>
+
+function! VerticalTagOpen() abort
+    try
+        execute "tag ".expand("<cword>")
+        execute "vsplit"
+        execute "b #"
+    catch
+        echo "Not found tag"
+    endtry
+endfunction
+command! VerticalTagOpenCommand call VerticalTagOpen()
+
+nnoremap <Leader>do <C-]>
+nnoremap <Leader>dv :<C-u>VerticalTagOpenCommand<CR>
+nnoremap <Leader>dh <C-w>]
 
 nnoremap <Leader>di :<C-u>Diff<Space>
 
@@ -142,3 +159,13 @@ nnoremap <Leader>x dlp
 
 nnoremap q <Nop>
 vnoremap q <Nop>
+
+map <MiddleMouse> <Nop>
+imap <MiddleMouse> <Nop>
+map <2-MiddleMouse> <Nop>
+imap <2-MiddleMouse> <Nop>
+map <3-MiddleMouse> <Nop>
+imap <3-MiddleMouse> <Nop>
+map <4-MiddleMouse> <Nop>
+imap <4-MiddleMouse> <Nop>
+

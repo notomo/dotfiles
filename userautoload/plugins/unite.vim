@@ -16,6 +16,16 @@ function! s:bundle.hooks.on_source(bundle)
 
     "file_mruの表示フォーマットを指定。空にすると表示スピードが高速化される
     let g:unite_source_file_mru_filename_format = ''
+
+    " let g:neomru#do_validate=0
+
+    " unite grepにjvgrepを使う
+    if executable('jvgrep')
+        let g:unite_source_grep_command = 'jvgrep'
+        let g:unite_source_grep_default_opts = '-r'
+        let g:unite_source_grep_recursive_opt = '-R'
+    endif
+
 endfunction
 unlet s:bundle
 
@@ -43,12 +53,13 @@ nnoremap <silent> [unite]s :<C-u>Unite -no-split session<CR>
 " nnoremap <silent> [unite]k :<C-u>Unite -no-split output:map|map!|lmap<CR>
 
 
-nnoremap <silent> [unite]gb :<C-u>Unite giti/branch<CR>
-nnoremap <silent> [unite]gB :<C-u>Unite giti/branch_all<CR>
-nnoremap <silent> [unite]gc :<C-u>Unite giti/config<CR>
-nnoremap <silent> [unite]gl :<C-u>Unite giti/log<CR>
-nnoremap <silent> [unite]gs :<C-u>Unite giti/status<CR>
+nnoremap <silent> [unite]gb :<C-u>Unite -no-split giti/branch<CR>
+nnoremap <silent> [unite]gB :<C-u>Unite -no-split giti/branch_all<CR>
+nnoremap <silent> [unite]gc :<C-u>Unite -no-split giti/config<CR>
+nnoremap <silent> [unite]gl :<C-u>Unite -no-split giti/log<CR>
+nnoremap <silent> [unite]gs :<C-u>Unite -no-split giti/status<CR>
 
+nnoremap <silent> [unite]G  :<C-u>Unite -no-split grep:. -buffer-name=search-buffer<CR>
 
 "uniteを開いている間のキーマッピング
 autocmd FileType unite call s:unite_my_settings()

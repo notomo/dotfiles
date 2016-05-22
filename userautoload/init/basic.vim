@@ -48,8 +48,16 @@ set tabstop=4
 set smarttab
 set formatoptions=q
 set clipboard=unnamed
+
 " set autochdir
-set grepprg=grep\ -rnIH 
+augroup vim_enter
+  autocmd!
+  autocmd BufEnter * execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
+augroup END
+
+" set grepprg=grep\ -rnIH 
+set grepprg=jvgrep
+let $JVGREP_OUTPUT_ENCODING = 'sjis'
 
 set wrapscan
 " set nobackup
