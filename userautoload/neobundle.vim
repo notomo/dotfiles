@@ -252,5 +252,30 @@ NeoBundleLazy 'h1mesuke/vim-alignta',{
 \   }
 \}
 
+NeoBundleLazy 'othree/yajs.vim',{
+\   'autoload':{
+\       'filetypes':['javascript']
+\   }
+\}
+
+NeoBundleLazy 'lilydjwg/colorizer',{
+\   'autoload':{
+\       'filetypes':['javascript','css','html'],
+\       'commands':['ColorToggle']
+\   }
+\}
+
+NeoBundleLazy 'thinca/vim-fontzoom',{
+\   'autoload':{
+\       'commands':['Fontzoom']
+\   }
+\}
+
+NeoBundleLazy 'thinca/vim-qfreplace',{
+\   'autoload':{
+\       'commands':['Qfreplace']
+\   }
+\}
+
 call neobundle#end()
 NeoBundleCheck
