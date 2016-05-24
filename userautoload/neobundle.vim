@@ -277,5 +277,11 @@ NeoBundleLazy 'thinca/vim-qfreplace',{
 \   }
 \}
 
+NeoBundleLazy 'pasela/unite-webcolorname',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
+
 call neobundle#end()
 NeoBundleCheck

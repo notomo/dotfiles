@@ -50,6 +50,8 @@ nnoremap [unite]v :<C-u>UniteSessionSave<CR>
 nnoremap <silent> [unite]l :<C-u>UniteSessionLoad<CR>
 nnoremap <silent> [unite]s :<C-u>Unite -no-split session<CR>
 
+nnoremap <silent> [unite]w :<C-u>Unite -no-split webcolorname<CR>
+
 " nnoremap <silent> [unite]k :<C-u>Unite -no-split output:map|map!|lmap<CR>
 
 
@@ -90,6 +92,11 @@ function! s:unite_my_settings()"{{{
     nnoremap <silent> <buffer> <expr> gs unite#do_action('switch') 
     nnoremap <silent> <buffer> <expr> gA unite#do_action('amend') 
     nnoremap <silent> <buffer> <expr> gR unite#do_action('revert') 
+
+    nnoremap <silent> <buffer> <expr> yr unite#do_action('yank_rgb') 
+    nnoremap <silent> <buffer> <expr> yh unite#do_action('yank_hex') 
+    nnoremap <silent> <buffer> <expr> nr unite#do_action('insert_rgb') 
+    nnoremap <silent> <buffer> <expr> nh unite#do_action('insert_hex') 
 
     inoremap <buffer> <C-b> <BS>
     inoremap <buffer> <C-d> <Del>
