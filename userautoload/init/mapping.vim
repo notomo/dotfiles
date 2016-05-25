@@ -118,8 +118,10 @@ nnoremap <Space>h <C-v>
 nnoremap gz G
 nnoremap <Space>j gu
 nnoremap <Space>k gU
+nnoremap <Space>z gUl
 vnoremap <Space>j gu
 vnoremap <Space>k gU
+vnoremap <Space>is =
 
 nnoremap <F8> :%s/ *$//<CR>
 
