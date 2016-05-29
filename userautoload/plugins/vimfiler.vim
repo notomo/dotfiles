@@ -39,6 +39,7 @@ function! s:vimfiler_my_settings()
     nnoremap <silent><buffer><expr> t vimfiler#do_action("tabopen")
     nmap <buffer> a <Plug>(vimfiler_choose_action)
     nnoremap <buffer><silent> u <C-w>l:<C-u>Unite file<CR>
+    nmap <buffer> x <Plug>(vimfiler_execute_external_filer)
     nmap <buffer> X <Plug>(vimfiler_execute_system_associated)
     nmap <buffer> <2-LeftMouse> <Plug>(vimfiler_double_click)
     nmap <buffer>yp <Plug>(vimfiler_yank_full_path)
@@ -55,5 +56,6 @@ function! s:vimfiler_my_settings()
     nmap <buffer><Space>r <Plug>(vimfiler_switch_to_root_directory)
     nmap <buffer>s <Plug>(vimfiler_toggle_mark_current_line)
     nmap <buffer>H <Plug>(vimfiler_popd)
+    nmap <buffer>f <Plug>(vimfiler_find)
 endfunction
 

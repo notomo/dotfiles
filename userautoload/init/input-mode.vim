@@ -31,88 +31,94 @@ inoremap <silent> <C-o> <C-g>u<C-r>=MyExecExCommand('normal o')<CR>
 
 inoremap <silent> <M-b> <C-Left>
 inoremap <silent> <M-f> <C-Right>
-" inoremap <C-r> <Nop>
 
-inoremap j<Space>a ->
-inoremap j<Space>i =>
-inoremap j<Space>b !
-inoremap j<Space>m -
+inoremap j<Space><CR> <C-r>=
+
+inoremap j<Space>a -
 inoremap j<Space>e =
-inoremap j<Space>u _
-inoremap j<Space>T ~
-inoremap j<Space>. +
-inoremap j<Space>y \
-inoremap j<Space>n #
-inoremap j<Space>H ^
-inoremap j<Space>d $
-inoremap j<Space>c :
-inoremap j<Space>x *
-inoremap j<Space>r %
-inoremap j<Space>O <Bar>
+inoremap j<Space>s _
 inoremap j<Space>w ""<Left>
+inoremap j<Space>b ``<Left>
 inoremap j<Space>l []<Left>
 inoremap j<Space>t <><Left>
-inoremap j<Space>A &
 inoremap j<Space>p ()<Left>
-inoremap j<Space>g {}<Left>
+inoremap j<Space>d {}<Left>
 inoremap j<Space>q ''<Left>
-inoremap j<Space>o <End>
+inoremap j<Space>g <End>
 inoremap j<Space>k <Del>
 inoremap j<Space>j <BS>
 inoremap j<Space>h <Home>
-inoremap j<Space>, '
-inoremap j<Space>; "
-inoremap j<Space>B `
-inoremap j<Space>/ ?
 inoremap j<Space>f <Right>
-inoremap j<Space>M @
-inoremap j<Space>v 5
-inoremap j<Space>z 6
-inoremap j<Space>s 7
-inoremap j<Space>E 8
-inoremap j<Space>N 9
-inoremap j<Space><Space> <Tab>
+inoremap j<Space>v <ESC>Jxi
+inoremap j<Space>z <C-a>
+inoremap j<Space>c <ESC>cc
+inoremap j<Space>x <ESC><Right>C
+inoremap j<Space>o <CR>
+inoremap j<Space>r <C-k>
+inoremap j<Space>/ <ESC>"/pa
+inoremap j<Space><Space> <ESC><Right>gUbea
 
-cnoremap j<Space>a ->
-cnoremap j<Space>i =>
-cnoremap j<Space>b !
-cnoremap j<Space>m -
+
+
+inoremap jka &
+inoremap jkh ^
+inoremap jkp +
+inoremap jks #
+inoremap jkr %
+inoremap jkm @
+inoremap jkt ~
+inoremap jko <Bar>
+inoremap jkd $
+inoremap jke !
+inoremap jkb `
+inoremap jkc :
+inoremap jkx *
+inoremap jkq ?
+inoremap jk; "
+inoremap jk, '
+inoremap jky \
+inoremap jkw "
+inoremap jkg =>
+inoremap jkf ->
+
+
+cnoremap j<Space>a -
 cnoremap j<Space>e =
-cnoremap j<Space>u _
-cnoremap j<Space>T ~
-cnoremap j<Space>. +
-cnoremap j<Space>y \
-cnoremap j<Space>n #
-cnoremap j<Space>H ^
-cnoremap j<Space>d $
-cnoremap j<Space>c :
-cnoremap j<Space>x *
-cnoremap j<Space>r %
-cnoremap j<Space>O <Bar>
+cnoremap j<Space>s _
 cnoremap j<Space>w ""<Left>
+cnoremap j<Space>b ``<Left>
 cnoremap j<Space>l []<Left>
 cnoremap j<Space>t <><Left>
-cnoremap j<Space>A &
 cnoremap j<Space>p ()<Left>
-cnoremap j<Space>g {}<Left>
+cnoremap j<Space>d {}<Left>
 cnoremap j<Space>q ''<Left>
-cnoremap j<Space>o <End>
+cnoremap j<Space>g <End>
 cnoremap j<Space>k <Del>
 cnoremap j<Space>j <BS>
 cnoremap j<Space>h <Home>
-cnoremap j<Space>, '
-cnoremap j<Space>; "
-cnoremap j<Space>B `
-cnoremap j<Space>/ ?
 cnoremap j<Space>f <Right>
-cnoremap j<Space>M @
-cnoremap j<Space>v 5
-cnoremap j<Space>z 6
-cnoremap j<Space>s 7
-cnoremap j<Space>E 8
-cnoremap j<Space>N 9
-cnoremap j<Space><Space> j
+cnoremap j<Space>o <CR>
 
+cnoremap jka &
+cnoremap jkh ^
+cnoremap jkp +
+cnoremap jks #
+cnoremap jkr %
+cnoremap jkm @
+cnoremap jkt ~
+cnoremap jko <Bar>
+cnoremap jkd $
+cnoremap jke !
+cnoremap jkb `
+cnoremap jkc :
+cnoremap jkx *
+cnoremap jkq ?
+cnoremap jk; "
+cnoremap jk, '
+cnoremap jky \
+cnoremap jkw "
+cnoremap jkg =>
+cnoremap jkf ->
 
 
 """"""""""""""""""""""""""""""

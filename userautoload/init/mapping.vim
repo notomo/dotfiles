@@ -3,18 +3,18 @@ nnoremap x "_x
 
 nnoremap <F1> <Nop>
 
-nnoremap <S-C-F7> :<C-u>%s/、/,/g<CR>
-nnoremap <S-C-F8> :<C-u>%s/。/\./g<CR>
+" nnoremap <S-C-F7> :<C-u>%s/、/,/g<CR>
+" nnoremap <S-C-F8> :<C-u>%s/。/\./g<CR>
 " nnoremap <Space>b g;
 " nnoremap <Space>f g,
 nnoremap <Space>v gv
 
-" nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
-" nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
-" nnoremap <Space>Gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
-" nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
+nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
+nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
+nnoremap <Space>Gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
+nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
 
-nnoremap <Space>G :<C-u>grep  **/*.<Left><Left><Left><Left><Left><Left>
+" nnoremap <Space>G :<C-u>grep  **/*.<Left><Left><Left><Left><Left><Left>
 
 let g:mapleader=","
 

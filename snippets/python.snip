@@ -25,6 +25,13 @@ options     head
 	    return self._$1
 	${0}
 
+snippet setter
+abbr @x.setter
+options head
+	@${1:#:name}.setter
+	def $1(self, $1)
+		self._$1 = $1
+
 snippet     selfx
 abbr        self.x=x
 options     head
