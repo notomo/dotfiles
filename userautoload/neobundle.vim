@@ -285,5 +285,7 @@ NeoBundleLazy 'pasela/unite-webcolorname',{
 
 NeoBundle 'Shougo/context_filetype.vim'
 
+NeoBundle 'ctrlpvim/ctrlp.vim'
+
 call neobundle#end()
 NeoBundleCheck

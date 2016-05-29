@@ -108,10 +108,6 @@ nnoremap <silent> <F5> <Esc>:<C-u>source $MYVIMRC<CR>:<C-u>source $MYGVIMRC<CR>:
 
 nnoremap <Leader>cd :<C-u>CdCurrent<CR>
 
-nnoremap <Leader>fm :<C-u>SM 4<CR>
-nnoremap <Leader>fr :<C-u>SM 0<CR>
-
-
 nnoremap <M-C-S-q> :<C-u>qa<CR>
 nnoremap <Space>l <S-v>
 nnoremap <Space>h <C-v>
