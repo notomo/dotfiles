@@ -19,12 +19,15 @@ function! s:bundle.hooks.on_source(bundle)
 
     " let g:neomru#do_validate=0
 
+    let g:unite_source_find_command = 'C:/Program Files/Git/usr/bin/find.exe'
+    " let g:unite_source_find_command = 'C:/MinGW64/msys/1.0/bin/find.exe'
+
     " unite grepにjvgrepを使う
-    if executable('jvgrep')
-        let g:unite_source_grep_command = 'jvgrep'
-        let g:unite_source_grep_default_opts = '-r'
-        let g:unite_source_grep_recursive_opt = '-R'
-    endif
+    " if executable('jvgrep')
+    "     let g:unite_source_grep_command = 'jvgrep'
+    "     let g:unite_source_grep_default_opts = '-r'
+    "     let g:unite_source_grep_recursive_opt = '-R'
+    " endif
 
 endfunction
 unlet s:bundle
@@ -46,11 +49,21 @@ nnoremap <silent> [unite]m :<C-u>Unite -no-split mark<CR>
 " nnoremap <silent> [unite]s :<C-u>Unite -no-split bookmark<CR>
 "ブックマークに追加
 " nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+
+nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
+
+nnoremap <silent> [unite]t :<C-u>Unite -no-split tab<CR>
+
+nnoremap <silent> [unite]sf :<C-u>Unite -no-split file_rec/async<CR>
+nnoremap <silent> [unite]sg :<C-u>Unite -no-split file_rec/git<CR>
+
 nnoremap [unite]v :<C-u>UniteSessionSave<CR>
 nnoremap <silent> [unite]l :<C-u>UniteSessionLoad<CR>
-nnoremap <silent> [unite]s :<C-u>Unite -no-split session<CR>
+nnoremap <silent> [unite]S :<C-u>Unite -no-split session<CR>
 
 nnoremap <silent> [unite]w :<C-u>Unite -no-split webcolorname<CR>
+
+nnoremap <silent> [unite]h :<C-u>Unite -tab -no-split help<CR>
 
 " nnoremap <silent> [unite]k :<C-u>Unite -no-split output:map|map!|lmap<CR>
 
@@ -77,6 +90,7 @@ function! s:unite_my_settings()"{{{
 	inoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
 	"ctrl+oでその場所に開く
 	nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
+	nnoremap <silent> <buffer> <expr> o unite#do_action('open')
 	inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
 	"ctrl+tでタブで開く
 	nnoremap <silent> <buffer> <expr> <C-t> unite#do_action('tabopen')
@@ -102,5 +116,7 @@ function! s:unite_my_settings()"{{{
     inoremap <buffer> <C-d> <Del>
     inoremap <buffer> <C-h> <Left>
     inoremap <buffer> <C-l> <Right>
+
+    nnoremap <buffer> b <C-^>
 endfunction"}}}
 

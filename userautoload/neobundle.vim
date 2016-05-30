@@ -243,6 +243,7 @@ NeoBundleLazy 'stephpy/vim-php-cs-fixer',{
 " NeoBundle 'haya14busa/vim-migemo'
 " NeoBundle 'haya14busa/incsearch-migemo.vim'
 " NeoBundle 'tmhedberg/matchit'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
 
 NeoBundle 'lambdalisue/vim-gita'
 
@@ -285,7 +286,12 @@ NeoBundleLazy 'pasela/unite-webcolorname',{
 
 NeoBundle 'Shougo/context_filetype.vim'
 
-NeoBundle 'ctrlpvim/ctrlp.vim'
+
+NeoBundleLazy 'Shougo/unite-help',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
 
 call neobundle#end()
 NeoBundleCheck
