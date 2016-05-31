@@ -55,7 +55,8 @@ augroup vim_enter
   autocmd BufEnter * execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
 augroup END
 
-set grepprg=grep\ -rnIH 
+" set grepprg=grep\ -rnIH 
+set grepprg=git\ grep\ -n\ $*
 " set grepprg=jvgrep
 " let $JVGREP_OUTPUT_ENCODING = 'sjis'
 

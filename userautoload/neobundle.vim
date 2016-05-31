@@ -293,5 +293,11 @@ NeoBundleLazy 'Shougo/unite-help',{
 \   }
 \}
 
+NeoBundleLazy 'lambdalisue/unite-grep-vcs',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
+
 call neobundle#end()
 NeoBundleCheck
