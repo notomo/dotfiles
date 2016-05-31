@@ -75,6 +75,7 @@ nnoremap <silent> [unite]gl :<C-u>Unite -no-split giti/log<CR>
 nnoremap <silent> [unite]gs :<C-u>Unite -no-split giti/status<CR>
 
 nnoremap <silent> [unite]G  :<C-u>Unite -no-split grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> [unite]gg  :<C-u>Unite -no-split grep/git:.<CR>
 
 "uniteを開いている間のキーマッピング
 autocmd FileType unite call s:unite_my_settings()

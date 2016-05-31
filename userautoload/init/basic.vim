@@ -28,7 +28,8 @@ set number         " 行番号を表示する
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
 set cursorline     " カーソル行の背景色を変える
-set nolist
+" set nolist
+set list
 set laststatus=2   " ステータス行を常に表示
 set cmdheight=2    " メッセージ表示欄を2行確保
 set scrolloff=8                "上下8行の視界を確保

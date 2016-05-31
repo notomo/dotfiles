@@ -185,8 +185,4 @@ command! GitaCtagsCommand call GitCtags()
 nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
 
 
-autocmd FileType qf call s:quickfix_my_settings()
-function! s:quickfix_my_settings()"{{{
-    nnoremap <buffer> <expr> <CR> expand(":cc ".line(".")."<CR>")
-endfunction"}}}
 
