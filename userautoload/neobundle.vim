@@ -299,5 +299,13 @@ NeoBundleLazy 'lambdalisue/unite-grep-vcs',{
 \   }
 \}
 
+" NeoBundle 'fuenor/qfixgrep'
+
+NeoBundleLazy 'sgur/unite-qf',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
+
 call neobundle#end()
 NeoBundleCheck

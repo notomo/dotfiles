@@ -1,3 +1,5 @@
+let $LANG='ja_JP.UTF-8'
+set encoding=utf-8
 
 "ウィンドウを最大化して起動
 au GUIEnter * simalt ~x
@@ -23,6 +25,8 @@ if expand("%:t") !~ ".*\.tex"
     set autoindent
 endif
 
+set shellpipe=2>\&1\|nkf\ -uw>%s
+
 set ruler
 set number         " 行番号を表示する
 set backspace=indent,eol,start
@@ -30,6 +34,7 @@ set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
 set cursorline     " カーソル行の背景色を変える
 " set nolist
 set list
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 set laststatus=2   " ステータス行を常に表示
 set cmdheight=2    " メッセージ表示欄を2行確保
 set scrolloff=8                "上下8行の視界を確保
@@ -44,7 +49,7 @@ set switchbuf=useopen   " 新しく開く代わりにすでに開いてあるバ
 set matchpairs& matchpairs+=<:>
 set shiftwidth=4
 set softtabstop=4
-set expandtab
+set noexpandtab
 set tabstop=4
 set smarttab
 set formatoptions=q
@@ -56,7 +61,7 @@ augroup vim_enter
   autocmd BufEnter * execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
 augroup END
 
-" set grepprg=grep\ -rnIH 
+" set grepprg=grep\ -rnih 
 set grepprg=git\ grep\ -n\ $*
 " set grepprg=jvgrep
 " let $JVGREP_OUTPUT_ENCODING = 'sjis'
