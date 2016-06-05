@@ -320,5 +320,11 @@ NeoBundle 'mattn/webapi-vim'
 
 NeoBundle 'thinca/vim-singleton'
 
+NeoBundleLazy 'basyura/unite-yarm',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
+
 call neobundle#end()
 NeoBundleCheck
