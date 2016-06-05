@@ -19,10 +19,7 @@ function! s:bundle.hooks.on_source(bundle)
 endfunction
 unlet s:bundle
 
-augroup vimfiler
-    autocmd!
-    autocmd FileType vimfiler call s:vimfiler_my_settings()
-augroup END
+autocmd MyAuGroup FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
     nmap <buffer> j <Plug>(vimfiler_loop_cursor_down)
     nmap <buffer> k <Plug>(vimfiler_loop_cursor_up)
@@ -57,5 +54,5 @@ function! s:vimfiler_my_settings()
     nmap <buffer>s <Plug>(vimfiler_toggle_mark_current_line)
     nmap <buffer>H <Plug>(vimfiler_popd)
     nmap <buffer>f <Plug>(vimfiler_find)
+	nmap <buffer><Space>m <Plug>(vimfiler_toggle_mark_current_line)
 endfunction
-

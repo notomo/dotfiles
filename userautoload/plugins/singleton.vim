@@ -1,0 +1,2 @@
+
+call singleton#enable()

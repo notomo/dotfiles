@@ -5,8 +5,22 @@ nmap <Space>u [unite]
 
 let s:bundle=neobundle#get('unite.vim')
 function! s:bundle.hooks.on_source(bundle)
+
+	" tab drop
+	let action = {
+	\   'description' : 'tab drop',
+	\   'is_selectable' : 1,
+	\ }
+	function! action.func(candidates)"{{{
+		for l:candidate in a:candidates
+			call unite#util#smart_execute_command('tab drop', l:candidate.action__path)
+		endfor
+	endfunction"}}}
+	call unite#custom_action('openable', 'tab-drop', action)
+	unlet action
+
     "unite general settings
-    call unite#custom_default_action('file', 'tabopen')
+    call unite#custom_default_action('file', 'tab-drop')
 
     "インサートモードで開始
     let g:unite_enable_start_insert = 1
@@ -50,6 +64,9 @@ nnoremap <silent> [unite]m :<C-u>Unite -no-split mark<CR>
 "ブックマークに追加
 " nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
 
+nnoremap <silent> [unite]l :<C-u>Unite -no-split line<CR>
+
+
 nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
 
 nnoremap <silent> [unite]t :<C-u>Unite -no-split tab<CR>
@@ -57,9 +74,9 @@ nnoremap <silent> [unite]t :<C-u>Unite -no-split tab<CR>
 nnoremap <silent> [unite]sf :<C-u>Unite -no-split file_rec/async<CR>
 nnoremap <silent> [unite]sg :<C-u>Unite -no-split file_rec/git<CR>
 
-nnoremap [unite]v :<C-u>UniteSessionSave<CR>
-nnoremap <silent> [unite]l :<C-u>UniteSessionLoad<CR>
-nnoremap <silent> [unite]S :<C-u>Unite -no-split session<CR>
+nnoremap <silent> [unite]sv :<C-u>UniteSessionSave<CR>
+nnoremap <silent> [unite]sl :<C-u>UniteSessionLoad<CR>
+nnoremap <silent> [unite]ss :<C-u>Unite -no-split session<CR>
 
 nnoremap <silent> [unite]w :<C-u>Unite -no-split webcolorname<CR>
 
@@ -74,14 +91,14 @@ nnoremap <silent> [unite]gc :<C-u>Unite -no-split giti/config<CR>
 nnoremap <silent> [unite]gl :<C-u>Unite -no-split giti/log<CR>
 nnoremap <silent> [unite]gs :<C-u>Unite -no-split giti/status<CR>
 
-" nnoremap <silent> [unite]G  :<C-u>Unite -no-split grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> [unite]gg  :<C-u>Unite -tab -no-split -no-quit grep:. -buffer-name=search-buffer<CR>
 " nnoremap <silent> [unite]gg  :<C-u>Unite -no-split grep/git:.<CR>
 " nnoremap <silent> [unite]q :<C-u>Unite -tab -no-split qf:ex=grep\ ""\ *<Left><Left><Left><Left>
 nnoremap <silent> [unite]q :<C-u>Unite qf -tab -no-split -no-quit<CR>
 
 
 "uniteを開いている間のキーマッピング
-autocmd FileType unite call s:unite_my_settings()
+autocmd MyAuGroup FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
 	imap <buffer> jq <Plug>(unite_exit)
 	"入力モードのときjjでノーマルモードに移動

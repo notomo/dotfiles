@@ -1,4 +1,6 @@
 
+nnoremap <Space><Leader>q :<C-u>tabclose<CR>
+
 nnoremap x "_x
 
 nnoremap <F1> <Nop>
@@ -136,6 +138,19 @@ nnoremap [file_encode]ou :<C-u>set fileformat=unix<CR>
 " nnoremap <Leader>dv :<C-u>vsplit<CR><C-w>l:UniteWithCursorWord -immediately tag<CR>
 " nnoremap <Leader>dh :<C-u>hsplit<CR><C-w>j:UniteWithCursorWord -immediately tag<CR>
 
+function! TabTagOpen() abort
+    try
+        execute "tag ".expand("<cword>")
+        execute "tab sp"
+		execute "tabprevious"
+        execute "normal \<C-o>"
+		execute "tabnext"
+    catch
+        echo "Not found tag"
+    endtry
+endfunction
+command! TabTagOpenCommand call TabTagOpen()
+
 function! VerticalTagOpen() abort
     try
         execute "tag ".expand("<cword>")
@@ -149,6 +164,7 @@ command! VerticalTagOpenCommand call VerticalTagOpen()
 
 nnoremap <Leader>do <C-]>
 nnoremap <Leader>dv :<C-u>VerticalTagOpenCommand<CR>
+nnoremap <Leader>dt :<C-u>TabTagOpenCommand<CR>
 nnoremap <Leader>dh <C-w>]
 
 nnoremap <Leader>di :<C-u>Diff<Space>
@@ -184,5 +200,12 @@ endfunction
 command! GitaCtagsCommand call GitCtags()
 nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
 
-
+function! OpenWorkText() abort
+	let l:work_text_folder_path = "~/worktexts/"
+	let l:work_text_file_path = l:work_text_folder_path.strftime("%Y_%m_%d.txt")
+	execute "tab drop ".l:work_text_file_path
+	execute "set filetype=worktext"
+endfunction
+command! OpenWorkTextCommand call OpenWorkText()
+nnoremap ew :<C-u>OpenWorkTextCommand<CR>
 

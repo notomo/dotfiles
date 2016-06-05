@@ -4,7 +4,8 @@ if has('vim_starting')
     set nocompatible
     set runtimepath+=~/.vim/bundle/neobundle.vim
     set runtimepath+=~/.vim/
-    set runtimepath+=~/.vim/after
+    set runtimepath+=~/.vim/after/
+    " set runtimepath+=~/.vim/plugin/sample.vim/
 endif
 
 " neobundle.vimの初期化 
@@ -306,6 +307,18 @@ NeoBundleLazy 'sgur/unite-qf',{
 \       'on_source': 'unite.vim'
 \   }
 \}
+
+NeoBundleLazy 'mopp/layoutplugin.vim',{
+\   'autoload':{
+\       'commands':['LayoutPlugin']
+\   }
+\}
+
+" NeoBundle 'yuratomo/gmail.vim'
+
+NeoBundle 'mattn/webapi-vim'
+
+NeoBundle 'thinca/vim-singleton'
 
 call neobundle#end()
 NeoBundleCheck

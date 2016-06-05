@@ -7,6 +7,14 @@ function! s:bundle.hooks.on_source(bundle)
     let g:EasyMotion_landing_highlight = 0
     let g:EasyMotion_inc_highlight=1
     let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmf;'
+	" EMCommandLineNoreMap <Space> <CR>
+	" EMCommandLineNoreMap <S-Space> <Space>
+	" EMCommandLineNoreMap <C-n> <Over>(em-scroll-f)
+	" EMCommandLineNoreMap <C-p> <Over>(em-scroll-b)
+	" EMCommandLineNoreMap jj <ESC>
+	" EMCommandLineNoreMap <C-v> <Over>(paste)
+	" EMCommandLineNoreMap <C-b> <BS>
+
 endfunction
 unlet s:bundle
 

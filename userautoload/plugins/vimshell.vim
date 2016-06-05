@@ -28,7 +28,7 @@ let g:vimshell_prompt_expr = 'getcwd()." > "'
 let g:vimshell_prompt_pattern = '^\f\+ > '
 " let g:vimshell_user_prompt = 'getcwd()'
 "shellを開いている間のキーマッピング
-autocmd FileType vimshell call s:shell_my_settings()
+autocmd MyAuGroup FileType vimshell call s:shell_my_settings()
 function! s:shell_my_settings()"{{{
     nnoremap <buffer> <Space>uh G:<C-u>Unite vimshell/history<CR>
     nmap <buffer> <C-S-l> Gddih<Plug>(vimshell_enter)

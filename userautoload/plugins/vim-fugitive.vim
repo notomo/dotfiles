@@ -21,9 +21,10 @@ nnoremap [git]g :<C-u>Ggrep  \| copen<Left><Left><Left><Left><Left><Left><Left><
 
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
-autocmd FileType gitcommit call s:gitcommit_my_settings()
+autocmd MyAuGroup FileType gitcommit call s:gitcommit_my_settings()
 function! s:gitcommit_my_settings()"{{{
     nmap <buffer> ga -
+    vmap <buffer> ga -
     nmap <buffer> gm /modified<CR>
     nmap <buffer> gn /new file<CR>
 endfunction"}}}

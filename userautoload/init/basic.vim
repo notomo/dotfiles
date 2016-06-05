@@ -1,10 +1,8 @@
-let $LANG='ja_JP.UTF-8'
-set encoding=utf-8
 
 "ウィンドウを最大化して起動
-au GUIEnter * simalt ~x
+autocmd MyAuGroup GUIEnter * simalt ~x
 "日本語入力をリセット
-au BufNewFile,BufRead * set iminsert=0
+autocmd MyAuGroup BufNewFile,BufRead * set iminsert=0
 " 「日本語入力固定モード」の動作モード
 let IM_CtrlMode = 4
 
@@ -56,10 +54,7 @@ set formatoptions=q
 set clipboard=unnamed
 
 " set autochdir
-augroup vim_enter
-  autocmd!
-  autocmd BufEnter * execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
-augroup END
+autocmd MyAuGroup BufEnter * execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
 
 " set grepprg=grep\ -rnih 
 set grepprg=git\ grep\ -n\ $*
@@ -70,8 +65,8 @@ set wrapscan
 " set nobackup
 " バックアップファイル用のディレクトリ
 set backupdir=~/.vim/tmp/backup/
-" set noundofile
-set undodir=~/.vim/tmp/undo/
+set noundofile
+" set undodir=~/.vim/tmp/undo/
 "スワップファイル用のディレクトリ
 set directory=~/.vim/tmp/swap/
 "ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
@@ -82,11 +77,8 @@ set viminfo+=n~/.vim/tmp/viminfo.txt
 let $PATH = $PATH . ';C:\MinGW64\bin;C:\MinGW64\msys\1.0\bin'
 set statusline=%F%m%r%h%w\%=[COL=%c]\[FTYPE=%Y]\[ENC=%{&enc}]\[FENC=%{&fileencoding}]\[FORMAT=%{&ff}]
 
-augroup new_file_utf8_unix
-    autocmd!
-    autocmd BufNewFile * set fileencoding=UTF-8
-    autocmd BufNewFile * set fileformat=unix
-augroup End
+autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8
+autocmd MyAuGroup BufNewFile * set fileformat=unix
 
 function! s:vimdiff_in_newtab(...)
   if a:0 == 1
@@ -101,10 +93,10 @@ function! s:vimdiff_in_newtab(...)
 endfunction
 command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)
 
-if v:servername == 'GVIM1'
-    let file = expand('%:p')
-    bwipeout
-    call remote_send('GVIM', '<ESC>:tabnew ' .file .'<CR>')
-    call remote_foreground('GVIM')
-    quit
-endif
+" if v:servername == 'GVIM1'
+"     let file = expand('%:p')
+    " bwipeout
+"     call remote_send('GVIM', '<ESC>:tabnew ' .file .'<CR>')
+"     call remote_foreground('GVIM')
+"     quit
+" endif
