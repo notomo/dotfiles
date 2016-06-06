@@ -5,6 +5,7 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim
     set runtimepath+=~/.vim/
     set runtimepath+=~/.vim/after/
+	set runtimepath+=~/.vim/after/plugin/
     " set runtimepath+=~/.vim/plugin/sample.vim/
 endif
 
@@ -319,12 +320,6 @@ NeoBundleLazy 'mopp/layoutplugin.vim',{
 NeoBundle 'mattn/webapi-vim'
 
 NeoBundle 'thinca/vim-singleton'
-
-NeoBundleLazy 'basyura/unite-yarm',{
-\   'autoload':{
-\       'on_source': 'unite.vim'
-\   }
-\}
 
 call neobundle#end()
 NeoBundleCheck

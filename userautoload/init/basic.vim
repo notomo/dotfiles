@@ -54,7 +54,13 @@ set formatoptions=q
 set clipboard=unnamed
 
 " set autochdir
-autocmd MyAuGroup BufEnter * execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
+autocmd MyAuGroup BufEnter * call AutoCD()
+function! AutoCD() abort
+	try
+		execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
+	catch
+	endtry
+endfunction
 
 " set grepprg=grep\ -rnih 
 set grepprg=git\ grep\ -n\ $*
