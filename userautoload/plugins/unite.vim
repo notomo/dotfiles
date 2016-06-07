@@ -34,6 +34,7 @@ function! s:bundle.hooks.on_source(bundle)
     " let g:neomru#do_validate=0
 
     let g:unite_source_find_command = 'C:/Program Files/Git/usr/bin/find.exe'
+	let g:unite_source_file_async_command = 'C:/Program Files/Git/usr/bin/find.exe'
     " let g:unite_source_find_command = 'C:/MinGW64/msys/1.0/bin/find.exe'
 
     " unite grepにjvgrepを使う

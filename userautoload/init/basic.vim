@@ -86,7 +86,7 @@ set statusline=%F%m%r%h%w\%=[COL=%c]\[FTYPE=%Y]\[ENC=%{&enc}]\[FENC=%{&fileencod
 autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8
 autocmd MyAuGroup BufNewFile * set fileformat=unix
 
-function! s:vimdiff_in_newtab(...)
+function! Vimdiff_in_newtab(...)
   if a:0 == 1
     tabedit %:p
     exec 'rightbelow vertical diffsplit ' . a:1
@@ -97,7 +97,7 @@ function! s:vimdiff_in_newtab(...)
     endfor
   endif
 endfunction
-command! -bar -nargs=+ -complete=file Diff  call s:vimdiff_in_newtab(<f-args>)
+command! -bar -nargs=+ -complete=file Diff  call Vimdiff_in_newtab(<f-args>)
 
 " if v:servername == 'GVIM1'
 "     let file = expand('%:p')
