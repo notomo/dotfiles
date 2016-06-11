@@ -25,6 +25,9 @@ autocmd MyAuGroup FileType gitcommit call s:gitcommit_my_settings()
 function! s:gitcommit_my_settings()"{{{
     nmap <buffer> ga -
 	nmap <buffer> dd D
+	nmap <buffer> o O
+	nmap <buffer> j <C-N>
+	nmap <buffer> k <C-P>
     vmap <buffer> ga -
     nmap <buffer> gm /modified<CR>
     nmap <buffer> gn /new file<CR>

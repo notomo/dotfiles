@@ -51,7 +51,7 @@ unlet s:bundle
 "開いていない場合はカレントディレクトリ
 nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -no-split -buffer-name=files file<CR>
 "バッファ一覧
-nnoremap <silent> [unite]b :<C-u>Unite -no-split buffer<CR>
+nnoremap <silent> [unite]bf :<C-u>Unite -no-split buffer<CR>
 "クラス・関数（アウトライン）一覧
 nnoremap <silent> [unite]o :<C-u>Unite -no-split outline<CR>
 "レジスタ一覧
@@ -61,12 +61,11 @@ nnoremap <silent> [unite]r :<C-u>Unite -no-split file_mru<CR>
 "マーク一覧
 nnoremap <silent> [unite]m :<C-u>Unite -no-split mark<CR>
 " ブックマーク一覧
-" nnoremap <silent> [unite]s :<C-u>Unite -no-split bookmark<CR>
+nnoremap <silent> [unite]bm :<C-u>Unite -no-split bookmark<CR>
 "ブックマークに追加
-" nnoremap <silent> [unite]a :<C-u>UniteBookmarkAdd<CR>
+nnoremap <silent> [unite]ba :<C-u>UniteBookmarkAdd<CR>
 
 nnoremap <silent> [unite]l :<C-u>Unite -no-split line<CR>
-
 
 nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
 
@@ -120,14 +119,14 @@ function! s:unite_my_settings()"{{{
 
 	nnoremap <silent> <buffer> <expr> v unite#do_action('persist_open')
 
-    nnoremap <silent> <buffer> <expr> ga unite#do_action('add') 
-    nnoremap <silent> <buffer> <expr> gu unite#do_action('unstage') 
-    nnoremap <silent> <buffer> <expr> gi unite#do_action('ignore') 
-    nnoremap <silent> <buffer> <expr> gm unite#do_action('merge') 
-    nnoremap <silent> <buffer> <expr> gC unite#do_action('commit') 
-    nnoremap <silent> <buffer> <expr> gs unite#do_action('switch') 
-    nnoremap <silent> <buffer> <expr> gA unite#do_action('amend') 
-    nnoremap <silent> <buffer> <expr> gR unite#do_action('revert') 
+    " nnoremap <silent> <buffer> <expr> ga unite#do_action('add') 
+    " nnoremap <silent> <buffer> <expr> gu unite#do_action('unstage') 
+    " nnoremap <silent> <buffer> <expr> gi unite#do_action('ignore') 
+    " nnoremap <silent> <buffer> <expr> gm unite#do_action('merge') 
+    " nnoremap <silent> <buffer> <expr> gC unite#do_action('commit') 
+    " nnoremap <silent> <buffer> <expr> gs unite#do_action('switch') 
+    " nnoremap <silent> <buffer> <expr> gA unite#do_action('amend') 
+    " nnoremap <silent> <buffer> <expr> gR unite#do_action('revert') 
 
     nnoremap <silent> <buffer> <expr> yr unite#do_action('yank_rgb') 
     nnoremap <silent> <buffer> <expr> yh unite#do_action('yank_hex') 
