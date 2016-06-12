@@ -3,6 +3,12 @@ nnoremap <silent> <Space>to :<C-u>VimFilerBufferDir -quit<CR>
 "現在開いているバッファをIDE風に開く
 nnoremap <Space>tl :<C-u>:CdCurrent<CR>:VimFilerBufferDir -split -simple -toggle -no-quit -winwidth=35<CR>
 
+function! NewUnixFormatFile() abort
+	let file_name = input("New files name(comma separated):")
+	execute "normal NF".file_name."\<CR>l\<Space>fouma"
+endfunction
+command! NewUnixFormatFileCommand call NewUnixFormatFile()
+
 let s:bundle=neobundle#get('vimfiler.vim')
 function! s:bundle.hooks.on_source(bundle)
     call vimfiler#custom#profile('default', 'context', {
@@ -46,7 +52,8 @@ function! s:vimfiler_my_settings()
     nmap <buffer>rn <Plug>(vimfiler_rename_file)
     nmap <buffer>df <Plug>(vimfiler_delete_file)
     nmap <buffer>nd <Plug>(vimfiler_make_directory)
-    nmap <buffer>nf <Plug>(vimfiler_new_file)
+    nmap <buffer>NF <Plug>(vimfiler_new_file)
+    nnoremap <buffer>nf :<C-u>NewUnixFormatFileCommand<CR>
     nmap <buffer>K <Plug>(vimfiler_jump_first_child)
     nmap <buffer>J <Plug>(vimfiler_jump_last_child)
     nmap <buffer><Space>h <Plug>(vimfiler_switch_to_home_directory)
