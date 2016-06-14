@@ -12,6 +12,15 @@ function! s:bundle.hooks.on_source(bundle)
     \    "set_breakpoint" : "<Space>db",
     \    "get_context" : "<Space>dg",
     \    "eval_under_cursor" : "<Space>de",
+    \    "eval_visual" : "<Space>dv",
     \}
+	if exists("g:vdebug_office")
+		call SetupVdebugOffice()
+	endif
 endfunction
 unlet s:bundle
+
+nnoremap [vdebug] <Nop>
+nmap <Space>d [vdebug]
+
+nnoremap [vdebug]a :<C-u>BreakpointRemove *<CR>
