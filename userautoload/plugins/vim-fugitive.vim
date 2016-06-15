@@ -21,6 +21,22 @@ nnoremap [git]g :<C-u>Ggrep  \| copen<Left><Left><Left><Left><Left><Left><Left><
 
 set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 
+function! YankTicketNumber() abort
+	if !exists('g:loaded_fugitive')
+		return
+	endif
+	let repogitory_name = fugitive#statusline()[5:-3]
+	let number = matchstr(repogitory_name, '[0-9]*')
+	if number != ""
+		let @+ = number
+		echomsg "yank ".number
+	else
+		echomsg "Not ticket repogitory"
+	endif
+endfunction
+command! YankTicketNumberCommand call YankTicketNumber()
+nnoremap <Space>y :<C-u>YankTicketNumberCommand<CR>
+
 autocmd MyAuGroup FileType gitcommit call s:gitcommit_my_settings()
 function! s:gitcommit_my_settings()"{{{
     nmap <buffer> ga -
