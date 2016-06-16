@@ -28,7 +28,9 @@ cnoremap <silent> jj <C-u><ESC>
 onoremap jj <ESC>
 vnoremap v <ESC>
 nnoremap い i
+nnoremap あ a
 snoremap jj <ESC>
+
 
 " nnoremap <TAB> >>
 " nnoremap <S-TAB> <<
@@ -173,6 +175,14 @@ nnoremap <Leader>x dlp
 
 nnoremap q <Nop>
 vnoremap q <Nop>
+
+function! YankNow() abort
+	let now = strftime("%Y_%m_%d")
+	let @+ = now
+	echo "yank ".now
+endfunction
+command! YankNowCommand call YankNow()
+nnoremap <Space>yn :<C-u>YankNowCommand<CR>
 
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>

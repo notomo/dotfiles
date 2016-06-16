@@ -25,8 +25,8 @@ function! YankTicketNumber() abort
 	if !exists('g:loaded_fugitive')
 		return
 	endif
-	let repogitory_name = fugitive#statusline()[5:-3]
-	let number = matchstr(repogitory_name, '[0-9]*')
+	let branch_name = fugitive#statusline()[5:-3]
+	let number = matchstr(branch_name, '[0-9]*')
 	if number != ""
 		let @+ = number
 		echomsg "yank ".number
@@ -35,7 +35,7 @@ function! YankTicketNumber() abort
 	endif
 endfunction
 command! YankTicketNumberCommand call YankTicketNumber()
-nnoremap <Space>y :<C-u>YankTicketNumberCommand<CR>
+nnoremap <Space>yt :<C-u>YankTicketNumberCommand<CR>
 
 autocmd MyAuGroup FileType gitcommit call s:gitcommit_my_settings()
 function! s:gitcommit_my_settings()"{{{

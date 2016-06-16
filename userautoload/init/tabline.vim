@@ -3,7 +3,7 @@ set tabline=%!MakeTabLine()
 
 function! MakeTabLine() "{{{
   let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-  let sep = ' '  " タブ間の区切り
+  let sep = ''  " タブ間の区切り
   let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
   let info = ''  " 好きな情報を入れる
 
@@ -49,5 +49,6 @@ function! s:tabpage_label(tabpagenr) "{{{
   let label = fname . nomod
 
   " return '%' . a:tabpagenr . 'T' . hi .a:tabpagenr.': '. curbufnr.'-' . label . '%T%#TabLineFill#'
-  return '%' . a:tabpagenr . 'T' . hi .a:tabpagenr.': '.label .' '. '%T%#TabLineFill#'
+  " return '%' . a:tabpagenr . 'T' . hi .a:tabpagenr.': '.label .' '. '%T%#TabLineFill#'
+  return '%' . a:tabpagenr . 'T' . hi .' '.label .' '. '%T%#TabLineFill#'
 endfunction "}}}
