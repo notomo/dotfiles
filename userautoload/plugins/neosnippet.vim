@@ -25,6 +25,8 @@ function! s:bundle.hooks.on_source(bundle)
     let g:neosnippet#disable_runtime_snippets = {
             \   '_' : 1,
             \ }
+    set formatoptions-=r
+    set formatoptions-=o
 endfunction
 unlet s:bundle
 

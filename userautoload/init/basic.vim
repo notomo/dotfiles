@@ -50,7 +50,7 @@ set softtabstop=4
 set noexpandtab
 set tabstop=4
 set smarttab
-set formatoptions=q
+set formatoptions+=q
 set clipboard=unnamed
 
 " set autochdir
@@ -80,8 +80,28 @@ set browsedir=buffer
 
 set viminfo+=n~/.vim/tmp/viminfo.txt
 
-let $PATH = $PATH . ';C:\MinGW64\bin;C:\MinGW64\msys\1.0\bin'
-set statusline=%F%m%r%h%w\%=[COL=%c]\[FTYPE=%Y]\[ENC=%{&enc}]\[FENC=%{&fileencoding}]\[FORMAT=%{&ff}]
+let s:add_paths=[
+\   "C:\\MinGW64\\bin",
+\   "C:\\MinGW64\\msys\\1.0\\bin",
+\]
+let s:paths=split($PATH,";")
+
+for add_path in s:add_paths
+    if index(s:paths,add_path)<0
+        let $PATH =$PATH.";".add_path
+    endif
+endfor
+
+" let $PATH = $PATH . ';C:\MinGW64\bin;C:\MinGW64\msys\1.0\bin'
+" set statusline=%F%m%r%h%w\%=[C=%c]\[TYPE=%Y]\[ENC=%{&enc}]\[FILE=%{&fileencoding}:%{&ff}]
+
+let file_format_map = {
+\   "unix" : "U",
+\   "dos"  : "D",
+\   "mac"  : "M",
+\}
+
+set statusline=%F%m%r%h%w\%=[%c]\[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
 
 autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8
 autocmd MyAuGroup BufNewFile * set fileformat=unix
@@ -97,7 +117,7 @@ function! Vimdiff_in_newtab(...)
     endfor
   endif
 endfunction
-command! -bar -nargs=+ -complete=file Diff  call Vimdiff_in_newtab(<f-args>)
+command! -nargs=+ -complete=file Diff  call Vimdiff_in_newtab(<f-args>)
 
 " if v:servername == 'GVIM1'
 "     let file = expand('%:p')

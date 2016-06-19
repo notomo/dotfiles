@@ -3,48 +3,65 @@ set tabline=%!MakeTabLine()
 
 function! MakeTabLine() "{{{
   let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-  let sep = ''  " ƒ^ƒuŠÔ‚Ì‹æØ‚è
+  let sep = ''  " ã‚¿ãƒ–é–“ã®åŒºåˆ‡ã‚Š
   let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
-  let info = ''  " D‚«‚Èî•ñ‚ğ“ü‚ê‚é
+  let info = ''  " å¥½ããªæƒ…å ±ã‚’å…¥ã‚Œã‚‹
 
   "FoldCCnavi
   if exists('*FoldCCnavi')
     let info .= '%#TabLineInfo#'.substitute(FoldCCnavi()[-60:],'\s>\s','%#TabLineFill#> %#TabLineInfo#','g').'%0* '
   endif
 
-  "ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ
-  let info .= '['.fnamemodify(getcwd(), ":~") . ']'
+  if exists('g:cwd_map')
+	  let current_directory = s:cwd_mapping(g:cwd_map)
+  else
+	  let current_directory = getcwd()
+  endif
+  "ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
+  let info .= '['.fnamemodify(current_directory, ":~") . ']'
+  " echomsg string(split(getcwd(),'\\'))
 
-  return tabpages . '%=' . info  " ƒ^ƒuƒŠƒXƒg‚ğ¶‚ÉAî•ñ‚ğ‰E‚É•\¦
+  return tabpages . '%=' . info  " ã‚¿ãƒ–ãƒªã‚¹ãƒˆã‚’å·¦ã«ã€æƒ…å ±ã‚’å³ã«è¡¨ç¤º
 endfunction "}}}
 
+function! s:cwd_mapping(mappings) abort
+	let directory_names=[]
+	for directory_name in split(getcwd(),'\\')
+		if has_key(a:mappings,directory_name)
+			call add(directory_names,a:mappings[directory_name])
+			continue
+		endif
+		call add(directory_names,directory_name)
+	endfor
+	return join(directory_names,'\')
+endfunction
 
 function! s:tabpage_label(tabpagenr) "{{{
-  "rol;Šeƒ^ƒuƒy[ƒW‚ÌƒJƒŒƒ“ƒgƒoƒbƒtƒ@–¼+ƒ¿‚ğ•\¦
-  let title = gettabvar(a:tabpagenr, 'title') "ƒ^ƒuƒ[ƒJƒ‹•Ï”t:title‚ğæ“¾
+  "rol;å„ã‚¿ãƒ–ãƒšãƒ¼ã‚¸ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡å+Î±ã‚’è¡¨ç¤º
+  let title = gettabvar(a:tabpagenr, 'title') "ã‚¿ãƒ–ãƒ­ãƒ¼ã‚«ãƒ«å¤‰æ•°t:titleã‚’å–å¾—
   if title !=# ''
     return title
   endif
 
-  " ƒ^ƒuƒy[ƒW“à‚Ìƒoƒbƒtƒ@‚ÌƒŠƒXƒg
+  " ã‚¿ãƒ–ãƒšãƒ¼ã‚¸å†…ã®ãƒãƒƒãƒ•ã‚¡ã®ãƒªã‚¹ãƒˆ
   let bufnrs = tabpagebuflist(a:tabpagenr)
 
-  " ƒJƒŒƒ“ƒgƒ^ƒuƒy[ƒW‚©‚Ç‚¤‚©‚ÅƒnƒCƒ‰ƒCƒg‚ğØ‚è‘Ö‚¦‚é
+  " ã‚«ãƒ¬ãƒ³ãƒˆã‚¿ãƒ–ãƒšãƒ¼ã‚¸ã‹ã©ã†ã‹ã§ãƒã‚¤ãƒ©ã‚¤ãƒˆã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
   let hi = a:tabpagenr is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
 
-  " ƒoƒbƒtƒ@‚ª•¡”‚ ‚Á‚½‚çƒoƒbƒtƒ@”‚ğ•\¦
+  " ãƒãƒƒãƒ•ã‚¡ãŒè¤‡æ•°ã‚ã£ãŸã‚‰ãƒãƒƒãƒ•ã‚¡æ•°ã‚’è¡¨ç¤º
   let no = len(bufnrs)
   if no is 1
     let no = ''
   endif
-  " ƒ^ƒuƒy[ƒW“à‚É•ÏX‚ ‚è‚Ìƒoƒbƒtƒ@‚ª‚ ‚Á‚½‚ç '+' ‚ğ•t‚¯‚é
+  " ã‚¿ãƒ–ãƒšãƒ¼ã‚¸å†…ã«å¤‰æ›´ã‚ã‚Šã®ãƒãƒƒãƒ•ã‚¡ãŒã‚ã£ãŸã‚‰ '+' ã‚’ä»˜ã‘ã‚‹
   let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
   let nomod = (no . mod) ==# '' ? '' : '['.no.mod.']'
 
-  " ƒJƒŒƒ“ƒgƒoƒbƒtƒ@
-  let curbufnr = bufnrs[tabpagewinnr(a:tabpagenr) - 1]  " tabpagewinnr() ‚Í 1 origin
+  " ã‚«ãƒ¬ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡
+  let curbufnr = bufnrs[tabpagewinnr(a:tabpagenr) - 1]  " tabpagewinnr() ã¯ 1 origin
   let fname = fnamemodify(bufname(curbufnr), ':t')
-  let fname = fname is '' ? 'No title' : fname "ƒoƒbƒtƒ@‚ª‹ó‚È‚çNo title
+  let fname = fname is '' ? 'No title' : fname "ãƒãƒƒãƒ•ã‚¡ãŒç©ºãªã‚‰No title
 
   let label = fname . nomod
 

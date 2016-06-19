@@ -47,7 +47,7 @@ inoremap j<Space>q ''<Left>
 inoremap j<Space>g <End>
 inoremap j<Space>k <Del>
 inoremap j<Space>j <BS>
-inoremap j<Space>h <Home>
+" inoremap j<Space>h <Home>
 inoremap j<Space>f <Right>
 inoremap j<Space>v <ESC>Jxi
 inoremap j<Space>z <C-a>
@@ -57,6 +57,7 @@ inoremap j<Space>o <CR>
 inoremap j<Space>r <C-k>
 inoremap j<Space>/ <ESC>"/pa
 inoremap j<Space><Space> <ESC><Right>gUbea
+inoremap j<Space>h <C-r>"
 
 
 
@@ -95,7 +96,8 @@ cnoremap j<Space>q ''<Left>
 cnoremap j<Space>g <End>
 cnoremap j<Space>k <Del>
 cnoremap j<Space>j <BS>
-cnoremap j<Space>h <Home>
+" cnoremap j<Space>h <Home>
+cnoremap j<Space>h <C-r>"
 cnoremap j<Space>f <Right>
 cnoremap j<Space>o <CR>
 

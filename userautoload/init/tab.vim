@@ -17,10 +17,25 @@ nnoremap <C-Tab> gt
 nnoremap <C-S-Tab> gT
 inoremap <C-Tab> <Esc>gt
 inoremap <C-S-Tab> <Esc>gT
-nnoremap <C-w> :<C-u>q<CR>
-inoremap <C-w> <ESC>:<C-u>q<CR>
-nnoremap [tab]dl :<C-u>CloseLeftTabCommand<CR>
-nnoremap [tab]dr :<C-u>CloseRightTabCommand<CR>
+nnoremap <C-w> :<C-u>CloseTabCommand<CR>
+nnoremap [tab]q :<C-u>CloseTabCommand<CR>
+inoremap <C-w> <ESC>:<C-u>CloseTabCommand<CR>
+nnoremap [tab]da :<C-u>CloseLeftTabCommand<CR>
+nnoremap [tab]dl :<C-u>CloseRightTabCommand<CR>
+
+function! CloseTab() abort
+    try
+        execute "tabclose"
+    catch
+        if !getbufvar("%","&mod")
+            execute "q"
+        else
+            echomsg "Not saved"
+        endif
+    endtry
+endfunction
+command! CloseTabCommand call CloseTab()
+
 
 function! CloseLeftTab() abort
 	let current_tab_number = tabpagenr()

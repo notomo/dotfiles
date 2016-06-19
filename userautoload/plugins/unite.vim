@@ -26,7 +26,7 @@ function! s:bundle.hooks.on_source(bundle)
     let g:unite_enable_start_insert = 1
 
     "最近開いたファイル履歴の保存数
-    let g:unite_source_file_mru_limit = 200
+    let g:unite_source_file_mru_limit = 300
 
     "file_mruの表示フォーマットを指定。空にすると表示スピードが高速化される
     let g:unite_source_file_mru_filename_format = ''

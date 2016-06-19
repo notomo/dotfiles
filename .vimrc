@@ -14,3 +14,10 @@ augroup END
 
 runtime! userautoload/init/*.vim
 runtime! userautoload/plugins/*.vim
+
+if exists('g:home_vim')
+	set expandtab
+endif
+
+set formatoptions-=r
+set formatoptions-=o

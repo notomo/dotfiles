@@ -1,1 +1,2 @@
-autocmd MyAuGroup * setlocal formatoptions-=ro
+autocmd MyAuGroup FileType * setlocal formatoptions-=r
+autocmd MyAuGroup FileType * setlocal formatoptions-=o

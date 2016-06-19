@@ -10,6 +10,7 @@ nnoremap <F1> <Nop>
 " nnoremap <Space>b g;
 " nnoremap <Space>f g,
 nnoremap <Space>v gv
+nnoremap <Space>io gi
 
 nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
 nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
@@ -100,7 +101,7 @@ vnoremap <C-e> $
 vnoremap <C-a> ^
 vnoremap <S-j> }
 vnoremap <S-k> {
-nnoremap <Space>d <C-x>
+nnoremap <Space>z <C-x>
 nnoremap <Space>a <C-a>
 " vnoremap <S-h> 0
 " nnoremap <S-h> 0
@@ -116,12 +117,15 @@ nnoremap <M-C-S-q> :<C-u>qa<CR>
 nnoremap <Space>l <S-v>
 nnoremap <Space>h <C-v>
 nnoremap gz G
-nnoremap <Space>j gu
-nnoremap <Space>k gU
-nnoremap <Space>z gUl
+" nnoremap <Space>j gu
+" nnoremap <Space>k gU
+" nnoremap <Space>z gUl
 vnoremap <Space>j gu
 vnoremap <Space>k gU
 vnoremap <Space>is =
+
+nnoremap <C-k> <C-b>
+nnoremap <C-j> <C-f>
 
 nnoremap <F8> :%s/ *$//<CR>
 
@@ -170,6 +174,7 @@ nnoremap <Leader>dt :<C-u>TabTagOpenCommand<CR>
 nnoremap <Leader>dh <C-w>]
 
 nnoremap <Leader>di :<C-u>Diff<Space>
+nnoremap <Leader>dg :<C-u>DiffOrig<CR>
 
 nnoremap <Leader>x dlp
 
@@ -177,12 +182,25 @@ nnoremap q <Nop>
 vnoremap q <Nop>
 
 function! YankNow() abort
-	let now = strftime("%Y_%m_%d")
+    let delimiter = input("delimiter:")
+    execute "normal <C-u>"
+    if delimiter==""
+        let delimiter="_"
+    endif
+	let now = strftime(join(split("%Y_%m_%d","_"),delimiter))
 	let @+ = now
-	echo "yank ".now
+	echomsg "yank ".now
 endfunction
 command! YankNowCommand call YankNow()
 nnoremap <Space>yn :<C-u>YankNowCommand<CR>
+
+function! YankFileName() abort
+    let file_name = expand("%")
+    let @+ = file_name
+    echomsg "yank ".file_name
+endfunction
+command! YankFileNameCommand call YankFileName()
+nnoremap <Space>yf :<C-u>YankFileNameCommand<CR>
 
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
