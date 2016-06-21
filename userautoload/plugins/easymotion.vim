@@ -26,3 +26,6 @@ map gl <Plug>(easymotion-bd-jk)
 map gn <Plug>(easymotion-lineanywhere)
 map gw <Plug>(easymotion-bd-w)
 
+map g. <Plug>(easymotion-tl).
+map g; <Plug>(easymotion-tl);
+map gp <Plug>(easymotion-tl))

@@ -147,7 +147,7 @@ NeoBundleLazy 'LeafCage/qutefinger.vim',{
 NeoBundleLazy 'Lokaltog/vim-easymotion',{
 \   'autoload':{
 \       'mappings':['<Plug>(easymotion-bd-fl)','<Plug>(easymotion-bd-tl)','<Plug>(easymotion-j)','<Plug>(easymotion-s2)','<Plug>(easymotion-sn)',
-\                   '<Plug>(easymotion-k)','<Plug>(easymotion-bd-jk)','<Plug>(easymotion-lineanywhere)','<Plug>(easymotion-bd-w)']
+\                   '<Plug>(easymotion-k)','<Plug>(easymotion-bd-jk)','<Plug>(easymotion-lineanywhere)','<Plug>(easymotion-bd-w)','<Plug>(easymotion-tl)']
 \   }
 \}
 
