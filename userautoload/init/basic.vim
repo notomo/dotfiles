@@ -42,6 +42,7 @@ set showcmd
 set autoread   "外部でファイルに変更がされた場合は読みなおす
 set hidden     " 保存されていないファイルがあるときでも別のファイルを開くことが出来る
 set switchbuf=useopen   " 新しく開く代わりにすでに開いてあるバッファを開く
+set textwidth=0 " 勝手に改行しないようにする
 
 " 対応括弧に'<'と'>'のペアを追加
 set matchpairs& matchpairs+=<:>
@@ -126,3 +127,5 @@ command! -nargs=+ -complete=file Diff  call Vimdiff_in_newtab(<f-args>)
 "     call remote_foreground('GVIM')
 "     quit
 " endif
+
+autocmd MyAuGroup FileType text setlocal textwidth=0
