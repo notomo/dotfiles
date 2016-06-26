@@ -84,8 +84,13 @@ nnoremap <C-i> <C-i>
 nnoremap <C-o> <C-o>
 nnoremap ej :<C-u>execute "normal".line(".")."gg"<CR>
 
-nnoremap <silent> <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <silent> <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+nnoremap <silent> of  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <silent> oh  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+nnoremap <silent> oa  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+nnoremap oj o
+nnoremap ok O
+nnoremap os o
+nnoremap od O
 nnoremap <Space>pf  :<C-u>%s///g<Left><Left><Left>
 vnoremap <Space>p  :s///g<Left><Left><Left>
 nnoremap <Space>. @:

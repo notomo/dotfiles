@@ -129,3 +129,5 @@ command! -nargs=+ -complete=file Diff  call Vimdiff_in_newtab(<f-args>)
 " endif
 
 autocmd MyAuGroup FileType text setlocal textwidth=0
+
+set endofline

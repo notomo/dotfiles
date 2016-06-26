@@ -29,3 +29,4 @@ map gw <Plug>(easymotion-bd-w)
 map g. <Plug>(easymotion-tl).
 map g; <Plug>(easymotion-tl);
 map gp <Plug>(easymotion-tl))
+map gd <Plug>(easymotion-tl)}

@@ -321,5 +321,12 @@ NeoBundle 'mattn/webapi-vim'
 
 NeoBundle 'thinca/vim-singleton'
 
+" NeoBundle 'mattn/vim-metarw'
+" NeoBundle 'mattn/vim-metarw-redmine'
+
+NeoBundle 'vim-jp/vital.vim'
+
+" NeoBundle 'mattn/vim-oauth'
+
 call neobundle#end()
 NeoBundleCheck
