@@ -95,6 +95,12 @@ NeoBundleLazy 'Shougo/neomru.vim',{
 \   }
 \}
 
+NeoBundleLazy 'unite-redmine',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
+
 NeoBundleLazy 'tacroe/unite-mark',{
 \   'autoload':{
 \       'on_source': 'unite.vim'
@@ -109,7 +115,7 @@ NeoBundleLazy 'Shougo/unite-outline',{
 
 NeoBundleLazy 'kmnk/vim-unite-giti',{
 \   'autoload':{
-\       'on_source':['unite.vim']
+\       'on_source': 'unite.vim'
 \   }
 \}
 

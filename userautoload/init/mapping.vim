@@ -121,7 +121,7 @@ nnoremap <Leader>cd :<C-u>CdCurrent<CR>
 nnoremap <M-C-S-q> :<C-u>qa<CR>
 nnoremap <Space>l <S-v>
 nnoremap <Space>h <C-v>
-nnoremap gz G
+noremap gz G
 " nnoremap <Space>j gu
 " nnoremap <Space>k gU
 " nnoremap <Space>z gUl
@@ -206,6 +206,14 @@ function! YankFileName() abort
 endfunction
 command! YankFileNameCommand call YankFileName()
 nnoremap <Space>yf :<C-u>YankFileNameCommand<CR>
+
+function! YankFilePath() abort
+    let file_name = expand("%:p")
+    let @+ = file_name
+    echomsg "yank ".file_name
+endfunction
+command! YankFilePathCommand call YankFilePath()
+nnoremap <Space>yp :<C-u>YankFilePathCommand<CR>
 
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
