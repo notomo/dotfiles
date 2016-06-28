@@ -12,29 +12,30 @@ function! MakeTabLine() "{{{
     let info .= '%#TabLineInfo#'.substitute(FoldCCnavi()[-60:],'\s>\s','%#TabLineFill#> %#TabLineInfo#','g').'%0* '
   endif
 
-  if exists('g:cwd_map')
-	  let current_directory = s:cwd_mapping(g:cwd_map)
-  else
-	  let current_directory = getcwd()
-  endif
+  " if exists('g:cwd_map')
+	 "  let current_directory = s:cwd_mapping(g:cwd_map)
+  " else
+	 "  let current_directory = getcwd()
+  " endif
   "カレントディレクトリ
-  let info .= '['.fnamemodify(current_directory, ":~") . ']'
+  " let info .= '['.fnamemodify(current_directory, ":~") . ']'
   " echomsg string(split(getcwd(),'\\'))
 
-  return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
+  " return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
+  return tabpages
 endfunction "}}}
 
-function! s:cwd_mapping(mappings) abort
-	let directory_names=[]
-	for directory_name in split(getcwd(),'\\')
-		if has_key(a:mappings,directory_name)
-			call add(directory_names,a:mappings[directory_name])
-			continue
-		endif
-		call add(directory_names,directory_name)
-	endfor
-	return join(directory_names,'\')
-endfunction
+" function! s:cwd_mapping(mappings) abort
+" 	let directory_names=[]
+" 	for directory_name in split(getcwd(),'\\')
+" 		if has_key(a:mappings,directory_name)
+" 			call add(directory_names,a:mappings[directory_name])
+" 			continue
+" 		endif
+" 		call add(directory_names,directory_name)
+" 	endfor
+" 	return join(directory_names,'\')
+" endfunction
 
 function! s:tabpage_label(tabpagenr) "{{{
   "rol;各タブページのカレントバッファ名+αを表示

@@ -45,7 +45,7 @@ nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
 nnoremap <Space>e :<C-u>e<Space>
 nnoremap <Space>w :<C-u>w<CR>
 nnoremap <Space>q :<C-u>q<CR>
-nnoremap <Space>Q :<C-u>q!<CR>
+" nnoremap <Space>Q :<C-u>q!<CR>
 nnoremap <Space>r :<C-u>file<Space>
 nnoremap <C-S-F9> :<C-u>qa<CR>
 
@@ -84,7 +84,10 @@ nnoremap <C-i> <C-i>
 nnoremap <C-o> <C-o>
 nnoremap ej :<C-u>execute "normal".line(".")."gg"<CR>
 
-nnoremap <silent> of  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <silent> oo  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+
+nnoremap <silent> of  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>:<C-u>execute "normal j"<CR>
+
 nnoremap <silent> oh  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 nnoremap <silent> oa  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 nnoremap oj o
@@ -117,6 +120,8 @@ nnoremap <silent> <S-k> :<C-u>keepjumps normal {<CR>
 nnoremap <silent> <F5> <Esc>:<C-u>source $MYVIMRC<CR>:<C-u>source $MYGVIMRC<CR>:<C-u>nohlsearch<CR>
 
 nnoremap <Leader>cd :<C-u>CdCurrent<CR>
+nnoremap <Leader>pw :<C-u>pwd<CR>
+nnoremap <Leader>cl :<C-u>echo col(".")<CR>
 
 nnoremap <M-C-S-q> :<C-u>qa<CR>
 nnoremap <Space>l <S-v>

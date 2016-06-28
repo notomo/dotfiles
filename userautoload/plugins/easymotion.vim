@@ -22,11 +22,12 @@ map gf <Plug>(easymotion-bd-fl)
 map gt <Plug>(easymotion-bd-tl)
 map gj <Plug>(easymotion-j)
 map gk <Plug>(easymotion-k)
-map gl <Plug>(easymotion-bd-jk)
 map gn <Plug>(easymotion-lineanywhere)
 map gw <Plug>(easymotion-bd-w)
 
+map gl <Plug>(easymotion-tl)]
 map g. <Plug>(easymotion-tl).
 map g; <Plug>(easymotion-tl);
+map gc <Plug>(easymotion-tl):
 map gp <Plug>(easymotion-tl))
 map gd <Plug>(easymotion-tl)}

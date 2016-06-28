@@ -96,13 +96,14 @@ endfor
 " let $PATH = $PATH . ';C:\MinGW64\bin;C:\MinGW64\msys\1.0\bin'
 " set statusline=%F%m%r%h%w\%=[C=%c]\[TYPE=%Y]\[ENC=%{&enc}]\[FILE=%{&fileencoding}:%{&ff}]
 
-let file_format_map = {
+let g:file_format_map = {
 \   "unix" : "U",
 \   "dos"  : "D",
 \   "mac"  : "M",
 \}
 
-set statusline=%F%m%r%h%w\%=[%c]\[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
+" set statusline=%F%m%r%h%w\%=[%c]\[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
+set statusline=\%=%F%m%r%h%w\ \[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
 
 autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8
 autocmd MyAuGroup BufNewFile * set fileformat=unix
