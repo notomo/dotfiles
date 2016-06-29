@@ -5,12 +5,12 @@ function! MakeTabLine() "{{{
   let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
   let sep = ''  " タブ間の区切り
   let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
-  let info = ''  " 好きな情報を入れる
+  " let info = ''  " 好きな情報を入れる
 
   "FoldCCnavi
-  if exists('*FoldCCnavi')
-    let info .= '%#TabLineInfo#'.substitute(FoldCCnavi()[-60:],'\s>\s','%#TabLineFill#> %#TabLineInfo#','g').'%0* '
-  endif
+  " if exists('*FoldCCnavi')
+  "   let info .= '%#TabLineInfo#'.substitute(FoldCCnavi()[-60:],'\s>\s','%#TabLineFill#> %#TabLineInfo#','g').'%0* '
+  " endif
 
   " if exists('g:cwd_map')
 	 "  let current_directory = s:cwd_mapping(g:cwd_map)
