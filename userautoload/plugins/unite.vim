@@ -69,7 +69,8 @@ nnoremap <silent> [unite]l :<C-u>Unite -no-split line<CR>
 
 nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
 
-nnoremap <silent> [unite]t :<C-u>Unite -no-split tab<CR>
+nnoremap <silent> [unite]ta :<C-u>Unite -no-split tab<CR>
+nnoremap <silent> [unite]ti :<C-u>Unite redmine<CR>
 
 nnoremap <silent> [unite]sf :<C-u>Unite -no-split file_rec/async<CR>
 nnoremap <silent> [unite]sg :<C-u>Unite -no-split file_rec/git<CR>
@@ -91,7 +92,7 @@ nnoremap <silent> [unite]gc :<C-u>Unite -no-split giti/config<CR>
 nnoremap <silent> [unite]gl :<C-u>Unite -no-split giti/log<CR>
 nnoremap <silent> [unite]gs :<C-u>Unite -no-split giti/status<CR>
 
-nnoremap <silent> [unite]gg  :<C-u>Unite -tab -no-split -no-quit grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> [unite]gg  :<C-u>Unite -tab -no-split -no-quit grep:. -buffer-name=GREP<CR>
 " nnoremap <silent> [unite]gg  :<C-u>Unite -no-split grep/git:.<CR>
 " nnoremap <silent> [unite]q :<C-u>Unite -tab -no-split qf:ex=grep\ ""\ *<Left><Left><Left><Left>
 nnoremap <silent> [unite]q :<C-u>Unite qf -tab -no-split -no-quit<CR>

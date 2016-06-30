@@ -22,3 +22,5 @@ function! Capture(cmd)
   1,2delete _
 endfunction
 " }}}
+
+nnoremap <Leader>ca :<C-u>Capture<Space>

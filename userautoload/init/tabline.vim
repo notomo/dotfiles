@@ -62,7 +62,7 @@ function! s:tabpage_label(tabpagenr) "{{{
   " カレントバッファ
   let curbufnr = bufnrs[tabpagewinnr(a:tabpagenr) - 1]  " tabpagewinnr() は 1 origin
   let fname = fnamemodify(bufname(curbufnr), ':t')
-  let fname = fname is '' ? 'No title' : fname "バッファが空ならNo title
+  let fname = fname is '' ? 'NONE' : fname "バッファが空ならNONE
 
   let label = fname . nomod
 
