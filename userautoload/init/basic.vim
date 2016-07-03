@@ -119,7 +119,7 @@ function! Vimdiff_in_newtab(...)
     endfor
   endif
 endfunction
-command! -nargs=+ -complete=file Diff  call Vimdiff_in_newtab(<f-args>)
+command! -nargs=+ -complete=file MyDiff call Vimdiff_in_newtab(<f-args>)
 
 " if v:servername == 'GVIM1'
 "     let file = expand('%:p')

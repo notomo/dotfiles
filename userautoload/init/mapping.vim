@@ -183,7 +183,7 @@ nnoremap <Leader>dv :<C-u>VerticalTagOpenCommand<CR>
 nnoremap <Leader>dt :<C-u>TabTagOpenCommand<CR>
 nnoremap <Leader>dh <C-w>]
 
-nnoremap <Leader>di :<C-u>Diff<Space>
+nnoremap <Leader>di :<C-u>MyDiff<Space>
 nnoremap <Leader>dg :<C-u>DiffOrig<CR>
 
 nnoremap <Leader>x dlp
