@@ -89,12 +89,18 @@ nnoremap <silent> [unite]h :<C-u>Unite -tab -no-split help<CR>
 nnoremap <silent> [unite]gb :<C-u>Unite -no-split giti/branch<CR>
 nnoremap <silent> [unite]gB :<C-u>Unite -no-split giti/branch_all<CR>
 nnoremap <silent> [unite]gc :<C-u>Unite -no-split giti/config<CR>
-nnoremap <silent> [unite]gl :<C-u>Unite -no-split giti/log<CR>
+" nnoremap <silent> [unite]gl :<C-u>Unite -no-split giti/log<CR>
 nnoremap <silent> [unite]gs :<C-u>Unite -no-split giti/status<CR>
 
 nnoremap <silent> [unite]gg  :<C-u>Unite -tab -no-split -no-quit grep:. -buffer-name=GREP<CR>
 " nnoremap <silent> [unite]gg  :<C-u>Unite -no-split grep/git:.<CR>
 " nnoremap <silent> [unite]q :<C-u>Unite -tab -no-split qf:ex=grep\ ""\ *<Left><Left><Left><Left>
+" function! GlogFix() abort
+"     execute ":normal Glog \| copen"
+" endfunction
+" command! GlogFixCommand call GlogFix()
+
+" nnoremap <silent> [unite]gl :<C-u>Unite -tab -no-split qf:ex=Glog<CR>
 nnoremap <silent> [unite]q :<C-u>Unite qf -tab -no-split -no-quit<CR>
 
 

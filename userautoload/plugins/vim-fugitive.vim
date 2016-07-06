@@ -4,15 +4,15 @@ nmap <Leader>g [git]
 
 nnoremap [git]d :<C-u>Gdiff<CR>
 nnoremap [git]s :<C-u>Gstatus<CR>:only<CR>
-nnoremap [git]l :<C-u>Glog<CR>
+nnoremap [git]l :<C-u>tabe %<CR>:Glog \| copen<CR>
 nnoremap [git]a :<C-u>Gwrite<CR>
-nnoremap [git]A :<C-u>Git add .<CR>
+" nnoremap [git]A :<C-u>Git add .<CR>
 nnoremap [git]x :<C-u>Git<Space>
 nnoremap [git]c :<C-u>Gcommit<CR>
-nnoremap [git]C :<C-u>Git commit --amend<CR>
+" nnoremap [git]C :<C-u>Git commit --amend<CR>
 nnoremap [git]P :<C-u>Gpush<Space>
-nnoremap [git]F :!git fetch<CR>
-nnoremap [git]m :!git merge origin/
+" nnoremap [git]F :!git fetch<CR>
+" nnoremap [git]m :!git merge origin/
 nnoremap [git]bl :<C-u>Gblame<CR>
 nnoremap [git]rn :<C-u>Gmove<Space>
 nnoremap [git]rm :<C-u>Gremove<CR>

@@ -5,6 +5,7 @@ noremap <buffer> p  <CR>zz<C-w>p
 setlocal statusline+=\ %L
 
 nnoremap <silent> <buffer> dd :call <SID>del_entry()<CR>
+nnoremap <silent> <buffer> gd :call <SID>diff_entry()<CR>
 nnoremap <silent> <buffer> x :call <SID>del_entry()<CR>
 vnoremap <silent> <buffer> d :call <SID>del_entry()<CR>
 vnoremap <silent> <buffer> x :call <SID>del_entry()<CR>
@@ -29,4 +30,16 @@ function! s:del_entry() range
   unlet! qf[a:firstline - 1 : a:lastline - 1]
   call setqflist(qf, 'r')
   execute a:firstline
+endfunction
+
+function! s:diff_entry() abort
+    let line = getline(".")
+    let revision_candidate = matchstr(line, '\.git\\\\[a-zA-Z0-9]*')
+    if revision_candidate != ""
+        let revision = revision_candidate[6:]
+        echomsg string(revision)
+        execute "normal :Gdiff ".revision."\<CR>"
+    else
+        echomsg "Not revision"
+    endif
 endfunction
