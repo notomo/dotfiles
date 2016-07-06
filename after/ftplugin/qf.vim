@@ -37,8 +37,8 @@ function! s:diff_entry() abort
     let revision_candidate = matchstr(line, '\.git\\\\[a-zA-Z0-9]*')
     if revision_candidate != ""
         let revision = revision_candidate[6:]
-        echomsg string(revision)
-        execute "normal :Gdiff ".revision."\<CR>"
+        execute "normal mk"
+        execute ":Gdiff ".revision."\<CR>"
     else
         echomsg "Not revision"
     endif
