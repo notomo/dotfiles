@@ -33,7 +33,7 @@ function! s:del_entry() range
 endfunction
 
 function! s:diff_entry() abort
-    let line = getline(".")
+    let line = substitute(getline("."), "/", "\\", "g")
     let revision_candidate = matchstr(line, '\.git\\\\[a-zA-Z0-9]*')
     if revision_candidate != ""
         let revision = revision_candidate[6:]

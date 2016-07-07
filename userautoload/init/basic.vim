@@ -19,12 +19,7 @@ set ignorecase
 set smartcase
 set hlsearch
 
-if expand("%:t") !~ ".*\.tex"
-    set autoindent
-endif
-
-set shellpipe=2>\&1\|nkf\ -uw>%s
-
+set autoindent
 set ruler
 set number         " 行番号を表示する
 set backspace=indent,eol,start
@@ -132,5 +127,4 @@ command! -nargs=+ -complete=file MyDiff call Vimdiff_in_newtab(<f-args>)
 autocmd MyAuGroup FileType text setlocal textwidth=0
 
 set endofline
-
 set notitle
