@@ -1,7 +1,7 @@
 nnoremap [browser] <Nop>
-nmap <Leader><Space> [browser]
+nmap <Leader>q [browser]
 vnoremap [browser] <Nop>
-vmap <Leader><Space> [browser]
+vmap <Leader>q [browser]
 
 nmap [browser]x <Plug>(openbrowser-smart-search)
 vmap [browser]x <Plug>(openbrowser-smart-search)
@@ -13,4 +13,4 @@ map <3-LeftMouse> <Plug>(openbrowser-smart-search)
 imap <3-LeftMouse> <Plug>(openbrowser-smart-search)
 
 command! OpenBrowserCurrent execute "OpenBrowser" "file:///" . expand('%:p:gs?\\?/?')
-nnoremap [browser]o :<C-u>OpenBrowserCurrent<CR>
+nnoremap [browser]c :<C-u>OpenBrowserCurrent<CR>

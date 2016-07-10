@@ -5,12 +5,17 @@ endfunction
 unlet s:bundle
 
 map / <Plug>(incsearch-easymotion-/)
-nmap <Leader>/ <Plug>(incsearch-easymotion-/)<C-r>"
-map <Space>k <Plug>(incsearch-easymotion-?)
-nmap <Leader><Space>k <Plug>(incsearch-easymotion-?)<C-r>"
-map <Space>j <Plug>(incsearch-easymotion-stay)
-nmap <Leader><Space>j <Plug>(incsearch-easymotion-stay)<C-r>"
+nmap s/ <Plug>(incsearch-easymotion-/)<C-r>"
 nmap <Space>/ <Plug>(incsearch-easymotion-/)<C-r><C-w>
+
+map sk <Plug>(incsearch-easymotion-?)
+nmap syk <Plug>(incsearch-easymotion-?)<C-r>"
+nmap <Space>k <Plug>(incsearch-easymotion-?)<C-r><C-w>
+
+map sj <Plug>(incsearch-easymotion-stay)
+nmap syj <Plug>(incsearch-easymotion-stay)<C-r>"
+nmap <Space>j <Plug>(incsearch-easymotion-stay)<C-r><C-w>
+
 map   n <Plug>(incsearch-nohl-n)
 map   N <Plug>(incsearch-nohl-N)
 nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
@@ -46,4 +51,4 @@ function! s:tag_easymotion(...) abort
 endfunction
 
 noremap <silent><expr> gq incsearch#go(<SID>word_easymotion())
-noremap <silent><expr> g, incsearch#go(<SID>tag_easymotion())
+noremap <silent><expr> gT incsearch#go(<SID>tag_easymotion())

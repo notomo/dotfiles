@@ -191,7 +191,7 @@ nnoremap <Leader>x dlp
 nnoremap q <Nop>
 vnoremap q <Nop>
 
-function! YankNow() abort
+function! s:yank_now() abort
     let delimiter = input("delimiter:")
     execute "normal <C-u>"
     if delimiter==""
@@ -201,24 +201,21 @@ function! YankNow() abort
 	let @+ = now
 	echomsg "yank ".now
 endfunction
-command! YankNowCommand call YankNow()
-nnoremap <Space>yn :<C-u>YankNowCommand<CR>
+nnoremap <Space>yn :<C-u>call <SID>yank_now()<CR>
 
-function! YankFileName() abort
+function! s:yank_file_name() abort
     let file_name = expand("%")
     let @+ = file_name
     echomsg "yank ".file_name
 endfunction
-command! YankFileNameCommand call YankFileName()
-nnoremap <Space>yf :<C-u>YankFileNameCommand<CR>
+nnoremap <Space>yf :<C-u>call <SID>yank_file_name()<CR>
 
-function! YankFilePath() abort
+function! s:yank_file_path() abort
     let file_name = expand("%:p")
     let @+ = file_name
     echomsg "yank ".file_name
 endfunction
-command! YankFilePathCommand call YankFilePath()
-nnoremap <Space>yp :<C-u>YankFilePathCommand<CR>
+nnoremap <Space>yp :<C-u>call <SID>yank_file_path()<CR>
 
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>

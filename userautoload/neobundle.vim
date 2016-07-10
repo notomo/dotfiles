@@ -227,7 +227,7 @@ NeoBundleLazy 'sgur/vim-py3diff',{
 NeoBundleLazy 'haya14busa/incsearch-easymotion.vim',{
 \   'depends':['incsearch.vim','vim-easymotion'],
 \   'autoload':{
-\       'mappings':['<Plug>(incsearch-easymotion-/)'],
+\       'mappings':['<Plug>(incsearch-easymotion-/)','<Plug>(incsearch-easymotion-stay)','<Plug>(incsearch-easymotion-?)'],
 \       'function_prefix':['incsearch'],
 \   }
 \}
@@ -333,6 +333,12 @@ NeoBundle 'thinca/vim-singleton'
 NeoBundle 'vim-jp/vital.vim'
 
 " NeoBundle 'mattn/vim-oauth'
+
+NeoBundleLazy 'tyru/current-func-info.vim',{
+\   'autoload':{
+\       'function_prefix':['cfi']
+\   }
+\}
 
 call neobundle#end()
 NeoBundleCheck
