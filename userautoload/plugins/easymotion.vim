@@ -33,3 +33,5 @@ map gp <Plug>(easymotion-tl))
 map gd <Plug>(easymotion-tl)}
 map g, <Plug>(easymotion-tl),
 map gs <Plug>(easymotion-tl)#
+map gy <Plug>(easymotion-tl)\
+map g/ <Plug>(easymotion-tl)/
