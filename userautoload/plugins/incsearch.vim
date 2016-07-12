@@ -9,11 +9,11 @@ nmap s/ <Plug>(incsearch-easymotion-/)<C-r>"
 nmap <Space>/ <Plug>(incsearch-easymotion-/)<C-r><C-w>
 
 map sk <Plug>(incsearch-easymotion-?)
-nmap syk <Plug>(incsearch-easymotion-?)<C-r>"
+nmap s<Space>k <Plug>(incsearch-easymotion-?)<C-r>"
 nmap <Space>k <Plug>(incsearch-easymotion-?)<C-r><C-w>
 
 map sj <Plug>(incsearch-easymotion-stay)
-nmap syj <Plug>(incsearch-easymotion-stay)<C-r>"
+nmap s<Space>j <Plug>(incsearch-easymotion-stay)<C-r>"
 nmap <Space>j <Plug>(incsearch-easymotion-stay)<C-r><C-w>
 
 map   n <Plug>(incsearch-nohl-n)

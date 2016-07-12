@@ -19,7 +19,6 @@ nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><L
 
 " nnoremap <Space>G :<C-u>grep  **/*.<Left><Left><Left><Left><Left><Left>
 
-let g:mapleader=","
 
 inoremap <silent> jj <ESC>
 " 日本語入力で”っj”と入力してもEnterキーで確定させればインサートモードを抜ける
@@ -44,7 +43,25 @@ nnoremap <CR> o<ESC>
 nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
 nnoremap <Space>e :<C-u>e<Space>
 nnoremap <Space>w :<C-u>w<CR>
-nnoremap <Space>q :<C-u>q<CR>
+" nnoremap <Space>q :<C-u>q<CR>
+nnoremap <Space>q :<C-u>call <SID>close_window()<CR>
+
+function! s:close_window() abort
+    if tabpagenr("$") > 1
+        q
+        return
+    endif
+    if winnr("$") > 1 && bufwinnr("$") == -1
+        let yes_or_no = input("Close Vim?[y/n] : ")
+        if yes_or_no == "y"
+            q
+            return
+        endif
+        return
+    endif
+    q
+endfunction
+
 " nnoremap <Space>Q :<C-u>q!<CR>
 nnoremap <Space>r :<C-u>file<Space>
 nnoremap <C-S-F9> :<C-u>qa<CR>

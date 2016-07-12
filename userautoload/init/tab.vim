@@ -22,7 +22,7 @@ nnoremap <silent> [tab]q :<C-u>call <SID>close_tab()<CR>
 inoremap <silent> <C-w> <ESC>:<C-u>call <SID>close_tab()<CR>
 nnoremap <silent> [tab]da :<C-u>call <SID>close_left_tab()<CR>
 nnoremap <silent> [tab]dl :<C-u>call <SID>close_right_tab()<CR>
-
+" a
 function! s:new_tab() abort
     tabe
     setlocal buftype=nofile noswapfile

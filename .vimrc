@@ -19,5 +19,6 @@ if exists('g:home_vim')
 	set expandtab
 endif
 
+let g:mapleader=","
 set formatoptions-=r
 set formatoptions-=o
