@@ -41,7 +41,7 @@ vnoremap <Space>id <
 
 nnoremap <CR> o<ESC>
 nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
-nnoremap <Space>e :<C-u>e<Space>
+nnoremap <Space>eo :<C-u>e<Space>
 nnoremap <Space>w :<C-u>w<CR>
 " nnoremap <Space>q :<C-u>q<CR>
 nnoremap <Space>q :<C-u>call <SID>close_window()<CR>
@@ -63,7 +63,7 @@ function! s:close_window() abort
 endfunction
 
 " nnoremap <Space>Q :<C-u>q!<CR>
-nnoremap <Space>r :<C-u>file<Space>
+nnoremap <Space>rn :<C-u>file<Space>
 nnoremap <C-S-F9> :<C-u>qa<CR>
 
 nnoremap k   gk
@@ -99,7 +99,7 @@ nnoremap gO g;
 nnoremap gI g,
 nnoremap <C-i> <C-i>
 nnoremap <C-o> <C-o>
-nnoremap ej :<C-u>execute "normal".line(".")."gg"<CR>
+nnoremap <Space>ej :<C-u>execute "normal".line(".")."gg"<CR>
 
 nnoremap <silent> oo  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 
@@ -267,7 +267,7 @@ function! OpenWorkText() abort
 	execute "set filetype=worktext"
 endfunction
 command! OpenWorkTextCommand call OpenWorkText()
-nnoremap ew :<C-u>OpenWorkTextCommand<CR>
+nnoremap <Space>ew :<C-u>OpenWorkTextCommand<CR>
 
 function! s:DictionaryTranslate(...)
     let l:word = a:0 == 0 ? expand('<cword>') : a:1
@@ -294,5 +294,7 @@ function! s:DictionaryTranslate(...)
 endfunction
 command! -nargs=? -complete=command DictionaryTranslate call <SID>DictionaryTranslate(<f-args>)
 
-nnoremap en :<C-u>DictionaryTranslate<CR>
-nnoremap ei :<C-u>DictionaryTranslate<Space>
+nnoremap <Space>en :<C-u>DictionaryTranslate<CR>
+nnoremap <Space>ei :<C-u>DictionaryTranslate<Space>
+
+nnoremap <Space>em i<C-@>

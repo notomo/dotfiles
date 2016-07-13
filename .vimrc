@@ -12,6 +12,7 @@ augroup MyAuGroup
     autocmd!
 augroup END
 
+let g:mapleader=","
 runtime! userautoload/init/*.vim
 runtime! userautoload/plugins/*.vim
 
@@ -19,6 +20,5 @@ if exists('g:home_vim')
 	set expandtab
 endif
 
-let g:mapleader=","
 set formatoptions-=r
 set formatoptions-=o

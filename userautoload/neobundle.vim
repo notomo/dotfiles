@@ -340,5 +340,11 @@ NeoBundleLazy 'tyru/current-func-info.vim',{
 \   }
 \}
 
+NeoBundleLazy 'tyru/operator-camelize.vim',{
+\   'autoload':{
+\       'mappings':['<Plug>(operator-camelize)', '<Plug>(operator-decamelize)', '<Plug>(operator-camelize-toggle)']
+\   }
+\}
+
 call neobundle#end()
 NeoBundleCheck

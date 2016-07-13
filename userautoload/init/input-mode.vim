@@ -95,7 +95,7 @@ cnoremap j<Space>d {}<Left>
 cnoremap j<Space>q ''<Left>
 cnoremap j<Space>g <End>
 cnoremap j<Space>k <Del>
-cnoremap j<Space>j <BS>
+cnoremap j<Space>j <C-w>
 " cnoremap j<Space>h <Home>
 cnoremap j<Space>h <C-r>"
 cnoremap j<Space>f <Right>
