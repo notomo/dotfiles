@@ -79,7 +79,8 @@ NeoBundle 'Shougo/vimproc.vim', {
 
 NeoBundleLazy 'thinca/vim-ref',{
 \   'autoload':{
-\       'mappings':['<Plug>(ref-keyword)']
+\       'mappings':['<Plug>(ref-keyword)'],
+\       'commands':['Ref']
 \   }
 \}
 

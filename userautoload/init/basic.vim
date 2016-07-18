@@ -52,10 +52,10 @@ set clipboard=unnamed
 " set autochdir
 autocmd MyAuGroup BufEnter * call AutoCD()
 function! AutoCD() abort
-	try
-		execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
-	catch
-	endtry
+    try
+        execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
+    catch
+    endtry
 endfunction
 
 " set grepprg=grep\ -rnih 
