@@ -6,7 +6,7 @@ function! s:bundle.hooks.on_source(bundle)
     let g:EasyMotion_move_highlight = 1
     let g:EasyMotion_landing_highlight = 0
     let g:EasyMotion_inc_highlight=1
-    let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmf;'
+    let g:EasyMotion_keys = 'asdghklqwertyuiopzxcvbnmf;,.'
 	" EMCommandLineNoreMap <Space> <CR>
 	" EMCommandLineNoreMap <S-Space> <Space>
 	" EMCommandLineNoreMap <C-n> <Over>(em-scroll-f)
@@ -35,3 +35,12 @@ map g, <Plug>(easymotion-tl),
 map gs <Plug>(easymotion-tl)#
 map gy <Plug>(easymotion-tl)\
 map g/ <Plug>(easymotion-tl)/
+map <Space>ge <Plug>(easymotion-tl)=
+map <Space>go <Plug>(easymotion-tl)|
+map <Space>ga <Plug>(easymotion-tl)&
+map <Space>gt <Plug>(easymotion-tl)<
+map gq <Plug>(easymotion-tl)'
+map <Space>gq <Plug>(easymotion-tl)"
+map <Space>gd <Plug>(easymotion-tl)$
+map <Space>gp <Plug>(easymotion-tl)+
+map gx <Plug>(easymotion-tl)*

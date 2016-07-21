@@ -347,5 +347,7 @@ NeoBundleLazy 'tyru/operator-camelize.vim',{
 \   }
 \}
 
+NeoBundle 'vim-scripts/dbext.vim'
+
 call neobundle#end()
 NeoBundleCheck

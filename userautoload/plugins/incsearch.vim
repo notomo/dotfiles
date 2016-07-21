@@ -50,5 +50,5 @@ function! s:tag_easymotion(...) abort
   \ }), get(a:, 1, {}))
 endfunction
 
-noremap <silent><expr> gq incsearch#go(<SID>word_easymotion())
-noremap <silent><expr> gT incsearch#go(<SID>tag_easymotion())
+" noremap <silent><expr> gq incsearch#go(<SID>word_easymotion())
+" noremap <silent><expr> gT incsearch#go(<SID>tag_easymotion())
