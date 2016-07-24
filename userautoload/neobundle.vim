@@ -16,7 +16,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundleLazy 'Yggdroot/indentLine',{
 \   'autoload':{
-\       'filetypes':['python','php']
+\       'filetypes':['python', 'php']
 \   }
 \}
 
@@ -40,7 +40,7 @@ NeoBundleLazy 'davidhalter/jedi-vim',{
 
 NeoBundleLazy 'joonty/vdebug',{
 \   'autoload':{
-\       'filetypes':['php']
+\       'filetypes':['php', 'python']
 \   }
 \}
 
@@ -63,7 +63,7 @@ NeoBundleLazy 'fuenor/im_control.vim',{
 
 NeoBundleLazy 'Shougo/vimshell',{
 \   'autoload':{
-\       'commands':['VimShell','VimShellTab','VimShellCreate','VimShellBufferDir','VimShellInteractive','VimShellSendString']
+\       'commands':['VimShell', 'VimShellTab', 'VimShellCreate', 'VimShellBufferDir', 'VimShellInteractive', 'VimShellSendString']
 \   }
 \}
 
@@ -86,7 +86,7 @@ NeoBundleLazy 'thinca/vim-ref',{
 
 NeoBundleLazy 'Shougo/unite.vim',{
 \   'autoload':{
-\       'commands':['Unite','UniteBookmarkAdd','UniteWithBufferDir','UniteWithCursorWord']
+\       'commands':['Unite', 'UniteBookmarkAdd', 'UniteWithBufferDir', 'UniteWithCursorWord']
 \   }
 \}
 
@@ -129,13 +129,13 @@ NeoBundleLazy 'tsukkee/unite-tag',{
 NeoBundleLazy 'Shougo/unite-session',{
 \   'autoload':{
 \       'on_source': 'unite.vim',
-\       'commands' : ['UniteSessionSave','UniteSessionLoad']
+\       'commands' : ['UniteSessionSave', 'UniteSessionLoad']
 \   }
 \}
 
 NeoBundleLazy 'scrooloose/syntastic',{
 \   'autoload':{
-\       'filetypes':['python','php']
+\       'filetypes':['python', 'php']
 \   }
 \}
 
@@ -147,14 +147,14 @@ NeoBundleLazy 'Shougo/vimfiler.vim',{
 
 NeoBundleLazy 'LeafCage/qutefinger.vim',{
 \   'autoload':{
-\       'mappings':['<Plug>(qutefinger-toggle-mode)','<Plug>(qutefinger-next)','<Plug>(qutefinger-prev)','<Plug>(qutefinger-toggle-win)','<Plug>(qutefinger-first)']
+\       'mappings':['<Plug>(qutefinger-toggle-mode)', '<Plug>(qutefinger-next)', '<Plug>(qutefinger-prev)', '<Plug>(qutefinger-toggle-win)', '<Plug>(qutefinger-first)']
 \   }
 \}
 
 NeoBundleLazy 'Lokaltog/vim-easymotion',{
 \   'autoload':{
-\       'mappings':['<Plug>(easymotion-bd-fl)','<Plug>(easymotion-bd-tl)','<Plug>(easymotion-j)','<Plug>(easymotion-s2)','<Plug>(easymotion-sn)',
-\                   '<Plug>(easymotion-k)','<Plug>(easymotion-bd-jk)','<Plug>(easymotion-lineanywhere)','<Plug>(easymotion-bd-w)','<Plug>(easymotion-tl)']
+\       'mappings':['<Plug>(easymotion-bd-fl)', '<Plug>(easymotion-bd-tl)', '<Plug>(easymotion-j)', '<Plug>(easymotion-s2)', '<Plug>(easymotion-sn)',
+\                   '<Plug>(easymotion-k)', '<Plug>(easymotion-bd-jk)', '<Plug>(easymotion-lineanywhere)', '<Plug>(easymotion-bd-w)', '<Plug>(easymotion-tl)']
 \   }
 \}
 
@@ -163,7 +163,7 @@ NeoBundle 'kana/vim-textobj-user'
 
 NeoBundleLazy 'kana/vim-textobj-line',{
 \   'autoload':{
-\       'mappings':['<Plug>(textobj-line-a)','<Plug>(textobj-line-i)']
+\       'mappings':['<Plug>(textobj-line-a)', '<Plug>(textobj-line-i)']
 \   }
 \}
 
@@ -175,7 +175,7 @@ NeoBundleLazy 'bps/vim-textobj-python',{
 
 NeoBundleLazy 'rhysd/vim-operator-surround',{
 \   'autoload':{
-\       'mappings':['<Plug>(operator-surround-append)','<Plug>(operator-surround-delete)','<Plug>(operator-surround-replace)']
+\       'mappings':['<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)', '<Plug>(operator-surround-replace)']
 \   }
 \}
 
@@ -187,19 +187,19 @@ NeoBundleLazy 'kana/vim-operator-replace',{
 
 NeoBundleLazy 'mattn/emmet-vim',{
 \   'autoload':{
-\       'filetypes':['html','css','php']
+\       'filetypes':['html', 'css', 'php']
 \   }
 \}
 
 NeoBundleLazy 'vim-scripts/camelcasemotion',{
 \   'autoload':{
-\       'mappings':['<Plug>CamelCaseMotion_w','<Plug>CamelCaseMotion_b','<Plug>CamelCaseMotion_e']
+\       'mappings':['<Plug>CamelCaseMotion_w', '<Plug>CamelCaseMotion_b', '<Plug>CamelCaseMotion_e']
 \   }
 \}
 
 NeoBundleLazy 'haya14busa/incsearch.vim',{
 \   'autoload':{
-\       'mappings':['<Plug>(incsearch-forward)','<Plug>(incsearch-nohl-n)','<Plug>(incsearch-nohl-N)'],
+\       'mappings':['<Plug>(incsearch-forward)', '<Plug>(incsearch-nohl-n)', '<Plug>(incsearch-nohl-N)'],
 \       'function_prefix':['incsearch'],
 \   }
 \}
@@ -226,9 +226,9 @@ NeoBundleLazy 'sgur/vim-py3diff',{
 \}
 
 NeoBundleLazy 'haya14busa/incsearch-easymotion.vim',{
-\   'depends':['incsearch.vim','vim-easymotion'],
+\   'depends':['incsearch.vim', 'vim-easymotion'],
 \   'autoload':{
-\       'mappings':['<Plug>(incsearch-easymotion-/)','<Plug>(incsearch-easymotion-stay)','<Plug>(incsearch-easymotion-?)'],
+\       'mappings':['<Plug>(incsearch-easymotion-/)', '<Plug>(incsearch-easymotion-stay)', '<Plug>(incsearch-easymotion-?)'],
 \       'function_prefix':['incsearch'],
 \   }
 \}
@@ -236,7 +236,7 @@ NeoBundleLazy 'haya14busa/incsearch-easymotion.vim',{
 NeoBundleLazy 'tyru/open-browser.vim',{
 \   'autoload':{
 \       'mappings':['<Plug>(openbrowser-smart-search)'],
-\       'commands':['OpenBrowserSearch','OpenBrowser','OpenBrowserCurrent']
+\       'commands':['OpenBrowserSearch', 'OpenBrowser', 'OpenBrowserCurrent']
 \   }
 \}
 
@@ -270,7 +270,7 @@ NeoBundleLazy 'othree/yajs.vim',{
 
 NeoBundleLazy 'lilydjwg/colorizer',{
 \   'autoload':{
-\       'filetypes':['javascript','css','html'],
+\       'filetypes':['javascript', 'css', 'html'],
 \       'commands':['ColorToggle']
 \   }
 \}
@@ -347,7 +347,9 @@ NeoBundleLazy 'tyru/operator-camelize.vim',{
 \   }
 \}
 
-NeoBundle 'vim-scripts/dbext.vim'
+" NeoBundle 'vim-scripts/dbext.vim'
+
+" NeoBundle 'vim-scripts/pdbvim'
 
 call neobundle#end()
 NeoBundleCheck

@@ -308,3 +308,5 @@ vnoremap <Space>pe :<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\(
 
 nnoremap <Space>pc V:<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
 vnoremap <Space>pc :<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
+
+nnoremap <Space>ec :<C-u>!start ConEmu64.exe<CR>
