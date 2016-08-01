@@ -6,6 +6,7 @@ nnoremap <silent> [tab]b  :<C-u>tabe #<CR>
 nnoremap <silent> [tab]s :<C-u>tabr<CR>
 nnoremap <silent> [tab]e :<C-u>tabl<CR>
 nnoremap <silent> [tab]o :<C-u>tabo<CR>
+nnoremap <silent> [tab]p :<C-u>TabRecent<CR>
 nnoremap [tab]n :<C-u>tabe<Space>
 nnoremap [tab]me :<C-u>tabm<CR>
 nnoremap [tab]ms :<C-u>tabm 0<CR>

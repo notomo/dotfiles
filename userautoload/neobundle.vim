@@ -352,5 +352,7 @@ NeoBundleLazy 'tyru/operator-camelize.vim',{
 
 " NeoBundle 'vim-scripts/pdbvim'
 
+NeoBundle 'thinca/vim-tabrecent'
+'
 call neobundle#end()
 NeoBundleCheck
