@@ -103,6 +103,18 @@ NeoBundleLazy 'unite-redmine',{
 \   }
 \}
 
+NeoBundleLazy 'unite-blocklines',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
+
+NeoBundleLazy 'unite-block',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
+
 NeoBundleLazy 'tacroe/unite-mark',{
 \   'autoload':{
 \       'on_source': 'unite.vim'

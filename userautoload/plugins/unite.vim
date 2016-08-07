@@ -22,6 +22,7 @@ function! s:bundle.hooks.on_source(bundle)
     "unite general settings
     call unite#custom_default_action('file', 'tab-drop')
 
+    " let g:unite_source_line_enable_highlight = 1
     "インサートモードで開始
     let g:unite_enable_start_insert = 1
 
@@ -65,7 +66,10 @@ nnoremap <silent> [unite]bm :<C-u>Unite -no-split bookmark<CR>
 "ブックマークに追加
 nnoremap <silent> [unite]ba :<C-u>UniteBookmarkAdd<CR>
 
-nnoremap <silent> [unite]l :<C-u>Unite -no-split line<CR>
+nnoremap <silent> [unite]ls :<C-u>Unite -no-split blocklines<CR>
+nnoremap <silent> [unite]lb :<C-u>Unite -no-split block<CR>
+
+nnoremap <silent> [unite]ll :<C-u>Unite -no-split line<CR>
 
 nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
 
