@@ -7,8 +7,8 @@ snippet class_Qt
 abbr qt class
 options head
 	class ${1:#:name}(${2:QWidget}):
-		def __init__(self,${3:parent=None}):
-            $2.__init__(self,${4:parent=parent})
+		def __init__(self, ${3:parent = None}):
+            $2.__init__(self, ${4:parent = parent})
 			${0:pass}
 
 snippet init
@@ -32,9 +32,9 @@ options head
 		self._$1 = $1
 
 snippet     selfx
-abbr        self.x=x
+abbr        self.x = x
 options     head
-	self.${1:x}=$1
+	self.${1:x} = $1
 	${0}
 
 snippet     #!

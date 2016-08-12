@@ -70,7 +70,7 @@ NeoBundleLazy 'Shougo/vimshell',{
 
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
+\     'windows' : 'make -f make_mingw32.mak',
 \     'cygwin' : 'make -f make_cygwin.mak',
 \     'mac' : 'make -f make_mac.mak',
 \     'linux' : 'make',
@@ -183,7 +183,7 @@ NeoBundleLazy 'kana/vim-textobj-line',{
 NeoBundleLazy 'bps/vim-textobj-python',{
 \   'autoload':{
 \       'filetypes':['python']
-\   } 
+\   }
 \}
 
 NeoBundleLazy 'rhysd/vim-operator-surround',{
@@ -259,14 +259,6 @@ NeoBundleLazy 'stephpy/vim-php-cs-fixer',{
 \   }
 \}
 
-" NeoBundle 'tpope/vim-dispatch'
-" NeoBundle 'scrooloose/nerdtree'
-" NeoBundle 'kana/vim-textobj-indent'
-" NeoBundle 'haya14busa/vim-migemo'
-" NeoBundle 'haya14busa/incsearch-migemo.vim'
-" NeoBundle 'tmhedberg/matchit'
-" NeoBundle 'ctrlpvim/ctrlp.vim'
-
 NeoBundle 'lambdalisue/vim-gita'
 
 NeoBundleLazy 'h1mesuke/vim-alignta',{
@@ -283,7 +275,7 @@ NeoBundleLazy 'othree/yajs.vim',{
 
 NeoBundleLazy 'lilydjwg/colorizer',{
 \   'autoload':{
-\       'filetypes':['javascript', 'css', 'html'],
+\       'filetypes':['javascript', 'css', 'html', 'vim'],
 \       'commands':['ColorToggle']
 \   }
 \}
@@ -321,8 +313,6 @@ NeoBundleLazy 'lambdalisue/unite-grep-vcs',{
 \   }
 \}
 
-" NeoBundle 'fuenor/qfixgrep'
-
 NeoBundleLazy 'sgur/unite-qf',{
 \   'autoload':{
 \       'on_source': 'unite.vim'
@@ -335,18 +325,13 @@ NeoBundleLazy 'mopp/layoutplugin.vim',{
 \   }
 \}
 
-" NeoBundle 'yuratomo/gmail.vim'
-
 NeoBundle 'mattn/webapi-vim'
 
 NeoBundle 'thinca/vim-singleton'
 
-" NeoBundle 'mattn/vim-metarw'
-" NeoBundle 'mattn/vim-metarw-redmine'
 
 NeoBundle 'vim-jp/vital.vim'
 
-" NeoBundle 'mattn/vim-oauth'
 
 NeoBundleLazy 'tyru/current-func-info.vim',{
 \   'autoload':{
@@ -360,11 +345,27 @@ NeoBundleLazy 'tyru/operator-camelize.vim',{
 \   }
 \}
 
-" NeoBundle 'vim-scripts/dbext.vim'
+NeoBundle 'vim-scripts/dbext.vim'
 
+NeoBundleLazy 'thinca/vim-tabrecent',{
+\   'autoload':{
+\       'commands':['TabRecent']
+\   }
+\}
+
+" NeoBundle 'yuratomo/gmail.vim'
 " NeoBundle 'vim-scripts/pdbvim'
+" NeoBundle 'fuenor/qfixgrep'
+" NeoBundle 'mattn/vim-oauth'
+" NeoBundle 'mattn/vim-metarw'
+" NeoBundle 'mattn/vim-metarw-redmine'
+" NeoBundle 'tpope/vim-dispatch'
+" NeoBundle 'scrooloose/nerdtree'
+" NeoBundle 'kana/vim-textobj-indent'
+" NeoBundle 'haya14busa/vim-migemo'
+" NeoBundle 'haya14busa/incsearch-migemo.vim'
+" NeoBundle 'tmhedberg/matchit'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
 
-NeoBundle 'thinca/vim-tabrecent'
-'
 call neobundle#end()
 NeoBundleCheck
