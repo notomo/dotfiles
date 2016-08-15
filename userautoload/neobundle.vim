@@ -353,13 +353,35 @@ NeoBundleLazy 'thinca/vim-tabrecent',{
 \   }
 \}
 
+" NeoBundleLazy 'OmniSharp/omnisharp-vim', {
+" \   'autoload': {'filetypes': ['cs']},
+" \   'build': {
+" \     'windows': 'MSBuild.exe server/OmniSharp.sln',
+" \     'mac': 'xbuild server/OmniSharp.sln',
+" \     'unix': 'xbuild server/OmniSharp.sln',
+" \   }
+" \ }
+
+" NeoBundle 'tpope/vim-dispatch'
+
+" NeoBundleLazy 'yucchiy/omnisharp-vim',{
+" \   'autoload':{
+" \       'filetypes':['cs']
+" \   }
+" \}
+
+NeoBundleLazy 'OrangeT/vim-csharp',{
+\   'autoload':{
+\       'filetypes':['cs']
+\   }
+\}
+
 " NeoBundle 'yuratomo/gmail.vim'
 " NeoBundle 'vim-scripts/pdbvim'
 " NeoBundle 'fuenor/qfixgrep'
 " NeoBundle 'mattn/vim-oauth'
 " NeoBundle 'mattn/vim-metarw'
 " NeoBundle 'mattn/vim-metarw-redmine'
-" NeoBundle 'tpope/vim-dispatch'
 " NeoBundle 'scrooloose/nerdtree'
 " NeoBundle 'kana/vim-textobj-indent'
 " NeoBundle 'haya14busa/vim-migemo'

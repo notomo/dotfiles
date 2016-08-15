@@ -309,4 +309,26 @@ vnoremap <Space>pe :<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\(
 nnoremap <Space>pc V:<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
 vnoremap <Space>pc :<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
 
+nnoremap <Space>pn V:<C-u>'<,'>s/^\n//g<CR>
+vnoremap <Space>pn :<C-u>'<,'>s/^\n//g<CR>
+
 nnoremap <Space>ec :<C-u>!start ConEmu64.exe<CR>
+
+nnoremap <Ins> <Nop>
+inoremap <Ins> <Nop>
+
+function! s:yank_last_command() abort
+    let last_command = @:
+	let @+ = last_command
+    echomsg "yank ". last_command
+endfunction
+nnoremap <Space>y; :<C-u>call <SID>yank_last_command()<CR>
+
+function! s:yank_last_search() abort
+    let last_search = @/
+	let @+ = last_search
+    echomsg "yank ". last_search
+endfunction
+nnoremap <Space>y/ :<C-u>call <SID>yank_last_search()<CR>
+
+
