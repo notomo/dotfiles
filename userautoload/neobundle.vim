@@ -347,6 +347,12 @@ NeoBundleLazy 'tyru/operator-camelize.vim',{
 
 NeoBundle 'vim-scripts/dbext.vim'
 
+" NeoBundleLazy 'vim-scripts/dbext.vim',{
+" \   'autoload':{
+" \       'commands':['DBExecSQLUnderCursor', 'DBExecVisualSQL', 'DBExecSQL', 'DBDescribeTable', 'DBHistory', 'DBResultsToggleResize', 'DBExecSQL']
+" \   }
+" \}
+
 NeoBundleLazy 'thinca/vim-tabrecent',{
 \   'autoload':{
 \       'commands':['TabRecent']

@@ -27,7 +27,8 @@ nnoremap [split]m :<C-u>SM 4<CR>
 nnoremap [split]r :<C-u>SM 0<CR>
 
 " Shift + 矢印でウィンドウサイズを変更
-nnoremap <S-Left>  <C-w><<CR>
-nnoremap <S-Right> <C-w>><CR>
-nnoremap <S-Up>    <C-w>-<CR>
-nnoremap <S-Down>  <C-w>+<CR>
+nnoremap [move]<Space>h  <C-w><<CR>
+nnoremap [move]<Space>k  <C-w>-<CR>
+nnoremap [move]<Space>j  <C-w>+<CR>
+nnoremap [move]<Space>l  <C-w>><CR>
+nnoremap [move]e  <C-w>=<CR>
