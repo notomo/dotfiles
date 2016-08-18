@@ -1,9 +1,9 @@
 
 
 nnoremap [dbext] <Nop>
-nmap <Leader>e [dbext]
+nmap <Space>m [dbext]
 vnoremap [dbext] <Nop>
-vmap <Leader>e [dbext]
+vmap <Space>m [dbext]
 
 nnoremap [dbext]u :<C-u>DBExecSQLUnderCursor<CR>
 vnoremap [dbext]e :DBExecVisualSQL<CR>

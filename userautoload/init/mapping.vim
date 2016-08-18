@@ -332,3 +332,14 @@ endfunction
 nnoremap <Space>y/ :<C-u>call <SID>yank_last_search()<CR>
 
 
+omap ip i)
+omap il i]
+omap iw i"
+omap iq i'
+omap id i}
+
+omap ap a)
+omap al a]
+omap aw a"
+omap aq a'
+omap ad a}
