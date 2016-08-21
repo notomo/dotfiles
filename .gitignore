@@ -1,9 +1,8 @@
 /tmp/backup/*
 /tmp/swap/*
 /tmp/undo/*
+/userautoload/local/*
 !.gitkeep
 dict/cp932/
 dict/utf-8/
 /tmp/viminfo.txt
-/userautoload/init/home.vim
-/userautoload/init/cwd_map.vim

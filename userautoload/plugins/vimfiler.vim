@@ -5,7 +5,11 @@ nnoremap <Space>tl :<C-u>:CdCurrent<CR>:VimFilerBufferDir -split -simple -toggle
 
 function! NewUnixFormatFile() abort
 	let file_name = input("New files name(comma separated):")
-	execute "normal NF".file_name."\<CR>l\<Space>fouma"
+    if file_name != ""
+        execute "normal NF".file_name."\<CR>l\<Space>fouma"
+    else
+        echomsg " Canceled"
+    endif
 endfunction
 command! NewUnixFormatFileCommand call NewUnixFormatFile()
 
@@ -21,7 +25,7 @@ function! s:bundle.hooks.on_source(bundle)
     let g:vimfiler_as_default_explorer = 1
     let g:vimfiler_ignore_pattern = ['^\.DS_Store$']
     "デフォルトのキーマッピングを変更
-    let g:vimfiler_no_default_key_mappings=1
+    let g:vimfiler_no_default_key_mappings = 1
 endfunction
 unlet s:bundle
 
@@ -62,6 +66,6 @@ function! s:vimfiler_my_settings()
     nmap <buffer><Space>pu <Plug>(vimfiler_pushd)
     nmap <buffer><Space>po <Plug>(vimfiler_popd)
     " nmap <buffer>f <Plug>(vimfiler_find)
-    nmap <buffer><Space>m <Plug>(vimfiler_toggle_mark_current_line)
+    nmap <buffer>mm <Plug>(vimfiler_toggle_mark_current_line)
     nmap <buffer>cd <Plug>(vimfiler_cd_input_directory)
 endfunction

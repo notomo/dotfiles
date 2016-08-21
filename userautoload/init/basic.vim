@@ -43,7 +43,7 @@ set textwidth=0 " 勝手に改行しないようにする
 set matchpairs& matchpairs+=<:>
 set shiftwidth=4
 set softtabstop=4
-set noexpandtab
+" set noexpandtab
 set tabstop=4
 set smarttab
 set formatoptions+=q

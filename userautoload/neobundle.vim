@@ -1,5 +1,4 @@
 
-" vim起動時のみruntimepathにneobundle.vimを追加
 if has('vim_starting')
     set nocompatible
     set runtimepath+=~/.vim/bundle/neobundle.vim
@@ -10,8 +9,6 @@ if has('vim_starting')
     " set runtimepath+=~/.vim/plugin/sample.vim/
 endif
 
-" neobundle.vimの初期化 
-" NeoBundleを更新するための設定
 call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
