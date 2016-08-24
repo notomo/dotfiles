@@ -19,3 +19,6 @@ hi TabLineInfo term=reverse ctermfg=Black ctermbg=LightBlue guifg=black guibg=li
 
 hi Search cterm=NONE guifg=#333333 guibg=#9acd32
 hi incSearchOnCursor cterm=NONE guifg=#eeeeee guibg=#ff7f50
+
+hi phpComment guifg=#afeeee
+hi Comment guifg=#afeeee

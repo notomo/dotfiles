@@ -60,7 +60,7 @@ nnoremap <silent> [unite]c :<C-u>Unite -no-split -buffer-name=register register<
 "最近使用したファイル一覧
 nnoremap <silent> [unite]r :<C-u>Unite -no-split file_mru<CR>
 "マーク一覧
-nnoremap <silent> [unite]m :<C-u>Unite -no-split mark<CR>
+nnoremap <silent> [unite]mk :<C-u>Unite -no-split mark<CR>
 " ブックマーク一覧
 nnoremap <silent> [unite]bm :<C-u>Unite -no-split bookmark<CR>
 "ブックマークに追加
@@ -96,9 +96,11 @@ nnoremap <silent> [unite]gc :<C-u>Unite -no-split giti/config<CR>
 " nnoremap <silent> [unite]gl :<C-u>Unite -no-split giti/log<CR>
 nnoremap <silent> [unite]gs :<C-u>Unite -no-split giti/status<CR>
 
+nnoremap <silent> [unite]mp :<C-u>Unite -no-split mapping<CR>
+
 nnoremap <silent> [unite]gg  :<C-u>Unite -tab -no-split -no-quit grep:. -buffer-name=GREP<CR>
 " nnoremap <silent> [unite]gg  :<C-u>Unite -no-split grep/git:.<CR>
-" nnoremap <silent> [unite]q :<C-u>Unite -tab -no-split qf:ex=grep\ ""\ *<Left><Left><Left><Left>
+" nnoremap <silent> [unite]q :<C-u>U-no-split giti/status<CR>nite -tab -no-split qf:ex=grep\ ""\ *<Left><Left><Left><Left>
 " function! GlogFix() abort
 "     execute ":normal Glog \| copen"
 " endfunction

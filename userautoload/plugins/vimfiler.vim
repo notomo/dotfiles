@@ -67,5 +67,6 @@ function! s:vimfiler_my_settings()
     nmap <buffer><Space>po <Plug>(vimfiler_popd)
     " nmap <buffer>f <Plug>(vimfiler_find)
     nmap <buffer>mm <Plug>(vimfiler_toggle_mark_current_line)
+    " vmap <buffer>mm <Plug>(vimfiler_toggle_mark_current_line)
     nmap <buffer>cd <Plug>(vimfiler_cd_input_directory)
 endfunction

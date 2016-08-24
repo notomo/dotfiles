@@ -25,6 +25,7 @@ IncSearchNoreMap <Tab> <Over>(incsearch-next)
 IncSearchNoreMap <S-Tab>  <Over>(incsearch-prev)
 IncSearchNoreMap <C-j> <Down>
 IncSearchNoreMap <C-k> <Up>
+IncSearchNoreMap <C-l> <Right>
 IncSearchNoreMap <Space> <CR>
 IncSearchNoreMap <S-Space> <Space>
 IncSearchNoreMap <C-n>  <Over>(incsearch-scroll-f)

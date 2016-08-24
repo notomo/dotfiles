@@ -331,6 +331,17 @@ function! s:yank_last_search() abort
 endfunction
 nnoremap <Space>y/ :<C-u>call <SID>yank_last_search()<CR>
 
+vmap ip i)
+vmap il i]
+vmap iw i"
+vmap iq i'
+vmap id i}
+
+vmap ap a)
+vmap al a]
+vmap aw a"
+vmap aq a'
+vmap ad a}
 
 omap ip i)
 omap il i]
