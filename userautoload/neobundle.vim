@@ -364,7 +364,7 @@ NeoBundleLazy 'thinca/vim-tabrecent',{
 " \     'unix': 'xbuild server/OmniSharp.sln',
 " \   }
 " \ }
-
+"
 " NeoBundle 'tpope/vim-dispatch'
 
 " NeoBundleLazy 'yucchiy/omnisharp-vim',{
@@ -378,6 +378,10 @@ NeoBundleLazy 'OrangeT/vim-csharp',{
 \       'filetypes':['cs']
 \   }
 \}
+
+NeoBundle 'kana/vim-arpeggio'
+
+NeoBundle 'tpope/vim-capslock'
 
 " NeoBundle 'yuratomo/gmail.vim'
 " NeoBundle 'vim-scripts/pdbvim'

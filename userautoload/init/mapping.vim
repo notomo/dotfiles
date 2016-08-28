@@ -354,3 +354,5 @@ omap al a]
 omap aw a"
 omap aq a'
 omap ad a}
+
+nnoremap <Leader>cm :<C-u>Capture messages<CR>
