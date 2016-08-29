@@ -56,56 +56,149 @@ function! MyExecExCommand(cmd, ...)
 endfunction
 
 
-" Arpeggio cnoremap and inoremap
-function! s:cinoremap(lhs, rhs) abort
-    call arpeggio#map('i', '', 0, a:lhs, a:rhs)
-    call arpeggio#map('c', '', 0, a:lhs, a:rhs)
-endfunction
+" " Arpeggio cnoremap and inoremap
+" function! s:cinoremap(lhs, rhs) abort
+"     call arpeggio#map('i', '', 0, a:lhs, a:rhs)
+"     call arpeggio#map('c', '', 0, a:lhs, a:rhs)
+" endfunction
+"
+" call arpeggio#load()
+"
+" " “ü—ÍŒn
+" call s:cinoremap("or", "<Bar>")
+" call s:cinoremap("ls", "[]<Left>")
+" call s:cinoremap("ka", "()<Left>")
+" call s:cinoremap("ye", "\\")
+" call s:cinoremap("ia", "=>")
+" call s:cinoremap("ht", "^")
+" " call s:cinoremap("dp", "()")
+" " call s:cinoremap("hw", "\"\"")
+" call s:cinoremap("an", "&")
+" call s:cinoremap("sh", "#")
+" call s:cinoremap("ti", "~")
+" call s:cinoremap("do", "$")
+" call s:cinoremap("bi", "!")
+" call s:cinoremap("b,", "`")
+" call s:cinoremap("gi", "?")
+" call s:cinoremap("w,", "\"")
+" call s:cinoremap("q,", "'")
+" call s:cinoremap("ps", "+")
+" call s:cinoremap("ya", "->")
+" call s:cinoremap("ri", "%")
+" call s:cinoremap("ma", "@")
+" call s:cinoremap("co", ":")
+" call s:cinoremap("cl", "*")
+" call s:cinoremap("ha", "-")
+" call s:cinoremap("ek", "=")
+" call s:cinoremap("us", "_")
+" call s:cinoremap("bk", "``<Left>")
+" call s:cinoremap("wk", "\"\"<Left>")
+" call s:cinoremap("lt", "<><Left>")
+" call s:cinoremap("di", "{}<Left>")
+" call s:cinoremap("qo", "''<Left>")
+"
+" " “ü—ÍŒnˆÈŠO
+" call s:cinoremap(";a", "<Home>")
+" call s:cinoremap(";e", "<End>")
+" call s:cinoremap(";d", "<Del>")
+" call s:cinoremap(";b", "<BS>")
+" call s:cinoremap(";c", "<End><C-u>")
+" call s:cinoremap(";z", "<C-a>")
+" call s:cinoremap(";h", "<C-r>\"")
+" call s:cinoremap("gl", "<Right>")
+" call s:cinoremap("gh", "<Left>")
+" call s:cinoremap("gj", "<Down>")
+" call s:cinoremap("gk", "<Up>")
 
-call arpeggio#load()
 
-" “ü—ÍŒn
-call s:cinoremap("or", "<Bar>")
-call s:cinoremap("ls", "[]<Left>")
-call s:cinoremap("ka", "()<Left>")
-call s:cinoremap("ye", "\\")
-call s:cinoremap("ia", "=>")
-call s:cinoremap("ht", "^")
-" call s:cinoremap("dp", "()")
-" call s:cinoremap("hw", "\"\"")
-call s:cinoremap("an", "&")
-call s:cinoremap("sh", "#")
-call s:cinoremap("ti", "~")
-call s:cinoremap("do", "$")
-call s:cinoremap("bi", "!")
-call s:cinoremap("b,", "`")
-call s:cinoremap("gi", "?")
-call s:cinoremap("w,", "\"")
-call s:cinoremap("q,", "'")
-call s:cinoremap("ps", "+")
-call s:cinoremap("ya", "->")
-call s:cinoremap("ri", "%")
-call s:cinoremap("ma", "@")
-call s:cinoremap("co", ":")
-call s:cinoremap("cl", "*")
-call s:cinoremap("ha", "-")
-call s:cinoremap("ek", "=")
-call s:cinoremap("us", "_")
-call s:cinoremap("bk", "``<Left>")
-call s:cinoremap("wk", "\"\"<Left>")
-call s:cinoremap("lt", "<><Left>")
-call s:cinoremap("di", "{}<Left>")
-call s:cinoremap("qo", "''<Left>")
+inoremap j<Space><CR> <C-r>=
 
-" “ü—ÍŒnˆÈŠO
-call s:cinoremap(";a", "<Home>")
-call s:cinoremap(";e", "<End>")
-call s:cinoremap(";d", "<Del>")
-call s:cinoremap(";b", "<BS>")
-call s:cinoremap(";c", "<End><C-u>")
-call s:cinoremap(";z", "<C-a>")
-call s:cinoremap(";h", "<C-r>\"")
-call s:cinoremap("gl", "<Right>")
-call s:cinoremap("gh", "<Left>")
-call s:cinoremap("gj", "<Down>")
-call s:cinoremap("gk", "<Up>")
+inoremap j<Space>a -
+inoremap j<Space>e =
+inoremap j<Space>s _
+inoremap j<Space>w ""<Left>
+inoremap j<Space>b ``<Left>
+inoremap j<Space>l []<Left>
+inoremap j<Space>t <><Left>
+inoremap j<Space>p ()<Left>
+inoremap j<Space>d {}<Left>
+inoremap j<Space>q ''<Left>
+inoremap j<Space>g <End>
+inoremap j<Space>k <Del>
+inoremap j<Space>j <BS>
+" inoremap j<Space>h <Home>
+inoremap j<Space>f <Right>
+inoremap j<Space>v <ESC>Jxi
+inoremap j<Space>z <C-a>
+inoremap j<Space>c <ESC>cc
+inoremap j<Space>x <ESC><Right>C
+inoremap j<Space>o <CR>
+inoremap j<Space>r <C-k>
+inoremap j<Space>/ <ESC>"/pa
+inoremap j<Space><Space> <ESC><Right>gUbea
+inoremap j<Space>h <C-r>"
+
+
+
+inoremap jka &
+inoremap jkh ^
+inoremap jkp +
+inoremap jks #
+inoremap jkr %
+inoremap jkm @
+inoremap jkt ~
+inoremap jko <Bar>
+inoremap jkd $
+inoremap jke !
+inoremap jkb `
+inoremap jkc :
+inoremap jkx *
+inoremap jkq ?
+inoremap jk; "
+inoremap jk, '
+inoremap jky \
+inoremap jkw "
+inoremap jkg =>
+inoremap jkf ->
+
+
+cnoremap j<Space>a -
+cnoremap j<Space>e =
+cnoremap j<Space>s _
+cnoremap j<Space>w ""<Left>
+cnoremap j<Space>b ``<Left>
+cnoremap j<Space>l []<Left>
+cnoremap j<Space>t <><Left>
+cnoremap j<Space>p ()<Left>
+cnoremap j<Space>d {}<Left>
+cnoremap j<Space>q ''<Left>
+cnoremap j<Space>g <End>
+cnoremap j<Space>k <Del>
+cnoremap j<Space>m <C-w>
+cnoremap j<Space>n <End><C-u>
+cnoremap j<Space>h <C-r>"
+cnoremap j<Space>f <Right>
+cnoremap j<Space>o <CR>
+
+cnoremap jka &
+cnoremap jkh ^
+cnoremap jkp +
+cnoremap jks #
+cnoremap jkr %
+cnoremap jkm @
+cnoremap jkt ~
+cnoremap jko <Bar>
+cnoremap jkd $
+cnoremap jke !
+cnoremap jkb `
+cnoremap jkc :
+cnoremap jkx *
+cnoremap jkq ?
+cnoremap jk; "
+cnoremap jk, '
+cnoremap jky \
+cnoremap jkw "
+cnoremap jkg =>
+cnoremap jkf ->
+
+

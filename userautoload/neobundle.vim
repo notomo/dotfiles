@@ -379,7 +379,7 @@ NeoBundleLazy 'OrangeT/vim-csharp',{
 \   }
 \}
 
-NeoBundle 'kana/vim-arpeggio'
+" NeoBundle 'kana/vim-arpeggio'
 
 NeoBundle 'tpope/vim-capslock'
 
