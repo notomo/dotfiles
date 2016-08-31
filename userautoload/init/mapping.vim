@@ -336,23 +336,27 @@ vmap il i]
 vmap iw i"
 vmap iq i'
 vmap id i}
+vmap ib i`
 
 vmap ap a)
 vmap al a]
 vmap aw a"
 vmap aq a'
 vmap ad a}
+vmap ab a`
 
 omap ip i)
 omap il i]
 omap iw i"
 omap iq i'
 omap id i}
+omap ib i`
 
 omap ap a)
 omap al a]
 omap aw a"
 omap aq a'
 omap ad a}
+omap ab a`
 
 nnoremap <Leader>cm :<C-u>Capture messages<CR>
