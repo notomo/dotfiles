@@ -49,6 +49,10 @@ set smarttab
 set formatoptions+=q
 set clipboard=unnamed
 
+
+autocmd MyAuGroup InsertEnter,CmdwinEnter * set noimdisable
+autocmd MyAuGroup InsertLeave,CmdwinLeave * set imdisable
+
 " set autochdir
 autocmd MyAuGroup BufEnter * call AutoCD()
 function! AutoCD() abort
@@ -98,7 +102,7 @@ let g:file_format_map = {
 \}
 
 " set statusline=%F%m%r%h%w\%=[%c]\[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
-set statusline=\%=%F%m%r%h%w\ \[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
+set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
 
 autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8
 autocmd MyAuGroup BufNewFile * set fileformat=unix
@@ -126,5 +130,31 @@ command! -nargs=+ -complete=file MyDiff call Vimdiff_in_newtab(<f-args>)
 
 autocmd MyAuGroup FileType text setlocal textwidth=0
 
-set endofline
+" set noendofline
 set notitle
+
+" Capture {{{
+command!
+      \ -nargs=1
+      \ -complete=command
+      \ Capture
+      \ call Capture(<f-args>)
+
+function! Capture(cmd)
+  redir => result
+  silent execute a:cmd
+  redir END
+
+  let bufname = 'Capture: ' . a:cmd
+  new
+  setlocal bufhidden=unload
+  setlocal nobuflisted
+  setlocal buftype=nofile
+  setlocal noswapfile
+  silent file `=bufname`
+  silent put =result
+  1,2delete _
+endfunction
+" }}}
+
+nnoremap <Leader>ca :<C-u>Capture<Space>
