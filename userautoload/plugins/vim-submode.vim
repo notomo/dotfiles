@@ -1,1 +1,1 @@
-g:submode_keep_leaving_key = 1
+let g:submode_keep_leaving_key = 1

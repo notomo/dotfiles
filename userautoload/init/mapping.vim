@@ -27,8 +27,6 @@ inoremap <silent> ｊｊ <ESC>
 cnoremap <silent> jj <C-u><ESC>
 onoremap jj <ESC>
 vnoremap v <ESC>
-nnoremap い i
-nnoremap あ a
 snoremap jj <ESC>
 
 

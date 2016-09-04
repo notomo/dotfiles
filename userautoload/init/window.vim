@@ -1,7 +1,7 @@
 "ウィンドウ移動
 let s:WINMOVE_PREFIX_KEY = "m"
 nnoremap [winmove] <Nop>
-silent execute "nmap " . s:WINMOVE_PREFIX_KEY . " [winmove]"
+silent execute join(["nmap", s:WINMOVE_PREFIX_KEY, "[winmove]"])
 
 " 左
 nnoremap [winmove]a <C-w>h
@@ -36,7 +36,7 @@ nnoremap [window]p <C-w>z
 " ウィンドウサイズ変更
 let s:WINSIZE_PREFIX_KEY = s:WINMOVE_PREFIX_KEY . "m"
 nnoremap [winsize] <Nop>
-silent execute "nmap " . s:WINSIZE_PREFIX_KEY . " [winsize]"
+silent execute join(["nmap", s:WINSIZE_PREFIX_KEY, "[winsize]"])
 
 " ウィンドウサイズ変更モード設定
 " [winsize]lhs_suffixでモードに入る

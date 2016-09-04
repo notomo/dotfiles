@@ -324,7 +324,6 @@ NeoBundleLazy 'mopp/layoutplugin.vim',{
 \   }
 \}
 
-NeoBundle 'mattn/webapi-vim'
 
 NeoBundle 'thinca/vim-singleton'
 
@@ -360,20 +359,9 @@ NeoBundleLazy 'thinca/vim-tabrecent',{
 
 NeoBundleLazy 'OmniSharp/omnisharp-vim', {
 \   'autoload': {'filetypes': ['cs']},
-\   'build': {
-\     'windows': 'MSBuild.exe server/OmniSharp.sln',
-\     'mac': 'xbuild server/OmniSharp.sln',
-\     'unix': 'xbuild server/OmniSharp.sln',
-\   }
 \ }
 
 NeoBundle 'tpope/vim-dispatch'
-
-" NeoBundleLazy 'yucchiy/omnisharp-vim',{
-" \   'autoload':{
-" \       'filetypes':['cs']
-" \   }
-" \}
 
 NeoBundleLazy 'OrangeT/vim-csharp',{
 \   'autoload':{
@@ -389,7 +377,11 @@ NeoBundle 'vim-scripts/PreserveNoEOL'
 
 NeoBundle 'vim-scripts/YankRing.vim'
 
-NeoBundle 'Shougo/neoyank.vim'
+NeoBundleLazy 'Shougo/neoyank.vim',{
+\   'autoload':{
+\       'on_source': 'unite.vim'
+\   }
+\}
 
 NeoBundle 'sjl/gundo.vim'
 
@@ -407,6 +399,7 @@ NeoBundle 'kana/vim-submode'
 " NeoBundle 'haya14busa/incsearch-migemo.vim'
 " NeoBundle 'tmhedberg/matchit'
 " NeoBundle 'ctrlpvim/ctrlp.vim'
+" NeoBundle 'mattn/webapi-vim'
 
 call neobundle#end()
 NeoBundleCheck
