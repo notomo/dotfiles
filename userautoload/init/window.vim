@@ -1,34 +1,63 @@
+"ウィンドウ移動
+let s:WINMOVE_PREFIX_KEY = "m"
+nnoremap [winmove] <Nop>
+silent execute "nmap " . s:WINMOVE_PREFIX_KEY . " [winmove]"
 
-"ウィンドウ間を移動
-nnoremap [move] <Nop>
-nmap m [move]
+" 左
+nnoremap [winmove]a <C-w>h
+" 下
+nnoremap [winmove]j <C-w>j
+nnoremap [winmove]x <C-w>j
+" 上
+nnoremap [winmove]k <C-w>k
+nnoremap [winmove]w <C-w>k
+" 右
+nnoremap [winmove]l <C-w>l
+" 次
+nnoremap [winmove]n <C-w><C-w>
+" 前
+nnoremap [winmove]p <C-w>p
 
-nnoremap [move]h <C-w>h
-nnoremap [move]a <C-w>h
-nnoremap [move]j <C-w>j
-nnoremap [move]s <C-w>j
-nnoremap [move]k <C-w>k
-nnoremap [move]d <C-w>k
-nnoremap [move]l <C-w>l
-nnoremap [move]f <C-w>l
-nnoremap [move]w <C-w><C-w>
-nnoremap [move]p <C-w>p
 
 "ウィンドウ分割・解除
-nnoremap [split] <Nop>
-nmap <Space>s [split]
-nnoremap [split]o :<C-u>only<CR>
-nnoremap [split]h :<C-u>split<CR>
-nnoremap [split]v :<C-u>vsplit<CR>
-nnoremap [split]s :<C-u>vsplit<CR>
-nnoremap [split]p <C-w>z
+nnoremap [window] <Nop>
+nmap <Space>s [window]
 
-nnoremap [split]m :<C-u>SM 4<CR>
-nnoremap [split]r :<C-u>SM 0<CR>
+" 横分割
+nnoremap [window]h :<C-u>split<CR>
+" 縦分割
+nnoremap [window]v :<C-u>vsplit<CR>
+" 分割解除
+nnoremap [window]o :<C-u>only<CR>
+" プレビューウィンドウを閉じる
+nnoremap [window]p <C-w>z
 
-" Shift + 矢印でウィンドウサイズを変更
-nnoremap [move]<Space>h  <C-w><<CR>
-nnoremap [move]<Space>k  <C-w>-<CR>
-nnoremap [move]<Space>j  <C-w>+<CR>
-nnoremap [move]<Space>l  <C-w>><CR>
-nnoremap [move]e  <C-w>=<CR>
+
+" ウィンドウサイズ変更
+let s:WINSIZE_PREFIX_KEY = s:WINMOVE_PREFIX_KEY . "m"
+nnoremap [winsize] <Nop>
+silent execute "nmap " . s:WINSIZE_PREFIX_KEY . " [winsize]"
+
+" ウィンドウサイズ変更モード設定
+" [winsize]lhs_suffixでモードに入る
+" モード内ではlhs_suffixのみで動作
+function! s:winsize_submode_mapping(lhs_suffix, rhs) abort
+    call submode#enter_with('winsize', 'n', '', s:WINSIZE_PREFIX_KEY . a:lhs_suffix, a:rhs)
+    call submode#map('winsize', 'n', '', a:lhs_suffix, a:rhs)
+endfunction
+" 横幅を増やす
+call s:winsize_submode_mapping("a", "<C-w>>")
+" 横幅を減らす
+call s:winsize_submode_mapping("z", "<C-w><")
+" 縦幅を増やす
+call s:winsize_submode_mapping("k", "<C-w>+")
+" 縦幅を減らす
+call s:winsize_submode_mapping("j", "<C-w>-")
+
+" 均等化
+nnoremap [winsize]e  <C-w>=
+" 最大化
+nnoremap [winsize]m :<C-u>SM 4<CR>
+" 最大化を解除
+nnoremap [winsize]r :<C-u>SM 0<CR>
+

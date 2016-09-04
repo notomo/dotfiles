@@ -22,6 +22,8 @@ NeoBundleLazy 'Shougo/neocomplete.vim',{
 \   'on_i' : 1
 \}
 
+NeoBundle 'Shougo/neoinclude.vim'
+
 NeoBundleLazy 'Shougo/neosnippet',{
 \   'on_i' : 1
 \}
@@ -356,16 +358,16 @@ NeoBundleLazy 'thinca/vim-tabrecent',{
 \   }
 \}
 
-" NeoBundleLazy 'OmniSharp/omnisharp-vim', {
-" \   'autoload': {'filetypes': ['cs']},
-" \   'build': {
-" \     'windows': 'MSBuild.exe server/OmniSharp.sln',
-" \     'mac': 'xbuild server/OmniSharp.sln',
-" \     'unix': 'xbuild server/OmniSharp.sln',
-" \   }
-" \ }
-"
-" NeoBundle 'tpope/vim-dispatch'
+NeoBundleLazy 'OmniSharp/omnisharp-vim', {
+\   'autoload': {'filetypes': ['cs']},
+\   'build': {
+\     'windows': 'MSBuild.exe server/OmniSharp.sln',
+\     'mac': 'xbuild server/OmniSharp.sln',
+\     'unix': 'xbuild server/OmniSharp.sln',
+\   }
+\ }
+
+NeoBundle 'tpope/vim-dispatch'
 
 " NeoBundleLazy 'yucchiy/omnisharp-vim',{
 " \   'autoload':{
@@ -382,6 +384,16 @@ NeoBundleLazy 'OrangeT/vim-csharp',{
 NeoBundle 'kana/vim-arpeggio'
 
 NeoBundle 'tpope/vim-capslock'
+
+NeoBundle 'vim-scripts/PreserveNoEOL'
+
+NeoBundle 'vim-scripts/YankRing.vim'
+
+NeoBundle 'Shougo/neoyank.vim'
+
+NeoBundle 'sjl/gundo.vim'
+
+NeoBundle 'kana/vim-submode'
 
 " NeoBundle 'yuratomo/gmail.vim'
 " NeoBundle 'vim-scripts/pdbvim'
