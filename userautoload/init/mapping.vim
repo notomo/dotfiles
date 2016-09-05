@@ -1,25 +1,20 @@
 
+nnoremap <Leader>x dlp
 nnoremap x "_x
 
-nnoremap <F1> <Nop>
 
-" nnoremap <S-C-F7> :<C-u>%s/、/,/g<CR>
-" nnoremap <S-C-F8> :<C-u>%s/。/\./g<CR>
-" nnoremap <Space>b g;
-" nnoremap <Space>f g,
 nnoremap <Space>v gv
 nnoremap <Space>io gi
+
 
 nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
 nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
 nnoremap <Space>Gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
 nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
-
 " nnoremap <Space>G :<C-u>grep  **/*.<Left><Left><Left><Left><Left><Left>
 
 
 inoremap <silent> jj <ESC>
-" 日本語入力で”っj”と入力してもEnterキーで確定させればインサートモードを抜ける
 inoremap <silent> っｊ <ESC>
 inoremap <silent> ｊｊ <ESC>
 cnoremap <silent> jj <C-u><ESC>
@@ -28,16 +23,22 @@ vnoremap v <ESC>
 snoremap jj <ESC>
 
 
-" nnoremap <TAB> >>
-" nnoremap <S-TAB> <<
-nnoremap <Space>ii >>
-vnoremap <Space>ii >
-nnoremap <Space>id <<
-vnoremap <Space>id <
+nnoremap [indent] <Nop>
+nmap <Space>i [indent]
+vnoremap [indent] <Nop>
+vmap <Space>i [indent]
+
+nnoremap [indent]i >>
+nnoremap [indent]d <<
+nnoremap [indent]t V:retab<CR>
+
+vnoremap [indent]i >
+vnoremap [indent]d <
+vnoremap [indent]t :retab<CR>
+
 
 nnoremap <CR> o<ESC>
 nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
-nnoremap <Space>eo :<C-u>e<Space>
 nnoremap <Space>w :<C-u>w<CR>
 " nnoremap <Space>q :<C-u>q<CR>
 nnoremap <Space>q :<C-u>call <SID>close_window()<CR>
@@ -81,21 +82,17 @@ vnoremap :  ;
 " 前のバッファへ移動
 nnoremap <Space>b <C-^>
 
-" noremap gh H8k
-" noremap gl L8j
-" noremap gm M
 noremap ge $
 noremap ga ^
 noremap gh 0
-noremap g; ;
-noremap g, ,
+
 nnoremap go <C-o>
 nnoremap gi <C-i>
+
 nnoremap gO g;
 nnoremap gI g,
 nnoremap <C-i> <C-i>
 nnoremap <C-o> <C-o>
-nnoremap <Space>ej :<C-u>execute "normal".line(".")."gg"<CR>
 
 nnoremap <silent> oo  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 
@@ -152,6 +149,7 @@ nnoremap <C-j> <C-f>
 
 nnoremap <F8> :%s/ *$//<CR>
 
+
 nnoremap [file_encode] <Nop>
 nmap <Space>f [file_encode]
 
@@ -159,28 +157,36 @@ nnoremap [file_encode]i :<C-u>set fileencoding=
 nnoremap [file_encode]u :<C-u>set fileencoding=utf8<CR>
 nnoremap [file_encode]e :<C-u>set fileencoding=euc-jp<CR>
 nnoremap [file_encode]s :<C-u>set fileencoding=shift_jis<CR>
-nnoremap [file_encode]od :<C-u>set fileformat=dos<CR>
-nnoremap [file_encode]om :<C-u>set fileformat=mac<CR>
-nnoremap [file_encode]ou :<C-u>set fileformat=unix<CR>
+
+nnoremap [file_format] <Nop>
+nmap [file_encode]o [file_format]
+
+nnoremap [file_format]d :<C-u>set fileformat=dos<CR>
+nnoremap [file_format]m :<C-u>set fileformat=mac<CR>
+nnoremap [file_format]u :<C-u>set fileformat=unix<CR>
+
 
 " nnoremap <Leader>do :<C-u>UniteWithCursorWord -immediately tag<CR>
 " nnoremap <Leader>dv :<C-u>vsplit<CR><C-w>l:UniteWithCursorWord -immediately tag<CR>
 " nnoremap <Leader>dh :<C-u>hsplit<CR><C-w>j:UniteWithCursorWord -immediately tag<CR>
 
-function! TabTagOpen() abort
+nnoremap [tag_open] <Nop>
+nmap <Leader>d [tag_open]
+
+function! s:tab_tag_open() abort
     try
         execute "tag ".expand("<cword>")
         execute "tab sp"
-		execute "tabprevious"
+        execute "tabprevious"
         execute "normal \<C-o>"
-		execute "tabnext"
+        execute "tabnext"
     catch
         echo "Not found tag"
     endtry
 endfunction
-command! TabTagOpenCommand call TabTagOpen()
+nnoremap [tag_open]t :<C-u>call <SID>tab_tag_open()<CR>
 
-function! VerticalTagOpen() abort
+function! s:vertical_tag_open() abort
     try
         execute "tag ".expand("<cword>")
         execute "vsplit"
@@ -189,46 +195,17 @@ function! VerticalTagOpen() abort
         echo "Not found tag"
     endtry
 endfunction
-command! VerticalTagOpenCommand call VerticalTagOpen()
+nnoremap [tag_open]v :<C-u>call <SID>vertical_tag_open()<CR>
+nnoremap [tag_open]o <C-]>
+nnoremap [tag_open]h <C-w>]
 
-nnoremap <Leader>do <C-]>
-nnoremap <Leader>dv :<C-u>VerticalTagOpenCommand<CR>
-nnoremap <Leader>dt :<C-u>TabTagOpenCommand<CR>
-nnoremap <Leader>dh <C-w>]
 
 nnoremap <Leader>di :<C-u>MyDiff<Space>
 nnoremap <Leader>dg :<C-u>DiffOrig<CR>
 
-nnoremap <Leader>x dlp
-
+nnoremap <F1> <Nop>
 nnoremap q <Nop>
 vnoremap q <Nop>
-
-function! s:yank_now() abort
-    let delimiter = input("delimiter:")
-    execute "normal <C-u>"
-    if delimiter==""
-        let delimiter="_"
-    endif
-	let now = strftime(join(split("%Y_%m_%d","_"),delimiter))
-	let @+ = now
-	echomsg "yank ".now
-endfunction
-nnoremap <Space>yn :<C-u>call <SID>yank_now()<CR>
-
-function! s:yank_file_name() abort
-    let file_name = expand("%")
-    let @+ = file_name
-    echomsg "yank ".file_name
-endfunction
-nnoremap <Space>yf :<C-u>call <SID>yank_file_name()<CR>
-
-function! s:yank_file_path() abort
-    let file_name = expand("%:p")
-    let @+ = file_name
-    echomsg "yank ".file_name
-endfunction
-nnoremap <Space>yp :<C-u>call <SID>yank_file_path()<CR>
 
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
@@ -255,6 +232,7 @@ function! GitCtags() abort
 endfunction
 command! GitaCtagsCommand call GitCtags()
 nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
+
 
 function! OpenWorkText() abort
 	let l:work_text_folder_path = "~/worktexts/"
@@ -294,9 +272,10 @@ nnoremap <Space>en :<C-u>DictionaryTranslate<CR>
 nnoremap <Space>ei :<C-u>DictionaryTranslate<Space>
 
 nnoremap <Space>em i<C-@>
+nnoremap <Space>ec :<C-u>!start ConEmu64.exe<CR>
 
-vnoremap <Space>it :retab<CR>
-nnoremap <Space>it V:retab<CR>
+nnoremap <Space>eo :<C-u>e<Space>
+nnoremap <Space>ej :<C-u>execute "normal".line(".")."gg"<CR>
 
 
 nnoremap <Space>pe V:<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
@@ -308,24 +287,54 @@ vnoremap <Space>pc :<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
 nnoremap <Space>pn V:<C-u>'<,'>s/^\n//g<CR>
 vnoremap <Space>pn :<C-u>'<,'>s/^\n//g<CR>
 
-nnoremap <Space>ec :<C-u>!start ConEmu64.exe<CR>
 
 nnoremap <Ins> <Nop>
 inoremap <Ins> <Nop>
 
+
+nmap [yank] <Nop>
+nnoremap <Space>y [yank]
+
+function! s:yank_now() abort
+    let delimiter = input("delimiter:")
+    execute "normal <C-u>"
+    if delimiter==""
+        let delimiter="_"
+    endif
+    let now = strftime(join(split("%Y_%m_%d","_"),delimiter))
+    let @+ = now
+    echomsg "yank ".now
+endfunction
+nnoremap [yank]n :<C-u>call <SID>yank_now()<CR>
+
+function! s:yank_file_name() abort
+    let file_name = expand("%")
+    let @+ = file_name
+    echomsg "yank ".file_name
+endfunction
+nnoremap [yank]f :<C-u>call <SID>yank_file_name()<CR>
+
+function! s:yank_file_path() abort
+    let file_name = expand("%:p")
+    let @+ = file_name
+    echomsg "yank ".file_name
+endfunction
+nnoremap [yank]p :<C-u>call <SID>yank_file_path()<CR>
+
 function! s:yank_last_command() abort
     let last_command = @:
-	let @+ = last_command
+    let @+ = last_command
     echomsg "yank ". last_command
 endfunction
-nnoremap <Space>y; :<C-u>call <SID>yank_last_command()<CR>
+nnoremap [yank]; :<C-u>call <SID>yank_last_command()<CR>
 
 function! s:yank_last_search() abort
     let last_search = @/
-	let @+ = last_search
+    let @+ = last_search
     echomsg "yank ". last_search
 endfunction
-nnoremap <Space>y/ :<C-u>call <SID>yank_last_search()<CR>
+nnoremap [yank]/ :<C-u>call <SID>yank_last_search()<CR>
+
 
 vmap ip i)
 vmap il i]
