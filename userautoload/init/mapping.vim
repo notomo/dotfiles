@@ -1,6 +1,4 @@
 
-nnoremap <Space><Leader>q :<C-u>tabclose<CR>
-
 nnoremap x "_x
 
 nnoremap <F1> <Nop>

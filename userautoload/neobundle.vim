@@ -375,7 +375,7 @@ NeoBundle 'tpope/vim-capslock'
 
 NeoBundle 'vim-scripts/PreserveNoEOL'
 
-NeoBundle 'vim-scripts/YankRing.vim'
+NeoBundle 'LeafCage/yankround.vim'
 
 NeoBundleLazy 'Shougo/neoyank.vim',{
 \   'autoload':{
@@ -383,7 +383,11 @@ NeoBundleLazy 'Shougo/neoyank.vim',{
 \   }
 \}
 
-NeoBundle 'sjl/gundo.vim'
+NeoBundleLazy 'sjl/gundo.vim',{
+\   'autoload':{
+\       'commands':['GundoToggle']
+\   }
+\}
 
 NeoBundle 'kana/vim-submode'
 
