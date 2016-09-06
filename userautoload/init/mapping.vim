@@ -40,7 +40,6 @@ vnoremap [indent]t :retab<CR>
 nnoremap <CR> o<ESC>
 nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
 nnoremap <Space>w :<C-u>w<CR>
-" nnoremap <Space>q :<C-u>q<CR>
 nnoremap <Space>q :<C-u>call <SID>close_window()<CR>
 
 function! s:close_window() abort
@@ -67,12 +66,6 @@ nnoremap k   gk
 nnoremap j   gj
 vnoremap k   gk
 vnoremap j   gj
-" nnoremap gk  k
-" nnoremap gj  j
-" vnoremap gk  k
-" vnoremap gj  j
-
-" nnoremap <BS> i<BS><Right><ESC>
 
 nnoremap ;  :
 nnoremap :  ;
@@ -104,13 +97,9 @@ nnoremap oj o
 nnoremap ok O
 nnoremap os o
 nnoremap od O
-nnoremap <Space>pf  :<C-u>%s///g<Left><Left><Left>
-vnoremap <Space>pf  :s///g<Left><Left><Left>
 nnoremap <Space>. @:
 vnoremap <Space>. @:
 
-nnoremap <Space>pw :<C-u>%s///g<Left><Left><Left><C-r><C-w><Right><C-r><C-w>
-nnoremap <Space>pv <Right>byegv:<C-u>'<,'>s///g<Left><Left><Left><C-r>"<Right>
 
 nnoremap <C-a> ^
 nnoremap <C-e> $
@@ -150,25 +139,21 @@ nnoremap <C-j> <C-f>
 nnoremap <F8> :%s/ *$//<CR>
 
 
-nnoremap [file_encode] <Nop>
-nmap <Space>f [file_encode]
+nnoremap [encode] <Nop>
+nmap <Space>f [encode]
 
-nnoremap [file_encode]i :<C-u>set fileencoding=
-nnoremap [file_encode]u :<C-u>set fileencoding=utf8<CR>
-nnoremap [file_encode]e :<C-u>set fileencoding=euc-jp<CR>
-nnoremap [file_encode]s :<C-u>set fileencoding=shift_jis<CR>
+nnoremap [encode]i :<C-u>set fileencoding=
+nnoremap [encode]u :<C-u>set fileencoding=utf8<CR>
+nnoremap [encode]e :<C-u>set fileencoding=euc-jp<CR>
+nnoremap [encode]s :<C-u>set fileencoding=shift_jis<CR>
 
-nnoremap [file_format] <Nop>
-nmap [file_encode]o [file_format]
+nnoremap [format] <Nop>
+nmap [encode]o [format]
 
-nnoremap [file_format]d :<C-u>set fileformat=dos<CR>
-nnoremap [file_format]m :<C-u>set fileformat=mac<CR>
-nnoremap [file_format]u :<C-u>set fileformat=unix<CR>
+nnoremap [format]d :<C-u>set fileformat=dos<CR>
+nnoremap [format]m :<C-u>set fileformat=mac<CR>
+nnoremap [format]u :<C-u>set fileformat=unix<CR>
 
-
-" nnoremap <Leader>do :<C-u>UniteWithCursorWord -immediately tag<CR>
-" nnoremap <Leader>dv :<C-u>vsplit<CR><C-w>l:UniteWithCursorWord -immediately tag<CR>
-" nnoremap <Leader>dh :<C-u>hsplit<CR><C-w>j:UniteWithCursorWord -immediately tag<CR>
 
 nnoremap [tag_open] <Nop>
 nmap <Leader>d [tag_open]
@@ -207,6 +192,9 @@ nnoremap <F1> <Nop>
 nnoremap q <Nop>
 vnoremap q <Nop>
 
+nnoremap <Ins> <Nop>
+inoremap <Ins> <Nop>
+
 map <MiddleMouse> <Nop>
 imap <MiddleMouse> <Nop>
 map <2-MiddleMouse> <Nop>
@@ -215,6 +203,7 @@ map <3-MiddleMouse> <Nop>
 imap <3-MiddleMouse> <Nop>
 map <4-MiddleMouse> <Nop>
 imap <4-MiddleMouse> <Nop>
+
 
 function! GitCtags() abort
     let l:git_root=system("git rev-parse --show-toplevel | tr -d '\\n'")
@@ -278,34 +267,43 @@ nnoremap <Space>eo :<C-u>e<Space>
 nnoremap <Space>ej :<C-u>execute "normal".line(".")."gg"<CR>
 
 
-nnoremap <Space>pe V:<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
-vnoremap <Space>pe :<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
+nnoremap [substitute] <Nop>
+nmap <Space>p [substitute]
+vnoremap [substitute] <Nop>
+vmap <Space>p [substitute]
 
-nnoremap <Space>pc V:<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
-vnoremap <Space>pc :<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
+nnoremap [substitute]e V:<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
+vnoremap [substitute]e :<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
 
-nnoremap <Space>pn V:<C-u>'<,'>s/^\n//g<CR>
-vnoremap <Space>pn :<C-u>'<,'>s/^\n//g<CR>
+nnoremap [substitute]c V:<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
+vnoremap [substitute]c :<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
+
+nnoremap [substitute]n V:<C-u>'<,'>s/^\n//g<CR>
+vnoremap [substitute]n :<C-u>'<,'>s/^\n//g<CR>
+
+nnoremap [substitute]f  :<C-u>%s///g<Left><Left><Left>
+vnoremap [substitute]f  :s///g<Left><Left><Left>
+
+nnoremap [substitute]w :<C-u>%s///g<Left><Left><Left><C-r><C-w><Right><C-r><C-w>
+nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s///g<Left><Left><Left><C-r>"<Right>
 
 
-nnoremap <Ins> <Nop>
-inoremap <Ins> <Nop>
+nnoremap [yank] <Nop>
+nmap <Space>y [yank]
 
-
-nmap [yank] <Nop>
-nnoremap <Space>y [yank]
-
-function! s:yank_now() abort
-    let delimiter = input("delimiter:")
+function! s:yank_now(delimiter) abort
     execute "normal <C-u>"
-    if delimiter==""
-        let delimiter="_"
+    if a:delimiter==""
+        let a:delimiter="_"
     endif
-    let now = strftime(join(split("%Y_%m_%d","_"),delimiter))
+    let now = strftime(join(split("%Y_%m_%d","_"),a:delimiter))
     let @+ = now
     echomsg "yank ".now
 endfunction
-nnoremap [yank]n :<C-u>call <SID>yank_now()<CR>
+function! s:yank_now_with_slash() abort
+    call s:yank_now("\/")
+endfunction
+nnoremap [yank]n :<C-u>call <SID>yank_now_with_slash()<CR>
 
 function! s:yank_file_name() abort
     let file_name = expand("%")
@@ -363,6 +361,7 @@ omap aw a"
 omap aq a'
 omap ad a}
 omap ab a`
+
 
 nnoremap <Leader>cm :<C-u>Capture messages<CR>
 

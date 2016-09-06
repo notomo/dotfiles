@@ -35,7 +35,7 @@ NeoBundleLazy 'Shougo/neosnippet-snippets',{
 NeoBundleLazy 'davidhalter/jedi-vim',{
 \   'autoload':{
 \       'filetypes':['python']
-\   } 
+\   }
 \}
 
 NeoBundleLazy 'joonty/vdebug',{
