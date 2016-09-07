@@ -189,7 +189,6 @@ nnoremap <Leader>di :<C-u>MyDiff<Space>
 nnoremap <Leader>dg :<C-u>DiffOrig<CR>
 
 nnoremap <F1> <Nop>
-nnoremap q <Nop>
 vnoremap q <Nop>
 
 nnoremap <Ins> <Nop>
@@ -203,6 +202,8 @@ map <3-MiddleMouse> <Nop>
 imap <3-MiddleMouse> <Nop>
 map <4-MiddleMouse> <Nop>
 imap <4-MiddleMouse> <Nop>
+
+
 
 
 function! GitCtags() abort
@@ -364,6 +365,8 @@ omap ab a`
 
 
 nnoremap <Leader>cm :<C-u>Capture messages<CR>
+
+nnoremap q <C-r>
 
 
 function! s:cinoremap(lhs, rhs) abort

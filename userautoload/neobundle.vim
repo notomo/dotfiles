@@ -391,6 +391,21 @@ NeoBundleLazy 'sjl/gundo.vim',{
 
 NeoBundle 'kana/vim-submode'
 
+" NeoBundle "osyo-manga/vim-operator-exec_command"
+
+" NeoBundleLazy 'osyo-manga/vim-operator-stay-cursor',{
+" \   'autoload':{
+" \       'mappings':['<Plug>(operator-stay-cursor-yank)']
+" \   }
+" \}
+
+NeoBundleLazy 'osyo-manga/vim-textobj-multiblock',{
+\   'autoload':{
+\       'mappings':['<Plug>(textobj-multiblock-a)', '<Plug>(textobj-multiblock-i)']
+\   }
+\}
+
+
 " NeoBundle 'yuratomo/gmail.vim'
 " NeoBundle 'vim-scripts/pdbvim'
 " NeoBundle 'fuenor/qfixgrep'

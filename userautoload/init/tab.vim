@@ -30,6 +30,8 @@ call s:tab_submode_mapping("s", ":<C-u>tabr<CR>")
 call s:tab_submode_mapping("e", ":<C-u>tabl<CR>")
 " 端のタブに移動
 call s:tab_submode_mapping("a", "gT")
+" タブを閉じる
+call s:tab_submode_mapping("q", ":<C-u>tabclose<CR>")
 
 " タブ移動(マウスボタン用)
 nnoremap <C-Tab> gt
