@@ -405,6 +405,7 @@ NeoBundleLazy 'osyo-manga/vim-textobj-multiblock',{
 \   }
 \}
 
+NeoBundle 'thinca/vim-operator-sequence'
 
 " NeoBundle 'yuratomo/gmail.vim'
 " NeoBundle 'vim-scripts/pdbvim'

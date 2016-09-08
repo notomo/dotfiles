@@ -367,6 +367,7 @@ omap ab a`
 nnoremap <Leader>cm :<C-u>Capture messages<CR>
 
 nnoremap q <C-r>
+nnoremap R r
 
 
 function! s:cinoremap(lhs, rhs) abort

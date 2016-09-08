@@ -61,7 +61,8 @@ map <Leader>hc <Plug>(operator-decamelize)
 
 
 " operator-replace
-map r  <Plug>(operator-replace)
+noremap <Plug>(operator-no_yank_delete) "_d
+noremap <expr> r operator#sequence#map("\<Plug>(operator-no_yank_delete)", "\<Plug>(yankround-P)")
 
 
 " qutefinger
@@ -139,10 +140,13 @@ let g:zenspace#default_mode = 'on'
 
 
 " vim-operator-stay-cursor
-map y <Plug>(operator-stay-cursor-yank)
+" map y <Plug>(operator-stay-cursor-yank)
 
 
 omap aj <Plug>(textobj-multiblock-a)
 omap ij <Plug>(textobj-multiblock-i)
 vmap aj <Plug>(textobj-multiblock-a)
 vmap ij <Plug>(textobj-multiblock-i)
+
+
+
