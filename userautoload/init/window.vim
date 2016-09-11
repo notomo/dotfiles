@@ -1,4 +1,4 @@
-"ウィンドウ移動
+"ウィンドウ移動"{{{
 let s:WINMOVE_PREFIX_KEY = "m"
 nnoremap [winmove] <Nop>
 silent execute join(["nmap", s:WINMOVE_PREFIX_KEY, "[winmove]"])
@@ -17,9 +17,11 @@ nnoremap [winmove]l <C-w>l
 nnoremap [winmove]n <C-w><C-w>
 " 前
 nnoremap [winmove]p <C-w>p
+" 入れ替え
+nnoremap [winmove]r <C-w>r
+"}}}
 
-
-"ウィンドウ分割・解除
+"ウィンドウ分割・解除"{{{
 nnoremap [window] <Nop>
 nmap <Space>s [window]
 
@@ -31,9 +33,9 @@ nnoremap [window]v :<C-u>vsplit<CR>
 nnoremap [window]o :<C-u>only<CR>
 " プレビューウィンドウを閉じる
 nnoremap [window]p <C-w>z
+"}}}
 
-
-" ウィンドウサイズ変更
+" ウィンドウサイズ変更"{{{
 let s:WINSIZE_PREFIX_KEY = s:WINMOVE_PREFIX_KEY . "m"
 nnoremap [winsize] <Nop>
 silent execute join(["nmap", s:WINSIZE_PREFIX_KEY, "[winsize]"])
@@ -60,4 +62,4 @@ nnoremap [winsize]e  <C-w>=
 nnoremap [winsize]m :<C-u>SM 4<CR>
 " 最大化を解除
 nnoremap [winsize]r :<C-u>SM 0<CR>
-
+"}}}

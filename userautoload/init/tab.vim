@@ -1,4 +1,4 @@
-" タブ開閉・移動
+" タブ開閉・移動"{{{
 let s:TAB_PREFIX_KEY = "<Leader>t"
 nnoremap [tab] <Nop>
 silent execute join(["nmap", s:TAB_PREFIX_KEY, "[tab]"])
@@ -18,20 +18,23 @@ nnoremap <silent> [tab]p :<C-u>TabRecent<CR>
 
 " タブ移動モード設定
 " [tab]lhs_suffixでモードに入る
-function! s:tab_submode_mapping(lhs_suffix, rhs) abort
-    call submode#enter_with('tab', 'n', '', s:TAB_PREFIX_KEY . a:lhs_suffix, a:rhs)
+function! s:tab_submode_mapping(lhs_suffix, rhs, map_only) abort
+    if a:map_only == 0
+        call submode#enter_with('tab', 'n', '', s:TAB_PREFIX_KEY . a:lhs_suffix, a:rhs)
+    endif
     call submode#map('tab', 'n', '', a:lhs_suffix, a:rhs)
 endfunction
 " 右のタブに移動
-call s:tab_submode_mapping("l", "gt")
+call s:tab_submode_mapping("l", "gt", 0)
 " 右端のタブに移動
-call s:tab_submode_mapping("s", ":<C-u>tabr<CR>")
+call s:tab_submode_mapping("s", ":<C-u>tabr<CR>", 0)
 " 左端のタブに移動
-call s:tab_submode_mapping("e", ":<C-u>tabl<CR>")
-" 端のタブに移動
-call s:tab_submode_mapping("a", "gT")
+call s:tab_submode_mapping("e", ":<C-u>tabl<CR>", 0)
+" 左のタブに移動
+call s:tab_submode_mapping("a", "gT", 0)
+call s:tab_submode_mapping("h", "gT", 1)
 " タブを閉じる
-call s:tab_submode_mapping("q", ":<C-u>tabclose<CR>")
+call s:tab_submode_mapping("q", ":<C-u>tabclose<CR>", 0)
 
 " タブ移動(マウスボタン用)
 nnoremap <C-Tab> gt
@@ -74,25 +77,28 @@ endfunction
 nnoremap <silent> [tab]dl :<C-u>call <SID>close_right_tab()<CR>
 " 他のタブを閉じる
 nnoremap <silent> [tab]o :<C-u>tabo<CR>
+"}}}
 
-
-" タブを移動
+" タブを移動"{{{
 let s:MOVE_TAB_PREFIX_KEY = s:TAB_PREFIX_KEY . "m"
 nnoremap [movetab] <Nop>
 silent execute join(["nmap", s:MOVE_TAB_PREFIX_KEY, "[movetab]"])
 
 " タブ自体の移動モード設定
 " [movetab]lhs_suffixでモードに入る
-function! s:movetab_submode_mapping(lhs_suffix, rhs) abort
-    call submode#enter_with('movetab', 'n', '', s:MOVE_TAB_PREFIX_KEY . a:lhs_suffix, a:rhs)
+function! s:movetab_submode_mapping(lhs_suffix, rhs, map_only) abort
+    if a:map_only == 0
+        call submode#enter_with('movetab', 'n', '', s:MOVE_TAB_PREFIX_KEY . a:lhs_suffix, a:rhs)
+    endif
     call submode#map('movetab', 'n', '', a:lhs_suffix, a:rhs)
 endfunction
 " 右のタブに移動
-call s:movetab_submode_mapping("l", ":<C-u>tabm+1<CR>")
+call s:movetab_submode_mapping("l", ":<C-u>tabm+1<CR>", 0)
 " 右端のタブに移動
-call s:movetab_submode_mapping("s", ":<C-u>tabm 0<CR>")
+call s:movetab_submode_mapping("s", ":<C-u>tabm 0<CR>", 0)
 " 左端のタブに移動
-call s:movetab_submode_mapping("e", ":<C-u>tabm<CR>")
-" 端のタブに移動
-call s:movetab_submode_mapping("a", ":<C-u>tabm-1<CR>")
-
+call s:movetab_submode_mapping("e", ":<C-u>tabm<CR>", 0)
+" 左のタブに移動
+call s:movetab_submode_mapping("a", ":<C-u>tabm-1<CR>", 0)
+call s:movetab_submode_mapping("h", ":<C-u>tabm+1<CR>", 1)
+"}}}

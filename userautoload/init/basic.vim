@@ -18,6 +18,8 @@ set guioptions-=e " gVimでもテキストベースのタブページを使う
 set ignorecase
 set smartcase
 set hlsearch
+set nospell
+set nostartofline
 
 set autoindent
 set ruler
@@ -48,6 +50,8 @@ set tabstop=4
 set smarttab
 set formatoptions+=q
 set clipboard=unnamed
+
+set foldmethod=marker
 
 
 autocmd MyAuGroup InsertEnter,CmdwinEnter * set noimdisable

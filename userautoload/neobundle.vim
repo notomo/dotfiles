@@ -63,7 +63,7 @@ NeoBundleLazy 'fuenor/im_control.vim',{
 
 NeoBundleLazy 'Shougo/vimshell',{
 \   'autoload':{
-\       'commands':['VimShell', 'VimShellTab', 'VimShellCreate', 'VimShellBufferDir', 'VimShellInteractive', 'VimShellSendString']
+\       'commands':['VimShell']
 \   }
 \}
 
@@ -86,7 +86,7 @@ NeoBundleLazy 'thinca/vim-ref',{
 
 NeoBundleLazy 'Shougo/unite.vim',{
 \   'autoload':{
-\       'commands':['Unite', 'UniteBookmarkAdd', 'UniteWithBufferDir', 'UniteWithCursorWord']
+\       'commands':['Unite']
 \   }
 \}
 
@@ -159,14 +159,13 @@ NeoBundleLazy 'Shougo/vimfiler.vim',{
 
 NeoBundleLazy 'LeafCage/qutefinger.vim',{
 \   'autoload':{
-\       'mappings':['<Plug>(qutefinger-toggle-mode)', '<Plug>(qutefinger-next)', '<Plug>(qutefinger-prev)', '<Plug>(qutefinger-toggle-win)', '<Plug>(qutefinger-first)']
+\       'mappings':['<Plug>(qutefinger-']
 \   }
 \}
 
 NeoBundleLazy 'Lokaltog/vim-easymotion',{
 \   'autoload':{
-\       'mappings':['<Plug>(easymotion-bd-fl)', '<Plug>(easymotion-bd-tl)', '<Plug>(easymotion-j)', '<Plug>(easymotion-s2)', '<Plug>(easymotion-sn)',
-\                   '<Plug>(easymotion-k)', '<Plug>(easymotion-bd-jk)', '<Plug>(easymotion-lineanywhere)', '<Plug>(easymotion-bd-w)', '<Plug>(easymotion-tl)']
+\       'mappings':['<Plug>(easymotion-']
 \   }
 \}
 
@@ -175,7 +174,7 @@ NeoBundle 'kana/vim-textobj-user'
 
 NeoBundleLazy 'kana/vim-textobj-line',{
 \   'autoload':{
-\       'mappings':['<Plug>(textobj-line-a)', '<Plug>(textobj-line-i)']
+\       'mappings':['<Plug>(textobj-line-']
 \   }
 \}
 
@@ -187,13 +186,7 @@ NeoBundleLazy 'bps/vim-textobj-python',{
 
 NeoBundleLazy 'rhysd/vim-operator-surround',{
 \   'autoload':{
-\       'mappings':['<Plug>(operator-surround-append)', '<Plug>(operator-surround-delete)', '<Plug>(operator-surround-replace)']
-\   }
-\}
-
-NeoBundleLazy 'kana/vim-operator-replace',{
-\   'autoload':{
-\       'mappings':['<Plug>(operator-replace)']
+\       'mappings':['<Plug>(operator-surround-']
 \   }
 \}
 
@@ -205,7 +198,7 @@ NeoBundleLazy 'mattn/emmet-vim',{
 
 NeoBundleLazy 'vim-scripts/camelcasemotion',{
 \   'autoload':{
-\       'mappings':['<Plug>CamelCaseMotion_w', '<Plug>CamelCaseMotion_b', '<Plug>CamelCaseMotion_e']
+\       'mappings':['<Plug>CamelCaseMotion_']
 \   }
 \}
 
@@ -240,15 +233,15 @@ NeoBundleLazy 'sgur/vim-py3diff',{
 NeoBundleLazy 'haya14busa/incsearch-easymotion.vim',{
 \   'depends':['incsearch.vim', 'vim-easymotion'],
 \   'autoload':{
-\       'mappings':['<Plug>(incsearch-easymotion-/)', '<Plug>(incsearch-easymotion-stay)', '<Plug>(incsearch-easymotion-?)'],
+\       'mappings':['<Plug>(incsearch-easymotion-'],
 \       'function_prefix':['incsearch'],
 \   }
 \}
 
 NeoBundleLazy 'tyru/open-browser.vim',{
 \   'autoload':{
-\       'mappings':['<Plug>(openbrowser-smart-search)'],
-\       'commands':['OpenBrowserSearch', 'OpenBrowser', 'OpenBrowserCurrent']
+\       'mappings':['<Plug>(openbrowser-'],
+\       'commands':['OpenBrowser']
 \   }
 \}
 
@@ -345,12 +338,6 @@ NeoBundleLazy 'tyru/operator-camelize.vim',{
 
 NeoBundle 'vim-scripts/dbext.vim'
 
-" NeoBundleLazy 'vim-scripts/dbext.vim',{
-" \   'autoload':{
-" \       'commands':['DBExecSQLUnderCursor', 'DBExecVisualSQL', 'DBExecSQL', 'DBDescribeTable', 'DBHistory', 'DBResultsToggleResize', 'DBExecSQL']
-" \   }
-" \}
-
 NeoBundleLazy 'thinca/vim-tabrecent',{
 \   'autoload':{
 \       'commands':['TabRecent']
@@ -391,21 +378,27 @@ NeoBundleLazy 'sjl/gundo.vim',{
 
 NeoBundle 'kana/vim-submode'
 
-" NeoBundle "osyo-manga/vim-operator-exec_command"
-
-" NeoBundleLazy 'osyo-manga/vim-operator-stay-cursor',{
-" \   'autoload':{
-" \       'mappings':['<Plug>(operator-stay-cursor-yank)']
-" \   }
-" \}
-
 NeoBundleLazy 'osyo-manga/vim-textobj-multiblock',{
 \   'autoload':{
-\       'mappings':['<Plug>(textobj-multiblock-a)', '<Plug>(textobj-multiblock-i)']
+\       'mappings':['<Plug>(textobj-multiblock-']
 \   }
 \}
 
-NeoBundle 'thinca/vim-operator-sequence'
+NeoBundleLazy 'thinca/vim-operator-sequence'
+
+NeoBundleLazy 't9md/vim-quickhl',{
+\   'autoload':{
+\       'mappings':['<Plug>(quickhl-manual-']
+\   }
+\}
+
+NeoBundleLazy 'osyo-manga/vim-textobj-from_regexp'
+
+NeoBundleLazy 'osyo-manga/vim-textobj-blockwise'
+
+NeoBundle 'LeafCage/foldCC.vim'
+
+" NeoBundleLazy "osyo-manga/vim-operator-exec_command"
 
 " NeoBundle 'yuratomo/gmail.vim'
 " NeoBundle 'vim-scripts/pdbvim'
@@ -420,6 +413,16 @@ NeoBundle 'thinca/vim-operator-sequence'
 " NeoBundle 'tmhedberg/matchit'
 " NeoBundle 'ctrlpvim/ctrlp.vim'
 " NeoBundle 'mattn/webapi-vim'
+" NeoBundleLazy 'osyo-manga/vim-operator-stay-cursor',{
+" \   'autoload':{
+" \       'mappings':['<Plug>(operator-stay-cursor-yank)']
+" \   }
+" \}
+" NeoBundleLazy 'vim-scripts/dbext.vim',{
+" \   'autoload':{
+" \       'commands':['DB']
+" \   }
+" \}
 
 call neobundle#end()
 NeoBundleCheck

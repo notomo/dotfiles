@@ -5,14 +5,13 @@ nmap P <Plug>(yankround-P)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
-
 " gundo
 nnoremap <Leader>u :<C-u>GundoToggle<CR>
 
 
 " vim-submode
 let g:submode_keep_leaving_key = 1
-
+let g:submode_timeout = 0
 
 " camelcasemotion
 map <Leader>w <Plug>CamelCaseMotion_w
@@ -135,10 +134,6 @@ omap ih <Plug>(textobj-line-i)
 let g:zenspace#default_mode = 'on'
 
 
-" vim-operator-exec_command
-" nmap <expr> s/ operator#exec_command#mapexpr("call incsearch#call({'pattern':\"%t\"})")
-
-
 " vim-operator-stay-cursor
 " map y <Plug>(operator-stay-cursor-yank)
 
@@ -148,5 +143,63 @@ omap ij <Plug>(textobj-multiblock-i)
 vmap aj <Plug>(textobj-multiblock-a)
 vmap ij <Plug>(textobj-multiblock-i)
 
+
+nmap <Leader>ht <Plug>(quickhl-manual-this)
+xmap <Leader>ht <Plug>(quickhl-manual-this)
+nmap <Leader>hr <Plug>(quickhl-manual-reset)
+xmap <Leader>hr <Plug>(quickhl-manual-reset)
+nmap <Leader>ha <Plug>(quickhl-manual-toggle)
+
+omap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+')
+xmap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+')
+
+omap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+->')
+xmap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+->')
+
+omap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
+xmap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
+
+" let g:textobj_blockwise_enable_default_key_mapping = 0
+
+function! s:get_region(expr1, expr2, visual_commnad)
+  let [lnum1, col1] = getpos(a:expr1)[1:2]
+  let [lnum2, col2] = getpos(a:expr2)[1:2]
+  let region = getline(lnum1, lnum2)
+
+  if a:visual_commnad ==# "v"  " char
+    if lnum1 == lnum2  " single line
+      let region[0] = s:strpart(region[-1], col1 - 1, col2 - (col1 - 1))
+    else  " multi line
+      let region[0] = s:strpart(region[0], col1 - 1)
+      let region[-1] = s:strpart(region[-1], 0, col2)
+    endif
+  elseif a:visual_commnad ==# "V"  " line
+    let region += ['']
+  else  " block
+    call map(region, 's:strpart(v:val, col1 - 1, col2 - (col1 - 1))')
+  endif
+
+  return region
+endfunction
+
+function! s:strpart(src, start, ...)
+  let str = strpart(a:src, a:start)
+  if a:0 > 0
+    let i = byteidx(strpart(str, a:1 - 1), 1) - 1
+    return i == -1 ? str : strpart(str, 0, a:1 + i)
+  else
+    return str
+  endif
+endfunction
+
+function! OperatorSearch(motion_wiseness)
+    let visual_commnad = operator#user#visual_command_from_wise_name(a:motion_wiseness)
+    let region = join(map(s:get_region("'[", "']", visual_commnad),'escape(v:val, "\\/")'),'\n')
+    let region_replaced_space = substitute(region, ' ', '\\s', 'g')
+    call incsearch#call({'pattern' : region_replaced_space, 'is_expr' : 0})
+endfunction
+
+call operator#user#define('search-forward', 'OperatorSearch')
+nmap ss <Plug>(operator-search-forward)
 
 

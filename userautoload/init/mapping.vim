@@ -1,47 +1,33 @@
 
+" basic mapping"{{{
 nnoremap <Leader>x dlp
 nnoremap x "_x
 
-
-nnoremap <Space>v gv
 nnoremap <Space>io gi
 
-
-nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
-nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
-nnoremap <Space>Gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
-nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
-" nnoremap <Space>G :<C-u>grep  **/*.<Left><Left><Left><Left><Left><Left>
-
-
-inoremap <silent> jj <ESC>
-inoremap <silent> っｊ <ESC>
-inoremap <silent> ｊｊ <ESC>
-cnoremap <silent> jj <C-u><ESC>
-onoremap jj <ESC>
-vnoremap v <ESC>
-snoremap jj <ESC>
-
-
-nnoremap [indent] <Nop>
-nmap <Space>i [indent]
-vnoremap [indent] <Nop>
-vmap <Space>i [indent]
-
-nnoremap [indent]i >>
-nnoremap [indent]d <<
-nnoremap [indent]t V:retab<CR>
-
-vnoremap [indent]i >
-vnoremap [indent]d <
-vnoremap [indent]t :retab<CR>
-
-
-nnoremap <CR> o<ESC>
 nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
+
+nnoremap <Space>. @:
+vnoremap <Space>. @:
+
+nnoremap <S-y> y$
+
+nnoremap <Space>z <C-x>
+nnoremap <Space>a <C-a>
+
+nnoremap <silent> <F5> :<C-u>source $MYVIMRC<CR>:<C-u>source $MYGVIMRC<CR>:<C-u>nohlsearch<CR>
+
+nnoremap q <C-r>
+
+nnoremap R r
+vnoremap R r
+"}}}
+
+" buffer mapping"{{{
 nnoremap <Space>w :<C-u>w<CR>
 nnoremap <Space>q :<C-u>call <SID>close_window()<CR>
-
+nnoremap <Space>b <C-^>
+nnoremap <Space>rn :<C-u>file<Space>
 function! s:close_window() abort
     if tabpagenr("$") > 1
         q
@@ -57,88 +43,100 @@ function! s:close_window() abort
     endif
     q
 endfunction
-
-" nnoremap <Space>Q :<C-u>q!<CR>
-nnoremap <Space>rn :<C-u>file<Space>
 nnoremap <C-S-F9> :<C-u>qa<CR>
+"}}}
 
+" swap :; mapping"{{{
+nnoremap ;  :
+nnoremap :  ;
+vnoremap ;  :
+vnoremap :  ;
+"}}}
+
+" into visual mode mapping"{{{
+nnoremap <Space>v gv
+nnoremap <Space>l <S-v>
+nnoremap <Space>h <C-v>
+"}}}
+
+" grep mapping"{{{
+nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
+nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
+nnoremap <Space>Gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
+nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
+" nnoremap <Space>G :<C-u>grep  **/*.<Left><Left><Left><Left><Left><Left>
+"}}}
+
+" ESC mapping"{{{
+inoremap <silent> jj <ESC>
+inoremap <silent> っｊ <ESC>
+inoremap <silent> ｊｊ <ESC>
+cnoremap <silent> jj <C-u><ESC>
+onoremap jj <ESC>
+vnoremap v <ESC>
+snoremap jj <ESC>
+"}}}
+
+" indent mapping"{{{
+nnoremap [indent] <Nop>
+nmap <Space>i [indent]
+vnoremap [indent] <Nop>
+vmap <Space>i [indent]
+
+nnoremap [indent]i >>
+nnoremap [indent]d <<
+nnoremap [indent]t V:retab<CR>
+
+vnoremap [indent]i >
+vnoremap [indent]d <
+vnoremap [indent]t :retab<CR>
+vnoremap [indent]s =
+"}}}
+
+" move mapping"{{{
 nnoremap k   gk
 nnoremap j   gj
 vnoremap k   gk
 vnoremap j   gj
 
-nnoremap ;  :
-nnoremap :  ;
-vnoremap ;  :
-vnoremap :  ;
-
-" 前のバッファへ移動
-nnoremap <Space>b <C-^>
-
 noremap ge $
 noremap ga ^
 noremap gh 0
+noremap gz G
 
 nnoremap go <C-o>
 nnoremap gi <C-i>
 
 nnoremap gO g;
 nnoremap gI g,
+
 nnoremap <C-i> <C-i>
 nnoremap <C-o> <C-o>
 
-nnoremap <silent> oo  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-
-nnoremap <silent> of  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>:<C-u>execute "normal j"<CR>
-
-nnoremap <silent> oh  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
-nnoremap <silent> oa  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
-nnoremap oj o
-nnoremap ok O
-nnoremap os o
-nnoremap od O
-nnoremap <Space>. @:
-vnoremap <Space>. @:
-
-
-nnoremap <C-a> ^
-nnoremap <C-e> $
-nnoremap <S-y> y$
-vnoremap <C-e> $
-vnoremap <C-a> ^
 vnoremap <S-j> }
 vnoremap <S-k> {
-nnoremap <Space>z <C-x>
-nnoremap <Space>a <C-a>
-" vnoremap <S-h> 0
-" nnoremap <S-h> 0
 nnoremap <silent> <S-l> :<C-u>keepjumps normal %<CR>
 nnoremap <silent> <S-j> :<C-u>keepjumps normal }<CR>
 nnoremap <silent> <S-k> :<C-u>keepjumps normal {<CR>
 
-nnoremap <silent> <F5> <Esc>:<C-u>source $MYVIMRC<CR>:<C-u>source $MYGVIMRC<CR>:<C-u>nohlsearch<CR>
-
-nnoremap <Leader>cd :<C-u>CdCurrent<CR>
-nnoremap <Leader>pw :<C-u>pwd<CR>
-nnoremap <Leader>cl :<C-u>echo col(".")<CR>
-
-nnoremap <M-C-S-q> :<C-u>qa<CR>
-nnoremap <Space>l <S-v>
-nnoremap <Space>h <C-v>
-noremap gz G
-" nnoremap <Space>j gu
-" nnoremap <Space>k gU
-" nnoremap <Space>z gUl
-vnoremap <Space>j gu
-vnoremap <Space>k gU
-vnoremap <Space>is =
-
 nnoremap <C-k> <C-b>
 nnoremap <C-j> <C-f>
+"}}}
 
-nnoremap <F8> :%s/ *$//<CR>
+" newline mapping"{{{
+nnoremap [newline] <Nop>
+nmap o [newline]
+nnoremap <silent> [newline]o  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <silent> [newline]f  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>:<C-u>execute "normal j"<CR>
+nnoremap <silent> [newline]h  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+nnoremap <silent> [newline]a  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+nnoremap [newline]j o
+nnoremap [newline]k O
+nnoremap [newline]s o
+nnoremap [newline]d O
+"}}}
 
-
+" encode and format mapping"{{{
 nnoremap [encode] <Nop>
 nmap <Space>f [encode]
 
@@ -153,8 +151,9 @@ nmap [encode]o [format]
 nnoremap [format]d :<C-u>set fileformat=dos<CR>
 nnoremap [format]m :<C-u>set fileformat=mac<CR>
 nnoremap [format]u :<C-u>set fileformat=unix<CR>
+"}}}
 
-
+" tag_open mapping"{{{
 nnoremap [tag_open] <Nop>
 nmap <Leader>d [tag_open]
 
@@ -183,11 +182,9 @@ endfunction
 nnoremap [tag_open]v :<C-u>call <SID>vertical_tag_open()<CR>
 nnoremap [tag_open]o <C-]>
 nnoremap [tag_open]h <C-w>]
+"}}}
 
-
-nnoremap <Leader>di :<C-u>MyDiff<Space>
-nnoremap <Leader>dg :<C-u>DiffOrig<CR>
-
+" Nop mapping"{{{
 nnoremap <F1> <Nop>
 vnoremap q <Nop>
 
@@ -202,9 +199,15 @@ map <3-MiddleMouse> <Nop>
 imap <3-MiddleMouse> <Nop>
 map <4-MiddleMouse> <Nop>
 imap <4-MiddleMouse> <Nop>
+"}}}
 
+" others mapping"{{{
+nnoremap <F8> :%s/ *$//<CR>
 
+nnoremap <Leader>cm :<C-u>Capture messages<CR>
 
+nnoremap <Leader>di :<C-u>MyDiff<Space>
+nnoremap <Leader>dg :<C-u>DiffOrig<CR>
 
 function! GitCtags() abort
     let l:git_root=system("git rev-parse --show-toplevel | tr -d '\\n'")
@@ -266,8 +269,9 @@ nnoremap <Space>ec :<C-u>!start ConEmu64.exe<CR>
 
 nnoremap <Space>eo :<C-u>e<Space>
 nnoremap <Space>ej :<C-u>execute "normal".line(".")."gg"<CR>
+"}}}
 
-
+" substitute mapping"{{{
 nnoremap [substitute] <Nop>
 nmap <Space>p [substitute]
 vnoremap [substitute] <Nop>
@@ -282,13 +286,14 @@ vnoremap [substitute]c :<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
 nnoremap [substitute]n V:<C-u>'<,'>s/^\n//g<CR>
 vnoremap [substitute]n :<C-u>'<,'>s/^\n//g<CR>
 
-nnoremap [substitute]f  :<C-u>%s///g<Left><Left><Left>
-vnoremap [substitute]f  :s///g<Left><Left><Left>
+nnoremap [substitute]f :<C-u>%s///g<Left><Left><Left>
+vnoremap [substitute]f :s///g<Left><Left><Left>
 
 nnoremap [substitute]w :<C-u>%s///g<Left><Left><Left><C-r><C-w><Right><C-r><C-w>
 nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s///g<Left><Left><Left><C-r>"<Right>
+"}}}
 
-
+" yank mapping"{{{
 nnoremap [yank] <Nop>
 nmap <Space>y [yank]
 
@@ -298,8 +303,7 @@ function! s:yank_now(delimiter) abort
         let a:delimiter="_"
     endif
     let now = strftime(join(split("%Y_%m_%d","_"),a:delimiter))
-    let @+ = now
-    echomsg "yank ".now
+    call s:yank_value(now)
 endfunction
 function! s:yank_now_with_slash() abort
     call s:yank_now("\/")
@@ -307,69 +311,67 @@ endfunction
 nnoremap [yank]n :<C-u>call <SID>yank_now_with_slash()<CR>
 
 function! s:yank_file_name() abort
-    let file_name = expand("%")
-    let @+ = file_name
-    echomsg "yank ".file_name
+    call s:yank_value(expand("%"))
 endfunction
 nnoremap [yank]f :<C-u>call <SID>yank_file_name()<CR>
 
 function! s:yank_file_path() abort
-    let file_name = expand("%:p")
-    let @+ = file_name
-    echomsg "yank ".file_name
+    call s:yank_value(expand("%:p"))
 endfunction
 nnoremap [yank]p :<C-u>call <SID>yank_file_path()<CR>
 
 function! s:yank_last_command() abort
-    let last_command = @:
-    let @+ = last_command
-    echomsg "yank ". last_command
+    call s:yank_value(@:)
 endfunction
 nnoremap [yank]; :<C-u>call <SID>yank_last_command()<CR>
 
 function! s:yank_last_search() abort
-    let last_search = @/
-    let @+ = last_search
-    echomsg "yank ". last_search
+    call s:yank_value(@/)
 endfunction
 nnoremap [yank]/ :<C-u>call <SID>yank_last_search()<CR>
+function! s:yank_value(value) abort
+    let @+ = a:value
+    echomsg "yank ". a:value
+endfunction
+"}}}
 
+" inner and around vomapping"{{{
+function! s:inner_around_vomap(lhs, rhs) abort
+    let inner_lhs = "i" . a:lhs
+    let inner_rhs = "i" . a:rhs
+    let around_lhs = "a" . a:lhs
+    let around_rhs = "a" . a:rhs
+    silent execute join(["vnoremap", inner_lhs, inner_rhs])
+    silent execute join(["onoremap", inner_lhs, inner_rhs])
+    silent execute join(["vnoremap", around_lhs, around_rhs])
+    silent execute join(["onoremap", around_lhs, around_rhs])
+endfunction
+call s:inner_around_vomap("r", "w")
+call s:inner_around_vomap("p", ")")
+call s:inner_around_vomap("l", "]")
+call s:inner_around_vomap("w", "\"")
+call s:inner_around_vomap("q", "\'")
+call s:inner_around_vomap("d", "}")
+call s:inner_around_vomap("b", "`")
+"}}}
 
-vmap ip i)
-vmap il i]
-vmap iw i"
-vmap iq i'
-vmap id i}
-vmap ib i`
+" fold mapping"{{{
+noremap [fold] <Nop>
+map z [fold]
+noremap [fold]j zj
+noremap [fold]k zk
+noremap [fold]n ]z
+noremap [fold]p [z
+noremap [fold]h zc
+noremap [fold]l zo
+noremap [fold]a za
+noremap [fold]m zM
+noremap [fold]i zMzv
+noremap [fold]r zR
+noremap [fold]f zf
+"}}}
 
-vmap ap a)
-vmap al a]
-vmap aw a"
-vmap aq a'
-vmap ad a}
-vmap ab a`
-
-omap ip i)
-omap il i]
-omap iw i"
-omap iq i'
-omap id i}
-omap ib i`
-
-omap ap a)
-omap al a]
-omap aw a"
-omap aq a'
-omap ad a}
-omap ab a`
-
-
-nnoremap <Leader>cm :<C-u>Capture messages<CR>
-
-nnoremap q <C-r>
-nnoremap R r
-vnoremap R r
-
+" command and insert mapping"{{{
 
 function! s:cinoremap(lhs, rhs) abort
     silent execute join(["inoremap", a:lhs, a:rhs])
@@ -492,4 +494,4 @@ call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "w", "\"\"")
 call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "o", "<Bar>")
 call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "g", "=>")
 call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "f", "->")
-
+"}}}
