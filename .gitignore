@@ -1,6 +1,7 @@
 /tmp/backup/*
 /tmp/swap/*
 /tmp/undo/*
+/tmp/view/*
 /userautoload/local/*
 !.gitkeep
 dict/cp932/

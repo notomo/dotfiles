@@ -14,7 +14,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundleLazy 'Yggdroot/indentLine',{
 \   'autoload':{
-\       'filetypes':['python', 'php']
+\       'filetypes':['python']
 \   }
 \}
 
@@ -396,7 +396,13 @@ NeoBundleLazy 'osyo-manga/vim-textobj-from_regexp'
 
 NeoBundleLazy 'osyo-manga/vim-textobj-blockwise'
 
-NeoBundle 'LeafCage/foldCC.vim'
+" NeoBundle 'LeafCage/foldCC.vim'
+
+NeoBundleLazy 'kana/vim-operator-replace',{
+\   'autoload':{
+\       'mappings':['<Plug>(operator-replace)']
+\   }
+\}
 
 " NeoBundleLazy "osyo-manga/vim-operator-exec_command"
 

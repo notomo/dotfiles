@@ -26,7 +26,7 @@ set ruler
 set number         " 行番号を表示する
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
-set cursorline     " カーソル行の背景色を変える
+set nocursorline
 " set nolist
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
@@ -51,9 +51,13 @@ set smarttab
 set formatoptions+=q
 set clipboard=unnamed
 
-set foldmethod=marker
-
-
+set viewdir=~/.vim/tmp/view
+set foldmethod=manual
+" Save fold settings.
+autocmd MyAuGroup BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
+autocmd MyAuGroup BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
+" Don't save options.
+set viewoptions-=options
 autocmd MyAuGroup InsertEnter,CmdwinEnter * set noimdisable
 autocmd MyAuGroup InsertLeave,CmdwinLeave * set imdisable
 

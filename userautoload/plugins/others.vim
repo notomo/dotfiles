@@ -60,8 +60,9 @@ map <Leader>hc <Plug>(operator-decamelize)
 
 
 " operator-replace
-noremap <Plug>(operator-no_yank_delete) "_d
-noremap <expr> r operator#sequence#map("\<Plug>(operator-no_yank_delete)", "\<Plug>(yankround-P)")
+" noremap <Plug>(operator-no_yank_delete) "_d
+" noremap <expr> r operator#sequence#map("\<Plug>(operator-no_yank_delete)", ["\<Plug>(yankround-P)"])
+map r <Plug>(operator-replace)
 
 
 " qutefinger
@@ -143,12 +144,17 @@ omap ij <Plug>(textobj-multiblock-i)
 vmap aj <Plug>(textobj-multiblock-a)
 vmap ij <Plug>(textobj-multiblock-i)
 
-
-nmap <Leader>ht <Plug>(quickhl-manual-this)
-xmap <Leader>ht <Plug>(quickhl-manual-this)
-nmap <Leader>hr <Plug>(quickhl-manual-reset)
-xmap <Leader>hr <Plug>(quickhl-manual-reset)
-nmap <Leader>ha <Plug>(quickhl-manual-toggle)
+" highlight mapping"{{{
+nnoremap [highlight] <Nop>
+nmap <Leader>h [highlight]
+xnoremap [highlight] <Nop>
+xmap <Leader>h [highlight]
+nmap [highlight]t <Plug>(quickhl-manual-this)
+xmap [highlight]t <Plug>(quickhl-manual-this)
+nmap [highlight]r <Plug>(quickhl-manual-reset)
+xmap [highlight]r <Plug>(quickhl-manual-reset)
+nmap [highlight]a <Plug>(quickhl-manual-toggle)
+"}}}
 
 omap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+')
 xmap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+')
