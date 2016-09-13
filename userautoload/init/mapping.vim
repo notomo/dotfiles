@@ -369,6 +369,7 @@ noremap [fold]m zM
 noremap [fold]i zMzv
 noremap [fold]r zR
 noremap [fold]f zf
+noremap [fold]d zd
 "}}}
 
 " command and insert mapping"{{{
