@@ -21,6 +21,8 @@ nnoremap q <C-r>
 
 nnoremap R r
 vnoremap R r
+
+nnoremap Q q:
 "}}}
 
 " buffer mapping"{{{
@@ -370,6 +372,7 @@ noremap [fold]i zMzv
 noremap [fold]r zR
 noremap [fold]f zf
 noremap [fold]d zd
+noremap zD <Nop>
 "}}}
 
 " command and insert mapping"{{{

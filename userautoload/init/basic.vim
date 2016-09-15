@@ -84,7 +84,7 @@ set noundofile
 "スワップファイル用のディレクトリ
 set directory=~/.vim/tmp/swap/
 "ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
-set browsedir=buffer 
+set browsedir=buffer
 
 set viminfo+=n~/.vim/tmp/viminfo.txt
 

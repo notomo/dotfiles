@@ -31,6 +31,9 @@ IncSearchNoreMap <S-Space> <Space>
 IncSearchNoreMap <C-n>  <Over>(incsearch-scroll-f)
 IncSearchNoreMap <C-p>    <Over>(incsearch-scroll-b)
 
+autocmd MyAuGroup User IncSearchEnter set noimdisable
+autocmd MyAuGroup User IncSearchLeave set imdisable
+
 function! s:word_easymotion(...) abort
   return extend(copy({
   \   'modules': [incsearch#config#easymotion#module()],
