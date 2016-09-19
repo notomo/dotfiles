@@ -206,6 +206,11 @@ imap <4-MiddleMouse> <Nop>
 " others mapping"{{{
 nnoremap <F8> :%s/ *$//<CR>
 
+function! s:set_current_filetype() abort
+    execute "set filetype=" . &filetype
+endfunction
+nnoremap <F4> :<C-u>call <SID>set_current_filetype()<CR>
+
 nnoremap <Leader>cm :<C-u>Capture messages<CR>
 
 nnoremap <Leader>di :<C-u>MyDiff<Space>

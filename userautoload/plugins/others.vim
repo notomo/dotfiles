@@ -156,14 +156,17 @@ xmap [highlight]r <Plug>(quickhl-manual-reset)
 nmap [highlight]a <Plug>(quickhl-manual-toggle)
 "}}}
 
-omap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+')
-xmap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+')
+omap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+')
+xmap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+')
 
-omap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+->')
-xmap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9]\+->')
+omap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
+xmap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
 
 omap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
 xmap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
+
+vmap <expr> <Plug>(between-space) textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
+vmap a<Space> <Plug>(between-space)<Right>
 
 " let g:textobj_blockwise_enable_default_key_mapping = 0
 
@@ -206,6 +209,6 @@ function! OperatorSearch(motion_wiseness)
 endfunction
 
 call operator#user#define('search-forward', 'OperatorSearch')
-nmap ss <Plug>(operator-search-forward)
+" nmap ss <Plug>(operator-search-forward)
 
 

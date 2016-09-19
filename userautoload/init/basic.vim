@@ -6,10 +6,6 @@ autocmd MyAuGroup BufNewFile,BufRead * set iminsert=0
 " 「日本語入力固定モード」の動作モード
 let IM_CtrlMode = 4
 
-let g:yankring_n_keys = 'Y D'
-" default
-" let g:yankring_n_keys = 'Y D x X'
-
 set nowrap
 
 set showtabline=2 " タブを常に表示
@@ -68,6 +64,16 @@ function! AutoCD() abort
         execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
     catch
     endtry
+endfunction
+
+autocmd MyAuGroup VimEnter * if @% == '' && s:get_buf_byte() == 0 | setlocal buftype=nofile noswapfile | endif
+function! s:get_buf_byte()
+    let byte = line2byte(line('$') + 1)
+    if byte == -1
+        return 0
+    else
+        return byte - 1
+    endif
 endfunction
 
 " set grepprg=grep\ -rnih 

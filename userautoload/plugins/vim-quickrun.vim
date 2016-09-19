@@ -7,3 +7,8 @@ let g:quickrun_config = {'*':{
 \   "hook/output_encode/enable" : 1,
 \   "hook/output_encode/encoding" : "cp932",
 \}}
+
+let g:quickrun_config['cs'] = {
+\   "hook/output_encode/enable" : 1,
+\   "hook/output_encode/encoding" : "sjis",
+\}

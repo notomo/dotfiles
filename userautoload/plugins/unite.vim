@@ -60,7 +60,7 @@ nnoremap <silent> [unite]c :<C-u>Unite -no-split -buffer-name=register register<
 "最近使用したファイル一覧
 nnoremap <silent> [unite]r :<C-u>Unite -no-split file_mru<CR>
 "マーク一覧
-nnoremap <silent> [unite]mk :<C-u>Unite -no-split mark<CR>
+nnoremap <silent> [unite]ma :<C-u>Unite -no-split mark<CR>
 " ブックマーク一覧
 nnoremap <silent> [unite]bm :<C-u>Unite -no-split bookmark<CR>
 "ブックマークに追加

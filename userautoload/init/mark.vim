@@ -1,75 +1,100 @@
-"----------------------------------------------
-" vim‚Ìƒ}[ƒN‹@”\‚ğ‚Å‚«‚é‚¾‚¯Šˆ—p‚µ‚Ä‚İ‚é - Make L noise
-" http://saihoooooooo.hatenablog.com/entry/2013/04/30/001908
-" m‚ğ‰Ÿ‚·‚±‚Æ‚ÅŒ»İˆÊ’u‚É‘Î‚µ‚Ä©“®“I‚ÉƒAƒ‹ƒtƒ@ƒxƒbƒg‚ğŠ„‚èU‚é
-"----------------------------------------------
 
-" Šî–{ƒ}ƒbƒv
 nnoremap [mark] <Nop>
 nmap <Leader>m [mark]
 
-" Œ»İˆÊ’u‚ğƒ}[ƒN
-if !exists('g:markrement_char')
-    let g:markrement_char = [
+" ãƒãƒ¼ã‚¯é–¢é€£ã®åˆæœŸåŒ–"{{{
+if !exists('g:mark_chars')
+    let g:mark_chars = [
     \     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     \     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     \ ]
 endif
-nnoremap <silent>[mark]m :<C-u>call <SID>AutoMarkrement()<CR>
-function! s:AutoMarkrement()
-    if !exists('b:markrement_pos')
-        let b:markrement_pos = 0
-    else
-        let b:markrement_pos = (b:markrement_pos + 1) % len(g:markrement_char)
+
+function! s:initialize_loop_mark() abort
+    if !exists('b:mark_start_pos')
+        let mark_start_pos = line("$")
+        let mark_end_pos = 1
+        let mark_start_char = ""
+        let mark_end_char = ""
+        for c in g:mark_chars
+            let line_num = line("'" . c)
+            if line_num != 0 && line_num <= mark_start_pos
+                let mark_start_pos = line_num
+                let mark_start_char = c
+            endif
+            if line_num >= mark_end_pos
+                let mark_end_pos = line_num
+                let mark_end_char = c
+            endif
+        endfor
+        let b:mark_start_pos = mark_start_pos
+        let b:mark_start_char = mark_start_char
+        let b:mark_end_pos = mark_end_pos
+        let b:mark_end_char = mark_end_char
     endif
-    execute 'mark' g:markrement_char[b:markrement_pos]
-    echo 'marked' g:markrement_char[b:markrement_pos]
 endfunction
+"}}}
 
-" Ÿ‚Éƒ}[ƒN‚·‚é•¶š‚ğİ’è‚·‚éExƒRƒ}ƒ“ƒh‚ğ’è‹`
-command! -nargs=? SetNextMarkChar call s:set_next_mark_char(<f-args>)
-function! s:set_next_mark_char(...)
-  if a:0 >= 1
-    let b:markrement_pos=index(g:markrement_char,a:1)-1
-  else
-    echo "Next:".g:markrement_char[b:markrement_pos+1]
-  end
+" ãƒãƒ¼ã‚¯ã‚’ã‚»ãƒƒãƒˆã™ã‚‹"{{{
+nnoremap [mark]s :<C-u>call <SID>set_mark()<CR>
+function! s:set_mark()
+    if !exists('b:mark_index')
+        let b:mark_index = 0
+    else
+        let b:mark_index = (b:mark_index + 1) % len(g:mark_chars)
+    endif
+    let line_num = line(".")
+    let mark_char = g:mark_chars[b:mark_index]
+    execute 'mark' mark_char
+    call s:initialize_loop_mark()
+    if line_num <= b:mark_start_pos
+        let b:mark_start_pos = line_num
+        let b:mark_start_char = mark_char
+    endif
+    if line_num >= b:mark_end_pos
+        let b:mark_end_pos = line_num
+        let b:mark_end_char = mark_char
+    endif
+    echomsg 'marked' mark_char
 endfunction
+"}}}
 
-" Ÿ‚Éƒ}[ƒN‚·‚é•¶š‚ğİ’è‚µ‚ÄC“¯‚Éƒ}[ƒN‚·‚é
-nnoremap [mark]sa :SetNextMarkChar a<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sb :SetNextMarkChar b<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sc :SetNextMarkChar c<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sd :SetNextMarkChar d<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]se :SetNextMarkChar e<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sf :SetNextMarkChar f<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sg :SetNextMarkChar g<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sh :SetNextMarkChar h<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]si :SetNextMarkChar i<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sj :SetNextMarkChar j<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sk :SetNextMarkChar k<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sl :SetNextMarkChar l<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sm :SetNextMarkChar m<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sn :SetNextMarkChar n<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]so :SetNextMarkChar o<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sp :SetNextMarkChar p<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sq :SetNextMarkChar q<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sr :SetNextMarkChar r<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]ss :SetNextMarkChar s<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]st :SetNextMarkChar t<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]su :SetNextMarkChar u<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sv :SetNextMarkChar v<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sw :SetNextMarkChar w<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sx :SetNextMarkChar x<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sy :SetNextMarkChar y<CR>:<C-u>call <SID>AutoMarkrement()<CR>
-nnoremap [mark]sz :SetNextMarkChar z<CR>:<C-u>call <SID>AutoMarkrement()<CR>
+" æ¬¡ã®ãƒãƒ¼ã‚¯ã¸ç§»å‹•ã™ã‚‹"{{{
+nnoremap <silent> [mark]x :<C-u>call <SID>jump_to_next_mark()<CR>
+function! s:jump_to_next_mark() abort
+    call s:initialize_loop_mark()
+    let line_num = line(".")
+    if b:mark_end_char != "" && line_num >= b:mark_end_pos
+        execute "normal " . b:mark_start_pos . "gg"
+    elseif b:mark_end_char != ""
+        normal ]'
+    endif
+endfunction
+"}}}
 
-" Ÿ/‘O‚Ìƒ}[ƒN
-nnoremap [mark]n ]`
-nnoremap [mark]p [`
+" å‰ã®ãƒãƒ¼ã‚¯ã¸ç§»å‹•ã™ã‚‹"{{{
+nnoremap <silent> [mark]r :<C-u>call <SID>jump_to_previous_mark()<CR>
+function! s:jump_to_previous_mark() abort
+    call s:initialize_loop_mark()
+    let line_num = line(".")
+    if b:mark_start_char != "" && line_num <= b:mark_start_pos
+        execute "normal " . b:mark_end_pos . "gg"
+    elseif b:mark_start_char != ""
+        normal ['
+    endif
+endfunction
+"}}}
 
-" ƒ}[ƒN‚Ì‘Síœ
-nnoremap [mark]d :<C-u>delmark!<CR>
+" å…¨ã¦ã®ãƒãƒ¼ã‚¯ã‚’å‰Šé™¤ã™ã‚‹"{{{
+nnoremap [mark]d :<C-u>call <SID>delete_all_mark()<CR>
+function! s:delete_all_mark() abort
+    let b:mark_start_pos = line("$")
+    let b:mark_end_pos = 1
+    let b:mark_start_char = ""
+    let b:mark_end_char = ""
+    delmark!
+endfunction
+"}}}
 
-"ƒ}[ƒN‚Ö‚ÌƒWƒƒƒ“ƒv
-nnoremap [mark]j '
+" æŒ‡å®šã®ãƒãƒ¼ã‚¯ã¸ã‚¸ãƒ£ãƒ³ãƒ—ã™ã‚‹
+nnoremap [mark]g '

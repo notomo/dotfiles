@@ -26,7 +26,7 @@ function! s:unit_sql_lines(first_line_num, last_line_num) abort
     return lines
 endfunction
 
-function! s:excute_sql(sql) abort
+function! s:execute_sql(sql) abort
     execute s:COMMAND_DB_EXEC_SQL . " " . a:sql
 endfunction
 
@@ -48,7 +48,7 @@ command! -nargs=1 DescribeTableFromName call <SID>describe_table_from_name(<f-ar
 function! s:describe_table_from_name(table_name) abort
     if a:table_name != ""
         let sql = "DESC " . a:table_name . ";"
-        call s:excute_sql(sql)
+        call s:execute_sql(sql)
     endif
 endfunction
 
@@ -56,14 +56,30 @@ vnoremap [dbext]x :<C-u>'<,'>ExplainSQL<CR>
 command! -range ExplainSQL :<line1>,<line2>call <SID>explain_sql()
 function! s:explain_sql() range
     let lines_str = join(s:unit_sql_lines(a:firstline, a:lastline))
-    let sql = "explain " . lines_str
-    call s:excute_sql(sql)
+    let sql = "EXPLAIN " . lines_str
+    call s:execute_sql(sql)
 endfunction
 
 vnoremap [dbext]m :<C-u>'<,'>ExecuteLimitSQL<CR>
 command! -range ExecuteLimitSQL :<line1>,<line2>call <SID>execute_limit_sql()
 function! s:execute_limit_sql() range
     let lines_str = join(s:unit_sql_lines(a:firstline, a:lastline))
-    let sql = lines_str[0:-2] . " limit " . s:LIMIT_NUM . ";"
-    call s:excute_sql(sql)
+    let sql = lines_str[0:-2] . " LIMIT " . s:LIMIT_NUM . ";"
+    call s:execute_sql(sql)
+endfunction
+
+function! s:get_visual_selection()
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+    let lines = getline(lnum1, lnum2)
+    let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][col1 - 1:]
+    return join(lines, "\n")
+endfunction
+
+vnoremap [dbext]s :<C-u>call <SID>select_value()<CR>
+function! s:select_value() abort
+    let selection_text = s:get_visual_selection()
+    let sql = "SELECT " . selection_text
+    call s:execute_sql(sql)
 endfunction

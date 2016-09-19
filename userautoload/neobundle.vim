@@ -348,7 +348,7 @@ NeoBundleLazy 'OmniSharp/omnisharp-vim', {
 \   'autoload': {'filetypes': ['cs']},
 \ }
 
-NeoBundle 'tpope/vim-dispatch'
+" NeoBundle 'tpope/vim-dispatch'
 
 NeoBundleLazy 'OrangeT/vim-csharp',{
 \   'autoload':{
@@ -403,6 +403,9 @@ NeoBundleLazy 'kana/vim-operator-replace',{
 \       'mappings':['<Plug>(operator-replace)']
 \   }
 \}
+
+" NeoBundle 'LeafCage/visiblemarks.vim'
+" NeoBundle 'kshenoy/vim-signature'
 
 " NeoBundleLazy "osyo-manga/vim-operator-exec_command"
 

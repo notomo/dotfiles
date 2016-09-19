@@ -23,11 +23,10 @@ map gt <Plug>(easymotion-bd-tl)
 map gj <Plug>(easymotion-j)
 map gk <Plug>(easymotion-k)
 map gn <Plug>(easymotion-lineanywhere)
-map gu <Plug>(easymotion-bd-w)
-" map gw <Plug>(easymotion-bd-w)
+map gw <Plug>(easymotion-bd-w)
 " map g<Enter> <Plug>(easymotion-bd-w)
 
-map gw <Plug>(easymotion-tl)"
+map gs <Plug>(easymotion-tl)"
 map gl <Plug>(easymotion-tl)]
 map g. <Plug>(easymotion-tl).
 map g; <Plug>(easymotion-tl);
@@ -36,7 +35,7 @@ map gp <Plug>(easymotion-tl))
 map gd <Plug>(easymotion-tl)}
 map g, <Plug>(easymotion-tl),
 " map <Space>g, <Plug>(easymotion-fl),
-map gs <Plug>(easymotion-tl)#
+" map gs <Plug>(easymotion-tl)#
 map gy <Plug>(easymotion-tl)\
 map g/ <Plug>(easymotion-tl)/
 map g<Space> <Plug>(easymotion-tl)<Space>
