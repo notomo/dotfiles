@@ -1,6 +1,8 @@
 
 nnoremap [mark] <Nop>
+vnoremap [mark] <Nop>
 nmap <Leader>m [mark]
+vmap <Leader>m [mark]
 
 " マーク関連の初期化"{{{
 if !exists('g:mark_chars')
@@ -9,31 +11,29 @@ if !exists('g:mark_chars')
     \     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
     \ ]
 endif
-
-function! s:initialize_loop_mark() abort
-    if !exists('b:mark_start_pos')
-        let mark_start_pos = line("$")
-        let mark_end_pos = 1
-        let mark_start_char = ""
-        let mark_end_char = ""
-        for c in g:mark_chars
-            let line_num = line("'" . c)
-            if line_num != 0 && line_num <= mark_start_pos
-                let mark_start_pos = line_num
-                let mark_start_char = c
-            endif
-            if line_num >= mark_end_pos
-                let mark_end_pos = line_num
-                let mark_end_char = c
-            endif
-        endfor
-        let b:mark_start_pos = mark_start_pos
-        let b:mark_start_char = mark_start_char
-        let b:mark_end_pos = mark_end_pos
-        let b:mark_end_char = mark_end_char
-    endif
-endfunction
 "}}}
+
+function! s:mark_info() abort
+    let mark_start_pos = line("$")
+    let mark_end_pos = 1
+    let mark_start_char = ""
+    let mark_end_char = ""
+    for c in g:mark_chars
+        let line_num = line("'" . c)
+        if line_num == 0
+            continue
+        endif
+        if line_num <= mark_start_pos
+            let mark_start_pos = line_num
+            let mark_start_char = c
+        endif
+        if line_num >= mark_end_pos
+            let mark_end_pos = line_num
+            let mark_end_char = c
+        endif
+    endfor
+    return {"start_line" : mark_start_pos, "start_char" : mark_start_char, "end_line" : mark_end_pos, "end_char" : mark_end_char}
+endfunction
 
 " マークをセットする"{{{
 nnoremap [mark]s :<C-u>call <SID>set_mark()<CR>
@@ -46,55 +46,53 @@ function! s:set_mark()
     let line_num = line(".")
     let mark_char = g:mark_chars[b:mark_index]
     execute 'mark' mark_char
-    call s:initialize_loop_mark()
-    if line_num <= b:mark_start_pos
-        let b:mark_start_pos = line_num
-        let b:mark_start_char = mark_char
-    endif
-    if line_num >= b:mark_end_pos
-        let b:mark_end_pos = line_num
-        let b:mark_end_char = mark_char
-    endif
     echomsg 'marked' mark_char
 endfunction
 "}}}
 
 " 次のマークへ移動する"{{{
-nnoremap <silent> [mark]x :<C-u>call <SID>jump_to_next_mark()<CR>
+nnoremap <expr> <silent> [mark]x <SID>jump_to_next_mark()
+vnoremap <expr> <silent> [mark]x <SID>jump_to_next_mark()
 function! s:jump_to_next_mark() abort
-    call s:initialize_loop_mark()
+    let info = s:mark_info()
     let line_num = line(".")
-    if b:mark_end_char != "" && line_num >= b:mark_end_pos
-        execute "normal " . b:mark_start_pos . "gg"
-    elseif b:mark_end_char != ""
-        normal ]'
+    if info["end_char"] != "" && line_num >= info["end_line"]
+        let jump_to_start_mark = "\'" . info["start_char"]
+        return jump_to_start_mark
+    elseif info["end_char"] != ""
+        return "]\'"
     endif
 endfunction
 "}}}
 
 " 前のマークへ移動する"{{{
-nnoremap <silent> [mark]r :<C-u>call <SID>jump_to_previous_mark()<CR>
+nnoremap <expr> <silent> [mark]r <SID>jump_to_previous_mark()
+vnoremap <expr> <silent> [mark]r <SID>jump_to_previous_mark()
 function! s:jump_to_previous_mark() abort
-    call s:initialize_loop_mark()
+    let info = s:mark_info()
     let line_num = line(".")
-    if b:mark_start_char != "" && line_num <= b:mark_start_pos
-        execute "normal " . b:mark_end_pos . "gg"
-    elseif b:mark_start_char != ""
-        normal ['
+    if info["start_char"] != "" && line_num <= info["start_line"]
+        let jump_to_end_mark = "\'" . info["end_char"]
+        return jump_to_end_mark
+    elseif info["start_char"] != ""
+        return "[\'"
     endif
 endfunction
 "}}}
 
 " 全てのマークを削除する"{{{
-nnoremap [mark]d :<C-u>call <SID>delete_all_mark()<CR>
+nnoremap <silent> [mark]d :<C-u>call <SID>delete_all_mark()<CR>
 function! s:delete_all_mark() abort
-    let b:mark_start_pos = line("$")
-    let b:mark_end_pos = 1
-    let b:mark_start_char = ""
-    let b:mark_end_char = ""
+    let mark_start_pos = line("$")
+    let mark_end_pos = 1
+    let mark_start_char = ""
+    let mark_end_char = ""
     delmark!
+    echomsg "deleted all marks"
 endfunction
 "}}}
 
 " 指定のマークへジャンプする
 nnoremap [mark]g '
+vnoremap [mark]g '
+

@@ -4,9 +4,9 @@ nnoremap <silent> <Space>to :<C-u>VimFilerBufferDir -quit<CR>
 nnoremap <Space>tl :<C-u>:CdCurrent<CR>:VimFilerBufferDir -split -simple -toggle -no-quit -winwidth=35<CR>
 
 function! NewUnixFormatFile() abort
-	let file_name = input("New files name(comma separated):")
+    let file_name = input("New files name(comma separated):")
     if file_name != ""
-        execute "normal NF".file_name."\<CR>l\<Space>fouma"
+        execute "normal \<Plug>(vimfiler_new_file)".file_name."\<CR>|\<Space>fouma"
     else
         echomsg " Canceled"
     endif
@@ -56,7 +56,6 @@ function! s:vimfiler_my_settings()
     nmap <buffer>rn <Plug>(vimfiler_rename_file)
     nmap <buffer>df <Plug>(vimfiler_delete_file)
     nmap <buffer>nd <Plug>(vimfiler_make_directory)
-    nmap <buffer>NF <Plug>(vimfiler_new_file)
     nnoremap <buffer>nf :<C-u>NewUnixFormatFileCommand<CR>
     nmap <buffer>K <Plug>(vimfiler_jump_first_child)
     nmap <buffer>J <Plug>(vimfiler_jump_last_child)

@@ -76,6 +76,8 @@ function! s:get_buf_byte()
     endif
 endfunction
 
+set renderoptions=type:directx,renmode:5
+
 " set grepprg=grep\ -rnih 
 set grepprg=git\ grep\ -n\ $*
 " set grepprg=jvgrep

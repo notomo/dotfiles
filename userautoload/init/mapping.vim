@@ -14,6 +14,8 @@ nnoremap <S-y> y$
 
 nnoremap <Space>z <C-x>
 nnoremap <Space>a <C-a>
+vnoremap <Space>z <C-x>gv
+vnoremap <Space>a <C-a>gv
 
 nnoremap <silent> <F5> :<C-u>source $MYVIMRC<CR>:<C-u>source $MYGVIMRC<CR>:<C-u>nohlsearch<CR>
 
@@ -193,14 +195,17 @@ vnoremap q <Nop>
 nnoremap <Ins> <Nop>
 inoremap <Ins> <Nop>
 
-map <MiddleMouse> <Nop>
-imap <MiddleMouse> <Nop>
-map <2-MiddleMouse> <Nop>
-imap <2-MiddleMouse> <Nop>
-map <3-MiddleMouse> <Nop>
-imap <3-MiddleMouse> <Nop>
-map <4-MiddleMouse> <Nop>
-imap <4-MiddleMouse> <Nop>
+nnoremap <RightMouse> p
+inoremap <RightMouse> <C-r>"
+
+noremap <MiddleMouse> <Nop>
+inoremap <MiddleMouse> <Nop>
+noremap <2-MiddleMouse> <Nop>
+inoremap <2-MiddleMouse> <Nop>
+noremap <3-MiddleMouse> <Nop>
+inoremap <3-MiddleMouse> <Nop>
+noremap <4-MiddleMouse> <Nop>
+inoremap <4-MiddleMouse> <Nop>
 "}}}
 
 " others mapping"{{{

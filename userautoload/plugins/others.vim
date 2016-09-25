@@ -165,8 +165,8 @@ xmap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
 omap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
 xmap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
 
-vmap <expr> <Plug>(between-space) textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
-vmap a<Space> <Plug>(between-space)<Right>
+omap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
+xmap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
 
 " let g:textobj_blockwise_enable_default_key_mapping = 0
 
