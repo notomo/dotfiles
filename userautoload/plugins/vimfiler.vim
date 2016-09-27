@@ -6,7 +6,7 @@ nnoremap <Space>tl :<C-u>:CdCurrent<CR>:VimFilerBufferDir -split -simple -toggle
 function! NewUnixFormatFile() abort
     let file_name = input("New files name(comma separated):")
     if file_name != ""
-        execute "normal \<Plug>(vimfiler_new_file)".file_name."\<CR>|\<Space>fouma"
+        execute "normal \<Plug>(vimfiler_new_file)".file_name."\<CR>|l\<Space>fouma"
     else
         echomsg " Canceled"
     endif

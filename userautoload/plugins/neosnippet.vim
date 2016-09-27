@@ -1,6 +1,6 @@
 " imap <C-S-k> <Plug>(neosnippet_expand_or_jump)
 " smap <C-S-k> <Plug>(neosnippet_expand_or_jump)
-xmap <Space>s <Plug>(neosnippet_expand_target)
+xmap <Space>S <Plug>(neosnippet_expand_target)
 
 nnoremap <Space>es :<C-u>:NeoSnippetEdit<CR>
 

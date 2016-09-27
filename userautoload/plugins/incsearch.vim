@@ -5,16 +5,16 @@ endfunction
 unlet s:bundle
 
 map / <Plug>(incsearch-easymotion-/)
-nmap s/ <Plug>(incsearch-easymotion-/)<C-r>"
-nmap <Space>/ <Plug>(incsearch-easymotion-/)<C-r><C-w>
+nmap <Space>/ <Plug>(incsearch-easymotion-/)<C-r>"
+nmap s/ <Plug>(incsearch-easymotion-/)<C-r><C-w>
 
-map sk <Plug>(incsearch-easymotion-?)
-nmap s<Space>k <Plug>(incsearch-easymotion-?)<C-r>"
-nmap <Space>k <Plug>(incsearch-easymotion-?)<C-r><C-w>
+map ssk <Plug>(incsearch-easymotion-?)
+nmap <Space>sk <Plug>(incsearch-easymotion-?)<C-r>"
+nmap sk <Plug>(incsearch-easymotion-?)<C-r><C-w>
 
-map sj <Plug>(incsearch-easymotion-stay)
-nmap s<Space>j <Plug>(incsearch-easymotion-stay)<C-r>"
-nmap <Space>j <Plug>(incsearch-easymotion-stay)<C-r><C-w>
+map ssj <Plug>(incsearch-easymotion-stay)
+nmap <Space>sj <Plug>(incsearch-easymotion-stay)<C-r>"
+nmap sj <Plug>(incsearch-easymotion-stay)<C-r><C-w>
 
 map   n <Plug>(incsearch-nohl-n)
 map   N <Plug>(incsearch-nohl-N)
