@@ -211,4 +211,13 @@ endfunction
 call operator#user#define('search-forward', 'OperatorSearch')
 " nmap ss <Plug>(operator-search-forward)
 
+let g:loaded_matchparen = 1
 
+
+
+" nnoremap <silent> <Space>pf :OverCommandLine<CR>%s///g<Left><Left><Left>
+" nnoremap <Space>pw :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+" nnoremap <Space>py :OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
+" OverCommandLineNoremap <C-b> <BS>
+" OverCommandLineNoremap <C-d> <Del>

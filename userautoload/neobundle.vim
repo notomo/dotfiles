@@ -404,6 +404,11 @@ NeoBundleLazy 'kana/vim-operator-replace',{
 \   }
 \}
 
+NeoBundle 'itchyny/vim-parenmatch'
+NeoBundle 'itchyny/vim-cursorword'
+
+" NeoBundle 'osyo-manga/vim-over'
+
 " NeoBundle 'LeafCage/visiblemarks.vim'
 " NeoBundle 'kshenoy/vim-signature'
 
