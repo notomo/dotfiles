@@ -214,10 +214,42 @@ call operator#user#define('search-forward', 'OperatorSearch')
 let g:loaded_matchparen = 1
 
 
+nnoremap <silent> <Space>pf :OverCommandLine<CR>%s///g<Left><Left><Left>
+nnoremap <Space>pw :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+nnoremap <Space>py :OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
-" nnoremap <silent> <Space>pf :OverCommandLine<CR>%s///g<Left><Left><Left>
-" nnoremap <Space>pw :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
-" nnoremap <Space>py :OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+vnoremap <silent> <Space>pf :OverCommandLine<CR>s///g<Left><Left><Left>
+vnoremap <Space>py :OverCommandLine<CR>s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
-" OverCommandLineNoremap <C-b> <BS>
-" OverCommandLineNoremap <C-d> <Del>
+let g:over_command_line_key_mappings = {
+\   "\<C-b>" : "\<BS>",
+\   "\<C-d>" : "\<Del>",
+\   "\<C-j>" : "\<Down>",
+\   "\<C-k>" : "\<Up>",
+\}
+
+
+vnoremap <Leader>dl :Linediff<CR>
+
+
+let g:signify_disable_by_default = 0
+
+" 次の差分箇所に移動
+nmap <Leader>gj <Plug>(signify-next-hunk)zz
+" 前の差分箇所に移動
+nmap <Leader>gk <Plug>(signify-prev-hunk)zz
+" 差分箇所をハイライト
+nnoremap <Leader>gh :<C-u>SignifyToggleHighlight<CR>
+" 差分表示をトグルする
+nnoremap <Leader>gt :<C-u>SignifyToggle<CR>
+
+
+let g:switch_mapping = ""
+nnoremap <Space>tw :<C-u>Switch<CR>
+
+
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+
+nnoremap <Leader>sj :<C-u>SplitjoinJoin<CR>
+nnoremap <Leader>ss :<C-u>SplitjoinSplit<CR>

@@ -20,7 +20,7 @@ nnoremap <silent> [shell]h :<C-u>split<CR>:<C-w><C-w>:VimShell<CR>
 "pythonを非同期で起動
 nnoremap <silent> [shell]p :VimShellInteractive python<CR>
 "非同期で開いたインタプリタに現在の行を評価させる
-nnoremap <silent> [shell]s :VimShellSendString<CR>
+nnoremap <silent> [shell]e :VimShellSendString<CR>
 "非同期で開いたインタプリタに選択行を評価させる
 vnoremap <silent> [shell]s :VimShellSendString<CR>
 

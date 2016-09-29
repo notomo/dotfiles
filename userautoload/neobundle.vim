@@ -407,7 +407,37 @@ NeoBundleLazy 'kana/vim-operator-replace',{
 NeoBundle 'itchyny/vim-parenmatch'
 NeoBundle 'itchyny/vim-cursorword'
 
-" NeoBundle 'osyo-manga/vim-over'
+NeoBundleLazy 'osyo-manga/vim-over',{
+\   'autoload':{
+\       'commands':['OverCommandLine']
+\   }
+\}
+
+NeoBundleLazy 'AndrewRadev/linediff.vim',{
+\   'autoload':{
+\       'commands':['Linediff']
+\   }
+\}
+
+NeoBundleLazy 'mhinz/vim-signify',{
+\   'autoload':{
+\       'commands':['Signify'],
+\       'mappings':['signify-'],
+\   }
+\}
+
+NeoBundleLazy 'AndrewRadev/switch.vim',{
+\   'autoload':{
+\       'commands':['Switch']
+\   }
+\}
+
+NeoBundleLazy 'AndrewRadev/splitjoin.vim',{
+\   'autoload':{
+\       'commands':['Splitjoin']
+\   }
+\}
+
 
 " NeoBundle 'LeafCage/visiblemarks.vim'
 " NeoBundle 'kshenoy/vim-signature'
