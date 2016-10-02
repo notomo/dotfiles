@@ -289,19 +289,15 @@ nmap <Space>p [substitute]
 vnoremap [substitute] <Nop>
 vmap <Space>p [substitute]
 
-nnoremap [substitute]e V:<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
+nnoremap [substitute]e :<C-u>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
 vnoremap [substitute]e :<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
 
-nnoremap [substitute]c V:<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
+nnoremap [substitute]c :<C-u>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
 vnoremap [substitute]c :<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
 
-nnoremap [substitute]n V:<C-u>'<,'>s/^\n//g<CR>
+nnoremap [substitute]n :<C-u>s/^\n//g<CR>
 vnoremap [substitute]n :<C-u>'<,'>s/^\n//g<CR>
 
-nnoremap [substitute]f :<C-u>%s///g<Left><Left><Left>
-vnoremap [substitute]f :s///g<Left><Left><Left>
-
-nnoremap [substitute]w :<C-u>%s///g<Left><Left><Left><C-r><C-w><Right><C-r><C-w>
 nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s///g<Left><Left><Left><C-r>"<Right>
 "}}}
 
@@ -359,6 +355,7 @@ function! s:inner_around_vomap(lhs, rhs) abort
     silent execute join(["onoremap", around_lhs, around_rhs])
 endfunction
 call s:inner_around_vomap("r", "w")
+call s:inner_around_vomap("t", ">")
 call s:inner_around_vomap("p", ")")
 call s:inner_around_vomap("l", "]")
 call s:inner_around_vomap("w", "\"")
@@ -387,26 +384,21 @@ noremap zD <Nop>
 
 " command and insert mapping"{{{
 
-function! s:cinoremap(lhs, rhs) abort
-    silent execute join(["inoremap", a:lhs, a:rhs])
-    silent execute join(["cnoremap", a:lhs, a:rhs])
-endfunction
-
 " 移動
-call s:cinoremap("<C-h>", "<Left>")
-call s:cinoremap("<C-j>", "<Down>")
-call s:cinoremap("<C-k>", "<Up>")
-call s:cinoremap("<C-l>", "<Right>")
-call s:cinoremap("<M-b>", "<C-Left>")
-call s:cinoremap("<M-f>", "<C-Right>")
-call s:cinoremap("<C-e>", "<End>")
+noremap! <C-h> <Left>
+noremap! <C-j> <Down>
+noremap! <C-k> <Up>
+noremap! <C-l> <Right>
+noremap! <M-b> <C-Left>
+noremap! <M-f> <C-Right>
+noremap! <C-e> <End>
 inoremap <C-a> <C-r>=MyExecExCommand('normal ^')<CR>
 inoremap <C-a> <Home>
 
 " 編集
-call s:cinoremap("<C-b>", "<BS>")
-call s:cinoremap("<C-d>", "<Del>")
-call s:cinoremap("<C-v>", "<C-r>\"")
+noremap! <C-b> <BS>
+noremap! <C-d> <Del>
+noremap! <C-v> <C-r>\"
 inoremap <C-o> <C-g>u<C-r>=MyExecExCommand('normal o')<CR>
 inoremap <M-j> <C-g>u<C-r>=MyExecExCommand('normal! J')<CR>
 inoremap <M-d> <C-g>u<C-r>=MyExecExCommand('normal! D','onemore')<CR>
@@ -439,73 +431,74 @@ inoremap j<Space>z <C-a>
 "IMEの状態とカーソル位置保存のため<C-r>を使用してコマンドを実行。
 """"""""""""""""""""""""""""""
 function! MyExecExCommand(cmd, ...)
-  let saved_ve = &virtualedit
-  let index = 1
-  while index <= a:0
-    if a:{index} == 'onemore'
-      silent setlocal virtualedit+=onemore
+    let saved_ve = &virtualedit
+    let index = 1
+    while index <= a:0
+        if a:{index} == 'onemore'
+            silent setlocal virtualedit+=onemore
+        endif
+        let index = index + 1
+    endwhile
+
+    silent exec a:cmd
+    if a:0 > 0
+        silent exec 'setlocal virtualedit='.saved_ve
     endif
-    let index = index + 1
-  endwhile
-
-  silent exec a:cmd
-  if a:0 > 0
-    silent exec 'setlocal virtualedit='.saved_ve
-  endif
-  return ''
+    return ''
 endfunction
 
-
-" " Arpeggio cnoremap and inoremap
-function! s:arpeggio_cinoremap(lhs, rhs) abort
-    call arpeggio#map('i', '', 0, a:lhs, a:rhs)
-    call arpeggio#map('c', '', 0, a:lhs, a:rhs)
-endfunction
-
-call arpeggio#load()
-call s:arpeggio_cinoremap("dsa", "<Home>")
-call s:arpeggio_cinoremap("kl;", "<End>")
-
-
-function! s:cinoremap_with_prefix(lhs_prefix_key, lhs_suffix_key, rhs) abort
-    call s:cinoremap(a:lhs_prefix_key . a:lhs_suffix_key, a:rhs)
+function! s:cinoremap_with_prefix(lhs_prefix, lhs_suffix, rhs) abort
+    silent execute join(["noremap!", a:lhs_prefix . a:lhs_suffix, a:rhs])
 endfunction
 let s:MAIN_INPUT_PREFIX_KEY = "j<Space>"
 let s:SUB_INPUT_PREFIX_KEY = "jk"
 
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "a" ,"-")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "e" ,"=")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "s" ,"_")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "w" ,"\"\"<Left>")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "b" ,"``<Left>")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "l" ,"[]<Left>")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "t" ,"<><Left>")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "p" ,"()<Left>")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "d" ,"{}<Left>")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "q" ,"''<Left>")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "h" ,"<C-r>\"")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "k" ,"<End><C-u>")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "u" ,"<C-u>")
-call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, "c" ,"<End><C-u><C-u>")
+let s:LHS_PREFIX_KEY = "lhs_prefix"
+let s:RHS_KEY = "rhs"
+let s:main_cinoremap_info = [
+            \ {s:LHS_PREFIX_KEY : "a", s:RHS_KEY : "-"},
+            \ {s:LHS_PREFIX_KEY : "e", s:RHS_KEY : "="},
+            \ {s:LHS_PREFIX_KEY : "s", s:RHS_KEY : "_"},
+            \ {s:LHS_PREFIX_KEY : "w", s:RHS_KEY : "\"\"<Left>"},
+            \ {s:LHS_PREFIX_KEY : "b", s:RHS_KEY : "``<Left>"},
+            \ {s:LHS_PREFIX_KEY : "l", s:RHS_KEY : "[]<Left>"},
+            \ {s:LHS_PREFIX_KEY : "t", s:RHS_KEY : "<><Left>"},
+            \ {s:LHS_PREFIX_KEY : "p", s:RHS_KEY : "()<Left>"},
+            \ {s:LHS_PREFIX_KEY : "d", s:RHS_KEY : "{}<Left>"},
+            \ {s:LHS_PREFIX_KEY : "q", s:RHS_KEY : "''<Left>"},
+            \ {s:LHS_PREFIX_KEY : "h", s:RHS_KEY : "<C-r>\""},
+            \ {s:LHS_PREFIX_KEY : "k", s:RHS_KEY : "<End><C-u>"},
+            \ {s:LHS_PREFIX_KEY : "u", s:RHS_KEY : "<C-u>"},
+            \ {s:LHS_PREFIX_KEY : "c", s:RHS_KEY : "<End><C-u><C-u>"},
+            \]
+for info in s:main_cinoremap_info
+    call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, info[s:LHS_PREFIX_KEY], info[s:RHS_KEY])
+endfor
 
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "a", "&")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "h", "^")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "p", "+")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "s", "#")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "r", "%")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "m", "@")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "t", "~")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "d", "$")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "e", "!")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "b", "`")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "c", ":")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "x", "*")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "q", "?")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, ";", "\"")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, ",", "'")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "y", "\\")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "w", "\"\"")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "o", "<Bar>")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "g", "=>")
-call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, "f", "->")
+let s:sub_cinoremap_info = [
+            \ {s:LHS_PREFIX_KEY : "a", s:RHS_KEY : "&"},
+            \ {s:LHS_PREFIX_KEY : "h", s:RHS_KEY : "^"},
+            \ {s:LHS_PREFIX_KEY : "p", s:RHS_KEY : "+"},
+            \ {s:LHS_PREFIX_KEY : "s", s:RHS_KEY : "#"},
+            \ {s:LHS_PREFIX_KEY : "r", s:RHS_KEY : "%"},
+            \ {s:LHS_PREFIX_KEY : "m", s:RHS_KEY : "@"},
+            \ {s:LHS_PREFIX_KEY : "t", s:RHS_KEY : "~"},
+            \ {s:LHS_PREFIX_KEY : "d", s:RHS_KEY : "$"},
+            \ {s:LHS_PREFIX_KEY : "e", s:RHS_KEY : "!"},
+            \ {s:LHS_PREFIX_KEY : "b", s:RHS_KEY : "`"},
+            \ {s:LHS_PREFIX_KEY : "c", s:RHS_KEY : ":"},
+            \ {s:LHS_PREFIX_KEY : "x", s:RHS_KEY : "*"},
+            \ {s:LHS_PREFIX_KEY : "q", s:RHS_KEY : "?"},
+            \ {s:LHS_PREFIX_KEY : ";", s:RHS_KEY : "\""},
+            \ {s:LHS_PREFIX_KEY : ",", s:RHS_KEY : "'"},
+            \ {s:LHS_PREFIX_KEY : "y", s:RHS_KEY : "\\"},
+            \ {s:LHS_PREFIX_KEY : "w", s:RHS_KEY : "\""},
+            \ {s:LHS_PREFIX_KEY : "o", s:RHS_KEY : "<Bar>"},
+            \ {s:LHS_PREFIX_KEY : "g", s:RHS_KEY : "=>"},
+            \ {s:LHS_PREFIX_KEY : "f", s:RHS_KEY : "->"},
+            \]
+for info in s:sub_cinoremap_info
+    call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, info[s:LHS_PREFIX_KEY], info[s:RHS_KEY])
+endfor
+
 "}}}

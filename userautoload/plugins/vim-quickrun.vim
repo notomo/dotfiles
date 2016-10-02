@@ -1,6 +1,5 @@
-nnoremap <Leader>i :<C-u>QuickRun <<Space>
+nnoremap <Leader>ri :<C-u>QuickRun <<Space>
 nmap <Leader><S-R> <Plug>(quickrun)
-" let g:quickrun_config = {'*': {'runmode': 'async:remote:vimproc'},}
 
 let g:quickrun_config = {'*':{
 \   'runmode': 'async:remote:vimproc',
@@ -9,10 +8,8 @@ let g:quickrun_config = {'*':{
 \}}
 
 let g:quickrun_config['cs'] = {
-\   "hook/output_encode/enable" : 1,
 \   "hook/output_encode/encoding" : "sjis",
 \}
 let g:quickrun_config['vim'] = {
-\   "hook/output_encode/enable" : 1,
 \   "hook/output_encode/encoding" : "utf-8",
 \}

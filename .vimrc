@@ -1,12 +1,18 @@
-" let &termencoding = &encoding
 let $LANG='ja_JP.UTF-8'
 set encoding=utf-8
 
+" if has('vim_starting')
+"     set nocompatible
+"     set runtimepath+=~/.vim/
+"     set runtimepath+=~/.vim/after/
+"     set runtimepath+=~/.vim/after/plugin/*
+"     set runtimepath+=~/.vim/after/syntax/*
+" endif
+
 source ~/.vim/userautoload/neobundle.vim
+" source ~/.vim/userautoload/dein.vim
 
 filetype plugin indent on
-filetype on
-filetype plugin on
 syntax on
 
 augroup MyAuGroup
@@ -14,7 +20,6 @@ augroup MyAuGroup
 augroup END
 
 let g:mapleader = ","
-let g:plugin_dicwin_disable = 1
 
 runtime! userautoload/local/*.vim
 runtime! userautoload/init/*.vim

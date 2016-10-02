@@ -25,18 +25,6 @@ function! MakeTabLine() "{{{
   return tabpages
 endfunction "}}}
 
-" function! s:cwd_mapping(mappings) abort
-" 	let directory_names=[]
-" 	for directory_name in split(getcwd(),'\\')
-" 		if has_key(a:mappings,directory_name)
-" 			call add(directory_names,a:mappings[directory_name])
-" 			continue
-" 		endif
-" 		call add(directory_names,directory_name)
-" 	endfor
-" 	return join(directory_names,'\')
-" endfunction
-
 function! s:tabpage_label(tabpagenr) "{{{
   "rol;各タブページのカレントバッファ名+αを表示
   let title = gettabvar(a:tabpagenr, 'title') "タブローカル変数t:titleを取得

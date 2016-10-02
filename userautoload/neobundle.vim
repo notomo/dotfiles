@@ -204,8 +204,7 @@ NeoBundleLazy 'vim-scripts/camelcasemotion',{
 
 NeoBundleLazy 'haya14busa/incsearch.vim',{
 \   'autoload':{
-\       'mappings':['<Plug>(incsearch-forward)', '<Plug>(incsearch-nohl-n)', '<Plug>(incsearch-nohl-N)'],
-\       'function_prefix':['incsearch'],
+\       'mappings':['<Plug>(incsearch-'],
 \   }
 \}
 
@@ -216,6 +215,7 @@ NeoBundleLazy 'osyo-manga/vim-anzu',{
 \}
 
 NeoBundle 'thinca/vim-zenspace'
+
 NeoBundle 'tpope/vim-fugitive'
 
 NeoBundleLazy 'tyru/restart.vim',{
@@ -234,7 +234,6 @@ NeoBundleLazy 'haya14busa/incsearch-easymotion.vim',{
 \   'depends':['incsearch.vim', 'vim-easymotion'],
 \   'autoload':{
 \       'mappings':['<Plug>(incsearch-easymotion-'],
-\       'function_prefix':['incsearch'],
 \   }
 \}
 
@@ -245,13 +244,7 @@ NeoBundleLazy 'tyru/open-browser.vim',{
 \   }
 \}
 
-NeoBundleLazy 'stephpy/vim-php-cs-fixer',{
-\   'autoload':{
-\       'filetypes':['php']
-\   }
-\}
-
-NeoBundle 'lambdalisue/vim-gita'
+" NeoBundle 'lambdalisue/vim-gita'
 
 NeoBundleLazy 'h1mesuke/vim-alignta',{
 \   'autoload':{
@@ -292,7 +285,6 @@ NeoBundleLazy 'pasela/unite-webcolorname',{
 
 NeoBundle 'Shougo/context_filetype.vim'
 
-
 NeoBundleLazy 'Shougo/unite-help',{
 \   'autoload':{
 \       'on_source': 'unite.vim'
@@ -311,24 +303,11 @@ NeoBundleLazy 'sgur/unite-qf',{
 \   }
 \}
 
-NeoBundleLazy 'mopp/layoutplugin.vim',{
-\   'autoload':{
-\       'commands':['LayoutPlugin']
-\   }
-\}
-
-
 NeoBundle 'thinca/vim-singleton'
 
+" NeoBundle 'vim-jp/vital.vim'
 
-NeoBundle 'vim-jp/vital.vim'
-
-
-NeoBundleLazy 'tyru/current-func-info.vim',{
-\   'autoload':{
-\       'function_prefix':['cfi']
-\   }
-\}
+NeoBundleLazy 'tyru/current-func-info.vim'
 
 NeoBundleLazy 'tyru/operator-camelize.vim',{
 \   'autoload':{
@@ -356,8 +335,6 @@ NeoBundleLazy 'OrangeT/vim-csharp',{
 \   }
 \}
 
-NeoBundle 'kana/vim-arpeggio'
-
 NeoBundle 'tpope/vim-capslock'
 
 NeoBundle 'vim-scripts/PreserveNoEOL'
@@ -384,8 +361,6 @@ NeoBundleLazy 'osyo-manga/vim-textobj-multiblock',{
 \   }
 \}
 
-NeoBundleLazy 'thinca/vim-operator-sequence'
-
 NeoBundleLazy 't9md/vim-quickhl',{
 \   'autoload':{
 \       'mappings':['<Plug>(quickhl-manual-']
@@ -395,8 +370,6 @@ NeoBundleLazy 't9md/vim-quickhl',{
 NeoBundleLazy 'osyo-manga/vim-textobj-from_regexp'
 
 NeoBundleLazy 'osyo-manga/vim-textobj-blockwise'
-
-" NeoBundle 'LeafCage/foldCC.vim'
 
 NeoBundleLazy 'kana/vim-operator-replace',{
 \   'autoload':{
@@ -438,33 +411,9 @@ NeoBundleLazy 'AndrewRadev/splitjoin.vim',{
 \   }
 \}
 
-
-" NeoBundle 'LeafCage/visiblemarks.vim'
-" NeoBundle 'kshenoy/vim-signature'
-
-" NeoBundleLazy "osyo-manga/vim-operator-exec_command"
-
-" NeoBundle 'yuratomo/gmail.vim'
-" NeoBundle 'vim-scripts/pdbvim'
-" NeoBundle 'fuenor/qfixgrep'
-" NeoBundle 'mattn/vim-oauth'
-" NeoBundle 'mattn/vim-metarw'
-" NeoBundle 'mattn/vim-metarw-redmine'
-" NeoBundle 'scrooloose/nerdtree'
-" NeoBundle 'kana/vim-textobj-indent'
-" NeoBundle 'haya14busa/vim-migemo'
-" NeoBundle 'haya14busa/incsearch-migemo.vim'
-" NeoBundle 'tmhedberg/matchit'
-" NeoBundle 'ctrlpvim/ctrlp.vim'
-" NeoBundle 'mattn/webapi-vim'
-" NeoBundleLazy 'osyo-manga/vim-operator-stay-cursor',{
+" NeoBundleLazy 'cespare/vim-toml',{
 " \   'autoload':{
-" \       'mappings':['<Plug>(operator-stay-cursor-yank)']
-" \   }
-" \}
-" NeoBundleLazy 'vim-scripts/dbext.vim',{
-" \   'autoload':{
-" \       'commands':['DB']
+" \       'filetypes':['toml']
 " \   }
 " \}
 

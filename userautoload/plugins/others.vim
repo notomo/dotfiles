@@ -135,10 +135,6 @@ omap ih <Plug>(textobj-line-i)
 let g:zenspace#default_mode = 'on'
 
 
-" vim-operator-stay-cursor
-" map y <Plug>(operator-stay-cursor-yank)
-
-
 omap aj <Plug>(textobj-multiblock-a)
 omap ij <Plug>(textobj-multiblock-i)
 vmap aj <Plug>(textobj-multiblock-a)
@@ -161,6 +157,13 @@ xmap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+')
 
 omap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
 xmap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
+
+
+omap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
+xmap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
+
+omap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
+xmap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
 
 omap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
 xmap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
@@ -214,18 +217,18 @@ call operator#user#define('search-forward', 'OperatorSearch')
 let g:loaded_matchparen = 1
 
 
-nnoremap <silent> <Space>pf :OverCommandLine<CR>%s///g<Left><Left><Left>
+nnoremap <Space>pf :OverCommandLine<CR>%s///g<Left><Left><Left>
 nnoremap <Space>pw :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 nnoremap <Space>py :OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
-vnoremap <silent> <Space>pf :OverCommandLine<CR>s///g<Left><Left><Left>
+vnoremap <Space>pf :OverCommandLine<CR>s///g<Left><Left><Left>
 vnoremap <Space>py :OverCommandLine<CR>s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
 let g:over_command_line_key_mappings = {
 \   "\<C-b>" : "\<BS>",
 \   "\<C-d>" : "\<Del>",
-\   "\<C-j>" : "\<Down>",
-\   "\<C-k>" : "\<Up>",
+\   "\<C-j>" : "\<End>\<C-u>\<Down>",
+\   "\<C-k>" : "\<End>\<C-u>\<Up>",
 \}
 
 
@@ -253,3 +256,5 @@ let g:splitjoin_join_mapping = ''
 
 nnoremap <Leader>sj :<C-u>SplitjoinJoin<CR>
 nnoremap <Leader>ss :<C-u>SplitjoinSplit<CR>
+
+let g:PreserveNoEOL = 1

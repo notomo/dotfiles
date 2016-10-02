@@ -5,7 +5,7 @@ nmap <Leader>g [git]
 nnoremap [git]d :<C-u>Gdiff<CR>
 nnoremap [git]s :<C-u>Gstatus<CR>:only<CR>
 nnoremap [git]l :<C-u>tabe %<CR>:Glog \| copen<CR>
-nnoremap [git]a :<C-u>Gwrite<CR>
+" nnoremap [git]a :<C-u>Gwrite<CR>
 " nnoremap [git]A :<C-u>Git add .<CR>
 nnoremap [git]x :<C-u>Git<Space>
 nnoremap [git]c :<C-u>Gcommit<CR>
@@ -39,13 +39,11 @@ nnoremap <Space>yt :<C-u>YankTicketNumberCommand<CR>
 
 autocmd MyAuGroup FileType gitcommit call s:gitcommit_my_settings()
 function! s:gitcommit_my_settings()"{{{
-    nmap <buffer> ga -
+    nmap <buffer> <Leader>ga -
 	nmap <buffer> dd D
 	nmap <buffer> o O
 	nmap <buffer> j <C-N>
 	nmap <buffer> k <C-P>
-    vmap <buffer> ga -
-    nmap <buffer> gm /modified<CR>
-    nmap <buffer> gn /new file<CR>
+    vmap <buffer> <Leader>ga -
 endfunction"}}}
 
