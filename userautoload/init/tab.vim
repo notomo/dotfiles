@@ -8,7 +8,7 @@ function! s:new_tab() abort
     tabe
     setlocal buftype=nofile noswapfile
 endfunction
-nnoremap <silent> [tab]t  :<C-u>call <SID>new_tab()<CR>
+nnoremap <silent> <Plug>(new_none_tab) :<C-u>call <SID>new_tab()<CR>
 " パスを指定して新しいタブで開く
 nnoremap [tab]n :<C-u>tabe<Space>
 " 前のバッファを新しいタブで開く
@@ -18,23 +18,30 @@ nnoremap <silent> [tab]p :<C-u>TabRecent<CR>
 
 " タブ移動モード設定
 " [tab]lhs_suffixでモードに入る
-function! s:tab_submode_mapping(lhs_suffix, rhs, map_only) abort
-    if a:map_only == 0
-        call submode#enter_with('tab', 'n', '', s:TAB_PREFIX_KEY . a:lhs_suffix, a:rhs)
+function! s:tab_submode_mapping(lhs_suffix, rhs, map_only, is_remapped) abort
+    if a:is_remapped == 1
+        let remap = "r"
+    else
+        let remap = ""
     endif
-    call submode#map('tab', 'n', '', a:lhs_suffix, a:rhs)
+    if a:map_only == 0
+        call submode#enter_with('tab', 'n', remap, s:TAB_PREFIX_KEY . a:lhs_suffix, a:rhs)
+    endif
+    call submode#map('tab', 'n', remap, a:lhs_suffix, a:rhs)
 endfunction
+" 新しい無名タブを開く
+call s:tab_submode_mapping("t", "<Plug>(new_none_tab)", 0, 1)
 " 右のタブに移動
-call s:tab_submode_mapping("l", "gt", 0)
+call s:tab_submode_mapping("l", "gt", 0, 0)
 " 右端のタブに移動
-call s:tab_submode_mapping("s", ":<C-u>tabr<CR>", 0)
+call s:tab_submode_mapping("s", ":<C-u>tabr<CR>", 0, 0)
 " 左端のタブに移動
-call s:tab_submode_mapping("e", ":<C-u>tabl<CR>", 0)
+call s:tab_submode_mapping("e", ":<C-u>tabl<CR>", 0, 0)
 " 左のタブに移動
-call s:tab_submode_mapping("a", "gT", 0)
-call s:tab_submode_mapping("h", "gT", 1)
+call s:tab_submode_mapping("a", "gT", 0, 0)
+call s:tab_submode_mapping("h", "gT", 1, 0)
 " タブを閉じる
-call s:tab_submode_mapping("q", ":<C-u>tabclose<CR>", 0)
+call s:tab_submode_mapping("q", ":<C-u>tabclose<CR>", 0, 0)
 
 " タブ移動(マウスボタン用)
 nnoremap <C-Tab> gt
