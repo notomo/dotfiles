@@ -502,3 +502,9 @@ for info in s:sub_cinoremap_info
 endfor
 
 "}}}
+
+" macro mapping"{{{
+nnoremap <Leader>; qa
+nnoremap <Leader><Leader> q
+nnoremap <Leader>. @a
+"}}}

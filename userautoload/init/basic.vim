@@ -47,13 +47,13 @@ set smarttab
 set formatoptions+=q
 set clipboard=unnamed
 
-set viewdir=~/.vim/tmp/view
-set foldmethod=manual
+" set viewdir=~/.vim/tmp/view
+" set foldmethod=manual
 " Save fold settings.
-autocmd MyAuGroup BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
-autocmd MyAuGroup BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
+" autocmd MyAuGroup BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
+" autocmd MyAuGroup BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
 " Don't save options.
-set viewoptions-=options
+" set viewoptions-=options
 autocmd MyAuGroup InsertEnter,CmdwinEnter * set noimdisable
 autocmd MyAuGroup InsertLeave,CmdwinLeave * set imdisable
 
