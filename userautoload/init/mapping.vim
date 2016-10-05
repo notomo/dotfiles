@@ -48,6 +48,11 @@ function! s:close_window() abort
     q
 endfunction
 nnoremap <C-S-F9> :<C-u>qa<CR>
+nnoremap <Space>ee :<C-u>call <SID>new_none_buffer()<CR>
+function! s:new_none_buffer() abort
+    enew
+    setlocal buftype=nofile noswapfile
+endfunction
 "}}}
 
 " swap :; mapping"{{{
@@ -338,7 +343,7 @@ function! s:yank_last_search() abort
 endfunction
 nnoremap [yank]/ :<C-u>call <SID>yank_last_search()<CR>
 function! s:yank_value(value) abort
-    let @+ = a:value
+    let @" = a:value
     echomsg "yank ". a:value
 endfunction
 "}}}
@@ -507,4 +512,5 @@ endfor
 nnoremap <Leader>; qa
 nnoremap <Leader><Leader> q
 nnoremap <Leader>. @a
+nnoremap <Leader>D qaq
 "}}}

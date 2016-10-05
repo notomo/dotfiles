@@ -73,9 +73,7 @@ nnoremap <silent> [unite]lb :<C-u>Unite -no-split block<CR>
 
 nnoremap <silent> [unite]ll :<C-u>Unite -no-split line<CR>
 
-nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
-
-nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
+" nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
 nnoremap <silent> [unite]ta :<C-u>Unite -no-split tab<CR>
 nnoremap <silent> [unite]ti :<C-u>Unite redmine<CR>
 
