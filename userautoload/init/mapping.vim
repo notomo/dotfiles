@@ -344,6 +344,9 @@ endfunction
 nnoremap [yank]/ :<C-u>call <SID>yank_last_search()<CR>
 function! s:yank_value(value) abort
     let @" = a:value
+    let @+ = a:value
+    let @0 = a:value
+    let @* = a:value
     echomsg "yank ". a:value
 endfunction
 "}}}
