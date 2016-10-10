@@ -12,11 +12,11 @@ endif
 call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundleLazy 'Yggdroot/indentLine',{
-\   'autoload':{
-\       'filetypes':['python']
-\   }
-\}
+" NeoBundleLazy 'Yggdroot/indentLine',{
+" \   'autoload':{
+" \       'filetypes':['python']
+" \   }
+" \}
 
 NeoBundleLazy 'Shougo/neocomplete.vim',{
 \   'on_i' : 1
@@ -283,7 +283,7 @@ NeoBundleLazy 'pasela/unite-webcolorname',{
 \   }
 \}
 
-NeoBundle 'Shougo/context_filetype.vim'
+" NeoBundle 'Shougo/context_filetype.vim'
 
 NeoBundleLazy 'Shougo/unite-help',{
 \   'autoload':{
@@ -411,11 +411,13 @@ NeoBundleLazy 'AndrewRadev/splitjoin.vim',{
 \   }
 \}
 
-" NeoBundleLazy 'cespare/vim-toml',{
+" NeoBundleLazy 'mattn/benchvimrc-vim',{
 " \   'autoload':{
-" \       'filetypes':['toml']
+" \       'commands':['BnenchVimrc']
 " \   }
 " \}
+
+NeoBundle 'cespare/vim-toml'
 
 call neobundle#end()
 NeoBundleCheck

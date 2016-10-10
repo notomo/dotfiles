@@ -32,6 +32,9 @@ nnoremap <C-F1> :<C-u>ColorToggle<CR>
 function! s:yank_current_function_name(name) abort
     if a:name != ""
         let @+ = a:name
+        let @* = a:name
+        let @0 = a:name
+        let @" = a:name
         echomsg "yank ".a:name
     else
         echomsg "no_function"

@@ -48,7 +48,7 @@ set formatoptions+=q
 set clipboard=unnamed
 
 " set viewdir=~/.vim/tmp/view
-" set foldmethod=manual
+set foldmethod=manual
 " Save fold settings.
 " autocmd MyAuGroup BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
 " autocmd MyAuGroup BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
