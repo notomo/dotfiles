@@ -196,7 +196,7 @@ NeoBundleLazy 'mattn/emmet-vim',{
 \   }
 \}
 
-NeoBundleLazy 'vim-scripts/camelcasemotion',{
+NeoBundleLazy 'bkad/CamelCaseMotion',{
 \   'autoload':{
 \       'mappings':['<Plug>CamelCaseMotion_']
 \   }

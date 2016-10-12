@@ -39,7 +39,7 @@ call s:tab_submode_mapping("s", ":<C-u>tabr<CR>", 0, 0)
 call s:tab_submode_mapping("e", ":<C-u>tabl<CR>", 0, 0)
 " 左のタブに移動
 call s:tab_submode_mapping("a", "gT", 0, 0)
-call s:tab_submode_mapping("h", "gT", 1, 0)
+call s:tab_submode_mapping("h", "gT", 0, 0)
 " タブを閉じる
 call s:tab_submode_mapping("q", ":<C-u>tabclose<CR>", 0, 0)
 

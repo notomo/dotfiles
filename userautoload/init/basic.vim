@@ -18,7 +18,7 @@ set nospell
 set nostartofline
 
 set autoindent
-set ruler
+set noruler
 set number         " 行番号を表示する
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]  " 行頭行末の左右移動で行をまたぐ
