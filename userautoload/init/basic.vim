@@ -76,6 +76,7 @@ function! s:get_buf_byte()
     endif
 endfunction
 
+autocmd MyAuGroup FileType * setlocal completeopt-=preview
 
 " set grepprg=grep\ -rnih 
 set grepprg=git\ grep\ -n\ $*
@@ -121,6 +122,9 @@ set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
 
 autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8
 autocmd MyAuGroup BufNewFile * set fileformat=unix
+
+let g:PHP_autoformatcomment = 0
+autocmd MyAuGroup FileType * setlocal fo=cql
 
 function! Vimdiff_in_newtab(...)
   if a:0 == 1

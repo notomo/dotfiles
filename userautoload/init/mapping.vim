@@ -124,6 +124,7 @@ nnoremap <C-o> <C-o>
 
 vnoremap <S-j> }
 vnoremap <S-k> {
+vnoremap <S-l> %
 nnoremap <silent> <S-l> :<C-u>keepjumps normal %<CR>
 nnoremap <silent> <S-j> :<C-u>keepjumps normal }<CR>
 nnoremap <silent> <S-k> :<C-u>keepjumps normal {<CR>
@@ -284,7 +285,6 @@ nnoremap <Space>ei :<C-u>DictionaryTranslate<Space>
 nnoremap <Space>em i<C-@>
 nnoremap <Space>ec :<C-u>!start ConEmu64.exe<CR>
 
-nnoremap <Space>eo :<C-u>e<Space>
 nnoremap <Space>ej :<C-u>execute "normal".line(".")."gg"<CR>
 "}}}
 
@@ -362,8 +362,9 @@ function! s:inner_around_vomap(lhs, rhs) abort
     silent execute join(["vnoremap", around_lhs, around_rhs])
     silent execute join(["onoremap", around_lhs, around_rhs])
 endfunction
-call s:inner_around_vomap("r", "w")
+call s:inner_around_vomap("f", "w")
 call s:inner_around_vomap("t", ">")
+call s:inner_around_vomap("T", "t")
 call s:inner_around_vomap("p", ")")
 call s:inner_around_vomap("l", "]")
 call s:inner_around_vomap("w", "\"")
@@ -416,7 +417,6 @@ inoremap <M-u> <C-g>u<C-r>=MyExecExCommand('undo', 'onemore')<CR>
 inoremap <M-r> <C-r>=MyExecExCommand('redo', 'onemore')<CR>
 
 " インデント
-inoremap <TAB> <C-t>
 inoremap <S-TAB> <C-d>
 
 " 電卓
@@ -478,6 +478,8 @@ let s:main_cinoremap_info = [
             \ {s:LHS_PREFIX_KEY : "k", s:RHS_KEY : "<End><C-u>"},
             \ {s:LHS_PREFIX_KEY : "u", s:RHS_KEY : "<C-u>"},
             \ {s:LHS_PREFIX_KEY : "c", s:RHS_KEY : "<End><C-u><C-u>"},
+            \ {s:LHS_PREFIX_KEY : "v", s:RHS_KEY : "<C-q>"},
+            \ {s:LHS_PREFIX_KEY : "g", s:RHS_KEY : "<C-x><C-]>"},
             \]
 for info in s:main_cinoremap_info
     call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, info[s:LHS_PREFIX_KEY], info[s:RHS_KEY])

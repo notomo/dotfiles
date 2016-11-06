@@ -1,0 +1,84 @@
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = {'windows' = 'make -f make_mingw32.mak'}
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'itchyny/vim-parenmatch'
+hook_add = '''
+let g:loaded_matchparen = 1
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-cursorword'
+
+[[plugins]]
+repo = 'kana/vim-submode'
+hook_add = '''
+let g:submode_keep_leaving_key = 1
+let g:submode_timeout = 0
+'''
+
+[[plugins]]
+repo = 'tpope/vim-capslock'
+
+[[plugins]]
+repo = 'vim-scripts/PreserveNoEOL'
+hook_add = 'let g:PreserveNoEOL = 1'
+
+[[plugins]]
+repo = 'vim-scripts/dbext.vim'
+hook_add = 'source ~/.vim/userautoload/plugins/dbext.vim'
+
+[[plugins]]
+repo = 'thinca/vim-singleton'
+
+[[plugins]]
+repo = 'thinca/vim-zenspace'
+hook_add = '''
+let g:zenspace#default_mode = 'on'
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = 'source ~/.vim/userautoload/plugins/dein/fugitive_mapping.vim'
+hook_post_source = 'source ~/.vim/userautoload/plugins/dein/fugitive_filetype_mapping.vim'
+
+[[plugins]]
+repo = 'LeafCage/yankround.vim'
+hook_add = '''
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+'''
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+if = "has('lua')"
+hook_add = 'source ~/.vim/userautoload/plugins/dein/neocomplete_setting.vim'
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+depends = 'neosnippet-snippets'
+hook_add = '''
+source ~/.vim/userautoload/plugins/dein/neosnippet_mapping.vim
+source ~/.vim/userautoload/plugins/dein/neosnippet_setting.vim
+'''
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+

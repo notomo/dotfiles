@@ -1,0 +1,528 @@
+
+[[plugins]]
+repo = 'thinca/vim-unite-history'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'tacroe/unite-mark'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-help'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'tsukkee/unite-tag'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'sgur/unite-qf'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'pasela/unite-webcolorname'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'lambdalisue/unite-grep-vcs'
+on_source = 'unite.vim'
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+on_map = {nox = '<Plug>'}
+hook_add = 'source ~/.vim/userautoload/plugins/dein/easymotion_mapping.vim'
+hook_source = '''
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_move_highlight = 1
+let g:EasyMotion_landing_highlight = 0
+let g:EasyMotion_inc_highlight = 1
+let g:EasyMotion_keys = 'asdghklqwertyuopzxcvbnmf;,./0'
+'''
+
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+if = "!has('nvim')"
+on_ft = 'python'
+hook_source = '''
+let g:jedi#completions_enabled = 1
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#rename_command = '<Nop>'
+let g:jedi#goto_assignments_command = '<Leader>dp'
+let g:jedi#usages_command = '<Leader>du'
+let g:jedi#popup_select_first = 0
+let g:jedi#documentation_command='<Nop>'
+let g:jedi#force_py_version = 3
+let g:jedi#goto_command='<Nop>'
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-entire'
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+omap ae <Plug>(textobj-entire-a)
+omap ie <Plug>(textobj-entire-i)
+vmap ae <Plug>(textobj-entire-a)
+vmap ie <Plug>(textobj-entire-i)
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-textobj-multiblock'
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+omap aj <Plug>(textobj-multiblock-a)
+omap ij <Plug>(textobj-multiblock-i)
+vmap aj <Plug>(textobj-multiblock-a)
+vmap ij <Plug>(textobj-multiblock-i)
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-textobj-blockwise'
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+
+[[plugins]]
+repo = 'bps/vim-textobj-python'
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+on_ft = 'python'
+hook_add = '''
+xmap <buffer> af <Plug>(textobj-python-function-a)
+omap <buffer> af <Plug>(textobj-python-function-a)
+xmap <buffer> if <Plug>(textobj-python-function-i)
+omap <buffer> if <Plug>(textobj-python-function-i)
+xmap <buffer> ac <Plug>(textobj-python-class-a)
+omap <buffer> ac <Plug>(textobj-python-class-a)
+xmap <buffer> ic <Plug>(textobj-python-class-i)
+omap <buffer> ic <Plug>(textobj-python-class-i)
+'''
+
+[[plugins]]
+repo = 'kana/vim-textobj-line'
+depends = 'vim-textobj-user'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+vmap ah <Plug>(textobj-line-a)
+vmap ih <Plug>(textobj-line-i)
+omap ah <Plug>(textobj-line-a)
+omap ih <Plug>(textobj-line-i)
+'''
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_map = {nx = '<Plug>(openbrowser-'}
+on_cmd = 'OpenBrowser'
+hook_add = 'source ~/.vim/userautoload/plugins/open-browser.vim'
+
+[[plugins]]
+repo = 'haya14busa/incsearch.vim'
+on_map = {nox = '<Plug>(incsearch-'}
+hook_add = '''
+map / <Plug>(incsearch-easymotion-/)
+nmap <Space>/ <Plug>(incsearch-easymotion-/)<C-r>"
+nmap s/ <Plug>(incsearch-easymotion-/)<C-r><C-w>
+map ssk <Plug>(incsearch-easymotion-?)
+nmap <Space>sk <Plug>(incsearch-easymotion-?)<C-r>"
+nmap sk <Plug>(incsearch-easymotion-?)<C-r><C-w>
+map ssj <Plug>(incsearch-easymotion-stay)
+nmap <Space>sj <Plug>(incsearch-easymotion-stay)<C-r>"
+nmap sj <Plug>(incsearch-easymotion-stay)<C-r><C-w>
+map   n <Plug>(incsearch-nohl-n)
+map   N <Plug>(incsearch-nohl-N)
+nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
+nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+'''
+hook_post_source = '''
+let g:incsearch#auto_nohlsearch = 1
+autocmd MyAuGroup User IncSearchEnter set noimdisable
+autocmd MyAuGroup User IncSearchLeave set imdisable
+IncSearchNoreMap <Tab> <Over>(incsearch-next)
+IncSearchNoreMap <S-Tab>  <Over>(incsearch-prev)
+IncSearchNoreMap <C-j> <Down>
+IncSearchNoreMap <C-k> <Up>
+IncSearchNoreMap <C-l> <Right>
+IncSearchNoreMap <Space> <CR>
+IncSearchNoreMap <S-Space> <Space>
+IncSearchNoreMap <C-n>  <Over>(incsearch-scroll-f)
+IncSearchNoreMap <C-p>    <Over>(incsearch-scroll-b)
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+on_map = {n = '<Plug>(anzu-n-with-echo)'}
+
+[[plugins]]
+repo = 'sgur/vim-py3diff'
+on_cmd = 'Diff'
+hook_post_source = '''
+set diffexpr=py3diff#diffexpr()
+'''
+
+[[plugins]]
+repo = 'tyru/restart.vim'
+on_cmd = 'Restart'
+hook_add = 'nnoremap <C-S-F4> :<C-u>Restart<CR>'
+hook_source = '''
+let g:restart_sessionoptions = 'curdir,help,tabpages'
+'''
+
+[[plugins]]
+repo = 'haya14busa/incsearch-easymotion.vim'
+depends = ['incsearch.vim', 'vim-easymotion']
+on_map = {nox = '<Plug>(incsearch-easymotion-'}
+
+[[plugins]]
+repo = 'bkad/CamelCaseMotion'
+on_map = {nox = '<Plug>CamelCaseMotion_'}
+hook_add = '''
+map <Leader>w <Plug>CamelCaseMotion_w
+map <Leader>b <Plug>CamelCaseMotion_b
+map <Leader>e <Plug>CamelCaseMotion_e
+'''
+
+[[plugins]]
+repo = 'joonty/vdebug'
+on_ft = ['python', 'php']
+hook_add = '''
+nnoremap [vdebug] <Nop>
+nmap <Space>d [vdebug]
+nnoremap [vdebug]a :<C-u>BreakpointRemove *<CR>
+'''
+hook_source = 'source ~/.vim/userautoload/plugins/dein/vdebug_setting.vim'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+on_ft = ['python', 'php']
+hook_add = '''
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_enable_signs = 1
+let g:syntastic_auto_loc_list = 3
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_php_checkers = ['php']
+let g:syntastic_mode_map = { 'passive_filetypes': ['tex'] }
+let g:syntastic_javascript_checker = "jshint"
+'''
+
+[[plugins]]
+repo = 'fuenor/im_control.vim'
+on_event = 'InsertEnter'
+
+[[plugins]]
+repo = 'LeafCage/qutefinger.vim'
+on_map = {n = '<Plug>'}
+hook_add = '''
+nnoremap [quickfix] <Nop>
+nmap <Space>x [quickfix]
+nmap [quickfix]c <Plug>(qutefinger-toggle-mode)
+nmap [quickfix]n <Plug>(qutefinger-next)
+nmap [quickfix]p <Plug>(qutefinger-prev)
+nmap [quickfix]x <Plug>(qutefinger-toggle-win)
+nmap [quickfix]f <Plug>(qutefinger-first)
+nmap [quickfix]l <Plug>(qutefinger-last)
+'''
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+depends = 'vim-operator-user'
+on_map = '<Plug>'
+hook_add = 'map r <Plug>(operator-replace)'
+
+[[plugins]]
+repo = 'tyru/operator-camelize.vim'
+depends = 'vim-operator-user'
+on_map = ['<Plug>(operator-camelize)', '<Plug>(operator-decamelize)', '<Plug>(operator-camelize-toggle)']
+hook_add = '''
+map <Leader>cc <Plug>(operator-camelize)
+map <Leader>hc <Plug>(operator-decamelize)
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-operator-exec_command'
+depends = 'vim-operator-user'
+on_func = ['operator#exec_command#mapexpr']
+hook_add = '''
+map <expr> <Space>eo operator#exec_command#mapexpr(":e %t")
+map <expr> <Space>et operator#exec_command#mapexpr(":tab drop %t")
+map <expr> <Space>eh operator#exec_command#mapexpr(":h %t")
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-textobj-from_regexp'
+depends = 'vim-textobj-user'
+on_func = ['textobj#from_regexp#mapexpr']
+hook_add = '''
+omap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+')
+xmap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+')
+omap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
+xmap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
+
+omap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
+xmap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
+omap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
+xmap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
+
+omap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
+xmap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
+omap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
+xmap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
+'''
+
+[[plugins]]
+repo = 'tyru/current-func-info.vim'
+hook_add = '''
+function! s:yank_current_function_name(name) abort
+    if a:name != ""
+        let @+ = a:name
+        let @* = a:name
+        let @0 = a:name
+        let @" = a:name
+        echomsg "yank ".a:name
+    else
+        echomsg "no_function"
+    endif
+endfunction
+nnoremap <silent> <Leader>f :<C-u>call <SID>yank_current_function_name(cfi#format("%s", "no_function"))<CR>
+'''
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround'
+depends = 'vim-operator-user'
+on_map = {nox = '<Plug>'}
+hook_add = 'source ~/.vim/userautoload/plugins/operator-surround.vim'
+
+[[plugins]]
+repo = 'thinca/vim-fontzoom'
+on_cmd = 'Fontzoom'
+hook_add = '''
+nnoremap <C-Up> :<C-u>Fontzoom+1<CR>
+nnoremap <C-Down> :<C-u>Fontzoom-1<CR>
+nnoremap <M-Down> :<C-u>Fontzoom!<CR>
+nnoremap <M-Up> :<C-u>Fontzoom!<CR>
+'''
+
+[[plugins]]
+repo = 'h1mesuke/vim-alignta'
+on_cmd = 'Alignta'
+hook_add = 'source ~/.vim/userautoload/plugins/vim-alignta.vim'
+
+[[plugins]]
+repo = 'lilydjwg/colorizer'
+on_ft = ['javascript', 'css', 'html', 'vim']
+on_cmd = 'ColorToggle'
+hook_add = '''
+nnoremap <C-F1> :<C-u>ColorToggle<CR>
+'''
+
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = 'javascript'
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+on_cmd = 'Qfreplace'
+hook_add = '''
+nnoremap <C-F2> :<C-u>Qfreplace<CR>
+'''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_map = {n = '<Plug>'}
+on_cmd = 'QuickRun'
+hook_add = '''
+nmap <silent> <Leader>r <Plug>(quickrun)
+nnoremap <Leader>ri :<C-u>QuickRun <<Space>
+vnoremap <silent> <Leader><S-R> :QuickRun -mode v<CR>
+'''
+hook_source = '''
+let g:quickrun_config = {'*':{
+\   'runmode': 'async:remote:vimproc',
+\   "hook/output_encode/enable" : 1,
+\   "hook/output_encode/encoding" : "cp932",
+\}}
+let g:quickrun_config['cs'] = {
+\   "hook/output_encode/encoding" : "sjis",
+\}
+let g:quickrun_config['vim'] = {
+\   "hook/output_encode/encoding" : "utf-8",
+\}
+'''
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+on_map = {nx = '<Plug>'}
+hook_add = '''
+nmap <Space>c <Plug>(caw:hatpos:toggle)
+vmap <Space>c <Plug>(caw:hatpos:toggle)
+'''
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+on_map = {n = '<Plug>'}
+hook_add = 'nmap <Leader>k <Plug>(ref-keyword)'
+hook_source = 'let g:ref_phpmanual_path = $Home . "/.vim/phpmanual"'
+
+[[plugins]]
+repo = 'vim-jp/vital.vim'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+depends = 'neomru.vim'
+hook_add = 'source ~/.vim/userautoload/plugins/dein/unite_mapping.vim'
+hook_source = 'source ~/.vim/userautoload/plugins/dein/unite_setting.vim'
+hook_post_source = 'source ~/.vim/userautoload/plugins/dein/unite_filetype_mapping.vim'
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+depends = 'unite.vim'
+on_map = {n = '<Plug>'}
+on_if = "isdirectory(bufname('%'))"
+hook_add = 'source ~/.vim/userautoload/plugins/dein/vimfiler_mapping.vim'
+hook_source = 'source ~/.vim/userautoload/plugins/dein/vimfiler_setting.vim'
+hook_post_source = 'source ~/.vim/userautoload/plugins/dein/vimfiler_filetype_mapping.vim'
+
+[[plugins]]
+repo = 'Shougo/vimshell.vim'
+on_map = {n = '<Plug>'}
+hook_add = 'source ~/.vim/userautoload/plugins/dein/vimshell_mapping.vim'
+hook_source = '''
+let g:vimshell_prompt_expr = 'getcwd()." > "'
+let g:vimshell_prompt_pattern = '^\f\+ > '
+'''
+hook_post_source = 'source ~/.vim/userautoload/plugins/dein/vimshell_filetype_mapping.vim'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_if = 1
+on_event = 'TextYankPost'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_if = 1
+
+[[plugins]]
+repo = 'Shougo/neoinclude.vim'
+on_if = 1
+
+[[plugins]]
+repo = 'AndrewRadev/splitjoin.vim'
+on_cmd = 'Splitjoin'
+hook_add = '''
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+nnoremap <Leader>sj :<C-u>SplitjoinJoin<CR>
+nnoremap <Leader>ss :<C-u>SplitjoinSplit<CR>
+'''
+
+[[plugins]]
+repo = 'AndrewRadev/switch.vim'
+on_cmd = 'Switch'
+hook_add = '''
+let g:switch_mapping = ""
+nnoremap <Space>tw :<C-u>Switch<CR>
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-over'
+on_cmd = 'OverCommandLine'
+hook_add = '''
+nnoremap <Space>pf :OverCommandLine<CR>%s///g<Left><Left><Left>
+nnoremap <Space>pw :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+nnoremap <Space>py :OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
+vnoremap <Space>pf :OverCommandLine<CR>s///g<Left><Left><Left>
+vnoremap <Space>py :OverCommandLine<CR>s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
+let g:over_command_line_key_mappings = {
+\   "\<C-b>" : "\<BS>",
+\   "\<C-d>" : "\<Del>",
+\   "\<C-j>" : "\<End>\<C-u>\<Down>",
+\   "\<C-k>" : "\<End>\<C-u>\<Up>",
+\}
+'''
+
+[[plugins]]
+repo = 'AndrewRadev/linediff.vim'
+on_cmd = 'Linediff'
+hook_add = 'vnoremap <Leader>dl :Linediff<CR>'
+
+[[plugins]]
+repo = 'sjl/gundo.vim'
+on_cmd = 'GundoToggle'
+hook_add = 'nnoremap <Leader>u :<C-u>GundoToggle<CR>'
+
+[[plugins]]
+repo = 'thinca/vim-tabrecent'
+on_cmd = 'TabRecent'
+
+[[plugins]]
+repo = 'OrangeT/vim-csharp'
+on_ft = 'cs'
+
+[[plugins]]
+repo = 'OmniSharp/omnisharp-vim'
+on_ft = 'cs'
+hook_source = '''
+let g:OmniSharp_host = "http://localhost:2000"
+let g:OmniSharp_server_type = 'roslyn'
+let g:OmniSharp_timeout = 1
+let g:OmniSharp_selector_ui = 'unite'
+let g:Omnisharp_stop_server = 0
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
+let g:OmniSharp_start_without_solution = 1
+let g:OmniSharp_typeLookupInPreview = 1
+'''
+
+[[plugins]]
+repo = 'mhinz/vim-signify'
+on_cmd = 'Signify'
+on_map = {n = '<plug>(signify-'}
+hook_add = '''
+let g:signify_disable_by_default = 0
+nmap <Leader>gj <Plug>(signify-next-hunk)zz
+nmap <Leader>gk <Plug>(signify-prev-hunk)zz
+nnoremap <Leader>gh :<C-u>SignifyToggleHighlight<CR>
+nnoremap <Leader>gt :<C-u>SignifyToggle<CR>
+'''
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+on_map = {n = '<Plug>(quickhl-manual-'}
+hook_add = '''
+nnoremap [highlight] <Nop>
+nmap <Leader>h [highlight]
+xnoremap [highlight] <Nop>
+xmap <Leader>h [highlight]
+nmap [highlight]t <Plug>(quickhl-manual-this)
+xmap [highlight]t <Plug>(quickhl-manual-this)
+nmap [highlight]r <Plug>(quickhl-manual-reset)
+xmap [highlight]r <Plug>(quickhl-manual-reset)
+nmap [highlight]a <Plug>(quickhl-manual-toggle)
+'''
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'shawncplus/phpcomplete.vim'
+on_ft = 'php'
+
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = 'json'
+
+[[plugins]]
+repo = 'tmhedberg/matchit'
+on_ft = 'html'
+

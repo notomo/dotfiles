@@ -1,19 +1,6 @@
-
-let s:bundle=neobundle#get('vim-easymotion')
-function! s:bundle.hooks.on_source(bundle)
-    let g:EasyMotion_do_mapping = 0
-    let g:EasyMotion_enter_jump_first = 1
-    let g:EasyMotion_move_highlight = 1
-    let g:EasyMotion_landing_highlight = 0
-    let g:EasyMotion_inc_highlight = 1
-    let g:EasyMotion_keys = 'asdghklqwertyuopzxcvbnmf;,./0'
-endfunction
-unlet s:bundle
-
-" マッピング
 map gj <Plug>(easymotion-j)
 map gk <Plug>(easymotion-k)
-map gn <Plug>(easymotion-anywhere)
+map gn <Plug>(easymotion-lineforward)
 map gN <Plug>(easymotion-linebackward)
 map gw <Plug>(easymotion-bd-w)
 map g<Enter> <Plug>(easymotion-bd-n)

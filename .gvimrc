@@ -1,13 +1,18 @@
 
 set shortmess+=I
 set guioptions+=b
+set guioptions+=a
 set vb t_vb=
 set guioptions-=T
 set guioptions-=m
 set background=dark
 colorscheme desert
 
-set guifont=MeiryoKe_Gothic:h14:cSHIFTJIS
+if has("mac")
+    set guifont=RictyDiminished-Regular:h18
+elseif has("win64") || has("win32")
+    set guifont=MeiryoKe_Gothic:h14:cSHIFTJIS
+endif
 
 hi TabLineFill guifg=#000000 guibg=#ffffff
 hi TabLine guifg=#aaaaaa guibg=#000000 gui=NONE
