@@ -54,11 +54,12 @@ let g:zenspace#default_mode = 'on'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = 'source ~/.vim/userautoload/plugins/dein/fugitive_mapping.vim'
-hook_post_source = 'source ~/.vim/userautoload/plugins/dein/fugitive_filetype_mapping.vim'
+# hook_post_source = 'source ~/.vim/userautoload/plugins/dein/fugitive_filetype_mapping.vim'
 
 [[plugins]]
 repo = 'LeafCage/yankround.vim'
 hook_add = '''
+let g:yankround_use_region_hl = 1
 nmap p <Plug>(yankround-p)
 xmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)

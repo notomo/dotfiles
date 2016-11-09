@@ -10,7 +10,6 @@ set nowrap
 
 set showtabline=2 " タブを常に表示
 set guioptions-=e " gVimでもテキストベースのタブページを使う
-" set incsearch  " インクリメンタルサーチを行う
 set ignorecase
 set smartcase
 set hlsearch
@@ -96,21 +95,6 @@ set browsedir=buffer
 
 set viminfo+=n~/.vim/tmp/viminfo.txt
 
-let s:add_paths=[
-\   "C:\\MinGW64\\bin",
-\   "C:\\MinGW64\\msys\\1.0\\bin",
-\]
-let s:paths=split($PATH,";")
-
-for add_path in s:add_paths
-    if index(s:paths,add_path)<0
-        let $PATH =$PATH.";".add_path
-    endif
-endfor
-
-" let $PATH = $PATH . ';C:\MinGW64\bin;C:\MinGW64\msys\1.0\bin'
-" set statusline=%F%m%r%h%w\%=[C=%c]\[TYPE=%Y]\[ENC=%{&enc}]\[FILE=%{&fileencoding}:%{&ff}]
-
 let g:file_format_map = {
 \   "unix" : "U",
 \   "dos"  : "D",
@@ -139,17 +123,8 @@ function! Vimdiff_in_newtab(...)
 endfunction
 command! -nargs=+ -complete=file MyDiff call Vimdiff_in_newtab(<f-args>)
 
-" if v:servername == 'GVIM1'
-"     let file = expand('%:p')
-    " bwipeout
-"     call remote_send('GVIM', '<ESC>:tabnew ' .file .'<CR>')
-"     call remote_foreground('GVIM')
-"     quit
-" endif
-
 autocmd MyAuGroup FileType text setlocal textwidth=0
 
-" set noendofline
 set notitle
 
 " Capture {{{

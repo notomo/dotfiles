@@ -24,4 +24,5 @@ augroup END
 runtime! userautoload/local/*.vim
 runtime! userautoload/init/*.vim
 runtime! userautoload/plugins/dein/others.vim
+runtime! userautoload/plugins/dein/fugitive_filetype_mapping.vim
 

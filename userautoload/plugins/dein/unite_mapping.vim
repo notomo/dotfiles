@@ -66,4 +66,4 @@ nnoremap <silent> [unite]gg  :<C-u>Unite -tab -no-split -no-quit grep:. -buffer-
 " nnoremap <silent> [unite]gl :<C-u>Unite -tab -no-split qf:ex=Glog<CR>
 nnoremap <silent> [unite]q :<C-u>Unite qf -tab -no-split -no-quit<CR>
 
-
+nnoremap <silent> [unite]v :<C-u>Unite variable -no-split -no-quit<CR>

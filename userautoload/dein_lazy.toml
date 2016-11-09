@@ -32,6 +32,11 @@ repo = 'lambdalisue/unite-grep-vcs'
 on_source = 'unite.vim'
 
 [[plugins]]
+repo = 'kmnk/vim-unite-giti'
+on_source = 'unite.vim'
+hook_add = 'source ~/.vim/userautoload/plugins/dein/easymotion_mapping.vim'
+
+[[plugins]]
 repo = 'easymotion/vim-easymotion'
 on_map = {nox = '<Plug>'}
 hook_add = 'source ~/.vim/userautoload/plugins/dein/easymotion_mapping.vim'
@@ -252,6 +257,7 @@ hook_add = '''
 map <expr> <Space>eo operator#exec_command#mapexpr(":e %t")
 map <expr> <Space>et operator#exec_command#mapexpr(":tab drop %t")
 map <expr> <Space>eh operator#exec_command#mapexpr(":h %t")
+map <expr> <Space>ev operator#exec_command#mapexpr(":Editvar %t")
 '''
 
 [[plugins]]
@@ -273,10 +279,16 @@ omap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
 xmap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
 omap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
 xmap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
+
+omap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
+xmap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
+omap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
+xmap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 '''
 
 [[plugins]]
 repo = 'tyru/current-func-info.vim'
+on_func = ['cfi#format']
 hook_add = '''
 function! s:yank_current_function_name(name) abort
     if a:name != ""
@@ -337,7 +349,7 @@ repo = 'thinca/vim-quickrun'
 on_map = {n = '<Plug>'}
 on_cmd = 'QuickRun'
 hook_add = '''
-nmap <silent> <Leader>r <Plug>(quickrun)
+nmap <silent> <Leader>R <Plug>(quickrun)
 nnoremap <Leader>ri :<C-u>QuickRun <<Space>
 vnoremap <silent> <Leader><S-R> :QuickRun -mode v<CR>
 '''
@@ -526,3 +538,56 @@ on_ft = 'json'
 repo = 'tmhedberg/matchit'
 on_ft = 'html'
 
+[[plugins]]
+repo = 'mattn/ssh-add-vim'
+on_cmd = ['SshAdd']
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+on_cmd = ['Agit']
+hook_add = '''
+let g:agit_no_default_mappings = 1
+let g:agit_enable_auto_show_commit = 1
+nnoremap <Leader>al :<C-u>Agit<CR>
+nnoremap <Leader>af :<C-u>AgitFile<CR>
+'''
+
+[[plugins]]
+repo = 'haya14busa/vim-debugger'
+on_cmd = ['DebugOn', 'Debugger']
+hook_post_source = '''
+cnoremap [debug] <Nop>
+cmap j; [debug]
+cnoremap [debug]s step<CR>
+cnoremap [debug]g cont<CR>
+cnoremap [debug]n next<CR>
+cnoremap [debug]i interrupt<CR>
+cnoremap [debug]q quit<CR>
+cnoremap [debug]c Current<CR>
+cnoremap [debug]f File<CR>
+'''
+
+[[plugins]]
+repo = 'thinca/vim-prettyprint'
+on_cmd = ['PP']
+on_func = ['PP']
+
+[[plugins]]
+repo = 'thinca/vim-editvar'
+on_cmd = ['Editvar']
+
+[[plugins]]
+repo = 'thinca/vim-themis'
+on_ft = 'vim'
+
+[[plugins]]
+repo = 'haya14busa/vim-operator-flashy'
+on_map = {nox = '<Plug>'}
+hook_add = '''
+let g:operator#flashy#flash_time = 350
+map y <Plug>(operator-flashy)
+nmap Y <Plug>(operator-flashy)$
+'''
+hook_post_source = '''
+highlight Flashy term=bold ctermbg=0 gui=reverse guifg=#ffbf50 guibg=#222222
+'''

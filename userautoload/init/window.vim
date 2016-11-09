@@ -52,9 +52,11 @@ call s:winsize_submode_mapping("a", "<C-w>>")
 " ‰¡•‚ğŒ¸‚ç‚·
 call s:winsize_submode_mapping("z", "<C-w><")
 " c•‚ğ‘‚â‚·
-call s:winsize_submode_mapping("k", "<C-w>+")
+call s:winsize_submode_mapping("h", "<C-w>+")
 " c•‚ğŒ¸‚ç‚·
-call s:winsize_submode_mapping("j", "<C-w>-")
+call s:winsize_submode_mapping("l", "<C-w>-")
+
+call submode#leave_with('winsize', 'n', '', 'j')
 
 " ‹Ï“™‰»
 nnoremap [winsize]e  <C-w>=

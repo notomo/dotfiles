@@ -10,7 +10,7 @@ nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
 nnoremap <Space>. @:
 vnoremap <Space>. @:
 
-nnoremap <S-y> y$
+" nnoremap <S-y> y$
 
 nnoremap <Space>z <C-x>
 nnoremap <Space>a <C-a>
@@ -25,6 +25,11 @@ nnoremap R r
 vnoremap R r
 
 nnoremap Q q:
+
+nnoremap sh gU
+nnoremap sl gu
+vnoremap sh gU
+vnoremap sl gu
 "}}}
 
 " buffer mapping"{{{
@@ -349,6 +354,11 @@ function! s:yank_value(value) abort
     let @* = a:value
     echomsg "yank ". a:value
 endfunction
+
+function! s:yank_last_input() abort
+    call s:yank_value(@.)
+endfunction
+nnoremap [yank]i :<C-u>call <SID>yank_last_input()<CR>
 "}}}
 
 " inner and around vomapping"{{{
@@ -407,7 +417,6 @@ inoremap <C-a> <Home>
 " 編集
 noremap! <C-b> <BS>
 noremap! <C-d> <Del>
-noremap! <C-v> <C-r>\"
 inoremap <C-o> <C-g>u<C-r>=MyExecExCommand('normal o')<CR>
 inoremap <M-j> <C-g>u<C-r>=MyExecExCommand('normal! J')<CR>
 inoremap <M-d> <C-g>u<C-r>=MyExecExCommand('normal! D','onemore')<CR>
