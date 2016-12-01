@@ -142,11 +142,10 @@ map   n <Plug>(incsearch-nohl-n)
 map   N <Plug>(incsearch-nohl-N)
 nmap  n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
 nmap  N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
+noremap <expr> s. incsearch#go({'pattern': histget('/', -1)})
 '''
 hook_post_source = '''
 let g:incsearch#auto_nohlsearch = 1
-autocmd MyAuGroup User IncSearchEnter set noimdisable
-autocmd MyAuGroup User IncSearchLeave set imdisable
 IncSearchNoreMap <Tab> <Over>(incsearch-next)
 IncSearchNoreMap <S-Tab>  <Over>(incsearch-prev)
 IncSearchNoreMap <C-j> <Down>
@@ -445,12 +444,17 @@ nnoremap <Space>tw :<C-u>Switch<CR>
 repo = 'osyo-manga/vim-over'
 on_cmd = 'OverCommandLine'
 hook_add = '''
-nnoremap <Space>pf :OverCommandLine<CR>%s///g<Left><Left><Left>
-nnoremap <Space>pw :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
-nnoremap <Space>py :OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+nnoremap [over] <Nop>
+nmap <Space>po [over]
+vnoremap [over] <Nop>
+vmap <Space>po [over]
 
-vnoremap <Space>pf :OverCommandLine<CR>s///g<Left><Left><Left>
-vnoremap <Space>py :OverCommandLine<CR>s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+nnoremap [over]f :OverCommandLine<CR>%s///g<Left><Left><Left>
+nnoremap [over]w :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+nnoremap [over]y :OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
+vnoremap [over]f :OverCommandLine<CR>s///g<Left><Left><Left>
+vnoremap [over]y :OverCommandLine<CR>s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
 
 let g:over_command_line_key_mappings = {
 \   "\<C-b>" : "\<BS>",
@@ -590,4 +594,11 @@ nmap Y <Plug>(operator-flashy)$
 '''
 hook_post_source = '''
 highlight Flashy term=bold ctermbg=0 gui=reverse guifg=#ffbf50 guibg=#222222
+'''
+
+[[plugins]]
+repo = "osyo-manga/vim-marching"
+hook_add = '''
+let g:marching_clang_command_option="-std=c++1y"
+let g:marching_enable_neocomplete = 1
 '''

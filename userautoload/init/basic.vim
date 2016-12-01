@@ -40,23 +40,13 @@ set textwidth=0 " 勝手に改行しないようにする
 set matchpairs& matchpairs+=<:>
 set shiftwidth=4
 set softtabstop=4
-" set noexpandtab
 set tabstop=4
 set smarttab
 set formatoptions+=q
 set clipboard=unnamed
 
-" set viewdir=~/.vim/tmp/view
 set foldmethod=manual
-" Save fold settings.
-" autocmd MyAuGroup BufWritePost * if expand('%') != '' && &buftype !~ 'nofile' | mkview | endif
-" autocmd MyAuGroup BufRead * if expand('%') != '' && &buftype !~ 'nofile' | silent loadview | endif
-" Don't save options.
-" set viewoptions-=options
-autocmd MyAuGroup InsertEnter,CmdwinEnter * set noimdisable
-autocmd MyAuGroup InsertLeave,CmdwinLeave * set imdisable
 
-" set autochdir
 autocmd MyAuGroup BufEnter * call AutoCD()
 function! AutoCD() abort
     try
@@ -77,17 +67,12 @@ endfunction
 
 autocmd MyAuGroup FileType * setlocal completeopt-=preview
 
-" set grepprg=grep\ -rnih 
 set grepprg=git\ grep\ -n\ $*
-" set grepprg=jvgrep
-" let $JVGREP_OUTPUT_ENCODING = 'sjis'
 
 set wrapscan
-" set nobackup
 " バックアップファイル用のディレクトリ
 set backupdir=~/.vim/tmp/backup/
 set noundofile
-" set undodir=~/.vim/tmp/undo/
 "スワップファイル用のディレクトリ
 set directory=~/.vim/tmp/swap/
 "ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
@@ -95,13 +80,8 @@ set browsedir=buffer
 
 set viminfo+=n~/.vim/tmp/viminfo.txt
 
-let g:file_format_map = {
-\   "unix" : "U",
-\   "dos"  : "D",
-\   "mac"  : "M",
-\}
+let g:file_format_map = {"unix" : "U", "dos" : "D", "mac" : "M"}
 
-" set statusline=%F%m%r%h%w\%=[%c]\[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
 set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
 
 autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8

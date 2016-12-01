@@ -4,7 +4,7 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
-build = {'windows' = 'make -f make_mingw32.mak'}
+build = {'windows' = 'mingw32-make.exe'}
 
 [[plugins]]
 repo = 'kana/vim-textobj-user'

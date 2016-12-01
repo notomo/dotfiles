@@ -31,11 +31,9 @@ let g:unite_source_file_mru_filename_format = ''
 let g:unite_source_find_command = 'C:/Program Files/Git/usr/bin/find.exe'
 let g:unite_source_file_async_command = 'C:/Program Files/Git/usr/bin/find.exe'
 " let g:unite_source_find_command = 'C:/MinGW64/msys/1.0/bin/find.exe'
-
-" unite grepにjvgrepを使う
-" if executable('jvgrep')
-"     let g:unite_source_grep_command = 'jvgrep'
-"     let g:unite_source_grep_default_opts = '-r'
-"     let g:unite_source_grep_recursive_opt = '-R'
-" endif
-
+let g:unite_source_grep_encoding = 'utf-8'
+if executable('pt')
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
+endif

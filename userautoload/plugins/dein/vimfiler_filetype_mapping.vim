@@ -34,7 +34,6 @@ function! s:vimfiler_my_settings()
     nmap <buffer>sm <Plug>(vimfiler_toggle_mark_current_line)
     nmap <buffer><Space>pu <Plug>(vimfiler_pushd)
     nmap <buffer><Space>po <Plug>(vimfiler_popd)
-    " nmap <buffer>f <Plug>(vimfiler_find)
     nmap <buffer>cd <Plug>(vimfiler_cd_input_directory)
     vmap <buffer>sm <Plug>(vimfiler_toggle_mark_selected_lines)
 endfunction

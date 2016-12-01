@@ -10,8 +10,6 @@ nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
 nnoremap <Space>. @:
 vnoremap <Space>. @:
 
-" nnoremap <S-y> y$
-
 nnoremap <Space>z <C-x>
 nnoremap <Space>a <C-a>
 vnoremap <Space>z <C-x>gv
@@ -36,7 +34,7 @@ vnoremap sl gu
 nnoremap <Space>w :<C-u>w<CR>
 nnoremap <Space>q :<C-u>call <SID>close_window()<CR>
 nnoremap <Space>b <C-^>
-nnoremap <Space>rn :<C-u>file<Space>
+nnoremap <Space>er :<C-u>file<Space>
 function! s:close_window() abort
     if tabpagenr("$") > 1
         q
@@ -78,7 +76,6 @@ nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
 nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
 nnoremap <Space>Gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
 nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
-" nnoremap <Space>G :<C-u>grep  **/*.<Left><Left><Left><Left><Left><Left>
 "}}}
 
 " ESC mapping"{{{
@@ -299,16 +296,38 @@ nmap <Space>p [substitute]
 vnoremap [substitute] <Nop>
 vmap <Space>p [substitute]
 
-nnoremap [substitute]e :<C-u>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
-vnoremap [substitute]e :<C-u>'<,'>s/\([^[:blank:]+*><=%/!]\+\)\([+*><=%/!]=\{,2}\)\([^[:blank:]+*><=%/!]\+\)/\1 \2 \3/g<CR>
-
-nnoremap [substitute]c :<C-u>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
-vnoremap [substitute]c :<C-u>'<,'>s/\(\S\+\),\(\S\+\)/\1, \2/g<CR>
-
-nnoremap [substitute]n :<C-u>s/^\n//g<CR>
-vnoremap [substitute]n :<C-u>'<,'>s/^\n//g<CR>
-
+nnoremap [substitute]f  :<C-u>%s///g<Left><Left><Left>
+vnoremap [substitute]f  :s///g<Left><Left><Left>
+nnoremap [substitute]w :<C-u>%s///g<Left><Left><Left><C-r><C-w><Right>
 nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s///g<Left><Left><Left><C-r>"<Right>
+"}}}
+
+" replace mapping"{{{
+nnoremap [replace] <Nop>
+nmap <Space>r [replace]
+vnoremap [replace] <Nop>
+vmap <Space>r [replace]
+
+function! s:nvnoremap_replace(lhs, pattern, string) abort
+    let substitute_string = "s/" . a:pattern . "/" . a:string . "/g"
+    silent execute join(["nnoremap", "[replace]" . a:lhs, ":\<C-u>", substitute_string, "\<CR>"])
+    silent execute join(["vnoremap", "[replace]" . a:lhs, ":\<C-u>", "'<,'>", substitute_string,  "\<CR>"])
+endfunction
+
+let s:REPLACE_LHS_KEY = "lhs"
+let s:REPLACE_PATTERN_KEY = "pat"
+let s:REPLACE_STRING_KEY = "str"
+let s:replace_map_info = [
+\   {s:REPLACE_LHS_KEY : "c", s:REPLACE_PATTERN_KEY : "\\(\\S\\+\\),\\(\\S\\+\\)", s:REPLACE_STRING_KEY : "\\1, \\2"},
+\   {s:REPLACE_LHS_KEY : "n", s:REPLACE_PATTERN_KEY : "^\\n", s:REPLACE_STRING_KEY : ""},
+\]
+if exists("g:replace_map_info")
+    let s:replace_map_info += g:replace_map_info
+endif
+
+for info in s:replace_map_info
+    call s:nvnoremap_replace(info[s:REPLACE_LHS_KEY], info[s:REPLACE_PATTERN_KEY], info[s:REPLACE_STRING_KEY])
+endfor
 "}}}
 
 " yank mapping"{{{
@@ -334,7 +353,8 @@ endfunction
 nnoremap [yank]f :<C-u>call <SID>yank_file_name()<CR>
 
 function! s:yank_file_path() abort
-    call s:yank_value(expand("%:p"))
+    let file_path = substitute(expand("%:p"), "\\", "/", "g")
+    call s:yank_value(file_path)
 endfunction
 nnoremap [yank]p :<C-u>call <SID>yank_file_path()<CR>
 

@@ -5,23 +5,6 @@ function! MakeTabLine() "{{{
   let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
   let sep = ''  " タブ間の区切り
   let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
-  " let info = ''  " 好きな情報を入れる
-
-  "FoldCCnavi
-  " if exists('*FoldCCnavi')
-  "   let info .= '%#TabLineInfo#'.substitute(FoldCCnavi()[-60:],'\s>\s','%#TabLineFill#> %#TabLineInfo#','g').'%0* '
-  " endif
-
-  " if exists('g:cwd_map')
-	 "  let current_directory = s:cwd_mapping(g:cwd_map)
-  " else
-	 "  let current_directory = getcwd()
-  " endif
-  "カレントディレクトリ
-  " let info .= '['.fnamemodify(current_directory, ":~") . ']'
-  " echomsg string(split(getcwd(),'\\'))
-
-  " return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
   return tabpages
 endfunction "}}}
 
@@ -54,7 +37,5 @@ function! s:tabpage_label(tabpagenr) "{{{
 
   let label = fname . nomod
 
-  " return '%' . a:tabpagenr . 'T' . hi .a:tabpagenr.': '. curbufnr.'-' . label . '%T%#TabLineFill#'
-  " return '%' . a:tabpagenr . 'T' . hi .a:tabpagenr.': '.label .' '. '%T%#TabLineFill#'
   return '%' . a:tabpagenr . 'T' . hi .' '.label .' '. '%T%#TabLineFill#'
 endfunction "}}}
