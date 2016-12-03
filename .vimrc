@@ -4,9 +4,8 @@ set encoding=utf-8
 if has('vim_starting')
     set nocompatible
     set runtimepath+=~/.vim/
-    set runtimepath+=~/.vim/after/
-    set runtimepath+=~/.vim/after/plugin/*
-    set runtimepath+=~/.vim/after/syntax/*
+    set runtimepath+=~/.vim/dein/repos/*
+    set runtimepath+=~/.vim/after/*
 endif
 
 let g:mapleader = ","
