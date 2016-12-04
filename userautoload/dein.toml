@@ -114,3 +114,7 @@ repo = 'osyo-manga/shabadou.vim'
 #
 # [[plugins]]
 # repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'vim-jp/vital.vim'
+

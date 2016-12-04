@@ -20,7 +20,7 @@ repo = 'tsukkee/unite-tag'
 on_source = 'unite.vim'
 
 [[plugins]]
-repo = 'sgur/unite-qf'
+repo = 'osyo-manga/unite-quickfix'
 on_source = 'unite.vim'
 
 [[plugins]]
@@ -387,6 +387,7 @@ let g:quickrun_config['cs'] = {
 let g:quickrun_config['vim'] = {
 \   "hook/output_encode/encoding" : "utf-8",
 \}
+
 '''
 
 [[plugins]]
@@ -402,9 +403,6 @@ repo = 'thinca/vim-ref'
 on_map = {n = '<Plug>'}
 hook_add = 'nmap <Leader>k <Plug>(ref-keyword)'
 hook_source = 'let g:ref_phpmanual_path = $Home . "/.vim/phpmanual"'
-
-[[plugins]]
-repo = 'vim-jp/vital.vim'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -677,3 +675,33 @@ nmap <M-k> <Plug>(textmanip-duplicate-up)
 xmap <CR> <Plug>(textmanip-toggle-mode)
 '''
 
+# [[plugins]]
+# repo = 'osyo-manga/vim-watchdogs'
+# on_ft = ['php']
+# hook_source = '''
+# let g:watchdogs_check_BufWritePost_enable_on_wq = 0
+# let g:watchdogs_check_BufWritePost_enable = 1
+#
+# let g:watchdogs_check_BufWritePost_enables = {
+# \   "php" : 1,
+# \   "python" : 1,
+# \}
+#
+# let g:watchdogs_check_CursorHold_enable = 0
+#
+# let g:watchdogs_check_CursorHold_enables = {
+# \   "php" : 0,
+# \   "python" : 0,
+# \}
+#
+# let g:quickrun_config["cpp/watchdogs_checker"] = {
+# \   "type" : "watchdogs_checker/g++",
+# \   "cmdopt" : "-Wall",
+# \}
+#
+# call watchdogs#setup(g:quickrun_config)
+# '''
+
+# [[plugins]]
+# repo = 'cohama/vim-hier'
+# on_ft = ['php']
