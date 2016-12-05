@@ -6,7 +6,7 @@ nmap <Space>u [unite]
 "開いていない場合はカレントディレクトリ
 nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -no-split -buffer-name=files file<CR>
 "バッファ一覧
-nnoremap <silent> [unite]bf :<C-u>Unite -no-split buffer<CR>
+nnoremap <silent> [unite]b :<C-u>Unite -no-split buffer<CR>
 "クラス・関数（アウトライン）一覧
 nnoremap <silent> [unite]o :<C-u>Unite -no-split outline<CR>
 "レジスタ一覧
@@ -16,9 +16,9 @@ nnoremap <silent> [unite]r :<C-u>Unite -no-split file_mru<CR>
 "マーク一覧
 nnoremap <silent> [unite]ma :<C-u>Unite -no-split mark<CR>
 " ブックマーク一覧
-nnoremap <silent> [unite]bm :<C-u>Unite -no-split bookmark<CR>
+nnoremap <silent> [unite]p :<C-u>Unite -no-split bookmark<CR>
 "ブックマークに追加
-nnoremap <silent> [unite]ba :<C-u>UniteBookmarkAdd<CR>
+nnoremap <silent> [unite]<Space> :<C-u>UniteBookmarkAdd<CR><CR><CR>
 
 nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
 
@@ -27,7 +27,7 @@ nnoremap <silent> [unite]lb :<C-u>Unite -no-split block<CR>
 
 nnoremap <silent> [unite]ll :<C-u>Unite -no-split line<CR>
 
-nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
+" nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
 
 nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
 nnoremap <silent> [unite]ta :<C-u>Unite -no-split tab<CR>
@@ -64,6 +64,6 @@ nnoremap <silent> [unite]gg  :<C-u>Unite -tab -no-split -no-quit grep:. -buffer-
 " command! GlogFixCommand call GlogFix()
 
 " nnoremap <silent> [unite]gl :<C-u>Unite -tab -no-split qf:ex=Glog<CR>
-nnoremap <silent> [unite]q :<C-u>Unite qf -tab -no-split -no-quit<CR>
+" nnoremap <silent> [unite]q :<C-u>Unite qf -tab -no-split -no-quit<CR>
 
 nnoremap <silent> [unite]v :<C-u>Unite variable -no-split -no-quit<CR>

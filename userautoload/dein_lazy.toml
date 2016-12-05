@@ -470,12 +470,12 @@ nmap <Space>po [over]
 vnoremap [over] <Nop>
 vmap <Space>po [over]
 
-nnoremap [over]f :OverCommandLine<CR>%s///g<Left><Left><Left>
-nnoremap [over]w :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
-nnoremap [over]y :OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+nnoremap [over]f :OverCommandLine<CR>%s/\v//g<Left><Left><Left>
+nnoremap [over]w :OverCommandLine<CR>%s/\v<C-r><C-w>//g<Left><Left>
+vnoremap [over]y :OverCommandLine<CR>%s/\v//g<Left><Left><Left><C-r>"<Right>
 
-vnoremap [over]f :OverCommandLine<CR>s///g<Left><Left><Left>
-vnoremap [over]y :OverCommandLine<CR>s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+vnoremap [over]f :OverCommandLine<CR>s/\v%V%V//g<Left><Left><Left><Left><Left>
+vnoremap [over]y :OverCommandLine<CR>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right>
 
 let g:over_command_line_key_mappings = {
 \   "\<C-b>" : "\<BS>",

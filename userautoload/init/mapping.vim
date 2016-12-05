@@ -296,10 +296,11 @@ nmap <Space>p [substitute]
 vnoremap [substitute] <Nop>
 vmap <Space>p [substitute]
 
-nnoremap [substitute]f  :<C-u>%s///g<Left><Left><Left>
-vnoremap [substitute]f  :s///g<Left><Left><Left>
-nnoremap [substitute]w :<C-u>%s///g<Left><Left><Left><C-r><C-w><Right>
-nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s///g<Left><Left><Left><C-r>"<Right>
+nnoremap [substitute]f  :<C-u>%s/\v//g<Left><Left><Left>
+vnoremap [substitute]f  :s/\v%V%V//g<Left><Left><Left><Left><Left>
+nnoremap [substitute]w :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right>
+nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right>
+nnoremap [substitute]y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right>
 "}}}
 
 " replace mapping"{{{
@@ -309,17 +310,19 @@ vnoremap [replace] <Nop>
 vmap <Space>r [replace]
 
 function! s:nvnoremap_replace(lhs, pattern, string) abort
-    let substitute_string = "s/" . a:pattern . "/" . a:string . "/g"
+    let substitute_string = "s/\\v" . a:pattern . "/" . a:string . "/g"
+    let visual_substitute_string = "s/\\v%V" . a:pattern . "%V/" . a:string . "/g"
     silent execute join(["nnoremap", "[replace]" . a:lhs, ":\<C-u>", substitute_string, "\<CR>"])
-    silent execute join(["vnoremap", "[replace]" . a:lhs, ":\<C-u>", "'<,'>", substitute_string,  "\<CR>"])
+    silent execute join(["vnoremap", "[replace]" . a:lhs, ":\<C-u>", "'<,'>", visual_substitute_string,  "\<CR>"])
 endfunction
 
 let s:REPLACE_LHS_KEY = "lhs"
 let s:REPLACE_PATTERN_KEY = "pat"
 let s:REPLACE_STRING_KEY = "str"
 let s:replace_map_info = [
-\   {s:REPLACE_LHS_KEY : "c", s:REPLACE_PATTERN_KEY : "\\(\\S\\+\\),\\(\\S\\+\\)", s:REPLACE_STRING_KEY : "\\1, \\2"},
+\   {s:REPLACE_LHS_KEY : "c", s:REPLACE_PATTERN_KEY : "(\\S+),(\\S+)", s:REPLACE_STRING_KEY : "\\1, \\2"},
 \   {s:REPLACE_LHS_KEY : "n", s:REPLACE_PATTERN_KEY : "^\\n", s:REPLACE_STRING_KEY : ""},
+\   {s:REPLACE_LHS_KEY : "p", s:REPLACE_PATTERN_KEY : "\\\\", s:REPLACE_STRING_KEY : "\\/"},
 \]
 if exists("g:replace_map_info")
     let s:replace_map_info += g:replace_map_info
@@ -432,7 +435,7 @@ noremap! <M-b> <C-Left>
 noremap! <M-f> <C-Right>
 noremap! <C-e> <End>
 inoremap <C-a> <C-r>=MyExecExCommand('normal ^')<CR>
-inoremap <C-a> <Home>
+cnoremap <C-a> <Home>
 
 " 編集
 noremap! <C-b> <BS>
