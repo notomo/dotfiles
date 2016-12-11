@@ -73,8 +73,9 @@ set wrapscan
 " バックアップファイル用のディレクトリ
 set backupdir=~/.vim/tmp/backup/
 set noundofile
+set noswapfile
 "スワップファイル用のディレクトリ
-set directory=~/.vim/tmp/swap/
+" set directory=~/.vim/tmp/swap/
 "ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
 set browsedir=buffer
 

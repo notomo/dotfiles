@@ -164,9 +164,6 @@ on_map = {n = '<Plug>(anzu-n-with-echo)'}
 [[plugins]]
 repo = 'sgur/vim-py3diff'
 on_cmd = 'Diff'
-hook_post_source = '''
-set diffexpr=py3diff#diffexpr()
-'''
 
 [[plugins]]
 repo = 'tyru/restart.vim'

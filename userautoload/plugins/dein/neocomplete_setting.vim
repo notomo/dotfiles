@@ -50,5 +50,9 @@ let g:neocomplete#sources#omni#input_patterns.php =
 
 let g:neocomplete#force_overwrite_completefunc = 1
 
-inoremap <expr> j<Space>g neocomplete#start_manual_complete('omni')
+inoremap <expr> j<Space>o neocomplete#start_manual_complete('omni')
+inoremap <expr> j<Space>; neocomplete#undo_completion()
+inoremap <expr> j<Space>. neocomplete#complete_common_string()
 
+let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
+let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'

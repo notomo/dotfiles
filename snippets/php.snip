@@ -1,9 +1,17 @@
 snippet function
 alias public_function
 abbr public function () {}
-	${1:public }function ${2:#:FunctionName}(${3})
+	${1:public }${2:#:static }function ${3:#:FunctionName}(${4})
 	{
-		${4:TARGET}
+		${5:TARGET}
+	}
+
+snippet public_static_function
+alias static
+abbr public static function () {}
+	${1:public }${2:static }function ${3:#:FunctionName}(${4})
+	{
+		${5:TARGET}
 	}
 
 snippet private_function

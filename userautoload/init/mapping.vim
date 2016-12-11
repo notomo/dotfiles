@@ -82,7 +82,7 @@ nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><L
 inoremap <silent> jj <ESC>
 inoremap <silent> っｊ <ESC>
 inoremap <silent> ｊｊ <ESC>
-cnoremap <silent> jj <C-u><ESC>
+cnoremap <silent> jj <C-c>
 onoremap jj <ESC>
 vnoremap v <ESC>
 snoremap jj <ESC>
@@ -256,34 +256,6 @@ endfunction
 command! OpenWorkTextCommand call OpenWorkText()
 nnoremap <Space>ew :<C-u>OpenWorkTextCommand<CR>
 
-function! s:DictionaryTranslate(...)
-    let l:word = a:0 == 0 ? expand('<cword>') : a:1
-    call histadd('cmd', 'DictionaryTranslate '  . l:word)
-    if l:word ==# '' | return | endif
-    let l:gene_path = expand('~/.vim/dict/gene.txt')
-    let l:jpn_to_eng = l:word !~? '^[a-z_]\+$'
-    let l:output_option = l:jpn_to_eng ? '-B 1' : '-A 1' " 和英 or 英和
-
-    silent pedit Translate\ Result | wincmd P | %delete " 前の結果が残っていることがあるため
-    setlocal buftype=nofile noswapfile modifiable
-    silent execute 'read !grep -ihw' l:output_option l:word l:gene_path
-    silent 0delete
-    let l:esc = @z
-    let @z = ''
-    while search("^" . l:word . "$", "Wc") > 0 " 完全一致したものを上部に移動
-        silent execute line('.') - l:jpn_to_eng . "delete Z 2"
-    endwhile
-    silent 0put z
-    let @z = l:esc
-    silent call append(line('.'), '==')
-    silent 1delete
-    silent wincmd p
-endfunction
-command! -nargs=? -complete=command DictionaryTranslate call <SID>DictionaryTranslate(<f-args>)
-
-nnoremap <Space>en :<C-u>DictionaryTranslate<CR>
-nnoremap <Space>ei :<C-u>DictionaryTranslate<Space>
-
 nnoremap <Space>em i<C-@>
 nnoremap <Space>ec :<C-u>!start ConEmu64.exe<CR>
 
@@ -309,11 +281,16 @@ nmap <Space>r [replace]
 vnoremap [replace] <Nop>
 vmap <Space>r [replace]
 
+nnoremap [replace]e :<C-u>v//d<Left><Left>
+vnoremap [replace]e :v//d<Left><Left>
+nnoremap [replace]i :<C-u>g//d<Left><Left>
+vnoremap [replace]i :g//d<Left><Left>
+
 function! s:nvnoremap_replace(lhs, pattern, string) abort
     let substitute_string = "s/\\v" . a:pattern . "/" . a:string . "/g"
     let visual_substitute_string = "s/\\v%V" . a:pattern . "%V/" . a:string . "/g"
-    silent execute join(["nnoremap", "[replace]" . a:lhs, ":\<C-u>", substitute_string, "\<CR>"])
-    silent execute join(["vnoremap", "[replace]" . a:lhs, ":\<C-u>", "'<,'>", visual_substitute_string,  "\<CR>"])
+    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, ":\<C-u>", substitute_string, "\<CR>:nohlsearch\<CR>"])
+    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, ":\<C-u>", "'<,'>", visual_substitute_string,  "\<CR>:nohlsearch\<CR>"])
 endfunction
 
 let s:REPLACE_LHS_KEY = "lhs"

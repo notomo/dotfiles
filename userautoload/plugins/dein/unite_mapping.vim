@@ -33,7 +33,7 @@ nnoremap <silent> [unite]j :<C-u>Unite -no-split jump<CR>
 nnoremap <silent> [unite]ta :<C-u>Unite -no-split tab<CR>
 nnoremap <silent> [unite]ti :<C-u>Unite redmine<CR>
 
-nnoremap <silent> [unite]sf :<C-u>Unite -no-split file_rec/async<CR>
+nnoremap <silent> [unite]sf :<C-u>Unite -no-split file_rec<CR>
 nnoremap <silent> [unite]sg :<C-u>Unite -no-split file_rec/git<CR>
 
 nnoremap <silent> [unite]sv :<C-u>UniteSessionSave<CR>

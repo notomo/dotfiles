@@ -1,67 +1,67 @@
-"ƒEƒBƒ“ƒhƒEˆÚ“®"{{{
+"ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç§»å‹•"{{{
 let s:WINMOVE_PREFIX_KEY = "m"
 nnoremap [winmove] <Nop>
 silent execute join(["nmap", s:WINMOVE_PREFIX_KEY, "[winmove]"])
 
-" ¶
+" å·¦
 nnoremap [winmove]a <C-w>h
-" ‰º
+" ä¸‹
 nnoremap [winmove]j <C-w>j
 nnoremap [winmove]x <C-w>j
-" ã
+" ä¸Š
 nnoremap [winmove]k <C-w>k
 nnoremap [winmove]w <C-w>k
-" ‰E
+" å³
 nnoremap [winmove]l <C-w>l
-" Ÿ
+" æ¬¡
 nnoremap [winmove]n <C-w><C-w>
-" ‘O
+" å‰
 nnoremap [winmove]p <C-w>p
-" “ü‚ê‘Ö‚¦
+" å…¥ã‚Œæ›¿ãˆ
 nnoremap [winmove]r <C-w>r
 "}}}
 
-"ƒEƒBƒ“ƒhƒE•ªŠ„E‰ğœ"{{{
+"ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆ†å‰²ãƒ»è§£é™¤"{{{
 nnoremap [window] <Nop>
 nmap <Space>s [window]
 
-" ‰¡•ªŠ„
+" æ¨ªåˆ†å‰²
 nnoremap [window]h :<C-u>split<CR>
-" c•ªŠ„
+" ç¸¦åˆ†å‰²
 nnoremap [window]v :<C-u>vsplit<CR>
-" •ªŠ„‰ğœ
+" åˆ†å‰²è§£é™¤
 nnoremap [window]o :<C-u>only<CR>
-" ƒvƒŒƒrƒ…[ƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚é
+" ãƒ—ãƒ¬ãƒ“ãƒ¥ãƒ¼ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
 nnoremap [window]p <C-w>z
 "}}}
 
-" ƒEƒBƒ“ƒhƒEƒTƒCƒY•ÏX"{{{
+" ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºå¤‰æ›´"{{{
 let s:WINSIZE_PREFIX_KEY = s:WINMOVE_PREFIX_KEY . "m"
 nnoremap [winsize] <Nop>
 silent execute join(["nmap", s:WINSIZE_PREFIX_KEY, "[winsize]"])
 
-" ƒEƒBƒ“ƒhƒEƒTƒCƒY•ÏXƒ‚[ƒhİ’è
-" [winsize]lhs_suffix‚Åƒ‚[ƒh‚É“ü‚é
-" ƒ‚[ƒh“à‚Å‚Ílhs_suffix‚Ì‚İ‚Å“®ì
+" ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºå¤‰æ›´ãƒ¢ãƒ¼ãƒ‰è¨­å®š
+" [winsize]lhs_suffixã§ãƒ¢ãƒ¼ãƒ‰ã«å…¥ã‚‹
+" ãƒ¢ãƒ¼ãƒ‰å†…ã§ã¯lhs_suffixã®ã¿ã§å‹•ä½œ
 function! s:winsize_submode_mapping(lhs_suffix, rhs) abort
     call submode#enter_with('winsize', 'n', '', s:WINSIZE_PREFIX_KEY . a:lhs_suffix, a:rhs)
     call submode#map('winsize', 'n', '', a:lhs_suffix, a:rhs)
 endfunction
-" ‰¡•‚ğ‘‚â‚·
+" æ¨ªå¹…ã‚’å¢—ã‚„ã™
 call s:winsize_submode_mapping("a", "<C-w>>")
-" ‰¡•‚ğŒ¸‚ç‚·
+" æ¨ªå¹…ã‚’æ¸›ã‚‰ã™
 call s:winsize_submode_mapping("z", "<C-w><")
-" c•‚ğ‘‚â‚·
+" ç¸¦å¹…ã‚’å¢—ã‚„ã™
 call s:winsize_submode_mapping("h", "<C-w>+")
-" c•‚ğŒ¸‚ç‚·
+" ç¸¦å¹…ã‚’æ¸›ã‚‰ã™
 call s:winsize_submode_mapping("l", "<C-w>-")
 
 call submode#leave_with('winsize', 'n', '', 'j')
 
-" ‹Ï“™‰»
+" å‡ç­‰åŒ–
 nnoremap [winsize]e  <C-w>=
-" Å‘å‰»
+" æœ€å¤§åŒ–
 nnoremap [winsize]m :<C-u>SM 4<CR>
-" Å‘å‰»‚ğ‰ğœ
+" æœ€å¤§åŒ–ã‚’è§£é™¤
 nnoremap [winsize]r :<C-u>SM 0<CR>
 "}}}
