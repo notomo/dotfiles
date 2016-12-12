@@ -26,3 +26,8 @@ highlight incSearchOnCursor cterm=NONE guifg=#eeeeee guibg=#ff7f50
 
 highlight phpComment guifg=#afeeee
 highlight Comment guifg=#afeeee
+
+highlight Flashy term=bold ctermbg=0 gui=reverse guifg=#ffbf50 guibg=#222222
+
+highlight ParenMatch term=underline cterm=underline guibg=darkturquoise
+

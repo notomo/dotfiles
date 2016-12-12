@@ -91,7 +91,7 @@ call s:tab_submode_mapping("h", "gT", 0, 0)
 " タブを閉じる
 call s:tab_submode_mapping("q", ":<C-u>tabclose<CR>", 0, 0)
 " 他のタブを閉じる
-call s:tab_submode_mapping("o", ":<C-u>tabonly<CR>", 1, 0)
+nnoremap [tab]o :<C-u>tabonly<CR>
 " 左のタブを閉じる
 call s:tab_submode_mapping("da", "<Plug>(close_left_tab)", 1, 1)
 " 右のタブを閉じる

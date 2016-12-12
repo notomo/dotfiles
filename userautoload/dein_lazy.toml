@@ -406,7 +406,6 @@ repo = 'Shougo/unite.vim'
 depends = 'neomru.vim'
 hook_add = 'source ~/.vim/userautoload/plugins/dein/unite_mapping.vim'
 hook_source = 'source ~/.vim/userautoload/plugins/dein/unite_setting.vim'
-hook_post_source = 'source ~/.vim/userautoload/plugins/dein/unite_filetype_mapping.vim'
 
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
@@ -610,9 +609,6 @@ let g:operator#flashy#flash_time = 350
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
 '''
-hook_post_source = '''
-highlight Flashy term=bold ctermbg=0 gui=reverse guifg=#ffbf50 guibg=#222222
-'''
 
 [[plugins]]
 repo = "osyo-manga/vim-marching"
@@ -702,3 +698,12 @@ xmap <CR> <Plug>(textmanip-toggle-mode)
 # [[plugins]]
 # repo = 'cohama/vim-hier'
 # on_ft = ['php']
+
+[[plugins]]
+repo = 'ternjs/tern_for_vim'
+# if = "has('python')"
+on_ft = 'javascript'
+build = 'npm install'
+hook_add = '''
+let g:tern_map_keys = 0
+'''

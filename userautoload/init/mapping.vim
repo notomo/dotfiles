@@ -217,7 +217,6 @@ inoremap <4-MiddleMouse> <Nop>
 "}}}
 
 " others mapping"{{{
-nnoremap <F8> :%s/ *$//<CR>
 
 function! s:set_current_filetype() abort
     execute "set filetype=" . &filetype
@@ -273,6 +272,11 @@ vnoremap [substitute]f  :s/\v%V%V//g<Left><Left><Left><Left><Left>
 nnoremap [substitute]w :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right>
 nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right>
 nnoremap [substitute]y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right>
+
+nnoremap [substitute]e :<C-u>v//d<Left><Left>
+vnoremap [substitute]e :v//d<Left><Left>
+nnoremap [substitute]i :<C-u>g//d<Left><Left>
+vnoremap [substitute]i :g//d<Left><Left>
 "}}}
 
 " replace mapping"{{{
@@ -281,16 +285,13 @@ nmap <Space>r [replace]
 vnoremap [replace] <Nop>
 vmap <Space>r [replace]
 
-nnoremap [replace]e :<C-u>v//d<Left><Left>
-vnoremap [replace]e :v//d<Left><Left>
-nnoremap [replace]i :<C-u>g//d<Left><Left>
-vnoremap [replace]i :g//d<Left><Left>
-
+let s:lazyredraw_command = ":\<C-u>set lazyredraw\<CR>"
+let s:noh_nolazyredraw_command = ":noh\<CR>:set nolazyredraw\<CR>"
 function! s:nvnoremap_replace(lhs, pattern, string) abort
-    let substitute_string = "s/\\v" . a:pattern . "/" . a:string . "/g"
+    let substitute_string = "s/\\v" . a:pattern . "/" . a:string . "/ge"
     let visual_substitute_string = "s/\\v%V" . a:pattern . "%V/" . a:string . "/g"
-    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, ":\<C-u>", substitute_string, "\<CR>:nohlsearch\<CR>"])
-    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, ":\<C-u>", "'<,'>", visual_substitute_string,  "\<CR>:nohlsearch\<CR>"])
+    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, s:lazyredraw_command . ":" . substitute_string . "\<CR>" . s:noh_nolazyredraw_command])
+    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, s:lazyredraw_command . ":'<,'>" . visual_substitute_string . "\<CR>" . s:noh_nolazyredraw_command])
 endfunction
 
 let s:REPLACE_LHS_KEY = "lhs"
@@ -300,7 +301,9 @@ let s:replace_map_info = [
 \   {s:REPLACE_LHS_KEY : "c", s:REPLACE_PATTERN_KEY : "(\\S+),(\\S+)", s:REPLACE_STRING_KEY : "\\1, \\2"},
 \   {s:REPLACE_LHS_KEY : "n", s:REPLACE_PATTERN_KEY : "^\\n", s:REPLACE_STRING_KEY : ""},
 \   {s:REPLACE_LHS_KEY : "p", s:REPLACE_PATTERN_KEY : "\\\\", s:REPLACE_STRING_KEY : "\\/"},
+\   {s:REPLACE_LHS_KEY : "<Space>", s:REPLACE_PATTERN_KEY : " *$", s:REPLACE_STRING_KEY : ""},
 \]
+
 if exists("g:replace_map_info")
     let s:replace_map_info += g:replace_map_info
 endif

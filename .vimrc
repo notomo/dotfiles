@@ -42,4 +42,5 @@ runtime! userautoload/local/*.vim
 runtime! userautoload/init/*.vim
 runtime! userautoload/plugins/dein/others.vim
 runtime! userautoload/plugins/dein/fugitive_filetype_mapping.vim
+runtime! userautoload/plugins/dein/unite_filetype_mapping.vim
 set diffexpr=py3diff#diffexpr()
