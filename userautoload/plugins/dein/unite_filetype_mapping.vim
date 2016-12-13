@@ -3,46 +3,37 @@
 autocmd MyAuGroup FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
     imap <buffer> jq <Plug>(unite_exit)
-    "入力モードのときjjでノーマルモードに移動
     imap <buffer> jj <Plug>(unite_insert_leave)
-    "ctrl+hで縦に分割して開く
-    nnoremap <silent> <buffer> <expr> <C-h> unite#do_action('split')
-    inoremap <silent> <buffer> <expr> <C-h> unite#do_action('split')
-    "ctrl+vで横に分割して開く
-    nnoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
-    inoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
-    "ctrl+oでその場所に開く
-    nnoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
     nnoremap <silent> <buffer> <expr> o unite#do_action('open')
-    inoremap <silent> <buffer> <expr> <C-o> unite#do_action('open')
-    "ctrl+tでタブで開く
-    nnoremap <silent> <buffer> <expr> <C-t> unite#do_action('tabopen')
-    inoremap <silent> <buffer> <expr> <C-t> unite#do_action('tabopen')
-
-    nnoremap <silent> <buffer> <expr> v unite#do_action('persist_open')
-
-    " nnoremap <silent> <buffer> <expr> ga unite#do_action('add')
-    " nnoremap <silent> <buffer> <expr> gu unite#do_action('unstage')
-    " nnoremap <silent> <buffer> <expr> gi unite#do_action('ignore')
-    " nnoremap <silent> <buffer> <expr> gm unite#do_action('merge')
-    " nnoremap <silent> <buffer> <expr> gC unite#do_action('commit')
-    " nnoremap <silent> <buffer> <expr> gs unite#do_action('switch')
-    " nnoremap <silent> <buffer> <expr> gA unite#do_action('amend')
-    " nnoremap <silent> <buffer> <expr> gR unite#do_action('revert')
-
-    nnoremap <silent> <buffer> <expr> yr unite#do_action('yank_rgb')
-    nnoremap <silent> <buffer> <expr> yh unite#do_action('yank_hex')
-    nnoremap <silent> <buffer> <expr> nr unite#do_action('insert_rgb')
-    nnoremap <silent> <buffer> <expr> nh unite#do_action('insert_hex')
-
-    inoremap <buffer> <C-b> <BS>
-    inoremap <buffer> <C-d> <Del>
-    inoremap <buffer> <C-h> <Left>
-    inoremap <buffer> <C-l> <Right>
-
-    nnoremap <buffer> b <C-^>
-
+    nnoremap <silent> <buffer> <expr> t unite#do_action('tabopen')
     vmap <buffer> sm <Plug>(unite_toggle_mark_selected_candidates)
     nmap <buffer> sm <Plug>(unite_toggle_mark_current_candidate)
+
+    nnoremap <silent> <buffer> <expr> <C-h> unite#do_action('split')
+    nnoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
+
+    nmap <buffer> i <Plug>(unite_insert_enter)
+    nmap <buffer> I <Plug>(unite_insert_head)
+    nmap <buffer> A <Plug>(unite_append_end)
+    nmap <buffer> q <Plug>(unite_exit)
+    nmap <buffer> <C-r> <Plug>(unite_restart)
+    nmap <buffer> * <Plug>(unite_toggle_mark_all_candidates)
+    nmap <buffer> <Tab> <Plug>(unite_choose_action)
+    nmap <buffer> <C-l> <Plug>(unite_redraw)
+    nmap <buffer> j <Plug>(unite_loop_cursor_down)
+    nmap <buffer> k <Plug>(unite_loop_cursor_up)
+    nmap <buffer> <2-LeftMouse> <Plug>(unite_do_default_action)
+    nmap <buffer> <RightMouse> <Plug>(unite_exit)
+    nmap <buffer> p <Plug>(unite_smart_preview)
+    nmap <buffer> <CR> <Plug>(unite_do_default_action)
+    imap <buffer> <C-u> <Plug>(unite_delete_backward_line)
+    imap <buffer> <CR> <Plug>(unite_do_default_action)
+    imap <buffer> <C-n> <Plug>(unite_select_next_page)
+    imap <buffer> <C-p> <Plug>(unite_select_previous_page)
+    imap <buffer> <2-LeftMouse> <Plug>(unite_do_default_action)
+    imap <buffer> <RightMouse> <Plug>(unite_exit)
+    imap <buffer> <C-b> <Plug>(unite_delete_backward_char)
+
 endfunction"}}}
+
 

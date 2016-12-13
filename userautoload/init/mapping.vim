@@ -30,6 +30,11 @@ vnoremap sh gU
 vnoremap sl gu
 "}}}
 
+" kana mapping"{{{
+nnoremap い i
+nnoremap あ a
+"}}}
+
 " buffer mapping"{{{
 nnoremap <Space>w :<C-u>w<CR>
 nnoremap <Space>q :<C-u>q<CR>

@@ -31,3 +31,5 @@ if executable('pt')
   let g:unite_source_grep_default_opts = '--nogroup --nocolor'
   let g:unite_source_grep_recursive_opt = ''
 endif
+
+let g:unite_no_default_keymappings = 1
