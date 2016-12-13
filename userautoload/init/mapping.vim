@@ -32,24 +32,9 @@ vnoremap sl gu
 
 " buffer mapping"{{{
 nnoremap <Space>w :<C-u>w<CR>
-nnoremap <Space>q :<C-u>call <SID>close_window()<CR>
+nnoremap <Space>q :<C-u>q<CR>
 nnoremap <Space>b <C-^>
 nnoremap <Space>er :<C-u>file<Space>
-function! s:close_window() abort
-    if tabpagenr("$") > 1
-        q
-        return
-    endif
-    if winnr("$") > 1 && bufwinnr("$") == -1
-        let yes_or_no = input("Close Vim?[y/n] : ")
-        if yes_or_no == "y"
-            q
-            return
-        endif
-        return
-    endif
-    q
-endfunction
 nnoremap <C-S-F9> :<C-u>qa<CR>
 nnoremap <Space>ee :<C-u>call <SID>new_none_buffer()<CR>
 function! s:new_none_buffer() abort
@@ -69,6 +54,19 @@ vnoremap :  ;
 nnoremap <Space>v gv
 nnoremap <Space>l <S-v>
 nnoremap <Space>h <C-v>
+vnoremap <Space>l <S-v>
+vnoremap <Space>h <C-v>
+vnoremap <Space>k v
+
+" depends yankround
+function! s:select_paste_region() abort
+    let [sl, sc] = [line("'["), col("'[")]
+    let [el, ec] = [line("']"), col("']")]
+    call setpos("'<", [0, sl, sc])
+    call setpos("'>", [0, el, ec])
+    normal! gv
+endfunction
+nnoremap <Space>k :<C-u>call <SID>select_paste_region()<CR>
 "}}}
 
 " grep mapping"{{{
@@ -375,6 +373,8 @@ function! s:inner_around_vomap(lhs, rhs) abort
     silent execute join(["vnoremap", around_lhs, around_rhs])
     silent execute join(["onoremap", around_lhs, around_rhs])
 endfunction
+call s:inner_around_vomap(";", "B")
+call s:inner_around_vomap("o", "p")
 call s:inner_around_vomap("f", "w")
 call s:inner_around_vomap("t", ">")
 call s:inner_around_vomap("T", "t")

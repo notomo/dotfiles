@@ -29,5 +29,6 @@ highlight Comment guifg=#afeeee
 
 highlight Flashy term=bold ctermbg=0 gui=reverse guifg=#ffbf50 guibg=#222222
 
-highlight ParenMatch term=underline cterm=underline guibg=darkturquoise
+highlight ParenMatch term=underline cterm=underline guibg=lightseagreen
+highlight ParenMatch term=underline cterm=underline guibg=cadetblue
 
