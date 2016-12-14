@@ -633,9 +633,10 @@ let g:neocomplete#force_omni_input_patterns.cpp =
 repo = 't9md/vim-choosewin'
 on_map = {n = '<Plug>'}
 hook_add = '''
-nmap mg <Plug>(choosewin)
+nmap m<Space> <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 let g:choosewin_overlay_clear_multibyte = 1
+let g:choosewin_tabline_replace = 0
 
 let g:choosewin_color_overlay = {
       \ 'gui': ['DodgerBlue3', 'DodgerBlue3' ],
@@ -707,3 +708,8 @@ build = 'npm install'
 hook_add = '''
 let g:tern_map_keys = 0
 '''
+
+# [[plugins]]
+# repo = 'dhruvasagar/vim-table-mode'
+# on_ft = 'txt'
+
