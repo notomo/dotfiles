@@ -557,7 +557,7 @@ on_ft = 'json'
 
 [[plugins]]
 repo = 'tmhedberg/matchit'
-on_ft = 'html'
+on_ft = ['html', 'smarty']
 
 [[plugins]]
 repo = 'mattn/ssh-add-vim'
@@ -713,3 +713,6 @@ let g:tern_map_keys = 0
 # repo = 'dhruvasagar/vim-table-mode'
 # on_ft = 'txt'
 
+[[plugins]]
+repo = 'vim-scripts/smarty-syntax'
+on_ft = 'smarty'
