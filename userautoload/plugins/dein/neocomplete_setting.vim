@@ -9,7 +9,7 @@ let g:neocomplete#enable_camel_case_completion  =  1
 " ポップアップメニューで表示される候補の数
 let g:neocomplete#max_list = 8
 " シンタックスをキャッシュするときの最小文字長
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 2
 " 補完を表示する最小文字数
 let g:neocomplete#auto_completion_start_length = 2
 let g:neocomplete#enable_complete_select = 1

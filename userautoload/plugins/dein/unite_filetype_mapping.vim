@@ -26,6 +26,8 @@ function! s:unite_my_settings()"{{{
     nmap <buffer> <RightMouse> <Plug>(unite_exit)
     nmap <buffer> p <Plug>(unite_smart_preview)
     nmap <buffer> <CR> <Plug>(unite_do_default_action)
+    nmap <buffer> gg <Plug>(unite_cursor_top)
+    nmap <buffer> G <Plug>(unite_cursor_bottom)
     imap <buffer> <C-u> <Plug>(unite_delete_backward_line)
     imap <buffer> <CR> <Plug>(unite_do_default_action)
     imap <buffer> <C-n> <Plug>(unite_select_next_page)
