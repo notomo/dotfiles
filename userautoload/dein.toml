@@ -118,3 +118,10 @@ repo = 'osyo-manga/shabadou.vim'
 [[plugins]]
 repo = 'vim-jp/vital.vim'
 
+[[plugins]]
+repo = 'kana/vim-smartword'
+hook_add = '''
+map w <Plug>(smartword-w)
+map b <Plug>(smartword-b)
+map e <Plug>(smartword-e)
+'''

@@ -123,6 +123,7 @@ omap ih <Plug>(textobj-line-i)
 repo = 'tyru/open-browser.vim'
 on_map = {nx = '<Plug>(openbrowser-'}
 on_cmd = 'OpenBrowser'
+on_ft = 'markdown'
 hook_add = 'source ~/.vim/userautoload/plugins/open-browser.vim'
 
 [[plugins]]
@@ -714,5 +715,9 @@ let g:tern_map_keys = 0
 # on_ft = 'txt'
 
 [[plugins]]
-repo = 'vim-scripts/smarty-syntax'
-on_ft = 'smarty'
+repo = 'kannokanno/previm'
+on_ft = 'markdown'
+hook_source = '''
+nnoremap <Space>ep :<C-u>PrevimOpen<CR>
+'''
+

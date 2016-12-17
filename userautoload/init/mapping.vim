@@ -74,6 +74,10 @@ endfunction
 nnoremap <Space>k :<C-u>call <SID>select_paste_region()<CR>
 "}}}
 
+" select mode mapping"{{{
+snoremap <CR> <DEL>
+"}}}
+
 " grep mapping"{{{
 nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
 nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
@@ -445,8 +449,8 @@ inoremap <F10> <C-^><C-r>=IMState('FixMode')<CR>
 " 大文字入力切り替え
 imap j<Space>j <Plug>CapsLockToggle
 
-" カーソル位置の単語を大文字に変換(不完全)
-inoremap j<Space><Space> <ESC><Right>gUbea
+" カーソル位置の単語を大文字に変換
+inoremap j<Space><Space> <ESC>gUiwea
 
 " 前に入力した文字を入力
 inoremap j<Space>z <C-a>
