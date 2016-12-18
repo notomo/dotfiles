@@ -15,7 +15,7 @@ nnoremap <Space>a <C-a>
 vnoremap <Space>z <C-x>gv
 vnoremap <Space>a <C-a>gv
 
-nnoremap <silent> <F5> :<C-u>source $MYVIMRC<CR>:<C-u>source $MYGVIMRC<CR>:<C-u>nohlsearch<CR>
+nnoremap <silent> <F5> :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
 
 nnoremap q <C-r>
 
@@ -292,23 +292,25 @@ nmap <Space>r [replace]
 vnoremap [replace] <Nop>
 vmap <Space>r [replace]
 
-let s:lazyredraw_command = ":\<C-u>set lazyredraw\<CR>"
-let s:noh_nolazyredraw_command = ":noh\<CR>:set nolazyredraw\<CR>"
 function! s:nvnoremap_replace(lhs, pattern, string) abort
     let substitute_string = "s/\\v" . a:pattern . "/" . a:string . "/ge"
     let visual_substitute_string = "s/\\v%V" . a:pattern . "%V/" . a:string . "/g"
-    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, s:lazyredraw_command . ":" . substitute_string . "\<CR>" . s:noh_nolazyredraw_command])
-    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, s:lazyredraw_command . ":'<,'>" . visual_substitute_string . "\<CR>" . s:noh_nolazyredraw_command])
+    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, ":<C-u>" . substitute_string . "\<CR>:noh\<CR>"])
+    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, ":" . visual_substitute_string . "\<CR>"])
 endfunction
 
 let s:REPLACE_LHS_KEY = "lhs"
 let s:REPLACE_PATTERN_KEY = "pat"
 let s:REPLACE_STRING_KEY = "str"
 let s:replace_map_info = [
-\   {s:REPLACE_LHS_KEY : "c", s:REPLACE_PATTERN_KEY : "(\\S+),(\\S+)", s:REPLACE_STRING_KEY : "\\1, \\2"},
+\   {s:REPLACE_LHS_KEY : "cc", s:REPLACE_PATTERN_KEY : "\\S{-1,}\\zs,\\ze\\S{-1,}", s:REPLACE_STRING_KEY : ", "},
 \   {s:REPLACE_LHS_KEY : "n", s:REPLACE_PATTERN_KEY : "^\\n", s:REPLACE_STRING_KEY : ""},
 \   {s:REPLACE_LHS_KEY : "p", s:REPLACE_PATTERN_KEY : "\\\\", s:REPLACE_STRING_KEY : "\\/"},
-\   {s:REPLACE_LHS_KEY : "<Space>", s:REPLACE_PATTERN_KEY : " *$", s:REPLACE_STRING_KEY : ""},
+\   {s:REPLACE_LHS_KEY : "P", s:REPLACE_PATTERN_KEY : "\\/", s:REPLACE_STRING_KEY : "\\\\"},
+\   {s:REPLACE_LHS_KEY : "<Space>e", s:REPLACE_PATTERN_KEY : " +$", s:REPLACE_STRING_KEY : ""},
+\   {s:REPLACE_LHS_KEY : "mc", s:REPLACE_PATTERN_KEY : "\\n", s:REPLACE_STRING_KEY : ","},
+\   {s:REPLACE_LHS_KEY : "mt", s:REPLACE_PATTERN_KEY : "\\n", s:REPLACE_STRING_KEY : "\\t"},
+\   {s:REPLACE_LHS_KEY : "<Space>b", s:REPLACE_PATTERN_KEY : "\\S{-1,}\\zs {2,}\\ze\\S{-1,}", s:REPLACE_STRING_KEY : " "},
 \]
 
 if exists("g:replace_map_info")

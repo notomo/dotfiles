@@ -15,6 +15,7 @@ set smartcase
 set hlsearch
 set nospell
 set nostartofline
+set lazyredraw
 
 set autoindent
 set noruler
