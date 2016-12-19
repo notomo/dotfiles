@@ -703,9 +703,13 @@ xmap <CR> <Plug>(textmanip-toggle-mode)
 
 [[plugins]]
 repo = 'ternjs/tern_for_vim'
-# if = "has('python')"
+if = "has('python')"
 on_ft = 'javascript'
-build = 'npm install'
+hook_post_update = '''
+if executable("npm")
+    let g:dein#plugin.build = "npm install"
+endif
+'''
 hook_add = '''
 let g:tern_map_keys = 0
 '''

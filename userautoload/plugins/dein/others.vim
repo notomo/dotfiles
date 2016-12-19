@@ -1,4 +1,6 @@
 
 " vim-singleton
-call singleton#enable()
+if has("clientserver")
+    call singleton#enable()
+endif
 
