@@ -1,7 +1,19 @@
-
 snippet plugins
 abbr [[plugins]]
-options head
 	[[plugins]]
-	repo = '${1:repo}'
+	repo = '`getreg('+')=='' ? '<\`0\`>' : getreg('+')`'
+	${0}
 
+snippet hook_add
+abbr hook_add = ''
+options head
+	hook_add = '''
+	${0}
+	'''
+
+snippet hook_source
+abbr hook_source = ''
+options head
+	hook_source = '''
+	${0}
+	'''
