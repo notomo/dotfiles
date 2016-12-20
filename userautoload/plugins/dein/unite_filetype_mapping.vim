@@ -1,16 +1,15 @@
 
-"uniteを開いている間のキーマッピング
 autocmd MyAuGroup FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
     imap <buffer> jq <Plug>(unite_exit)
     imap <buffer> jj <Plug>(unite_insert_leave)
-    nnoremap <silent> <buffer> <expr> o unite#do_action('open')
+    nnoremap <silent> <buffer> <expr> oo unite#do_action('open')
     nnoremap <silent> <buffer> <expr> t unite#do_action('tabopen')
     vmap <buffer> sm <Plug>(unite_toggle_mark_selected_candidates)
     nmap <buffer> sm <Plug>(unite_toggle_mark_current_candidate)
 
-    nnoremap <silent> <buffer> <expr> <C-h> unite#do_action('split')
-    nnoremap <silent> <buffer> <expr> <C-v> unite#do_action('vsplit')
+    nnoremap <silent> <buffer> <expr> oh unite#do_action('split')
+    nnoremap <silent> <buffer> <expr> ov unite#do_action('vsplit')
 
     nmap <buffer> i <Plug>(unite_insert_enter)
     nmap <buffer> I <Plug>(unite_insert_head)
