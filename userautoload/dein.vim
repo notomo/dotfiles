@@ -5,7 +5,7 @@ let s:dein_dir = s:cache_home . '/dein'
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-execute 'set runtimepath+=' . s:dein_dir
+execute 'set runtimepath+=' . s:dein_repo_dir
 
 " dein.vim がなければ github から落としてくる
 if !isdirectory(s:dein_repo_dir)
