@@ -50,9 +50,9 @@ options head
 	SELECT
 		${1:column}
 	FROM
-		${2:table}
+		${2:table} ${3:short_nm}
 	WHERE
-		${3:condition}
+		${4:condition}
 
 snippet SELECT JOIN WHERE
 alias ljw
@@ -61,10 +61,10 @@ options head
 	SELECT
 		${1:column}
 	FROM
-		${2:table}
-	${3:join_type} JOIN $2 ${4:short_nm} ON $4.${5:column} = ${6:column2}
+		${2:table} ${3:short_nm}
+	${4:INNER} JOIN ${5:table2} ${6:short_nm2} ON $6.${7:column} = $3.${8:column2}
 	WHERE
-		${7:condition}
+		${9:condition}
 
 snippet LEFT JOIN
 alias fjo
@@ -74,7 +74,7 @@ abbr LEFT JOIN {table} {short_nm} ON...
 snippet INNER JOIN
 alias ijo
 abbr INNER JOIN {table} {short_nm} ON...
-	INNER JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:T2.column}
+	INNER JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:short_nm2}.${5:column2}
 
 snippet WHERE
 abbr WHERE {condition}
