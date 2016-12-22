@@ -311,6 +311,8 @@ let s:replace_map_info = [
 \   {s:REPLACE_LHS_KEY : "mc", s:REPLACE_PATTERN_KEY : "\\n", s:REPLACE_STRING_KEY : ","},
 \   {s:REPLACE_LHS_KEY : "mt", s:REPLACE_PATTERN_KEY : "\\n", s:REPLACE_STRING_KEY : "\\t"},
 \   {s:REPLACE_LHS_KEY : "<Space>b", s:REPLACE_PATTERN_KEY : "\\S{-1,}\\zs {2,}\\ze\\S{-1,}", s:REPLACE_STRING_KEY : " "},
+\   {s:REPLACE_LHS_KEY : "cm", s:REPLACE_PATTERN_KEY : ",", s:REPLACE_STRING_KEY : "\\r"},
+\   {s:REPLACE_LHS_KEY : "tm", s:REPLACE_PATTERN_KEY : "\\t", s:REPLACE_STRING_KEY : "\\r"},
 \]
 
 if exists("g:replace_map_info")

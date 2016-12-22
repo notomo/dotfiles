@@ -23,26 +23,12 @@ nnoremap <C-S-Tab> gT
 inoremap <C-Tab> <Esc>gt
 inoremap <C-S-Tab> <Esc>gT
 
-" タブを閉じる
-function! s:close_tab() abort
-    try
-        execute "tabclose"
-    catch
-        if !getbufvar("%","&mod")
-            execute "q"
-        else
-            echomsg "Not saved"
-        endif
-    endtry
-endfunction
-nnoremap <silent> [tab]q :<C-u>call <SID>close_tab()<CR>
 " タブを閉じる(マウスボタン用)
-nnoremap <silent> <C-w> :<C-u>call <SID>close_tab()<CR>
-inoremap <silent> <C-w> <ESC>:<C-u>call <SID>close_tab()<CR>
+nnoremap <silent> <C-w> :<C-u>tabclose<CR>
+inoremap <silent> <C-w> <ESC>:<C-u>tabclose<CR>
 " 左側のタブを閉じる
 function! s:close_left_tab() abort
-    let current_tab_number = tabpagenr()
-    for i in range(2,current_tab_number)
+    for i in range(2, tabpagenr())
         execute "1tabclose"
     endfor
 endfunction
@@ -50,25 +36,17 @@ nnoremap <silent> <Plug>(close_left_tab) :<C-u>call <SID>close_left_tab()<CR>
 nmap <silent> [tab]da <Plug>(close_left_tab)
 " 右側のタブを閉じる
 function! s:close_right_tab() abort
-    let current_tab_number = tabpagenr()
-    let last_tab_number = tabpagenr("$")
-    for i in range(current_tab_number,last_tab_number-1)
+    for i in range(tabpagenr(),tabpagenr("$") - 1)
         execute "$tabclose"
     endfor
 endfunction
 nnoremap <silent> <Plug>(close_right_tab) :<C-u>call <SID>close_right_tab()<CR>
 nmap <silent> [tab]dl <Plug>(close_right_tab)
-" 他のタブを閉じる
-nnoremap <silent> [tab]o :<C-u>tabo<CR>
 
 " タブ移動モード設定
 " [tab]lhs_suffixでモードに入る
 function! s:tab_submode_mapping(lhs_suffix, rhs, map_only, is_remapped) abort
-    if a:is_remapped == 1
-        let remap = "r"
-    else
-        let remap = ""
-    endif
+    let remap = a:is_remapped == 1 ? "r" : ""
     if a:map_only == 0
         call submode#enter_with('tab', 'n', remap, s:TAB_PREFIX_KEY . a:lhs_suffix, a:rhs)
     endif
