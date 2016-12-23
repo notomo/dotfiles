@@ -304,6 +304,7 @@ let s:REPLACE_PATTERN_KEY = "pat"
 let s:REPLACE_STRING_KEY = "str"
 let s:replace_map_info = [
 \   {s:REPLACE_LHS_KEY : "cc", s:REPLACE_PATTERN_KEY : "\\S{-1,}\\zs,\\ze\\S{-1,}", s:REPLACE_STRING_KEY : ", "},
+\   {s:REPLACE_LHS_KEY : "e", s:REPLACE_PATTERN_KEY : "\\S{-1,}\\zs(\\=\\| \\=\\|\\= )\\ze\\S{-1,}", s:REPLACE_STRING_KEY : " = "},
 \   {s:REPLACE_LHS_KEY : "n", s:REPLACE_PATTERN_KEY : "^\\n", s:REPLACE_STRING_KEY : ""},
 \   {s:REPLACE_LHS_KEY : "p", s:REPLACE_PATTERN_KEY : "\\\\", s:REPLACE_STRING_KEY : "\\/"},
 \   {s:REPLACE_LHS_KEY : "P", s:REPLACE_PATTERN_KEY : "\\/", s:REPLACE_STRING_KEY : "\\\\"},
