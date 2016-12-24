@@ -230,8 +230,6 @@ function! s:set_current_filetype() abort
 endfunction
 nnoremap <F4> :<C-u>call <SID>set_current_filetype()<CR>
 
-nnoremap <Leader>cm :<C-u>Capture messages<CR>
-
 nnoremap <Leader>di :<C-u>MyDiff<Space>
 nnoremap <Leader>dg :<C-u>DiffOrig<CR>
 
@@ -254,8 +252,7 @@ nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
 
 
 function! OpenWorkText() abort
-	let l:work_text_folder_path = "~/worktexts/"
-	let l:work_text_file_path = l:work_text_folder_path.strftime("%Y_%m_%d.txt")
+	let l:work_text_file_path =  "~/worktexts/".strftime("%Y_%m_%d.txt")
 	execute "tab drop ".l:work_text_file_path
 	execute "set filetype=worktext"
 endfunction
@@ -314,6 +311,8 @@ let s:replace_map_info = [
 \   {s:REPLACE_LHS_KEY : "<Space>b", s:REPLACE_PATTERN_KEY : "\\S{-1,}\\zs {2,}\\ze\\S{-1,}", s:REPLACE_STRING_KEY : " "},
 \   {s:REPLACE_LHS_KEY : "cm", s:REPLACE_PATTERN_KEY : ",", s:REPLACE_STRING_KEY : "\\r"},
 \   {s:REPLACE_LHS_KEY : "tm", s:REPLACE_PATTERN_KEY : "\\t", s:REPLACE_STRING_KEY : "\\r"},
+\   {s:REPLACE_LHS_KEY : "qw", s:REPLACE_PATTERN_KEY : "'", s:REPLACE_STRING_KEY : "\""},
+\   {s:REPLACE_LHS_KEY : "wq", s:REPLACE_PATTERN_KEY : "\"", s:REPLACE_STRING_KEY : "'"},
 \]
 
 if exists("g:replace_map_info")

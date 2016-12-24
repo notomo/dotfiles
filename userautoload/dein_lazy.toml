@@ -493,10 +493,6 @@ on_cmd = 'GundoToggle'
 hook_add = 'nnoremap <Leader>u :<C-u>GundoToggle<CR>'
 
 [[plugins]]
-repo = 'thinca/vim-tabrecent'
-on_cmd = 'TabRecent'
-
-[[plugins]]
 repo = 'OrangeT/vim-csharp'
 on_ft = 'cs'
 
@@ -723,5 +719,13 @@ repo = 'kannokanno/previm'
 on_ft = 'markdown'
 hook_source = '''
 nnoremap <Space>ep :<C-u>PrevimOpen<CR>
+'''
+
+[[plugins]]
+repo = 'tyru/capture.vim'
+on_cmd = 'Capture'
+hook_add = '''
+nnoremap <Leader>ca :<C-u>Capture<Space>
+nnoremap <Leader>cm :<C-u>Capture messages<CR>
 '''
 
