@@ -276,6 +276,9 @@ vnoremap [substitute]f  :s/\v%V%V//g<Left><Left><Left><Left><Left>
 nnoremap [substitute]w :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right>
 nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right>
 nnoremap [substitute]y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right>
+vnoremap [substitute]y  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right>
+nnoremap [substitute]c  :<C-u>%s/\C\v//g<Left><Left><Left>
+vnoremap [substitute]c  :<C-u>'<,'>%s/\C\v//g<Left><Left><Left>
 
 nnoremap [substitute]e :<C-u>v//d<Left><Left>
 vnoremap [substitute]e :v//d<Left><Left>
@@ -296,23 +299,25 @@ function! s:nvnoremap_replace(lhs, pattern, string) abort
     silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, ":" . visual_substitute_string . "\<CR>"])
 endfunction
 
-let s:REPLACE_LHS_KEY = "lhs"
-let s:REPLACE_PATTERN_KEY = "pat"
-let s:REPLACE_STRING_KEY = "str"
+let s:LHS_KEY = "l"
+let s:PATTERN_KEY = "p"
+let s:STRING_KEY = "s"
 let s:replace_map_info = [
-\   {s:REPLACE_LHS_KEY : "cc", s:REPLACE_PATTERN_KEY : "\\S{-1,}\\zs,\\ze\\S{-1,}", s:REPLACE_STRING_KEY : ", "},
-\   {s:REPLACE_LHS_KEY : "e", s:REPLACE_PATTERN_KEY : "\\S{-1,}\\zs(\\=\\| \\=\\|\\= )\\ze\\S{-1,}", s:REPLACE_STRING_KEY : " = "},
-\   {s:REPLACE_LHS_KEY : "n", s:REPLACE_PATTERN_KEY : "^\\n", s:REPLACE_STRING_KEY : ""},
-\   {s:REPLACE_LHS_KEY : "p", s:REPLACE_PATTERN_KEY : "\\\\", s:REPLACE_STRING_KEY : "\\/"},
-\   {s:REPLACE_LHS_KEY : "P", s:REPLACE_PATTERN_KEY : "\\/", s:REPLACE_STRING_KEY : "\\\\"},
-\   {s:REPLACE_LHS_KEY : "<Space>e", s:REPLACE_PATTERN_KEY : " +$", s:REPLACE_STRING_KEY : ""},
-\   {s:REPLACE_LHS_KEY : "mc", s:REPLACE_PATTERN_KEY : "\\n", s:REPLACE_STRING_KEY : ","},
-\   {s:REPLACE_LHS_KEY : "mt", s:REPLACE_PATTERN_KEY : "\\n", s:REPLACE_STRING_KEY : "\\t"},
-\   {s:REPLACE_LHS_KEY : "<Space>b", s:REPLACE_PATTERN_KEY : "\\S{-1,}\\zs {2,}\\ze\\S{-1,}", s:REPLACE_STRING_KEY : " "},
-\   {s:REPLACE_LHS_KEY : "cm", s:REPLACE_PATTERN_KEY : ",", s:REPLACE_STRING_KEY : "\\r"},
-\   {s:REPLACE_LHS_KEY : "tm", s:REPLACE_PATTERN_KEY : "\\t", s:REPLACE_STRING_KEY : "\\r"},
-\   {s:REPLACE_LHS_KEY : "qw", s:REPLACE_PATTERN_KEY : "'", s:REPLACE_STRING_KEY : "\""},
-\   {s:REPLACE_LHS_KEY : "wq", s:REPLACE_PATTERN_KEY : "\"", s:REPLACE_STRING_KEY : "'"},
+\   {s:LHS_KEY : "co", s:PATTERN_KEY : "\\S{-1,}\\zs,\\ze\\S{-1,}", s:STRING_KEY : ", "},
+\   {s:LHS_KEY : "e", s:PATTERN_KEY : "\\S{-1,}\\zs(\\=\\| \\=\\|\\= )\\ze\\S{-1,}", s:STRING_KEY : " = "},
+\   {s:LHS_KEY : "n", s:PATTERN_KEY : "^\\n", s:STRING_KEY : ""},
+\   {s:LHS_KEY : "p", s:PATTERN_KEY : "\\\\", s:STRING_KEY : "\\/"},
+\   {s:LHS_KEY : "P", s:PATTERN_KEY : "\\/", s:STRING_KEY : "\\\\"},
+\   {s:LHS_KEY : "<Space>e", s:PATTERN_KEY : " +$", s:STRING_KEY : ""},
+\   {s:LHS_KEY : "mc", s:PATTERN_KEY : "\\n", s:STRING_KEY : ","},
+\   {s:LHS_KEY : "mt", s:PATTERN_KEY : "\\n", s:STRING_KEY : "\\t"},
+\   {s:LHS_KEY : "<Space>b", s:PATTERN_KEY : "\\S{-1,}\\zs {2,}\\ze\\S{-1,}", s:STRING_KEY : " "},
+\   {s:LHS_KEY : "cm", s:PATTERN_KEY : ",", s:STRING_KEY : "\\r"},
+\   {s:LHS_KEY : "tm", s:PATTERN_KEY : "\\t", s:STRING_KEY : "\\r"},
+\   {s:LHS_KEY : "qw", s:PATTERN_KEY : "'", s:STRING_KEY : "\""},
+\   {s:LHS_KEY : "wq", s:PATTERN_KEY : "\"", s:STRING_KEY : "'"},
+\   {s:LHS_KEY : "cc", s:PATTERN_KEY : "_(.)", s:STRING_KEY : "\\u\\1"},
+\   {s:LHS_KEY : "ch", s:PATTERN_KEY : "([A-Z])", s:STRING_KEY : "_\\l\\1"},
 \]
 
 if exists("g:replace_map_info")
@@ -320,7 +325,7 @@ if exists("g:replace_map_info")
 endif
 
 for info in s:replace_map_info
-    call s:nvnoremap_replace(info[s:REPLACE_LHS_KEY], info[s:REPLACE_PATTERN_KEY], info[s:REPLACE_STRING_KEY])
+    call s:nvnoremap_replace(info[s:LHS_KEY], info[s:PATTERN_KEY], info[s:STRING_KEY])
 endfor
 "}}}
 
@@ -543,4 +548,20 @@ nnoremap <Leader>; qa
 nnoremap <Leader><Leader> q
 nnoremap <Leader>. @a
 nnoremap <Leader>D qaq
+"}}}
+
+" diff mapping"{{{
+nnoremap [diff] <Nop>
+nmap <Leader>d [diff]
+vnoremap [diff] <Nop>
+vmap <Leader>d [diff]
+
+nnoremap [diff]j ]c
+nnoremap [diff]k [c
+nnoremap [diff]g :<C-u>diffget<CR>
+nnoremap [diff]p :<C-u>diffput<CR>
+vnoremap [diff]j ]c
+vnoremap [diff]k [c
+vnoremap [diff]g :diffget<CR>
+vnoremap [diff]p :diffput<CR>
 "}}}
