@@ -9,7 +9,7 @@ silent execute join([s:NNOREMAP, s:TAB_KEY, "<Nop>"])
 silent execute join([s:NMAP, s:TAB_PFX, s:TAB_KEY])
 
 " close others
-silent execute join([s:NNOREMAP, "<silent>", s:TAB_KEY, ":<C-u>tabonly<CR>"])
+silent execute join([s:NNOREMAP, "<silent>", s:TAB_KEY . "o", ":<C-u>tabonly<CR>"])
 
 " open new tab"{{{
 function! s:new_tab() abort
@@ -57,7 +57,7 @@ if s:submode_enable
     function! s:tab_map(lhs, rhs, map_only, remap) abort
         let remap = a:remap == 1 ? "r" : ""
         if a:map_only
-            let map_type = a:remap == 1 ? s:NMAP: s:NNOREMAP
+            let map_type = a:remap == 1 ? s:NMAP : s:NNOREMAP
             silent execute join([map_type, s:TAB_KEY . a:lhs, a:rhs])
         else
             call submode#enter_with(s:TAB_MODE_NM , "n", remap, s:TAB_PFX . a:lhs, a:rhs)
@@ -67,7 +67,7 @@ if s:submode_enable
     call submode#leave_with("tab", "n", "", "j")
 else
     function! s:tab_map(lhs, rhs, map_only, remap) abort
-        let map_type = a:remap == 1 ? s:NMAP: s:NNOREMAP
+        let map_type = a:remap == 1 ? s:NMAP : s:NNOREMAP
         silent execute join([map_type, s:TAB_KEY . a:lhs, a:rhs])
     endfunction
 endif

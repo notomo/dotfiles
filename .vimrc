@@ -28,6 +28,7 @@ let g:loaded_netrw             = 1
 let g:loaded_netrwPlugin       = 1
 let g:loaded_netrwSettings     = 1
 let g:loaded_netrwFileHandlers = 1
+let g:PHP_autoformatcomment = 0
 
 source ~/.vim/userautoload/dein.vim
 
@@ -43,4 +44,6 @@ runtime! userautoload/init/*.vim
 runtime! userautoload/plugins/dein/others.vim
 runtime! userautoload/plugins/dein/fugitive_filetype_mapping.vim
 runtime! userautoload/plugins/dein/unite_filetype_mapping.vim
-set diffexpr=py3diff#diffexpr()
+if has("python3")
+    set diffexpr=py3diff#diffexpr()
+endif

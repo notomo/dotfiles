@@ -174,15 +174,15 @@ nnoremap [format]u :<C-u>set fileformat=unix<CR>
 
 " tag_open mapping"{{{
 nnoremap [tag_open] <Nop>
-nmap <Leader>d [tag_open]
+nmap <Space>t [tag_open]
 
 function! s:tab_tag_open() abort
     try
-        execute "tag ".expand("<cword>")
-        execute "tab sp"
-        execute "tabprevious"
-        execute "normal \<C-o>"
-        execute "tabnext"
+        execute "tag ". expand("<cword>")
+        tab sp
+        tabprevious
+        normal <C-o>
+        tabnext
     catch
         echo "Not found tag"
     endtry
@@ -191,9 +191,9 @@ nnoremap [tag_open]t :<C-u>call <SID>tab_tag_open()<CR>
 
 function! s:vertical_tag_open() abort
     try
-        execute "tag ".expand("<cword>")
-        execute "vsplit"
-        execute "normal \<C-o>"
+        execute "tag ". expand("<cword>")
+        vsplit
+        normal <C-o>
     catch
         echo "Not found tag"
     endtry
@@ -224,32 +224,27 @@ inoremap <4-MiddleMouse> <Nop>
 "}}}
 
 " others mapping"{{{
-
 function! s:set_current_filetype() abort
     execute "set filetype=" . &filetype
 endfunction
 nnoremap <F4> :<C-u>call <SID>set_current_filetype()<CR>
 
-nnoremap <Leader>di :<C-u>MyDiff<Space>
-nnoremap <Leader>dg :<C-u>DiffOrig<CR>
-
 function! GitCtags() abort
-    let l:git_root=system("git rev-parse --show-toplevel | tr -d '\\n'")
-    let l:git_folder=l:git_root."/.git"
-    let l:current_folder=getcwd()
-    if l:git_folder[-4:]==?".git"
-        execute "cd ".l:git_root
-        let l:tags_path=l:git_folder.'/tags'
-        execute "set tags+=".l:tags_path.";"
-        execute "!start ctags --sort=yes --append=no -f ".l:tags_path." -R ".l:git_root
-        execute "cd ".l:current_folder
+    let l:git_root = system("git rev-parse --show-toplevel | tr -d '\\n'")
+    let l:git_folder = l:git_root . "/.git"
+    let l:current_folder = getcwd()
+    if l:git_folder[-4:] == ?".git"
+        execute "cd " . l:git_root
+        let l:tags_path = l:git_folder . '/tags'
+        execute "set tags+=" . l:tags_path . ";"
+        execute "!start ctags --sort=yes --append=no -f " . l:tags_path . " -R " . l:git_root
+        execute "cd " . l:current_folder
     else
         echomsg "None .git error"
     endif
 endfunction
 command! GitaCtagsCommand call GitCtags()
 nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
-
 
 function! OpenWorkText() abort
 	let l:work_text_file_path =  "~/worktexts/".strftime("%Y_%m_%d.txt")
@@ -274,9 +269,13 @@ vmap <Space>p [substitute]
 nnoremap [substitute]f  :<C-u>%s/\v//g<Left><Left><Left>
 vnoremap [substitute]f  :s/\v%V%V//g<Left><Left><Left><Left><Left>
 nnoremap [substitute]w :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right>
+nnoremap [substitute]W :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right><C-r><C-w>
 nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right>
+nnoremap [substitute]V <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right><C-r>"
 nnoremap [substitute]y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right>
+nnoremap [substitute]Y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"
 vnoremap [substitute]y  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right>
+vnoremap [substitute]Y  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"<Right>
 nnoremap [substitute]c  :<C-u>%s/\C\v//g<Left><Left><Left>
 vnoremap [substitute]c  :<C-u>'<,'>%s/\C\v//g<Left><Left><Left>
 
@@ -555,6 +554,22 @@ nnoremap [diff] <Nop>
 nmap <Leader>d [diff]
 vnoremap [diff] <Nop>
 vmap <Leader>d [diff]
+
+function! s:diff_tab_open(...)
+    if a:0 == 1
+        tabedit %:p
+        exec "rightbelow vertical diffsplit " . a:1
+    else
+        exec 'tabedit ' . a:1
+        for l:file in a:000[1:]
+            exec "rightbelow vertical diffsplit " . l:file
+        endfor
+    endif
+endfunction
+command! -nargs=+ -complete=file MyDiff call <SID>diff_tab_open(<f-args>)
+nnoremap [diff]i :<C-u>MyDiff<Space>
+command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+nnoremap [diff]o :<C-u>DiffOrig<CR>
 
 nnoremap [diff]j ]c
 nnoremap [diff]k [c
