@@ -317,6 +317,8 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : "wq", s:PATTERN_KEY : "\"", s:STRING_KEY : "'"},
 \   {s:LHS_KEY : "cc", s:PATTERN_KEY : "_(.)", s:STRING_KEY : "\\u\\1"},
 \   {s:LHS_KEY : "ch", s:PATTERN_KEY : "([A-Z])", s:STRING_KEY : "_\\l\\1"},
+\   {s:LHS_KEY : "ct", s:PATTERN_KEY : ",", s:STRING_KEY : "\\t"},
+\   {s:LHS_KEY : "tc", s:PATTERN_KEY : "\\t", s:STRING_KEY : ","},
 \]
 
 if exists("g:replace_map_info")
