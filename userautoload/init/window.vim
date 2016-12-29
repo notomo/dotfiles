@@ -1,67 +1,75 @@
-"ウィンドウ移動"{{{
-let s:WINMOVE_PREFIX_KEY = "m"
-nnoremap [winmove] <Nop>
-silent execute join(["nmap", s:WINMOVE_PREFIX_KEY, "[winmove]"])
-
-" 左
-nnoremap [winmove]a <C-w>h
-" 下
-nnoremap [winmove]j <C-w>j
-nnoremap [winmove]x <C-w>j
-" 上
-nnoremap [winmove]k <C-w>k
-nnoremap [winmove]w <C-w>k
-" 右
-nnoremap [winmove]l <C-w>l
-" 次
-nnoremap [winmove]n <C-w><C-w>
-" 前
-nnoremap [winmove]p <C-w>p
-" 入れ替え
-nnoremap [winmove]r <C-w>r
-"}}}
-
-"ウィンドウ分割・解除"{{{
-nnoremap [window] <Nop>
-nmap <Space>s [window]
-
-" 横分割
-nnoremap [window]h :<C-u>split<CR>
-" 縦分割
-nnoremap [window]v :<C-u>vsplit<CR>
-" 分割解除
-nnoremap [window]o :<C-u>only<CR>
-" プレビューウィンドウを閉じる
-nnoremap [window]p <C-w>z
-"}}}
-
-" ウィンドウサイズ変更"{{{
-let s:WINSIZE_PREFIX_KEY = s:WINMOVE_PREFIX_KEY . "m"
-nnoremap [winsize] <Nop>
-silent execute join(["nmap", s:WINSIZE_PREFIX_KEY, "[winsize]"])
-
-" ウィンドウサイズ変更モード設定
-" [winsize]lhs_suffixでモードに入る
-" モード内ではlhs_suffixのみで動作
-function! s:winsize_submode_mapping(lhs_suffix, rhs) abort
-    call submode#enter_with('winsize', 'n', '', s:WINSIZE_PREFIX_KEY . a:lhs_suffix, a:rhs)
-    call submode#map('winsize', 'n', '', a:lhs_suffix, a:rhs)
+" window"{{{
+" move"{{{
+let s:NNOREMAP = "nnoremap"
+let s:NMAP = "nmap"
+function! s:set_pfx(pfx, key) abort
+    silent execute join([s:NNOREMAP, a:key, "<Nop>"])
+    silent execute join([s:NMAP, a:pfx, a:key])
 endfunction
-" 横幅を増やす
-call s:winsize_submode_mapping("a", "<C-w>>")
-" 横幅を減らす
-call s:winsize_submode_mapping("z", "<C-w><")
-" 縦幅を増やす
-call s:winsize_submode_mapping("h", "<C-w>+")
-" 縦幅を減らす
-call s:winsize_submode_mapping("l", "<C-w>-")
+let s:WINMV_PFX = "m"
+let s:WINMV_KEY = "[winmv]"
+call s:set_pfx(s:WINMV_PFX, s:WINMV_KEY)
+function! s:winmv_map(lhs, rhs) abort
+    silent execute join([s:NNOREMAP, s:WINMV_KEY . a:lhs, a:rhs])
+endfunction
 
-call submode#leave_with('winsize', 'n', '', 'j')
+call s:winmv_map("a", "<C-w>h") " left
+call s:winmv_map("j", "<C-w>j") " down
+call s:winmv_map("x", "<C-w>j") " down
+call s:winmv_map("k", "<C-w>k") " up
+call s:winmv_map("w", "<C-w>k") " up
+call s:winmv_map("l", "<C-w>l") " right
+call s:winmv_map("n", "<C-w><C-w>") " next
+call s:winmv_map("p", "<C-w>p") " previous
+call s:winmv_map("s", "<C-w>r") " swap
+"}}}
 
-" 均等化
-nnoremap [winsize]e  <C-w>=
-" 最大化
+" split"{{{
+let s:WIN_PFX = "<Space>s"
+let s:WIN_KEY = "[win]"
+call s:set_pfx(s:WIN_PFX, s:WIN_KEY)
+function! s:win_map(lhs, rhs) abort
+    silent execute join([s:NNOREMAP, s:WIN_KEY . a:lhs, a:rhs])
+endfunction
+
+call s:win_map("h", ":<C-u>split<CR>") " split horizontally
+call s:win_map("v", ":<C-u>vsplit<CR>") " split vertically
+call s:win_map("o", ":<C-u>only<CR>") " close others
+call s:win_map("p", "<C-w>z") " close preview
+"}}}
+
+" change size"{{{
+let s:WINSIZE_PFX = s:WINMV_PFX . "m"
+let s:WINSIZE_MODE_NM = "winsize"
+let s:WINSIZE_KEY = "[" . s:WINSIZE_MODE_NM . "]"
+nnoremap [winsize] <Nop>
+silent execute join(["nmap", s:WINSIZE_PFX, s:WINSIZE_KEY])
+
+try
+    call submode#current()
+    let s:submode_enable = 1
+catch
+    let s:submode_enable = 0
+endtry
+if s:submode_enable
+    function! s:winsize_map(lhs, rhs) abort
+        call submode#enter_with(s:WINSIZE_MODE_NM, "n", "", s:WINSIZE_PFX . a:lhs, a:rhs)
+        call submode#map(s:WINSIZE_MODE_NM, "n", "", a:lhs, a:rhs)
+    endfunction
+    call submode#leave_with(s:WINSIZE_MODE_NM, "n", "", "j")
+else
+    function! s:winsize_map(lhs, rhs) abort
+        silent execute join([s:NNOREMAP, s:WINSIZE_KEY . a:lhs, a:rhs])
+    endfunction
+endif
+call s:winsize_map("a", "<C-w>>") " increace width
+call s:winsize_map("z", "<C-w><") " decreace width
+call s:winsize_map("h", "<C-w>+") " increace height
+call s:winsize_map("l", "<C-w>-") " decreace height
+
+" equalize
+nnoremap [winsize]e <C-w>=
+" maximize
 nnoremap [winsize]m :<C-u>SM 4<CR>
-" 最大化を解除
-nnoremap [winsize]r :<C-u>SM 0<CR>
+"}}}
 "}}}

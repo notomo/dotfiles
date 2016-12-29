@@ -1,9 +1,9 @@
-let my_action = {'is_selectable' : 1}
+let my_action = {"is_selectable" : 1}
 function! my_action.func(candidates)
     wincmd p
-    exec 'split '. a:candidates[0].action__path
+    execute "split ". a:candidates[0].action__path
 endfunction
-call unite#custom_action('file', 'my_split', my_action)
+call unite#custom_action("file", "my_split", my_action)
 
 autocmd MyAuGroup FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
@@ -44,4 +44,5 @@ function! s:vimfiler_my_settings()
     vmap <buffer>sm <Plug>(vimfiler_toggle_mark_selected_lines)
     nmap <buffer>sv <Plug>(vimfiler_split_edit_file)
     nnoremap <silent> <buffer> <expr> sh vimfiler#do_action('my_split')
+    nmap <buffer>O <Plug>(vimfiler_expand_tree_recursive)
 endfunction
