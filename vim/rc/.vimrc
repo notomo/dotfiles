@@ -30,7 +30,7 @@ let g:loaded_netrwSettings     = 1
 let g:loaded_netrwFileHandlers = 1
 let g:PHP_autoformatcomment = 0
 
-source ~/.vim/userautoload/dein.vim
+runtime! rc/dein.vim
 
 filetype plugin indent on
 syntax on
@@ -39,11 +39,11 @@ augroup MyAuGroup
     autocmd!
 augroup END
 
-runtime! userautoload/local/*.vim
-runtime! userautoload/init/*.vim
-runtime! userautoload/plugins/dein/others.vim
-runtime! userautoload/plugins/dein/fugitive_filetype_mapping.vim
-runtime! userautoload/plugins/dein/unite_filetype_mapping.vim
+runtime! rc/local/*.vim
+runtime! rc/init/*.vim
+runtime! rc/plugins/dein/others.vim
+runtime! rc/plugins/dein/fugitive_filetype_mapping.vim
+runtime! rc/plugins/dein/unite_filetype_mapping.vim
 if has("python3")
     set diffexpr=py3diff#diffexpr()
 endif

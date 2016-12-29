@@ -19,7 +19,7 @@ endif
 
 call dein#begin(s:dein_dir)
 
-let s:rc_dir    = expand('~/.vim/userautoload')
+let s:rc_dir    = expand('~/.vim/rc')
 let s:toml      = s:rc_dir . '/dein.toml'
 let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
 

@@ -34,12 +34,12 @@ on_source = 'unite.vim'
 [[plugins]]
 repo = 'kmnk/vim-unite-giti'
 on_source = 'unite.vim'
-hook_add = 'source ~/.vim/userautoload/plugins/dein/easymotion_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/dein/easymotion_mapping.vim'
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 on_map = {nox = '<Plug>'}
-hook_add = 'source ~/.vim/userautoload/plugins/dein/easymotion_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/dein/easymotion_mapping.vim'
 hook_source = '''
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_enter_jump_first = 1
@@ -124,7 +124,7 @@ repo = 'tyru/open-browser.vim'
 on_map = {nx = '<Plug>(openbrowser-'}
 on_cmd = 'OpenBrowser'
 on_ft = 'markdown'
-hook_add = 'source ~/.vim/userautoload/plugins/open-browser.vim'
+hook_add = 'source ~/.vim/rc/plugins/open-browser.vim'
 
 [[plugins]]
 repo = 'haya14busa/incsearch.vim'
@@ -196,7 +196,7 @@ nnoremap [vdebug] <Nop>
 nmap <Space>d [vdebug]
 nnoremap [vdebug]a :<C-u>BreakpointRemove *<CR>
 '''
-hook_source = 'source ~/.vim/userautoload/plugins/dein/vdebug_setting.vim'
+hook_source = 'source ~/.vim/rc/plugins/dein/vdebug_setting.vim'
 
 [[plugins]]
 repo = 'scrooloose/syntastic'
@@ -305,7 +305,7 @@ nnoremap <silent> <Leader>f :<C-u>call <SID>yank_current_function_name(cfi#forma
 repo = 'rhysd/vim-operator-surround'
 depends = 'vim-operator-user'
 on_map = {nox = '<Plug>'}
-hook_add = 'source ~/.vim/userautoload/plugins/operator-surround.vim'
+hook_add = 'source ~/.vim/rc/plugins/operator-surround.vim'
 
 [[plugins]]
 repo = 'thinca/vim-fontzoom'
@@ -320,7 +320,7 @@ nnoremap <M-Up> :<C-u>Fontzoom!<CR>
 [[plugins]]
 repo = 'h1mesuke/vim-alignta'
 on_cmd = 'Alignta'
-hook_add = 'source ~/.vim/userautoload/plugins/vim-alignta.vim'
+hook_add = 'source ~/.vim/rc/plugins/vim-alignta.vim'
 
 [[plugins]]
 repo = 'lilydjwg/colorizer'
@@ -405,27 +405,27 @@ hook_source = 'let g:ref_phpmanual_path = $Home . "/.vim/phpmanual"'
 [[plugins]]
 repo = 'Shougo/unite.vim'
 depends = 'neomru.vim'
-hook_add = 'source ~/.vim/userautoload/plugins/dein/unite_mapping.vim'
-hook_source = 'source ~/.vim/userautoload/plugins/dein/unite_setting.vim'
+hook_add = 'source ~/.vim/rc/plugins/dein/unite_mapping.vim'
+hook_source = 'source ~/.vim/rc/plugins/dein/unite_setting.vim'
 
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 on_map = {n = '<Plug>'}
 on_if = "isdirectory(bufname('%'))"
-hook_add = 'source ~/.vim/userautoload/plugins/dein/vimfiler_mapping.vim'
-hook_source = 'source ~/.vim/userautoload/plugins/dein/vimfiler_setting.vim'
-hook_post_source = 'source ~/.vim/userautoload/plugins/dein/vimfiler_filetype_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/dein/vimfiler_mapping.vim'
+hook_source = 'source ~/.vim/rc/plugins/dein/vimfiler_setting.vim'
+hook_post_source = 'source ~/.vim/rc/plugins/dein/vimfiler_filetype_mapping.vim'
 
 [[plugins]]
 repo = 'Shougo/vimshell.vim'
 on_map = {n = '<Plug>'}
-hook_add = 'source ~/.vim/userautoload/plugins/dein/vimshell_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/dein/vimshell_mapping.vim'
 hook_source = '''
 let g:vimshell_prompt_expr = 'getcwd()." > "'
 let g:vimshell_prompt_pattern = '^\f\+ > '
 '''
-hook_post_source = 'source ~/.vim/userautoload/plugins/dein/vimshell_filetype_mapping.vim'
+hook_post_source = 'source ~/.vim/rc/plugins/dein/vimshell_filetype_mapping.vim'
 
 [[plugins]]
 repo = 'Shougo/neoyank.vim'

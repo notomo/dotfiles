@@ -40,7 +40,7 @@ hook_add = 'let g:PreserveNoEOL = 1'
 
 [[plugins]]
 repo = 'vim-scripts/dbext.vim'
-hook_add = 'source ~/.vim/userautoload/plugins/dbext.vim'
+hook_add = 'source ~/.vim/rc/plugins/dbext.vim'
 
 [[plugins]]
 repo = 'thinca/vim-singleton'
@@ -53,8 +53,8 @@ let g:zenspace#default_mode = 'on'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
-hook_add = 'source ~/.vim/userautoload/plugins/dein/fugitive_mapping.vim'
-# hook_post_source = 'source ~/.vim/userautoload/plugins/dein/fugitive_filetype_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/dein/fugitive_mapping.vim'
+# hook_post_source = 'source ~/.vim/rc/plugins/dein/fugitive_filetype_mapping.vim'
 
 [[plugins]]
 repo = 'LeafCage/yankround.vim'
@@ -70,14 +70,14 @@ nmap <C-n> <Plug>(yankround-next)
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
 if = "has('lua')"
-hook_add = 'source ~/.vim/userautoload/plugins/dein/neocomplete_setting.vim'
+hook_add = 'source ~/.vim/rc/plugins/dein/neocomplete_setting.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
 depends = 'neosnippet-snippets'
 hook_add = '''
-source ~/.vim/userautoload/plugins/dein/neosnippet_mapping.vim
-source ~/.vim/userautoload/plugins/dein/neosnippet_setting.vim
+source ~/.vim/rc/plugins/dein/neosnippet_mapping.vim
+source ~/.vim/rc/plugins/dein/neosnippet_setting.vim
 '''
 
 [[plugins]]
@@ -125,3 +125,8 @@ map w <Plug>(smartword-w)
 map b <Plug>(smartword-b)
 map e <Plug>(smartword-e)
 '''
+
+# [[plugins]]
+# repo = 'itchyny/lightline.vim'
+# hook_add = 'source ~/.vim/rc/plugins/lightline.vim'
+
