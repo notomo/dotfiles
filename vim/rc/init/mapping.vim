@@ -65,10 +65,8 @@ vnoremap <Space>k v
 
 " depends yankround
 function! s:select_paste_region() abort
-    let [sl, sc] = [line("'["), col("'[")]
-    let [el, ec] = [line("']"), col("']")]
-    call setpos("'<", [0, sl, sc])
-    call setpos("'>", [0, el, ec])
+    call setpos("'<", [0, line("'["), col("'[")])
+    call setpos("'>", [0, line("']"), col("']")])
     normal! gv
 endfunction
 nnoremap <Space>k :<C-u>call <SID>select_paste_region()<CR>
@@ -294,8 +292,8 @@ vmap <Space>r [replace]
 function! s:nvnoremap_replace(lhs, pattern, string) abort
     let substitute_string = "s/\\v" . a:pattern . "/" . a:string . "/ge"
     let visual_substitute_string = "s/\\v%V" . a:pattern . "%V/" . a:string . "/g"
-    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, ":<C-u>" . substitute_string . "\<CR>:noh\<CR>"])
-    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, ":" . visual_substitute_string . "\<CR>"])
+    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, "q::call append('.', '" . substitute_string . "\\|noh')\<CR>j\<CR>"])
+    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, "q::call append('.', '" . visual_substitute_string . "')\<CR>j\<CR>"])
 endfunction
 
 let s:LHS_KEY = "l"
@@ -319,6 +317,7 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : "ch", s:PATTERN_KEY : "([A-Z])", s:STRING_KEY : "_\\l\\1"},
 \   {s:LHS_KEY : "ct", s:PATTERN_KEY : ",", s:STRING_KEY : "\\t"},
 \   {s:LHS_KEY : "tc", s:PATTERN_KEY : "\\t", s:STRING_KEY : ","},
+\   {s:LHS_KEY : "<Space>a", s:PATTERN_KEY : "^\\s+", s:STRING_KEY : ""},
 \]
 
 if exists("g:replace_map_info")

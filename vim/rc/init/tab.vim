@@ -24,8 +24,19 @@ nnoremap <C-Tab> gt
 nnoremap <C-S-Tab> gT
 inoremap <C-Tab> <Esc>gt
 inoremap <C-S-Tab> <Esc>gT
-nnoremap <silent> <C-w> :<C-u>tabclose<CR>
-inoremap <silent> <C-w> <ESC>:<C-u>tabclose<CR>
+nnoremap <silent> <C-w> :<C-u>call <SID>tabclose_c()<CR>
+inoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
+"}}}
+
+" close tab"{{{
+function! s:tabclose_c() abort
+    if tabpagenr("$") == 1
+        qa
+    else
+        tabclose
+    endif
+endfunction
+nnoremap <silent> <Plug>(tabclose_c) :<C-u>call <SID>tabclose_c()<CR>
 "}}}
 
 " close left tabs"{{{
@@ -78,7 +89,7 @@ call s:tab_map("s", ":<C-u>tabr<CR>", 0, 0) " move right end
 call s:tab_map("e", ":<C-u>tabl<CR>", 0, 0) " move left end
 call s:tab_map("a", "gT", 0, 0) " move left
 call s:tab_map("h", "gT", 0, 0) " move left
-call s:tab_map("q", ":<C-u>tabclose<CR>", 0, 0) " close a tab
+call s:tab_map("q", "<Plug>(tabclose_c)", 0, 1) " close a tab
 call s:tab_map("da", "<Plug>(tabclose_l)", 1, 1) " close left tabs
 call s:tab_map("dl", "<Plug>(tabclose_r)", 1, 1) " close right tabs
 call s:tab_map(s:TABMV_PFX . "l", ":<C-u>tabm+1<CR>", 0, 0) " move a tab right
