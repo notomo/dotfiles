@@ -729,3 +729,9 @@ nnoremap <Leader>ca :<C-u>Capture<Space>
 nnoremap <Leader>cm :<C-u>Capture messages<CR>
 '''
 
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = 'markdown'
+hook_add = '''
+let g:vim_markdown_no_default_key_mappings = 1
+'''

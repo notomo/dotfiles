@@ -1,9 +1,15 @@
 
 " basic mapping"{{{
-nnoremap <Leader>x dlp
+function! s:swap_char() abort
+    let pos = getpos(".")
+    execute 's/\v%#(\_.)(\_.)/\2\1/g'
+    call setpos('.', pos)
+    normal! l
+endfunction
+nnoremap <silent> <Leader>x :<C-u>call <SID>swap_char()<CR>
 nnoremap x "_x
 
-nnoremap <Space>io gi
+nnoremap <Space>gi gi
 
 nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
 
@@ -41,10 +47,9 @@ nnoremap <Space>q :<C-u>q<CR>
 nnoremap <Space>b <C-^>
 nnoremap <Space>er :<C-u>file<Space>
 nnoremap <C-S-F9> :<C-u>qa<CR>
-nnoremap <Space>ee :<C-u>call <SID>new_none_buffer()<CR>
-function! s:new_none_buffer() abort
-    enew
-    setlocal buftype=nofile noswapfile
+nnoremap <Space>ee :<C-u>call <SID>new_buf()<CR>
+function! s:new_buf() abort
+    enew | setlocal buftype=nofile noswapfile
 endfunction
 "}}}
 
@@ -289,43 +294,47 @@ nmap <Space>r [replace]
 vnoremap [replace] <Nop>
 vmap <Space>r [replace]
 
-function! s:nvnoremap_replace(lhs, pattern, string) abort
-    let substitute_string = "s/\\v" . a:pattern . "/" . a:string . "/ge"
-    let visual_substitute_string = "s/\\v%V" . a:pattern . "%V/" . a:string . "/g"
-    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, "q::call append('.', '" . substitute_string . "\\|noh')\<CR>j\<CR>"])
-    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, "q::call append('.', '" . visual_substitute_string . "')\<CR>j\<CR>"])
+function! s:nvnoremap_replace(lhs, pattern, str) abort
+    let substitute_str = 's/\v' . a:pattern . "/" . a:str . "/ge"
+    let v_substitute_str = 's/\v%V' . a:pattern . "%V/" . a:str . "/g"
+    let q_substitute_str = (a:pattern == s:QUOTE_KEY || a:str == s:QUOTE_KEY) ? ":s/\{quote\}/'/g\<CR>" : ""
+    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, "q::call append('.', '" . substitute_str . "\\|noh')\<CR>j" . q_substitute_str . "\<CR>"])
+    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, "q::call append('.', '" . v_substitute_str . "')\<CR>j" . q_substitute_str . ":s/^/'<,'>/g\<CR>\<CR>"])
 endfunction
 
 let s:LHS_KEY = "l"
 let s:PATTERN_KEY = "p"
-let s:STRING_KEY = "s"
+let s:STR_KEY = "s"
+let s:QUOTE_KEY = "{quote}"
 let s:replace_map_info = [
-\   {s:LHS_KEY : "co", s:PATTERN_KEY : "\\S{-1,}\\zs,\\ze\\S{-1,}", s:STRING_KEY : ", "},
-\   {s:LHS_KEY : "e", s:PATTERN_KEY : "\\S{-1,}\\zs(\\=\\| \\=\\|\\= )\\ze\\S{-1,}", s:STRING_KEY : " = "},
-\   {s:LHS_KEY : "n", s:PATTERN_KEY : "^\\n", s:STRING_KEY : ""},
-\   {s:LHS_KEY : "p", s:PATTERN_KEY : "\\\\", s:STRING_KEY : "\\/"},
-\   {s:LHS_KEY : "P", s:PATTERN_KEY : "\\/", s:STRING_KEY : "\\\\"},
-\   {s:LHS_KEY : "<Space>e", s:PATTERN_KEY : " +$", s:STRING_KEY : ""},
-\   {s:LHS_KEY : "mc", s:PATTERN_KEY : "\\_.*", s:STRING_KEY : "\\=join(split(submatch(0), '\\n'), ',')"},
-\   {s:LHS_KEY : "mt", s:PATTERN_KEY : "\\_.*", s:STRING_KEY : "\\=join(split(submatch(0), '\\n'), '\t')"},
-\   {s:LHS_KEY : "<Space>b", s:PATTERN_KEY : "\\S{-1,}\\zs {2,}\\ze\\S{-1,}", s:STRING_KEY : " "},
-\   {s:LHS_KEY : "cm", s:PATTERN_KEY : ",", s:STRING_KEY : "\\r"},
-\   {s:LHS_KEY : "tm", s:PATTERN_KEY : "\\t", s:STRING_KEY : "\\r"},
-\   {s:LHS_KEY : "qw", s:PATTERN_KEY : "'", s:STRING_KEY : "\""},
-\   {s:LHS_KEY : "wq", s:PATTERN_KEY : "\"", s:STRING_KEY : "'"},
-\   {s:LHS_KEY : "cc", s:PATTERN_KEY : "_(.)", s:STRING_KEY : "\\u\\1"},
-\   {s:LHS_KEY : "ch", s:PATTERN_KEY : "([A-Z])", s:STRING_KEY : "_\\l\\1"},
-\   {s:LHS_KEY : "ct", s:PATTERN_KEY : ",", s:STRING_KEY : "\\t"},
-\   {s:LHS_KEY : "tc", s:PATTERN_KEY : "\\t", s:STRING_KEY : ","},
-\   {s:LHS_KEY : "<Space>a", s:PATTERN_KEY : "^\\s+", s:STRING_KEY : ""},
+\   {s:LHS_KEY : "co", s:PATTERN_KEY : '\S{-1,}\zs,\ze\S{-1,}', s:STR_KEY : ', '},
+\   {s:LHS_KEY : "e", s:PATTERN_KEY : '\S{-1,}\zs(\=\| \=\|\= )\ze\S{-1,}', s:STR_KEY : ' = '},
+\   {s:LHS_KEY : "n", s:PATTERN_KEY : '^\n', s:STR_KEY : ""},
+\   {s:LHS_KEY : "p", s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
+\   {s:LHS_KEY : "P", s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
+\   {s:LHS_KEY : "<Space>e", s:PATTERN_KEY : ' +$', s:STR_KEY : ''},
+\   {s:LHS_KEY : "mc", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \",\")"},
+\   {s:LHS_KEY : "mt", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \"\t\")"},
+\   {s:LHS_KEY : "<Space>b", s:PATTERN_KEY : '\S{-1,}\zs {2,}\ze\S{-1,}', s:STR_KEY : ' '},
+\   {s:LHS_KEY : "cm", s:PATTERN_KEY : ',', s:STR_KEY : '\r'},
+\   {s:LHS_KEY : "tm", s:PATTERN_KEY : '\t', s:STR_KEY : '\r'},
+\   {s:LHS_KEY : "qw", s:PATTERN_KEY : s:QUOTE_KEY, s:STR_KEY : '"'},
+\   {s:LHS_KEY : "wq", s:PATTERN_KEY : '"', s:STR_KEY : s:QUOTE_KEY},
+\   {s:LHS_KEY : "cc", s:PATTERN_KEY : '_(.)', s:STR_KEY : '\u\1'},
+\   {s:LHS_KEY : "ch", s:PATTERN_KEY : '([A-Z])', s:STR_KEY : '_\l\1'},
+\   {s:LHS_KEY : "ct", s:PATTERN_KEY : ',', s:STR_KEY : '\t'},
+\   {s:LHS_KEY : "tc", s:PATTERN_KEY : '\t', s:STR_KEY : ','},
+\   {s:LHS_KEY : "<Space>a", s:PATTERN_KEY : '^\s+', s:STR_KEY : ''},
+\   {s:LHS_KEY : "x", s:PATTERN_KEY : '%#(\_.)(\_.)', s:STR_KEY : '\2\1'},
 \]
 
 if exists("g:replace_map_info")
     let s:replace_map_info += g:replace_map_info
+    unlet g:replace_map_info
 endif
 
 for info in s:replace_map_info
-    call s:nvnoremap_replace(info[s:LHS_KEY], info[s:PATTERN_KEY], info[s:STRING_KEY])
+    call s:nvnoremap_replace(info[s:LHS_KEY], info[s:PATTERN_KEY], info[s:STR_KEY])
 endfor
 "}}}
 
@@ -429,8 +438,6 @@ noremap! <C-h> <Left>
 noremap! <C-j> <Down>
 noremap! <C-k> <Up>
 noremap! <C-l> <Right>
-noremap! <M-b> <C-Left>
-noremap! <M-f> <C-Right>
 noremap! <C-e> <End>
 inoremap <C-a> <C-r>=MyExecExCommand('normal ^')<CR>
 cnoremap <C-a> <Home>
@@ -439,8 +446,6 @@ cnoremap <C-a> <Home>
 noremap! <C-b> <BS>
 noremap! <C-d> <Del>
 inoremap <C-o> <C-g>u<C-r>=MyExecExCommand('normal o')<CR>
-inoremap <M-j> <C-g>u<C-r>=MyExecExCommand('normal! J')<CR>
-inoremap <M-d> <C-g>u<C-r>=MyExecExCommand('normal! D','onemore')<CR>
 
 " undo redo
 inoremap <M-u> <C-g>u<C-r>=MyExecExCommand('undo', 'onemore')<CR>
@@ -491,54 +496,53 @@ endfunction
 let s:MAIN_INPUT_PREFIX_KEY = "j<Space>"
 let s:SUB_INPUT_PREFIX_KEY = "jk"
 
-let s:LHS_PREFIX_KEY = "lhs_prefix"
+let s:LHS_PRF_KEY = "lhs_prefix"
 let s:RHS_KEY = "rhs"
 let s:main_cinoremap_info = [
-            \ {s:LHS_PREFIX_KEY : "a", s:RHS_KEY : "-"},
-            \ {s:LHS_PREFIX_KEY : "e", s:RHS_KEY : "="},
-            \ {s:LHS_PREFIX_KEY : "s", s:RHS_KEY : "_"},
-            \ {s:LHS_PREFIX_KEY : "w", s:RHS_KEY : "\"\"<Left>"},
-            \ {s:LHS_PREFIX_KEY : "b", s:RHS_KEY : "``<Left>"},
-            \ {s:LHS_PREFIX_KEY : "l", s:RHS_KEY : "[]<Left>"},
-            \ {s:LHS_PREFIX_KEY : "t", s:RHS_KEY : "<><Left>"},
-            \ {s:LHS_PREFIX_KEY : "p", s:RHS_KEY : "()<Left>"},
-            \ {s:LHS_PREFIX_KEY : "d", s:RHS_KEY : "{}<Left>"},
-            \ {s:LHS_PREFIX_KEY : "q", s:RHS_KEY : "''<Left>"},
-            \ {s:LHS_PREFIX_KEY : "h", s:RHS_KEY : "<C-r>\""},
-            \ {s:LHS_PREFIX_KEY : "k", s:RHS_KEY : "<End><C-u>"},
-            \ {s:LHS_PREFIX_KEY : "u", s:RHS_KEY : "<C-u>"},
-            \ {s:LHS_PREFIX_KEY : "c", s:RHS_KEY : "<End><C-u><C-u>"},
-            \ {s:LHS_PREFIX_KEY : "v", s:RHS_KEY : "<C-q>"},
-            \ {s:LHS_PREFIX_KEY : "g", s:RHS_KEY : "<C-x><C-]>"},
+            \ {s:LHS_PRF_KEY : "a", s:RHS_KEY : "-"},
+            \ {s:LHS_PRF_KEY : "e", s:RHS_KEY : "="},
+            \ {s:LHS_PRF_KEY : "s", s:RHS_KEY : "_"},
+            \ {s:LHS_PRF_KEY : "w", s:RHS_KEY : "\"\"<Left>"},
+            \ {s:LHS_PRF_KEY : "b", s:RHS_KEY : "``<Left>"},
+            \ {s:LHS_PRF_KEY : "l", s:RHS_KEY : "[]<Left>"},
+            \ {s:LHS_PRF_KEY : "t", s:RHS_KEY : "<><Left>"},
+            \ {s:LHS_PRF_KEY : "p", s:RHS_KEY : "()<Left>"},
+            \ {s:LHS_PRF_KEY : "d", s:RHS_KEY : "{}<Left>"},
+            \ {s:LHS_PRF_KEY : "q", s:RHS_KEY : "''<Left>"},
+            \ {s:LHS_PRF_KEY : "h", s:RHS_KEY : "<C-r>\""},
+            \ {s:LHS_PRF_KEY : "k", s:RHS_KEY : "<End><C-u>"},
+            \ {s:LHS_PRF_KEY : "u", s:RHS_KEY : "<C-u>"},
+            \ {s:LHS_PRF_KEY : "c", s:RHS_KEY : "<End><C-u><C-u>"},
+            \ {s:LHS_PRF_KEY : "v", s:RHS_KEY : "<C-q>"},
+            \ {s:LHS_PRF_KEY : "g", s:RHS_KEY : "<C-x><C-]>"},
+            \ {s:LHS_PRF_KEY : "y", s:RHS_KEY : "<Bar>"},
             \]
 for info in s:main_cinoremap_info
-    call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, info[s:LHS_PREFIX_KEY], info[s:RHS_KEY])
+    call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, info[s:LHS_PRF_KEY], info[s:RHS_KEY])
 endfor
 
 let s:sub_cinoremap_info = [
-            \ {s:LHS_PREFIX_KEY : "a", s:RHS_KEY : "&"},
-            \ {s:LHS_PREFIX_KEY : "h", s:RHS_KEY : "^"},
-            \ {s:LHS_PREFIX_KEY : "p", s:RHS_KEY : "+"},
-            \ {s:LHS_PREFIX_KEY : "s", s:RHS_KEY : "#"},
-            \ {s:LHS_PREFIX_KEY : "r", s:RHS_KEY : "%"},
-            \ {s:LHS_PREFIX_KEY : "m", s:RHS_KEY : "@"},
-            \ {s:LHS_PREFIX_KEY : "t", s:RHS_KEY : "~"},
-            \ {s:LHS_PREFIX_KEY : "d", s:RHS_KEY : "$"},
-            \ {s:LHS_PREFIX_KEY : "e", s:RHS_KEY : "!"},
-            \ {s:LHS_PREFIX_KEY : "b", s:RHS_KEY : "`"},
-            \ {s:LHS_PREFIX_KEY : "c", s:RHS_KEY : ":"},
-            \ {s:LHS_PREFIX_KEY : "x", s:RHS_KEY : "*"},
-            \ {s:LHS_PREFIX_KEY : "q", s:RHS_KEY : "?"},
-            \ {s:LHS_PREFIX_KEY : ";", s:RHS_KEY : "\""},
-            \ {s:LHS_PREFIX_KEY : ",", s:RHS_KEY : "'"},
-            \ {s:LHS_PREFIX_KEY : "y", s:RHS_KEY : "\\"},
-            \ {s:LHS_PREFIX_KEY : "w", s:RHS_KEY : "\""},
-            \ {s:LHS_PREFIX_KEY : "o", s:RHS_KEY : "<Bar>"},
-            \ {s:LHS_PREFIX_KEY : "g", s:RHS_KEY : "=>"},
-            \ {s:LHS_PREFIX_KEY : "f", s:RHS_KEY : "->"},
+            \ {s:LHS_PRF_KEY : "a", s:RHS_KEY : "&"},
+            \ {s:LHS_PRF_KEY : "h", s:RHS_KEY : "^"},
+            \ {s:LHS_PRF_KEY : "p", s:RHS_KEY : "+"},
+            \ {s:LHS_PRF_KEY : "s", s:RHS_KEY : "#"},
+            \ {s:LHS_PRF_KEY : "r", s:RHS_KEY : "%"},
+            \ {s:LHS_PRF_KEY : "m", s:RHS_KEY : "@"},
+            \ {s:LHS_PRF_KEY : "t", s:RHS_KEY : "~"},
+            \ {s:LHS_PRF_KEY : "d", s:RHS_KEY : "$"},
+            \ {s:LHS_PRF_KEY : "e", s:RHS_KEY : "!"},
+            \ {s:LHS_PRF_KEY : "b", s:RHS_KEY : "`"},
+            \ {s:LHS_PRF_KEY : "c", s:RHS_KEY : ":"},
+            \ {s:LHS_PRF_KEY : "x", s:RHS_KEY : "*"},
+            \ {s:LHS_PRF_KEY : "q", s:RHS_KEY : "?"},
+            \ {s:LHS_PRF_KEY : ";", s:RHS_KEY : "\""},
+            \ {s:LHS_PRF_KEY : ",", s:RHS_KEY : "'"},
+            \ {s:LHS_PRF_KEY : "<Space>", s:RHS_KEY : "\\"},
+            \ {s:LHS_PRF_KEY : "g", s:RHS_KEY : "=>"},
+            \ {s:LHS_PRF_KEY : "f", s:RHS_KEY : "->"},
             \]
 for info in s:sub_cinoremap_info
-    call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, info[s:LHS_PREFIX_KEY], info[s:RHS_KEY])
+    call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, info[s:LHS_PRF_KEY], info[s:RHS_KEY])
 endfor
 
 "}}}
@@ -559,11 +563,11 @@ vmap <Leader>d [diff]
 function! s:diff_tab_open(...)
     if a:0 == 1
         tabedit %:p
-        exec "rightbelow vertical diffsplit " . a:1
+        execute "rightbelow vertical diffsplit " . a:1
     else
-        exec 'tabedit ' . a:1
+        execute "tabedit " . a:1
         for l:file in a:000[1:]
-            exec "rightbelow vertical diffsplit " . l:file
+            execute "rightbelow vertical diffsplit " . l:file
         endfor
     endif
 endfunction

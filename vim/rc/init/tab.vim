@@ -13,8 +13,7 @@ silent execute join([s:NNOREMAP, "<silent>", s:TAB_KEY . "o", ":<C-u>tabonly<CR>
 
 " open new tab"{{{
 function! s:new_tab() abort
-    tabe
-    setlocal buftype=nofile noswapfile
+    tabe | setlocal buftype=nofile noswapfile
 endfunction
 nnoremap <silent> <Plug>(new_tab) :<C-u>call <SID>new_tab()<CR>
 "}}}
