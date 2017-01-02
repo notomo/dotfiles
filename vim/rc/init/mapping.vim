@@ -1,12 +1,6 @@
 
 " basic mapping"{{{
-function! s:swap_char() abort
-    let pos = getpos(".")
-    execute 's/\v%#(\_.)(\_.)/\2\1/g'
-    call setpos('.', pos)
-    normal! l
-endfunction
-nnoremap <silent> <Leader>x :<C-u>call <SID>swap_char()<CR>
+nnoremap <silent> <Leader>x :<C-u>call tmno3#vimrc#switch_char()<CR>
 nnoremap x "_x
 
 nnoremap <Space>gi gi
@@ -39,6 +33,7 @@ vnoremap sl gu
 " kana mapping"{{{
 nnoremap い i
 nnoremap あ a
+nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 "}}}
 
 " buffer mapping"{{{
@@ -148,14 +143,11 @@ nnoremap <C-j> <C-f>
 " newline mapping"{{{
 nnoremap [newline] <Nop>
 nmap o [newline]
-nnoremap <silent> [newline]o  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <silent> [newline]f  :for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>:<C-u>execute "normal j"<CR>
-nnoremap <silent> [newline]h  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
-nnoremap <silent> [newline]a  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
-nnoremap [newline]j o
-nnoremap [newline]k O
-nnoremap [newline]s o
-nnoremap [newline]d O
+nnoremap <silent> [newline]o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <silent> [newline]j :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| execute "normal j" \| endfor<CR>
+nnoremap <silent> [newline]k :<C-u>for i in range(v:count1) \| call append(line('.') - 1, '') \| endfor<CR>
+nnoremap [newline]d o
+nnoremap [newline]u O
 "}}}
 
 " encode and format mapping"{{{
@@ -209,6 +201,8 @@ nnoremap [tag_open]h <C-w>]
 " Nop mapping"{{{
 nnoremap <F1> <Nop>
 vnoremap q <Nop>
+vnoremap ZQ <Nop>
+vnoremap ZZ <Nop>
 
 nnoremap <Ins> <Nop>
 inoremap <Ins> <Nop>
@@ -415,7 +409,7 @@ call s:inner_around_vomap("b", "`")
 
 " fold mapping"{{{
 noremap [fold] <Nop>
-map z [fold]
+map <Leader>z [fold]
 noremap [fold]j zj
 noremap [fold]k zk
 noremap [fold]n ]z
@@ -502,6 +496,8 @@ let s:main_cinoremap_info = [
             \ {s:LHS_PRF_KEY : "a", s:RHS_KEY : "-"},
             \ {s:LHS_PRF_KEY : "e", s:RHS_KEY : "="},
             \ {s:LHS_PRF_KEY : "s", s:RHS_KEY : "_"},
+            \ {s:LHS_PRF_KEY : "r", s:RHS_KEY : "<Bar>"},
+            \ {s:LHS_PRF_KEY : "g", s:RHS_KEY : "\\"},
             \ {s:LHS_PRF_KEY : "w", s:RHS_KEY : "\"\"<Left>"},
             \ {s:LHS_PRF_KEY : "b", s:RHS_KEY : "``<Left>"},
             \ {s:LHS_PRF_KEY : "l", s:RHS_KEY : "[]<Left>"},
@@ -514,8 +510,7 @@ let s:main_cinoremap_info = [
             \ {s:LHS_PRF_KEY : "u", s:RHS_KEY : "<C-u>"},
             \ {s:LHS_PRF_KEY : "c", s:RHS_KEY : "<End><C-u><C-u>"},
             \ {s:LHS_PRF_KEY : "v", s:RHS_KEY : "<C-q>"},
-            \ {s:LHS_PRF_KEY : "g", s:RHS_KEY : "<C-x><C-]>"},
-            \ {s:LHS_PRF_KEY : "y", s:RHS_KEY : "<Bar>"},
+            \ {s:LHS_PRF_KEY : "T", s:RHS_KEY : "<C-x><C-]>"},
             \]
 for info in s:main_cinoremap_info
     call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, info[s:LHS_PRF_KEY], info[s:RHS_KEY])
@@ -537,7 +532,6 @@ let s:sub_cinoremap_info = [
             \ {s:LHS_PRF_KEY : "q", s:RHS_KEY : "?"},
             \ {s:LHS_PRF_KEY : ";", s:RHS_KEY : "\""},
             \ {s:LHS_PRF_KEY : ",", s:RHS_KEY : "'"},
-            \ {s:LHS_PRF_KEY : "<Space>", s:RHS_KEY : "\\"},
             \ {s:LHS_PRF_KEY : "g", s:RHS_KEY : "=>"},
             \ {s:LHS_PRF_KEY : "f", s:RHS_KEY : "->"},
             \]
@@ -584,4 +578,24 @@ vnoremap [diff]j ]c
 vnoremap [diff]k [c
 vnoremap [diff]g :diffget<CR>
 vnoremap [diff]p :diffput<CR>
+"}}}
+
+" mark"{{{
+nnoremap [mark] <Nop>
+vnoremap [mark] <Nop>
+nmap <Leader>m [mark]
+vmap <Leader>m [mark]
+
+nnoremap [mark]s :<C-u>call tmno3#mark#set()<CR>
+
+nnoremap <expr> <silent> [mark]x tmno3#mark#to_next()
+vnoremap <expr> <silent> [mark]x tmno3#mark#to_next()
+
+nnoremap <expr> <silent> [mark]r tmno3#mark#to_previous()
+vnoremap <expr> <silent> [mark]r tmno3#mark#to_previous()
+
+nnoremap <silent> [mark]d :<C-u>call tmno3#mark#delete_all()<CR>
+
+nnoremap [mark]g '
+vnoremap [mark]g '
 "}}}
