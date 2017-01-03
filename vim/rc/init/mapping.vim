@@ -167,35 +167,35 @@ nnoremap [format]m :<C-u>set fileformat=mac<CR>
 nnoremap [format]u :<C-u>set fileformat=unix<CR>
 "}}}
 
-" tag_open mapping"{{{
-nnoremap [tag_open] <Nop>
-nmap <Space>t [tag_open]
+" tag mapping"{{{
+nnoremap [tag] <Nop>
+nmap <Space>t [tag]
 
 function! s:tab_tag_open() abort
     try
         execute "tag ". expand("<cword>")
         tab sp
         tabprevious
-        normal <C-o>
+        normal! <C-o>
         tabnext
     catch
         echo "Not found tag"
     endtry
 endfunction
-nnoremap [tag_open]t :<C-u>call <SID>tab_tag_open()<CR>
+nnoremap [tag]t :<C-u>call <SID>tab_tag_open()<CR>
 
 function! s:vertical_tag_open() abort
     try
         execute "tag ". expand("<cword>")
         vsplit
-        normal <C-o>
+        normal! <C-o>
     catch
         echo "Not found tag"
     endtry
 endfunction
-nnoremap [tag_open]v :<C-u>call <SID>vertical_tag_open()<CR>
-nnoremap [tag_open]o <C-]>
-nnoremap [tag_open]h <C-w>]
+nnoremap [tag]v :<C-u>call <SID>vertical_tag_open()<CR>
+nnoremap [tag]o <C-]>
+nnoremap [tag]h <C-w>]
 "}}}
 
 " Nop mapping"{{{
@@ -289,17 +289,17 @@ vnoremap [replace] <Nop>
 vmap <Space>r [replace]
 
 function! s:nvnoremap_replace(lhs, pattern, str) abort
-    let substitute_str = 's/\v' . a:pattern . "/" . a:str . "/ge"
-    let v_substitute_str = 's/\v%V' . a:pattern . "%V/" . a:str . "/g"
-    let q_substitute_str = (a:pattern == s:QUOTE_KEY || a:str == s:QUOTE_KEY) ? ":s/\{quote\}/'/g\<CR>" : ""
-    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, "q::call append('.', '" . substitute_str . "\\|noh')\<CR>j" . q_substitute_str . "\<CR>"])
-    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, "q::call append('.', '" . v_substitute_str . "')\<CR>j" . q_substitute_str . ":s/^/'<,'>/g\<CR>\<CR>"])
+    let pattern = substitute(a:pattern, '\', '\\\\', 'g')
+    let str = substitute(a:str, '\', '\\\\', 'g')
+    let substitute_str = 's/\\v' . pattern . "/" . str . "/ge\\|noh"
+    let v_substitute_str = "'<,'>" . 's/\\v%V' . pattern . "%V/" . str . "/g"
+    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, 'q::s@^@' . substitute_str . '@g<CR><CR>'])
+    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, 'q::s@^.*$@' . v_substitute_str . '@g<CR><CR>'])
 endfunction
 
 let s:LHS_KEY = "l"
 let s:PATTERN_KEY = "p"
 let s:STR_KEY = "s"
-let s:QUOTE_KEY = "{quote}"
 let s:replace_map_info = [
 \   {s:LHS_KEY : "co", s:PATTERN_KEY : '\S{-1,}\zs,\ze\S{-1,}', s:STR_KEY : ', '},
 \   {s:LHS_KEY : "e", s:PATTERN_KEY : '\S{-1,}\zs(\=\| \=\|\= )\ze\S{-1,}', s:STR_KEY : ' = '},
@@ -307,13 +307,13 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : "p", s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
 \   {s:LHS_KEY : "P", s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
 \   {s:LHS_KEY : "<Space>e", s:PATTERN_KEY : ' +$', s:STR_KEY : ''},
-\   {s:LHS_KEY : "mc", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \",\")"},
-\   {s:LHS_KEY : "mt", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \"\t\")"},
+\   {s:LHS_KEY : "mc", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\\\=join(split(submatch(0), \"\\n\"), \",\")"},
+\   {s:LHS_KEY : "mt", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\\\=join(split(submatch(0), \"\\n\"), \"\\t\")"},
 \   {s:LHS_KEY : "<Space>b", s:PATTERN_KEY : '\S{-1,}\zs {2,}\ze\S{-1,}', s:STR_KEY : ' '},
 \   {s:LHS_KEY : "cm", s:PATTERN_KEY : ',', s:STR_KEY : '\r'},
 \   {s:LHS_KEY : "tm", s:PATTERN_KEY : '\t', s:STR_KEY : '\r'},
-\   {s:LHS_KEY : "qw", s:PATTERN_KEY : s:QUOTE_KEY, s:STR_KEY : '"'},
-\   {s:LHS_KEY : "wq", s:PATTERN_KEY : '"', s:STR_KEY : s:QUOTE_KEY},
+\   {s:LHS_KEY : "qw", s:PATTERN_KEY : "'", s:STR_KEY : '"'},
+\   {s:LHS_KEY : "wq", s:PATTERN_KEY : '"', s:STR_KEY : "'"},
 \   {s:LHS_KEY : "cc", s:PATTERN_KEY : '_(.)', s:STR_KEY : '\u\1'},
 \   {s:LHS_KEY : "ch", s:PATTERN_KEY : '([A-Z])', s:STR_KEY : '_\l\1'},
 \   {s:LHS_KEY : "ct", s:PATTERN_KEY : ',', s:STR_KEY : '\t'},
