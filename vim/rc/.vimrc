@@ -10,7 +10,7 @@ if has('vim_starting')
 endif
 
 let g:mapleader = ","
-let g:maplocalleader = "<Space>l"
+let g:maplocalleader = "<Leader>l"
 
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]

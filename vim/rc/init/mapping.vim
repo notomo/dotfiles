@@ -59,10 +59,11 @@ vnoremap :  ;
 
 " into visual mode mapping"{{{
 nnoremap [visual] <Nop>
-nmap <Space>v [visual]
+nmap v [visual]
 vnoremap [visual] <Nop>
-vmap <Space>v [visual]
+vmap v [visual]
 nnoremap [visual]h gv
+nnoremap [visual]n n
 nnoremap [visual]l <S-v>
 nnoremap [visual]c <C-v>
 vnoremap [visual]l <S-v>
@@ -167,7 +168,7 @@ nnoremap [option]fd :<C-u>set fileformat=dos<CR>
 nnoremap [option]fm :<C-u>set fileformat=mac<CR>
 nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 
-nnoremap [option]n :<C-u>noh<CR>
+nnoremap <silent> [option]n :<C-u>noh<CR>
 "}}}
 
 " keyword mapping"{{{
@@ -275,6 +276,8 @@ vnoremap [substitute]iy  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right>
 vnoremap [substitute]y  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"<Right>
 nnoremap [substitute]c  :<C-u>%s/\C\v//g<Left><Left><Left>
 vnoremap [substitute]c  :<C-u>'<,'>%s/\C\v//g<Left><Left><Left>
+nnoremap [substitute]d  :<C-u>%s/\v$//g<Left><Left>
+vnoremap [substitute]d  :<C-u>'<,'>%s/\v$//g<Left><Left>
 
 nnoremap [substitute]e :<C-u>v//d<Left><Left>
 vnoremap [substitute]e :v//d<Left><Left>
