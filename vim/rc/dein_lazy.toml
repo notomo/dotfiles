@@ -217,34 +217,25 @@ let g:syntastic_javascript_checker = "jshint"
 repo = 'fuenor/im_control.vim'
 on_event = 'InsertEnter'
 
-[[plugins]]
-repo = 'LeafCage/qutefinger.vim'
-on_map = {n = '<Plug>'}
-hook_add = '''
-nnoremap [quickfix] <Nop>
-nmap <Space>x [quickfix]
-nmap [quickfix]c <Plug>(qutefinger-toggle-mode)
-nmap [quickfix]n <Plug>(qutefinger-next)
-nmap [quickfix]p <Plug>(qutefinger-prev)
-nmap [quickfix]x <Plug>(qutefinger-toggle-win)
-nmap [quickfix]f <Plug>(qutefinger-first)
-nmap [quickfix]l <Plug>(qutefinger-last)
-'''
+# [[plugins]]
+# repo = 'LeafCage/qutefinger.vim'
+# on_map = {n = '<Plug>'}
+# hook_add = '''
+# nnoremap [quickfix] <Nop>
+# nmap <Space>x [quickfix]
+# nmap [quickfix]c <Plug>(qutefinger-toggle-mode)
+# nmap [quickfix]n <Plug>(qutefinger-next)
+# nmap [quickfix]p <Plug>(qutefinger-prev)
+# nmap [quickfix]x <Plug>(qutefinger-toggle-win)
+# nmap [quickfix]f <Plug>(qutefinger-first)
+# nmap [quickfix]l <Plug>(qutefinger-last)
+# '''
 
 [[plugins]]
 repo = 'kana/vim-operator-replace'
 depends = 'vim-operator-user'
 on_map = '<Plug>'
 hook_add = 'map r <Plug>(operator-replace)'
-
-[[plugins]]
-repo = 'tyru/operator-camelize.vim'
-depends = 'vim-operator-user'
-on_map = ['<Plug>(operator-camelize)', '<Plug>(operator-decamelize)', '<Plug>(operator-camelize-toggle)']
-hook_add = '''
-map <Leader>cc <Plug>(operator-camelize)
-map <Leader>hc <Plug>(operator-decamelize)
-'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-operator-exec_command'
@@ -286,20 +277,6 @@ xmap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 [[plugins]]
 repo = 'tyru/current-func-info.vim'
 on_func = ['cfi#format']
-hook_add = '''
-function! s:yank_current_function_name(name) abort
-    if a:name != ""
-        let @+ = a:name
-        let @* = a:name
-        let @0 = a:name
-        let @" = a:name
-        echomsg "yank ".a:name
-    else
-        echomsg "no_function"
-    endif
-endfunction
-nnoremap <silent> <Leader>f :<C-u>call <SID>yank_current_function_name(cfi#format("%s", "no_function"))<CR>
-'''
 
 [[plugins]]
 repo = 'rhysd/vim-operator-surround'
@@ -346,9 +323,8 @@ repo = 'thinca/vim-quickrun'
 on_map = {n = '<Plug>'}
 on_cmd = 'QuickRun'
 hook_add = '''
-nmap <silent> <Leader>R <Plug>(quickrun)
-nnoremap <Leader>ri :<C-u>QuickRun <<Space>
-vnoremap <silent> <Leader><S-R> :QuickRun -mode v<CR>
+nmap <silent> <Leader><S-q> <Plug>(quickrun)
+vnoremap <silent> <Leader><S-q> :QuickRun -mode v<CR>
 '''
 hook_source = '''
 let g:quickrun_config = {
@@ -399,7 +375,7 @@ vmap <Space>c <Plug>(caw:hatpos:toggle)
 [[plugins]]
 repo = 'thinca/vim-ref'
 on_map = {n = '<Plug>'}
-hook_add = 'nmap <Leader>k <Plug>(ref-keyword)'
+hook_add = 'nmap [keyword]r <Plug>(ref-keyword)'
 hook_source = 'let g:ref_phpmanual_path = $Home . "/.vim/phpmanual"'
 
 [[plugins]]
@@ -463,9 +439,9 @@ repo = 'osyo-manga/vim-over'
 on_cmd = 'OverCommandLine'
 hook_add = '''
 nnoremap [over] <Nop>
-nmap <Space>po [over]
+nmap <Space>so [over]
 vnoremap [over] <Nop>
-vmap <Space>po [over]
+vmap <Space>so [over]
 
 nnoremap [over]f :OverCommandLine<CR>%s/\v//g<Left><Left><Left>
 nnoremap [over]w :OverCommandLine<CR>%s/\v<C-r><C-w>//g<Left><Left>
@@ -725,8 +701,8 @@ nnoremap <Space>ep :<C-u>PrevimOpen<CR>
 repo = 'tyru/capture.vim'
 on_cmd = 'Capture'
 hook_add = '''
-nnoremap <Leader>ca :<C-u>Capture<Space>
-nnoremap <Leader>cm :<C-u>Capture messages<CR>
+nnoremap [exec]ci :<C-u>Capture<Space>
+nnoremap [exec]cm :<C-u>Capture messages<CR>
 '''
 
 [[plugins]]

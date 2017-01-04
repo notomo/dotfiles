@@ -10,14 +10,10 @@ nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
 nnoremap <Space>. @:
 vnoremap <Space>. @:
 
-nnoremap <Space>z <C-x>
-nnoremap <Space>a <C-a>
-vnoremap <Space>z <C-x>gv
-vnoremap <Space>a <C-a>gv
-
 nnoremap <silent> <F5> :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
 
-nnoremap q <C-r>
+nnoremap <Leader>r <C-r>
+noremap <Leader>t t
 
 nnoremap R r
 vnoremap R r
@@ -36,16 +32,22 @@ nnoremap あ a
 nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 "}}}
 
+" file mapping"{{{
+nnoremap [file] <Nop>
+nmap <Space>f [file]
+nnoremap [file]w :<C-u>w<CR>
+nnoremap [file]r :<C-u>file<Space>
+"}}}
+
 " buffer mapping"{{{
-nnoremap <Space>w :<C-u>w<CR>
-nnoremap <Space>q :<C-u>q<CR>
-nnoremap <Space>b <C-^>
-nnoremap <Space>er :<C-u>file<Space>
-nnoremap <C-S-F9> :<C-u>qa<CR>
-nnoremap <Space>ee :<C-u>call <SID>new_buf()<CR>
+nnoremap [buf] <Nop>
+nmap <Space>b [buf]
+nnoremap [buf]b <C-^>
+nnoremap [buf]n :<C-u>call <SID>new_buf()<CR>
 function! s:new_buf() abort
     enew | setlocal buftype=nofile noswapfile
 endfunction
+nnoremap [buf]Q :<C-u>qa<CR>
 "}}}
 
 " swap :; mapping"{{{
@@ -56,12 +58,16 @@ vnoremap :  ;
 "}}}
 
 " into visual mode mapping"{{{
-nnoremap <Space>v gv
-nnoremap <Space>l <S-v>
-nnoremap <Space>h <C-v>
-vnoremap <Space>l <S-v>
-vnoremap <Space>h <C-v>
-vnoremap <Space>k v
+nnoremap [visual] <Nop>
+nmap <Space>v [visual]
+vnoremap [visual] <Nop>
+vmap <Space>v [visual]
+nnoremap [visual]h gv
+nnoremap [visual]l <S-v>
+nnoremap [visual]c <C-v>
+vnoremap [visual]l <S-v>
+vnoremap [visual]c <C-v>
+vnoremap [visual]n v
 
 " depends yankround
 function! s:select_paste_region() abort
@@ -69,7 +75,7 @@ function! s:select_paste_region() abort
     call setpos("'>", [0, line("']"), col("']")])
     normal! gv
 endfunction
-nnoremap <Space>k :<C-u>call <SID>select_paste_region()<CR>
+nnoremap [visual]p :<C-u>call <SID>select_paste_region()<CR>
 "}}}
 
 " select mode mapping"{{{
@@ -151,26 +157,20 @@ nnoremap [newline]u O
 "}}}
 
 " encode and format mapping"{{{
-nnoremap [encode] <Nop>
-nmap <Space>f [encode]
+nnoremap [option] <Nop>
+nmap <Space>o [option]
 
-nnoremap [encode]i :<C-u>set fileencoding=
-nnoremap [encode]u :<C-u>set fileencoding=utf8<CR>
-nnoremap [encode]e :<C-u>set fileencoding=euc-jp<CR>
-nnoremap [encode]s :<C-u>set fileencoding=shift_jis<CR>
+nnoremap [option]u :<C-u>set fileencoding=utf8<CR>
+nnoremap [option]e :<C-u>set fileencoding=euc-jp<CR>
+nnoremap [option]s :<C-u>set fileencoding=shift_jis<CR>
+nnoremap [option]fd :<C-u>set fileformat=dos<CR>
+nnoremap [option]fm :<C-u>set fileformat=mac<CR>
+nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 
-nnoremap [format] <Nop>
-nmap [encode]o [format]
-
-nnoremap [format]d :<C-u>set fileformat=dos<CR>
-nnoremap [format]m :<C-u>set fileformat=mac<CR>
-nnoremap [format]u :<C-u>set fileformat=unix<CR>
+nnoremap [option]n :<C-u>noh<CR>
 "}}}
 
-" tag mapping"{{{
-nnoremap [tag] <Nop>
-nmap <Space>t [tag]
-
+" keyword mapping"{{{
 function! s:tab_tag_open() abort
     try
         execute "tag ". expand("<cword>")
@@ -182,7 +182,7 @@ function! s:tab_tag_open() abort
         echo "Not found tag"
     endtry
 endfunction
-nnoremap [tag]t :<C-u>call <SID>tab_tag_open()<CR>
+nnoremap [keyword]t :<C-u>call <SID>tab_tag_open()<CR>
 
 function! s:vertical_tag_open() abort
     try
@@ -193,9 +193,9 @@ function! s:vertical_tag_open() abort
         echo "Not found tag"
     endtry
 endfunction
-nnoremap [tag]v :<C-u>call <SID>vertical_tag_open()<CR>
-nnoremap [tag]o <C-]>
-nnoremap [tag]h <C-w>]
+nnoremap [keyword]v :<C-u>call <SID>vertical_tag_open()<CR>
+nnoremap [keyword]o <C-]>
+nnoremap [keyword]h <C-w>]
 "}}}
 
 " Nop mapping"{{{
@@ -259,20 +259,20 @@ nnoremap <Space>ej :<C-u>execute "normal".line(".")."gg"<CR>
 
 " substitute mapping"{{{
 nnoremap [substitute] <Nop>
-nmap <Space>p [substitute]
+nmap <Space>s [substitute]
 vnoremap [substitute] <Nop>
-vmap <Space>p [substitute]
+vmap <Space>s [substitute]
 
 nnoremap [substitute]f  :<C-u>%s/\v//g<Left><Left><Left>
 vnoremap [substitute]f  :s/\v%V%V//g<Left><Left><Left><Left><Left>
-nnoremap [substitute]w :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right>
-nnoremap [substitute]W :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right><C-r><C-w>
-nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right>
-nnoremap [substitute]V <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right><C-r>"
-nnoremap [substitute]y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right>
-nnoremap [substitute]Y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"
-vnoremap [substitute]y  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right>
-vnoremap [substitute]Y  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"<Right>
+nnoremap [substitute]iw :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right>
+nnoremap [substitute]w :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right><C-r><C-w>
+nnoremap [substitute]iv <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right>
+nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right><C-r>"
+nnoremap [substitute]iy  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right>
+nnoremap [substitute]y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"
+vnoremap [substitute]iy  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right>
+vnoremap [substitute]y  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"<Right>
 nnoremap [substitute]c  :<C-u>%s/\C\v//g<Left><Left><Left>
 vnoremap [substitute]c  :<C-u>'<,'>%s/\C\v//g<Left><Left><Left>
 
@@ -307,8 +307,8 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : "p", s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
 \   {s:LHS_KEY : "P", s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
 \   {s:LHS_KEY : "<Space>e", s:PATTERN_KEY : ' +$', s:STR_KEY : ''},
-\   {s:LHS_KEY : "mc", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\\\=join(split(submatch(0), \"\\n\"), \",\")"},
-\   {s:LHS_KEY : "mt", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\\\=join(split(submatch(0), \"\\n\"), \"\\t\")"},
+\   {s:LHS_KEY : "mc", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \",\")"},
+\   {s:LHS_KEY : "mt", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \"\\t\")"},
 \   {s:LHS_KEY : "<Space>b", s:PATTERN_KEY : '\S{-1,}\zs {2,}\ze\S{-1,}', s:STR_KEY : ' '},
 \   {s:LHS_KEY : "cm", s:PATTERN_KEY : ',', s:STR_KEY : '\r'},
 \   {s:LHS_KEY : "tm", s:PATTERN_KEY : '\t', s:STR_KEY : '\r'},
@@ -337,38 +337,23 @@ nnoremap [yank] <Nop>
 nmap <Space>y [yank]
 
 function! s:yank_now(delimiter) abort
-    execute "normal <C-u>"
-    if a:delimiter==""
-        let a:delimiter="_"
-    endif
-    let now = strftime(join(split("%Y_%m_%d","_"),a:delimiter))
-    call s:yank_value(now)
+    let delimiter = a:delimiter == "" ? "_" : a:delimiter
+    call s:yank_value(strftime(join(split("%Y_%m_%d","_"),a:delimiter)))
 endfunction
-function! s:yank_now_with_slash() abort
-    call s:yank_now("\/")
-endfunction
-nnoremap [yank]n :<C-u>call <SID>yank_now_with_slash()<CR>
+nnoremap [yank]n :<C-u>call <SID>yank_now("\/")<CR>
 
-function! s:yank_file_name() abort
-    call s:yank_value(expand("%"))
-endfunction
-nnoremap [yank]f :<C-u>call <SID>yank_file_name()<CR>
+nnoremap [yank]f :<C-u>call <SID>yank_value(expand("%"))<CR>
 
-function! s:yank_file_path() abort
-    let file_path = substitute(expand("%:p"), "\\", "/", "g")
-    call s:yank_value(file_path)
-endfunction
-nnoremap [yank]p :<C-u>call <SID>yank_file_path()<CR>
+nnoremap [yank]p :<C-u>call <SID>yank_value(substitute(expand("%:p"), "\\", "/", "g"))<CR>
 
-function! s:yank_last_command() abort
-    call s:yank_value(@:)
-endfunction
-nnoremap [yank]; :<C-u>call <SID>yank_last_command()<CR>
+nnoremap [yank]; :<C-u>call <SID>yank_value(@:)<CR>
 
-function! s:yank_last_search() abort
-    call s:yank_value(@/)
-endfunction
-nnoremap [yank]/ :<C-u>call <SID>yank_last_search()<CR>
+nnoremap [yank]/ :<C-u>call <SID>yank_value(@/)<CR>
+
+nnoremap [yank]i :<C-u>call <SID>yank_value(@.)<CR>
+
+nnoremap <silent> [yank]k :<C-u>call <SID>yank_value(cfi#format("%s", ""))<CR>
+
 function! s:yank_value(value) abort
     let @" = a:value
     let @+ = a:value
@@ -376,11 +361,6 @@ function! s:yank_value(value) abort
     let @* = a:value
     echomsg "yank ". a:value
 endfunction
-
-function! s:yank_last_input() abort
-    call s:yank_value(@.)
-endfunction
-nnoremap [yank]i :<C-u>call <SID>yank_last_input()<CR>
 "}}}
 
 " inner and around vomapping"{{{
@@ -542,10 +522,12 @@ endfor
 "}}}
 
 " macro mapping"{{{
-nnoremap <Leader>; qa
-nnoremap <Leader><Leader> q
-nnoremap <Leader>. @a
-nnoremap <Leader>D qaq
+nnoremap [macro] <Nop>
+nmap q [macro]
+nnoremap [macro]r qa
+nnoremap [macro]q q
+nnoremap [macro]s @a
+nnoremap [macro]d qaq
 "}}}
 
 " diff mapping"{{{
@@ -598,4 +580,16 @@ nnoremap <silent> [mark]d :<C-u>call tmno3#mark#delete_all()<CR>
 
 nnoremap [mark]g '
 vnoremap [mark]g '
+"}}}
+
+" arithmatic"{{{
+nnoremap [arith] <Nop>
+vnoremap [arith] <Nop>
+nmap <Space>a [arith]
+vmap <Space>a [arith]
+
+nnoremap [arith]j <C-x>
+nnoremap [arith]k <C-a>
+vnoremap [arith]j <C-x>gv
+vnoremap [arith]K <C-a>gv
 "}}}

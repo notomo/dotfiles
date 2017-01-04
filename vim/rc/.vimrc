@@ -10,6 +10,14 @@ if has('vim_starting')
 endif
 
 let g:mapleader = ","
+let g:maplocalleader = "<Space>l"
+
+nnoremap [exec] <Nop>
+nmap <Space>x [exec]
+nnoremap [others] <Nop>
+nmap z [others]
+nnoremap [keyword] <Nop>
+nmap <Space>k [keyword]
 
 let g:plugin_dicwin_disable    = 1
 let g:loaded_gzip              = 1

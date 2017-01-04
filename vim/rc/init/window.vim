@@ -25,7 +25,7 @@ call s:winmv_map("s", "<C-w>r") " swap
 "}}}
 
 " split"{{{
-let s:WIN_PFX = "<Space>s"
+let s:WIN_PFX = "<Space>w"
 let s:WIN_KEY = "[win]"
 call s:set_pfx(s:WIN_PFX, s:WIN_KEY)
 function! s:win_map(lhs, rhs) abort
@@ -36,6 +36,7 @@ call s:win_map("h", ":<C-u>split<CR>") " split horizontally
 call s:win_map("v", ":<C-u>vsplit<CR>") " split vertically
 call s:win_map("o", ":<C-u>only<CR>") " close others
 call s:win_map("p", "<C-w>z") " close preview
+call s:win_map("q", ":<C-u>q<CR>") " close
 "}}}
 
 " change size"{{{

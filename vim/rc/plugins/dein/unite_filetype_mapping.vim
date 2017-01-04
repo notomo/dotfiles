@@ -10,6 +10,8 @@ function! s:unite_my_settings()"{{{
 
     nnoremap <silent> <buffer> <expr> sh unite#do_action('split')
     nnoremap <silent> <buffer> <expr> sv unite#do_action('vsplit')
+    nnoremap <silent> <buffer> <expr> fl unite#do_action('tabvimfiler')
+    nnoremap <silent> <buffer> <expr> fo unite#do_action('vimfiler')
 
     nmap <buffer> i <Plug>(unite_insert_enter)
     nmap <buffer> I <Plug>(unite_insert_head)
