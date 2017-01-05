@@ -123,8 +123,18 @@ omap ih <Plug>(textobj-line-i)
 repo = 'tyru/open-browser.vim'
 on_map = {nx = '<Plug>(openbrowser-'}
 on_cmd = 'OpenBrowser'
-on_ft = 'markdown'
-hook_add = 'source ~/.vim/rc/plugins/open-browser.vim'
+hook_add = '''
+nnoremap [browser] <Nop>
+nmap [exec]b [browser]
+vnoremap [browser] <Nop>
+vmap [exec]b [browser]
+
+nmap [browser]s <Plug>(openbrowser-smart-search)
+vmap [browser]s <Plug>(openbrowser-smart-search)
+nmap [browser]o <Plug>(openbrowser-open)
+vmap [browser]o <Plug>(openbrowser-open)
+nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
+'''
 
 [[plugins]]
 repo = 'haya14busa/incsearch.vim'
@@ -380,7 +390,7 @@ hook_source = 'let g:ref_phpmanual_path = $Home . "/.vim/phpmanual"'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
-depends = 'neomru.vim'
+depends = ['neomru.vim', 'vimfiler.vim']
 hook_add = 'source ~/.vim/rc/plugins/dein/unite_mapping.vim'
 hook_source = 'source ~/.vim/rc/plugins/dein/unite_setting.vim'
 
@@ -416,22 +426,22 @@ on_if = 1
 repo = 'Shougo/neoinclude.vim'
 on_if = 1
 
-[[plugins]]
-repo = 'AndrewRadev/splitjoin.vim'
-on_cmd = 'Splitjoin'
-hook_add = '''
-let g:splitjoin_split_mapping = ''
-let g:splitjoin_join_mapping = ''
-nnoremap <Leader>sj :<C-u>SplitjoinJoin<CR>
-nnoremap <Leader>ss :<C-u>SplitjoinSplit<CR>
-'''
+# [[plugins]]
+# repo = 'AndrewRadev/splitjoin.vim'
+# on_cmd = 'Splitjoin'
+# hook_add = '''
+# let g:splitjoin_split_mapping = ''
+# let g:splitjoin_join_mapping = ''
+# nnoremap <Leader>sj :<C-u>SplitjoinJoin<CR>
+# nnoremap <Leader>ss :<C-u>SplitjoinSplit<CR>
+# '''
 
 [[plugins]]
 repo = 'AndrewRadev/switch.vim'
 on_cmd = 'Switch'
 hook_add = '''
 let g:switch_mapping = ""
-nnoremap <Space>tw :<C-u>Switch<CR>
+nnoremap [edit]s :<C-u>Switch<CR>
 '''
 
 [[plugins]]
@@ -461,7 +471,7 @@ let g:over_command_line_key_mappings = {
 [[plugins]]
 repo = 'AndrewRadev/linediff.vim'
 on_cmd = 'Linediff'
-hook_add = 'vnoremap <Leader>dl :Linediff<CR>'
+hook_add = 'vnoremap [diff]l :Linediff<CR>'
 
 [[plugins]]
 repo = 'sjl/gundo.vim'
@@ -501,28 +511,28 @@ nnoremap <Leader>gh :<C-u>SignifyToggleHighlight<CR>
 nnoremap <Leader>gt :<C-u>SignifyToggle<CR>
 '''
 
-[[plugins]]
-repo = 't9md/vim-quickhl'
-on_map = {n = '<Plug>(quickhl-manual-'}
-hook_add = '''
-nnoremap [highlight] <Nop>
-nmap <Leader>h [highlight]
-xnoremap [highlight] <Nop>
-xmap <Leader>h [highlight]
-nmap [highlight]t <Plug>(quickhl-manual-this)
-xmap [highlight]t <Plug>(quickhl-manual-this)
-nmap [highlight]r <Plug>(quickhl-manual-reset)
-xmap [highlight]r <Plug>(quickhl-manual-reset)
-nmap [highlight]a <Plug>(quickhl-manual-toggle)
-'''
+# [[plugins]]
+# repo = 't9md/vim-quickhl'
+# on_map = {n = '<Plug>(quickhl-manual-'}
+# hook_add = '''
+# nnoremap [highlight] <Nop>
+# nmap <Leader>h [highlight]
+# xnoremap [highlight] <Nop>
+# xmap <Leader>h [highlight]
+# nmap [highlight]t <Plug>(quickhl-manual-this)
+# xmap [highlight]t <Plug>(quickhl-manual-this)
+# nmap [highlight]r <Plug>(quickhl-manual-reset)
+# xmap [highlight]r <Plug>(quickhl-manual-reset)
+# nmap [highlight]a <Plug>(quickhl-manual-toggle)
+# '''
 
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
-[[plugins]]
-repo = 'shawncplus/phpcomplete.vim'
-on_ft = 'php'
+# [[plugins]]
+# repo = 'shawncplus/phpcomplete.vim'
+# on_ft = 'php'
 
 [[plugins]]
 repo = 'elzr/vim-json'
@@ -532,9 +542,9 @@ on_ft = 'json'
 repo = 'tmhedberg/matchit'
 on_ft = ['html', 'smarty']
 
-[[plugins]]
-repo = 'mattn/ssh-add-vim'
-on_cmd = ['SshAdd']
+# [[plugins]]
+# repo = 'mattn/ssh-add-vim'
+# on_cmd = ['SshAdd']
 
 [[plugins]]
 repo = 'cohama/agit.vim'
@@ -570,9 +580,9 @@ on_func = ['PP']
 repo = 'thinca/vim-editvar'
 on_cmd = ['Editvar']
 
-[[plugins]]
-repo = 'thinca/vim-themis'
-on_ft = 'vim'
+# [[plugins]]
+# repo = 'thinca/vim-themis'
+# on_ft = 'vim'
 
 [[plugins]]
 repo = 'haya14busa/vim-operator-flashy'
@@ -692,6 +702,7 @@ let g:tern_map_keys = 0
 
 [[plugins]]
 repo = 'kannokanno/previm'
+depends = 'open-browser.vim'
 on_ft = 'markdown'
 hook_source = '''
 nnoremap <Space>ep :<C-u>PrevimOpen<CR>

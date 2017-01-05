@@ -1,11 +1,8 @@
 
 " basic mapping"{{{
-nnoremap <silent> <Leader>x :<C-u>call tmno3#vimrc#switch_char()<CR>
 nnoremap x "_x
 
 nnoremap <Space>gi gi
-
-nnoremap <silent> <Space>n :<C-u>nohlsearch<CR>
 
 nnoremap <Space>. @:
 vnoremap <Space>. @:
@@ -15,15 +12,21 @@ nnoremap <silent> <F5> :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch
 nnoremap <Leader>r <C-r>
 noremap <Leader>t t
 
-nnoremap R r
-vnoremap R r
-
 nnoremap Q q:
 
-nnoremap sh gU
-nnoremap sl gu
-vnoremap sh gU
-vnoremap sl gu
+"}}}
+
+" edit mapping"{{{
+nnoremap <silent> [edit]x :<C-u>call tmno3#vimrc#switch_char()<CR>
+nnoremap [edit]r r
+vnoremap [edit]r r
+nnoremap [edit]h gU
+nnoremap [edit]l gu
+vnoremap [edit]h gU
+vnoremap [edit]l gu
+nnoremap [edit]m i<C-@>
+nnoremap [edit]j :<C-u>join<CR>
+vnoremap [edit]j :join<CR>
 "}}}
 
 " kana mapping"{{{
@@ -57,18 +60,19 @@ vnoremap ;  :
 vnoremap :  ;
 "}}}
 
-" into visual mode mapping"{{{
+" visual mode mapping"{{{
 nnoremap [visual] <Nop>
 nmap v [visual]
 vnoremap [visual] <Nop>
 vmap v [visual]
 nnoremap [visual]h gv
-nnoremap [visual]n n
+nnoremap [visual]v v
 nnoremap [visual]l <S-v>
 nnoremap [visual]c <C-v>
 vnoremap [visual]l <S-v>
 vnoremap [visual]c <C-v>
 vnoremap [visual]n v
+vnoremap [visual]v <ESC>
 
 " depends yankround
 function! s:select_paste_region() abort
@@ -96,7 +100,6 @@ inoremap <silent> っｊ <ESC>
 inoremap <silent> ｊｊ <ESC>
 cnoremap <silent> jj <C-c>
 onoremap jj <ESC>
-vnoremap v <ESC>
 snoremap jj <ESC>
 "}}}
 
@@ -133,9 +136,6 @@ nnoremap gi <C-i>
 nnoremap gO g;
 nnoremap gI g,
 
-nnoremap <C-i> <C-i>
-nnoremap <C-o> <C-o>
-
 vnoremap <S-j> }
 vnoremap <S-k> {
 vnoremap <S-l> %
@@ -157,7 +157,7 @@ nnoremap [newline]d o
 nnoremap [newline]u O
 "}}}
 
-" encode and format mapping"{{{
+" option mapping"{{{
 nnoremap [option] <Nop>
 nmap <Space>o [option]
 
@@ -168,7 +168,7 @@ nnoremap [option]fd :<C-u>set fileformat=dos<CR>
 nnoremap [option]fm :<C-u>set fileformat=mac<CR>
 nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 
-nnoremap <silent> [option]n :<C-u>noh<CR>
+nnoremap <silent> [option]n :<C-u>nohlsearch<CR>
 "}}}
 
 " keyword mapping"{{{
@@ -177,7 +177,7 @@ function! s:tab_tag_open() abort
         execute "tag ". expand("<cword>")
         tab sp
         tabprevious
-        normal! <C-o>
+        execute "normal! \<C-o>"
         tabnext
     catch
         echo "Not found tag"
@@ -189,7 +189,7 @@ function! s:vertical_tag_open() abort
     try
         execute "tag ". expand("<cword>")
         vsplit
-        normal! <C-o>
+        execute "normal! \<C-o>"
     catch
         echo "Not found tag"
     endtry
@@ -245,17 +245,12 @@ command! GitaCtagsCommand call GitCtags()
 nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
 
 function! OpenWorkText() abort
-	let l:work_text_file_path =  "~/worktexts/".strftime("%Y_%m_%d.txt")
-	execute "tab drop ".l:work_text_file_path
+	let l:work_text_file_path =  "~/worktexts/" . strftime("%Y_%m_%d.txt")
+	execute "tab drop " . l:work_text_file_path
 	execute "set filetype=worktext"
 endfunction
 command! OpenWorkTextCommand call OpenWorkText()
 nnoremap <Space>ew :<C-u>OpenWorkTextCommand<CR>
-
-nnoremap <Space>em i<C-@>
-nnoremap <Space>ec :<C-u>!start ConEmu64.exe<CR>
-
-nnoremap <Space>ej :<C-u>execute "normal".line(".")."gg"<CR>
 "}}}
 
 " substitute mapping"{{{
@@ -344,19 +339,12 @@ function! s:yank_now(delimiter) abort
     call s:yank_value(strftime(join(split("%Y_%m_%d","_"),a:delimiter)))
 endfunction
 nnoremap [yank]n :<C-u>call <SID>yank_now("\/")<CR>
-
 nnoremap [yank]f :<C-u>call <SID>yank_value(expand("%"))<CR>
-
 nnoremap [yank]p :<C-u>call <SID>yank_value(substitute(expand("%:p"), "\\", "/", "g"))<CR>
-
 nnoremap [yank]; :<C-u>call <SID>yank_value(@:)<CR>
-
 nnoremap [yank]/ :<C-u>call <SID>yank_value(@/)<CR>
-
 nnoremap [yank]i :<C-u>call <SID>yank_value(@.)<CR>
-
 nnoremap <silent> [yank]k :<C-u>call <SID>yank_value(cfi#format("%s", ""))<CR>
-
 function! s:yank_value(value) abort
     let @" = a:value
     let @+ = a:value
@@ -534,11 +522,6 @@ nnoremap [macro]d qaq
 "}}}
 
 " diff mapping"{{{
-nnoremap [diff] <Nop>
-nmap <Leader>d [diff]
-vnoremap [diff] <Nop>
-vmap <Leader>d [diff]
-
 function! s:diff_tab_open(...)
     if a:0 == 1
         tabedit %:p

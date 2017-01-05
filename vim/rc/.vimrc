@@ -14,10 +14,20 @@ let g:maplocalleader = "<Leader>l"
 
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]
+vnoremap [exec] <Nop>
+vmap <Space>x [exec]
 nnoremap [others] <Nop>
 nmap z [others]
 nnoremap [keyword] <Nop>
 nmap <Space>k [keyword]
+nnoremap [diff] <Nop>
+nmap <Leader>d [diff]
+vnoremap [diff] <Nop>
+vmap <Leader>d [diff]
+nnoremap [edit] <Nop>
+nmap <Space>d [edit]
+vnoremap [edit] <Nop>
+vmap <Space>d [edit]
 
 let g:plugin_dicwin_disable    = 1
 let g:loaded_gzip              = 1
