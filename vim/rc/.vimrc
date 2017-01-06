@@ -25,9 +25,9 @@ nmap <Leader>d [diff]
 vnoremap [diff] <Nop>
 vmap <Leader>d [diff]
 nnoremap [edit] <Nop>
-nmap <Space>d [edit]
+nmap <Space>e [edit]
 vnoremap [edit] <Nop>
-vmap <Space>d [edit]
+vmap <Space>e [edit]
 
 let g:plugin_dicwin_disable    = 1
 let g:loaded_gzip              = 1

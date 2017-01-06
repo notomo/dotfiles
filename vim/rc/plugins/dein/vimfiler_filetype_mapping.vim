@@ -5,6 +5,17 @@ function! my_action.func(candidates)
 endfunction
 call unite#custom_action("file", "my_split", my_action)
 
+function! s:new_file() abort
+    let file_name = input("New files name(comma separated):")
+    if file_name != ""
+        execute "normal \<Plug>(vimfiler_new_file)" . file_name . "\<CR>"
+        execute "normal \<Plug>(vimfiler_edit_file)"
+        set fileformat=unix
+    else
+        echomsg " Canceled"
+    endif
+endfunction
+
 autocmd MyAuGroup FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
     nmap <buffer> j <Plug>(vimfiler_loop_cursor_down)
@@ -32,7 +43,7 @@ function! s:vimfiler_my_settings()
     nmap <buffer>rn <Plug>(vimfiler_rename_file)
     nmap <buffer>df <Plug>(vimfiler_delete_file)
     nmap <buffer>nd <Plug>(vimfiler_make_directory)
-    nnoremap <buffer>nf :<C-u>NewUnixFormatFileCommand<CR>
+    nnoremap <buffer>nf :<C-u>call <SID>new_file()<CR>
     nmap <buffer>K <Plug>(vimfiler_jump_first_child)
     nmap <buffer>J <Plug>(vimfiler_jump_last_child)
     nmap <buffer><Space>h <Plug>(vimfiler_switch_to_home_directory)

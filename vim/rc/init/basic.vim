@@ -1,10 +1,12 @@
 ﻿
-"ウィンドウを最大化して起動
-autocmd MyAuGroup GUIEnter * simalt ~x
+if has("gui") && has("win64")
+    "ウィンドウを最大化して起動
+    autocmd MyAuGroup GUIEnter * simalt ~x
+endif
 "日本語入力をリセット
 autocmd MyAuGroup BufNewFile,BufRead * set iminsert=0
 " 「日本語入力固定モード」の動作モード
-let IM_CtrlMode = 4
+let g:IM_CtrlMode = 4
 
 set nowrap
 set showtabline=2 " タブを常に表示
@@ -42,8 +44,8 @@ set formatoptions+=q
 set clipboard=unnamed
 set foldmethod=manual
 
-autocmd MyAuGroup BufEnter * call AutoCD()
-function! AutoCD() abort
+autocmd MyAuGroup BufEnter * call s:auto_cd()
+function! s:auto_cd() abort
     try
         execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
     catch
@@ -74,8 +76,7 @@ set notitle
 let g:file_format_map = {"unix" : "U", "dos" : "D", "mac" : "M"}
 set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
 
-autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8
-autocmd MyAuGroup BufNewFile * set fileformat=unix
+autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8 fileformat=unix
 
 autocmd MyAuGroup FileType * setlocal fo=cql
 autocmd MyAuGroup FileType text setlocal textwidth=0

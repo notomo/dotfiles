@@ -399,7 +399,7 @@ repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 on_map = {n = '<Plug>'}
 on_if = "isdirectory(bufname('%'))"
-hook_add = 'source ~/.vim/rc/plugins/dein/vimfiler_mapping.vim'
+hook_add = 'nnoremap <silent> [exec]f :<C-u>VimFilerBufferDir -split -simple -toggle -no-quit -winwidth=35<CR>'
 hook_source = 'source ~/.vim/rc/plugins/dein/vimfiler_setting.vim'
 hook_post_source = 'source ~/.vim/rc/plugins/dein/vimfiler_filetype_mapping.vim'
 
