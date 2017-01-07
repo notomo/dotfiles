@@ -34,12 +34,12 @@ on_source = 'unite.vim'
 [[plugins]]
 repo = 'kmnk/vim-unite-giti'
 on_source = 'unite.vim'
-hook_add = 'source ~/.vim/rc/plugins/dein/easymotion_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/easymotion_mapping.vim'
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 on_map = {nox = '<Plug>'}
-hook_add = 'source ~/.vim/rc/plugins/dein/easymotion_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/easymotion_mapping.vim'
 hook_source = '''
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_enter_jump_first = 1
@@ -200,13 +200,13 @@ map <Leader>e <Plug>CamelCaseMotion_e
 
 [[plugins]]
 repo = 'joonty/vdebug'
-on_ft = ['python', 'php']
+on_cmd = 'BreakpointRemove'
 hook_add = '''
 nnoremap [vdebug] <Nop>
 nmap <Space>d [vdebug]
 nnoremap [vdebug]a :<C-u>BreakpointRemove *<CR>
 '''
-hook_source = 'source ~/.vim/rc/plugins/dein/vdebug_setting.vim'
+hook_source = 'source ~/.vim/rc/plugins/vdebug_setting.vim'
 
 [[plugins]]
 repo = 'scrooloose/syntastic'
@@ -292,7 +292,14 @@ on_func = ['cfi#format']
 repo = 'rhysd/vim-operator-surround'
 depends = 'vim-operator-user'
 on_map = {nox = '<Plug>'}
-hook_add = 'source ~/.vim/rc/plugins/operator-surround.vim'
+hook_add = '''
+noremap [surround] <Nop>
+map s [surround]
+map <silent>[surround]a <Plug>(operator-surround-append)
+map <silent>[surround]d <Plug>(operator-surround-delete)
+map <silent>[surround]r <Plug>(operator-surround-replace)
+'''
+hook_source = 'source ~/.vim/rc/plugins/operator-surround.vim'
 
 [[plugins]]
 repo = 'thinca/vim-fontzoom'
@@ -307,7 +314,16 @@ nnoremap <M-Up> :<C-u>Fontzoom!<CR>
 [[plugins]]
 repo = 'h1mesuke/vim-alignta'
 on_cmd = 'Alignta'
-hook_add = 'source ~/.vim/rc/plugins/vim-alignta.vim'
+hook_add = '''
+vnoremap [alignta] <Nop>
+vmap <Leader>a [alignta]
+vnoremap [alignta]i :<C-u>'<,'>Alignta =><CR>
+vnoremap [alignta]e :<C-u>'<,'>Alignta =<CR>
+vnoremap [alignta], :<C-u>'<,'>Alignta ,<CR>
+vnoremap [alignta]c :<C-u>'<,'>Alignta :<CR>
+vnoremap [alignta]p :<C-u>'<,'>Alignta )<CR>
+vnoremap [alignta]<Space> :<C-u>'<,'>Alignta <<0 \ <CR>
+'''
 
 [[plugins]]
 repo = 'lilydjwg/colorizer'
@@ -391,8 +407,8 @@ hook_source = 'let g:ref_phpmanual_path = $Home . "/.vim/phpmanual"'
 [[plugins]]
 repo = 'Shougo/unite.vim'
 depends = ['neomru.vim', 'vimfiler.vim']
-hook_add = 'source ~/.vim/rc/plugins/dein/unite_mapping.vim'
-hook_source = 'source ~/.vim/rc/plugins/dein/unite_setting.vim'
+hook_add = 'source ~/.vim/rc/plugins/unite_mapping.vim'
+hook_source = 'source ~/.vim/rc/plugins/unite_setting.vim'
 
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
@@ -400,18 +416,18 @@ depends = 'unite.vim'
 on_map = {n = '<Plug>'}
 on_if = "isdirectory(bufname('%'))"
 hook_add = 'nnoremap <silent> [exec]f :<C-u>VimFilerBufferDir -split -simple -toggle -no-quit -winwidth=35<CR>'
-hook_source = 'source ~/.vim/rc/plugins/dein/vimfiler_setting.vim'
-hook_post_source = 'source ~/.vim/rc/plugins/dein/vimfiler_filetype_mapping.vim'
+hook_source = 'source ~/.vim/rc/plugins/vimfiler_setting.vim'
+hook_post_source = 'source ~/.vim/rc/plugins/vimfiler_filetype_mapping.vim'
 
 [[plugins]]
 repo = 'Shougo/vimshell.vim'
 on_map = {n = '<Plug>'}
-hook_add = 'source ~/.vim/rc/plugins/dein/vimshell_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/vimshell_mapping.vim'
 hook_source = '''
 let g:vimshell_prompt_expr = 'getcwd()." > "'
 let g:vimshell_prompt_pattern = '^\f\+ > '
 '''
-hook_post_source = 'source ~/.vim/rc/plugins/dein/vimshell_filetype_mapping.vim'
+hook_post_source = 'source ~/.vim/rc/plugins/vimshell_filetype_mapping.vim'
 
 [[plugins]]
 repo = 'Shougo/neoyank.vim'

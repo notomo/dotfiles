@@ -42,7 +42,7 @@ function! s:map_fl_tl(lhs, target) abort
     silent execute join(["noremap", "<Space>g" . a:lhs, "t" . a:target])
 endfunction
 
-for info in s:map_info
-    call s:map_fl_tl(info[s:LHS_SFX_KEY], info[s:TARGET_KEY])
+for s:info in s:map_info
+    call s:map_fl_tl(s:info[s:LHS_SFX_KEY], s:info[s:TARGET_KEY])
 endfor
 

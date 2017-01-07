@@ -17,7 +17,7 @@ nnoremap Q q:
 "}}}
 
 " edit mapping"{{{
-nnoremap <silent> [edit]x :<C-u>call tmno3#vimrc#switch_char()<CR>
+nnoremap <silent> [edit]x :<C-u>call tmno3#vimrc#exchange()<CR>
 nnoremap [edit]r r
 vnoremap [edit]r r
 nnoremap [edit]h gU
@@ -39,6 +39,7 @@ nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 nnoremap [file] <Nop>
 nmap <Space>f [file]
 nnoremap [file]w :<C-u>w<CR>
+nnoremap [file]o :<C-u>e<Space>
 nnoremap [file]r :<C-u>file<Space>
 "}}}
 
@@ -61,18 +62,14 @@ vnoremap :  ;
 "}}}
 
 " visual mode mapping"{{{
-nnoremap [visual] <Nop>
-nmap v [visual]
-vnoremap [visual] <Nop>
-vmap v [visual]
-nnoremap [visual]h gv
-nnoremap [visual]v v
-nnoremap [visual]l <S-v>
-nnoremap [visual]c <C-v>
-vnoremap [visual]l <S-v>
-vnoremap [visual]c <C-v>
-vnoremap [visual]n v
-vnoremap [visual]v <ESC>
+nnoremap <Space>h <C-v>
+nnoremap <Space>l <S-v>
+nnoremap <Space>v gv
+nnoremap <Space>p :<C-u>call <SID>select_paste_region()<CR>
+vnoremap <Space>h <C-v>
+vnoremap <Space>l <S-v>
+vnoremap <Space>v v
+vnoremap v <ESC>
 
 " depends yankround
 function! s:select_paste_region() abort
@@ -80,7 +77,6 @@ function! s:select_paste_region() abort
     call setpos("'>", [0, line("']"), col("']")])
     normal! gv
 endfunction
-nnoremap [visual]p :<C-u>call <SID>select_paste_region()<CR>
 "}}}
 
 " select mode mapping"{{{
@@ -302,8 +298,8 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : "co", s:PATTERN_KEY : '\S{-1,}\zs,\ze\S{-1,}', s:STR_KEY : ', '},
 \   {s:LHS_KEY : "e", s:PATTERN_KEY : '\S{-1,}\zs(\=\| \=\|\= )\ze\S{-1,}', s:STR_KEY : ' = '},
 \   {s:LHS_KEY : "n", s:PATTERN_KEY : '^\n', s:STR_KEY : ""},
-\   {s:LHS_KEY : "p", s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
-\   {s:LHS_KEY : "P", s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
+\   {s:LHS_KEY : "y", s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
+\   {s:LHS_KEY : "Y", s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
 \   {s:LHS_KEY : "<Space>e", s:PATTERN_KEY : ' +$', s:STR_KEY : ''},
 \   {s:LHS_KEY : "mc", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \",\")"},
 \   {s:LHS_KEY : "mt", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \"\\t\")"},
@@ -318,6 +314,7 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : "tc", s:PATTERN_KEY : '\t', s:STR_KEY : ','},
 \   {s:LHS_KEY : "<Space>a", s:PATTERN_KEY : '^\s+', s:STR_KEY : ''},
 \   {s:LHS_KEY : "x", s:PATTERN_KEY : '%#(\_.)(\_.)', s:STR_KEY : '\2\1'},
+\   {s:LHS_KEY : "p", s:PATTERN_KEY : '(.*)\zs', s:STR_KEY : '\r\1'},
 \]
 
 if exists("g:replace_map_info")
@@ -325,8 +322,8 @@ if exists("g:replace_map_info")
     unlet g:replace_map_info
 endif
 
-for info in s:replace_map_info
-    call s:nvnoremap_replace(info[s:LHS_KEY], info[s:PATTERN_KEY], info[s:STR_KEY])
+for s:info in s:replace_map_info
+    call s:nvnoremap_replace(s:info[s:LHS_KEY], s:info[s:PATTERN_KEY], s:info[s:STR_KEY])
 endfor
 "}}}
 
@@ -483,8 +480,8 @@ let s:main_cinoremap_info = [
             \ {s:LHS_PRF_KEY : "v", s:RHS_KEY : "<C-q>"},
             \ {s:LHS_PRF_KEY : "T", s:RHS_KEY : "<C-x><C-]>"},
             \]
-for info in s:main_cinoremap_info
-    call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, info[s:LHS_PRF_KEY], info[s:RHS_KEY])
+for s:info in s:main_cinoremap_info
+    call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, s:info[s:LHS_PRF_KEY], s:info[s:RHS_KEY])
 endfor
 
 let s:sub_cinoremap_info = [
@@ -506,8 +503,8 @@ let s:sub_cinoremap_info = [
             \ {s:LHS_PRF_KEY : "g", s:RHS_KEY : "=>"},
             \ {s:LHS_PRF_KEY : "f", s:RHS_KEY : "->"},
             \]
-for info in s:sub_cinoremap_info
-    call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, info[s:LHS_PRF_KEY], info[s:RHS_KEY])
+for s:info in s:sub_cinoremap_info
+    call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, s:info[s:LHS_PRF_KEY], s:info[s:RHS_KEY])
 endfor
 
 "}}}
@@ -577,5 +574,5 @@ vmap <Space>a [arith]
 nnoremap [arith]j <C-x>
 nnoremap [arith]k <C-a>
 vnoremap [arith]j <C-x>gv
-vnoremap [arith]K <C-a>gv
+vnoremap [arith]k <C-a>gv
 "}}}

@@ -1,1 +1,0 @@
-setlocal completeopt-=preview

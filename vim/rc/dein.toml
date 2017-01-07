@@ -40,7 +40,30 @@ hook_add = 'let g:PreserveNoEOL = 1'
 
 [[plugins]]
 repo = 'vim-scripts/dbext.vim'
-hook_add = 'source ~/.vim/rc/plugins/dbext.vim'
+hook_add = '''
+nnoremap [dbext] <Nop>
+nmap <Space>m [dbext]
+vnoremap [dbext] <Nop>
+vmap <Space>m [dbext]
+
+nnoremap [dbext]u :<C-u>DBExecSQLUnderCursor<CR>
+vnoremap [dbext]e :DBExecVisualSQL<CR>
+nnoremap [dbext]l :<C-u>DBExecSQL SHOW TABLES;<CR>
+nnoremap [dbext]d :<C-u>DBDescribeTable<CR>
+nnoremap [dbext]h :<C-u>DBHistory<CR>
+nnoremap [dbext]r :<C-u>DBResultsToggleResize<CR>
+nnoremap [dbext]e :<C-u>DBExecSQL<Space>
+vnoremap [dbext]s :<C-u>call tmno3#dbext#select_value()<CR>
+
+command! -nargs=1 DescribeTableFromName call tmno3#dbext#describe(<f-args>)
+nnoremap [dbext]f :<C-u>DescribeTableFromName<Space>
+
+command! -range ExplainSQL :<line1>,<line2>call tmno3#dbext#explain()
+vnoremap [dbext]x :<C-u>'<,'>ExplainSQL<CR>
+
+command! -range ExecuteLimitSQL :<line1>,<line2>call tmno3#dbext#limit_execute()
+vnoremap [dbext]m :<C-u>'<,'>ExecuteLimitSQL<CR>
+'''
 
 [[plugins]]
 repo = 'thinca/vim-singleton'
@@ -53,8 +76,8 @@ let g:zenspace#default_mode = 'on'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
-hook_add = 'source ~/.vim/rc/plugins/dein/fugitive_mapping.vim'
-# hook_post_source = 'source ~/.vim/rc/plugins/dein/fugitive_filetype_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/fugitive_mapping.vim'
+# hook_post_source = 'source ~/.vim/rc/plugins/fugitive_filetype_mapping.vim'
 
 [[plugins]]
 repo = 'LeafCage/yankround.vim'
@@ -70,14 +93,14 @@ nmap <C-n> <Plug>(yankround-next)
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
 if = "has('lua')"
-hook_add = 'source ~/.vim/rc/plugins/dein/neocomplete_setting.vim'
+hook_add = 'source ~/.vim/rc/plugins/neocomplete_setting.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'
 depends = 'neosnippet-snippets'
 hook_add = '''
-source ~/.vim/rc/plugins/dein/neosnippet_mapping.vim
-source ~/.vim/rc/plugins/dein/neosnippet_setting.vim
+source ~/.vim/rc/plugins/neosnippet_mapping.vim
+source ~/.vim/rc/plugins/neosnippet_setting.vim
 '''
 
 [[plugins]]

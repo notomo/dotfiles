@@ -85,3 +85,11 @@ command! -nargs=0 CdCurrent cd %:p:h
 
 command! -bar TimerStart let start_time = reltime()
 command! -bar TimerEnd   echo reltimestr(reltime(start_time)) | unlet start_time
+
+if has('win32') && $PATH !~? '\(^\|;\)' . escape($VIM, '\\') . '\(;\|$\)'
+  let $PATH = $VIM . ';' . $PATH
+endif
+
+if has('mac')
+  set iskeyword=@,48-57,_,128-167,224-235
+endif
