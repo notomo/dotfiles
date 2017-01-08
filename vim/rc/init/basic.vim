@@ -72,6 +72,7 @@ set noswapfile
 set browsedir=buffer "ファイル保存ダイアログの初期ディレクトリをバッファファイル位置に設定
 set viminfo+=n~/.vim/tmp/viminfo.txt
 set notitle
+set nofixendofline
 
 let g:file_format_map = {"unix" : "U", "dos" : "D", "mac" : "M"}
 set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{file_format_map[&ff]}:%Y]

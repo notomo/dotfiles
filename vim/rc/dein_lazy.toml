@@ -397,6 +397,7 @@ hook_add = '''
 nmap <Space>c <Plug>(caw:hatpos:toggle)
 vmap <Space>c <Plug>(caw:hatpos:toggle)
 '''
+hook_source = 'let g:caw_no_default_keymappings = 1'
 
 [[plugins]]
 repo = 'thinca/vim-ref'

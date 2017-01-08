@@ -32,13 +32,6 @@ let g:submode_timeout = 0
 '''
 
 [[plugins]]
-repo = 'tpope/vim-capslock'
-
-[[plugins]]
-repo = 'vim-scripts/PreserveNoEOL'
-hook_add = 'let g:PreserveNoEOL = 1'
-
-[[plugins]]
 repo = 'vim-scripts/dbext.vim'
 hook_add = '''
 nnoremap [dbext] <Nop>
@@ -138,8 +131,8 @@ repo = 'osyo-manga/shabadou.vim'
 # [[plugins]]
 # repo = 'vim-airline/vim-airline-themes'
 
-[[plugins]]
-repo = 'vim-jp/vital.vim'
+# [[plugins]]
+# repo = 'vim-jp/vital.vim'
 
 [[plugins]]
 repo = 'kana/vim-smartword'

@@ -47,10 +47,7 @@ nnoremap [file]r :<C-u>file<Space>
 nnoremap [buf] <Nop>
 nmap <Space>b [buf]
 nnoremap [buf]b <C-^>
-nnoremap [buf]n :<C-u>call <SID>new_buf()<CR>
-function! s:new_buf() abort
-    enew | setlocal buftype=nofile noswapfile
-endfunction
+nnoremap <silent> [buf]n :<C-u>enew \| setlocal buftype=nofile noswapfile<CR>
 nnoremap [buf]Q :<C-u>qa<CR>
 "}}}
 
@@ -352,7 +349,7 @@ endfunction
 "}}}
 
 " inner and around vomapping"{{{
-function! s:inner_around_vomap(lhs, rhs) abort
+function! s:ia_vonoremap(lhs, rhs) abort
     let inner_lhs = "i" . a:lhs
     let inner_rhs = "i" . a:rhs
     let around_lhs = "a" . a:lhs
@@ -362,17 +359,17 @@ function! s:inner_around_vomap(lhs, rhs) abort
     silent execute join(["vnoremap", around_lhs, around_rhs])
     silent execute join(["onoremap", around_lhs, around_rhs])
 endfunction
-call s:inner_around_vomap(";", "B")
-call s:inner_around_vomap("o", "p")
-call s:inner_around_vomap("f", "w")
-call s:inner_around_vomap("t", ">")
-call s:inner_around_vomap("T", "t")
-call s:inner_around_vomap("p", ")")
-call s:inner_around_vomap("l", "]")
-call s:inner_around_vomap("w", "\"")
-call s:inner_around_vomap("q", "\'")
-call s:inner_around_vomap("d", "}")
-call s:inner_around_vomap("b", "`")
+call s:ia_vonoremap(";", "B")
+call s:ia_vonoremap("o", "p")
+call s:ia_vonoremap("f", "w")
+call s:ia_vonoremap("t", ">")
+call s:ia_vonoremap("T", "t")
+call s:ia_vonoremap("p", ")")
+call s:ia_vonoremap("l", "]")
+call s:ia_vonoremap("w", "\"")
+call s:ia_vonoremap("q", "\'")
+call s:ia_vonoremap("d", "}")
+call s:ia_vonoremap("b", "`")
 "}}}
 
 " fold mapping"{{{
@@ -422,9 +419,6 @@ inoremap j<Space><CR> <C-r>=
 " 日本語入力固定切り替え
 inoremap <F10> <C-^><C-r>=IMState('FixMode')<CR>
 
-" 大文字入力切り替え
-imap j<Space>j <Plug>CapsLockToggle
-
 " カーソル位置の単語を大文字に変換
 inoremap j<Space><Space> <ESC>gUiwea
 
@@ -453,7 +447,8 @@ function! MyExecExCommand(cmd, ...)
 endfunction
 
 function! s:cinoremap_with_prefix(lhs_prefix, lhs_suffix, rhs) abort
-    silent execute join(["noremap!", a:lhs_prefix . a:lhs_suffix, a:rhs])
+    silent execute join(["inoremap", a:lhs_prefix . a:lhs_suffix, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
+    silent execute join(["cnoremap", a:lhs_prefix . a:lhs_suffix, a:rhs])
 endfunction
 let s:MAIN_INPUT_PREFIX_KEY = "j<Space>"
 let s:SUB_INPUT_PREFIX_KEY = "jk"
@@ -575,4 +570,6 @@ nnoremap [arith]j <C-x>
 nnoremap [arith]k <C-a>
 vnoremap [arith]j <C-x>gv
 vnoremap [arith]k <C-a>gv
+vnoremap [arith]d g<C-x>gv
+vnoremap [arith]u g<C-a>gv
 "}}}

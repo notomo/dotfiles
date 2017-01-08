@@ -39,38 +39,13 @@ call s:win_map("p", "<C-w>z") " close preview
 call s:win_map("q", ":<C-u>q<CR>") " close
 "}}}
 
-" change size"{{{
-let s:WINSIZE_PFX = s:WINMV_PFX . "m"
-let s:WINSIZE_MODE_NM = "winsize"
-let s:WINSIZE_KEY = "[" . s:WINSIZE_MODE_NM . "]"
-nnoremap [winsize] <Nop>
-silent execute join(["nmap", s:WINSIZE_PFX, s:WINSIZE_KEY])
-
-try
-    call submode#current()
-    let s:submode_enable = 1
-catch
-    let s:submode_enable = 0
-endtry
-if s:submode_enable
-    function! s:winsize_map(lhs, rhs) abort
-        call submode#enter_with(s:WINSIZE_MODE_NM, "n", "", s:WINSIZE_PFX . a:lhs, a:rhs)
-        call submode#map(s:WINSIZE_MODE_NM, "n", "", a:lhs, a:rhs)
-    endfunction
-    call submode#leave_with(s:WINSIZE_MODE_NM, "n", "", "j")
-else
-    function! s:winsize_map(lhs, rhs) abort
-        silent execute join([s:NNOREMAP, s:WINSIZE_KEY . a:lhs, a:rhs])
-    endfunction
-endif
-call s:winsize_map("a", "<C-w>>") " increace width
-call s:winsize_map("z", "<C-w><") " decreace width
-call s:winsize_map("h", "<C-w>+") " increace height
-call s:winsize_map("l", "<C-w>-") " decreace height
+" winsize"{{{
+let s:winsize_enter = "i"
+silent execute join([s:NNOREMAP, s:WIN_KEY . s:winsize_enter, ":<C-u>call tmno3#window#setup_submode('" . s:WIN_KEY . "','" . s:winsize_enter . "')<CR>"])
 
 " equalize
-nnoremap [winsize]e <C-w>=
+nnoremap [win]e <C-w>=
 " maximize
-nnoremap [winsize]m :<C-u>SM 4<CR>
+nnoremap [win]m :<C-u>SM 4<CR>
 "}}}
 "}}}
