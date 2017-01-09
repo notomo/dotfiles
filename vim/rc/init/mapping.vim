@@ -36,8 +36,6 @@ nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 "}}}
 
 " file mapping"{{{
-nnoremap [file] <Nop>
-nmap <Space>f [file]
 nnoremap [file]w :<C-u>w<CR>
 nnoremap [file]o :<C-u>e<Space>
 nnoremap [file]r :<C-u>file<Space>
@@ -161,7 +159,6 @@ nnoremap [option]fd :<C-u>set fileformat=dos<CR>
 nnoremap [option]fm :<C-u>set fileformat=mac<CR>
 nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 
-nnoremap <silent> [option]n :<C-u>nohlsearch<CR>
 "}}}
 
 " keyword mapping"{{{
@@ -361,7 +358,7 @@ function! s:ia_vonoremap(lhs, rhs) abort
 endfunction
 call s:ia_vonoremap(";", "B")
 call s:ia_vonoremap("o", "p")
-call s:ia_vonoremap("f", "w")
+call s:ia_vonoremap("k", "w")
 call s:ia_vonoremap("t", ">")
 call s:ia_vonoremap("T", "t")
 call s:ia_vonoremap("p", ")")
@@ -572,4 +569,8 @@ vnoremap [arith]j <C-x>gv
 vnoremap [arith]k <C-a>gv
 vnoremap [arith]d g<C-x>gv
 vnoremap [arith]u g<C-a>gv
+"}}}
+
+" exec"{{{
+nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
 "}}}

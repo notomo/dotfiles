@@ -5,7 +5,7 @@ set encoding=utf-8
 
 if has('vim_starting')
     set runtimepath+=~/.vim/
-    set runtimepath+=~/.vim/dein/repos/github.com/*
+    " set runtimepath+=~/.vim/dein/repos/github.com/*
     set runtimepath+=~/.vim/after
     set runtimepath+=$VIM/plugins/vimdoc-ja
 endif
@@ -29,6 +29,8 @@ nnoremap [edit] <Nop>
 nmap <Space>e [edit]
 vnoremap [edit] <Nop>
 vmap <Space>e [edit]
+nnoremap [file] <Nop>
+nmap <Space>f [file]
 
 let g:plugin_dicwin_disable    = 1
 let g:loaded_gzip              = 1
