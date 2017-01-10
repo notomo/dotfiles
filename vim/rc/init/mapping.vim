@@ -44,7 +44,7 @@ nnoremap [file]r :<C-u>file<Space>
 " buffer mapping"{{{
 nnoremap [buf] <Nop>
 nmap <Space>b [buf]
-nnoremap [buf]b <C-^>
+nnoremap [buf]a <C-^>
 nnoremap <silent> [buf]n :<C-u>enew \| setlocal buftype=nofile noswapfile<CR>
 nnoremap [buf]Q :<C-u>qa<CR>
 "}}}

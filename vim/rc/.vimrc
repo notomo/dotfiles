@@ -5,10 +5,13 @@ set encoding=utf-8
 
 if has('vim_starting')
     set runtimepath+=~/.vim/
-    " set runtimepath+=~/.vim/dein/repos/github.com/*
     set runtimepath+=~/.vim/after
     set runtimepath+=$VIM/plugins/vimdoc-ja
+    set runtimepath+=$VIM/plugins/kaoriya
 endif
+
+filetype off
+filetype plugin indent off
 
 let g:mapleader = ","
 let g:maplocalleader = "<Leader>l"
@@ -59,8 +62,13 @@ augroup MyAuGroup
 augroup END
 
 set guioptions+=M
-filetype plugin indent on
 syntax on
+filetype plugin indent on
+
+if !has('vim_starting')
+    call dein#call_hook('source')
+    call dein#call_hook('post_source')
+endif
 
 runtime! rc/local/*.vim
 runtime! rc/init/*.vim

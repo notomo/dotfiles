@@ -55,3 +55,4 @@ nnoremap <silent> [unite]v :<C-u>Unite variable -no-split -no-quit<CR>
 
 nnoremap <silent> [unite]<CR> :<C-u>UniteResume<CR>
 
+nnoremap <silent> [unite]R :<C-u>Unite runtimepath -no-split -no-quit<CR>
