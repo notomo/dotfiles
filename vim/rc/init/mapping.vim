@@ -257,12 +257,12 @@ nnoremap [substitute]iv <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Lef
 nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right><C-r>"
 nnoremap [substitute]iy  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right>
 nnoremap [substitute]y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"
-vnoremap [substitute]iy  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right>
-vnoremap [substitute]y  :<C-u>'<,'>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"<Right>
+vnoremap [substitute]iy  :<C-u>'<,'>s/\v//g<Left><Left><Left><C-r>"<Right>
+vnoremap [substitute]y  :<C-u>'<,'>s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"<Right>
 nnoremap [substitute]c  :<C-u>%s/\C\v//g<Left><Left><Left>
-vnoremap [substitute]c  :<C-u>'<,'>%s/\C\v//g<Left><Left><Left>
+vnoremap [substitute]c  :<C-u>'<,'>s/\C\v//g<Left><Left><Left>
 nnoremap [substitute]d  :<C-u>%s/\v$//g<Left><Left>
-vnoremap [substitute]d  :<C-u>'<,'>%s/\v$//g<Left><Left>
+vnoremap [substitute]d  :<C-u>'<,'>s/\v$//g<Left><Left>
 
 nnoremap [substitute]e :<C-u>v//d<Left><Left>
 vnoremap [substitute]e :v//d<Left><Left>
@@ -325,17 +325,17 @@ endfor
 nnoremap [yank] <Nop>
 nmap <Space>y [yank]
 
-function! s:yank_now(delimiter) abort
+function! s:yank_date(delimiter) abort
     let delimiter = a:delimiter == "" ? "_" : a:delimiter
     call s:yank_value(strftime(join(split("%Y_%m_%d","_"),a:delimiter)))
 endfunction
-nnoremap [yank]n :<C-u>call <SID>yank_now("\/")<CR>
-nnoremap [yank]f :<C-u>call <SID>yank_value(expand("%"))<CR>
-nnoremap [yank]p :<C-u>call <SID>yank_value(substitute(expand("%:p"), "\\", "/", "g"))<CR>
-nnoremap [yank]; :<C-u>call <SID>yank_value(@:)<CR>
-nnoremap [yank]/ :<C-u>call <SID>yank_value(@/)<CR>
-nnoremap [yank]i :<C-u>call <SID>yank_value(@.)<CR>
-nnoremap <silent> [yank]k :<C-u>call <SID>yank_value(cfi#format("%s", ""))<CR>
+nnoremap <silent> [yank]d :<C-u>call <SID>yank_date("\/")<CR>
+nnoremap <silent> [yank]n :<C-u>call <SID>yank_value(expand("%"))<CR>
+nnoremap <silent> [yank]p :<C-u>call <SID>yank_value(substitute(substitute(expand('%:p'), substitute(expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\', '/', 'g'))<CR>
+nnoremap <silent> [yank]; :<C-u>call <SID>yank_value(@:)<CR>
+nnoremap <silent> [yank]/ :<C-u>call <SID>yank_value(@/)<CR>
+nnoremap <silent> [yank]i :<C-u>call <SID>yank_value(@.)<CR>
+nnoremap <silent> [yank]f :<C-u>call <SID>yank_value(cfi#format("%s", ""))<CR>
 function! s:yank_value(value) abort
     let @" = a:value
     let @+ = a:value
@@ -573,4 +573,6 @@ vnoremap [arith]u g<C-a>gv
 
 " exec"{{{
 nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
+nnoremap <silent> [exec]u :<C-u>sort nu<CR>
+nnoremap [exec]s :<C-u>source %<CR>
 "}}}

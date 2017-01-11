@@ -160,9 +160,9 @@ nmap sk <Plug>(incsearch-easymotion-?)<C-r><C-w>
 nmap sj <Plug>(incsearch-easymotion-stay)<C-r><C-w>
 noremap <expr> s. incsearch#go({'pattern': histget('/', -1)})
 
-nmap <Leader>// <Plug>(incsearch-easymotion-/)<C-r>"
-nmap <Leader>/k <Plug>(incsearch-easymotion-?)<C-r>"
-nmap <Leader>/j <Plug>(incsearch-easymotion-stay)<C-r>"
+nmap s<Space>/ <Plug>(incsearch-easymotion-/)<C-r>"
+nmap s<Space>k <Plug>(incsearch-easymotion-?)<C-r>"
+nmap s<Space>j <Plug>(incsearch-easymotion-stay)<C-r>"
 
 map n <Plug>(incsearch-nohl-n)
 map N <Plug>(incsearch-nohl-N)

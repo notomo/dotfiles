@@ -28,11 +28,9 @@ abbr INSERT INTO {columns} VALUES {values}
 options head
 	INSERT INTO (${1:column1, column2,...}) VALUES (${0:value1, value2,...});
 
-snippet     UPDATE DATA
-abbr        UPDATE ... SET ... WHERE ...
-  UPDATE ${1:table}
-  SET ${2:column} = ${3:value}
-  WHERE ${4:condition};
+snippet UPDATE
+abbr UPDATE ... SET ... WHERE ...
+	UPDATE ${1:table} SET ${2:column} = ${3:value} WHERE ${4:condition};
 
 snippet SELECT
 alias le
@@ -93,10 +91,10 @@ snippet LIMIT
 abbr LIMIT {count}
 	LIMIT ${1:count}
 
-snippet     DELETE DATA
-abbr        DELETE FROM ... WHERE ...
-  DELETE FROM ${1:table}
-  WHERE ${2:condition};
+snippet DELETE FROM
+alias delete
+abbr DELETE FROM ... WHERE ...
+	DELETE FROM ${1:table} WHERE ${2:condition};
 
 snippet     TRANSACTION
 alias       BEGIN TRANSACTION
