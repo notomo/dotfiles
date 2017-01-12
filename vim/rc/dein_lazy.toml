@@ -268,7 +268,7 @@ on_func = ['operator#exec_command#mapexpr']
 hook_add = '''
 map <expr> <Space>eo operator#exec_command#mapexpr(":e %t")
 map <expr> <Space>et operator#exec_command#mapexpr(":tab drop %t")
-map <expr> <Space>eh operator#exec_command#mapexpr(":h %t")
+map <expr> <Space>eH operator#exec_command#mapexpr(":h %t")
 map <expr> <Space>ev operator#exec_command#mapexpr(":Editvar %t")
 '''
 
@@ -776,8 +776,8 @@ on_ft = 'javascript'
 repo = 'terryma/vim-expand-region'
 on_map = {nx = '<Plug>'}
 hook_add = '''
-map <CR> <Plug>(expand_region_expand)
-map <C-CR> <Plug>(expand_region_shrink)
+vmap <CR> <Plug>(expand_region_expand)
+vmap <C-CR> <Plug>(expand_region_shrink)
 '''
 hook_source = '''
 let g:expand_region_text_objects = {

@@ -32,9 +32,31 @@ function! s:win_map(lhs, rhs) abort
     silent execute join([s:NNOREMAP, s:WIN_KEY . a:lhs, a:rhs])
 endfunction
 
+function! s:vonly() abort
+    let curwin_id = win_getid()
+    let cnt = len(tabpagebuflist())
+    while cnt > 1
+        wincmd j
+        if win_getid() == curwin_id
+            break
+        endif
+        q
+        let cnt -= 1
+    endwhile
+    while cnt > 1
+        wincmd k
+        if win_getid() == curwin_id
+            break
+        endif
+        q
+        let cnt -= 1
+    endwhile
+endfunction
+
 call s:win_map("h", ":<C-u>split<CR>") " split horizontally
 call s:win_map("v", ":<C-u>vsplit<CR>") " split vertically
 call s:win_map("o", ":<C-u>only<CR>") " close others
+call s:win_map("j", ":<C-u>call <SID>vonly()<CR>") " close others vertically
 call s:win_map("p", "<C-w>z") " close preview
 call s:win_map("q", ":<C-u>q<CR>") " close
 "}}}
