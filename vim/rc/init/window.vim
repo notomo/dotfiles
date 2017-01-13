@@ -35,22 +35,16 @@ endfunction
 function! s:vonly() abort
     let curwin_id = win_getid()
     let cnt = len(tabpagebuflist())
-    while cnt > 1
-        wincmd j
-        if win_getid() == curwin_id
-            break
-        endif
-        q
-        let cnt -= 1
-    endwhile
-    while cnt > 1
-        wincmd k
-        if win_getid() == curwin_id
-            break
-        endif
-        q
-        let cnt -= 1
-    endwhile
+    for direction in ["j", "k"]
+        while cnt > 1
+            execute "wincmd " . direction
+            if win_getid() == curwin_id
+                break
+            endif
+            q
+            let cnt -= 1
+        endwhile
+    endfor
 endfunction
 
 call s:win_map("h", ":<C-u>split<CR>") " split horizontally

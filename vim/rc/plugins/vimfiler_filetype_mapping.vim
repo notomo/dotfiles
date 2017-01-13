@@ -6,14 +6,13 @@ endfunction
 call unite#custom_action("file", "my_split", my_action)
 
 function! s:new_file() abort
-    let file_name = input("New files name(comma separated):")
-    if file_name != ""
+    let file_names = input("New file names separated with commas : ")
+    for file_name in split(file_names, ",")
         execute "normal \<Plug>(vimfiler_new_file)" . file_name . "\<CR>"
         execute "normal \<Plug>(vimfiler_edit_file)"
         set fileformat=unix
-    else
-        echomsg " Canceled"
-    endif
+        wincmd p
+    endfor
 endfunction
 
 autocmd MyAuGroup FileType vimfiler call s:vimfiler_my_settings()
@@ -22,14 +21,14 @@ function! s:vimfiler_my_settings()
     nmap <buffer> k <Plug>(vimfiler_loop_cursor_up)
     nmap <buffer> gg <Plug>(vimfiler_cursor_top)
     nmap <buffer> o <Plug>(vimfiler_expand_or_edit)
-    nmap <buffer> <Enter> <Plug>(vimfiler_expand_or_edit)
+    nmap <buffer> <CR> <Plug>(vimfiler_expand_or_edit)
     nmap <buffer> l <Plug>(vimfiler_smart_l)
     nmap <buffer> h <Plug>(vimfiler_smart_h)
     nmap <buffer> rl <Plug>(vimfiler_redraw_screen)
     nmap <buffer> q <Plug>(vimfiler_exit)
     nmap <buffer> Q <Plug>(vimfiler_hide)
     nmap <buffer> e <Plug>(vimfiler_edit_file)
-    nmap <buffer> v <Plug>(vimfiler_preview_file)
+    nmap <buffer> <Space>pv <Plug>(vimfiler_preview_file)
     nnoremap <silent><buffer><expr> to vimfiler#do_action("tabopen")
     nmap <buffer> a <Plug>(vimfiler_choose_action)
     nnoremap <buffer><silent> u <C-w>l:<C-u>Unite file<CR>
@@ -48,6 +47,7 @@ function! s:vimfiler_my_settings()
     nmap <buffer>J <Plug>(vimfiler_jump_last_child)
     nmap <buffer><Space>h <Plug>(vimfiler_switch_to_home_directory)
     nmap <buffer><Space>r <Plug>(vimfiler_switch_to_root_directory)
+    nmap <buffer><Space>g <Plug>(vimfiler_switch_to_project_directory)
     nmap <buffer>sm <Plug>(vimfiler_toggle_mark_current_line)
     nmap <buffer><Space>pu <Plug>(vimfiler_pushd)
     nmap <buffer><Space>po <Plug>(vimfiler_popd)
