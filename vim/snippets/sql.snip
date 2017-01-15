@@ -23,7 +23,7 @@ snippet     TRUNCATE TABLE
 abbr        TRUNCATE TABLE ...
   TRUNCATE TABLE ${1:table};
 
-snippet INSERT DATA
+snippet INSERT INTO
 abbr INSERT INTO {columns} VALUES {values}
 options head
 	INSERT INTO (${1:column1, column2,...}) VALUES (${0:value1, value2,...});
@@ -90,6 +90,10 @@ abbr GROUP BY {column}
 snippet LIMIT
 abbr LIMIT {count}
 	LIMIT ${1:count}
+
+snippet BETWEEN
+abbr BETWEEN ... AND ...
+	BETWEEN ${1:A} AND ${1:B}
 
 snippet DELETE FROM
 alias delete

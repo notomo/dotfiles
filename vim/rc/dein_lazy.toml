@@ -99,6 +99,16 @@ let g:textobj_multiblock_blocks = [
 '''
 
 [[plugins]]
+repo = 'osyo-manga/vim-operator-blockwise'
+depends = ['vim-operator-user', 'vim-textobj-blockwise']
+on_map = {n = '<Plug>'}
+hook_add = '''
+nmap [operator]c <Plug>(operator-blockwise-change)
+nmap [operator]d <Plug>(operator-blockwise-delete)
+nmap [operator]y <Plug>(operator-blockwise-yank)
+'''
+
+[[plugins]]
 repo = 'osyo-manga/vim-textobj-blockwise'
 depends = 'vim-textobj-user'
 on_map = {ox = '<Plug>'}

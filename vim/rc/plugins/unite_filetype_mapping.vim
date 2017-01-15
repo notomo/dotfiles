@@ -1,6 +1,6 @@
 
 autocmd MyAuGroup FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()"{{{
+function! s:unite_my_settings()
     imap <buffer> jq <Plug>(unite_exit)
     imap <buffer> jj <Plug>(unite_insert_leave)
     nnoremap <silent> <buffer> <expr> o unite#do_action('open')
@@ -38,6 +38,6 @@ function! s:unite_my_settings()"{{{
     imap <buffer> <RightMouse> <Plug>(unite_exit)
     imap <buffer> <C-b> <Plug>(unite_delete_backward_char)
 
-endfunction"}}}
+endfunction
 
 

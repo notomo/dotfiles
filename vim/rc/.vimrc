@@ -34,6 +34,8 @@ vnoremap [edit] <Nop>
 vmap <Space>e [edit]
 nnoremap [file] <Nop>
 nmap <Space>f [file]
+noremap [operator] <Nop>
+map <Space><Leader> [operator]
 
 let g:plugin_dicwin_disable    = 1
 let g:loaded_gzip              = 1

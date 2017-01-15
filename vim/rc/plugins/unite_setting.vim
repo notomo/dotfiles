@@ -4,11 +4,11 @@ let action = {
 \   'description' : 'tab drop',
 \   'is_selectable' : 1,
 \ }
-function! action.func(candidates)"{{{
+function! action.func(candidates)
     for l:candidate in a:candidates
         call unite#util#smart_execute_command('tab drop', l:candidate.action__path)
     endfor
-endfunction"}}}
+endfunction
 call unite#custom_action('openable', 'tab-drop', action)
 unlet action
 

@@ -39,7 +39,6 @@ let s:map_info = [
 function! s:map_fl_tl(lhs, target) abort
     silent execute join(["map", "gf" . a:lhs, "<Plug>(easymotion-fl)" . a:target])
     silent execute join(["map", "g" . a:lhs, "<Plug>(easymotion-tl)" . a:target])
-    silent execute join(["noremap", "<Space>g" . a:lhs, "t" . a:target])
 endfunction
 
 for s:info in s:map_info
