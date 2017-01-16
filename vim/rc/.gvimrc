@@ -45,3 +45,5 @@ highlight Flashy term=bold ctermbg=0 gui=reverse guifg=#ffbf50 guibg=#222222
 
 highlight ParenMatch term=underline cterm=underline guibg=cadetblue
 
+syntax match myTodo contained "\<\(TODO\|FIXME\):"
+highlight def link myTodo Todo

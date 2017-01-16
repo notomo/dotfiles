@@ -26,7 +26,9 @@ vnoremap [edit]h gU
 vnoremap [edit]l gu
 nnoremap [edit]m i<C-@>
 nnoremap [edit]j :<C-u>join<CR>
+nnoremap [edit]J :<C-u>join!<CR>
 vnoremap [edit]j :join<CR>
+vnoremap [edit]J :join!<CR>
 "}}}
 
 " kana mapping"{{{
@@ -103,6 +105,7 @@ vmap <Space>i [indent]
 nnoremap [indent]i >>
 nnoremap [indent]d <<
 nnoremap [indent]t V:retab<CR>
+nnoremap [indent]s ==
 
 vnoremap [indent]i >
 vnoremap [indent]d <
@@ -129,10 +132,12 @@ nnoremap gI g,
 
 vnoremap <S-j> }
 vnoremap <S-k> {
-vnoremap <S-l> %
+" remap for matchit
+vmap <S-l> %
 nnoremap <silent> <S-l> :<C-u>keepjumps normal %<CR>
-nnoremap <silent> <S-j> :<C-u>keepjumps normal }<CR>
-nnoremap <silent> <S-k> :<C-u>keepjumps normal {<CR>
+
+nnoremap <silent> <S-j> :<C-u>keepjumps normal! }<CR>
+nnoremap <silent> <S-k> :<C-u>keepjumps normal! {<CR>
 
 nnoremap <C-k> <C-b>
 nnoremap <C-j> <C-f>
@@ -300,6 +305,7 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : "<Space>b", s:PATTERN_KEY : '\S{-1,}\zs {2,}\ze\S{-1,}', s:STR_KEY : ' '},
 \   {s:LHS_KEY : "cm", s:PATTERN_KEY : ',', s:STR_KEY : '\r'},
 \   {s:LHS_KEY : "tm", s:PATTERN_KEY : '\t', s:STR_KEY : '\r'},
+\   {s:LHS_KEY : "<Space>m", s:PATTERN_KEY : '\s+', s:STR_KEY : '\r'},
 \   {s:LHS_KEY : "qw", s:PATTERN_KEY : "'", s:STR_KEY : '"'},
 \   {s:LHS_KEY : "wq", s:PATTERN_KEY : '"', s:STR_KEY : "'"},
 \   {s:LHS_KEY : "cc", s:PATTERN_KEY : '_(.)', s:STR_KEY : '\u\1'},

@@ -1,26 +1,26 @@
-snippet     CREATE TABLE
-abbr        CREATE TABLE { ... }
-options     head
+snippet CREATE TABLE
+abbr CREATE TABLE { ... }
+options head
   CREATE TABLE ${1:cities} (
     ${0:name varchar(80), country_name text}
   );
 
-snippet     CREATE INDEX
-abbr        CREATE INDEX ... ON ... ( ... )
-options     head
+snippet CREATE INDEX
+abbr CREATE INDEX ... ON ... ( ... )
+options head
   CREATE INDEX ${1:_name} ON ${2:cities} (${3:name});
 
-snippet     DROP TABLE
-abbr        DROP TABLE IF EXISTS ...
+snippet DROP TABLE
+abbr DROP TABLE IF EXISTS ...
   DROP TABLE IF EXISTS ${1:table};
 
-snippet     ALTER TABLE
-abbr        ALTER TABLE ... MODIFY ...
+snippet ALTER TABLE
+abbr ALTER TABLE ... MODIFY ...
   ALTER TABLE ${1:table}
   MODIFY ${2:column} ${3:new_column_desc};
 
-snippet     TRUNCATE TABLE
-abbr        TRUNCATE TABLE ...
+snippet TRUNCATE TABLE
+abbr TRUNCATE TABLE ...
   TRUNCATE TABLE ${1:table};
 
 snippet INSERT INTO
@@ -37,32 +37,32 @@ alias le
 abbr SELECT {column} FROM {table}
 options head
 	SELECT
-		${1:column}
+		${2:column}
 	FROM
-		${2:table}
+		${1:table}
 
 snippet SELECT WHERE
 alias lw
 abbr SELECT {column} FROM {table} WHERE {condition}
 options head
 	SELECT
-		${1:column}
+		${4:column}
 	FROM
-		${2:table} ${3:short_nm}
+		${1:table} ${2:short_nm}
 	WHERE
-		${4:condition}
+		${3:condition}
 
 snippet SELECT JOIN WHERE
 alias ljw
 abbr SELECT {column} FROM {table} JOIN ... WHERE {condition}
 options head
 	SELECT
-		${1:column}
+		${9:column}
 	FROM
-		${2:table} ${3:short_nm}
-	${4:INNER} JOIN ${5:table2} ${6:short_nm2} ON $6.${7:column} = $3.${8:column2}
+		${1:table} ${2:short_nm}
+	${3:INNER} JOIN ${4:table2} ${5:short_nm2} ON $5.${6:column} = $2.${7:column2}
 	WHERE
-		${9:condition}
+		${8:condition}
 
 snippet LEFT JOIN
 alias fjo
@@ -100,9 +100,9 @@ alias delete
 abbr DELETE FROM ... WHERE ...
 	DELETE FROM ${1:table} WHERE ${2:condition};
 
-snippet     TRANSACTION
-alias       BEGIN TRANSACTION
-options     head
+snippet TRANSACTION
+alias BEGIN TRANSACTION
+options head
   BEGIN TRANSACTION;
   ${0:TARGET}
   COMMIT;

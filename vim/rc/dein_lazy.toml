@@ -182,14 +182,14 @@ nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 hook_post_source = '''
 let g:incsearch#auto_nohlsearch = 1
 IncSearchNoreMap <Tab> <Over>(incsearch-next)
-IncSearchNoreMap <S-Tab>  <Over>(incsearch-prev)
+IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
 IncSearchNoreMap <C-j> <Down>
 IncSearchNoreMap <C-k> <Up>
 IncSearchNoreMap <C-l> <Right>
 IncSearchNoreMap <Space> <CR>
 IncSearchNoreMap <S-Space> <Space>
-IncSearchNoreMap <C-n>  <Over>(incsearch-scroll-f)
-IncSearchNoreMap <C-p>    <Over>(incsearch-scroll-b)
+IncSearchNoreMap <C-n> <Over>(incsearch-scroll-f)
+IncSearchNoreMap <C-p> <Over>(incsearch-scroll-b)
 '''
 
 [[plugins]]
@@ -244,7 +244,6 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_php_checkers = ['php']
 let g:syntastic_mode_map = { 'passive_filetypes': ['tex'] }
-let g:syntastic_javascript_checker = "jshint"
 '''
 
 [[plugins]]
