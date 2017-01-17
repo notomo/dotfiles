@@ -102,19 +102,19 @@ snoremap jj <ESC>
 
 " indent mapping"{{{
 nnoremap [indent] <Nop>
-nmap <Space>i [indent]
+nmap z [indent]
 vnoremap [indent] <Nop>
-vmap <Space>i [indent]
+vmap z [indent]
 
-nnoremap [indent]i >>
-nnoremap [indent]d <<
+nnoremap [indent]l >>
+nnoremap [indent]h <<
 nnoremap [indent]t :<C-u>.retab<CR>
-nnoremap [indent]s ==
+nnoremap [indent]<Space> ==
 
-vnoremap [indent]i >
-vnoremap [indent]d <
+vnoremap [indent]l >gv
+vnoremap [indent]h <gv
 vnoremap [indent]t :retab<CR>
-vnoremap [indent]s =
+vnoremap [indent]<Space> =
 "}}}
 
 " move mapping"{{{
@@ -563,6 +563,7 @@ vnoremap <expr> <silent> [mark]r tmno3#mark#to_previous()
 
 nnoremap <silent> [mark]d :<C-u>call tmno3#mark#delete_all()<CR>
 
+" go to specific mark
 nnoremap [mark]g '
 vnoremap [mark]g '
 "}}}

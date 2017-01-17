@@ -20,8 +20,6 @@ nnoremap [exec] <Nop>
 nmap <Space>x [exec]
 vnoremap [exec] <Nop>
 vmap <Space>x [exec]
-nnoremap [others] <Nop>
-nmap z [others]
 nnoremap [keyword] <Nop>
 nmap <Space>k [keyword]
 nnoremap [diff] <Nop>
