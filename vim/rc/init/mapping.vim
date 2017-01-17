@@ -1,17 +1,21 @@
 
 " basic mapping"{{{
+
+" delete a character using delete register
 nnoremap x "_x
 
 nnoremap <Space>gi gi
 
+" repeat an ex command
 nnoremap <Space>. @:
 vnoremap <Space>. @:
 
-nnoremap <silent> <F5> :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
-
+" redo
 nnoremap <Leader>r <C-r>
+
 noremap <Leader>t t
 
+" open commandline window
 nnoremap Q q:
 
 "}}}
@@ -104,7 +108,7 @@ vmap <Space>i [indent]
 
 nnoremap [indent]i >>
 nnoremap [indent]d <<
-nnoremap [indent]t V:retab<CR>
+nnoremap [indent]t :<C-u>.retab<CR>
 nnoremap [indent]s ==
 
 vnoremap [indent]i >
@@ -581,4 +585,5 @@ vnoremap [arith]u g<C-a>gv
 nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
 nnoremap <silent> [exec]u :<C-u>sort nu<CR>
 nnoremap [exec]s :<C-u>source %<CR>
+nnoremap <silent> [exec]r :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
 "}}}
