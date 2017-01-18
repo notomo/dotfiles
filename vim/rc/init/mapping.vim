@@ -106,15 +106,26 @@ nmap z [indent]
 vnoremap [indent] <Nop>
 vmap z [indent]
 
+function! s:convert_indent_style(to_hard, is_visual) abort
+    let tmp_expandtab = &expandtab
+    let expandtab_cmd = a:to_hard == 1 ? "noexpandtab" : "expandtab"
+    execute "setlocal " . expandtab_cmd
+    let range_str = a:is_visual == 1 ? "'<,'>" : "."
+    execute range_str . "retab!"
+    let &expandtab = tmp_expandtab
+endfunction
+
 nnoremap [indent]l >>
 nnoremap [indent]h <<
-nnoremap [indent]t :<C-u>.retab<CR>
-nnoremap [indent]<Space> ==
+nnoremap [indent]t :<C-u>call <SID>convert_indent_style(1, 0)<CR>
+nnoremap [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 0)<CR>
+nnoremap [indent]o ==
 
 vnoremap [indent]l >gv
 vnoremap [indent]h <gv
-vnoremap [indent]t :retab<CR>
-vnoremap [indent]<Space> =
+vnoremap [indent]t :<C-u>call <SID>convert_indent_style(1, 1)<CR>
+vnoremap [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 1)<CR>
+vnoremap [indent]o =
 "}}}
 
 " move mapping"{{{
