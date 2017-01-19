@@ -49,7 +49,15 @@ nnoremap <silent> [unite]gs :<C-u>Unite -no-split giti/status<CR>
 
 nnoremap <silent> [unite]mp :<C-u>Unite -no-split mapping<CR>
 
-nnoremap <silent> [unite]gg  :<C-u>Unite -tab -no-split -no-quit grep:. -buffer-name=GREP<CR>
+nnoremap <silent> [unite]gg  :<C-u>call <SID>unite_grep()<CR>
+function! s:unite_grep() abort
+    let pattern = input("Pattern : ")
+    if pattern == ""
+        echomsg "Canceled"
+        return
+    endif
+    execute "normal! :Unite -tab -no-split -no-quit grep:. -buffer-name=GREP\<CR>" . pattern . "\<CR>"
+endfunction
 
 nnoremap <silent> [unite]v :<C-u>Unite variable -no-split -no-quit<CR>
 

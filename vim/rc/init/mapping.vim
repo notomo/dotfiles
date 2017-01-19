@@ -221,6 +221,8 @@ inoremap <Ins> <Nop>
 nnoremap <RightMouse> p
 inoremap <RightMouse> <C-r>"
 
+inoremap <BS> <Nop>
+
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 noremap <2-MiddleMouse> <Nop>
