@@ -15,13 +15,13 @@ let g:neocomplete#auto_completion_start_length = 2
 let g:neocomplete#enable_complete_select = 1
 let g:neocomplete#enable_auto_select = 0
 
+let g:neocomplete#enable_auto_close_preview = 3
+let g:neocomplete#enable_auto_delimiter = 1
 
-let g:neocomplete#enable_auto_close_preview        = 3
-let g:neocomplete#enable_auto_delimiter            = 1
-
-let g:neocomplete#delimiter_patterns               = {'php': ['->', '::', '\'],'python':['.',',']}
-let g:neocomplete#max_keyword_width                = 30
-let g:neocomplete#sources                          = {'_': ['file','neosnippet','dictionary','buffer', 'tag']}
+let g:neocomplete#delimiter_patterns = {'php': ['->', '::', '\'],'python':['.',',']}
+let g:neocomplete#max_keyword_width = 30
+let g:neocomplete#sources = {'_': ['file','neosnippet','dictionary','buffer', 'tag', 'syntax']}
+let g:neocomplete#sources.vim = ['file', 'neosnippet', 'dictionary', 'buffer', 'tag', 'vim']
 
 " ユーザー定義スニペット保存ディレクトリ
 let g:neocomplete#snippets_dir ='~/.vim/snippets'
@@ -56,3 +56,9 @@ inoremap <expr> j<Space>. neocomplete#complete_common_string()
 
 let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+
+if !exists('g:necovim#complete_functions')
+    let g:necovim#complete_functions = {}
+endif
+let g:necovim#complete_functions.Ref =
+\ 'ref#complete'

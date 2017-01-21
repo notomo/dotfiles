@@ -3,10 +3,6 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/vimproc.vim'
-build = {'windows' = 'mingw32-make.exe'}
-
-[[plugins]]
 repo = 'kana/vim-textobj-user'
 
 [[plugins]]
@@ -70,7 +66,6 @@ let g:zenspace#default_mode = 'on'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = 'source ~/.vim/rc/plugins/fugitive_mapping.vim'
-# hook_post_source = 'source ~/.vim/rc/plugins/fugitive_filetype_mapping.vim'
 
 [[plugins]]
 repo = 'LeafCage/yankround.vim'
@@ -84,6 +79,9 @@ nmap <C-n> <Plug>(yankround-next)
 '''
 
 [[plugins]]
+repo = 'Shougo/neco-vim'
+
+[[plugins]]
 repo = 'Shougo/neocomplete.vim'
 if = "has('lua')"
 hook_add = 'source ~/.vim/rc/plugins/neocomplete_setting.vim'
@@ -92,8 +90,12 @@ hook_add = 'source ~/.vim/rc/plugins/neocomplete_setting.vim'
 repo = 'Shougo/neosnippet.vim'
 depends = 'neosnippet-snippets'
 hook_add = '''
-source ~/.vim/rc/plugins/neosnippet_mapping.vim
-source ~/.vim/rc/plugins/neosnippet_setting.vim
+xmap <Space>S <Plug>(neosnippet_expand_target)
+nnoremap [file]s :<C-u>:NeoSnippetEdit<CR>
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+let g:neosnippet#snippets_directory = '~/.vim/snippets/'
+let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 '''
 
 [[plugins]]
@@ -101,35 +103,6 @@ repo = 'tpope/vim-repeat'
 
 [[plugins]]
 repo = 'osyo-manga/shabadou.vim'
-
-# [[plugins]]
-# repo = 'vim-airline/vim-airline'
-# hook_add = '''
-# let g:airline_powerline_fonts = 1
-# let g:airline#extensions#tabline#enabled = 1
-#
-# let g:airline#extensions#tabline#show_buffers = 0
-# let g:airline#extensions#tabline#show_tabs = 1
-# let g:airline#extensions#tabline#show_tab_nr = 0
-# let g:airline#extensions#tabline#show_tab_type = 0
-# let g:airline#extensions#tabline#close_symbol = '×'
-# let g:airline#extensions#tabline#show_close_button = 0
-#
-# if !exists('g:airline_symbols')
-#     let g:airline_symbols = {}
-# endif
-#
-#
-# let g:airline#extensions#bufferline#enabled = 0
-#
-#
-# let g:airline_theme = 'luna'
-#
-# let g:airline#extensions#tabline#fnamemod = ':t'
-# '''
-#
-# [[plugins]]
-# repo = 'vim-airline/vim-airline-themes'
 
 # [[plugins]]
 # repo = 'vim-jp/vital.vim'
@@ -145,4 +118,7 @@ map e <Plug>(smartword-e)
 # [[plugins]]
 # repo = 'itchyny/lightline.vim'
 # hook_add = 'source ~/.vim/rc/plugins/lightline.vim'
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
 
