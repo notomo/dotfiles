@@ -35,19 +35,10 @@ endfunction
 '''
 hook_source = 'source ~/.vim/rc/plugins/unite_setting.vim'
 
-# [[plugins]]
-# repo = 'thinca/vim-unite-history'
-# on_source = 'unite.vim'
-
 [[plugins]]
 repo = 'tacroe/unite-mark'
 hook_add = 'nnoremap <silent> [unite]ma :<C-u>Unite mark<CR>'
 on_source = 'unite.vim'
-
-# [[plugins]]
-# repo = 'Shougo/unite-help'
-# hook_add = 'nnoremap <silent> [unite]h :<C-u>Unite -tab help<CR>'
-# on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'Shougo/unite-outline'

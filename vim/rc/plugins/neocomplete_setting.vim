@@ -62,3 +62,5 @@ if !exists('g:necovim#complete_functions')
 endif
 let g:necovim#complete_functions.Ref =
 \ 'ref#complete'
+
+" let g:neocomplete#text_mode_filetypes = { "_" : 1 }

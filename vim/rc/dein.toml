@@ -122,3 +122,6 @@ map e <Plug>(smartword-e)
 [[plugins]]
 repo = 'Shougo/neco-syntax'
 
+# [[plugins]]
+# repo = 'ujihisa/neco-look'
+

@@ -42,9 +42,10 @@ nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 "}}}
 
 " file mapping"{{{
-nnoremap [file]w :<C-u>w<CR>
-nnoremap [file]o :<C-u>e<Space>
+nnoremap [file]w :<C-u>write<CR>
+nnoremap [file]o :<C-u>edit<Space>
 nnoremap [file]r :<C-u>file<Space>
+nnoremap [file]v :<C-u>edit $MYVIMRC<CR>
 "}}}
 
 " buffer mapping"{{{
@@ -360,10 +361,7 @@ nnoremap <silent> [yank]/ :<C-u>call <SID>yank_value(@/)<CR>
 nnoremap <silent> [yank]i :<C-u>call <SID>yank_value(@.)<CR>
 nnoremap <silent> [yank]f :<C-u>call <SID>yank_value(cfi#format("%s", ""))<CR>
 function! s:yank_value(value) abort
-    let @" = a:value
-    let @+ = a:value
-    let @0 = a:value
-    let @* = a:value
+    let [@", @+, @0, @*] = [a:value, a:value, a:value, a:value]
     echomsg "yank ". a:value
 endfunction
 "}}}
