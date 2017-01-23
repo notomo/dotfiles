@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
-on_source = ['unite.vim', 'vimshell.vim']
+on_source = ['unite.vim', 'vimshell.vim', 'vim-quickrun']
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -838,7 +838,7 @@ let g:expand_region_text_objects = {
       \ }
 '''
 
-[[plugins]]
-repo = 'Shougo/echodoc.vim'
-on_event = 'CompleteDone'
-hook_source = 'call echodoc#enable()'
+# [[plugins]]
+# repo = 'Shougo/echodoc.vim'
+# on_event = 'CompleteDone'
+# hook_source = 'call echodoc#enable()'

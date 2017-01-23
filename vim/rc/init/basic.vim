@@ -43,6 +43,7 @@ set smarttab
 set formatoptions+=q
 set clipboard=unnamed
 set foldmethod=manual
+set noshowmode
 
 autocmd MyAuGroup BufEnter * call s:auto_cd()
 function! s:auto_cd() abort

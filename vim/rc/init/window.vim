@@ -55,8 +55,8 @@ function! s:vsplit_from_tab(tab_num) abort
     vsplit
     execute "buffer " . tab_bufs[0]
     for tb in tab_bufs[1:]
-        execute "buffer " . tb
         split
+        execute "buffer " . tb
     endfor
     execute a:tab_num . "tabclose"
     execute "normal! <C-w>="
@@ -68,15 +68,14 @@ function! s:vs_from_right() abort
     call s:vsplit_from_tab(tabpagenr() + 1)
 endfunction
 
-
 call s:win_map("h", ":<C-u>split<CR>") " split horizontally
 call s:win_map("v", ":<C-u>vsplit<CR>") " split vertically
 call s:win_map("o", ":<C-u>only<CR>") " close others
 call s:win_map("j", ":<C-u>call <SID>vonly()<CR>") " close others vertically
 call s:win_map("p", "<C-w>z") " close preview
 call s:win_map("q", ":<C-u>q<CR>") " close
-call s:win_map("H", ":<C-u>call <SID>vs_from_left()<CR>") " 
-call s:win_map("L", ":<C-u>call <SID>vs_from_right()<CR>") " 
+call s:win_map("H", ":<C-u>call <SID>vs_from_left()<CR>") " open left tab's buffers vertically
+call s:win_map("L", ":<C-u>call <SID>vs_from_right()<CR>") " open right tab's buffers vertically
 "}}}
 
 " winsize"{{{
