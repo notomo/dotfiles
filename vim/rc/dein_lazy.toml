@@ -842,3 +842,14 @@ let g:expand_region_text_objects = {
 # repo = 'Shougo/echodoc.vim'
 # on_event = 'CompleteDone'
 # hook_source = 'call echodoc#enable()'
+
+[[plugins]]
+repo = 'kana/vim-altr'
+on_map = {n = '<Plug>'}
+hook_add = '''
+nmap [file]f <Plug>(altr-forward)
+nmap [file]b <Plug>(altr-back)
+'''
+hook_post_source = '''
+call altr#define('dein_lazy.toml', 'dein.toml')
+'''
