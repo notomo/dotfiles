@@ -33,6 +33,12 @@ nnoremap [edit]j :<C-u>join<CR>
 nnoremap [edit]J :<C-u>join!<CR>
 vnoremap [edit]j :join<CR>
 vnoremap [edit]J :join!<CR>
+
+nnoremap [edit]n *``cgn
+nnoremap [edit]N *``cgN
+
+vnoremap <expr> [edit]n "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
+vnoremap <expr> [edit]N "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 "}}}
 
 " kana mapping"{{{
