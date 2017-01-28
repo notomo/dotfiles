@@ -37,7 +37,7 @@ function! s:vonly() abort
     let cnt = len(tabpagebuflist())
     for direction in ["j", "k"]
         while cnt > 1
-            execute "wincmd " . direction
+            execute "noautocmd wincmd " . direction
             if win_getid() == curwin_id
                 break
             endif

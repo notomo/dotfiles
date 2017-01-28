@@ -269,7 +269,7 @@ hook_source = 'source ~/.vim/rc/plugins/vdebug_setting.vim'
 
 [[plugins]]
 repo = 'scrooloose/syntastic'
-on_ft = ['python', 'php']
+on_ft = ['python', 'php', 'vim']
 hook_add = '''
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_enable_signs = 1
@@ -278,6 +278,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pyflakes']
 let g:syntastic_php_checkers = ['php']
+let g:syntastic_vim_checkers = ['vint']
 let g:syntastic_mode_map = {'passive_filetypes' : ['tex']}
 '''
 
