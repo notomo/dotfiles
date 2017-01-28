@@ -1,5 +1,5 @@
 function! s:change_source(source_name) abort
-    execute "Unite " . a:source_name . " -no-start-insert -input=" . join(split(getline(1), ' '), '\ ')
+    execute 'Unite ' . a:source_name . ' -no-start-insert -input=' . join(split(getline(1), ' '), '\ ')
 endfunction
 
 autocmd MyAuGroup FileType unite call s:unite_my_settings()

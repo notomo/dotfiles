@@ -1,3 +1,4 @@
+scriptencoding utf-8
 
 " basic mapping"{{{
 
@@ -37,8 +38,8 @@ vnoremap [edit]J :join!<CR>
 nnoremap [edit]n *``cgn
 nnoremap [edit]N *``cgN
 
-vnoremap <expr> [edit]n "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
-vnoremap <expr> [edit]N "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
+vnoremap <expr> [edit]n 'y/\\V\<C-r>=escape(@\', '/')\<CR>\<CR>' . '``cgn"
+vnoremap <expr> [edit]N 'y/\\V\<C-r>=escape(@\', '/')\<CR>\<CR>' . '``cgN"
 "}}}
 
 " kana mapping"{{{
@@ -93,9 +94,9 @@ snoremap <CR> <DEL>
 
 " grep mapping"{{{
 nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
-nnoremap <Space>Gr :<C-u>grep! "" *<Left><Left><Left>
-nnoremap <Space>Gt :<C-u>cexpr ""<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
-nnoremap <Space>Gb :<C-u>cexpr ""<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
+nnoremap <Space>Gr :<C-u>grep! '' *<Left><Left><Left>
+nnoremap <Space>Gt :<C-u>cexpr ''<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
+nnoremap <Space>Gb :<C-u>cexpr ''<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
 "}}}
 
 " ESC mapping"{{{
@@ -115,10 +116,10 @@ vmap z [indent]
 
 function! s:convert_indent_style(to_hard, is_visual) abort
     let tmp_expandtab = &expandtab
-    let expandtab_cmd = a:to_hard == 1 ? "noexpandtab" : "expandtab"
-    execute "setlocal " . expandtab_cmd
-    let range_str = a:is_visual == 1 ? "'<,'>" : "."
-    execute range_str . "retab!"
+    let expandtab_cmd = a:to_hard == 1 ? 'noexpandtab' : 'expandtab'
+    execute 'setlocal ' . expandtab_cmd
+    let range_str = a:is_visual == 1 ? "'<,'>" : '.'
+    execute range_str . 'retab!'
     let &expandtab = tmp_expandtab
 endfunction
 
@@ -169,7 +170,7 @@ nnoremap <C-j> <C-f>
 nnoremap [newline] <Nop>
 nmap o [newline]
 nnoremap <silent> [newline]o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <silent> [newline]j :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| execute "normal j" \| endfor<CR>
+nnoremap <silent> [newline]j :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal j' \| endfor<CR>
 nnoremap <silent> [newline]k :<C-u>for i in range(v:count1) \| call append(line('.') - 1, '') \| endfor<CR>
 nnoremap [newline]d o
 nnoremap [newline]u O
@@ -191,24 +192,24 @@ nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 " keyword mapping"{{{
 function! s:tab_tag_open() abort
     try
-        execute "tag ". expand("<cword>")
+        execute 'tag '. expand('<cword>')
         tab sp
         tabprevious
-        execute "normal! \<C-o>"
+        execute 'normal! \<C-o>'
         tabnext
     catch
-        echo "Not found tag"
+        echo 'Not found tag'
     endtry
 endfunction
 nnoremap [keyword]t :<C-u>call <SID>tab_tag_open()<CR>
 
 function! s:vertical_tag_open() abort
     try
-        execute "tag ". expand("<cword>")
+        execute 'tag '. expand('<cword>')
         vsplit
-        execute "normal! \<C-o>"
+        execute 'normal! \<C-o>'
     catch
-        echo "Not found tag"
+        echo 'Not found tag'
     endtry
 endfunction
 nnoremap [keyword]v :<C-u>call <SID>vertical_tag_open()<CR>
@@ -242,31 +243,31 @@ inoremap <4-MiddleMouse> <Nop>
 
 " others mapping"{{{
 function! s:set_current_filetype() abort
-    execute "set filetype=" . &filetype
+    execute 'set filetype=' . &filetype
 endfunction
 nnoremap <F4> :<C-u>call <SID>set_current_filetype()<CR>
 
 function! GitCtags() abort
     let l:git_root = system("git rev-parse --show-toplevel | tr -d '\\n'")
-    let l:git_folder = l:git_root . "/.git"
+    let l:git_folder = l:git_root . '/.git'
     let l:current_folder = getcwd()
-    if l:git_folder[-4:] == ?".git"
-        execute "cd " . l:git_root
+    if l:git_folder[-4:] ==? '.git'
+        execute 'cd ' . l:git_root
         let l:tags_path = l:git_folder . '/tags'
-        execute "set tags+=" . l:tags_path . ";"
-        execute "!start ctags --sort=yes --append=no -f " . l:tags_path . " -R " . l:git_root
-        execute "cd " . l:current_folder
+        execute 'set tags+=' . l:tags_path . ';'
+        execute '!start ctags --sort=yes --append=no -f ' . l:tags_path . ' -R ' . l:git_root
+        execute 'cd ' . l:current_folder
     else
-        echomsg "None .git error"
+        echomsg 'None .git error'
     endif
 endfunction
 command! GitaCtagsCommand call GitCtags()
 nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
 
 function! OpenWorkText() abort
-	let l:work_text_file_path =  "~/worktexts/" . strftime("%Y_%m_%d.txt")
-	execute "tab drop " . l:work_text_file_path
-	execute "set filetype=worktext"
+	let l:work_text_file_path =  '~/worktexts/' . strftime('%Y_%m_%d.txt')
+	execute 'tab drop ' . l:work_text_file_path
+	execute 'set filetype=worktext'
 endfunction
 command! OpenWorkTextCommand call OpenWorkText()
 nnoremap <Space>ew :<C-u>OpenWorkTextCommand<CR>
@@ -308,40 +309,40 @@ vmap <Space>r [replace]
 function! s:nvnoremap_replace(lhs, pattern, str) abort
     let pattern = substitute(a:pattern, '\', '\\\\', 'g')
     let str = substitute(a:str, '\', '\\\\', 'g')
-    let substitute_str = 's/\\v' . pattern . "/" . str . "/ge\\|noh"
-    let v_substitute_str = "'<,'>" . 's/\\v%V' . pattern . "%V/" . str . "/g"
-    silent execute join(["nnoremap", "<silent>", "[replace]" . a:lhs, 'q::s@^@' . substitute_str . '@g<CR><CR>'])
-    silent execute join(["vnoremap", "<silent>", "[replace]" . a:lhs, 'q::s@^.*$@' . v_substitute_str . '@g<CR><CR>'])
+    let substitute_str = 's/\\v' . pattern . '/' . str . '/ge\\|noh'
+    let v_substitute_str = "'<,'>" . 's/\\v%V' . pattern . '%V/' . str . '/g'
+    silent execute join(['nnoremap', '<silent>', '[replace]' . a:lhs, 'q::s@^@' . substitute_str . '@g<CR><CR>'])
+    silent execute join(['vnoremap', '<silent>', '[replace]' . a:lhs, 'q::s@^.*$@' . v_substitute_str . '@g<CR><CR>'])
 endfunction
 
-let s:LHS_KEY = "l"
-let s:PATTERN_KEY = "p"
-let s:STR_KEY = "s"
+let s:LHS_KEY = 'l'
+let s:PATTERN_KEY = 'p'
+let s:STR_KEY = 's'
 let s:replace_map_info = [
-\   {s:LHS_KEY : "co", s:PATTERN_KEY : '\S{-1,}\zs,\ze\S{-1,}', s:STR_KEY : ', '},
-\   {s:LHS_KEY : "e", s:PATTERN_KEY : '\S{-1,}\zs(\=\| \=\|\= )\ze\S{-1,}', s:STR_KEY : ' = '},
-\   {s:LHS_KEY : "n", s:PATTERN_KEY : '^\n', s:STR_KEY : ""},
-\   {s:LHS_KEY : "y", s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
-\   {s:LHS_KEY : "Y", s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
-\   {s:LHS_KEY : "<Space>e", s:PATTERN_KEY : ' +$', s:STR_KEY : ''},
-\   {s:LHS_KEY : "mc", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \",\")"},
-\   {s:LHS_KEY : "mt", s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \"\\t\")"},
-\   {s:LHS_KEY : "<Space>b", s:PATTERN_KEY : '\S{-1,}\zs {2,}\ze\S{-1,}', s:STR_KEY : ' '},
-\   {s:LHS_KEY : "cm", s:PATTERN_KEY : ',', s:STR_KEY : '\r'},
-\   {s:LHS_KEY : "tm", s:PATTERN_KEY : '\t', s:STR_KEY : '\r'},
-\   {s:LHS_KEY : "<Space>m", s:PATTERN_KEY : '\s+', s:STR_KEY : '\r'},
-\   {s:LHS_KEY : "qw", s:PATTERN_KEY : "'", s:STR_KEY : '"'},
-\   {s:LHS_KEY : "wq", s:PATTERN_KEY : '"', s:STR_KEY : "'"},
-\   {s:LHS_KEY : "cc", s:PATTERN_KEY : '_(.)', s:STR_KEY : '\u\1'},
-\   {s:LHS_KEY : "ch", s:PATTERN_KEY : '([A-Z])', s:STR_KEY : '_\l\1'},
-\   {s:LHS_KEY : "ct", s:PATTERN_KEY : ',', s:STR_KEY : '\t'},
-\   {s:LHS_KEY : "tc", s:PATTERN_KEY : '\t', s:STR_KEY : ','},
-\   {s:LHS_KEY : "<Space>a", s:PATTERN_KEY : '^\s+', s:STR_KEY : ''},
-\   {s:LHS_KEY : "x", s:PATTERN_KEY : '%#(\_.)(\_.)', s:STR_KEY : '\2\1'},
-\   {s:LHS_KEY : "p", s:PATTERN_KEY : '(.*)\zs', s:STR_KEY : '\r\1'},
+\   {s:LHS_KEY : 'co', s:PATTERN_KEY : '\S{-1,}\zs,\ze\S{-1,}', s:STR_KEY : ', '},
+\   {s:LHS_KEY : 'e', s:PATTERN_KEY : '\S{-1,}\zs(\=\| \=\|\= )\ze\S{-1,}', s:STR_KEY : ' = '},
+\   {s:LHS_KEY : 'n', s:PATTERN_KEY : '^\n', s:STR_KEY : ''},
+\   {s:LHS_KEY : 'y', s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
+\   {s:LHS_KEY : 'Y', s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
+\   {s:LHS_KEY : '<Space>e', s:PATTERN_KEY : ' +$', s:STR_KEY : ''},
+\   {s:LHS_KEY : 'mc', s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \",\")"},
+\   {s:LHS_KEY : 'mt', s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \"\\t\")"},
+\   {s:LHS_KEY : '<Space>b', s:PATTERN_KEY : '\S{-1,}\zs {2,}\ze\S{-1,}', s:STR_KEY : ' '},
+\   {s:LHS_KEY : 'cm', s:PATTERN_KEY : ',', s:STR_KEY : '\r'},
+\   {s:LHS_KEY : 'tm', s:PATTERN_KEY : '\t', s:STR_KEY : '\r'},
+\   {s:LHS_KEY : '<Space>m', s:PATTERN_KEY : '\s+', s:STR_KEY : '\r'},
+\   {s:LHS_KEY : 'qw', s:PATTERN_KEY : "'", s:STR_KEY : '"'},
+\   {s:LHS_KEY : 'wq', s:PATTERN_KEY : '"', s:STR_KEY : "'"},
+\   {s:LHS_KEY : 'cc', s:PATTERN_KEY : '_(.)', s:STR_KEY : '\u\1'},
+\   {s:LHS_KEY : 'ch', s:PATTERN_KEY : '([A-Z])', s:STR_KEY : '_\l\1'},
+\   {s:LHS_KEY : 'ct', s:PATTERN_KEY : ',', s:STR_KEY : '\t'},
+\   {s:LHS_KEY : 'tc', s:PATTERN_KEY : '\t', s:STR_KEY : ','},
+\   {s:LHS_KEY : '<Space>a', s:PATTERN_KEY : '^\s+', s:STR_KEY : ''},
+\   {s:LHS_KEY : 'x', s:PATTERN_KEY : '%#(\_.)(\_.)', s:STR_KEY : '\2\1'},
+\   {s:LHS_KEY : 'p', s:PATTERN_KEY : '(.*)\zs', s:STR_KEY : '\r\1'},
 \]
 
-if exists("g:replace_map_info")
+if exists('g:replace_map_info')
     let s:replace_map_info += g:replace_map_info
     unlet g:replace_map_info
 endif
@@ -356,44 +357,44 @@ nnoremap [yank] <Nop>
 nmap <Space>y [yank]
 
 function! s:yank_date(delimiter) abort
-    let delimiter = a:delimiter == "" ? "_" : a:delimiter
-    call s:yank_value(strftime(join(split("%Y_%m_%d","_"),a:delimiter)))
+    let delimiter = a:delimiter ==? '' ? '_' : a:delimiter
+    call s:yank_value(strftime(join(split('%Y_%m_%d','_'),a:delimiter)))
 endfunction
-nnoremap <silent> [yank]d :<C-u>call <SID>yank_date("\/")<CR>
-nnoremap <silent> [yank]n :<C-u>call <SID>yank_value(expand("%"))<CR>
+nnoremap <silent> [yank]d :<C-u>call <SID>yank_date('\/')<CR>
+nnoremap <silent> [yank]n :<C-u>call <SID>yank_value(expand('%'))<CR>
 nnoremap <silent> [yank]p :<C-u>call <SID>yank_value(substitute(substitute(expand('%:p'), substitute(expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\', '/', 'g'))<CR>
 nnoremap <silent> [yank]; :<C-u>call <SID>yank_value(@:)<CR>
 nnoremap <silent> [yank]/ :<C-u>call <SID>yank_value(@/)<CR>
 nnoremap <silent> [yank]i :<C-u>call <SID>yank_value(@.)<CR>
-nnoremap <silent> [yank]f :<C-u>call <SID>yank_value(cfi#format("%s", ""))<CR>
+nnoremap <silent> [yank]f :<C-u>call <SID>yank_value(cfi#format('%s', ''))<CR>
 function! s:yank_value(value) abort
     let [@", @+, @0, @*] = [a:value, a:value, a:value, a:value]
-    echomsg "yank ". a:value
+    echomsg 'yank '. a:value
 endfunction
 "}}}
 
 " inner and around vomapping"{{{
 function! s:ia_vonoremap(lhs, rhs) abort
-    let inner_lhs = "i" . a:lhs
-    let inner_rhs = "i" . a:rhs
-    let around_lhs = "a" . a:lhs
-    let around_rhs = "a" . a:rhs
-    silent execute join(["vnoremap", inner_lhs, inner_rhs])
-    silent execute join(["onoremap", inner_lhs, inner_rhs])
-    silent execute join(["vnoremap", around_lhs, around_rhs])
-    silent execute join(["onoremap", around_lhs, around_rhs])
+    let inner_lhs = 'i' . a:lhs
+    let inner_rhs = 'i' . a:rhs
+    let around_lhs = 'a' . a:lhs
+    let around_rhs = 'a' . a:rhs
+    silent execute join(['vnoremap', inner_lhs, inner_rhs])
+    silent execute join(['onoremap', inner_lhs, inner_rhs])
+    silent execute join(['vnoremap', around_lhs, around_rhs])
+    silent execute join(['onoremap', around_lhs, around_rhs])
 endfunction
-call s:ia_vonoremap(";", "B")
-call s:ia_vonoremap("o", "p")
-call s:ia_vonoremap("k", "w")
-call s:ia_vonoremap("t", ">")
-call s:ia_vonoremap("T", "t")
-call s:ia_vonoremap("p", ")")
-call s:ia_vonoremap("l", "]")
-call s:ia_vonoremap("w", "\"")
-call s:ia_vonoremap("q", "\'")
-call s:ia_vonoremap("d", "}")
-call s:ia_vonoremap("b", "`")
+call s:ia_vonoremap(';', 'B')
+call s:ia_vonoremap('o', 'p')
+call s:ia_vonoremap('k', 'w')
+call s:ia_vonoremap('t', '>')
+call s:ia_vonoremap('T', 't')
+call s:ia_vonoremap('p', ')')
+call s:ia_vonoremap('l', ']')
+call s:ia_vonoremap('w', '"')
+call s:ia_vonoremap('q', "'")
+call s:ia_vonoremap('d', '}')
+call s:ia_vonoremap('b', '`')
 "}}}
 
 " fold mapping"{{{
@@ -450,14 +451,11 @@ inoremap j<Space><Space> <ESC>gUiwea
 inoremap j<Space>z <C-a>
 
 
-""""""""""""""""""""""""""""""
-"IMEの状態とカーソル位置保存のため<C-r>を使用してコマンドを実行。
-""""""""""""""""""""""""""""""
 function! MyExecExCommand(cmd, ...)
     let saved_ve = &virtualedit
     let index = 1
     while index <= a:0
-        if a:{index} == 'onemore'
+        if a:{index} ==# 'onemore'
             silent setlocal virtualedit+=onemore
         endif
         let index = index + 1
@@ -471,56 +469,56 @@ function! MyExecExCommand(cmd, ...)
 endfunction
 
 function! s:cinoremap_with_prefix(lhs_prefix, lhs_suffix, rhs) abort
-    silent execute join(["inoremap", a:lhs_prefix . a:lhs_suffix, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
-    silent execute join(["cnoremap", a:lhs_prefix . a:lhs_suffix, a:rhs])
+    silent execute join(['inoremap', a:lhs_prefix . a:lhs_suffix, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
+    silent execute join(['cnoremap', a:lhs_prefix . a:lhs_suffix, a:rhs])
 endfunction
-let s:MAIN_INPUT_PREFIX_KEY = "j<Space>"
-let s:SUB_INPUT_PREFIX_KEY = "jk"
+let s:MAIN_INPUT_PREFIX_KEY = 'j<Space>'
+let s:SUB_INPUT_PREFIX_KEY = 'jk'
 
-let s:LHS_PRF_KEY = "lhs_prefix"
-let s:RHS_KEY = "rhs"
+let s:LHS_PRF_KEY = 'lhs_prefix'
+let s:RHS_KEY = 'rhs'
 let s:main_cinoremap_info = [
-            \ {s:LHS_PRF_KEY : "a", s:RHS_KEY : "-"},
-            \ {s:LHS_PRF_KEY : "e", s:RHS_KEY : "="},
-            \ {s:LHS_PRF_KEY : "s", s:RHS_KEY : "_"},
-            \ {s:LHS_PRF_KEY : "r", s:RHS_KEY : "<Bar>"},
-            \ {s:LHS_PRF_KEY : "g", s:RHS_KEY : "\\"},
-            \ {s:LHS_PRF_KEY : "w", s:RHS_KEY : "\"\"<Left>"},
-            \ {s:LHS_PRF_KEY : "b", s:RHS_KEY : "``<Left>"},
-            \ {s:LHS_PRF_KEY : "l", s:RHS_KEY : "[]<Left>"},
-            \ {s:LHS_PRF_KEY : "t", s:RHS_KEY : "<><Left>"},
-            \ {s:LHS_PRF_KEY : "p", s:RHS_KEY : "()<Left>"},
-            \ {s:LHS_PRF_KEY : "d", s:RHS_KEY : "{}<Left>"},
-            \ {s:LHS_PRF_KEY : "q", s:RHS_KEY : "''<Left>"},
-            \ {s:LHS_PRF_KEY : "h", s:RHS_KEY : "<C-r>\""},
-            \ {s:LHS_PRF_KEY : "k", s:RHS_KEY : "<End><C-u>"},
-            \ {s:LHS_PRF_KEY : "u", s:RHS_KEY : "<C-u>"},
-            \ {s:LHS_PRF_KEY : "c", s:RHS_KEY : "<End><C-u><C-u>"},
-            \ {s:LHS_PRF_KEY : "v", s:RHS_KEY : "<C-q>"},
-            \ {s:LHS_PRF_KEY : "T", s:RHS_KEY : "<C-x><C-]>"},
+            \ {s:LHS_PRF_KEY : 'a', s:RHS_KEY : '-'},
+            \ {s:LHS_PRF_KEY : 'e', s:RHS_KEY : '='},
+            \ {s:LHS_PRF_KEY : 's', s:RHS_KEY : '_'},
+            \ {s:LHS_PRF_KEY : 'r', s:RHS_KEY : '<Bar>'},
+            \ {s:LHS_PRF_KEY : 'g', s:RHS_KEY : '\\'},
+            \ {s:LHS_PRF_KEY : 'w', s:RHS_KEY : '""<Left>'},
+            \ {s:LHS_PRF_KEY : 'b', s:RHS_KEY : '``<Left>'},
+            \ {s:LHS_PRF_KEY : 'l', s:RHS_KEY : '[]<Left>'},
+            \ {s:LHS_PRF_KEY : 't', s:RHS_KEY : '<><Left>'},
+            \ {s:LHS_PRF_KEY : 'p', s:RHS_KEY : '()<Left>'},
+            \ {s:LHS_PRF_KEY : 'd', s:RHS_KEY : '{}<Left>'},
+            \ {s:LHS_PRF_KEY : 'q', s:RHS_KEY : '''<Left>'},
+            \ {s:LHS_PRF_KEY : 'h', s:RHS_KEY : '<C-r>"'},
+            \ {s:LHS_PRF_KEY : 'k', s:RHS_KEY : '<End><C-u>'},
+            \ {s:LHS_PRF_KEY : 'u', s:RHS_KEY : '<C-u>'},
+            \ {s:LHS_PRF_KEY : 'c', s:RHS_KEY : '<End><C-u><C-u>'},
+            \ {s:LHS_PRF_KEY : 'v', s:RHS_KEY : '<C-q>'},
+            \ {s:LHS_PRF_KEY : 'T', s:RHS_KEY : '<C-x><C-]>'},
             \]
 for s:info in s:main_cinoremap_info
     call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, s:info[s:LHS_PRF_KEY], s:info[s:RHS_KEY])
 endfor
 
 let s:sub_cinoremap_info = [
-            \ {s:LHS_PRF_KEY : "a", s:RHS_KEY : "&"},
-            \ {s:LHS_PRF_KEY : "h", s:RHS_KEY : "^"},
-            \ {s:LHS_PRF_KEY : "p", s:RHS_KEY : "+"},
-            \ {s:LHS_PRF_KEY : "s", s:RHS_KEY : "#"},
-            \ {s:LHS_PRF_KEY : "r", s:RHS_KEY : "%"},
-            \ {s:LHS_PRF_KEY : "m", s:RHS_KEY : "@"},
-            \ {s:LHS_PRF_KEY : "t", s:RHS_KEY : "~"},
-            \ {s:LHS_PRF_KEY : "d", s:RHS_KEY : "$"},
-            \ {s:LHS_PRF_KEY : "e", s:RHS_KEY : "!"},
-            \ {s:LHS_PRF_KEY : "b", s:RHS_KEY : "`"},
-            \ {s:LHS_PRF_KEY : "c", s:RHS_KEY : ":"},
-            \ {s:LHS_PRF_KEY : "x", s:RHS_KEY : "*"},
-            \ {s:LHS_PRF_KEY : "q", s:RHS_KEY : "?"},
-            \ {s:LHS_PRF_KEY : ";", s:RHS_KEY : "\""},
-            \ {s:LHS_PRF_KEY : ",", s:RHS_KEY : "'"},
-            \ {s:LHS_PRF_KEY : "g", s:RHS_KEY : "=>"},
-            \ {s:LHS_PRF_KEY : "f", s:RHS_KEY : "->"},
+            \ {s:LHS_PRF_KEY : 'a', s:RHS_KEY : '&'},
+            \ {s:LHS_PRF_KEY : 'h', s:RHS_KEY : '^'},
+            \ {s:LHS_PRF_KEY : 'p', s:RHS_KEY : '+'},
+            \ {s:LHS_PRF_KEY : 's', s:RHS_KEY : '#'},
+            \ {s:LHS_PRF_KEY : 'r', s:RHS_KEY : '%'},
+            \ {s:LHS_PRF_KEY : 'm', s:RHS_KEY : '@'},
+            \ {s:LHS_PRF_KEY : 't', s:RHS_KEY : '~'},
+            \ {s:LHS_PRF_KEY : 'd', s:RHS_KEY : '$'},
+            \ {s:LHS_PRF_KEY : 'e', s:RHS_KEY : '!'},
+            \ {s:LHS_PRF_KEY : 'b', s:RHS_KEY : '`'},
+            \ {s:LHS_PRF_KEY : 'c', s:RHS_KEY : ':'},
+            \ {s:LHS_PRF_KEY : 'x', s:RHS_KEY : '*'},
+            \ {s:LHS_PRF_KEY : 'q', s:RHS_KEY : '?'},
+            \ {s:LHS_PRF_KEY : ';', s:RHS_KEY : '"'},
+            \ {s:LHS_PRF_KEY : ',', s:RHS_KEY : "'"},
+            \ {s:LHS_PRF_KEY : 'g', s:RHS_KEY : '=>'},
+            \ {s:LHS_PRF_KEY : 'f', s:RHS_KEY : '->'},
             \]
 for s:info in s:sub_cinoremap_info
     call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, s:info[s:LHS_PRF_KEY], s:info[s:RHS_KEY])
@@ -541,11 +539,11 @@ nnoremap [macro]d qaq
 function! s:diff_tab_open(...)
     if a:0 == 1
         tabedit %:p
-        execute "rightbelow vertical diffsplit " . a:1
+        execute 'rightbelow vertical diffsplit ' . a:1
     else
-        execute "tabedit " . a:1
+        execute 'tabedit ' . a:1
         for l:file in a:000[1:]
-            execute "rightbelow vertical diffsplit " . l:file
+            execute 'rightbelow vertical diffsplit ' . l:file
         endfor
     endif
 endfunction

@@ -1,3 +1,4 @@
+scriptencoding utf-8
 
 set shortmess+=I
 set vb t_vb=
@@ -16,7 +17,7 @@ set mousehide
 
 colorscheme desert
 
-if has("win32")
+if has('win32')
     set guifont=MeiryoKe_Gothic:h14:cSHIFTJIS
   " 行間隔の設定
   set linespace=1
@@ -24,7 +25,7 @@ if has("win32")
   if has('kaoriya')
     set ambiwidth=auto
   endif
-elseif has("mac")
+elseif has('mac')
     set guifont=RictyDiminished-Regular:h18
 endif
 
@@ -45,5 +46,5 @@ highlight Flashy term=bold ctermbg=0 gui=reverse guifg=#ffbf50 guibg=#222222
 
 highlight ParenMatch term=underline cterm=underline guibg=cadetblue
 
-syntax match myTodo contained "\<\(TODO\|FIXME\):"
+syntax match myTodo contained '\<\(TODO\|FIXME\):'
 highlight def link myTodo Todo

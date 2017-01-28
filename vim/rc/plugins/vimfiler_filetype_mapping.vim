@@ -1,14 +1,14 @@
-let hsplit = {"is_selectable" : 1}
+let hsplit = {'is_selectable' : 1}
 function! hsplit.func(candidates)
     wincmd p
-    execute "split ". a:candidates[0].action__path
+    execute 'split '. a:candidates[0].action__path
 endfunction
-call unite#custom_action("file", "hsplit", hsplit)
+call unite#custom_action('file', 'hsplit', hsplit)
 unlet hsplit
 
 function! s:new_file() abort
-    let file_names = input("New file names separated with commas : ")
-    for file_name in split(file_names, ",")
+    let file_names = input('New file names separated with commas : ')
+    for file_name in split(file_names, ',')
         execute "normal \<Plug>(vimfiler_new_file)" . file_name . "\<CR>"
         execute "normal \<Plug>(vimfiler_edit_file)"
         set fileformat=unix
@@ -30,7 +30,7 @@ function! s:vimfiler_my_settings()
     nmap <buffer> Q <Plug>(vimfiler_hide)
     nmap <buffer> e <Plug>(vimfiler_edit_file)
     nmap <buffer> <Space>pv <Plug>(vimfiler_preview_file)
-    nnoremap <silent><buffer><expr> to vimfiler#do_action("tabopen")
+    nnoremap <silent><buffer><expr> to vimfiler#do_action('tabopen')
     nmap <buffer> a <Plug>(vimfiler_choose_action)
     nnoremap <buffer><silent> u <C-w>l:<C-u>Unite file<CR>
     nmap <buffer> x <Plug>(vimfiler_execute_external_filer)

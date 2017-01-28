@@ -1,4 +1,4 @@
-nnoremap <buffer> <expr> <CR> expand(":cc ".line(".")."<CR>")
+nnoremap <buffer> <expr> <CR> expand(':cc '.line('.').'<CR>')
 
 noremap <buffer> p  <CR>zz<C-w>p
 
@@ -33,13 +33,13 @@ function! s:del_entry() range
 endfunction
 
 function! s:diff_entry() abort
-    let line = substitute(getline("."), "/", "\\", "g")
+    let line = substitute(getline('.'), '/', '\\', 'g')
     let revision_candidate = matchstr(line, '\.git\\\\[a-zA-Z0-9]*')
-    if revision_candidate != ""
+    if revision_candidate !=? ''
         let revision = revision_candidate[6:]
-        execute "normal mk"
-        execute ":Gdiff ".revision."\<CR>"
+        execute 'normal mk'
+        execute ':Gdiff ' . revision . "\<CR>"
     else
-        echomsg "Not revision"
+        echomsg 'Not revision'
     endif
 endfunction

@@ -1,17 +1,17 @@
 
 if !exists('g:mark_chars')
-    let g:mark_chars = split("abcdefghijklmnopqrstuvwxyz", "\\zs")
+    let g:mark_chars = split('abcdefghijklmnopqrstuvwxyz', '\\zs')
 endif
 
 function! tmno3#mark#delete_all() abort
     delmark!
     let b:mark_index = -1
-    echomsg "deleted all marks"
+    echomsg 'deleted all marks'
 endfunction
 
 function! tmno3#mark#to_previous() abort
     let end_pos = 0
-    let curline_num = line(".")
+    let curline_num = line('.')
     for c in g:mark_chars
         let line_num = line("'" . c)
         if line_num == 0
@@ -31,9 +31,9 @@ function! tmno3#mark#to_previous() abort
 endfunction
 
 function! tmno3#mark#to_next() abort
-    let start_pos = line("$")
-    let start_char = ""
-    let curline_num = line(".")
+    let start_pos = line('$')
+    let start_char = ''
+    let curline_num = line('.')
     for c in g:mark_chars
         let line_num = line("'" . c)
         if line_num == 0
@@ -47,7 +47,7 @@ function! tmno3#mark#to_next() abort
             endif
         endif
     endfor
-    if start_char != ""
+    if start_char !=? ''
         return "\'" . start_char
     endif
 endfunction

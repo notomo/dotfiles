@@ -1,7 +1,7 @@
 
+set encoding=utf-8
 scriptencoding utf-8
 let $LANG='ja_JP.UTF-8'
-set encoding=utf-8
 
 if has('vim_starting')
     set runtimepath+=~/.vim/
@@ -13,8 +13,8 @@ endif
 filetype off
 filetype plugin indent off
 
-let g:mapleader = ","
-let g:maplocalleader = "<Leader>l"
+let g:mapleader = ','
+let g:maplocalleader = '<Leader>l'
 
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]
@@ -75,7 +75,7 @@ runtime! rc/init/*.vim
 runtime! rc/plugins/others.vim
 runtime! rc/plugins/fugitive_filetype_mapping.vim
 runtime! rc/plugins/unite_filetype_mapping.vim
-if has("python3")
+if has('python3')
     set diffexpr=py3diff#diffexpr()
 endif
 

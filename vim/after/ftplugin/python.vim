@@ -1,7 +1,6 @@
 setlocal omnifunc=jedi#completions
 " setlocal completeopt-=preview
 setlocal expandtab
-" docstringは表示しない
 autocmd MyAuGroup FileType python setlocal completeopt-=preview
 
 " let g:python_highlight_all = 1

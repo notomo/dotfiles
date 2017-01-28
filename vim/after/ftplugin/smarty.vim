@@ -1,4 +1,4 @@
-if exists("loaded_matchit")
+if exists('loaded_matchit')
 	let b:match_ignorecase = 1
 	let b:match_words = '<:>,' .
 	\ '<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,' .

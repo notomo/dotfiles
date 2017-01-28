@@ -1,15 +1,15 @@
 " tab"{{{
-let s:TAB_MODE_NM = "tab"
-let s:TAB_KEY = "[" . s:TAB_MODE_NM . "]"
-let s:TAB_PFX = "t"
-let s:TABMV_PFX = "m"
-let s:NNOREMAP = "nnoremap"
-let s:NMAP = "nmap"
-silent execute join([s:NNOREMAP, s:TAB_KEY, "<Nop>"])
+let s:TAB_MODE_NM = 'tab'
+let s:TAB_KEY = '[' . s:TAB_MODE_NM . ']'
+let s:TAB_PFX = 't'
+let s:TABMV_PFX = 'm'
+let s:NNOREMAP = 'nnoremap'
+let s:NMAP = 'nmap'
+silent execute join([s:NNOREMAP, s:TAB_KEY, '<Nop>'])
 silent execute join([s:NMAP, s:TAB_PFX, s:TAB_KEY])
 
 " close others
-silent execute join([s:NNOREMAP, "<silent>", s:TAB_KEY . "o", ":<C-u>tabonly<CR>"])
+silent execute join([s:NNOREMAP, '<silent>', s:TAB_KEY . 'o', ':<C-u>tabonly<CR>'])
 
 " open new tab"{{{
 function! s:new_tab() abort
@@ -29,7 +29,7 @@ inoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
 
 " close tab"{{{
 function! s:tabclose_c() abort
-    if tabpagenr("$") == 1
+    if tabpagenr('$') == 1
         qa
     else
         tabclose
@@ -41,7 +41,7 @@ nnoremap <silent> <Plug>(tabclose_c) :<C-u>call <SID>tabclose_c()<CR>
 " close left tabs"{{{
 function! s:tabclose_l() abort
     for i in range(2, tabpagenr())
-        execute "1tabclose"
+        execute '1tabclose'
     endfor
 endfunction
 nnoremap <silent> <Plug>(tabclose_l) :<C-u>call <SID>tabclose_l()<CR>
@@ -49,8 +49,8 @@ nnoremap <silent> <Plug>(tabclose_l) :<C-u>call <SID>tabclose_l()<CR>
 
 " close right tabs"{{{
 function! s:tabclose_r() abort
-    for i in range(tabpagenr(),tabpagenr("$") - 1)
-        execute "$tabclose"
+    for i in range(tabpagenr(),tabpagenr('$') - 1)
+        execute '$tabclose'
     endfor
 endfunction
 nnoremap <silent> <Plug>(tabclose_r) :<C-u>call <SID>tabclose_r()<CR>
@@ -65,16 +65,16 @@ catch
 endtry
 if s:submode_enable
     function! s:tab_map(lhs, rhs, map_only, remap) abort
-        let remap = a:remap == 1 ? "r" : ""
+        let remap = a:remap == 1 ? 'r' : ''
         if a:map_only
             let map_type = a:remap == 1 ? s:NMAP : s:NNOREMAP
             silent execute join([map_type, s:TAB_KEY . a:lhs, a:rhs])
         else
-            call submode#enter_with(s:TAB_MODE_NM , "n", remap, s:TAB_PFX . a:lhs, a:rhs)
+            call submode#enter_with(s:TAB_MODE_NM , 'n', remap, s:TAB_PFX . a:lhs, a:rhs)
         endif
-        call submode#map(s:TAB_MODE_NM, "n", remap, a:lhs, a:rhs)
+        call submode#map(s:TAB_MODE_NM, 'n', remap, a:lhs, a:rhs)
     endfunction
-    call submode#leave_with("tab", "n", "", "j")
+    call submode#leave_with('tab', 'n', '', 'j')
 else
     function! s:tab_map(lhs, rhs, map_only, remap) abort
         let map_type = a:remap == 1 ? s:NMAP : s:NNOREMAP
@@ -82,19 +82,19 @@ else
     endfunction
 endif
 
-call s:tab_map("t", "<Plug>(new_tab)", 0, 1) " open new tab
-call s:tab_map("l", "gt", 0, 0) " move right
-call s:tab_map("s", ":<C-u>tabr<CR>", 0, 0) " move right end
-call s:tab_map("e", ":<C-u>tabl<CR>", 0, 0) " move left end
-call s:tab_map("a", "gT", 0, 0) " move left
-call s:tab_map("h", "gT", 0, 0) " move left
-call s:tab_map("q", "<Plug>(tabclose_c)", 0, 1) " close a tab
-call s:tab_map("da", "<Plug>(tabclose_l)", 1, 1) " close left tabs
-call s:tab_map("dl", "<Plug>(tabclose_r)", 1, 1) " close right tabs
-call s:tab_map(s:TABMV_PFX . "l", ":<C-u>tabm+1<CR>", 0, 0) " move a tab right
-call s:tab_map(s:TABMV_PFX . "s", ":<C-u>tabm 0<CR>", 0, 0) " move a tab right end
-call s:tab_map(s:TABMV_PFX . "e", ":<C-u>tabm<CR>", 0, 0) " move a tab left end
-call s:tab_map(s:TABMV_PFX . "a", ":<C-u>tabm-1<CR>", 0, 0) " move a tab left
+call s:tab_map('t', '<Plug>(new_tab)', 0, 1) " open new tab
+call s:tab_map('l', 'gt', 0, 0) " move right
+call s:tab_map('s', ':<C-u>tabr<CR>', 0, 0) " move right end
+call s:tab_map('e', ':<C-u>tabl<CR>', 0, 0) " move left end
+call s:tab_map('a', 'gT', 0, 0) " move left
+call s:tab_map('h', 'gT', 0, 0) " move left
+call s:tab_map('q', '<Plug>(tabclose_c)', 0, 1) " close a tab
+call s:tab_map('da', '<Plug>(tabclose_l)', 1, 1) " close left tabs
+call s:tab_map('dl', '<Plug>(tabclose_r)', 1, 1) " close right tabs
+call s:tab_map(s:TABMV_PFX . 'l', ':<C-u>tabm+1<CR>', 0, 0) " move a tab right
+call s:tab_map(s:TABMV_PFX . 's', ':<C-u>tabm 0<CR>', 0, 0) " move a tab right end
+call s:tab_map(s:TABMV_PFX . 'e', ':<C-u>tabm<CR>', 0, 0) " move a tab left end
+call s:tab_map(s:TABMV_PFX . 'a', ':<C-u>tabm-1<CR>', 0, 0) " move a tab left
 "}}}
 "}}}
 
@@ -102,8 +102,8 @@ call s:tab_map(s:TABMV_PFX . "a", ":<C-u>tabm-1<CR>", 0, 0) " move a tab left
 set tabline=%!MakeTabLine()
 
 function! MakeTabLine() "{{{
-  let titles = map(range(1, tabpagenr("$")), "s:tabpage_label(v:val)")
-  let tabline_str = join(titles, "") . "%#TabLineFill#%T"
+  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+  let tabline_str = join(titles, '') . '%#TabLineFill#%T'
   return tabline_str
 endfunction "}}}
 
@@ -112,28 +112,28 @@ function! s:tabpage_label(tab_num) "{{{
     let curbuf_num = tab_bufs[tabpagewinnr(a:tab_num) - 1]
     let buf_cnt = len(tab_bufs)
 
-    let file_nm = fnamemodify(bufname(curbuf_num), ":t")
-    if file_nm ==# "[Command Line]"
-        let file_nm = expand("#")
+    let file_nm = fnamemodify(bufname(curbuf_num), ':t')
+    if file_nm ==# '[Command Line]'
+        let file_nm = expand('#')
         let buf_cnt -= 1
     endif
-    let file_nm = file_nm == "" ? "NONE" : file_nm
+    let file_nm = file_nm ==? '' ? 'NONE' : file_nm
 
-    if getbufvar(curbuf_num, "&modified")
-        let is_mod_str = "+"
+    if getbufvar(curbuf_num, '&modified')
+        let is_mod_str = '+'
     elseif buf_cnt == 1
-        let is_mod_str = ""
-        let buf_cnt = ""
+        let is_mod_str = ''
+        let buf_cnt = ''
     else
         let is_mod_tab = len(filter(copy(tab_bufs), "getbufvar(v:val, '&modified')"))
-        let is_mod_str = is_mod_tab ? "(+)" : ""
+        let is_mod_str = is_mod_tab ? '(+)' : ''
     endif
 
     let option_str = buf_cnt . is_mod_str
-    let label = option_str == "" ? file_nm : file_nm . "[" . option_str . "]"
+    let label = option_str ==? '' ? file_nm : file_nm . '[' . option_str . ']'
 
-    let hi_type = a:tab_num == tabpagenr() ? "%#TabLineSel#" : "%#TabLine#"
+    let hi_type = a:tab_num == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
 
-    return "%" . a:tab_num . "T" . join([hi_type, label, "%T%#TabLineFill#"], " ")
+    return '%' . a:tab_num . 'T' . join([hi_type, label, '%T%#TabLineFill#'], ' ')
 endfunction "}}}
 "}}}

@@ -1,3 +1,4 @@
+scriptencoding utf-8
 
 " 起動時に有効化
 let g:neocomplete#enable_at_startup = 1

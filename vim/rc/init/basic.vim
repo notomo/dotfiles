@@ -1,5 +1,6 @@
-﻿
-if has("gui") && has("win64")
+﻿scriptencoding utf-8
+
+if has('gui') && has('win64')
     "ウィンドウを最大化して起動
     autocmd MyAuGroup GUIEnter * simalt ~x
 endif
@@ -48,7 +49,7 @@ set noshowmode
 autocmd MyAuGroup BufEnter * call s:auto_cd()
 function! s:auto_cd() abort
     try
-        execute ":lcd " . substitute(expand("%:p:h")," ","\\\\ ","g")
+        execute ':lcd ' . substitute(expand('%:p:h'),' ','\\\\ ','g')
     catch
     endtry
 endfunction
@@ -75,7 +76,7 @@ set viminfo+=n~/.vim/tmp/viminfo.txt
 set notitle
 set nofixendofline
 
-let g:file_format_map = {"unix" : "U", "dos" : "D", "mac" : "M"}
+let g:file_format_map = {'unix' : 'U', 'dos' : 'D', 'mac' : 'M'}
 set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{file_format_map[&ff]}:%Y]
 
 autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8 fileformat=unix
