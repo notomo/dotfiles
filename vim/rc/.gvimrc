@@ -15,7 +15,7 @@ set nomousefocus
 " 入力時にマウスポインタを隠す (nomousehide:隠さない)
 set mousehide
 
-colorscheme desert
+colorscheme spring-night
 
 if has('win32')
     set guifont=MeiryoKe_Gothic:h14:cSHIFTJIS
@@ -29,22 +29,13 @@ elseif has('mac')
     set guifont=RictyDiminished-Regular:h18
 endif
 
-highlight TabLineFill guifg=#000000 guibg=#ffffff
-highlight TabLine guifg=#aaaaaa guibg=#000000 gui=NONE
-highlight TabLineSel guifg=#bbbb88 guibg=#333333 gui=underline
-highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
-highlight PmenuSel ctermfg=15 ctermbg=0 guifg=#000000 guibg=#cccccc
-highlight TabLineInfo term=reverse ctermfg=Black ctermbg=LightBlue guifg=black guibg=lightblue
-
-highlight Search cterm=NONE guifg=#333333 guibg=#9acd32
-highlight incSearchOnCursor cterm=NONE guifg=#eeeeee guibg=#ff7f50
-
-highlight phpComment guifg=#afeeee
-highlight Comment guifg=#afeeee
-
-highlight Flashy term=bold ctermbg=0 gui=reverse guifg=#ffbf50 guibg=#222222
-
-highlight ParenMatch term=underline cterm=underline guibg=cadetblue
+highlight Search cterm=NONE guifg=#333333 guibg=#a9dd9d
+highlight incSearchOnCursor cterm=NONE guifg=#fffeeb guibg=#fb8965
+highlight Flashy term=bold ctermbg=0 guifg=#333333 guibg=#a8d2eb
+highlight ParenMatch term=underline cterm=underline guibg=#5f8770
+highlight TabLine guifg=#fff5ee guibg=#536273 gui=none
+highlight YankRoundRegion guifg=#333333 guibg=#fedf81
+highlight def link sqlStatement sqlKeyword
 
 syntax match myTodo contained '\<\(TODO\|FIXME\):'
 highlight def link myTodo Todo

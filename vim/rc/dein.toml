@@ -125,3 +125,9 @@ repo = 'Shougo/neco-syntax'
 # [[plugins]]
 # repo = 'ujihisa/neco-look'
 
+[[plugins]]
+repo = 'rhysd/vim-color-spring-night'
+hook_add = '''
+let g:spring_night_kill_italic = 1
+'''
+
