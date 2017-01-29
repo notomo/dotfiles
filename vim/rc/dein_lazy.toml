@@ -363,11 +363,12 @@ hook_source = 'source ~/.vim/rc/plugins/operator-surround.vim'
 [[plugins]]
 repo = 'thinca/vim-fontzoom'
 on_cmd = 'Fontzoom'
+on_map = {n = '<Plug>'}
 hook_add = '''
-nnoremap <C-Up> :<C-u>Fontzoom+1<CR>
-nnoremap <C-Down> :<C-u>Fontzoom-1<CR>
-nnoremap <M-Down> :<C-u>Fontzoom!<CR>
+nmap <C-Up> <Plug>(fontzoom-larger)
+nmap <C-Down> <Plug>(fontzoom-smaller)
 nnoremap <M-Up> :<C-u>Fontzoom!<CR>
+nnoremap <M-Down> :<C-u>Fontzoom!<CR>
 '''
 
 [[plugins]]

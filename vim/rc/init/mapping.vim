@@ -128,12 +128,14 @@ nnoremap [indent]h <<
 nnoremap [indent]t :<C-u>call <SID>convert_indent_style(1, 0)<CR>
 nnoremap [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 0)<CR>
 nnoremap [indent]o ==
+nnoremap [indent]a :<C-u>left<CR>
 
 vnoremap [indent]l >gv
 vnoremap [indent]h <gv
 vnoremap [indent]t :<C-u>call <SID>convert_indent_style(1, 1)<CR>
 vnoremap [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 1)<CR>
 vnoremap [indent]o =
+vnoremap [indent]a :left<CR>gv
 "}}}
 
 " move mapping"{{{
@@ -170,7 +172,7 @@ nnoremap <C-j> <C-f>
 nnoremap [newline] <Nop>
 nmap o [newline]
 nnoremap <silent> [newline]o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <silent> [newline]j :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal j' \| endfor<CR>
+nnoremap <silent> [newline]j :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal! j' \| endfor<CR>
 nnoremap <silent> [newline]k :<C-u>for i in range(v:count1) \| call append(line('.') - 1, '') \| endfor<CR>
 nnoremap [newline]d o
 nnoremap [newline]u O
@@ -321,6 +323,7 @@ let s:STR_KEY = 's'
 let s:replace_map_info = [
 \   {s:LHS_KEY : 'co', s:PATTERN_KEY : '\S{-1,}\zs,\ze\S{-1,}', s:STR_KEY : ', '},
 \   {s:LHS_KEY : 'e', s:PATTERN_KEY : '\S{-1,}\zs(\=\| \=\|\= )\ze\S{-1,}', s:STR_KEY : ' = '},
+\   {s:LHS_KEY : 'd', s:PATTERN_KEY : '\S{-1,}\zs(\.\| \.\|\. )\ze\S{-1,}', s:STR_KEY : ' . '},
 \   {s:LHS_KEY : 'n', s:PATTERN_KEY : '^\n', s:STR_KEY : ''},
 \   {s:LHS_KEY : 'y', s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
 \   {s:LHS_KEY : 'Y', s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
@@ -423,17 +426,13 @@ noremap! <C-j> <Down>
 noremap! <C-k> <Up>
 noremap! <C-l> <Right>
 noremap! <C-e> <End>
-inoremap <C-a> <C-r>=MyExecExCommand('normal ^')<CR>
+inoremap <C-a> <C-o>^
 cnoremap <C-a> <Home>
 
 " 編集
 noremap! <C-b> <BS>
 noremap! <C-d> <Del>
-inoremap <C-o> <C-g>u<C-r>=MyExecExCommand('normal o')<CR>
-
-" undo redo
-inoremap <M-u> <C-g>u<C-r>=MyExecExCommand('undo', 'onemore')<CR>
-inoremap <M-r> <C-r>=MyExecExCommand('redo', 'onemore')<CR>
+inoremap <C-o> <C-o>o
 
 " インデント
 inoremap <S-TAB> <C-d>
@@ -441,87 +440,64 @@ inoremap <S-TAB> <C-d>
 " 電卓
 inoremap j<Space><CR> <C-r>=
 
-" 日本語入力固定切り替え
-inoremap <F10> <C-^><C-r>=IMState('FixMode')<CR>
-
 " カーソル位置の単語を大文字に変換
 inoremap j<Space><Space> <ESC>gUiwea
 
 " 前に入力した文字を入力
 inoremap j<Space>z <C-a>
 
-
-function! MyExecExCommand(cmd, ...)
-    let saved_ve = &virtualedit
-    let index = 1
-    while index <= a:0
-        if a:{index} ==# 'onemore'
-            silent setlocal virtualedit+=onemore
-        endif
-        let index = index + 1
-    endwhile
-
-    silent exec a:cmd
-    if a:0 > 0
-        silent exec 'setlocal virtualedit='.saved_ve
-    endif
-    return ''
+function! s:cinoremap_with_prefix(lhs_pfx, lhs_sfx, rhs) abort
+    silent execute join(['inoremap', a:lhs_pfx . a:lhs_sfx, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
+    silent execute join(['cnoremap', a:lhs_pfx . a:lhs_sfx, a:rhs])
 endfunction
+let s:MAIN_INPUT_PFX = 'j<Space>'
+let s:SUB_INPUT_PFX = 'jk'
 
-function! s:cinoremap_with_prefix(lhs_prefix, lhs_suffix, rhs) abort
-    silent execute join(['inoremap', a:lhs_prefix . a:lhs_suffix, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
-    silent execute join(['cnoremap', a:lhs_prefix . a:lhs_suffix, a:rhs])
-endfunction
-let s:MAIN_INPUT_PREFIX_KEY = 'j<Space>'
-let s:SUB_INPUT_PREFIX_KEY = 'jk'
-
-let s:LHS_PRF_KEY = 'lhs_prefix'
-let s:RHS_KEY = 'rhs'
+let s:LHS_PFX_KEY = 'l'
+let s:RHS_KEY = 'r'
 let s:main_cinoremap_info = [
-            \ {s:LHS_PRF_KEY : 'a', s:RHS_KEY : '-'},
-            \ {s:LHS_PRF_KEY : 'e', s:RHS_KEY : '='},
-            \ {s:LHS_PRF_KEY : 's', s:RHS_KEY : '_'},
-            \ {s:LHS_PRF_KEY : 'r', s:RHS_KEY : '<Bar>'},
-            \ {s:LHS_PRF_KEY : 'g', s:RHS_KEY : '\\'},
-            \ {s:LHS_PRF_KEY : 'w', s:RHS_KEY : '""<Left>'},
-            \ {s:LHS_PRF_KEY : 'b', s:RHS_KEY : '``<Left>'},
-            \ {s:LHS_PRF_KEY : 'l', s:RHS_KEY : '[]<Left>'},
-            \ {s:LHS_PRF_KEY : 't', s:RHS_KEY : '<><Left>'},
-            \ {s:LHS_PRF_KEY : 'p', s:RHS_KEY : '()<Left>'},
-            \ {s:LHS_PRF_KEY : 'd', s:RHS_KEY : '{}<Left>'},
-            \ {s:LHS_PRF_KEY : 'q', s:RHS_KEY : '''<Left>'},
-            \ {s:LHS_PRF_KEY : 'h', s:RHS_KEY : '<C-r>"'},
-            \ {s:LHS_PRF_KEY : 'k', s:RHS_KEY : '<End><C-u>'},
-            \ {s:LHS_PRF_KEY : 'u', s:RHS_KEY : '<C-u>'},
-            \ {s:LHS_PRF_KEY : 'c', s:RHS_KEY : '<End><C-u><C-u>'},
-            \ {s:LHS_PRF_KEY : 'v', s:RHS_KEY : '<C-q>'},
-            \ {s:LHS_PRF_KEY : 'T', s:RHS_KEY : '<C-x><C-]>'},
+            \ {s:LHS_PFX_KEY : 'a', s:RHS_KEY : '-'},
+            \ {s:LHS_PFX_KEY : 'e', s:RHS_KEY : '='},
+            \ {s:LHS_PFX_KEY : 's', s:RHS_KEY : '_'},
+            \ {s:LHS_PFX_KEY : 'r', s:RHS_KEY : '<Bar>'},
+            \ {s:LHS_PFX_KEY : 'g', s:RHS_KEY : '\'},
+            \ {s:LHS_PFX_KEY : 'w', s:RHS_KEY : '""<Left>'},
+            \ {s:LHS_PFX_KEY : 'b', s:RHS_KEY : '``<Left>'},
+            \ {s:LHS_PFX_KEY : 'l', s:RHS_KEY : '[]<Left>'},
+            \ {s:LHS_PFX_KEY : 't', s:RHS_KEY : '<><Left>'},
+            \ {s:LHS_PFX_KEY : 'p', s:RHS_KEY : '()<Left>'},
+            \ {s:LHS_PFX_KEY : 'd', s:RHS_KEY : '{}<Left>'},
+            \ {s:LHS_PFX_KEY : 'q', s:RHS_KEY : "''<Left>"},
+            \ {s:LHS_PFX_KEY : 'h', s:RHS_KEY : '<C-r>"'},
+            \ {s:LHS_PFX_KEY : 'k', s:RHS_KEY : '<End><C-u>'},
+            \ {s:LHS_PFX_KEY : 'v', s:RHS_KEY : '<C-q>'},
+            \ {s:LHS_PFX_KEY : 'T', s:RHS_KEY : '<C-x><C-]>'},
             \]
 for s:info in s:main_cinoremap_info
-    call s:cinoremap_with_prefix(s:MAIN_INPUT_PREFIX_KEY, s:info[s:LHS_PRF_KEY], s:info[s:RHS_KEY])
+    call s:cinoremap_with_prefix(s:MAIN_INPUT_PFX, s:info[s:LHS_PFX_KEY], s:info[s:RHS_KEY])
 endfor
 
 let s:sub_cinoremap_info = [
-            \ {s:LHS_PRF_KEY : 'a', s:RHS_KEY : '&'},
-            \ {s:LHS_PRF_KEY : 'h', s:RHS_KEY : '^'},
-            \ {s:LHS_PRF_KEY : 'p', s:RHS_KEY : '+'},
-            \ {s:LHS_PRF_KEY : 's', s:RHS_KEY : '#'},
-            \ {s:LHS_PRF_KEY : 'r', s:RHS_KEY : '%'},
-            \ {s:LHS_PRF_KEY : 'm', s:RHS_KEY : '@'},
-            \ {s:LHS_PRF_KEY : 't', s:RHS_KEY : '~'},
-            \ {s:LHS_PRF_KEY : 'd', s:RHS_KEY : '$'},
-            \ {s:LHS_PRF_KEY : 'e', s:RHS_KEY : '!'},
-            \ {s:LHS_PRF_KEY : 'b', s:RHS_KEY : '`'},
-            \ {s:LHS_PRF_KEY : 'c', s:RHS_KEY : ':'},
-            \ {s:LHS_PRF_KEY : 'x', s:RHS_KEY : '*'},
-            \ {s:LHS_PRF_KEY : 'q', s:RHS_KEY : '?'},
-            \ {s:LHS_PRF_KEY : ';', s:RHS_KEY : '"'},
-            \ {s:LHS_PRF_KEY : ',', s:RHS_KEY : "'"},
-            \ {s:LHS_PRF_KEY : 'g', s:RHS_KEY : '=>'},
-            \ {s:LHS_PRF_KEY : 'f', s:RHS_KEY : '->'},
+            \ {s:LHS_PFX_KEY : 'a', s:RHS_KEY : '&'},
+            \ {s:LHS_PFX_KEY : 'h', s:RHS_KEY : '^'},
+            \ {s:LHS_PFX_KEY : 'p', s:RHS_KEY : '+'},
+            \ {s:LHS_PFX_KEY : 's', s:RHS_KEY : '#'},
+            \ {s:LHS_PFX_KEY : 'r', s:RHS_KEY : '%'},
+            \ {s:LHS_PFX_KEY : 'm', s:RHS_KEY : '@'},
+            \ {s:LHS_PFX_KEY : 't', s:RHS_KEY : '~'},
+            \ {s:LHS_PFX_KEY : 'd', s:RHS_KEY : '$'},
+            \ {s:LHS_PFX_KEY : 'e', s:RHS_KEY : '!'},
+            \ {s:LHS_PFX_KEY : 'b', s:RHS_KEY : '`'},
+            \ {s:LHS_PFX_KEY : 'c', s:RHS_KEY : ':'},
+            \ {s:LHS_PFX_KEY : 'x', s:RHS_KEY : '*'},
+            \ {s:LHS_PFX_KEY : 'q', s:RHS_KEY : '?'},
+            \ {s:LHS_PFX_KEY : ';', s:RHS_KEY : '"'},
+            \ {s:LHS_PFX_KEY : ',', s:RHS_KEY : "'"},
+            \ {s:LHS_PFX_KEY : 'g', s:RHS_KEY : '=>'},
+            \ {s:LHS_PFX_KEY : 'f', s:RHS_KEY : '->'},
             \]
 for s:info in s:sub_cinoremap_info
-    call s:cinoremap_with_prefix(s:SUB_INPUT_PREFIX_KEY, s:info[s:LHS_PRF_KEY], s:info[s:RHS_KEY])
+    call s:cinoremap_with_prefix(s:SUB_INPUT_PFX, s:info[s:LHS_PFX_KEY], s:info[s:RHS_KEY])
 endfor
 
 "}}}
@@ -556,6 +532,7 @@ nnoremap [diff]j ]c
 nnoremap [diff]k [c
 nnoremap [diff]g :<C-u>diffget<CR>
 nnoremap [diff]p :<C-u>diffput<CR>
+nnoremap [diff]q :<C-u>diffoff!<CR>
 vnoremap [diff]j ]c
 vnoremap [diff]k [c
 vnoremap [diff]g :diffget<CR>
