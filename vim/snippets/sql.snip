@@ -1,32 +1,8 @@
-snippet CREATE TABLE
-abbr CREATE TABLE { ... }
-options head
-  CREATE TABLE ${1:cities} (
-    ${0:name varchar(80), country_name text}
-  );
-
-snippet CREATE INDEX
-abbr CREATE INDEX ... ON ... ( ... )
-options head
-  CREATE INDEX ${1:_name} ON ${2:cities} (${3:name});
-
-snippet DROP TABLE
-abbr DROP TABLE IF EXISTS ...
-  DROP TABLE IF EXISTS ${1:table};
-
-snippet ALTER TABLE
-abbr ALTER TABLE ... MODIFY ...
-  ALTER TABLE ${1:table}
-  MODIFY ${2:column} ${3:new_column_desc};
-
-snippet TRUNCATE TABLE
-abbr TRUNCATE TABLE ...
-  TRUNCATE TABLE ${1:table};
 
 snippet INSERT INTO
 abbr INSERT INTO {columns} VALUES {values}
 options head
-	INSERT INTO (${1:column1, column2,...}) VALUES (${0:value1, value2,...});
+	INSERT INTO ${1:table} (${2:column1, column2,...}) VALUES (${3:value1, value2,...});
 
 snippet UPDATE
 abbr UPDATE ... SET ... WHERE ...
@@ -100,9 +76,30 @@ alias delete
 abbr DELETE FROM ... WHERE ...
 	DELETE FROM ${1:table} WHERE ${2:condition};
 
-snippet TRANSACTION
-alias BEGIN TRANSACTION
-options head
-  BEGIN TRANSACTION;
-  ${0:TARGET}
-  COMMIT;
+snippet AND
+abbr AND ...
+	AND ${1:condition}
+
+snippet OR
+abbr OR ...
+	OR ${1:condition}
+
+snippet NOT EXISTS
+abbr NOT EXISTS (...)
+	NOT EXISTS (
+		${1:select}
+	)
+
+snippet EXISTS
+abbr EXISTS (...)
+	EXISTS (
+		${1:select}
+	)
+
+snippet MIN TIME
+abbr "Y-m-d 00:00:00"
+	"${1:Y}-${2:m}-${3:Y} 00:00:00"
+
+snippet MAX TIME
+abbr "Y-m-d 23:59:59"
+	"${1:Y}-${2:m}-${3:Y} 23:59:59"
