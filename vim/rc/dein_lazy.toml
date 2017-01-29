@@ -195,7 +195,7 @@ nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 '''
 
 [[plugins]]
-repo = 'haya14busa/incsearch.vim'
+repo = 'tmn-o3/incsearch.vim'
 on_map = {nox = '<Plug>(incsearch-'}
 hook_add = '''
 map / <Plug>(incsearch-easymotion-/)
@@ -792,11 +792,12 @@ let g:vim_markdown_no_default_key_mappings = 1
 '''
 
 [[plugins]]
-repo = 'osyo-manga/vim-operator-search'
-depends = ['vim-operator-user', 'vim-textobj-function']
+repo = 'tmn-o3/vim-operator-search'
+depends = ['vim-operator-user', 'vim-textobj-function', 'incsearch.vim']
 on_map = {nx = '<Plug>(operator-search)'}
 hook_add = '''
-nmap <Leader>sj <Plug>(operator-search)if
+nmap <Leader>sj <Plug>(operator-search)af
+nmap <Leader>S <Plug>(operator-search)
 '''
 
 [[plugins]]
