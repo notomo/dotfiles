@@ -36,6 +36,7 @@ highlight ParenMatch term=underline cterm=underline guibg=#5f8770
 highlight TabLine guifg=#fff5ee guibg=#536273 gui=none
 highlight YankRoundRegion guifg=#333333 guibg=#fedf81
 highlight def link sqlStatement sqlKeyword
+highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
 
 syntax match myTodo contained '\<\(TODO\|FIXME\):'
 highlight def link myTodo Todo
