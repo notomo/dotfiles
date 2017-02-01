@@ -38,8 +38,8 @@ vnoremap [edit]J :join!<CR>
 nnoremap [edit]n *``cgn
 nnoremap [edit]N *``cgN
 
-vnoremap <expr> [edit]n 'y/\\V\<C-r>=escape(@\', '/')\<CR>\<CR>' . '``cgn"
-vnoremap <expr> [edit]N 'y/\\V\<C-r>=escape(@\', '/')\<CR>\<CR>' . '``cgN"
+vnoremap <expr> [edit]n "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
+vnoremap <expr> [edit]N "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
 "}}}
 
 " kana mapping"{{{
@@ -197,7 +197,7 @@ function! s:tab_tag_open() abort
         execute 'tag '. expand('<cword>')
         tab sp
         tabprevious
-        execute 'normal! \<C-o>'
+        execute "normal! \<C-o>"
         tabnext
     catch
         echo 'Not found tag'
@@ -209,7 +209,7 @@ function! s:vertical_tag_open() abort
     try
         execute 'tag '. expand('<cword>')
         vsplit
-        execute 'normal! \<C-o>'
+        execute "normal! \<C-o>"
     catch
         echo 'Not found tag'
     endtry
@@ -580,3 +580,14 @@ nnoremap <silent> [exec]u :<C-u>sort nu<CR>
 nnoremap [exec]s :<C-u>source %<CR>
 nnoremap <silent> [exec]r :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
 "}}}
+
+function! s:goto_func() abort
+    let func_name = cfi#format('%s', '')
+    if func_name ==? ''
+        echomsg 'No function'
+        return
+    endif
+    execute "normal! m'"
+    call search('\v^\s*(\S{-1,}\s+)*function\s+' . func_name . '\(.*\)', 'b')
+endfunction
+nnoremap <silent> <Leader>sk :<C-u>call <SID>goto_func()<CR>

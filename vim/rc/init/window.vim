@@ -80,7 +80,7 @@ call s:win_map('L', ':<C-u>call <SID>vs_from_right()<CR>') " open right tab's bu
 
 " winsize"{{{
 let s:winsize_enter = 'i'
-silent execute join([s:NNOREMAP, s:WIN_KEY . s:winsize_enter, ":<C-u>call tmno3#window#setup_submode('' . s:WIN_KEY . '','' . s:winsize_enter . '')<CR>"])
+silent execute join([s:NNOREMAP, s:WIN_KEY . s:winsize_enter, ":<C-u>call tmno3#window#setup_submode('" . s:WIN_KEY . "','" . s:winsize_enter . "')<CR>"])
 
 " equalize
 nnoremap [win]e <C-w>=
