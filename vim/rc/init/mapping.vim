@@ -469,7 +469,6 @@ let s:main_cinoremap_info = [
             \ {s:LHS_PFX_KEY : 'd', s:RHS_KEY : '{}<Left>'},
             \ {s:LHS_PFX_KEY : 'q', s:RHS_KEY : "''<Left>"},
             \ {s:LHS_PFX_KEY : 'h', s:RHS_KEY : '<C-r>"'},
-            \ {s:LHS_PFX_KEY : 'k', s:RHS_KEY : '<End><C-u>'},
             \ {s:LHS_PFX_KEY : 'v', s:RHS_KEY : '<C-q>'},
             \ {s:LHS_PFX_KEY : 'T', s:RHS_KEY : '<C-x><C-]>'},
             \]
@@ -499,6 +498,24 @@ let s:sub_cinoremap_info = [
 for s:info in s:sub_cinoremap_info
     call s:cinoremap_with_prefix(s:SUB_INPUT_PFX, s:info[s:LHS_PFX_KEY], s:info[s:RHS_KEY])
 endfor
+
+let s:pairs = [
+\ ['(', ')'],
+\ ['{', '}'],
+\ ['[', ']'],
+\ ['<', '>'],
+\]
+
+function! s:complete_pair() abort
+    let chars = strcharpart(getline('.'), col('.') - 2, 2)
+    for [l, r] in s:pairs
+        if chars ==? l
+            return r . "\<C-g>U\<Left>"
+        endif
+    endfor
+    return ''
+endfunction
+inoremap <expr> j<Space>k <SID>complete_pair()
 
 "}}}
 
@@ -579,6 +596,7 @@ nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
 nnoremap <silent> [exec]u :<C-u>sort nu<CR>
 nnoremap [exec]s :<C-u>source %<CR>
 nnoremap <silent> [exec]r :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
+nnoremap [exec]e :<C-u>smile<CR>
 "}}}
 
 function! s:goto_func() abort

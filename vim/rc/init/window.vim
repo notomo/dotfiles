@@ -32,12 +32,12 @@ function! s:win_map(lhs, rhs) abort
     silent execute join([s:NNOREMAP, s:WIN_KEY . a:lhs, a:rhs])
 endfunction
 
-function! s:vonly() abort
+function! s:xonly(directions_str) abort
     let curwin_id = win_getid()
     let cnt = len(tabpagebuflist())
-    for direction in ['j', 'k']
+    for d in split(a:directions_str, '\zs')
         while cnt > 1
-            execute 'noautocmd wincmd ' . direction
+            execute 'noautocmd wincmd ' . d
             if win_getid() == curwin_id
                 break
             endif
@@ -45,6 +45,15 @@ function! s:vonly() abort
             let cnt -= 1
         endwhile
     endfor
+endfunction
+function! s:vonly() abort
+    call s:xonly('jk')
+endfunction
+function! s:ronly() abort
+    call s:xonly('l')
+endfunction
+function! s:lonly() abort
+    call s:xonly('h')
 endfunction
 
 function! s:vsplit_from_tab(tab_num) abort
@@ -72,6 +81,8 @@ call s:win_map('h', ':<C-u>split<CR>') " split horizontally
 call s:win_map('v', ':<C-u>vsplit<CR>') " split vertically
 call s:win_map('o', ':<C-u>only<CR>') " close others
 call s:win_map('j', ':<C-u>call <SID>vonly()<CR>') " close others vertically
+call s:win_map(';', ':<C-u>call <SID>ronly()<CR>') " close right vertically
+call s:win_map('a', ':<C-u>call <SID>lonly()<CR>') " close left windows
 call s:win_map('p', '<C-w>z') " close preview
 call s:win_map('q', ':<C-u>q<CR>') " close
 call s:win_map('H', ':<C-u>call <SID>vs_from_left()<CR>') " open left tab's buffers vertically
