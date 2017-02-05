@@ -30,7 +30,7 @@ function! s:unite_grep() abort
         echomsg "Canceled"
         return
     endif
-    execute "normal! :Unite -tab grep:. -buffer-name=GREP\<CR>" . pattern . "\<CR>"
+    execute "normal! :Unite -tab -no-quit grep:. -buffer-name=GREP\<CR>" . pattern . "\<CR>"
 endfunction
 '''
 hook_source = 'source ~/.vim/rc/plugins/unite_setting.vim'
@@ -220,6 +220,7 @@ hook_post_source = '''
 let g:incsearch#auto_nohlsearch = 1
 IncSearchNoreMap <Tab> <Over>(incsearch-next)
 IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
+IncSearchNoreMap <C-Space> <Tab>
 IncSearchNoreMap <C-j> <Down>
 IncSearchNoreMap <C-k> <Up>
 IncSearchNoreMap <C-l> <Right>
@@ -618,7 +619,7 @@ on_ft = ['html', 'smarty']
 # on_cmd = ['SshAdd']
 
 [[plugins]]
-repo = 'cohama/agit.vim'
+repo = 'tmn-o3/agit.vim'
 on_cmd = ['Agit']
 hook_add = '''
 nnoremap <Leader>al :<C-u>Agit<CR>
@@ -795,9 +796,11 @@ let g:vim_markdown_no_default_key_mappings = 1
 [[plugins]]
 repo = 'tmn-o3/vim-operator-search'
 depends = ['vim-operator-user', 'vim-textobj-function', 'incsearch.vim']
-on_map = {nx = '<Plug>(operator-search)'}
+on_map = {nx = '<Plug>(operator-search'}
 hook_add = '''
-nmap <Leader>sj <Plug>(operator-search)af
+nmap <Leader>sj <Plug>(operator-search-word)af
+nmap <Leader>s<Space>j <Plug>(operator-search-register)af
+nmap <Leader>sJ <Plug>(operator-search)af
 nmap <Leader>S <Plug>(operator-search)
 '''
 

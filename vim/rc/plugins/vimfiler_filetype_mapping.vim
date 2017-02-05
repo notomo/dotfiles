@@ -57,4 +57,5 @@ function! s:vimfiler_my_settings()
     nmap <buffer>sv <Plug>(vimfiler_split_edit_file)
     nnoremap <silent> <buffer> <expr> sh vimfiler#do_action('hsplit')
     nmap <buffer>O <Plug>(vimfiler_expand_tree_recursive)
+    nmap <buffer> ss <Plug>(vimfiler_select_sort_type)
 endfunction
