@@ -61,6 +61,21 @@ nmap <Space>b [buf]
 nnoremap [buf]a <C-^>
 nnoremap <silent> [buf]n :<C-u>enew \| setlocal buftype=nofile noswapfile<CR>
 nnoremap [buf]Q :<C-u>qa<CR>
+nnoremap [buf]O :<C-u>call <SID>open_not_saved_bufs()<CR>
+
+function! s:open_not_saved_buf() abort
+    let curbuf_num = bufnr('%')
+    if getbufvar(curbuf_num, '&modified')
+        tabe expand('%')
+    endif
+endfunction
+function! s:open_not_saved_bufs() abort
+    tabe | setlocal buftype=nofile noswapfile | tabonly
+    bufdo call s:open_not_saved_buf()
+    if tabpagenr('$') > 1
+        tabclose | tabl
+    endif
+endfunction
 "}}}
 
 " swap :; mapping"{{{
@@ -195,10 +210,10 @@ nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 function! s:tab_tag_open() abort
     try
         execute 'tag '. expand('<cword>')
-        tab sp
-        tabprevious
-        execute "normal! \<C-o>"
-        tabnext
+        noautocmd tab split
+        noautocmd tabprevious
+        noautocmd execute "normal! \<C-o>"
+        noautocmd tabnext
     catch
         echo 'Not found tag'
     endtry
@@ -207,9 +222,12 @@ nnoremap [keyword]t :<C-u>call <SID>tab_tag_open()<CR>
 
 function! s:vertical_tag_open() abort
     try
+        let curbuf_num = bufnr('%')
         execute 'tag '. expand('<cword>')
+        let tagbuf_num = bufnr('%')
+        noautocmd execute 'buffer ' . curbuf_num
         vsplit
-        execute "normal! \<C-o>"
+        noautocmd execute 'buffer ' . tagbuf_num
     catch
         echo 'Not found tag'
     endtry
