@@ -204,6 +204,18 @@ nnoremap [option]fd :<C-u>set fileformat=dos<CR>
 nnoremap [option]fm :<C-u>set fileformat=mac<CR>
 nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 
+function! s:toggle_filetype() abort
+    if execute('filetype') =~# 'OFF'
+        silent! filetype plugin indent on
+        syntax enable
+    else
+        filetype plugin indent off
+        syntax off
+        filetype off
+    endif
+endfunction
+nnoremap [option]F :<C-u>call <SID>toggle_filetype()<CR>
+
 "}}}
 
 " keyword mapping"{{{
@@ -627,3 +639,6 @@ function! s:goto_func() abort
     call search('\v^\s*(\S{-1,}\s+)*function\s+' . func_name . '\(.*\)', 'b')
 endfunction
 nnoremap <silent> <Leader>sk :<C-u>call <SID>goto_func()<CR>
+
+nnoremap [operator]x "_d
+vnoremap [operator]x "_d
