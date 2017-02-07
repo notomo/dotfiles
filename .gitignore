@@ -3,6 +3,7 @@
 /vim/tmp/undo/*
 /vim/tmp/view/*
 /vim/rc/local/*
+!/vim/rc/local/after
 !.gitkeep
 /vim/dict/cp932/
 /vim/dict/utf-8/

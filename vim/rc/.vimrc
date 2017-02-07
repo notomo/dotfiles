@@ -75,6 +75,7 @@ runtime! rc/init/*.vim
 runtime! rc/plugins/others.vim
 runtime! rc/plugins/fugitive_filetype_mapping.vim
 runtime! rc/plugins/unite_filetype_mapping.vim
+runtime! rc/local/after/*.vim
 if has('python3')
     set diffexpr=py3diff#diffexpr()
 endif
