@@ -1,16 +1,16 @@
 
-nnoremap [git] <Nop>
-nmap <Leader>g [git]
+nnoremap [fugit] <Nop>
+nmap <Leader>g [fugit]
 
-nnoremap [git]d :<C-u>Gvdiff<CR>
-nnoremap [git]s :<C-u>Gstatus<CR>:only<CR>
-nnoremap [git]l :<C-u>tabe %<CR>:Glog \| copen<CR>
-nnoremap [git]x :<C-u>Git<Space>
-nnoremap [git]c :<C-u>Gcommit<CR>
-nnoremap [git]P :<C-u>Gpush<Space>
-nnoremap [git]bl :<C-u>Gblame<CR>
-nnoremap [git]rn :<C-u>Gmove<Space>
-nnoremap [git]rm :<C-u>Gremove<CR>
-nnoremap [git]cd :<C-u>Gcd<CR>
-nnoremap [git]g :<C-u>Ggrep  \| copen<Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap [fugit]d :<C-u>Gvdiff<CR>
+nnoremap [fugit]s :<C-u>Gstatus<CR>:only<CR>
+nnoremap [fugit]l :<C-u>tabe %<CR>:Glog \| copen<CR>
+nnoremap [fugit]x :<C-u>Git<Space>
+nnoremap [fugit]c :<C-u>Gcommit<CR>
+nnoremap [fugit]P :<C-u>Gpush<Space>
+nnoremap [fugit]bl :<C-u>Gblame<CR>
+nnoremap [fugit]rn :<C-u>Gmove<Space>
+nnoremap [fugit]rm :<C-u>Gremove<CR>
+nnoremap [fugit]cd :<C-u>Gcd<CR>
+nnoremap [fugit]g :<C-u>Ggrep  \| copen<Left><Left><Left><Left><Left><Left><Left><Left>
 

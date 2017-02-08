@@ -8,8 +8,6 @@ nnoremap x "_x
 " change using delete register
 nnoremap c "_c
 
-nnoremap <Space>gi gi
-
 " repeat an ex command
 nnoremap <Space>. @:
 vnoremap <Space>. @:
@@ -181,6 +179,8 @@ nnoremap <silent> <S-k> :<C-u>keepjumps normal! {<CR>
 
 nnoremap <C-k> <C-b>
 nnoremap <C-j> <C-f>
+
+nnoremap <C-e> gi
 "}}}
 
 " newline mapping"{{{

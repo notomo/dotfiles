@@ -867,3 +867,20 @@ call altr#define('dein_lazy.toml', 'dein.toml')
 [[plugins]]
 repo = 'kana/vim-better-tag-jump'
 on_func = 'bettertagjump#php#Jump'
+
+[[plugins]]
+repo = 'lambdalisue/vim-gita'
+on_cmd = 'Gita'
+hook_add = '''
+nnoremap [git] <Nop>
+nmap <Space>g [git]
+
+nnoremap [git]s :<C-u>Gita status<CR>
+nnoremap [git]bl :<C-u>Gita blame<CR>
+nnoremap [git]e :<C-u>Gita branch<CR>
+'''
+hook_source = '''
+let g:gita#content#status#disable_default_mappings = 1
+'''
+hook_post_source = 'source ~/.vim/rc/plugins/vim-gita.vim'
+
