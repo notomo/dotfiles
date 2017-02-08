@@ -15,6 +15,7 @@ filetype plugin indent off
 
 let g:mapleader = ','
 let g:maplocalleader = '<Leader>l'
+let g:ft_ignroe_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$'
 
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]

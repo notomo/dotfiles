@@ -305,7 +305,11 @@ on_event = 'InsertEnter'
 repo = 'kana/vim-operator-replace'
 depends = 'vim-operator-user'
 on_map = '<Plug>'
-hook_add = 'map r <Plug>(operator-replace)'
+hook_add = '''
+map r <Plug>(operator-replace)
+onoremap <Plug>(builtin-gn) gn
+nmap [edit]n *``<Plug>(operator-replace)<Plug>(builtin-gn)
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-operator-exec_command'
@@ -859,3 +863,7 @@ nmap [file]b <Plug>(altr-back)
 hook_post_source = '''
 call altr#define('dein_lazy.toml', 'dein.toml')
 '''
+
+[[plugins]]
+repo = 'kana/vim-better-tag-jump'
+on_func = 'bettertagjump#php#Jump'

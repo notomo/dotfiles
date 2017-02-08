@@ -5,6 +5,9 @@ scriptencoding utf-8
 " delete a character using delete register
 nnoremap x "_x
 
+" change using delete register
+nnoremap c "_c
+
 nnoremap <Space>gi gi
 
 " repeat an ex command
@@ -35,11 +38,8 @@ nnoremap [edit]J :<C-u>join!<CR>
 vnoremap [edit]j :join<CR>
 vnoremap [edit]J :join!<CR>
 
-nnoremap [edit]n *``cgn
-nnoremap [edit]N *``cgN
-
-vnoremap <expr> [edit]n "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgn"
-vnoremap <expr> [edit]N "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . "``cgN"
+nnoremap [edit]d *``"_cgn
+vnoremap <expr> [edit]d "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>" . '``cgn'
 "}}}
 
 " kana mapping"{{{
@@ -221,7 +221,7 @@ nnoremap [option]F :<C-u>call <SID>toggle_filetype()<CR>
 " keyword mapping"{{{
 function! s:tab_tag_open() abort
     try
-        execute 'tag '. expand('<cword>')
+        call bettertagjump#php#Jump()
         noautocmd tab split
         noautocmd tabprevious
         noautocmd execute "normal! \<C-o>"
@@ -235,7 +235,7 @@ nnoremap [keyword]t :<C-u>call <SID>tab_tag_open()<CR>
 function! s:vertical_tag_open() abort
     try
         let curbuf_num = bufnr('%')
-        execute 'tag '. expand('<cword>')
+        call bettertagjump#php#Jump()
         let tagbuf_num = bufnr('%')
         noautocmd execute 'buffer ' . curbuf_num
         vsplit
@@ -245,7 +245,7 @@ function! s:vertical_tag_open() abort
     endtry
 endfunction
 nnoremap [keyword]v :<C-u>call <SID>vertical_tag_open()<CR>
-nnoremap [keyword]o <C-]>
+nnoremap [keyword]o :<C-u>bettertagjump#php#Jump()<CR>
 nnoremap [keyword]h <C-w>]
 "}}}
 
@@ -624,7 +624,7 @@ vnoremap [arith]u g<C-a>gv
 " exec"{{{
 nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
 nnoremap <silent> [exec]u :<C-u>sort nu<CR>
-nnoremap [exec]s :<C-u>source %<CR>
+nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
 nnoremap <silent> [exec]r :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
 nnoremap [exec]e :<C-u>smile<CR>
 "}}}
