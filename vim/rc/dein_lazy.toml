@@ -878,6 +878,8 @@ nmap <Space>g [git]
 nnoremap [git]s :<C-u>Gita status<CR>
 nnoremap [git]bl :<C-u>Gita blame<CR>
 nnoremap [git]e :<C-u>Gita branch<CR>
+nnoremap [git]d :<C-u>Gita diff<CR>
+nnoremap [git]c :<C-u>Gita diff-ls<CR>
 '''
 hook_source = '''
 let g:gita#content#status#disable_default_mappings = 1
