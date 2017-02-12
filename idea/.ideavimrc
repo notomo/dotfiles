@@ -1,0 +1,69 @@
+set smartcase
+set ignorecase
+set hlsearch
+
+inoremap jj <ESC>
+nnoremap : ;
+nnoremap ; :
+
+" move
+nnoremap ga ^
+nnoremap ge $
+nnoremap J }
+nnoremap K {
+
+inoremap <C-k> <Up>
+inoremap <C-j> <Down>
+inoremap <C-l> <Right>
+inoremap <C-h> <Left>
+
+" operate
+noremap Y y$
+nnoremap x "_x
+vnoremap x "_x
+
+" input
+inoremap j<Space>w ""<Left>
+inoremap j<Space>q ''<Left>
+inoremap j<Space>p ()<Left>
+inoremap j<Space>l []<Left>
+inoremap j<Space>t <><Left>
+
+" window
+nnoremap <Space>wo :action UnsplitAll<CR>
+nnoremap <Space>wh :action SplitHorizontally<CR>
+nnoremap <Space>wv :action SplitVertically<CR>
+nnoremap <Space>wq :action VimWindowClose<CR>
+
+" window move
+nnoremap mj :action VimWindowDown<CR>
+nnoremap mk :action VimWindowUp<CR>
+nnoremap ma :action VimWindowLeft<CR>
+nnoremap ml :action VimWindowRight<CR>
+
+" number
+nnoremap <Space>aj :action VimChangeNumberDec<CR>
+nnoremap <Space>ak :action VimChangeNumberInc<CR>
+
+" tab
+nnoremap ta :action PreviousTab<CR>
+nnoremap tl :action NextTab<CR>
+nnoremap tt :action NewScratchBuffer<CR>
+nnoremap tq :action CloseEditor<CR>
+nnoremap to :action CloseAllEditorsButActive<CR>
+
+" visual
+nnoremap <Space>l V
+nnoremap <Space>h <C-v>
+vnoremap <Space>l V
+vnoremap <Space>h <C-v>
+vnoremap v <ESC>
+
+" ide window
+nnoremap <Space>ev :action ShowSettings<CR>
+nnoremap <Space>ic :action InspectCode<CR>
+nnoremap <Space>ur :action RecentFiles<CR>
+
+" execute
+nnoremap <Space>xn :noh<CR>
+nnoremap <Space>xs :source ~/.ideavimrc<CR>

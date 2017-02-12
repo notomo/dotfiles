@@ -8,4 +8,6 @@ ln -s ~/dotfiles/vim/dict ~/.vim/dict
 ln -s ~/dotfiles/vim/snippets ~/.vim/snippets
 ln -s ~/dotfiles/vim/tmp ~/.vim/tmp
 ln -s ~/dotfiles/vim/after ~/.vim/after
+
+ln -s ~/dotfiles/idea/.ideavimrc ~/.ideavimrc
 read

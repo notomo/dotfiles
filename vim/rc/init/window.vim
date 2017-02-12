@@ -77,6 +77,20 @@ function! s:vs_from_right() abort
     call s:vsplit_from_tab(tabpagenr() + 1)
 endfunction
 
+function! s:h_to_vsplit() abort
+    let curbuf = bufnr('%')
+    let tab_bufs = uniq(tabpagebuflist())
+    only
+    for b in tab_bufs
+        if b != curbuf
+            execute 'buffer ' . b
+            vsplit
+        endif
+    endfor
+    execute 'buffer ' . curbuf
+    execute 'normal! <C-w>='
+endfunction
+
 call s:win_map('h', ':<C-u>split<CR>') " split horizontally
 call s:win_map('v', ':<C-u>vsplit<CR>') " split vertically
 call s:win_map('o', ':<C-u>only<CR>') " close others
@@ -87,6 +101,7 @@ call s:win_map('p', '<C-w>z') " close preview
 call s:win_map('q', ':<C-u>q<CR>') " close
 call s:win_map('H', ':<C-u>call <SID>vs_from_left()<CR>') " open left tab's buffers vertically
 call s:win_map('L', ':<C-u>call <SID>vs_from_right()<CR>') " open right tab's buffers vertically
+call s:win_map('V', ':<C-u>call <SID>h_to_vsplit()<CR>') " reopen windows vertically
 "}}}
 
 " winsize"{{{

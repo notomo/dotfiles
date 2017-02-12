@@ -8,4 +8,6 @@ mklink /D %HOMEPATH%"\.vim\dict" %HOMEPATH%"\dotfiles\vim\dict"
 mklink /D %HOMEPATH%"\.vim\snippets" %HOMEPATH%"\dotfiles\vim\snippets"
 mklink /D %HOMEPATH%"\.vim\tmp" %HOMEPATH%"\dotfiles\vim\tmp"
 mklink /D %HOMEPATH%"\.vim\after" %HOMEPATH%"\dotfiles\vim\after"
+
+mklink %HOMEPATH%"\.ideavimrc" %HOMEPATH%"\dotfiles\idea\.ideavimrc"
 pause

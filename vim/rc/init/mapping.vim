@@ -245,7 +245,7 @@ function! s:vertical_tag_open() abort
     endtry
 endfunction
 nnoremap [keyword]v :<C-u>call <SID>vertical_tag_open()<CR>
-nnoremap [keyword]o :<C-u>bettertagjump#php#Jump()<CR>
+nnoremap [keyword]o :<C-u>call bettertagjump#php#Jump()<CR>
 nnoremap [keyword]h <C-w>]
 "}}}
 
