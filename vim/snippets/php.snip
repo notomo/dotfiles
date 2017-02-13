@@ -132,6 +132,10 @@ options head
 		${0:TARGET}
 	}
 
+snippet ifline
+options head
+	if (${1:#:condition}) {${0:TARGET}}
+
 snippet var_dump
 options head
   var_dump(${0:TARGET});
