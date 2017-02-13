@@ -310,7 +310,7 @@ map r <Plug>(operator-replace)
 onoremap <Plug>(builtin-gn) gn
 nnoremap <Plug>(builtin-/) /
 nmap [edit]n *``<Plug>(operator-replace)<Plug>(builtin-gn)
-vmap <expr> [edit]n "\"ry<Plug>(builtin-/)\\V\<C-r>=escape(@r, '/')\<CR>\<CR>" . "``\"+<Plug>(operator-replace)<Plug>(builtin-gn)"
+vmap <expr> [edit]n "\"ry<Plug>(builtin-/)\\V\<C-r>=substitute(escape(@r, '/\'), '\\n', '\\\\n', 'g')\<CR>\<CR>" . "``\"+<Plug>(operator-replace)<Plug>(builtin-gn)"
 '''
 
 [[plugins]]
