@@ -31,6 +31,7 @@ set cmdheight=2    " メッセージ表示欄を2行確保
 set scrolloff=8                "上下8行の視界を確保
 set showmatch      " 対応する括弧を強調表示
 set wildmenu
+set wildmode=longest:full
 set showcmd
 set autoread   "外部でファイルに変更がされた場合は読みなおす
 set hidden     " 保存されていないファイルがあるときでも別のファイルを開くことが出来る
