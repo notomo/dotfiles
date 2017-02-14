@@ -334,6 +334,9 @@ xmap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+')
 omap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
 xmap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
 
+omap <expr> iz textobj#from_regexp#mapexpr('\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}')
+xmap <expr> iz textobj#from_regexp#mapexpr('\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}')
+
 omap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
 xmap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
 omap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
@@ -343,6 +346,11 @@ omap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
 xmap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
 omap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
 xmap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
+
+omap <expr> i. textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')
+xmap <expr> i. textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')
+omap <expr> a. textobj#from_regexp#mapexpr('\..\{-1,}\(\.\)\@=')
+xmap <expr> a. textobj#from_regexp#mapexpr('\..\{-1,}\(\.\)\@=')
 
 omap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
 xmap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')

@@ -624,6 +624,7 @@ vnoremap [arith]u g<C-a>gv
 " exec"{{{
 nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
 nnoremap <silent> [exec]u :<C-u>sort nu<CR>
+nnoremap <silent> [exec]U :<C-u>sort! nu<CR>
 nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
 nnoremap <silent> [exec]r :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
 nnoremap [exec]e :<C-u>smile<CR>

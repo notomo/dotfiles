@@ -13,9 +13,9 @@ alias le
 abbr SELECT {column} FROM {table}
 options head
 	SELECT
-		${2:column}
+		${3:column}
 	FROM
-		${1:table}
+		${1:table} ${2:short_nm}
 
 snippet SELECT WHERE
 alias lw
@@ -27,6 +27,14 @@ options head
 		${1:table} ${2:short_nm}
 	WHERE
 		${3:condition}
+
+snippet SELECT WHERE 1
+alias lw1
+abbr SELECT 1 FROM {table} WHERE {condition}
+options head
+	SELECT 1
+	FROM ${1:table} ${2:short_nm}
+	WHERE ${3:condition}
 
 snippet SELECT JOIN WHERE
 alias ljw
@@ -95,6 +103,14 @@ abbr EXISTS (...)
 	EXISTS (
 		${1:select}
 	)
+
+snippet HAVING
+abbr HAVING ...
+	HAVING ${1:condition}
+
+snippet COUNT
+abbr COUNT ...
+	COUNT(${1:column})
 
 snippet MIN TIME
 abbr "Y-m-d 00:00:00"
