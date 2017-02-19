@@ -22,6 +22,7 @@ nnoremap <silent> [unite]sf :<C-u>Unite file_rec<CR>
 nnoremap <silent> [unite]sg :<C-u>Unite file_rec/git<CR>
 nnoremap <silent> [unite]mp :<C-u>Unite mapping<CR>
 nnoremap <silent> [unite]R :<C-u>Unite runtimepath<CR>
+nnoremap <silent> [unite]a :<C-u>Unite task<CR>
 nnoremap <silent> [unite]<CR> :<C-u>UniteResume<CR>
 nnoremap <silent> [unite]gg  :<C-u>call <SID>unite_grep()<CR>
 function! s:unite_grep() abort
@@ -236,6 +237,7 @@ on_map = {n = '<Plug>(anzu-n-with-echo)'}
 
 [[plugins]]
 repo = 'sgur/vim-py3diff'
+if = "has('pythons3')"
 on_cmd = 'Diff'
 
 [[plugins]]
@@ -805,6 +807,7 @@ repo = 'plasticboy/vim-markdown'
 on_ft = 'markdown'
 hook_source = '''
 let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_folding_disabled = 1
 '''
 
 [[plugins]]
@@ -872,6 +875,7 @@ nmap [file]b <Plug>(altr-back)
 '''
 hook_post_source = '''
 call altr#define('dein_lazy.toml', 'dein.toml')
+call altr#define('autoload/%.vim', 'plugin/%.vim')
 '''
 
 [[plugins]]

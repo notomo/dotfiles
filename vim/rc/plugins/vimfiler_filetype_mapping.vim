@@ -25,7 +25,6 @@ function! s:vimfiler_my_settings()
     nmap <buffer> <CR> <Plug>(vimfiler_expand_or_edit)
     nmap <buffer> l <Plug>(vimfiler_smart_l)
     nmap <buffer> h <Plug>(vimfiler_smart_h)
-    nmap <buffer> rl <Plug>(vimfiler_redraw_screen)
     nmap <buffer> q <Plug>(vimfiler_exit)
     nmap <buffer> Q <Plug>(vimfiler_hide)
     nmap <buffer> e <Plug>(vimfiler_edit_file)
@@ -58,4 +57,5 @@ function! s:vimfiler_my_settings()
     nnoremap <silent> <buffer> <expr> sh vimfiler#do_action('hsplit')
     nmap <buffer>O <Plug>(vimfiler_expand_tree_recursive)
     nmap <buffer> ss <Plug>(vimfiler_select_sort_type)
+    nmap <buffer> rl <Plug>(vimfiler_close)[exec]f
 endfunction

@@ -56,6 +56,7 @@ vnoremap [dbext]m :<C-u>'<,'>ExecuteLimitSQL<CR>
 
 [[plugins]]
 repo = 'thinca/vim-singleton'
+if = "has('clientserver')"
 
 [[plugins]]
 repo = 'thinca/vim-zenspace'
@@ -104,8 +105,8 @@ repo = 'tpope/vim-repeat'
 [[plugins]]
 repo = 'osyo-manga/shabadou.vim'
 
-# [[plugins]]
-# repo = 'vim-jp/vital.vim'
+[[plugins]]
+repo = 'vim-jp/vital.vim'
 
 [[plugins]]
 repo = 'kana/vim-smartword'
