@@ -237,7 +237,7 @@ on_map = {n = '<Plug>(anzu-n-with-echo)'}
 
 [[plugins]]
 repo = 'sgur/vim-py3diff'
-if = "has('pythons3')"
+if = "has('python3')"
 on_cmd = 'Diff'
 
 [[plugins]]
