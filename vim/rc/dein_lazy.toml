@@ -628,7 +628,7 @@ on_ft = 'json'
 
 [[plugins]]
 repo = 'tmhedberg/matchit'
-on_ft = ['html', 'smarty']
+on_ft = ['html', 'smarty', 'vim', 'sql']
 
 # [[plugins]]
 # repo = 'mattn/ssh-add-vim'
