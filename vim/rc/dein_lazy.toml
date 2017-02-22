@@ -16,7 +16,7 @@ nnoremap <silent> [unite]c :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> [unite]p :<C-u>Unite bookmark<CR>
 nnoremap <silent> [unite]<Space> :<C-u>UniteBookmarkAdd<CR>
 nnoremap <silent> [unite]ll :<C-u>Unite line<CR>
-nnoremap <silent> [unite]ta :<C-u>Unite tab<CR>
+nnoremap <silent> [unite]ta :<C-u>Unite tab:no-current<CR>
 nnoremap <silent> [unite]si :<C-u>Unite file_rec -input=
 nnoremap <silent> [unite]sf :<C-u>Unite file_rec<CR>
 nnoremap <silent> [unite]sg :<C-u>Unite file_rec/git<CR>
@@ -344,11 +344,6 @@ xmap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
 omap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
 xmap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
 
-omap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
-xmap <expr> i<Space> textobj#from_regexp#mapexpr(' \zs.\{-}\ze ')
-omap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
-xmap <expr> a<Space> textobj#from_regexp#mapexpr(' .\{-1,}\( \)\@=')
-
 omap <expr> i. textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')
 xmap <expr> i. textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')
 omap <expr> a. textobj#from_regexp#mapexpr('\..\{-1,}\(\.\)\@=')
@@ -628,7 +623,7 @@ on_ft = 'json'
 
 [[plugins]]
 repo = 'tmhedberg/matchit'
-on_ft = ['html', 'smarty', 'vim', 'sql']
+on_ft = ['html', 'smarty', 'vim', 'sql', 'php']
 
 # [[plugins]]
 # repo = 'mattn/ssh-add-vim'

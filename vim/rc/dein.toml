@@ -2,7 +2,7 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 hook_add = '''
-nmap [dein] [exec]d
+nmap [exec]d [dein]
 nnoremap [dein]c :<C-u>call dein#clear_state()<CR>
 nnoremap [dein]r :<C-u>call dein#recache_runtimepath()<CR>
 nnoremap [dein]u :<C-u>call dein#update()

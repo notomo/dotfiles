@@ -1,10 +1,10 @@
-let hsplit = {'is_selectable' : 1}
-function! hsplit.func(candidates)
+let s:hsplit = {'is_selectable' : 1}
+function! s:hsplit.func(candidates)
     wincmd p
     execute 'split '. a:candidates[0].action__path
 endfunction
-call unite#custom_action('file', 'hsplit', hsplit)
-unlet hsplit
+call unite#custom_action('file', 'hsplit', s:hsplit)
+unlet s:hsplit
 
 function! s:new_file() abort
     let file_names = input('New file names separated with commas : ')
