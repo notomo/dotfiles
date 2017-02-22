@@ -1,18 +1,26 @@
 
-" tab drop
-let action = {
+" tab_drop
+let s:tab_drop = {
 \   'description' : 'tab drop',
 \   'is_selectable' : 1,
 \ }
-function! action.func(candidates)
+function! s:tab_drop.func(candidates)
     for l:candidate in a:candidates
         call unite#util#smart_execute_command('tab drop', l:candidate.action__path)
     endfor
 endfunction
-call unite#custom_action('openable', 'tab-drop', action)
-unlet action
+call unite#custom_action('openable', 'tab_drop', s:tab_drop)
+unlet s:tab_drop
 
-call unite#custom_default_action('file', 'tab-drop')
+" parent_file
+let s:parent_file = {'is_selectable' : 0}
+function! s:parent_file.func(candidate)
+    execute 'Unite file:' . fnamemodify(a:candidate['action__path'], ':h:h')
+endfunction
+call unite#custom_action('openable', 'parent_file', s:parent_file)
+unlet s:parent_file
+
+call unite#custom_default_action('file', 'tab_drop')
 call unite#custom#profile('default', 'context', {
 \   'no_split' : 1,
 \   'start_insert' : 1

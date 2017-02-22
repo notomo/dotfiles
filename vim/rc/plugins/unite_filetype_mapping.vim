@@ -16,6 +16,7 @@ function! s:unite_my_settings()
     nnoremap <silent> <buffer> <expr> fl unite#do_action('tabvimfiler')
     nnoremap <silent> <buffer> <expr> fo unite#do_action('vimfiler')
     nnoremap <silent> <buffer> <expr> ff unite#do_action('file')
+    nnoremap <silent> <buffer> <expr> fp unite#do_action('parent_file')
     nnoremap <silent> <buffer> uf :call <SID>change_source('file')<CR>
     nnoremap <silent> <buffer> ub :call <SID>change_source('buffer')<CR>
     nnoremap <silent> <buffer> ur :call <SID>change_source('neomru/file')<CR>
