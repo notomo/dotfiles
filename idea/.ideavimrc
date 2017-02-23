@@ -63,7 +63,40 @@ vnoremap v <ESC>
 nnoremap <Space>ev :action ShowSettings<CR>
 nnoremap <Space>ic :action InspectCode<CR>
 nnoremap <Space>ur :action RecentFiles<CR>
+nnoremap <Space>t :action ActivateTODOToolWindow<CR>
+nnoremap <Space>s :action ActivateTerminalToolWindow<CR>
 
 " execute
 nnoremap <Space>xn :noh<CR>
 nnoremap <Space>xs :source ~/.ideavimrc<CR>
+
+" git
+nnoremap ,gP :action Git.Pull<CR>
+nnoremap ,ga :action Git.Add<CR>
+nnoremap ,gs :action Vcs.Show.Local.Changes<CR>
+nnoremap ,gl :action Vcs.Show.Log<CR>
+
+" comment
+nnoremap <Space>c :action CommentByLineComment<CR>
+
+" <C-o>,<C-i>
+nnoremap go :action Back<CR>
+nnoremap gi :action Forward<CR>
+
+" move
+nnoremap <Space>kk :action FindUsages<CR>
+nnoremap <Space>ko :action FindUsagesInFile<CR>
+nnoremap <Space>kr :action GotoDeclaration<CR>
+nnoremap gu :action GotoSuperMethod<CR>
+nnoremap gj :action MethodDown<CR>
+nnoremap gk :action MethodUp<CR>
+nnoremap ,gj :action GotoNextError<CR>
+nnoremap ,gk :action GotoPreviousError<CR>
+
+" debug
+nnoremap <Space>da :action ToggleLineBreakpoint<CR>
+
+" ?
+" nnoremap <Space>kp :action WelcomeScreen.Documentation<CR>
+" nnoremap <Space>p :action PasteMultiple<CR>
+" nnoremap <Space>ed :action PhpGeneratePhpDocBlocks<CR>
