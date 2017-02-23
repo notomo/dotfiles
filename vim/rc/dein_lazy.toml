@@ -503,7 +503,10 @@ on_event = 'TextYankPost'
 [[plugins]]
 repo = 'Shougo/neomru.vim'
 on_if = 1
-hook_add = 'nnoremap <silent> [unite]r :<C-u>Unite file_mru<CR>'
+hook_add = '''
+nnoremap <silent> [unite]r :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
+'''
 hook_source = 'let g:neomru#file_mru_limit = 300'
 
 [[plugins]]
