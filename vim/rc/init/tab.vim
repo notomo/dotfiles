@@ -23,6 +23,8 @@ nnoremap <C-Tab> gt
 nnoremap <C-S-Tab> gT
 inoremap <C-Tab> <Esc>gt
 inoremap <C-S-Tab> <Esc>gT
+vnoremap <C-Tab> <Esc>gt
+vnoremap <C-S-Tab> <Esc>gT
 nnoremap <silent> <C-w> :<C-u>call <SID>tabclose_c()<CR>
 inoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
 "}}}

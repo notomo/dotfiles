@@ -20,6 +20,7 @@ function! s:unite_my_settings()
     nnoremap <silent> <buffer> uf :call <SID>change_source('file')<CR>
     nnoremap <silent> <buffer> ub :call <SID>change_source('buffer')<CR>
     nnoremap <silent> <buffer> ur :call <SID>change_source('neomru/file')<CR>
+    nnoremap <silent> <buffer> ud :call <SID>change_source('neomru/directory')<CR>
     nnoremap <silent> <buffer> ut :call <SID>change_source('tab')<CR>
 
     nmap <buffer> i <Plug>(unite_insert_enter)
