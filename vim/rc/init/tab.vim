@@ -7,9 +7,12 @@ let s:NNOREMAP = 'nnoremap'
 let s:NMAP = 'nmap'
 silent execute join([s:NNOREMAP, s:TAB_KEY, '<Nop>'])
 silent execute join([s:NMAP, s:TAB_PFX, s:TAB_KEY])
+silent execute join(['vnoremap', s:TAB_KEY, '<Nop>'])
+silent execute join(['vmap', s:TAB_PFX, s:TAB_KEY])
 
 " close others
 silent execute join([s:NNOREMAP, '<silent>', s:TAB_KEY . 'o', ':<C-u>tabonly<CR>'])
+silent execute join(['vnoremap', '<silent>', s:TAB_KEY . 'o', ':<C-u>tabonly<CR>'])
 
 " open new tab"{{{
 function! s:new_tab() abort
@@ -72,7 +75,7 @@ if s:submode_enable
             let map_type = a:remap == 1 ? s:NMAP : s:NNOREMAP
             silent execute join([map_type, s:TAB_KEY . a:lhs, a:rhs])
         else
-            call submode#enter_with(s:TAB_MODE_NM , 'n', remap, s:TAB_PFX . a:lhs, a:rhs)
+            call submode#enter_with(s:TAB_MODE_NM , 'nv', remap, s:TAB_PFX . a:lhs, a:rhs)
         endif
         call submode#map(s:TAB_MODE_NM, 'n', remap, a:lhs, a:rhs)
     endfunction
@@ -84,15 +87,15 @@ else
     endfunction
 endif
 
-call s:tab_map('t', '<Plug>(new_tab)', 0, 1) " open new tab
-call s:tab_map('l', 'gt', 0, 0) " move right
+call s:tab_map('t', '<Esc><Plug>(new_tab)', 0, 1) " open new tab
+call s:tab_map('l', '<Esc>gt', 0, 0) " move right
 call s:tab_map('s', ':<C-u>tabr<CR>', 0, 0) " move right end
 call s:tab_map('e', ':<C-u>tabl<CR>', 0, 0) " move left end
-call s:tab_map('a', 'gT', 0, 0) " move left
-call s:tab_map('h', 'gT', 0, 0) " move left
-call s:tab_map('q', '<Plug>(tabclose_c)', 0, 1) " close a tab
-call s:tab_map('da', '<Plug>(tabclose_l)', 1, 1) " close left tabs
-call s:tab_map('dl', '<Plug>(tabclose_r)', 1, 1) " close right tabs
+call s:tab_map('a', '<Esc>gT', 0, 0) " move left
+call s:tab_map('h', '<Esc>gT', 0, 0) " move left
+call s:tab_map('q', '<Esc><Plug>(tabclose_c)', 0, 1) " close a tab
+call s:tab_map('da', '<Esc><Plug>(tabclose_l)', 1, 1) " close left tabs
+call s:tab_map('dl', '<Esc><Plug>(tabclose_r)', 1, 1) " close right tabs
 call s:tab_map(s:TABMV_PFX . 'l', ':<C-u>tabm+1<CR>', 0, 0) " move a tab right
 call s:tab_map(s:TABMV_PFX . 's', ':<C-u>tabm 0<CR>', 0, 0) " move a tab right end
 call s:tab_map(s:TABMV_PFX . 'e', ':<C-u>tabm<CR>', 0, 0) " move a tab left end
