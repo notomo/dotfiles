@@ -8,6 +8,7 @@ function! s:gita_status_settings()
     nmap <buffer> o <Plug>(gita-edit)
     nmap <buffer> cc <Plug>(gita-commit-open)
     nmap <buffer> ca <Plug>(gita-commit-open-amend)
+    nmap <buffer> dd <Plug>(gita-diff)
 endfunction
 
 autocmd MyAuGroup FileType gita-status call s:gita_branch_settings()
