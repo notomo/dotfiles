@@ -112,10 +112,22 @@ snippet COUNT
 abbr COUNT ...
 	COUNT(${1:column})
 
+snippet MIN DATETIME
+abbr 'Y-m-d 00:00:00'
+	'${1:Y}-${2:m}-${3:Y} 00:00:00'
+
+snippet MAX DATETIME
+abbr 'Y-m-d 23:59:59'
+	'${1:Y}-${2:m}-${3:Y} 23:59:59'
+
 snippet MIN TIME
-abbr "Y-m-d 00:00:00"
-	"${1:Y}-${2:m}-${3:Y} 00:00:00"
+abbr 00:00:00
+	00:00:00
 
 snippet MAX TIME
-abbr "Y-m-d 23:59:59"
-	"${1:Y}-${2:m}-${3:Y} 23:59:59"
+abbr 23:59:59
+	23:59:59
+
+snippet TIME
+abbr H:i:s
+	${1:H}:${2:i}:${3:s}
