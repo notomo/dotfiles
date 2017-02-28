@@ -24,7 +24,7 @@ nnoremap <silent> [unite]mp :<C-u>Unite mapping<CR>
 nnoremap <silent> [unite]R :<C-u>Unite runtimepath<CR>
 nnoremap <silent> [unite]a :<C-u>Unite task<CR>
 nnoremap <silent> [unite]<CR> :<C-u>UniteResume<CR>
-nnoremap <silent> [unite]gg  :<C-u>call <SID>unite_grep()<CR>
+nnoremap <silent> [unite]G  :<C-u>call <SID>unite_grep()<CR>
 function! s:unite_grep() abort
     let pattern = input("Pattern : ")
     if pattern == ""
@@ -39,29 +39,37 @@ hook_source = 'source ~/.vim/rc/plugins/unite_setting.vim'
 [[plugins]]
 repo = 'tacroe/unite-mark'
 hook_add = 'nnoremap <silent> [unite]ma :<C-u>Unite mark<CR>'
-on_source = 'unite.vim'
+# on_source = 'unite.vim'
+# TODO:
+on_map = '<Space>uma'
 
 [[plugins]]
 repo = 'Shougo/unite-outline'
 hook_add = 'nnoremap <silent> [unite]o :<C-u>Unite outline<CR>'
-on_source = 'unite.vim'
+# on_source = 'unite.vim'
+# TODO:
+on_map = '<Space>uo'
 
-[[plugins]]
-repo = 'tsukkee/unite-tag'
-on_source = 'unite.vim'
+# [[plugins]]
+# repo = 'tsukkee/unite-tag'
+# on_source = 'unite.vim'
 
-[[plugins]]
-repo = 'osyo-manga/unite-quickfix'
-on_source = 'unite.vim'
+# [[plugins]]
+# repo = 'osyo-manga/unite-quickfix'
+# on_source = 'unite.vim'
 
 [[plugins]]
 repo = 'pasela/unite-webcolorname'
 hook_add = 'nnoremap <silent> [unite]w :<C-u>Unite webcolorname<CR>'
-on_source = 'unite.vim'
+# on_source = 'unite.vim'
+# TODO:
+on_map = '<Space>uw'
 
 [[plugins]]
 repo = 'lambdalisue/unite-grep-vcs'
-on_source = 'unite.vim'
+# on_source = 'unite.vim'
+# TODO:
+on_map = '<Space>uG'
 
 [[plugins]]
 repo = 'kmnk/vim-unite-giti'
@@ -72,7 +80,9 @@ nnoremap <silent> [unite]gc :<C-u>Unite giti/config<CR>
 nnoremap <silent> [unite]gl :<C-u>Unite giti/log<CR>
 nnoremap <silent> [unite]gs :<C-u>Unite giti/status<CR>
 '''
-on_source = 'unite.vim'
+# on_source = 'unite.vim'
+# TODO:
+on_map = '<Space>ug'
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
