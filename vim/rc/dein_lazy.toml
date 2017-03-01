@@ -325,6 +325,11 @@ xmap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
 omap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
 xmap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
 
+omap <expr> i, textobj#from_regexp#mapexpr(',\zs.\{-}\ze,')
+xmap <expr> i, textobj#from_regexp#mapexpr(',\zs.\{-}\ze,')
+omap <expr> a, textobj#from_regexp#mapexpr(',.\{-1,}\(,\)\@=')
+xmap <expr> a, textobj#from_regexp#mapexpr(',.\{-1,}\(,\)\@=')
+
 omap <expr> i. textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')
 xmap <expr> i. textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')
 omap <expr> a. textobj#from_regexp#mapexpr('\..\{-1,}\(\.\)\@=')
@@ -335,7 +340,8 @@ xmap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
 omap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 xmap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 
-omap <expr> r textobj#from_regexp#mapexpr('\v%#.*\ze[])}>]')
+omap <expr> rl textobj#from_regexp#mapexpr('\v%#.*\ze[])}>]')
+omap <expr> ra textobj#from_regexp#mapexpr('\v%#[^])}>]*')
 '''
 
 [[plugins]]
@@ -491,7 +497,7 @@ hook_add = '''
 nnoremap <silent> [unite]r :<C-u>Unite file_mru<CR>
 nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
 '''
-hook_source = 'let g:neomru#file_mru_limit = 300'
+hook_source = 'let g:neomru#file_mru_limit = 1000'
 
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
