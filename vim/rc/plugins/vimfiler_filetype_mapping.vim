@@ -58,4 +58,5 @@ function! s:vimfiler_my_settings()
     nmap <buffer>O <Plug>(vimfiler_expand_tree_recursive)
     nmap <buffer> ss <Plug>(vimfiler_select_sort_type)
     nmap <buffer> rl <Plug>(vimfiler_close)[exec]f
+    nmap <buffer> ug <Plug>(vimfiler_grep)
 endfunction

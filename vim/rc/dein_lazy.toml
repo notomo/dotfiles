@@ -334,6 +334,8 @@ omap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
 xmap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
 omap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 xmap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
+
+omap <expr> r textobj#from_regexp#mapexpr('\v%#.*\ze[])}>]')
 '''
 
 [[plugins]]

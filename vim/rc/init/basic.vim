@@ -98,5 +98,4 @@ if has('mac')
   set iskeyword=@,48-57,_,128-167,224-235
 endif
 
-cnoreabbrev <expr> h (getcmdtype() is# ':' && getcmdline() is# 'h') ? 'vertical help': 'h'
 autocmd MyAuGroup FileType help wincmd L
