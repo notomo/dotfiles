@@ -878,24 +878,6 @@ repo = 'kana/vim-better-tag-jump'
 on_func = 'bettertagjump#php#Jump'
 
 [[plugins]]
-repo = 'lambdalisue/vim-gita'
-on_cmd = 'Gita'
-hook_add = '''
-nnoremap [git] <Nop>
-nmap <Space>g [git]
-
-nnoremap [git]s :<C-u>Gita status<CR>
-nnoremap [git]bl :<C-u>Gita blame<CR>
-nnoremap [git]e :<C-u>Gita branch<CR>
-nnoremap [git]d :<C-u>Gita diff<CR>
-nnoremap [git]c :<C-u>Gita diff-ls<CR>
-'''
-hook_source = '''
-let g:gita#content#status#disable_default_mappings = 1
-'''
-hook_post_source = 'source ~/.vim/rc/plugins/vim-gita.vim'
-
-[[plugins]]
 repo = 'kana/vim-gf-user'
 on_map = {n = '<Plug>(gf-user-gf)'}
 hook_add = '''
@@ -910,3 +892,16 @@ let g:gf_user_no_default_key_mappings = 1
 repo = 'sgur/vim-gf-autoload'
 on_source = ['vim-gf-user']
 
+[[plugins]]
+repo = 'lambdalisue/gina.vim'
+on_cmd = 'Gina'
+hook_add = '''
+nnoremap [git] <Nop>
+nmap <Space>g [git]
+
+nnoremap [git]s :<C-u>Gina status<CR>
+nnoremap [git]d :<C-u>Gina diff<CR>
+nnoremap [git]b :<C-u>Gina branch<CR>
+nnoremap [git]l :<C-u>Gina log<CR>
+nnoremap [git]c :<C-u>Gina changes<CR>
+'''

@@ -46,6 +46,7 @@ set formatoptions+=q
 set clipboard=unnamed
 set foldmethod=manual
 set noshowmode
+set conceallevel=0
 
 autocmd MyAuGroup BufEnter * call s:auto_cd()
 function! s:auto_cd() abort

@@ -259,6 +259,7 @@ nnoremap <Ins> <Nop>
 inoremap <Ins> <Nop>
 
 nnoremap <RightMouse> p
+vnoremap <RightMouse> <ESC>p
 inoremap <RightMouse> <C-r>"
 
 inoremap <BS> <Nop>

@@ -37,4 +37,4 @@ if executable('pt')
   let g:unite_source_grep_recursive_opt = ''
 endif
 
-call unite#custom#source('file_mru', 'ignore_pattern', '^gita')
+call unite#custom#source('file_mru', 'ignore_pattern', '\v^(gina|gita)')
