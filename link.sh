@@ -20,4 +20,7 @@ ln -s ~/dotfiles/vim/rc/init.vim ~/.config/nvim/init.vim
 # ideaVim
 ln -s ~/dotfiles/idea/.ideavimrc ~/.ideavimrc
 
-read
+if [ "$1" != "-y" ]
+then
+    read
+fi
