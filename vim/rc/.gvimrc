@@ -1,7 +1,5 @@
 scriptencoding utf-8
 
-set shortmess+=I
-set vb t_vb=
 set guioptions+=b
 set guioptions-=a
 set guioptions-=T

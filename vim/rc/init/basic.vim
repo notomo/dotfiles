@@ -47,6 +47,8 @@ set clipboard=unnamed
 set foldmethod=manual
 set noshowmode
 set conceallevel=0
+set shortmess+=I
+set visualbell t_vb=
 
 autocmd MyAuGroup BufEnter * call s:auto_cd()
 function! s:auto_cd() abort
