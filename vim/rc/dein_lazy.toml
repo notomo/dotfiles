@@ -904,8 +904,19 @@ vmap <Space>g [git]
 nnoremap [git]s :<C-u>Gina status<CR>
 nnoremap [git]d :<C-u>Gina diff<CR>
 nnoremap [git]b :<C-u>Gina branch<CR>
-nnoremap [git]l :<C-u>Gina log<CR>
-nnoremap [git]f :<C-u>Gina ls<CR>
+nnoremap [git]L :<C-u>Gina log<CR>
+nnoremap [git]ls :<C-u>Gina ls<CR>
 nnoremap [git]c :<C-u>Gina changes<CR>
+
+function! s:get_current_relpath() abort
+    let git = gina#core#get_or_fail()
+    let abspath = gina#core#repo#abspath(git, '')
+    let curpath = substitute(expand('%:p'), '\', '/', 'g')
+    let relpath = substitute(curpath, abspath, '', '')
+    return relpath
+    " execute 'Gina blame :' . relpath
+endfunction
+nnoremap [git]B :<C-u>execute 'Gina blame :' . <SID>get_current_relpath()<CR>
+nnoremap [git]fl :<C-u>execute 'Gina log :' . <SID>get_current_relpath()<CR>
 '''
 hook_post_source = 'source ~/.vim/rc/plugins/gina.vim'

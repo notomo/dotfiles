@@ -43,12 +43,36 @@ call gina#custom#mapping#nmap(
 \ {'silent' : 1},
 \)
 
+call gina#custom#mapping#nmap(
+\ 'branch', 'rn',
+\ '<Plug>(gina-branch-move)',
+\ {'silent' : 1},
+\)
+
+call gina#custom#mapping#nmap(
+\ 'branch', 'rf',
+\ '<Plug>(gina-branch-reflesh)',
+\ {'silent' : 1},
+\)
+
+call gina#custom#mapping#nmap(
+\ 'branch', 'C',
+\ '<Plug>(gina-branch-new)',
+\ {'silent' : 1},
+\)
+
 call gina#custom#command#option(
 \ '/\%(status\|changes\|ls\)',
 \ '--opener', 'botright split'
 \)
 
 call gina#custom#command#option(
-\ '/\%(diff\|blame\|compare\|branch\|log\)',
+\ '/\%(diff\|blame\|compare\|log\)',
 \ '--opener', 'tabedit'
+\)
+
+call gina#custom#mapping#nmap(
+\ 'log', '<CR>',
+\ ':call gina#action#call(''show:preview'')<CR>',
+\ {'noremap': 1, 'silent': 1},
 \)
