@@ -134,7 +134,7 @@ options head
 
 snippet ifline
 options head
-	if (${1:#:condition}) {${0:TARGET}}
+	if (${1:#:condition}) ${0:TARGET};
 
 snippet var_dump
 options head
@@ -249,4 +249,3 @@ snippet server
 
 snippet session
 	\$_SESSION['${1:#:variable}']
-
