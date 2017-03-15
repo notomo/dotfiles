@@ -898,10 +898,14 @@ on_cmd = 'Gina'
 hook_add = '''
 nnoremap [git] <Nop>
 nmap <Space>g [git]
+vnoremap [git] <Nop>
+vmap <Space>g [git]
 
 nnoremap [git]s :<C-u>Gina status<CR>
 nnoremap [git]d :<C-u>Gina diff<CR>
 nnoremap [git]b :<C-u>Gina branch<CR>
 nnoremap [git]l :<C-u>Gina log<CR>
+nnoremap [git]f :<C-u>Gina ls<CR>
 nnoremap [git]c :<C-u>Gina changes<CR>
 '''
+hook_post_source = 'source ~/.vim/rc/plugins/gina.vim'

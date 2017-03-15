@@ -49,6 +49,7 @@ set noshowmode
 set conceallevel=0
 set shortmess+=I
 set visualbell t_vb=
+set diffopt+=vertical
 
 autocmd MyAuGroup BufEnter * call s:auto_cd()
 function! s:auto_cd() abort

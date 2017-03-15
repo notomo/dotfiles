@@ -60,13 +60,15 @@ function! s:vsplit_from_tab(tab_num) abort
     if tabpagenr() == a:tab_num || tabpagenr('$') < a:tab_num || 1 > a:tab_num
         return
     endif
-    let tab_bufs = tabpagebuflist(a:tab_num)
+    let cur_tab = tabpagenr()
+    execute 'noautocmd tabnext ' . a:tab_num
+    let buf_num = &filetype ==? 'vimfiler' ? bufnr('#') : bufnr('%')
+    execute 'noautocmd tabnext ' . cur_tab
+    if buf_num == -1
+        return
+    endif
     vsplit
-    execute 'buffer ' . tab_bufs[0]
-    for tb in tab_bufs[1:]
-        split
-        execute 'buffer ' . tb
-    endfor
+    execute 'buffer ' . buf_num
     execute a:tab_num . 'tabclose'
     execute 'normal! <C-w>='
 endfunction
