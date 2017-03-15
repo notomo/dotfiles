@@ -907,6 +907,9 @@ nnoremap [git]b :<C-u>Gina branch<CR>
 nnoremap [git]L :<C-u>Gina log<CR>
 nnoremap [git]ls :<C-u>Gina ls<CR>
 nnoremap [git]c :<C-u>Gina changes<CR>
+nnoremap [git]us :<C-u>Gina stash list<CR>
+nnoremap [git]xs :<C-u>Gina stash<CR>
+nnoremap [git]S :<C-u>Gina stash show<CR>
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()
