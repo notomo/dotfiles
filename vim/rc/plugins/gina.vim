@@ -17,6 +17,13 @@ for s:mode_char in ['n', 'v']
     \ '<Plug>(gina-index-discard)',
     \ {'mode' : s:mode_char, 'silent' : 1},
     \)
+
+    call gina#custom#mapping#map(
+    \ 'stash', 'dr',
+    \ '<Plug>(gina-stash-drop)',
+    \ {'mode' : s:mode_char, 'silent' : 1},
+    \)
+
 endfor
 
 call gina#custom#mapping#nmap(
@@ -32,14 +39,32 @@ call gina#custom#mapping#nmap(
 \)
 
 call gina#custom#mapping#nmap(
-\ 'status', 'dd',
+\ '/\%(status\|stash\)', 'dd',
 \ '<Plug>(gina-compare)',
 \ {'silent' : 1},
 \)
 
 call gina#custom#mapping#nmap(
-\ 'status', 'D',
+\ '/\%(status\|stash\)', 'D',
 \ '<Plug>(gina-diff)',
+\ {'silent' : 1},
+\)
+
+call gina#custom#mapping#nmap(
+\ 'stash', 'ap',
+\ '<Plug>(gina-stash-apply)',
+\ {'silent' : 1},
+\)
+
+call gina#custom#mapping#nmap(
+\ 'stash', 'pop',
+\ '<Plug>(gina-stash-pop)',
+\ {'silent' : 1},
+\)
+
+call gina#custom#mapping#nmap(
+\ 'stash', 'pop',
+\ '<Plug>(gina-stash-pop)',
 \ {'silent' : 1},
 \)
 
