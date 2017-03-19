@@ -288,10 +288,6 @@ nnoremap [vdebug]a :<C-u>BreakpointRemove *<CR>
 hook_source = 'source ~/.vim/rc/plugins/vdebug_setting.vim'
 
 [[plugins]]
-repo = 'fuenor/im_control.vim'
-on_event = 'InsertEnter'
-
-[[plugins]]
 repo = 'kana/vim-operator-replace'
 depends = 'vim-operator-user'
 on_map = '<Plug>'
@@ -483,21 +479,6 @@ hook_source = 'source ~/.vim/rc/plugins/vimfiler_setting.vim'
 hook_post_source = 'source ~/.vim/rc/plugins/vimfiler_filetype_mapping.vim'
 
 [[plugins]]
-repo = 'Shougo/vimshell.vim'
-on_map = {n = '<Plug>'}
-hook_add = 'source ~/.vim/rc/plugins/vimshell_mapping.vim'
-hook_source = '''
-let g:vimshell_prompt_expr = 'getcwd()." > "'
-let g:vimshell_prompt_pattern = '^\f\+ > '
-'''
-hook_post_source = 'source ~/.vim/rc/plugins/vimshell_filetype_mapping.vim'
-
-[[plugins]]
-repo = 'Shougo/neoyank.vim'
-on_if = 1
-on_event = 'TextYankPost'
-
-[[plugins]]
 repo = 'Shougo/neomru.vim'
 on_if = 1
 hook_add = '''
@@ -509,16 +490,6 @@ hook_source = 'let g:neomru#file_mru_limit = 1000'
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
 on_if = 1
-
-# [[plugins]]
-# repo = 'AndrewRadev/splitjoin.vim'
-# on_cmd = 'Splitjoin'
-# hook_add = '''
-# let g:splitjoin_split_mapping = ''
-# let g:splitjoin_join_mapping = ''
-# nnoremap <Leader>sj :<C-u>SplitjoinJoin<CR>
-# nnoremap <Leader>ss :<C-u>SplitjoinSplit<CR>
-# '''
 
 [[plugins]]
 repo = 'AndrewRadev/switch.vim'
@@ -594,28 +565,9 @@ nnoremap <Leader>gt :<C-u>SignifyToggle<CR>
 '''
 hook_source = 'let g:signify_disable_by_default = 0'
 
-# [[plugins]]
-# repo = 't9md/vim-quickhl'
-# on_map = {n = '<Plug>(quickhl-manual-'}
-# hook_add = '''
-# nnoremap [highlight] <Nop>
-# nmap <Leader>h [highlight]
-# xnoremap [highlight] <Nop>
-# xmap <Leader>h [highlight]
-# nmap [highlight]t <Plug>(quickhl-manual-this)
-# xmap [highlight]t <Plug>(quickhl-manual-this)
-# nmap [highlight]r <Plug>(quickhl-manual-reset)
-# xmap [highlight]r <Plug>(quickhl-manual-reset)
-# nmap [highlight]a <Plug>(quickhl-manual-toggle)
-# '''
-
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
-
-# [[plugins]]
-# repo = 'shawncplus/phpcomplete.vim'
-# on_ft = 'php'
 
 [[plugins]]
 repo = 'elzr/vim-json'
@@ -839,29 +791,6 @@ hook_source = 'let g:textobj_function_no_default_key_mappings = 1'
 repo = 'thinca/vim-textobj-function-javascript'
 depends = 'vim-textobj-function'
 on_ft = 'javascript'
-
-[[plugins]]
-repo = 'terryma/vim-expand-region'
-on_map = {nx = '<Plug>'}
-hook_add = '''
-vmap <CR> <Plug>(expand_region_expand)
-vmap <C-CR> <Plug>(expand_region_shrink)
-'''
-hook_source = '''
-let g:expand_region_text_objects = {
-      \ 'iw'  :0,
-      \ 'i"'  :0,
-      \ "i'"  :0,
-      \ "i\`" :0,
-      \ 'i>'  :0,
-      \ 'i)'  :1,
-      \ 'i]'  :1,
-      \ 'ig'  :0,
-      \ 'iB'  :1,
-      \ 'io'  :1,
-      \ 'ie'  :0,
-      \ }
-'''
 
 # [[plugins]]
 # repo = 'Shougo/echodoc.vim'

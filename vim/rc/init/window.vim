@@ -68,7 +68,9 @@ function! s:vsplit_from_tab(tab_num) abort
         return
     endif
     vsplit
-    execute 'buffer ' . buf_num
+    execute "noautocmd normal! \<C-w>l"
+    execute 'noautocmd buffer ' . buf_num
+    execute "noautocmd normal! \<C-w>h"
     execute a:tab_num . 'tabclose'
     execute 'normal! <C-w>='
 endfunction
@@ -99,9 +101,20 @@ function! s:extract_tabopen() abort
         return
     endif
     let curbuf_num = bufnr('%')
-    noautocmd q
     tabnew
+    noautocmd tabprevious
+    noautocmd q
+    noautocmd tabnext
     execute 'buffer ' . curbuf_num
+endfunction
+
+function! s:vsplit_altopen() abort
+    let alt_bufnr = bufnr('#')
+    if alt_bufnr == -1
+        return
+    endif
+    vsplit
+    execute 'buffer ' . alt_bufnr
 endfunction
 
 call s:win_map('h', ':<C-u>split<CR>') " split horizontally
@@ -116,6 +129,7 @@ call s:win_map('H', ':<C-u>call <SID>vs_from_left()<CR>') " open left tab's buff
 call s:win_map('L', ':<C-u>call <SID>vs_from_right()<CR>') " open right tab's buffers vertically
 call s:win_map('V', ':<C-u>call <SID>h_to_vsplit()<CR>') " reopen windows vertically
 call s:win_map('l', ':<C-u>call <SID>extract_tabopen()<CR>') " close window and open tab
+call s:win_map('b', ':<C-u>call <SID>vsplit_altopen()<CR>') " open the alternative buffer with vertical splitting
 "}}}
 
 " winsize"{{{

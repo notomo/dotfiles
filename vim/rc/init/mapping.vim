@@ -4,6 +4,7 @@ scriptencoding utf-8
 
 " delete a character using delete register
 nnoremap x "_x
+vnoremap x "_x
 
 " change using delete register
 nnoremap c "_c

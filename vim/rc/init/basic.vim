@@ -6,8 +6,6 @@ if has('gui') && has('win64')
 endif
 "日本語入力をリセット
 autocmd MyAuGroup BufNewFile,BufRead * set iminsert=0
-" 「日本語入力固定モード」の動作モード
-let g:IM_CtrlMode = 4
 
 set nowrap
 set showtabline=2 " タブを常に表示

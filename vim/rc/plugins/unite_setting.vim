@@ -38,3 +38,5 @@ if executable('pt')
 endif
 
 call unite#custom#source('file_mru', 'ignore_pattern', '\v^(gina|gita)')
+
+call unite#custom#source('file', 'matchers', 'matcher_default')

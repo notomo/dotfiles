@@ -96,6 +96,8 @@ call s:tab_map('h', '<Esc>gT', 0, 0) " move left
 call s:tab_map('q', '<Esc><Plug>(tabclose_c)', 0, 1) " close a tab
 call s:tab_map('da', '<Esc><Plug>(tabclose_l)', 1, 1) " close left tabs
 call s:tab_map('dl', '<Esc><Plug>(tabclose_r)', 1, 1) " close right tabs
+call s:tab_map('dol', ':<C-u>+tabclose<CR>', 0, 0) " close a right tab
+call s:tab_map('doa', ':<C-u>-tabclose<CR>', 0, 0) " close a left tab
 call s:tab_map(s:TABMV_PFX . 'l', ':<C-u>tabm+1<CR>', 0, 0) " move a tab right
 call s:tab_map(s:TABMV_PFX . 's', ':<C-u>tabm 0<CR>', 0, 0) " move a tab right end
 call s:tab_map(s:TABMV_PFX . 'e', ':<C-u>tabm<CR>', 0, 0) " move a tab left end
