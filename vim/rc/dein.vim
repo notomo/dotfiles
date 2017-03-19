@@ -6,6 +6,7 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 execute 'set runtimepath+=' . s:dein_repo_dir
 
 if !isdirectory(s:dein_repo_dir)
+    call mkdir(s:dein_repo_dir, 'p')
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
@@ -20,8 +21,13 @@ let s:rc_dir    = expand('~/.vim/rc')
 let s:toml      = s:rc_dir . '/dein.toml'
 let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
 
+
 call dein#load_toml(s:toml,      {'lazy': 0})
 call dein#load_toml(s:lazy_toml, {'lazy': 1})
+if has('nvim')
+    call dein#load_toml(s:rc_dir . '/dein_neovim.toml', {})
+endif
+
 
 call dein#end()
 call dein#save_state()
