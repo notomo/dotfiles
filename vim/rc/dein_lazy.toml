@@ -203,6 +203,13 @@ vmap [browser]s <Plug>(openbrowser-smart-search)
 nmap [browser]o <Plug>(openbrowser-open)
 vmap [browser]o <Plug>(openbrowser-open)
 nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
+
+if has('nvim') && executable('lemonade') && has('unix')
+    let g:openbrowser_browser_commands = [
+    \ {'name': 'lemonade',
+    \  'args': 'lemonade open {uri}'}
+    \ ]
+endif
 '''
 
 [[plugins]]
@@ -905,6 +912,8 @@ nnoremap [git]s :<C-u>Gina status<CR>
 nnoremap [git]d :<C-u>Gina diff<CR>
 nnoremap [git]b :<C-u>Gina branch<CR>
 nnoremap [git]L :<C-u>Gina log master...HEAD<CR>
+nnoremap [git]ll :<C-u>Gina log<CR>
+nnoremap [git]rl :<C-u>Gina reflog<CR>
 nnoremap [git]ls :<C-u>Gina ls<CR>
 nnoremap [git]c :<C-u>Gina changes<CR>
 nnoremap [git]xl :<C-u>Gina stash list<CR>

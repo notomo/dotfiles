@@ -24,6 +24,30 @@ for s:mode_char in ['n', 'v']
     \ {'mode' : s:mode_char, 'silent' : 1},
     \)
 
+    call gina#custom#mapping#map(
+    \ 'patch', '[diff]p',
+    \ '<Plug>(gina-diffput)',
+    \ {'mode' : s:mode_char, 'silent' : 1},
+    \)
+
+    call gina#custom#mapping#map(
+    \ 'patch', '[diff]G',
+    \ '<Plug>(gina-diffget)',
+    \ {'mode' : s:mode_char, 'silent' : 1},
+    \)
+
+    call gina#custom#mapping#map(
+    \ 'patch', '[diff]gl',
+    \ '<Plug>(gina-diffget-r)',
+    \ {'mode' : s:mode_char, 'silent' : 1},
+    \)
+
+    call gina#custom#mapping#map(
+    \ 'patch', '[diff]ga',
+    \ '<Plug>(gina-diffget-l)',
+    \ {'mode' : s:mode_char, 'silent' : 1},
+    \)
+
 endfor
 
 call gina#custom#mapping#nmap(
@@ -45,7 +69,7 @@ call gina#custom#mapping#nmap(
 \)
 
 call gina#custom#mapping#nmap(
-\ '/\%(status\|stash\)', 'D',
+\ '/\%(status\|stash\|compare\)', 'D',
 \ '<Plug>(gina-diff)',
 \ {'silent' : 1},
 \)
@@ -92,12 +116,37 @@ call gina#custom#command#option(
 \)
 
 call gina#custom#command#option(
-\ '/\%(diff\|blame\|compare\|log\)',
+\ '/\%(diff\|blame\|compare\|patch\|log\)',
 \ '--opener', 'tabedit'
 \)
 
 call gina#custom#mapping#nmap(
-\ 'log', '<CR>',
+\ '/\%(log\|reflog\)', '<CR>',
 \ ':call gina#action#call(''show:preview'')<CR>',
 \ {'noremap': 1, 'silent': 1},
 \)
+
+call gina#custom#mapping#nmap(
+\ 'log', 'cc',
+\ '<Plug>(gina-changes-of)',
+\ {'silent': 1},
+\)
+
+call gina#custom#mapping#nmap(
+\ 'log', 'cf',
+\ '<Plug>(gina-changes-from)',
+\ {'silent': 1},
+\)
+
+call gina#custom#mapping#nmap(
+\ 'log', 'cb',
+\ '<Plug>(gina-changes-between)',
+\ {'silent': 1},
+\)
+
+call gina#custom#mapping#nmap(
+\ 'log', 'RS',
+\ '<Plug>(gina-commit-reset)',
+\ {'silent': 1},
+\)
+
