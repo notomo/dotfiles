@@ -38,6 +38,7 @@ vnoremap [edit]j :join<CR>
 vnoremap [edit]J :join!<CR>
 
 nnoremap [edit]d *``"_cgn
+nnoremap [edit]a *``cgn<C-r>"
 vnoremap <expr> [edit]d "y/\\V\<C-r>=substitute(escape(@\", '/\'), '\\n', '\\\\n', 'g')\<CR>\<CR>" . '``cgn'
 "}}}
 
@@ -299,9 +300,9 @@ command! GitaCtagsCommand call GitCtags()
 nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
 
 function! OpenWorkText() abort
-	let l:work_text_file_path =  '~/worktexts/' . strftime('%Y_%m_%d.txt')
-	execute 'tab drop ' . l:work_text_file_path
-	execute 'set filetype=worktext'
+    let l:work_text_file_path =  '~/worktexts/' . strftime('%Y_%m_%d.txt')
+    execute 'tab drop ' . l:work_text_file_path
+    execute 'set filetype=worktext'
 endfunction
 command! OpenWorkTextCommand call OpenWorkText()
 nnoremap <Space>ew :<C-u>OpenWorkTextCommand<CR>

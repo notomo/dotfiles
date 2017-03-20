@@ -87,7 +87,7 @@ else
     endfunction
 endif
 
-call s:tab_map('t', '<Esc><Plug>(new_tab)', 0, 1) " open new tab
+call s:tab_map('t', '<Esc><Plug>(new_tab)', 1, 1) " open new tab
 call s:tab_map('l', '<Esc>gt', 0, 0) " move right
 call s:tab_map('s', ':<C-u>tabr<CR>', 0, 0) " move right end
 call s:tab_map('e', ':<C-u>tabl<CR>', 0, 0) " move left end

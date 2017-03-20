@@ -48,6 +48,7 @@ set conceallevel=0
 set shortmess+=I
 set visualbell t_vb=
 set diffopt+=vertical
+set mouse=a
 
 autocmd MyAuGroup BufEnter * call s:auto_cd()
 function! s:auto_cd() abort
@@ -101,3 +102,7 @@ if has('mac')
 endif
 
 autocmd MyAuGroup FileType help wincmd L
+
+if !has('gui')
+    colorscheme spring-night
+endif

@@ -32,104 +32,19 @@ function! s:win_map(lhs, rhs) abort
     silent execute join([s:NNOREMAP, s:WIN_KEY . a:lhs, a:rhs])
 endfunction
 
-function! s:xonly(directions_str) abort
-    let curwin_id = win_getid()
-    let cnt = len(tabpagebuflist())
-    for d in split(a:directions_str, '\zs')
-        while cnt > 1
-            execute 'noautocmd wincmd ' . d
-            if win_getid() == curwin_id
-                break
-            endif
-            q
-            let cnt -= 1
-        endwhile
-    endfor
-endfunction
-function! s:vonly() abort
-    call s:xonly('jk')
-endfunction
-function! s:ronly() abort
-    call s:xonly('l')
-endfunction
-function! s:lonly() abort
-    call s:xonly('h')
-endfunction
-
-function! s:vsplit_from_tab(tab_num) abort
-    if tabpagenr() == a:tab_num || tabpagenr('$') < a:tab_num || 1 > a:tab_num
-        return
-    endif
-    let cur_tab = tabpagenr()
-    execute 'noautocmd tabnext ' . a:tab_num
-    let buf_num = &filetype ==? 'vimfiler' ? bufnr('#') : bufnr('%')
-    execute 'noautocmd tabnext ' . cur_tab
-    if buf_num == -1
-        return
-    endif
-    vsplit
-    execute "noautocmd normal! \<C-w>l"
-    execute 'noautocmd buffer ' . buf_num
-    execute "noautocmd normal! \<C-w>h"
-    execute a:tab_num . 'tabclose'
-    execute 'normal! <C-w>='
-endfunction
-function! s:vs_from_left() abort
-    call s:vsplit_from_tab(tabpagenr() - 1)
-endfunction
-function! s:vs_from_right() abort
-    call s:vsplit_from_tab(tabpagenr() + 1)
-endfunction
-
-function! s:h_to_vsplit() abort
-    let curbuf = bufnr('%')
-    let tab_bufs = uniq(tabpagebuflist())
-    only
-    for b in tab_bufs
-        if b != curbuf
-            execute 'buffer ' . b
-            vsplit
-        endif
-    endfor
-    execute 'buffer ' . curbuf
-    execute 'normal! <C-w>='
-endfunction
-
-function! s:extract_tabopen() abort
-    let tab_bufs = tabpagebuflist()
-    if len(tab_bufs) < 2
-        return
-    endif
-    let curbuf_num = bufnr('%')
-    tabnew
-    noautocmd tabprevious
-    noautocmd q
-    noautocmd tabnext
-    execute 'buffer ' . curbuf_num
-endfunction
-
-function! s:vsplit_altopen() abort
-    let alt_bufnr = bufnr('#')
-    if alt_bufnr == -1
-        return
-    endif
-    vsplit
-    execute 'buffer ' . alt_bufnr
-endfunction
-
 call s:win_map('h', ':<C-u>split<CR>') " split horizontally
 call s:win_map('v', ':<C-u>vsplit<CR>') " split vertically
 call s:win_map('o', ':<C-u>only<CR>') " close others
-call s:win_map('j', ':<C-u>call <SID>vonly()<CR>') " close others vertically
-call s:win_map(';', ':<C-u>call <SID>ronly()<CR>') " close right vertically
-call s:win_map('a', ':<C-u>call <SID>lonly()<CR>') " close left windows
+call s:win_map('j', ':<C-u>call tmno3#window#vonly()<CR>') " close others vertically
+call s:win_map(';', ':<C-u>call tmno3#window#ronly()<CR>') " close right vertically
+call s:win_map('a', ':<C-u>call tmno3#window#lonly()<CR>') " close left windows
 call s:win_map('p', '<C-w>z') " close preview
 call s:win_map('q', ':<C-u>q<CR>') " close
-call s:win_map('H', ':<C-u>call <SID>vs_from_left()<CR>') " open left tab's buffers vertically
-call s:win_map('L', ':<C-u>call <SID>vs_from_right()<CR>') " open right tab's buffers vertically
-call s:win_map('V', ':<C-u>call <SID>h_to_vsplit()<CR>') " reopen windows vertically
-call s:win_map('l', ':<C-u>call <SID>extract_tabopen()<CR>') " close window and open tab
-call s:win_map('b', ':<C-u>call <SID>vsplit_altopen()<CR>') " open the alternative buffer with vertical splitting
+call s:win_map('H', ':<C-u>call tmno3#window#vs_from_left()<CR>') " open left tab's buffers vertically
+call s:win_map('L', ':<C-u>call tmno3#window#vs_from_right()<CR>') " open right tab's buffers vertically
+call s:win_map('V', ':<C-u>call tmno3#window#h_to_vsplit()<CR>') " reopen windows vertically
+call s:win_map('l', ':<C-u>call tmno3#window#extract_tabopen()<CR>') " close window and open tab
+call s:win_map('b', ':<C-u>call tmno3#window#vsplit_altopen()<CR>') " open the alternative buffer with vertical splitting
 "}}}
 
 " winsize"{{{

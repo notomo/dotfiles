@@ -1,7 +1,7 @@
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
-on_source = ['unite.vim', 'vimshell.vim', 'vim-quickrun']
+on_source = ['unite.vim', 'vim-quickrun']
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
@@ -495,7 +495,49 @@ on_if = 1
 repo = 'AndrewRadev/switch.vim'
 on_cmd = 'Switch'
 hook_add = 'nnoremap [edit]s :<C-u>Switch<CR>'
-hook_source = 'let g:switch_mapping = ""'
+hook_source = '''
+let g:switch_mapping = ""
+
+" let g:switch_custom_definitions = [
+" \   {
+" \     '\<[a-z0-9]\+_\k\+\>': {
+" \       '_\(.\)' : '\U\1'
+" \     },
+" \     '\<[a-z0-9]\+[A-Z]\k\+\>': {
+" \       '\([A-Z]\)' : '_\l\1'
+" \     },
+" \   },
+" \ ]
+
+autocmd MyAuGroup FileType php let b:switch_custom_definitions =
+\ [
+\   {
+\     '\$this->\(\k\+\)' : 'self::$\1',
+\     'self::\$\(\k\+\)' : '$\1',
+\     '\$\(\k\+\)' : '$this->\1',
+\   },
+\   ['private', 'public', 'protected'],
+\ ]
+
+autocmd MyAuGroup FileType sql let b:switch_custom_definitions =
+\ [
+\   switch#NormalizedCase(['inner', 'left'])
+\ ]
+
+autocmd MyAuGroup FileType vim,toml let b:switch_custom_definitions =
+\ [
+\   {
+\     '\v(\w)?map' : '\1noremap',
+\     '\v(\w)?noremap' : '\1map',
+\   },
+\ ]
+
+autocmd MyAuGroup FileType toml let b:switch_custom_definitions +=
+\ [
+\   ['hook_add', 'hook_source', 'hook_post_source'],
+\ ]
+
+'''
 
 [[plugins]]
 repo = 'osyo-manga/vim-over'
@@ -580,18 +622,6 @@ on_ft = ['html', 'smarty', 'vim', 'sql', 'php']
 # [[plugins]]
 # repo = 'mattn/ssh-add-vim'
 # on_cmd = ['SshAdd']
-
-[[plugins]]
-repo = 'tmn-o3/agit.vim'
-on_cmd = ['Agit']
-hook_add = '''
-nnoremap <Leader>al :<C-u>Agit<CR>
-nnoremap <Leader>af :<C-u>AgitFile<CR>
-'''
-hook_source = '''
-let g:agit_no_default_mappings = 1
-let g:agit_enable_auto_show_commit = 1
-'''
 
 [[plugins]]
 repo = 'haya14busa/vim-debugger'
@@ -838,7 +868,7 @@ vnoremap [git] <Nop>
 vmap <Space>g [git]
 
 nnoremap [git]s :<C-u>Gina status<CR>
-nnoremap [git]d :<C-u>Gina diff<CR>
+nnoremap [git]D :<C-u>Gina diff<CR>
 nnoremap [git]b :<C-u>Gina branch<CR>
 nnoremap [git]L :<C-u>Gina log master...HEAD<CR>
 nnoremap [git]ll :<C-u>Gina log<CR>
@@ -848,6 +878,7 @@ nnoremap [git]c :<C-u>Gina changes<CR>
 nnoremap [git]xl :<C-u>Gina stash list<CR>
 nnoremap [git]xs :<C-u>Gina stash save ""<Left>
 nnoremap [git]xc :<C-u>Gina stash show<CR>
+nnoremap [git]P :<C-u>Gina! push<Space>
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()
@@ -858,5 +889,7 @@ function! s:get_current_relpath() abort
 endfunction
 nnoremap [git]B :<C-u>execute 'Gina blame :' . <SID>get_current_relpath()<CR>
 nnoremap [git]fl :<C-u>execute 'Gina log :' . <SID>get_current_relpath()<CR>
+nnoremap [git]dd :<C-u>execute 'Gina compare :' . <SID>get_current_relpath()<CR>
+nnoremap [git]df :<C-u>execute 'Gina diff :' . <SID>get_current_relpath()<CR>
 '''
 hook_post_source = 'source ~/.vim/rc/plugins/gina.vim'
