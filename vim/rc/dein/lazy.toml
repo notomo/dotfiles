@@ -474,7 +474,7 @@ repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 on_map = {n = '<Plug>'}
 on_if = "isdirectory(bufname('%'))"
-hook_add = 'nnoremap <silent> [exec]f :<C-u>VimFilerBufferDir -split -no-quit -toggle<CR>'
+hook_add = 'nnoremap <silent> [exec]f :<C-u>VimFilerBufferDir -split -no-quit -toggle -buffer-name=<CR>'
 hook_source = '''
 let g:vimfiler_enable_auto_cd = 1
 let g:vimfiler_as_default_explorer = 1
@@ -488,6 +488,7 @@ repo = 'Shougo/neomru.vim'
 on_if = 1
 hook_add = '''
 nnoremap <silent> [unite]r :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]u :<C-u>Unite file_mru -force-immediately<CR>
 nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
 '''
 hook_source = 'let g:neomru#file_mru_limit = 1000'
