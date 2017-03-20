@@ -6,7 +6,6 @@ let $LANG='ja_JP.UTF-8'
 if has('vim_starting')
     set runtimepath+=~/.vim/
     set runtimepath+=~/.vim/after
-    set runtimepath+=$VIM/plugins/vimdoc-ja
     set runtimepath+=$VIM/plugins/kaoriya
 endif
 
@@ -56,7 +55,7 @@ let g:loaded_spellfile_plugin  = 1
 let g:loaded_logiPat           = 1
 let g:PHP_autoformatcomment = 0
 
-runtime! rc/dein.vim
+runtime! rc/dein/dein.vim
 
 augroup MyAuGroup
     autocmd!
@@ -73,6 +72,9 @@ endif
 
 runtime! rc/local/*.vim
 runtime! rc/init/*.vim
+if has('nvim')
+    runtime! rc/neovim/*.vim
+endif
 runtime! rc/plugins/others.vim
 runtime! rc/plugins/fugitive_filetype_mapping.vim
 runtime! rc/plugins/unite_filetype_mapping.vim

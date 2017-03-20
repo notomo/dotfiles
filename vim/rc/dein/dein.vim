@@ -17,15 +17,15 @@ endif
 
 call dein#begin(s:dein_dir)
 
-let s:rc_dir    = expand('~/.vim/rc')
-let s:toml      = s:rc_dir . '/dein.toml'
-let s:lazy_toml = s:rc_dir . '/dein_lazy.toml'
+let s:dein_dir    = expand('~/.vim/rc/dein')
+let s:eager_toml      = s:dein_dir . '/eager.toml'
+let s:lazy_toml = s:dein_dir . '/lazy.toml'
 
 
-call dein#load_toml(s:toml,      {'lazy': 0})
+call dein#load_toml(s:eager_toml,      {'lazy': 0})
 call dein#load_toml(s:lazy_toml, {'lazy': 1})
 if has('nvim')
-    call dein#load_toml(s:rc_dir . '/dein_neovim.toml', {})
+    call dein#load_toml(s:dein_dir . '/neovim.toml', {})
 endif
 
 

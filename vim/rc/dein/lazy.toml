@@ -87,7 +87,7 @@ on_map = '<Space>ug'
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
 on_map = {nox = '<Plug>'}
-hook_add = 'source ~/.vim/rc/plugins/easymotion_mapping.vim'
+hook_add = 'source ~/.vim/rc/plugins/easymotion.vim'
 hook_source = '''
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_enter_jump_first = 1
@@ -541,6 +541,7 @@ autocmd MyAuGroup FileType toml let b:switch_custom_definitions +=
 
 [[plugins]]
 repo = 'osyo-manga/vim-over'
+if = "!has('nvim')"
 on_cmd = 'OverCommandLine'
 hook_add = '''
 nnoremap [over] <Nop>

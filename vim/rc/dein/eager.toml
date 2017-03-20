@@ -138,3 +138,6 @@ hook_add = '''
 let g:spring_night_kill_italic = 1
 '''
 
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+if = "has('kaoriya')"

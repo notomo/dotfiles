@@ -1,8 +1,8 @@
 # vim
 ln -s ~/dotfiles/vim/rc/.vimrc ~/.vimrc
 ln -s ~/dotfiles/vim/rc/.gvimrc ~/.gvimrc
-ln -s ~/dotfiles/vim/rc/.vimrc_first.vim ~/.vimrc_first.vim
-ln -s ~/dotfiles/vim/rc/.gvimrc_first.vim ~/.gvimrc_first.vim
+ln -s ~/dotfiles/vim/rc/kaoriya/.vimrc_first.vim ~/.vimrc_first.vim
+ln -s ~/dotfiles/vim/rc/kaoriya/.gvimrc_first.vim ~/.gvimrc_first.vim
 
 mkdir -p ~/.vim
 ln -s ~/dotfiles/vim/rc ~/.vim/rc
