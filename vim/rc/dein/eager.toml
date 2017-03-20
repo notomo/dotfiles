@@ -73,7 +73,14 @@ let g:zenspace#default_mode = 'on'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
-hook_add = 'source ~/.vim/rc/plugins/fugitive_mapping.vim'
+hook_add = '''
+nnoremap [fugit] <Nop>
+nmap <Space>g [fugit]
+
+nnoremap [fugit]d :<C-u>Gvdiff<CR>
+nnoremap [fugit]s :<C-u>Gstatus<CR>:only<CR>
+nnoremap [fugit]l :<C-u>tabe %<CR>:Glog \| copen<CR>
+'''
 
 [[plugins]]
 repo = 'LeafCage/yankround.vim'
@@ -92,7 +99,7 @@ repo = 'Shougo/neco-vim'
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
 if = "has('lua') && !has('nvim')"
-hook_add = 'source ~/.vim/rc/plugins/neocomplete_setting.vim'
+hook_add = 'source ~/.vim/rc/plugins/neocomplete.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet.vim'

@@ -285,7 +285,7 @@ nnoremap [vdebug] <Nop>
 nmap <Space>d [vdebug]
 nnoremap [vdebug]a :<C-u>BreakpointRemove *<CR>
 '''
-hook_source = 'source ~/.vim/rc/plugins/vdebug_setting.vim'
+hook_source = 'source ~/.vim/rc/plugins/vdebug.vim'
 
 [[plugins]]
 repo = 'kana/vim-operator-replace'
@@ -474,9 +474,14 @@ repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 on_map = {n = '<Plug>'}
 on_if = "isdirectory(bufname('%'))"
-hook_add = 'nnoremap <silent> [exec]f :<C-u>VimFilerBufferDir -split -simple -toggle -no-quit -winwidth=35<CR>'
-hook_source = 'source ~/.vim/rc/plugins/vimfiler_setting.vim'
-hook_post_source = 'source ~/.vim/rc/plugins/vimfiler_filetype_mapping.vim'
+hook_add = 'nnoremap <silent> [exec]f :<C-u>VimFilerBufferDir -split -no-quit -toggle<CR>'
+hook_source = '''
+let g:vimfiler_enable_auto_cd = 1
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_ignore_pattern = ['^\.DS_Store$']
+let g:vimfiler_no_default_key_mappings = 1
+'''
+hook_post_source = 'source ~/.vim/rc/plugins/vimfiler.vim'
 
 [[plugins]]
 repo = 'Shougo/neomru.vim'
@@ -601,10 +606,10 @@ repo = 'mhinz/vim-signify'
 on_cmd = 'Signify'
 on_map = {n = '<plug>(signify-'}
 hook_add = '''
-nmap <Leader>gj <Plug>(signify-next-hunk)zz
-nmap <Leader>gk <Plug>(signify-prev-hunk)zz
-nnoremap <Leader>gh :<C-u>SignifyToggleHighlight<CR>
-nnoremap <Leader>gt :<C-u>SignifyToggle<CR>
+nmap [git]j <Plug>(signify-next-hunk)zz
+nmap [git]k <Plug>(signify-prev-hunk)zz
+nnoremap [git]h :<C-u>SignifyToggleHighlight<CR>
+nnoremap [git]t :<C-u>SignifyToggle<CR>
 '''
 hook_source = 'let g:signify_disable_by_default = 0'
 
@@ -836,7 +841,7 @@ nmap [file]f <Plug>(altr-forward)
 nmap [file]b <Plug>(altr-back)
 '''
 hook_post_source = '''
-call altr#define('dein_lazy.toml', 'dein.toml')
+call altr#define('lazy.toml', 'eager.toml')
 call altr#define('autoload/%.vim', 'plugin/%.vim')
 '''
 
@@ -863,11 +868,6 @@ on_source = ['vim-gf-user']
 repo = 'lambdalisue/gina.vim'
 on_cmd = 'Gina'
 hook_add = '''
-nnoremap [git] <Nop>
-nmap <Space>g [git]
-vnoremap [git] <Nop>
-vmap <Space>g [git]
-
 nnoremap [git]s :<C-u>Gina status<CR>
 nnoremap [git]D :<C-u>Gina diff<CR>
 nnoremap [git]b :<C-u>Gina branch<CR>

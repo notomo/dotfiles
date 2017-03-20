@@ -34,6 +34,10 @@ nnoremap [file] <Nop>
 nmap <Space>f [file]
 noremap [operator] <Nop>
 map <Space><Leader> [operator]
+nnoremap [git] <Nop>
+nmap <Leader>g [git]
+vnoremap [git] <Nop>
+vmap <Leader>g [git]
 
 let g:plugin_dicwin_disable    = 1
 let g:loaded_gzip              = 1
@@ -75,11 +79,17 @@ runtime! rc/init/*.vim
 if has('nvim')
     runtime! rc/neovim/*.vim
 endif
-runtime! rc/plugins/others.vim
-runtime! rc/plugins/fugitive_filetype_mapping.vim
+
 runtime! rc/plugins/unite_filetype_mapping.vim
-runtime! rc/local/after/*.vim
 if has('python3')
     set diffexpr=py3diff#diffexpr()
 endif
+if has('clientserver')
+    call singleton#enable()
+endif
+if has('vim_starting')
+    set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+endif
+
+runtime! rc/local/after/*.vim
 

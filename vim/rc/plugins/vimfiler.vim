@@ -1,3 +1,4 @@
+
 let s:hsplit = {'is_selectable' : 1}
 function! s:hsplit.func(candidates)
     wincmd p
@@ -15,6 +16,13 @@ function! s:new_file() abort
         wincmd p
     endfor
 endfunction
+
+call vimfiler#custom#profile('default', 'context', {
+\ 'safe' : 0,
+\ 'simple' : 1,
+\ 'no-quit' : 1,
+\ 'winwidth' : 38,
+\ })
 
 autocmd MyAuGroup FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
@@ -60,3 +68,12 @@ function! s:vimfiler_my_settings()
     nmap <buffer> rl <Plug>(vimfiler_close)[exec]f
     nmap <buffer> ug <Plug>(vimfiler_grep)
 endfunction
+
+autocmd MyAuGroup FileType vimfiler call s:set_vimfiler()
+function! s:set_vimfiler()
+    augroup my-filetype-vimfiler
+        autocmd! * <buffer>
+        autocmd CursorMoved <buffer> execute "normal \<Plug>(vimfiler_print_filename)"
+    augroup END
+endfunction
+
