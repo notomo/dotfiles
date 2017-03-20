@@ -95,6 +95,14 @@ nnoremap ,gk :action GotoPreviousError<CR>
 
 " debug
 nnoremap <Space>da :action ToggleLineBreakpoint<CR>
+nnoremap <Space>dd :action Debug<CR>
+nnoremap <Space>ds :action StepOver<CR>
+nnoremap <Space>di :action StepInto<CR>
+nnoremap <Space>di :action StepOut<CR>
+nnoremap <Space>db :action ViewBreakpoints<CR>
+nnoremap <Space>dq :action Stop<CR>
+nnoremap <Space>dc :action RunToCursor<CR>
+nnoremap <Space>dm :action XDebugger.MuteBreakpoints<CR>
 
 " ?
 " nnoremap <Space>kp :action WelcomeScreen.Documentation<CR>
