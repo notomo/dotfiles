@@ -24,3 +24,5 @@ nnoremap <silent> [unite]ll :<C-u>Denite line<CR>
 repo = 'Shougo/deol.nvim'
 on_cmd = 'Deol'
 
+[[plugins]]
+repo = 'ujihisa/neco-look'

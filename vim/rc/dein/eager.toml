@@ -6,6 +6,7 @@ nmap [exec]d [dein]
 nnoremap [dein]c :<C-u>call dein#clear_state()<CR>
 nnoremap [dein]r :<C-u>call dein#recache_runtimepath()<CR>
 nnoremap [dein]u :<C-u>call dein#update()
+nnoremap [dein]U :<C-u>call dein#remote_plugins()<CR>
 '''
 
 [[plugins]]
@@ -90,7 +91,7 @@ repo = 'Shougo/neco-vim'
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
-if = "has('lua')"
+if = "has('lua') && !has('nvim')"
 hook_add = 'source ~/.vim/rc/plugins/neocomplete_setting.vim'
 
 [[plugins]]
@@ -129,9 +130,6 @@ map e <Plug>(smartword-e)
 [[plugins]]
 repo = 'Shougo/neco-syntax'
 
-# [[plugins]]
-# repo = 'ujihisa/neco-look'
-
 [[plugins]]
 repo = 'rhysd/vim-color-spring-night'
 hook_add = '''
@@ -140,4 +138,4 @@ let g:spring_night_kill_italic = 1
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
-if = "has('kaoriya')"
+if = "!has('kaoriya')"
