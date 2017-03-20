@@ -474,7 +474,7 @@ repo = 'Shougo/vimfiler.vim'
 depends = 'unite.vim'
 on_map = {n = '<Plug>'}
 on_if = "isdirectory(bufname('%'))"
-hook_add = 'nnoremap <silent> [exec]f :<C-u>VimFilerBufferDir -split -no-quit -toggle -buffer-name=<CR>'
+hook_add = 'nnoremap <silent> [exec]f :<C-u>VimFilerSplit -no-quit<CR>'
 hook_source = '''
 let g:vimfiler_enable_auto_cd = 1
 let g:vimfiler_as_default_explorer = 1
