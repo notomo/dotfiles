@@ -69,7 +69,7 @@ autocmd MyAuGroup BufNewFile,BufRead * set iminsert=0
 autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8 fileformat=unix
 autocmd MyAuGroup FileType help wincmd L
 
-if has('gui') && has('win64')
+if has('gui') && has('win32')
     autocmd MyAuGroup GUIEnter * simalt ~x
 endif
 
