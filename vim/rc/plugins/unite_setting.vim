@@ -41,6 +41,4 @@ call unite#custom#source('file_mru', 'ignore_pattern', '\v^(gina|gita)')
 
 call unite#custom#source('file', 'matchers', 'matcher_default')
 
-call unite#custom#source('file', 'sorters', ['sorter_length'])
-call unite#custom#source('file_mru', 'sorters', ['sorter_length'])
 call unite#custom#source('directory_mru', 'sorters', ['sorter_length'])
