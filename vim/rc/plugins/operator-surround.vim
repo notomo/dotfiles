@@ -1,5 +1,8 @@
 scriptencoding utf-8
 
+let g:operator#surround#ignore_space = 0
+let g:operator#surround#uses_input_if_no_block = 0
+
 let g:operator#surround#blocks =
 \ {
 \   '-' : [
