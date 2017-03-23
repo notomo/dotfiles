@@ -506,6 +506,7 @@ let s:main_cinoremap_info = [
             \ {s:LHS_PFX_KEY : 'v', s:RHS_KEY : '<C-q>'},
             \ {s:LHS_PFX_KEY : 'T', s:RHS_KEY : '<C-x><C-]>'},
             \ {s:LHS_PFX_KEY : 'o', s:RHS_KEY : '<C-y>'},
+            \ {s:LHS_PFX_KEY : 'j', s:RHS_KEY : '<C-e><CR>'},
             \]
 for s:info in s:main_cinoremap_info
     call s:cinoremap_with_prefix(s:MAIN_INPUT_PFX, s:info[s:LHS_PFX_KEY], s:info[s:RHS_KEY])
