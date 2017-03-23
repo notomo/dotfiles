@@ -14,7 +14,7 @@ let g:neocomplete#sources#syntax#min_keyword_length = 2
 " 補完を表示する最小文字数
 let g:neocomplete#auto_completion_start_length = 2
 let g:neocomplete#enable_complete_select = 1
-let g:neocomplete#enable_auto_select = 0
+let g:neocomplete#enable_auto_select = 1
 
 let g:neocomplete#enable_auto_close_preview = 3
 let g:neocomplete#enable_auto_delimiter = 1
@@ -51,9 +51,9 @@ let g:neocomplete#sources#omni#input_patterns.php =
 
 let g:neocomplete#force_overwrite_completefunc = 1
 
-inoremap <expr> j<Space>o neocomplete#start_manual_complete('omni')
-inoremap <expr> j<Space>; neocomplete#undo_completion()
-inoremap <expr> j<Space>. neocomplete#complete_common_string()
+inoremap <expr> j<Space>O neocomplete#start_manual_complete('omni')
+inoremap <expr> j<Space>u neocomplete#undo_completion()
+inoremap <expr> j<Space>; neocomplete#complete_common_string()
 
 let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'

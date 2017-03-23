@@ -505,6 +505,7 @@ let s:main_cinoremap_info = [
             \ {s:LHS_PFX_KEY : 'h', s:RHS_KEY : '<C-r>"'},
             \ {s:LHS_PFX_KEY : 'v', s:RHS_KEY : '<C-q>'},
             \ {s:LHS_PFX_KEY : 'T', s:RHS_KEY : '<C-x><C-]>'},
+            \ {s:LHS_PFX_KEY : 'o', s:RHS_KEY : '<C-y>'},
             \]
 for s:info in s:main_cinoremap_info
     call s:cinoremap_with_prefix(s:MAIN_INPUT_PFX, s:info[s:LHS_PFX_KEY], s:info[s:RHS_KEY])
@@ -630,6 +631,7 @@ nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
 nnoremap <silent> [exec]u :<C-u>sort nu<CR>
 nnoremap <silent> [exec]U :<C-u>sort! nu<CR>
 nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
+nnoremap <expr> [exec]l ':' . getline('.') . '<CR>'
 nnoremap <silent> [exec]r :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
 nnoremap [exec]e :<C-u>smile<CR>
 "}}}
