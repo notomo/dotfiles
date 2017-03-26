@@ -26,6 +26,7 @@ call vimfiler#custom#profile('default', 'context', {
 
 autocmd MyAuGroup FileType vimfiler call s:vimfiler_my_settings()
 function! s:vimfiler_my_settings()
+    setlocal nonumber
     nmap <buffer> j <Plug>(vimfiler_loop_cursor_down)
     nmap <buffer> k <Plug>(vimfiler_loop_cursor_up)
     nmap <buffer> gg <Plug>(vimfiler_cursor_top)
