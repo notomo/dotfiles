@@ -33,7 +33,6 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set smarttab
-set formatoptions+=q
 set clipboard=unnamed
 set foldmethod=manual
 set noshowmode
@@ -52,6 +51,9 @@ set viminfo+=n~/.vim/tmp/viminfo.txt
 set notitle
 set nofixendofline
 set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{&ff}:%Y]
+set expandtab
+set nofoldenable
+set foldlevel=3
 
 if has('win32') && $PATH !~? '\(^\|;\)' . escape($VIM, '\\') . '\(;\|$\)'
   let $PATH = $VIM . ';' . $PATH
@@ -81,7 +83,7 @@ function! s:auto_cd() abort
     endtry
 endfunction
 
-autocmd MyAuGroup VimEnter * if @% == '' && s:get_buf_byte() == 0 | setlocal buftype=nofile noswapfile | endif
+autocmd MyAuGroup VimEnter * if @% == '' && s:get_buf_byte() == 0 | setlocal buftype=nofile noswapfile fileformat=unix | endif
 function! s:get_buf_byte()
     let byte = line2byte(line('$') + 1)
     return byte == -1 ? 0 : byte - 1

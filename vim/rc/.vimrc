@@ -6,7 +6,10 @@ let $LANG='ja_JP.UTF-8'
 if has('vim_starting')
     set runtimepath+=~/.vim/
     set runtimepath+=~/.vim/after
-    set runtimepath+=$VIM/plugins/kaoriya
+    if has('kaoriya')
+        set runtimepath+=$VIM/plugins/kaoriya
+        source $VIM/plugins/kaoriya/encode_japan.vim
+    endif
 endif
 
 filetype off
@@ -14,7 +17,6 @@ filetype plugin indent off
 
 let g:mapleader = ','
 let g:maplocalleader = '<Leader>l'
-let g:ft_ignroe_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$'
 
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]
@@ -57,7 +59,6 @@ let g:loaded_netrwSettings     = 1
 let g:loaded_netrwFileHandlers = 1
 let g:loaded_spellfile_plugin  = 1
 let g:loaded_logiPat           = 1
-let g:PHP_autoformatcomment = 0
 
 runtime! rc/dein/dein.vim
 

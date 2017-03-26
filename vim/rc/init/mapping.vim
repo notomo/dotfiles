@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-" basic mapping"{{{
+" basic"{{{
 
 " delete a character using delete register
 nnoremap x "_x
@@ -23,8 +23,8 @@ nnoremap Q q:
 
 "}}}
 
-" edit mapping"{{{
-nnoremap <silent> [edit]x :<C-u>call tmno3#vimrc#exchange()<CR>
+" edit"{{{
+nnoremap <silent> <Leader>x :<C-u>call tmno3#vimrc#exchange()<CR>
 nnoremap [edit]r r
 vnoremap [edit]r r
 nnoremap [edit]h gU
@@ -42,24 +42,25 @@ nnoremap [edit]a *``cgn<C-r>"
 vnoremap <expr> [edit]d "y/\\V\<C-r>=substitute(escape(@\", '/\'), '\\n', '\\\\n', 'g')\<CR>\<CR>" . '``cgn'
 "}}}
 
-" kana mapping"{{{
+" kana"{{{
 nnoremap い i
 nnoremap あ a
 nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 "}}}
 
-" file mapping"{{{
+" file"{{{
 nnoremap [file]w :<C-u>write<CR>
 nnoremap [file]o :<C-u>edit<Space>
-nnoremap [file]r :<C-u>file<Space>
+nnoremap [file]rn :<C-u>file<Space>
+nnoremap [file]rl :<C-u>e!<CR>
 nnoremap [file]v :<C-u>edit $MYVIMRC<CR>
 "}}}
 
-" buffer mapping"{{{
+" buffer"{{{
 nnoremap [buf] <Nop>
 nmap <Space>b [buf]
 nnoremap [buf]a <C-^>
-nnoremap <silent> [buf]n :<C-u>enew \| setlocal buftype=nofile noswapfile<CR>
+nnoremap <silent> [buf]n :<C-u>enew \| setlocal buftype=nofile noswapfile fileformat=unix<CR>
 nnoremap [buf]Q :<C-u>qa<CR>
 nnoremap [buf]O :<C-u>call <SID>open_not_saved_bufs()<CR>
 
@@ -78,14 +79,14 @@ function! s:open_not_saved_bufs() abort
 endfunction
 "}}}
 
-" swap :; mapping"{{{
+" swap :;"{{{
 nnoremap ;  :
 nnoremap :  ;
 vnoremap ;  :
 vnoremap :  ;
 "}}}
 
-" visual mode mapping"{{{
+" visual mode"{{{
 nnoremap <Space>h <C-v>
 nnoremap <Space>l <S-v>
 nnoremap <Space>v gv
@@ -103,18 +104,18 @@ function! s:select_paste_region() abort
 endfunction
 "}}}
 
-" select mode mapping"{{{
+" select mode"{{{
 snoremap <CR> <DEL>
 "}}}
 
-" grep mapping"{{{
+" grep"{{{
 nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
 nnoremap <Space>Gr :<C-u>grep! '' *<Left><Left><Left>
 nnoremap <Space>Gt :<C-u>cexpr ''<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
 nnoremap <Space>Gb :<C-u>cexpr ''<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
 "}}}
 
-" ESC mapping"{{{
+" ESC"{{{
 inoremap <silent> jj <ESC>
 inoremap <silent> っｊ <ESC>
 inoremap <silent> ｊｊ <ESC>
@@ -123,7 +124,7 @@ onoremap jj <ESC>
 snoremap jj <ESC>
 "}}}
 
-" indent mapping"{{{
+" indent"{{{
 nnoremap [indent] <Nop>
 nmap z [indent]
 vnoremap [indent] <Nop>
@@ -153,7 +154,7 @@ vnoremap [indent]o =
 vnoremap [indent]a :left<CR>gv
 "}}}
 
-" move mapping"{{{
+" move"{{{
 nnoremap k   gk
 nnoremap j   gj
 vnoremap k   gk
@@ -185,7 +186,7 @@ nnoremap <C-j> <C-f>
 nnoremap <C-e> gi
 "}}}
 
-" newline mapping"{{{
+" newline"{{{
 nnoremap [newline] <Nop>
 nmap o [newline]
 nnoremap <silent> [newline]o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
@@ -195,7 +196,7 @@ nnoremap [newline]d o
 nnoremap [newline]u O
 "}}}
 
-" option mapping"{{{
+" option"{{{
 nnoremap [option] <Nop>
 nmap <Space>o [option]
 
@@ -220,7 +221,7 @@ nnoremap [option]F :<C-u>call <SID>toggle_filetype()<CR>
 
 "}}}
 
-" keyword mapping"{{{
+" keyword"{{{
 function! s:tab_tag_open() abort
     try
         call bettertagjump#php#Jump()
@@ -246,12 +247,31 @@ function! s:vertical_tag_open() abort
         echo 'Not found tag'
     endtry
 endfunction
+function! s:horizontal_tag_open() abort
+    try
+        let curbuf_num = bufnr('%')
+        call bettertagjump#php#Jump()
+        let tagbuf_num = bufnr('%')
+        noautocmd execute 'buffer ' . curbuf_num
+        split
+        noautocmd execute 'buffer ' . tagbuf_num
+    catch
+        echo 'Not found tag'
+    endtry
+endfunction
+function! s:tag_open() abort
+    try
+        call bettertagjump#php#Jump()
+    catch
+        echo 'Not found tag'
+    endtry
+endfunction
 nnoremap [keyword]v :<C-u>call <SID>vertical_tag_open()<CR>
-nnoremap [keyword]o :<C-u>call bettertagjump#php#Jump()<CR>
-nnoremap [keyword]h <C-w>]
+nnoremap [keyword]o :<C-u>call <SID>tag_open()<CR>
+nnoremap [keyword]h :<C-u>call <SID>horizontal_tag_open()<CR>
 "}}}
 
-" Nop mapping"{{{
+" Nop"{{{
 nnoremap <F1> <Nop>
 vnoremap q <Nop>
 vnoremap ZQ <Nop>
@@ -276,39 +296,16 @@ noremap <4-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
 "}}}
 
-" others mapping"{{{
-function! s:set_current_filetype() abort
-    execute 'set filetype=' . &filetype
-endfunction
-nnoremap <F4> :<C-u>call <SID>set_current_filetype()<CR>
-
-function! GitCtags() abort
-    let l:git_root = system("git rev-parse --show-toplevel | tr -d '\\n'")
-    let l:git_folder = l:git_root . '/.git'
-    let l:current_folder = getcwd()
-    if l:git_folder[-4:] ==? '.git'
-        execute 'cd ' . l:git_root
-        let l:tags_path = l:git_folder . '/tags'
-        execute 'set tags+=' . l:tags_path . ';'
-        execute '!start ctags --sort=yes --append=no -f ' . l:tags_path . ' -R ' . l:git_root
-        execute 'cd ' . l:current_folder
-    else
-        echomsg 'None .git error'
-    endif
-endfunction
-command! GitaCtagsCommand call GitCtags()
-nnoremap <C-F3> :<C-u>GitaCtagsCommand<CR>
-
-function! OpenWorkText() abort
+" others"{{{
+function! s:open_work_text() abort
     let l:work_text_file_path =  '~/worktexts/' . strftime('%Y_%m_%d.txt')
     execute 'tab drop ' . l:work_text_file_path
     execute 'set filetype=worktext'
 endfunction
-command! OpenWorkTextCommand call OpenWorkText()
-nnoremap <Space>ew :<C-u>OpenWorkTextCommand<CR>
+nnoremap <Space>ew :<C-u>call <SID>open_work_text()<CR>
 "}}}
 
-" substitute mapping"{{{
+" substitute"{{{
 nnoremap [substitute] <Nop>
 nmap <Space>s [substitute]
 vnoremap [substitute] <Nop>
@@ -335,7 +332,7 @@ nnoremap [substitute]i :<C-u>g//d<Left><Left>
 vnoremap [substitute]i :g//d<Left><Left>
 "}}}
 
-" replace mapping"{{{
+" replace"{{{
 nnoremap [replace] <Nop>
 nmap <Space>r [replace]
 vnoremap [replace] <Nop>
@@ -388,7 +385,7 @@ for s:info in s:replace_map_info
 endfor
 "}}}
 
-" yank mapping"{{{
+" yank"{{{
 nnoremap [yank] <Nop>
 nmap <Space>y [yank]
 
@@ -434,7 +431,7 @@ call s:ia_vonoremap('d', '}')
 call s:ia_vonoremap('b', '`')
 "}}}
 
-" fold mapping"{{{
+" fold"{{{
 noremap [fold] <Nop>
 map <Leader>z [fold]
 noremap [fold]j zj
@@ -452,7 +449,7 @@ noremap [fold]d zd
 noremap zD <Nop>
 "}}}
 
-" command and insert mapping"{{{
+" command and insert"{{{
 
 " 移動
 noremap! <C-h> <Left>
@@ -555,7 +552,7 @@ inoremap <expr> j<Space>k <SID>complete_pair()
 
 "}}}
 
-" macro mapping"{{{
+" macro"{{{
 nnoremap [macro] <Nop>
 nmap q [macro]
 nnoremap [macro]r qa
@@ -564,7 +561,7 @@ nnoremap [macro]s @a
 nnoremap [macro]d qaq
 "}}}
 
-" diff mapping"{{{
+" diff"{{{
 function! s:diff_tab_open(...)
     if a:0 == 1
         tabedit %:p

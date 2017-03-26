@@ -235,8 +235,8 @@ map N <Plug>(incsearch-nohl-N)
 nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
 nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
-omap ra <Plug>(incsearch-forward)\v[[({<"']\zs[^[({<"']{-}%#<CR>
-omap rA <Plug>(incsearch-forward)\v[[({<"']\zs.{-}%#<CR>
+omap <silent> ra <Plug>(incsearch-forward)\v[[({<"']\zs[^[({<"']{-}%#<CR>
+omap <silent> rA <Plug>(incsearch-forward)\v[[({<"']\zs.{-}%#<CR>
 '''
 hook_post_source = '''
 let g:incsearch#auto_nohlsearch = 1
@@ -508,16 +508,16 @@ hook_add = 'nnoremap [edit]s :<C-u>Switch<CR>'
 hook_source = '''
 let g:switch_mapping = ""
 
-" let g:switch_custom_definitions = [
-" \   {
-" \     '\<[a-z0-9]\+_\k\+\>': {
-" \       '_\(.\)' : '\U\1'
-" \     },
-" \     '\<[a-z0-9]\+[A-Z]\k\+\>': {
-" \       '\([A-Z]\)' : '_\l\1'
-" \     },
-" \   },
-" \ ]
+let g:switch_custom_definitions = [
+\   {
+\     '\<[a-z0-9]\+_\k\+\>': {
+\       '_\(.\)' : '\U\1'
+\     },
+\     '\<[a-z0-9]\+[A-Z]\k\+\>': {
+\       '\([A-Z]\)' : '_\l\1'
+\     },
+\   },
+\ ]
 
 autocmd MyAuGroup FileType php let b:switch_custom_definitions =
 \ [
@@ -904,3 +904,4 @@ hook_post_source = 'source ~/.vim/rc/plugins/gina.vim'
 repo = 'fuenor/im_control.vim'
 on_event = 'InsertEnter'
 hook_source = 'let g:IM_CtrlMode = 4'
+
