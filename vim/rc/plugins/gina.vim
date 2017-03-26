@@ -150,3 +150,4 @@ call gina#custom#mapping#nmap(
 \ {'silent': 1},
 \)
 
+call gina#custom#execute('show', 'call tmno3#gina#adjust_diff_fenc()')
