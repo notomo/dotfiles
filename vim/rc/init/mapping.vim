@@ -354,6 +354,7 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : 'co', s:PATTERN_KEY : '\S{-1,}\zs,\ze\S{-1,}', s:STR_KEY : ', '},
 \   {s:LHS_KEY : 'e', s:PATTERN_KEY : '\S{-1,}\zs(\=\| \=\|\= )\ze\S{-1,}', s:STR_KEY : ' = '},
 \   {s:LHS_KEY : 'd', s:PATTERN_KEY : '\S{-1,}\zs(\.\| \.\|\. )\ze\S{-1,}', s:STR_KEY : ' . '},
+\   {s:LHS_KEY : 'l', s:PATTERN_KEY : '\S{-1,}\zs(:\| :\|: )\ze\S{-1,}', s:STR_KEY : ' : '},
 \   {s:LHS_KEY : 'n', s:PATTERN_KEY : '^\n', s:STR_KEY : ''},
 \   {s:LHS_KEY : 'y', s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
 \   {s:LHS_KEY : 'Y', s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
@@ -647,3 +648,16 @@ nnoremap <silent> <Leader>sk :<C-u>call <SID>goto_func()<CR>
 
 nnoremap [operator]x "_d
 vnoremap [operator]x "_d
+
+" quickfix and locationlist"{{{
+nnoremap [qf] <Nop>
+nmap <Space>q [qf]
+
+nnoremap [qf]o :<C-u>call tmno3#qf#open()<CR>
+nnoremap [qf]c :<C-u>call tmno3#qf#close()<CR>
+nnoremap [qf]f :<C-u>call tmno3#qf#first()<CR>
+nnoremap [qf]l :<C-u>call tmno3#qf#last()<CR>
+nnoremap [qf]n :<C-u>call tmno3#qf#next()<CR>
+nnoremap [qf]p :<C-u>call tmno3#qf#previous()<CR>
+"}}}
+

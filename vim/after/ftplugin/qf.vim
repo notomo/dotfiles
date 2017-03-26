@@ -1,6 +1,5 @@
-nnoremap <buffer> <expr> <CR> expand(':cc '.line('.').'<CR>')
-
-noremap <buffer> p  <CR>zz<C-w>p
+nnoremap <buffer> <CR> :<C-u>call tmno3#qf#current_open(0)<CR>
+nnoremap <buffer> p :<C-u>call tmno3#qf#current_open(1)<CR>
 
 setlocal statusline+=\ %L
 
