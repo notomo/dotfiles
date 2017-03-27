@@ -32,6 +32,8 @@ endif
 '''
 
 smarty = '''
+setlocal noexpandtab
+
 if exists('loaded_matchit')
     call tmno3#matchit#smarty()
 endif
