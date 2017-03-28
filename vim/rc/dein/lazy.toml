@@ -70,7 +70,7 @@ on_map = '<Space>uw'
 repo = 'lambdalisue/unite-grep-vcs'
 # on_source = 'unite.vim'
 # TODO:
-on_map = '<Space>uG'
+on_map = '<Space>ug'
 
 [[plugins]]
 repo = 'kmnk/vim-unite-giti'
@@ -526,7 +526,7 @@ autocmd MyAuGroup FileType php let b:switch_custom_definitions =
 \     'self::\$\(\k\+\)' : '$\1',
 \     '\$\(\k\+\)' : '$this->\1',
 \   },
-\   ['private', 'public', 'protected'],
+\   ['private', 'protected', 'public'],
 \ ]
 
 autocmd MyAuGroup FileType sql let b:switch_custom_definitions =

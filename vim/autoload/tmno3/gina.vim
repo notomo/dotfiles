@@ -20,7 +20,7 @@ function! tmno3#gina#adjust_diff_fenc() abort
     for show_buf in show_bufs
         let fenc = getbufvar(show_buf, '&fileencoding')
         if fenc != exists_fenc
-            call tmno3#gina#change_diff_fenc(fenc)
+            call tmno3#gina#change_diff_fenc(exists_fenc)
             break
         endif
     endfor
