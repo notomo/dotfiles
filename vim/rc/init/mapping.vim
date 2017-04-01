@@ -660,5 +660,9 @@ nnoremap [qf]f :<C-u>call tmno3#qf#first()<CR>
 nnoremap [qf]l :<C-u>call tmno3#qf#last()<CR>
 nnoremap [qf]n :<C-u>call tmno3#qf#next()<CR>
 nnoremap [qf]p :<C-u>call tmno3#qf#previous()<CR>
+nnoremap [qf]d :<C-u>call tmno3#qf#delete()<CR>
+nnoremap [qf]u :<C-u>call tmno3#qf#undo()<CR>
+nnoremap [qf]<CR> :<C-u>call tmno3#qf#current_open()<CR>
+nnoremap [qf]<Space> :<C-u>call tmno3#qf#preview()<CR>
 "}}}
 
