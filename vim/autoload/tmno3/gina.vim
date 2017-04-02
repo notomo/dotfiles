@@ -26,9 +26,6 @@ function! tmno3#gina#adjust_diff_fenc() abort
     endfor
 endfunction
 
-nnoremap F :<C-u>call tmno3#gina#adjust_diff_fenc()<CR>
-
-
 function! tmno3#gina#convert_from_show_buf(buf_num) abort
     let gina_file_path = substitute(fnamemodify(bufname(a:buf_num), ':p'), '\', '/', 'g')
     let git = gina#core#get_or_fail()

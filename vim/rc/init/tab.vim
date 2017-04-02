@@ -110,8 +110,7 @@ set tabline=%!MakeTabLine()
 
 function! MakeTabLine() "{{{
   let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
-  let tabline_str = join(titles, '') . '%#TabLineFill#%T'
-  return tabline_str
+  return join(titles, '') . '%#TabLineFill#%T'
 endfunction "}}}
 
 function! s:tabpage_label(tab_num) "{{{

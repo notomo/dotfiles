@@ -235,30 +235,20 @@ function! s:tab_tag_open() abort
 endfunction
 nnoremap [keyword]t :<C-u>call <SID>tab_tag_open()<CR>
 
-function! s:vertical_tag_open() abort
+function! s:split_tag_open(split_cmd) abort
     try
         let curbuf_num = bufnr('%')
         call bettertagjump#php#Jump()
-        let tagbuf_num = bufnr('%')
-        noautocmd execute 'buffer ' . curbuf_num
-        vsplit
-        noautocmd execute 'buffer ' . tagbuf_num
+        if curbuf_num != bufnr('%')
+            noautocmd execute 'buffer ' . curbuf_num
+        endif
+        execute a:split_cmd
+        noautocmd execute "normal! \<C-o>"
     catch
         echo 'Not found tag'
     endtry
 endfunction
-function! s:horizontal_tag_open() abort
-    try
-        let curbuf_num = bufnr('%')
-        call bettertagjump#php#Jump()
-        let tagbuf_num = bufnr('%')
-        noautocmd execute 'buffer ' . curbuf_num
-        split
-        noautocmd execute 'buffer ' . tagbuf_num
-    catch
-        echo 'Not found tag'
-    endtry
-endfunction
+
 function! s:tag_open() abort
     try
         call bettertagjump#php#Jump()
@@ -266,9 +256,10 @@ function! s:tag_open() abort
         echo 'Not found tag'
     endtry
 endfunction
-nnoremap [keyword]v :<C-u>call <SID>vertical_tag_open()<CR>
+
+nnoremap [keyword]v :<C-u>call <SID>split_tag_open('vsplit')<CR>
 nnoremap [keyword]o :<C-u>call <SID>tag_open()<CR>
-nnoremap [keyword]h :<C-u>call <SID>horizontal_tag_open()<CR>
+nnoremap [keyword]h :<C-u>call <SID>split_tag_open('split')<CR>
 "}}}
 
 " Nop"{{{

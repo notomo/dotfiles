@@ -87,12 +87,6 @@ call gina#custom#mapping#nmap(
 \)
 
 call gina#custom#mapping#nmap(
-\ 'stash', 'pop',
-\ '<Plug>(gina-stash-pop)',
-\ {'silent' : 1},
-\)
-
-call gina#custom#mapping#nmap(
 \ 'branch', 'rn',
 \ '<Plug>(gina-branch-move)',
 \ {'silent' : 1},
@@ -150,4 +144,3 @@ call gina#custom#mapping#nmap(
 \ {'silent': 1},
 \)
 
-call gina#custom#execute('show', 'call tmno3#gina#adjust_diff_fenc()')
