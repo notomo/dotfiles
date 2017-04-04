@@ -4,7 +4,7 @@ scriptencoding utf-8
 let $LANG='ja_JP.UTF-8'
 
 if has('vim_starting')
-    set runtimepath+=~/.vim/
+    set runtimepath^=~/.vim/
     set runtimepath+=~/.vim/after
     if has('kaoriya')
         set runtimepath+=$VIM/plugins/kaoriya

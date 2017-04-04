@@ -14,6 +14,8 @@ mklink /D %HOMEPATH%"\.vim\dict" %HOMEPATH%"\dotfiles\vim\dict"
 mklink /D %HOMEPATH%"\.vim\snippets" %HOMEPATH%"\dotfiles\vim\snippets"
 mklink /D %HOMEPATH%"\.vim\tmp" %HOMEPATH%"\dotfiles\vim\tmp"
 mklink /D %HOMEPATH%"\.vim\after" %HOMEPATH%"\dotfiles\vim\after"
+mklink /D %HOMEPATH%"\.vim\ftplugin" %HOMEPATH%"\dotfiles\vim\ftplugin"
+mklink /D %HOMEPATH%"\.vim\syntax" %HOMEPATH%"\dotfiles\vim\syntax"
 
 mkdir %HOMEPATH%"\.config" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
