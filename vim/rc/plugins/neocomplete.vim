@@ -19,7 +19,7 @@ let g:neocomplete#snippets_dir ='~/.vim/snippets'
 let g:neocomplete#sources#dictionary#dictionaries  = {'_' : '', 'php' : '~/.vim/dict/php.dict'}
 let g:neocomplete#delimiter_patterns = {'php' : ['->', '::', '\'], 'python' : ['.',',']}
 
-let s:base_sources = ['neosnippet', 'dictionary', 'buffer', 'member', 'file']
+let s:base_sources = ['neosnippet', 'dictionary', 'buffer', 'file']
 let g:neocomplete#sources = {'_' : s:base_sources}
 let g:neocomplete#sources.vim = insert(copy(s:base_sources), 'vim', 0)
 let g:neocomplete#sources.php = add(copy(s:base_sources), 'tag')
