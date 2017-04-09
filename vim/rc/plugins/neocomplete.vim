@@ -1,8 +1,6 @@
 
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_underbar_completion = 1
-let g:neocomplete#enable_camel_case_completion  =  1
 let g:neocomplete#max_list = 10
 let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#auto_completion_start_length = 2
@@ -11,7 +9,7 @@ let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#enable_auto_close_preview = 1
 let g:neocomplete#enable_auto_delimiter = 1
 let g:neocomplete#max_keyword_width = 30
-let g:neocomplete#sources#buffer#cache_limit_size  = 50000
+let g:neocomplete#sources#buffer#cache_limit_size  = 500000
 let g:neocomplete#sources#buffer#max_keyword_width = 50
 let g:neocomplete#use_vimproc = 1
 let g:neocomplete#force_overwrite_completefunc = 1
@@ -22,7 +20,7 @@ let g:neocomplete#delimiter_patterns = {'php' : ['->', '::', '\'], 'python' : ['
 let s:base_sources = ['neosnippet', 'dictionary', 'buffer', 'file']
 let g:neocomplete#sources = {'_' : s:base_sources}
 let g:neocomplete#sources.vim = insert(copy(s:base_sources), 'vim', 0)
-let g:neocomplete#sources.php = add(copy(s:base_sources), 'tag')
+let g:neocomplete#sources.php = s:base_sources
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
