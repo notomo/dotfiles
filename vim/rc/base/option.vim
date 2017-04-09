@@ -48,6 +48,7 @@ set noundofile
 set noswapfile
 set browsedir=buffer
 set viminfo+=n~/.vim/tmp/viminfo.txt
+set viminfo+='0
 set notitle
 set nofixendofline
 set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{&ff}:%Y]
@@ -67,29 +68,41 @@ if !has('gui')
     colorscheme spring-night
 endif
 
-autocmd MyAuGroup BufNewFile,BufRead * set iminsert=0
-autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8 fileformat=unix
-autocmd MyAuGroup FileType help wincmd L
+" tabline"{{{
+set tabline=%!MakeTabLine()
 
-if has('gui') && has('win32')
-    autocmd MyAuGroup GUIEnter * simalt ~x
-endif
+function! MakeTabLine() "{{{
+  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+  return join(titles, '') . '%#TabLineFill#%T'
+endfunction "}}}
 
-autocmd MyAuGroup BufEnter * call s:auto_cd()
-function! s:auto_cd() abort
-    try
-        execute ':lcd ' . substitute(expand('%:p:h'),' ','\\\\ ','g')
-    catch
-    endtry
-endfunction
+function! s:tabpage_label(tab_num) "{{{
+    let tab_bufs = tabpagebuflist(a:tab_num)
+    let curbuf_num = tab_bufs[tabpagewinnr(a:tab_num) - 1]
+    let buf_cnt = len(tab_bufs)
 
-autocmd MyAuGroup VimEnter * if @% == '' && s:get_buf_byte() == 0 | setlocal buftype=nofile noswapfile fileformat=unix | endif
-function! s:get_buf_byte()
-    let byte = line2byte(line('$') + 1)
-    return byte == -1 ? 0 : byte - 1
-endfunction
+    let file_nm = fnamemodify(bufname(curbuf_num), ':t')
+    if file_nm ==# '[Command Line]'
+        let file_nm = expand('#')
+        let buf_cnt -= 1
+    endif
+    let file_nm = file_nm ==? '' ? 'NONE' : file_nm
 
-command! -nargs=0 CdCurrent cd %:p:h
-command! -bar TimerStart let start_time = reltime()
-command! -bar TimerEnd   echo reltimestr(reltime(start_time)) | unlet start_time
+    if getbufvar(curbuf_num, '&modified')
+        let is_mod_str = '+'
+    elseif buf_cnt == 1
+        let is_mod_str = ''
+        let buf_cnt = ''
+    else
+        let is_mod_tab = len(filter(copy(tab_bufs), "getbufvar(v:val, '&modified')"))
+        let is_mod_str = is_mod_tab ? '(+)' : ''
+    endif
 
+    let option_str = buf_cnt . is_mod_str
+    let label = option_str ==? '' ? file_nm : file_nm . '[' . option_str . ']'
+
+    let hi_type = a:tab_num == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+
+    return '%' . a:tab_num . 'T' . join([hi_type, label, '%T%#TabLineFill#'], ' ')
+endfunction "}}}
+"}}}

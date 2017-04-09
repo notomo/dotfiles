@@ -10,24 +10,24 @@ if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 
-if !dein#load_state(s:dein_dir)
-    finish
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
+
+    let s:dein_dir = expand('~/.vim/rc/dein')
+
+    call dein#load_toml(s:dein_dir . '/eager.toml', {'lazy': 0})
+    call dein#load_toml(s:dein_dir . '/lazy.toml', {'lazy': 1})
+    if has('nvim')
+        call dein#load_toml(s:dein_dir . '/neovim.toml', {})
+    endif
+    call dein#load_toml(s:dein_dir . '/filetype.toml')
+
+    call dein#end()
+    call dein#save_state()
+
+    if dein#check_install()
+        call dein#install()
+    endif
 endif
 
-call dein#begin(s:dein_dir)
-
-let s:dein_dir = expand('~/.vim/rc/dein')
-
-call dein#load_toml(s:dein_dir . '/eager.toml', {'lazy': 0})
-call dein#load_toml(s:dein_dir . '/lazy.toml', {'lazy': 1})
-if has('nvim')
-    call dein#load_toml(s:dein_dir . '/neovim.toml', {})
-endif
-call dein#load_toml(s:dein_dir . '/filetype.toml')
-
-call dein#end()
-call dein#save_state()
-
-if dein#check_install()
-    call dein#install()
-endif
+autocmd MyAuGroup GuiEnter * call dein#call_hook('post_source')

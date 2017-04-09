@@ -657,3 +657,105 @@ nnoremap [qf]<CR> :<C-u>call tmno3#qf#current_open()<CR>
 nnoremap [qf]<Space> :<C-u>call tmno3#qf#preview()<CR>
 "}}}
 
+" window"{{{
+" move"{{{
+nnoremap [winmv] <Nop>
+nmap m [winmv]
+
+" left
+nnoremap [winmv]a <C-w>h
+" down
+nnoremap [winmv]j <C-w>j
+nnoremap [winmv]x <C-w>j
+" up
+nnoremap [winmv]k <C-w>k
+nnoremap [winmv]w <C-w>k
+" right
+nnoremap [winmv]l <C-w>l
+" swap
+nnoremap [winmv]s <C-w>r
+"}}}
+
+" split"{{{
+
+nnoremap [win] <Nop>
+nmap <Space>w [win]
+
+" split horizontally
+nnoremap [win]h :<C-u>split<CR>
+" split vertically
+nnoremap [win]v :<C-u>vsplit<CR>
+" close others
+nnoremap [win]o :<C-u>only<CR>
+" close others vertically
+nnoremap [win]j :<C-u>call tmno3#window#vonly()<CR>
+" close right vertically
+nnoremap [win]; :<C-u>call tmno3#window#ronly()<CR>
+" close left windows
+nnoremap [win]a :<C-u>call tmno3#window#lonly()<CR>
+" close preview
+nnoremap [win]p <C-w>z
+" close
+nnoremap [win]q :<C-u>q<CR>
+" open left tab's buffers vertically
+nnoremap [win]H :<C-u>call tmno3#window#vs_from_left()<CR>
+" open right tab's buffers vertically
+nnoremap [win]L :<C-u>call tmno3#window#vs_from_right()<CR>
+" reopen windows vertically
+nnoremap [win]V :<C-u>call tmno3#window#h_to_vsplit()<CR>
+" close window and open tab
+nnoremap [win]l :<C-u>call tmno3#window#extract_tabopen()<CR>
+" open the alternative buffer with vertical splitting
+nnoremap [win]b :<C-u>call tmno3#window#vsplit_altopen()<CR>
+"}}}
+
+" winsize"{{{
+let s:winsize_enter = 'i'
+silent execute join(['nnoremap', '[win]' . s:winsize_enter, ":<C-u>call tmno3#window#setup_submode('" . s:winsize_enter . "')<CR>"])
+
+" equalize
+nnoremap [win]e <C-w>=
+" maximize
+nnoremap [win]m :<C-u>SM 4<CR>
+"}}}
+"}}}
+
+
+" tab"{{{
+
+nnoremap [tab] <Nop>
+nmap t [tab]
+vnoremap [tab] <Nop>
+vmap t [tab]
+
+" close others
+nnoremap <silent> [tab]o :<C-u>tabonly<CR>
+vnoremap <silent> [tab]o :<C-u>tabonly<CR>
+
+" close tab"{{{
+function! s:tabclose_c() abort
+    if tabpagenr('$') == 1
+        qa
+    else
+        tabclose
+    endif
+endfunction
+nnoremap <silent> <Plug>(tabclose_c) :<C-u>call <SID>tabclose_c()<CR>
+"}}}
+
+" for mouse"{{{
+nnoremap <C-Tab> gt
+nnoremap <C-S-Tab> gT
+inoremap <C-Tab> <Esc>gt
+inoremap <C-S-Tab> <Esc>gT
+vnoremap <C-Tab> <Esc>gt
+vnoremap <C-S-Tab> <Esc>gT
+nnoremap <silent> <C-w> :<C-u>call <SID>tabclose_c()<CR>
+inoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
+"}}}
+
+for s:info in tmno3#mapping#tab()
+    silent execute join(['nnoremap', '[tab]' . s:info[s:LHS_KEY], ":<C-u>call tmno3#tab#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
+endfor
+
+"}}}

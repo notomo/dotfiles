@@ -259,7 +259,9 @@ on_map = {n = '<Plug>(anzu-n-with-echo)'}
 [[plugins]]
 repo = 'sgur/vim-py3diff'
 if = "has('python3')"
-on_cmd = 'Diff'
+hook_add = '''
+set diffexpr=py3diff#diffexpr()
+'''
 
 [[plugins]]
 repo = 'tyru/restart.vim'

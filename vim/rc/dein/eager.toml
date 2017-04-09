@@ -1,3 +1,78 @@
+hook_add = '''
+let g:mapleader = ','
+let g:maplocalleader = '<Leader>l'
+
+nnoremap [exec] <Nop>
+nmap <Space>x [exec]
+vnoremap [exec] <Nop>
+vmap <Space>x [exec]
+nnoremap [keyword] <Nop>
+nmap <Space>k [keyword]
+nnoremap [diff] <Nop>
+nmap <Leader>d [diff]
+vnoremap [diff] <Nop>
+vmap <Leader>d [diff]
+nnoremap [edit] <Nop>
+nmap <Space>e [edit]
+vnoremap [edit] <Nop>
+vmap <Space>e [edit]
+nnoremap [file] <Nop>
+nmap <Space>f [file]
+noremap [operator] <Nop>
+map <Space><Leader> [operator]
+nnoremap [git] <Nop>
+nmap <Leader>g [git]
+vnoremap [git] <Nop>
+vmap <Leader>g [git]
+
+let g:plugin_dicwin_disable    = 1
+let g:loaded_gzip              = 1
+let g:loaded_tar               = 1
+let g:loaded_tarPlugin         = 1
+let g:loaded_zip               = 1
+let g:loaded_zipPlugin         = 1
+let g:loaded_rrhelper          = 1
+let g:loaded_2html_plugin      = 1
+let g:loaded_vimball           = 1
+let g:loaded_vimballPlugin     = 1
+let g:loaded_getscript         = 1
+let g:loaded_getscriptPlugin   = 1
+let g:loaded_netrw             = 1
+let g:loaded_netrwPlugin       = 1
+let g:loaded_netrwSettings     = 1
+let g:loaded_netrwFileHandlers = 1
+let g:loaded_spellfile_plugin  = 1
+let g:loaded_logiPat           = 1
+
+augroup MyAuGroup
+    autocmd!
+augroup END
+
+autocmd MyAuGroup BufNewFile,BufRead * set iminsert=0
+autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8 fileformat=unix
+autocmd MyAuGroup FileType help wincmd L
+
+if has('gui') && has('win32')
+    autocmd MyAuGroup GUIEnter * simalt ~x
+endif
+
+autocmd MyAuGroup BufEnter * call s:auto_cd()
+function! s:auto_cd() abort
+    try
+        execute ':lcd ' . substitute(expand('%:p:h'),' ','\\\\ ','g')
+    catch
+    endtry
+endfunction
+
+autocmd MyAuGroup VimEnter * if @% == '' && s:get_buf_byte() == 0 | setlocal buftype=nofile noswapfile fileformat=unix | endif
+function! s:get_buf_byte()
+    let byte = line2byte(line('$') + 1)
+    return byte == -1 ? 0 : byte - 1
+endfunction
+
+set guioptions+=M
+
+'''
 
 [[plugins]]
 repo = 'Shougo/dein.vim'
@@ -64,6 +139,9 @@ vnoremap [dbext]m :<C-u>'<,'>ExecuteLimitSQL<CR>
 [[plugins]]
 repo = 'thinca/vim-singleton'
 if = "has('clientserver')"
+hook_post_source = '''
+call singleton#enable()
+'''
 
 [[plugins]]
 repo = 'thinca/vim-zenspace'
@@ -80,6 +158,11 @@ nmap <Space>g [fugit]
 nnoremap [fugit]d :<C-u>Gvdiff<CR>
 nnoremap [fugit]s :<C-u>Gstatus<CR>:only<CR>
 nnoremap [fugit]l :<C-u>tabe %<CR>:Glog \| copen<CR>
+'''
+hook_post_source = '''
+if has('vim_starting')
+    set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
+endif
 '''
 
 [[plugins]]
