@@ -17,3 +17,10 @@ endfunction
 function! tmno3#vimrc#cd_current() abort
     cd %:p:h
 endfunction
+
+function! tmno3#vimrc#syntax_report() abort
+    syntime on
+    redraw!
+    syntime off
+    Capture syntime report
+endfunction
