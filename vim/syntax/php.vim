@@ -258,4 +258,19 @@ hi def link phpTag Delimiter
 syn match phpMemberSelector "->"
 hi def link phpMemberSelector  Structure
 
+syntax match  phpDocCustomTags  "@[a-zA-Z]*\(\s\+\|\n\|\r\)" containedin=phpComment
+syntax region phpDocTags  start="{@\(example\|id\|internal\|inheritdoc\|link\|source\|toc\|tutorial\)" end="}" containedin=phpComment
+syntax match  phpDocTags  "@\(abstract\|access\|author\|category\|copyright\|deprecated\|example\|final\|global\|ignore\|internal\|license\|link\|method\|name\|package\|param\|property\|return\|see\|since\|static\|staticvar\|subpackage\|tutorial\|uses\|var\|version\|contributor\|modified\|filename\|description\|filesource\|throws\)\(\s\+\)\?" containedin=phpComment
+syntax match  phpDocTodo  "@\(todo\|fixme\|xxx\)\(\s\+\)\?" containedin=phpComment
+hi def link phpDocTags PreProc
+hi def link phpDocCustomTags Type
+hi def link phpDocTodo Todo
+
+syn region  phpComment  start="/\*" end="\*/" contains=phpTodo,@Spell
+
+if !exists('php_minlines')
+  let php_minlines = 100
+endif
+exec 'syn sync ccomment phpComment minlines=' . php_minlines
+
 let b:current_syntax = 'php'
