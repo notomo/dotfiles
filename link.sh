@@ -13,6 +13,7 @@ ln -s ~/dotfiles/vim/tmp ~/.vim/tmp
 ln -s ~/dotfiles/vim/after ~/.vim/after
 ln -s ~/dotfiles/vim/ftplugin/ ~/.vim/ftplugin
 ln -s ~/dotfiles/vim/syntax/ ~/.vim/syntax
+ln -s ~/dotfiles/vim/indent/ ~/.vim/indent
 
 # neovim
 mkdir -p ~/.config

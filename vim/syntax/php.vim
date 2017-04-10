@@ -8,24 +8,24 @@ endif
 " endif
 " finish
 
+syn keyword phpInclude  include require include_once require_once use
+hi def link phpInclude Include
+
 syn keyword phpStructure  abstract class interface
+syn keyword phpStructure  namespace extends implements instanceof parent self
 syntax keyword phpStructure list
 hi def link phpStructure Structure
 
 syn keyword phpException  catch throw try
 hi def link phpException Exception
 
-syn keyword phpType bool boolean int integer real double float string array object NULL 
+syn keyword phpType bool boolean int integer real double float string array object null 
 hi def link phpType  Type
 
 
 syn keyword phpKeyword  var const
 hi def link phpKeyword Statement
 
-
-syn keyword phpStatement  return break continue exit goto
-syntax keyword phpStatement die
-hi def link phpStatement Statement
 
 
 syn keyword phpSCKeyword  abstract final private protected public static
@@ -35,11 +35,6 @@ hi def link phpSCKeyword StorageClass
 hi def link phpFCKeyword Define
 
 
-syntax match phpComparison "\v[=!]\=\=?"
-syntax match phpComparison "\v[=<>-]@<![<>]\=?[<>]@!"
-syntax keyword phpComparison instanceof
-hi link phpComparison Statement
-
 
 syn match phpOperator "[-=+%^&|*!.~?:]"
 syn match phpOperator "[-+*/%^&|.]=" 
@@ -48,6 +43,15 @@ syn match phpOperator "\$"
 syn match phpOperator "&&\|\<and\>"
 syn match phpOperator "||\|\<x\=or\>"
 hi def link phpOperator Operator
+
+syntax match phpComparison "\v[=!]\=\=?"
+syntax match phpComparison "\v[=<>-]@<![<>]\=?[<>]@!"
+syntax keyword phpComparison instanceof
+hi link phpComparison Statement
+
+syn match phpRelation "[!=<>]="
+syn match phpRelation "[<>]"
+hi def link phpRelation Operator
 
 
 syn keyword phpRepeat as do endfor endforeach endwhile for foreach while
@@ -265,6 +269,11 @@ syntax match  phpDocTodo  "@\(todo\|fixme\|xxx\)\(\s\+\)\?" containedin=phpComme
 hi def link phpDocTags PreProc
 hi def link phpDocCustomTags Type
 hi def link phpDocTodo Todo
+
+syn keyword phpStatement  return break continue exit goto
+syntax keyword phpStatement die
+hi def link phpStatement Statement
+
 
 syn region  phpComment  start="/\*" end="\*/" contains=phpTodo,@Spell
 
