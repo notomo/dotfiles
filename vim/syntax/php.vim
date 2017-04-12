@@ -13,6 +13,7 @@ hi def link phpInclude Include
 
 syn keyword phpStructure  abstract class interface
 syn keyword phpStructure  namespace extends implements instanceof parent self
+syn keyword phpStructure trait
 syntax keyword phpStructure list
 hi def link phpStructure Structure
 
@@ -251,6 +252,12 @@ syn keyword phpFunctions  yaz_addinfo yaz_ccl_conf yaz_ccl_parse yaz_close yaz_c
 syn keyword phpFunctions  zip_close zip_entry_close zip_entry_compressedsize zip_entry_compressionmethod zip_entry_filesize zip_entry_name zip_entry_open zip_entry_read zip_open zip_read  
 syn keyword phpFunctions  gzclose gzcompress gzdeflate gzencode gzeof gzfile gzgetc gzgets gzgetss gzinflate gzopen gzpassthru gzputs gzread gzrewind gzseek gztell gzuncompress gzwrite readgzfile zlib_get_coding_type  
 hi def link phpFunctions Function
+
+syntax keyword phpSpecialFunction containedin=ALLBUT,phpComment,phpStringDouble,phpStringSingle,phpIdentifier
+  \  __construct __destruct __call __callStatic __get __set __isset __unset __sleep __wakeup __toString __invoke __set_state __clone __debugInfo
+syntax keyword phpSpecialFunction containedin=ALLBUT,phpComment,phpStringDouble,phpStringSingle,phpIdentifier,phpMethodsVar
+  \ __autoload
+highlight link phpSpecialFunction phpOperator
 
 
 syn keyword phpConditional  declare else enddeclare endswitch elseif endif if switch
