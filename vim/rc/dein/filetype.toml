@@ -5,16 +5,13 @@ let g:markdown_fenced_languages = [
 \  'vim',
 \]
 
-let g:php_folding = 1
-let g:PHP_autoformatcomment = 0
-
 let g:ft_ignroe_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$'
 '''
 
 [ftplugin]
 
 _ = '''
-if &l:textwidth != 70 && &filetype !=# 'help'
+if &filetype !=# 'help'
     setlocal textwidth=0
 endif
 '''
