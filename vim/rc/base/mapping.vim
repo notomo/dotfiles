@@ -302,25 +302,55 @@ nmap <Space>s [substitute]
 vnoremap [substitute] <Nop>
 vmap <Space>s [substitute]
 
-nnoremap [substitute]f  :<C-u>%s/\v//g<Left><Left><Left>
-vnoremap [substitute]f  :s/\v%V%V//g<Left><Left><Left><Left><Left>
-nnoremap [substitute]iw :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right>
-nnoremap [substitute]w :<C-u>%s/\v//g<Left><Left><Left><C-r><C-w><Right><C-r><C-w>
-nnoremap [substitute]iv <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right>
-nnoremap [substitute]v <Right>byegv:<C-u>'<,'>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right><C-r>"
-nnoremap [substitute]iy  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right>
-nnoremap [substitute]y  :<C-u>%s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"
-vnoremap [substitute]iy  :<C-u>'<,'>s/\v//g<Left><Left><Left><C-r>"<Right>
-vnoremap [substitute]y  :<C-u>'<,'>s/\v//g<Left><Left><Left><C-r>"<Right><C-r>"<Right>
-nnoremap [substitute]c  :<C-u>%s/\C\v//g<Left><Left><Left>
-vnoremap [substitute]c  :<C-u>'<,'>s/\C\v//g<Left><Left><Left>
-nnoremap [substitute]d  :<C-u>%s/\v$//g<Left><Left>
-vnoremap [substitute]d  :<C-u>'<,'>s/\v$//g<Left><Left>
+let s:CURSOR_KEY = '{cursor}'
+let s:REGISTER_KEY = '{register}'
+let s:WORD_KEY = '{word}'
+function! s:generate_cmd(cmd_pattern, is_visual) abort
+    let result = substitute(a:cmd_pattern, s:REGISTER_KEY, @", 'g')
+    let result = substitute(result, s:WORD_KEY, expand('<cword>'), 'g')
+    " TODO : avoid {cursor} in the register
+    let cursor_pos = matchend(result, s:CURSOR_KEY)
+    let length = len(result)
+    let result = substitute(result, s:CURSOR_KEY, '', '')
+    let result .= repeat("\<Left>", length - cursor_pos)
+    let result = a:is_visual ? result : substitute(result, ':', ":\<C-u>", '')
+    return result
+endfunction
 
-nnoremap [substitute]e :<C-u>v//d<Left><Left>
-vnoremap [substitute]e :v//d<Left><Left>
-nnoremap [substitute]i :<C-u>g//d<Left><Left>
-vnoremap [substitute]i :g//d<Left><Left>
+nnoremap <expr> [substitute]f <SID>generate_cmd(':%s/\v{cursor}//g', 0)
+vnoremap <expr> [substitute]f <SID>generate_cmd(':s/\v%V{cursor}%V//g', 1)
+
+nnoremap <expr> [substitute]wi <SID>generate_cmd(':%s/\v{word}/{cursor}/g', 0)
+nnoremap <expr> [substitute]ww <SID>generate_cmd(':%s/\v{word}/{word}{cursor}/g', 0)
+nnoremap <expr> [substitute]iw <SID>generate_cmd(':%s/\v{cursor}/{word}/g', 0)
+
+nnoremap <expr> [substitute]vv <SID>generate_cmd('gv:s/\v%V{word}%V/{word}{cursor}/g', 1)
+nnoremap <expr> [substitute]vi <SID>generate_cmd('gv:s/\v%V{word}%V/{cursor}/g', 1)
+nnoremap <expr> [substitute]iv <SID>generate_cmd('gv:s/\v%V{cursor}%V/{word}/g', 1)
+nnoremap <expr> [substitute]yv <SID>generate_cmd('gv:s/\v%V{register}%V/{word}{cursor}/g', 1)
+nnoremap <expr> [substitute]vy <SID>generate_cmd('gv:s/\v%V{word}%V/{register}{cursor}/g', 1)
+
+nnoremap <expr> [substitute]yi <SID>generate_cmd(':%s/\v{register}/{cursor}/g', 0)
+vnoremap <expr> [substitute]yi <SID>generate_cmd(':s/\v{register}/{cursor}/g', 1)
+nnoremap <expr> [substitute]yy <SID>generate_cmd(':%s/\v{register}/{register}{cursor}/g', 0)
+vnoremap <expr> [substitute]yy <SID>generate_cmd(':s/\v{register}/{register}{cursor}/g', 1)
+nnoremap <expr> [substitute]iy <SID>generate_cmd(':%s/\v{cursor}/{register}/g', 0)
+vnoremap <expr> [substitute]iy <SID>generate_cmd(':s/\v{cursor}/{register}/g', 1)
+
+nnoremap <expr> [substitute]yw <SID>generate_cmd(':%s/\v{register}/{word}{cursor}/g', 0)
+nnoremap <expr> [substitute]wy <SID>generate_cmd(':%s/\v{word}/{register}{cursor}/g', 0)
+
+nnoremap <expr> [substitute]c <SID>generate_cmd(':%s/\C\v{cursor}//g', 0)
+vnoremap <expr> [substitute]c <SID>generate_cmd(':s/\C\v{cursor}//g', 1)
+
+nnoremap <expr> [substitute]e <SID>generate_cmd(':%s/\v$/{cursor}/g', 0)
+vnoremap <expr> [substitute]e <SID>generate_cmd(':s/\v$/{cursor}/g', 1)
+
+nnoremap <expr> [substitute]de <SID>generate_cmd(':v/{cursor}/d', 0)
+vnoremap <expr> [substitute]de <SID>generate_cmd(':v/{cursor}/d', 0)
+
+nnoremap <expr> [substitute]di <SID>generate_cmd(':g/{cursor}/d', 0)
+vnoremap <expr> [substitute]di <SID>generate_cmd(':g/{cursor}/d', 0)
 "}}}
 
 " replace"{{{
