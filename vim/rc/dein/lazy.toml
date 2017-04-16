@@ -67,12 +67,6 @@ hook_add = 'nnoremap <silent> [unite]w :<C-u>Unite webcolorname<CR>'
 on_map = '<Space>uw'
 
 [[plugins]]
-repo = 'lambdalisue/unite-grep-vcs'
-# on_source = 'unite.vim'
-# TODO:
-on_map = '<Space>ug'
-
-[[plugins]]
 repo = 'kmnk/vim-unite-giti'
 hook_add = '''
 nnoremap <silent> [unite]gb :<C-u>Unite giti/branch<CR>
@@ -265,6 +259,7 @@ set diffexpr=py3diff#diffexpr()
 
 [[plugins]]
 repo = 'tyru/restart.vim'
+if = "has('gui')"
 on_cmd = 'Restart'
 hook_add = 'nnoremap [exec]R :<C-u>Restart<CR>'
 hook_source = 'let g:restart_sessionoptions = "curdir,help,tabpages"'
@@ -713,23 +708,6 @@ let g:choosewin_color_overlay_current = {
 let g:choosewin_label = 'ASKLWEZXCPIHFRTYUVNMQGODB'
 let g:choosewin_blink_on_land      = 0
 let g:choosewin_statusline_replace = 0
-'''
-
-[[plugins]]
-repo = 't9md/vim-textmanip'
-on_map = {nx = '<Plug>'}
-hook_add = '''
-xmap <C-h> <Plug>(textmanip-move-left)
-xmap <C-j> <Plug>(textmanip-move-down)
-xmap <C-k> <Plug>(textmanip-move-up)
-xmap <C-l> <Plug>(textmanip-move-right)
-
-xmap <M-j> <Plug>(textmanip-duplicate-down)
-nmap <M-j> <Plug>(textmanip-duplicate-down)
-xmap <M-k> <Plug>(textmanip-duplicate-up)
-nmap <M-k> <Plug>(textmanip-duplicate-up)
-
-xmap <S-CR> <Plug>(textmanip-toggle-mode)
 '''
 
 [[plugins]]
