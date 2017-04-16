@@ -306,15 +306,16 @@ let s:CURSOR_KEY = '{cursor}'
 let s:REGISTER_KEY = '{register}'
 let s:WORD_KEY = '{word}'
 function! s:generate_cmd(cmd_pattern, is_visual) abort
-    let result = substitute(a:cmd_pattern, s:REGISTER_KEY, @", 'g')
-    let result = substitute(result, s:WORD_KEY, expand('<cword>'), 'g')
-    " TODO : avoid {cursor} in the register
-    let cursor_pos = matchend(result, s:CURSOR_KEY)
-    let length = len(result)
-    let result = substitute(result, s:CURSOR_KEY, '', '')
-    let result .= repeat("\<Left>", length - cursor_pos)
-    let result = a:is_visual ? result : substitute(result, ':', ":\<C-u>", '')
-    return result
+    let word = expand('<cword>')
+    let replaced_word = substitute(a:cmd_pattern, s:WORD_KEY, word, 'g')
+    let register = @"
+    let alter_register = repeat('x', len(register))
+    let alter_replaced_register = substitute(replaced_word, s:REGISTER_KEY, alter_register, 'g')
+    let cursor_pos = matchend(alter_replaced_register, s:CURSOR_KEY)
+    let deleted_cursor = substitute(replaced_word, s:CURSOR_KEY, '', '')
+    let result = substitute(deleted_cursor, s:REGISTER_KEY, register, 'g') . repeat("\<Left>", len(alter_replaced_register) - cursor_pos)
+    let result = substitute(result, "\n", '\\n', 'g')
+    return a:is_visual ? result : substitute(result, ':\zs', "\<C-u>", '')
 endfunction
 
 nnoremap <expr> [substitute]f <SID>generate_cmd(':%s/\v{cursor}//g', 0)
