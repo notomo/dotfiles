@@ -1,3 +1,10 @@
+
+install_root=~
+if [ "$1" != "" ]
+then
+    install_root=$1
+fi
+
 # vim
 ln -s ~/dotfiles/vim/rc/.vimrc ~/.vimrc
 ln -s ~/dotfiles/vim/rc/.gvimrc ~/.gvimrc
@@ -23,7 +30,7 @@ ln -s ~/dotfiles/vim/rc/init.vim ~/.config/nvim/init.vim
 # ideaVim
 ln -s ~/dotfiles/idea/.ideavimrc ~/.ideavimrc
 
-if [ "$1" != "-y" ]
+if [ "$1" == "" ]
 then
     read
 fi
