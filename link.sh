@@ -6,29 +6,29 @@ then
 fi
 
 # vim
-ln -s ~/dotfiles/vim/rc/.vimrc ~/.vimrc
-ln -s ~/dotfiles/vim/rc/.gvimrc ~/.gvimrc
-ln -s ~/dotfiles/vim/rc/kaoriya/.vimrc_first.vim ~/.vimrc_first.vim
-ln -s ~/dotfiles/vim/rc/kaoriya/.gvimrc_first.vim ~/.gvimrc_first.vim
+ln -s ${install_root}/dotfiles/vim/rc/.vimrc ${install_root}/.vimrc
+ln -s ${install_root}/dotfiles/vim/rc/.gvimrc ${install_root}/.gvimrc
+ln -s ${install_root}/dotfiles/vim/rc/kaoriya/.vimrc_first.vim ${install_root}/.vimrc_first.vim
+ln -s ${install_root}/dotfiles/vim/rc/kaoriya/.gvimrc_first.vim ${install_root}/.gvimrc_first.vim
 
-mkdir -p ~/.vim
-ln -s ~/dotfiles/vim/rc ~/.vim/rc
-ln -s ~/dotfiles/vim/autoload/ ~/.vim/autoload
-ln -s ~/dotfiles/vim/dict ~/.vim/dict
-ln -s ~/dotfiles/vim/snippets ~/.vim/snippets
-ln -s ~/dotfiles/vim/tmp ~/.vim/tmp
-ln -s ~/dotfiles/vim/after ~/.vim/after
-ln -s ~/dotfiles/vim/ftplugin/ ~/.vim/ftplugin
-ln -s ~/dotfiles/vim/syntax/ ~/.vim/syntax
-ln -s ~/dotfiles/vim/indent/ ~/.vim/indent
+mkdir -p ${install_root}/.vim
+ln -s ${install_root}/dotfiles/vim/rc ${install_root}/.vim/rc
+ln -s ${install_root}/dotfiles/vim/autoload/ ${install_root}/.vim/autoload
+ln -s ${install_root}/dotfiles/vim/dict ${install_root}/.vim/dict
+ln -s ${install_root}/dotfiles/vim/snippets ${install_root}/.vim/snippets
+ln -s ${install_root}/dotfiles/vim/tmp ${install_root}/.vim/tmp
+ln -s ${install_root}/dotfiles/vim/after ${install_root}/.vim/after
+ln -s ${install_root}/dotfiles/vim/ftplugin/ ${install_root}/.vim/ftplugin
+ln -s ${install_root}/dotfiles/vim/syntax/ ${install_root}/.vim/syntax
+ln -s ${install_root}/dotfiles/vim/indent/ ${install_root}/.vim/indent
 
 # neovim
-mkdir -p ~/.config
-ln -s ~/.vim ~/.config/nvim
-ln -s ~/dotfiles/vim/rc/init.vim ~/.config/nvim/init.vim
+mkdir -p ${install_root}/.config
+ln -s ${install_root}/.vim ${install_root}/.config/nvim
+ln -s ${install_root}/dotfiles/vim/rc/init.vim ${install_root}/.config/nvim/init.vim
 
 # ideaVim
-ln -s ~/dotfiles/idea/.ideavimrc ~/.ideavimrc
+ln -s ${install_root}/dotfiles/idea/.ideavimrc ${install_root}/.ideavimrc
 
 if [ "$1" == "" ]
 then
