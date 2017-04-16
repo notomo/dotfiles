@@ -28,6 +28,10 @@ if dein#load_state(s:dein_dir)
     if dein#check_install()
         call dein#install()
     endif
+
+    if has('nvim')
+        call dein#remote_plugins()
+    endif
 endif
 
 autocmd MyAuGroup GuiEnter * call dein#call_hook('post_source')
