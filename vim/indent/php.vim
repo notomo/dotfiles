@@ -11,7 +11,12 @@ setlocal formatoptions+=o
 setlocal indentkeys=0{,0},0),0],:,!^F,o,O,e,*<Return>,=?>,=<?,=*/
 setlocal indentexpr=GetPhpIndent()
 function! GetPhpIndent()
-    if (col('.') - 1) != matchend(getline('.'), '^\s*')
+    let curline = getline('.')
+    if (col('.') - 1) != matchend(curline, '^\s*')
+        return -1
+    endif
+    if curline =~# '\v^\s*[]})"''];?$'
+        " e.g. $ary = array(\n);
         return -1
     endif
 

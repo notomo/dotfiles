@@ -767,8 +767,13 @@ vnoremap <silent> [tab]o :<C-u>tabonly<CR>
 function! s:tabclose_c() abort
     if tabpagenr('$') == 1
         qa
-    else
+    endif
+    if tabpagenr() <= 1
         tabclose
+    else
+        " close current tab and open left tab
+        tabprevious
+        +tabclose
     endif
 endfunction
 nnoremap <silent> <Plug>(tabclose_c) :<C-u>call <SID>tabclose_c()<CR>
