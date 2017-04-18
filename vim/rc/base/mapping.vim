@@ -52,8 +52,10 @@ nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 nnoremap [file]w :<C-u>write<CR>
 nnoremap [file]o :<C-u>edit<Space>
 nnoremap [file]rn :<C-u>file<Space>
-nnoremap [file]rl :<C-u>e!<CR>
+nnoremap [file]rl :<C-u>edit!<CR>
 nnoremap [file]v :<C-u>edit $MYVIMRC<CR>
+nnoremap [file]Eu :<C-u>edit! ++enc=utf-8<CR>
+nnoremap [file]Ee :<C-u>edit! ++enc=euc-jp<CR>
 "}}}
 
 " buffer"{{{
@@ -63,6 +65,7 @@ nnoremap [buf]a <C-^>
 nnoremap <silent> [buf]n :<C-u>enew \| setlocal buftype=nofile noswapfile fileformat=unix<CR>
 nnoremap [buf]Q :<C-u>qa<CR>
 nnoremap [buf]O :<C-u>call <SID>open_not_saved_bufs()<CR>
+nnoremap [buf]o :<C-u>call <SID>delete_other_bufs()<CR>
 
 function! s:open_not_saved_buf() abort
     let curbuf_num = bufnr('%')
@@ -77,6 +80,22 @@ function! s:open_not_saved_bufs() abort
         tabclose | tabl
     endif
 endfunction
+
+function! s:delete_buf(curbufs) abort
+    let curbuf_num = bufnr('%')
+    if index(a:curbufs, curbuf_num) >= 0 || getbufvar(curbuf_num, '&modified')
+        return
+    endif
+    bwipeout!
+endfunction
+
+function! s:delete_other_bufs() abort
+    tabonly
+    let curbufs = tabpagebuflist()
+    bufdo call s:delete_buf(curbufs)
+endfunction
+
+
 "}}}
 
 " swap :;"{{{
