@@ -65,6 +65,7 @@ nnoremap <Space>ic :action InspectCode<CR>
 nnoremap <Space>ur :action RecentFiles<CR>
 nnoremap <Space>t :action ActivateTODOToolWindow<CR>
 nnoremap <Space>s :action ActivateTerminalToolWindow<CR>
+nnoremap <Space>xf :action ActivateProjectToolWindow<CR>
 
 " execute
 nnoremap <Space>xn :noh<CR>
@@ -108,3 +109,13 @@ nnoremap <Space>dm :action XDebugger.MuteBreakpoints<CR>
 " nnoremap <Space>kp :action WelcomeScreen.Documentation<CR>
 " nnoremap <Space>p :action PasteMultiple<CR>
 " nnoremap <Space>ed :action PhpGeneratePhpDocBlocks<CR>
+
+" macro
+nnoremap ,qq :action StartStopMacroRecording<CR>
+nnoremap ,qg :action Macros<CR>
+
+" find
+nnoremap <Space>ff :action Find<CR>
+nnoremap <Space>fj :action FindWordAtCaret<CR>
+nnoremap <Space>fa :action GotoAction<CR>
+
