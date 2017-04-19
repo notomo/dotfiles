@@ -495,10 +495,10 @@ noremap zD <Nop>
 " command and insert"{{{
 
 " 移動
-noremap! <C-h> <Left>
+inoremap <C-h> <Left>
 noremap! <C-j> <Down>
 noremap! <C-k> <Up>
-noremap! <C-l> <Right>
+inoremap <C-l> <Right>
 noremap! <C-e> <End>
 inoremap <C-a> <C-o>^
 cnoremap <C-a> <Home>
@@ -519,6 +519,16 @@ inoremap j<Space><Space> <ESC>gUiwea
 
 " 前に入力した文字を入力
 inoremap j<Space>z <C-a>
+
+inoremap j<Space>o <C-y>
+
+" for wildmenu
+cnoremap j<Space>o <C-z>
+cnoremap <Tab> <C-n>
+cnoremap <S-Tab> <C-p>
+cnoremap <C-h> <Space><BS><Left>
+cnoremap <C-l> <Space><BS><Right>
+
 
 function! s:cinoremap_with_prefix(lhs_pfx, lhs_sfx, rhs) abort
     silent execute join(['inoremap', a:lhs_pfx . a:lhs_sfx, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
@@ -545,7 +555,6 @@ let s:main_cinoremap_info = [
             \ {s:LHS_PFX_KEY : 'h', s:RHS_KEY : '<C-r>"'},
             \ {s:LHS_PFX_KEY : 'v', s:RHS_KEY : '<C-q>'},
             \ {s:LHS_PFX_KEY : 'T', s:RHS_KEY : '<C-x><C-]>'},
-            \ {s:LHS_PFX_KEY : 'o', s:RHS_KEY : '<C-y>'},
             \ {s:LHS_PFX_KEY : 'j', s:RHS_KEY : '<C-e><CR>'},
             \]
 for s:info in s:main_cinoremap_info

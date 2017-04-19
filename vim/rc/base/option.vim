@@ -55,6 +55,7 @@ set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{&ff}:%Y]
 set expandtab
 set nofoldenable
 set foldlevel=3
+set wildcharm=<C-z>
 
 if has('win32') && $PATH !~? '\(^\|;\)' . escape($VIM, '\\') . '\(;\|$\)'
   let $PATH = $VIM . ';' . $PATH
