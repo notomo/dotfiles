@@ -3,6 +3,7 @@
 set nowrap
 set showtabline=2
 set guioptions-=e
+set guioptions+=c
 set ignorecase
 set smartcase
 set hlsearch
@@ -28,7 +29,7 @@ set autoread
 set hidden
 set switchbuf=useopen
 set textwidth=0
-set matchpairs& matchpairs+=<:>
+set matchpairs+=<:>
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
@@ -56,6 +57,10 @@ set expandtab
 set nofoldenable
 set foldlevel=3
 set wildcharm=<C-z>
+set undoreload=0
+set updatecount=0
+set tagcase=match
+set swapsync=
 
 if has('win32') && $PATH !~? '\(^\|;\)' . escape($VIM, '\\') . '\(;\|$\)'
   let $PATH = $VIM . ';' . $PATH

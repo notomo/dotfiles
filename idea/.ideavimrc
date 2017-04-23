@@ -115,7 +115,7 @@ nnoremap ,qq :action StartStopMacroRecording<CR>
 nnoremap ,qg :action Macros<CR>
 
 " find
-nnoremap <Space>ff :action Find<CR>
+nnoremap <Space>ff :action GotoFile<CR>
 nnoremap <Space>fj :action FindWordAtCaret<CR>
 nnoremap <Space>fa :action GotoAction<CR>
 
