@@ -29,14 +29,3 @@ elseif has('mac')
     set guifont=RictyDiminished-Regular:h18
 endif
 
-highlight Search cterm=NONE guifg=#333333 guibg=#a9dd9d
-highlight incSearchOnCursor cterm=NONE guifg=#fffeeb guibg=#fb8965
-highlight Flashy term=bold ctermbg=0 guifg=#333333 guibg=#a8d2eb
-highlight ParenMatch term=underline cterm=underline guibg=#5f8770
-highlight TabLine guifg=#fff5ee guibg=#536273 gui=none
-highlight YankRoundRegion guifg=#333333 guibg=#fedf81
-highlight def link sqlStatement sqlKeyword
-highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
-
-syntax match myTodo contained '\<\(TODO\|FIXME\):'
-highlight def link myTodo Todo
