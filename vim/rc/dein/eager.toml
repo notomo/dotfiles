@@ -244,6 +244,7 @@ let g:spring_night_kill_italic = 1
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
+if = "!has('nvim')"
 
 [[plugins]]
 repo = 'vim-scripts/gitignore.vim'

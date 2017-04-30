@@ -48,8 +48,6 @@ set backupdir=~/.vim/tmp/backup/
 set noundofile
 set noswapfile
 set browsedir=buffer
-set viminfo+=n~/.vim/tmp/viminfo.txt
-set viminfo+='0
 set notitle
 set nofixendofline
 set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{&ff}:%Y]
@@ -60,7 +58,10 @@ set wildcharm=<C-z>
 set undoreload=0
 set updatecount=0
 set tagcase=match
-set swapsync=
+if !has('nvim')
+    set viminfo+=n~/.vim/tmp/viminfo.txt
+    set swapsync=
+endif
 
 if has('win32') && $PATH !~? '\(^\|;\)' . escape($VIM, '\\') . '\(;\|$\)'
   let $PATH = $VIM . ';' . $PATH
