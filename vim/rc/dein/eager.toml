@@ -194,6 +194,12 @@ nmap <C-n> <Plug>(yankround-next)
 
 [[plugins]]
 repo = 'Shougo/neco-vim'
+hook_add = '''
+if !exists('g:necovim#complete_functions')
+    let g:necovim#complete_functions = {}
+endif
+let g:necovim#complete_functions.Ref = 'ref#complete'
+'''
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'

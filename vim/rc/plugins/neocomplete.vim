@@ -36,11 +36,6 @@ let g:neocomplete#sources#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\
 let g:neocomplete#sources#omni#input_patterns.javascript = '\h\w*\|[^. \t]\.\w*'
 let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
 
-if !exists('g:necovim#complete_functions')
-    let g:necovim#complete_functions = {}
-endif
-let g:necovim#complete_functions.Ref = 'ref#complete'
-
 inoremap <expr> j<Space>O neocomplete#start_manual_complete('omni')
 inoremap <expr> j<Space>u neocomplete#undo_completion()
 inoremap <expr> j<Space>; neocomplete#complete_common_string()
