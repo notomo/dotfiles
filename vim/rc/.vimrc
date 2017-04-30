@@ -15,9 +15,11 @@ endif
 filetype off
 filetype plugin indent off
 
+let g:mapleader = ','
+let g:maplocalleader = '<Leader>l'
 runtime! rc/dein/dein.vim
 
-syntax on
+syntax enable
 filetype plugin indent on
 
 if !has('vim_starting')
@@ -30,8 +32,6 @@ runtime! rc/base/*.vim
 if has('nvim')
     runtime! rc/neovim/*.vim
 endif
-
-runtime! rc/plugins/unite_filetype_mapping.vim
 
 runtime! rc/local/after/*.vim
 
