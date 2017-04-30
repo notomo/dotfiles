@@ -77,7 +77,7 @@ function! tmno3#qf#next() abort
     if qf_type == s:QUICK_FIX_TYPE
         call s:wrap_move('cnext', 'cfirst')
     elseif qf_type == s:LOC_LIST_TYPE
-        call s:wrap_move('lcnext', 'lfirst')
+        call s:wrap_move('lnext', 'lfirst')
     endif
 endfunction
 
