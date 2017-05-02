@@ -1,6 +1,7 @@
 
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+on_event = 'InsertCharPre'
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
 '''
@@ -17,8 +18,18 @@ on_ft = 'go'
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
 hook_add = '''
-nnoremap <silent> [unite]ll :<C-u>Denite line<CR>
+nnoremap [denite] <Nop>
+nmap <Space>d [denite]
+
+nnoremap <silent> [denite]r :<C-u>Denite unite:file_mru<CR>
+nnoremap <silent> [denite]ll :<C-u>Denite line<CR>
+nnoremap <silent> [denite]d :<C-u>Denite unite:directory_mru<CR>
+nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+nnoremap <silent> [denite]F :<C-u>DeniteBufferDir -buffer-name=files file_rec<CR>
+nnoremap <silent> [denite]f :<C-u>DeniteBufferDir -buffer-name=files unite:file<CR>
+nnoremap <silent> [denite]o :<C-u>Denite unite:outline<CR>
 '''
+hook_source = 'source ~/.vim/rc/plugins/denite.vim'
 
 [[plugins]]
 repo = 'Shougo/deol.nvim'
@@ -26,3 +37,4 @@ on_cmd = 'Deol'
 
 [[plugins]]
 repo = 'ujihisa/neco-look'
+if = "executable('look')"

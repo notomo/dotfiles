@@ -174,10 +174,10 @@ vnoremap [indent]a :left<CR>gv
 "}}}
 
 " move"{{{
-nnoremap k   gk
-nnoremap j   gj
-vnoremap k   gk
-vnoremap j   gj
+nnoremap k gk
+nnoremap j gj
+vnoremap k gk
+vnoremap j gj
 
 noremap ge $
 noremap ga ^
@@ -530,58 +530,18 @@ cnoremap <C-h> <Space><BS><Left>
 cnoremap <C-l> <Space><BS><Right>
 
 
-function! s:cinoremap_with_prefix(lhs_pfx, lhs_sfx, rhs) abort
-    silent execute join(['inoremap', a:lhs_pfx . a:lhs_sfx, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
-    silent execute join(['cnoremap', a:lhs_pfx . a:lhs_sfx, a:rhs])
+function! s:cinoremap_with_prefix(lhs, rhs) abort
+    silent execute join(['inoremap', a:lhs, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
+    silent execute join(['cnoremap', a:lhs, a:rhs])
 endfunction
-let s:MAIN_INPUT_PFX = 'j<Space>'
-let s:SUB_INPUT_PFX = 'jk'
-
-let s:LHS_PFX_KEY = 'l'
 let s:RHS_KEY = 'r'
-let s:main_cinoremap_info = [
-            \ {s:LHS_PFX_KEY : 'a', s:RHS_KEY : '-'},
-            \ {s:LHS_PFX_KEY : 'e', s:RHS_KEY : '='},
-            \ {s:LHS_PFX_KEY : 's', s:RHS_KEY : '_'},
-            \ {s:LHS_PFX_KEY : 'r', s:RHS_KEY : '<Bar>'},
-            \ {s:LHS_PFX_KEY : 'g', s:RHS_KEY : '\'},
-            \ {s:LHS_PFX_KEY : 'w', s:RHS_KEY : '""<Left>'},
-            \ {s:LHS_PFX_KEY : 'b', s:RHS_KEY : '``<Left>'},
-            \ {s:LHS_PFX_KEY : 'l', s:RHS_KEY : '[]<Left>'},
-            \ {s:LHS_PFX_KEY : 't', s:RHS_KEY : '<><Left>'},
-            \ {s:LHS_PFX_KEY : 'p', s:RHS_KEY : '()<Left>'},
-            \ {s:LHS_PFX_KEY : 'd', s:RHS_KEY : '{}<Left>'},
-            \ {s:LHS_PFX_KEY : 'q', s:RHS_KEY : "''<Left>"},
-            \ {s:LHS_PFX_KEY : 'h', s:RHS_KEY : '<C-r>"'},
-            \ {s:LHS_PFX_KEY : 'v', s:RHS_KEY : '<C-q>'},
-            \ {s:LHS_PFX_KEY : 'T', s:RHS_KEY : '<C-x><C-]>'},
-            \ {s:LHS_PFX_KEY : 'j', s:RHS_KEY : '<C-e><CR>'},
-            \]
-for s:info in s:main_cinoremap_info
-    call s:cinoremap_with_prefix(s:MAIN_INPUT_PFX, s:info[s:LHS_PFX_KEY], s:info[s:RHS_KEY])
+
+for s:info in tmno3#mapping#main_input()
+    call s:cinoremap_with_prefix(s:info[s:LHS_KEY], s:info[s:RHS_KEY])
 endfor
 
-let s:sub_cinoremap_info = [
-            \ {s:LHS_PFX_KEY : 'a', s:RHS_KEY : '&'},
-            \ {s:LHS_PFX_KEY : 'h', s:RHS_KEY : '^'},
-            \ {s:LHS_PFX_KEY : 'p', s:RHS_KEY : '+'},
-            \ {s:LHS_PFX_KEY : 's', s:RHS_KEY : '#'},
-            \ {s:LHS_PFX_KEY : 'r', s:RHS_KEY : '%'},
-            \ {s:LHS_PFX_KEY : 'm', s:RHS_KEY : '@'},
-            \ {s:LHS_PFX_KEY : 't', s:RHS_KEY : '~'},
-            \ {s:LHS_PFX_KEY : 'd', s:RHS_KEY : '$'},
-            \ {s:LHS_PFX_KEY : 'e', s:RHS_KEY : '!'},
-            \ {s:LHS_PFX_KEY : 'b', s:RHS_KEY : '`'},
-            \ {s:LHS_PFX_KEY : 'c', s:RHS_KEY : ':'},
-            \ {s:LHS_PFX_KEY : 'x', s:RHS_KEY : '*'},
-            \ {s:LHS_PFX_KEY : 'q', s:RHS_KEY : '?'},
-            \ {s:LHS_PFX_KEY : ';', s:RHS_KEY : '"'},
-            \ {s:LHS_PFX_KEY : ',', s:RHS_KEY : "'"},
-            \ {s:LHS_PFX_KEY : 'g', s:RHS_KEY : '=>'},
-            \ {s:LHS_PFX_KEY : 'f', s:RHS_KEY : '->'},
-            \]
-for s:info in s:sub_cinoremap_info
-    call s:cinoremap_with_prefix(s:SUB_INPUT_PFX, s:info[s:LHS_PFX_KEY], s:info[s:RHS_KEY])
+for s:info in tmno3#mapping#sub_input()
+    call s:cinoremap_with_prefix(s:info[s:LHS_KEY], s:info[s:RHS_KEY])
 endfor
 
 let s:pairs = [
