@@ -24,7 +24,12 @@ if ERRORLEVEL 1 cmd /c exit 0
 mklink /D %HOMEPATH%"\.config\nvim" "\.vim"
 cd %HOMEPATH%"\.config\nvim"
 mklink "init.vim" %HOMEPATH%"\dotfiles\vim\rc\init.vim"
+mklink "ginit.vim" %HOMEPATH%"\dotfiles\vim\rc\ginit.vim"
 
 cd %HOMEPATH%
 mklink ".ideavimrc" %HOMEPATH%"\dotfiles\idea\.ideavimrc"
+
+mklink ".flake8" %HOMEPATH%"\dotfiles\lint\python\.flake8"
+mklink ".vintrc.yaml" %HOMEPATH%"\dotfiles\lint\vim\.vintrc.yaml"
+
 pause
