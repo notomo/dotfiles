@@ -62,3 +62,6 @@ setlocal iskeyword+=#
 setlocal iskeyword+=-
 '''
 
+xml = '''
+setlocal noexpandtab
+'''

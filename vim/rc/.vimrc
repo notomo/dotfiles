@@ -7,6 +7,16 @@ if has('vim_starting')
     set runtimepath^=~/.vim/
     set runtimepath+=~/.vim/after
     if has('kaoriya')
+        let s:rtps = []
+        for s:rpt in split(&runtimepath, ',')
+            if s:rpt =~# 'vimfiles$'
+                continue
+            elseif s:rpt =~# 'vimfiles/after$'
+                continue
+            endif
+            call add(s:rtps, s:rpt)
+        endfor
+        let &runtimepath = join(s:rtps, ',')
         set runtimepath+=$VIM/plugins/kaoriya
         source $VIM/plugins/kaoriya/encode_japan.vim
     endif

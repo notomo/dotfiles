@@ -388,7 +388,8 @@ function! s:nvnoremap_replace(lhs, pattern, str) abort
     silent execute join(['vnoremap', '<silent>', '[replace]' . a:lhs, 'q::s@^.*$@' . v_substitute_str . '@g<CR><CR>'])
 endfunction
 
-let s:LHS_KEY = 'l'
+let s:LHS_KEY = tmno3#mapping#get_lhs_key()
+let s:RHS_KEY = tmno3#mapping#get_rhs_key()
 let s:PATTERN_KEY = 'p'
 let s:STR_KEY = 's'
 let s:replace_map_info = [
@@ -534,7 +535,6 @@ function! s:cinoremap_with_prefix(lhs, rhs) abort
     silent execute join(['inoremap', a:lhs, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
     silent execute join(['cnoremap', a:lhs, a:rhs])
 endfunction
-let s:RHS_KEY = 'r'
 
 for s:info in tmno3#mapping#main_input()
     call s:cinoremap_with_prefix(s:info[s:LHS_KEY], s:info[s:RHS_KEY])
@@ -640,9 +640,12 @@ vnoremap [arith]u g<C-a>gv
 nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
 nnoremap <silent> [exec]u :<C-u>sort nu<CR>
 nnoremap <silent> [exec]U :<C-u>sort! nu<CR>
-nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
+" execute current line
 nnoremap <expr> [exec]l ':' . getline('.') . '<CR>'
-nnoremap <silent> [exec]r :<C-u>source $MYVIMRC<CR>:source $MYGVIMRC<CR>:nohlsearch<CR>
+" source current buffer
+nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
+" relode vimrc
+nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
 nnoremap [exec]e :<C-u>smile<CR>
 "}}}
 

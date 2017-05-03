@@ -2,10 +2,10 @@
 let s:TAB_MODE_NM = 'tab'
 let s:TAB_KEY = '[' . s:TAB_MODE_NM . ']'
 
-let s:LHS_KEY = 'l'
-let s:RHS_KEY = 'r'
-let s:MAP_ONLY_KEY = 'o'
-let s:REMAP_KEY = 'rm'
+let s:LHS_KEY = tmno3#mapping#get_lhs_key()
+let s:RHS_KEY = tmno3#mapping#get_rhs_key()
+let s:MAP_ONLY_KEY = tmno3#mapping#get_map_only_key()
+let s:REMAP_KEY = tmno3#mapping#get_remap_key()
 
 " open new tab"{{{
 function! s:new_tab() abort
