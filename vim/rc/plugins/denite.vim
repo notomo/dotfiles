@@ -6,8 +6,8 @@ call denite#custom#option('default', 'use-default-mappings', 'false')
 call denite#custom#map('_', '<CR>', '<denite:do_action:default>', 'noremap')
 call denite#custom#map('_', '<Tab>', '<denite:choose_action>', 'noremap')
 
-let s:LHS_KEY = 'l'
-let s:RHS_KEY = 'r'
+let s:LHS_KEY = tmno3#mapping#get_lhs_key()
+let s:RHS_KEY = tmno3#mapping#get_rhs_key()
 for s:info in tmno3#mapping#main_input()
     call denite#custom#map('insert', s:info[s:LHS_KEY], s:info[s:RHS_KEY], 'noremap')
 endfor
