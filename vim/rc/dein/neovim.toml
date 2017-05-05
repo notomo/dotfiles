@@ -5,6 +5,7 @@ on_event = 'InsertCharPre'
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
 '''
+hook_source = 'source ~/.vim/rc/plugins/deoplete.vim'
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
