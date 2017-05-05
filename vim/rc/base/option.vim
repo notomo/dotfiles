@@ -1,6 +1,6 @@
 ﻿scriptencoding utf-8
 
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8,euc-jp,sjis
 set nowrap
 set showtabline=2
 set guioptions-=e
