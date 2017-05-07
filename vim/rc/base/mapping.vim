@@ -663,6 +663,8 @@ nnoremap <silent> <Leader>sk :<C-u>call <SID>goto_func()<CR>
 nnoremap [operator]x "_d
 vnoremap [operator]x "_d
 
+onoremap g/ gn
+
 " quickfix and locationlist"{{{
 nnoremap [qf] <Nop>
 nmap <Space>q [qf]

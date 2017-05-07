@@ -212,7 +212,7 @@ endif
 repo = 'tmn-o3/incsearch.vim'
 on_map = {nox = '<Plug>(incsearch-'}
 hook_add = '''
-map / <Plug>(incsearch-easymotion-/)
+map / <Plug>(incsearch-easymotion-/)\v
 map <Space>/k <Plug>(incsearch-easymotion-?)
 map <Space>/j <Plug>(incsearch-easymotion-stay)
 

@@ -25,7 +25,6 @@ let s:map_info = [
 \ {s:LHS_SFX_KEY : '.'      , s:TARGET_KEY : '.'},
 \ {s:LHS_SFX_KEY : ';'      , s:TARGET_KEY : ';'},
 \ {s:LHS_SFX_KEY : ','      , s:TARGET_KEY : ','},
-\ {s:LHS_SFX_KEY : '/'      , s:TARGET_KEY : '/'},
 \ {s:LHS_SFX_KEY : '<Space>', s:TARGET_KEY : '<Space>'},
 \ {s:LHS_SFX_KEY : 'r'      , s:TARGET_KEY : '<Bar>'},
 \ ]
