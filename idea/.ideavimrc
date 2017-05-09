@@ -28,6 +28,32 @@ inoremap j<Space>q ''<Left>
 inoremap j<Space>p ()<Left>
 inoremap j<Space>l []<Left>
 inoremap j<Space>t <><Left>
+inoremap j<Space>d {}<Left>
+inoremap j<Space>b ``<Left>
+inoremap j<Space>g \
+inoremap j<Space>r <Bar>
+inoremap j<Space>s _
+inoremap j<Space>a -
+inoremap j<Space>e =
+
+inoremap jka &
+inoremap jkh ^
+inoremap jkp +
+inoremap jks #
+inoremap jkr %
+inoremap jkm @
+inoremap jkt ~
+inoremap jkd $
+inoremap jke !
+inoremap jkb `
+inoremap jkc :
+inoremap jkx *
+inoremap jkq ?
+inoremap jk; "
+inoremap jk, '
+inoremap jkg =>
+inoremap jkf ->
+
 
 " window
 nnoremap <Space>wo :action UnsplitAll<CR>
@@ -66,6 +92,10 @@ nnoremap <Space>ur :action RecentFiles<CR>
 nnoremap <Space>t :action ActivateTODOToolWindow<CR>
 nnoremap <Space>s :action ActivateTerminalToolWindow<CR>
 nnoremap <Space>xf :action ActivateProjectToolWindow<CR>
+nnoremap <Space>xh :action HideAllWindows<CR>
+nnoremap <Space>I :action ImportSettings<CR>
+nnoremap <Space>E :action ExportSettings<CR>
+
 
 " execute
 nnoremap <Space>xn :noh<CR>
@@ -99,7 +129,7 @@ nnoremap <Space>da :action ToggleLineBreakpoint<CR>
 nnoremap <Space>dd :action Debug<CR>
 nnoremap <Space>ds :action StepOver<CR>
 nnoremap <Space>di :action StepInto<CR>
-nnoremap <Space>di :action StepOut<CR>
+nnoremap <Space>do :action StepOut<CR>
 nnoremap <Space>db :action ViewBreakpoints<CR>
 nnoremap <Space>dq :action Stop<CR>
 nnoremap <Space>dc :action RunToCursor<CR>
@@ -118,4 +148,3 @@ nnoremap ,qg :action Macros<CR>
 nnoremap <Space>ff :action GotoFile<CR>
 nnoremap <Space>fj :action FindWordAtCaret<CR>
 nnoremap <Space>fa :action GotoAction<CR>
-
