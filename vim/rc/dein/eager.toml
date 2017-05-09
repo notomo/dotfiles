@@ -252,3 +252,7 @@ if = "!has('nvim')"
 
 [[plugins]]
 repo = 'vim-scripts/gitignore.vim'
+
+[[plugins]]
+repo = 'jwalton512/vim-blade'
+
