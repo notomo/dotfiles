@@ -17,12 +17,19 @@ mklink /D %HOMEPATH%"\.vim\after" %HOMEPATH%"\dotfiles\vim\after"
 mklink /D %HOMEPATH%"\.vim\ftplugin" %HOMEPATH%"\dotfiles\vim\ftplugin"
 mklink /D %HOMEPATH%"\.vim\syntax" %HOMEPATH%"\dotfiles\vim\syntax"
 mklink /D %HOMEPATH%"\.vim\indent" %HOMEPATH%"\dotfiles\vim\indent"
+mklink /D %HOMEPATH%"\.vim\rplugin" %HOMEPATH%"\dotfiles\vim\rplugin"
 
 mkdir %HOMEPATH%"\.config" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
 mklink /D %HOMEPATH%"\.config\nvim" "\.vim"
 cd %HOMEPATH%"\.config\nvim"
+mklink "init.vim" %HOMEPATH%"\dotfiles\vim\rc\init.vim"
+mklink "ginit.vim" %HOMEPATH%"\dotfiles\vim\rc\ginit.vim"
+
+mkdir %USERPROFILE%"\AppData\Local\nvim" > NUL 2>&1
+if ERRORLEVEL 1 cmd /c exit 0
+
 mklink "init.vim" %HOMEPATH%"\dotfiles\vim\rc\init.vim"
 mklink "ginit.vim" %HOMEPATH%"\dotfiles\vim\rc\ginit.vim"
 
