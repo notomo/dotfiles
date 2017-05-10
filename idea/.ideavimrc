@@ -6,6 +6,8 @@ inoremap jj <ESC>
 nnoremap : ;
 nnoremap ; :
 
+nnoremap r :action VimRedo<CR>
+
 " move
 nnoremap ga ^
 nnoremap ge $
@@ -89,13 +91,13 @@ vnoremap v <ESC>
 nnoremap <Space>ev :action ShowSettings<CR>
 nnoremap <Space>ic :action InspectCode<CR>
 nnoremap <Space>ur :action RecentFiles<CR>
-nnoremap <Space>t :action ActivateTODOToolWindow<CR>
-nnoremap <Space>s :action ActivateTerminalToolWindow<CR>
+nnoremap <Space>T :action ActivateTODOToolWindow<CR>
+nnoremap <Space>t :action ActivateTerminalToolWindow<CR>
 nnoremap <Space>xf :action ActivateProjectToolWindow<CR>
 nnoremap <Space>xh :action HideAllWindows<CR>
 nnoremap <Space>I :action ImportSettings<CR>
 nnoremap <Space>E :action ExportSettings<CR>
-
+nnoremap ,r :action QuickJavaDoc<CR>
 
 " execute
 nnoremap <Space>xn :noh<CR>
