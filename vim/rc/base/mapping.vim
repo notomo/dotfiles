@@ -95,6 +95,8 @@ function! s:delete_other_bufs() abort
     bufdo call s:delete_buf(curbufs)
 endfunction
 
+let s:scroll_enter = '[buf]s'
+silent execute join(['nnoremap', s:scroll_enter, ":<C-u>call tmno3#scroll#setup_submode('" . s:scroll_enter . "')<CR>"])
 
 "}}}
 
@@ -788,3 +790,4 @@ for s:info in tmno3#mapping#tab()
 endfor
 
 "}}}
+
