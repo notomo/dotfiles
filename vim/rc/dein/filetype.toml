@@ -64,3 +64,7 @@ setlocal iskeyword+=-
 xml = '''
 setlocal noexpandtab
 '''
+
+blade = '''
+let b:caw_wrap_oneline_comment = ['{-- ', ' --}']
+'''
