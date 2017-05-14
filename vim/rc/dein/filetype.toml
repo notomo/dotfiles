@@ -21,6 +21,7 @@ setlocal completeopt-=preview
 '''
 
 php = '''
+setlocal noexpandtab
 setlocal matchpairs+==:;
 
 if exists('loaded_matchit')

@@ -783,6 +783,7 @@ vnoremap <C-Tab> <Esc>gt
 vnoremap <C-S-Tab> <Esc>gT
 nnoremap <silent> <C-w> :<C-u>call <SID>tabclose_c()<CR>
 inoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
+vnoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
 "}}}
 
 for s:info in tmno3#mapping#tab()
