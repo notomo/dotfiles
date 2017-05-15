@@ -32,6 +32,28 @@ endfunction
 nnoremap <silent> <Plug>(tabclose_r) :<C-u>call <SID>tabclose_r()<CR>
 "}}}
 
+function! s:separate_tab(tabnum) abort
+    if a:tabnum < 1 || a:tabnum > tabpagenr('$')
+        return
+    endif
+    let tab_bufs = tabpagebuflist(a:tabnum)
+    if len(tab_bufs) < 2
+        return
+    endif
+    let curtab = tabpagenr()
+    execute 'noautocmd tabnext ' . a:tabnum
+    for bufnum in tab_bufs
+        noautocmd tabnew
+        execute 'noautocmd buffer ' . bufnum
+    endfor
+    execute 'tabclose ' . a:tabnum
+    execute 'noautocmd tabnext ' . curtab
+endfunction
+function! s:separate_left_tab() abort
+    call s:separate_tab(tabpagenr() + 1)
+endfunction
+nnoremap [tab]L :<C-u>call <SID>separate_left_tab()<CR>
+
 function! s:tab_map(lhs, rhs, map_only, remap) abort
     let remap = a:remap == 1 ? 'r' : ''
     if a:map_only
