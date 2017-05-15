@@ -65,6 +65,7 @@ hi def link phpComment Comment
 hi def link phpDocTags PreProc
 hi def link phpDocCustomTags Type
 hi def link phpDocTodo Todo
+hi def link phpTodo Todo
 
 syn region phpStringDouble matchgroup=phpStringDouble start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=phpIdentifier
 syn region phpBacktick matchgroup=phpBacktick start=+`+ skip=+\\\\\|\\"+ end=+`+ contains=phpIdentifier
