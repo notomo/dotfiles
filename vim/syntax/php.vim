@@ -58,7 +58,7 @@ syn match phpDocCustomTags "@[a-zA-Z]*\(\s\+\|\n\|\r\)"
 syn region phpDocTags start="{@\(example\|id\|internal\|inheritdoc\|link\|source\|toc\|tutorial\)" end="}"
 syn match phpDocTags "@\(abstract\|access\|author\|category\|copyright\|deprecated\|example\|final\|global\|ignore\|internal\|license\|link\|method\|name\|package\|param\|property\|return\|see\|since\|static\|staticvar\|subpackage\|tutorial\|uses\|var\|version\|contributor\|modified\|filename\|description\|filesource\|throws\)\(\s\+\)\?"
 syn match phpDocTodo "@\(todo\|fixme\|xxx\)\(\s\+\)\?"
-syn keyword phpTodo todo fixme xxx contained
+syn keyword phpTodo TODO FIXME XXX NOTICE HACK contained
 syn match phpComment "//.\{-}\(?>\|$\)\@=" contains=phpTodo
 syn region phpComment start="/\*" end="\*/" contains=phpTodo,phpDocCustomTags,phpDocTags,phpDocTodo
 hi def link phpComment Comment

@@ -669,25 +669,6 @@ nmap Y <Plug>(operator-flashy)$
 hook_source = 'let g:operator#flashy#flash_time = 350'
 
 [[plugins]]
-repo = "osyo-manga/vim-marching"
-on_ft = ['c', 'cpp']
-hook_source = '''
-let g:marching_clang_command = "C:/PROGRA~1/LLVM/bin/clang++.exe"
-let g:marching_clang_command_option="-std=c++1y"
-let g:marching_enable_neocomplete = 1
-let g:marching_include_path = ["C:/MinGW/include"]
-let g:marching_debug = 1
-
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-
-let g:neocomplete#force_omni_input_patterns.cpp =
-    \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-
-'''
-
-[[plugins]]
 repo = 't9md/vim-choosewin'
 on_map = {n = '<Plug>'}
 hook_add = 'nmap m<Space> <Plug>(choosewin)'
@@ -749,17 +730,6 @@ call watchdogs#setup(g:quickrun_config)
 repo = 'cohama/vim-hier'
 if = "!has('nvim')"
 on_source = ['vim-watchdogs']
-
-[[plugins]]
-repo = 'ternjs/tern_for_vim'
-if = "has('python')"
-on_ft = 'javascript'
-hook_post_update = '''
-if executable("npm")
-    let g:dein#plugin.build = "npm install"
-endif
-'''
-hook_source = 'let g:tern_map_keys = 0'
 
 # [[plugins]]
 # repo = 'dhruvasagar/vim-table-mode'
@@ -868,6 +838,7 @@ nnoremap [git]xl :<C-u>Gina stash list<CR>
 nnoremap [git]xs :<C-u>Gina stash save ""<Left>
 nnoremap [git]xc :<C-u>Gina stash show<CR>
 nnoremap [git]P :<C-u>Gina! push<Space>
+nnoremap [git]H :<C-u>Gina! pull<Space>
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()

@@ -77,9 +77,6 @@ function! s:define_highlight() abort
     highlight YankRoundRegion guifg=#333333 guibg=#fedf81
     highlight def link sqlStatement sqlKeyword
     highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
-
-    syntax match myTodo contained '\<\(TODO\|FIXME\):'
-    highlight def link myTodo Todo
 endfunction
 
 autocmd MyAuGroup ColorScheme * :call s:define_highlight()
