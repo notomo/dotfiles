@@ -39,13 +39,6 @@ endfunction
 hook_source = 'source ~/.vim/rc/plugins/unite.vim'
 
 [[plugins]]
-repo = 'tacroe/unite-mark'
-hook_add = 'nnoremap <silent> [unite]ma :<C-u>Unite mark<CR>'
-# on_source = 'unite.vim'
-# TODO:
-on_map = '<Space>uma'
-
-[[plugins]]
 repo = 'Shougo/unite-outline'
 hook_add = 'nnoremap <silent> [unite]o :<C-u>Unite outline<CR>'
 # on_source = 'unite.vim'
@@ -59,13 +52,6 @@ on_map = '<Space>uo'
 # [[plugins]]
 # repo = 'osyo-manga/unite-quickfix'
 # on_source = 'unite.vim'
-
-[[plugins]]
-repo = 'pasela/unite-webcolorname'
-hook_add = 'nnoremap <silent> [unite]w :<C-u>Unite webcolorname<CR>'
-# on_source = 'unite.vim'
-# TODO:
-on_map = '<Space>uw'
 
 [[plugins]]
 repo = 'kmnk/vim-unite-giti'
@@ -289,17 +275,6 @@ onoremap <Plug>(builtin-gn) gn
 nnoremap <Plug>(builtin-/) /
 nmap [edit]n *``<Plug>(operator-replace)<Plug>(builtin-gn)
 vmap <expr> [edit]n "\"ry<Plug>(builtin-/)\\V\<C-r>=substitute(escape(@r, '/\'), '\\n', '\\\\n', 'g')\<CR>\<CR>" . "``\"+<Plug>(operator-replace)<Plug>(builtin-gn)"
-'''
-
-[[plugins]]
-repo = 'osyo-manga/vim-operator-exec_command'
-depends = 'vim-operator-user'
-on_func = ['operator#exec_command#mapexpr']
-hook_add = '''
-map <expr> <Space>eo operator#exec_command#mapexpr(":e %t")
-map <expr> <Space>et operator#exec_command#mapexpr(":tab drop %t")
-map <expr> <Space>eH operator#exec_command#mapexpr(":h %t")
-map <expr> <Space>ev operator#exec_command#mapexpr(":Editvar %t")
 '''
 
 [[plugins]]
@@ -547,32 +522,6 @@ autocmd MyAuGroup FileType toml let b:switch_custom_definitions +=
 '''
 
 [[plugins]]
-repo = 'osyo-manga/vim-over'
-if = "!has('nvim')"
-on_cmd = 'OverCommandLine'
-hook_add = '''
-nnoremap [over] <Nop>
-nmap <Space>so [over]
-vnoremap [over] <Nop>
-vmap <Space>so [over]
-
-nnoremap [over]f :OverCommandLine<CR>%s/\v//g<Left><Left><Left>
-nnoremap [over]w :OverCommandLine<CR>%s/\v<C-r><C-w>//g<Left><Left>
-vnoremap [over]y :OverCommandLine<CR>%s/\v//g<Left><Left><Left><C-r>"<Right>
-
-vnoremap [over]f :OverCommandLine<CR>s/\v%V%V//g<Left><Left><Left><Left><Left>
-vnoremap [over]y :OverCommandLine<CR>s/\v%V%V//g<Left><Left><Left><Left><Left><C-r>"<Right><Right><Right>
-'''
-hook_source = '''
-let g:over_command_line_key_mappings = {
-\   "\<C-b>" : "\<BS>",
-\   "\<C-d>" : "\<Del>",
-\   "\<C-j>" : "\<End>\<C-u>\<Down>",
-\   "\<C-k>" : "\<End>\<C-u>\<Up>",
-\}
-'''
-
-[[plugins]]
 repo = 'AndrewRadev/linediff.vim'
 on_cmd = 'Linediff'
 hook_add = 'vnoremap [diff]l :Linediff<CR>'
@@ -585,23 +534,6 @@ hook_add = 'nnoremap <Leader>u :<C-u>GundoToggle<CR>'
 [[plugins]]
 repo = 'OrangeT/vim-csharp'
 on_ft = 'cs'
-
-[[plugins]]
-repo = 'OmniSharp/omnisharp-vim'
-on_ft = 'cs'
-hook_source = '''
-let g:OmniSharp_host = "http://localhost:2000"
-let g:OmniSharp_server_type = 'roslyn'
-let g:OmniSharp_timeout = 1
-let g:OmniSharp_selector_ui = 'unite'
-let g:Omnisharp_stop_server = 0
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
-let g:OmniSharp_start_without_solution = 1
-let g:OmniSharp_typeLookupInPreview = 1
-'''
 
 [[plugins]]
 repo = 'mhinz/vim-signify'
@@ -618,10 +550,6 @@ hook_source = 'let g:signify_disable_by_default = 0'
 [[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
-
-[[plugins]]
-repo = 'elzr/vim-json'
-on_ft = 'json'
 
 [[plugins]]
 repo = 'tmhedberg/matchit'
