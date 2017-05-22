@@ -534,9 +534,13 @@ cnoremap <S-Tab> <C-p>
 cnoremap <C-h> <Space><BS><Left>
 cnoremap <C-l> <Space><BS><Right>
 
-
+if v:version >= 800
+    let s:JOIN_UNDO = "\<C-g>U"
+else
+    let s:JOIN_UNDO = ''
+endif
 function! s:cinoremap_with_prefix(lhs, rhs) abort
-    silent execute join(['inoremap', a:lhs, substitute(a:rhs, '\ze<Left>$', '<C-g>U', '')])
+    silent execute join(['inoremap', a:lhs, substitute(a:rhs, '\ze<Left>$', s:JOIN_UNDO, '')])
     silent execute join(['cnoremap', a:lhs, a:rhs])
 endfunction
 
@@ -559,7 +563,7 @@ function! s:complete_pair() abort
     let chars = strcharpart(getline('.'), col('.') - 2, 2)
     for [l, r] in s:pairs
         if chars ==? l
-            return r . "\<C-g>U\<Left>"
+            return r . s:JOIN_UNDO . "\<Left>"
         endif
     endfor
     return ''

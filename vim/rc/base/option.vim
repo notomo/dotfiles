@@ -52,7 +52,6 @@ set noundofile
 set noswapfile
 set browsedir=buffer
 set notitle
-set nofixendofline
 set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{&ff}:%Y]
 set expandtab
 set nofoldenable
@@ -60,7 +59,10 @@ set foldlevel=3
 set wildcharm=<C-z>
 set undoreload=0
 set updatecount=0
-set tagcase=match
+if v:version >= 800
+    set nofixendofline
+    set tagcase=match
+endif
 if !has('nvim')
     set viminfo+=n~/.vim/tmp/viminfo.txt
     set swapsync=
