@@ -7,9 +7,9 @@ fi
 
 # vim
 ln -s ${install_root}/dotfiles/vim/rc/.vimrc ${install_root}/.vimrc
-ln -s ${install_root}/dotfiles/vim/rc/.gvimrc ${install_root}/.gvimrc
-ln -s ${install_root}/dotfiles/vim/rc/kaoriya/.vimrc_first.vim ${install_root}/.vimrc_first.vim
-ln -s ${install_root}/dotfiles/vim/rc/kaoriya/.gvimrc_first.vim ${install_root}/.gvimrc_first.vim
+# ln -s ${install_root}/dotfiles/vim/rc/.gvimrc ${install_root}/.gvimrc
+# ln -s ${install_root}/dotfiles/vim/rc/kaoriya/.vimrc_first.vim ${install_root}/.vimrc_first.vim
+# ln -s ${install_root}/dotfiles/vim/rc/kaoriya/.gvimrc_first.vim ${install_root}/.gvimrc_first.vim
 
 mkdir -p ${install_root}/.vim
 ln -s ${install_root}/dotfiles/vim/rc ${install_root}/.vim/rc
@@ -27,10 +27,10 @@ ln -s ${install_root}/dotfiles/vim/rplugin ${install_root}/.vim/rplugin
 mkdir -p ${install_root}/.config
 ln -s ${install_root}/.vim ${install_root}/.config/nvim
 ln -s ${install_root}/dotfiles/vim/rc/init.vim ${install_root}/.config/nvim/init.vim
-ln -s ${install_root}/dotfiles/vim/rc/ginit.vim ${install_root}/.config/nvim/ginit.vim
+# ln -s ${install_root}/dotfiles/vim/rc/ginit.vim ${install_root}/.config/nvim/ginit.vim
 
 # ideaVim
-ln -s ${install_root}/dotfiles/idea/.ideavimrc ${install_root}/.ideavimrc
+# ln -s ${install_root}/dotfiles/idea/.ideavimrc ${install_root}/.ideavimrc
 
 if [ "$1" == "" ]
 then
