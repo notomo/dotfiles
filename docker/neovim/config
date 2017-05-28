@@ -1,5 +1,5 @@
 
 Host vagrant
-    HostName 192.168.33.10
+    HostName DOCKERHOST
     User vagrant
     IdentityFile  /vagrant/.vagrant/machines/default/virtualbox/private_key

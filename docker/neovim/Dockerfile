@@ -46,26 +46,26 @@ RUN yum install -y http://dev.mysql.com/get/mysql57-community-release-el7-7.noar
 RUN yum install -y mysql
 RUN yum-config-manager --disable mysql*
 
-# ssh config
-RUN mkdir -p $SSHDIR
-ADD config $SSHDIR/config
-RUN chmod 600 $SSHDIR/config
-
 # dotfiles
 RUN echo export PATH="$NEOVIMDIR/bin:$PATH" >> $USERDIR/.bash_profile
 RUN git clone https://github.com/tmn-o3/dotfiles.git $DOTFILESDIR
 RUN chmod a+x $DOTFILESDIR/link.sh
 RUN $DOTFILESDIR/link.sh $USERDIR
 
+# ssh config
+ENV DOCKERHOST 192.168.33.10
+RUN mkdir -p $SSHDIR
+ADD config $SSHDIR/config
+RUN sed -i -e "s/DOCKERHOST/$DOCKERHOST/g" $SSHDIR/config
+RUN chmod 600 $SSHDIR/config
+RUN touch $SSHDIR/known_hosts
+RUN ssh-keyscan -H $DOCKERHOST >> $SSHDIR/known_hosts
+RUN chmod 644 $SSHDIR/config
+
 # user
 RUN useradd $USERNAME
 RUN chown user:user -R $USERDIR
 
-ENV unset USERNAME
-ENV unset USERDIR
-ENV unset APPDIR
-ENV unset NEOVIMDIR
-ENV unset DOTFILESDIR
-ENV unset SSHDIR
+ENV unset USERNAME && unset USERDIR && unset APPDIR && unset NEOVIMDIR && unset DOTFILESDIR && unset SSHDIR && unset DOCKERHOST
 
 ENTRYPOINT /bin/bash --login
