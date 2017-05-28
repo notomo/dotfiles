@@ -50,6 +50,7 @@ RUN yum-config-manager --disable mysql*
 RUN echo export PATH="$NEOVIMDIR/bin:$PATH" >> $USERDIR/.bash_profile
 RUN git clone https://github.com/tmn-o3/dotfiles.git $DOTFILESDIR
 RUN chmod a+x $DOTFILESDIR/link.sh
+RUN chmod a+x $DOTFILESDIR/docker/neovim/chmodown.sh
 RUN $DOTFILESDIR/link.sh $USERDIR
 
 # ssh config
