@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "docker_host"
+
+  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.synced_folder "C:/Users", "/c/Users"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+    vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+  end
+
+  config.vm.provision "shell", path: './provision/first_root.sh'
+  config.vm.provision "shell", privileged: false, path: './provision/first.sh'
+  config.vm.provision "shell", privileged: false, run: 'always', path: './provision/always.sh'
+end

@@ -1,0 +1,28 @@
+
+version: '2'
+
+volumes:
+    dotfiles:
+        driver: 'local'
+    dein:
+        driver: 'local'
+    # config:
+    #     driver: 'local'
+    cache:
+        driver: 'local'
+services:
+    neovim:
+        build: .
+        environment:
+            - DISPLAY
+        ports: 
+            - 2489:2489
+        volumes:
+            - /c/Users:/c/Users
+            - /tmp/.X11-unix:/tmp/.X11-unix
+            - dotfiles:/home/user/dotfiles
+            - dein:/home/user/.vim/dein
+            # - config:/home/user/.config
+            - cache:/home/user/.cache
+        user: user
+        working_dir: /home/user
