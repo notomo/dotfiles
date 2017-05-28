@@ -6,8 +6,6 @@ volumes:
         driver: 'local'
     dein:
         driver: 'local'
-    # config:
-    #     driver: 'local'
     cache:
         driver: 'local'
 services:
@@ -20,9 +18,9 @@ services:
         volumes:
             - /c/Users:/c/Users
             - /tmp/.X11-unix:/tmp/.X11-unix
+            - /vagrant:/vagrant
             - dotfiles:/home/user/dotfiles
             - dein:/home/user/.vim/dein
-            # - config:/home/user/.config
             - cache:/home/user/.cache
         user: user
         working_dir: /home/user
