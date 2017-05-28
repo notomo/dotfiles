@@ -1,6 +1,6 @@
 
 # vagrant
-/vagrant/.vagrant
+/vagrant/*/.vagrant
 
 # vim
 
