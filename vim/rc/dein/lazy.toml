@@ -594,7 +594,7 @@ hook_add = '''
 map y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
 '''
-hook_source = 'let g:operator#flashy#flash_time = 350'
+hook_source = 'let g:operator#flashy#flash_time = 100'
 
 [[plugins]]
 repo = 't9md/vim-choosewin'
