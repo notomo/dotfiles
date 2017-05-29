@@ -55,6 +55,7 @@ RUN $DOTFILESDIR/link.sh $USERDIR
 
 # ssh config
 ENV DOCKERHOST 192.168.33.10
+ENV VAGRANTKEY $SSHDIR/vagrant_private_key
 RUN mkdir -p $SSHDIR
 ADD config $SSHDIR/config
 RUN sed -i -e "s/DOCKERHOST/$DOCKERHOST/g" $SSHDIR/config
@@ -62,11 +63,14 @@ RUN chmod 600 $SSHDIR/config
 RUN touch $SSHDIR/known_hosts
 RUN ssh-keyscan -H $DOCKERHOST >> $SSHDIR/known_hosts
 RUN chmod 644 $SSHDIR/config
+ADD /vagrant/.vagrant/machines/default/virtualbox/private_key $VAGRANTKEY
+RUN sed -i -e "s/VAGRANTKEY/$VAGRANTKEY/g" $SSHDIR/config
+RUN chmod 600 $VAGRANTKEY
 
 # user
 RUN useradd $USERNAME
 RUN chown user:user -R $USERDIR
 
-ENV unset USERNAME && unset USERDIR && unset APPDIR && unset NEOVIMDIR && unset DOTFILESDIR && unset SSHDIR && unset DOCKERHOST
+ENV unset USERNAME && unset USERDIR && unset APPDIR && unset NEOVIMDIR && unset DOTFILESDIR && unset SSHDIR && unset DOCKERHOST && unset VAGRANTKEY
 
 ENTRYPOINT /bin/bash --login

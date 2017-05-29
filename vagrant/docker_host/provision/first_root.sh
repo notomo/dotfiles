@@ -11,5 +11,6 @@ yum install epel-release
 yum install -y xsel
 yum-config-manager --disable epel
 yum -y install xorg-x11-server-Xvfb
+yum -y install git
 cp /vagrant/provision/.bash_profile /home/vagrant/.bash_profile
 cp /vagrant/provision/.bashrc /home/vagrant/.bashrc
