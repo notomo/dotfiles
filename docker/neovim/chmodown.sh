@@ -12,4 +12,5 @@ chmod 777 -R $USERDIR/.vim/dein
 chown $USERNAME:$USERNAME -R $USERDIR/.vim/dein
 
 cp /vagrant/.vagrant/machines/default/virtualbox/private_key $VAGRANTKEY
+chown $USERNAME:$USERNAME $VAGRANTKEY
 chmod 600 $VAGRANTKEY
