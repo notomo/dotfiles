@@ -1,10 +1,8 @@
 FROM centos:7
 MAINTAINER tmno3
 
-ENV USERNAME user \
-    && USERDIR /home/$USERNAME \
-    && APPDIR $USERDIR/app \
-    && NEOVIMDIR $APPDIR/neovim
+ENV USERNAME user
+ENV USERDIR /home/$USERNAME
 
 RUN yum clean all
 
@@ -34,6 +32,8 @@ RUN gem install neovim
 RUN yum -y install xsel
 
 # neovim
+ENV APPDIR $USERDIR/app
+ENV NEOVIMDIR $APPDIR/neovim
 RUN mkdir -p $APPDIR
 RUN yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
 RUN git clone https://github.com/neovim/neovim.git $NEOVIMDIR
@@ -69,7 +69,7 @@ RUN echo export PATH="$NEOVIMDIR/bin:$PATH" >> $USERDIR/.bash_profile \
 RUN useradd $USERNAME
 RUN chown user:user -R $USERDIR
 
-ENV unset USERNAME
+RUN unset USERNAME
     && unset USERDIR \
     && unset APPDIR \
     && unset NEOVIMDIR
