@@ -1,12 +1,10 @@
 FROM centos:7
 MAINTAINER tmno3
 
-ENV USERNAME user
-ENV USERDIR /home/$USERNAME
-ENV APPDIR $USERDIR/app
-ENV NEOVIMDIR $APPDIR/neovim
-ENV DOTFILESDIR $USERDIR/dotfiles
-ENV SSHDIR $USERDIR/.ssh
+ENV USERNAME user \
+    && USERDIR /home/$USERNAME \
+    && APPDIR $USERDIR/app \
+    && NEOVIMDIR $APPDIR/neovim
 
 RUN yum clean all
 
@@ -71,6 +69,9 @@ RUN echo export PATH="$NEOVIMDIR/bin:$PATH" >> $USERDIR/.bash_profile \
 RUN useradd $USERNAME
 RUN chown user:user -R $USERDIR
 
-ENV unset USERNAME && unset USERDIR && unset APPDIR && unset NEOVIMDIR && unset DOTFILESDIR && unset SSHDIR
+ENV unset USERNAME
+    && unset USERDIR \
+    && unset APPDIR \
+    && unset NEOVIMDIR
 
 ENTRYPOINT /bin/bash --login
