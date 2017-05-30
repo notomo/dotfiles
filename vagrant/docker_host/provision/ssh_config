@@ -2,4 +2,4 @@
 Host vagrant
     HostName DOCKERHOST
     User vagrant
-    IdentityFile  ~/.ssh/vagrant_private_key
+    IdentityFile  /home/vagrant/.ssh/VAGRANTKEYNAME

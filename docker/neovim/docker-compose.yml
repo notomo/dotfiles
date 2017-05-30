@@ -2,31 +2,21 @@
 version: '2'
 
 volumes:
-    dotfiles:
-        driver: 'local'
-    dein:
-        driver: 'local'
     cache:
-        driver: 'local'
-    workspace:
-        driver: 'local'
-    ssh:
         driver: 'local'
 services:
     neovim:
         build: .
         environment:
             - DISPLAY
-        ports: 
-            - 2489:2489
+        user: user
+        working_dir: /home/user
         volumes:
             - /c/Users:/c/Users
             - /tmp/.X11-unix:/tmp/.X11-unix
             - /vagrant:/vagrant
-            - dotfiles:/home/user/dotfiles
-            - dein:/home/user/.vim/dein
+            - /home/vagrant/dotfiles:/home/user/dotfiles
+            - /home/vagrant/.vim/dein:/home/user/.vim/dein
+            - /home/vagrant/workspace:/home/user/workspace
+            - /home/vagrant/.ssh:/home/user/.ssh
             - cache:/home/user/.cache
-            - workspace:/home/user/workspace
-            - ssh:/home/user/.ssh
-        user: user
-        working_dir: /home/user
