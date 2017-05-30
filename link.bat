@@ -12,12 +12,14 @@ mklink /D %HOMEPATH%"\.vim\rc" %HOMEPATH%"\dotfiles\vim\rc"
 mklink /D %HOMEPATH%"\.vim\autoload" %HOMEPATH%"\dotfiles\vim\autoload"
 mklink /D %HOMEPATH%"\.vim\dict" %HOMEPATH%"\dotfiles\vim\dict"
 mklink /D %HOMEPATH%"\.vim\snippets" %HOMEPATH%"\dotfiles\vim\snippets"
-mklink /D %HOMEPATH%"\.vim\tmp" %HOMEPATH%"\dotfiles\vim\tmp"
 mklink /D %HOMEPATH%"\.vim\after" %HOMEPATH%"\dotfiles\vim\after"
 mklink /D %HOMEPATH%"\.vim\ftplugin" %HOMEPATH%"\dotfiles\vim\ftplugin"
 mklink /D %HOMEPATH%"\.vim\syntax" %HOMEPATH%"\dotfiles\vim\syntax"
 mklink /D %HOMEPATH%"\.vim\indent" %HOMEPATH%"\dotfiles\vim\indent"
 mklink /D %HOMEPATH%"\.vim\rplugin" %HOMEPATH%"\dotfiles\vim\rplugin"
+
+mkdir %HOMEPATH%"\.vim\tmp" > NUL 2>&1
+if ERRORLEVEL 1 cmd /c exit 0
 
 mkdir %HOMEPATH%"\.config" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0

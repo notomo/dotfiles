@@ -16,12 +16,16 @@ ln -s ${install_root}/dotfiles/vim/rc ${install_root}/.vim/rc
 ln -s ${install_root}/dotfiles/vim/autoload/ ${install_root}/.vim/autoload
 ln -s ${install_root}/dotfiles/vim/dict ${install_root}/.vim/dict
 ln -s ${install_root}/dotfiles/vim/snippets ${install_root}/.vim/snippets
-ln -s ${install_root}/dotfiles/vim/tmp ${install_root}/.vim/tmp
 ln -s ${install_root}/dotfiles/vim/after ${install_root}/.vim/after
 ln -s ${install_root}/dotfiles/vim/ftplugin/ ${install_root}/.vim/ftplugin
 ln -s ${install_root}/dotfiles/vim/syntax/ ${install_root}/.vim/syntax
 ln -s ${install_root}/dotfiles/vim/indent/ ${install_root}/.vim/indent
 ln -s ${install_root}/dotfiles/vim/rplugin ${install_root}/.vim/rplugin
+
+mkdir -p ${install_root}/.vim/tmp/backup
+mkdir -p ${install_root}/.vim/tmp/undo
+mkdir -p ${install_root}/.vim/tmp/view
+mkdir -p ${install_root}/.vim/tmp/swap
 
 # neovim
 mkdir -p ${install_root}/.config
