@@ -767,6 +767,7 @@ nnoremap [git]xs :<C-u>Gina stash save ""<Left>
 nnoremap [git]xc :<C-u>Gina stash show<CR>
 nnoremap [git]P :<C-u>Gina! push<Space>
 nnoremap [git]H :<C-u>Gina! pull<Space>
+nnoremap [git]M :<C-u>Gina! merge<Space>
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()

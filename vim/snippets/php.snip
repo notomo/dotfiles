@@ -1,24 +1,21 @@
 snippet public_function
 alias public_function
 abbr public function () {}
-	${1:public }${2:#:static }function ${3:#:FunctionName}(${4})
-	{
+	${1:public }${2:#:static }function ${3:#:FunctionName}(${4}) {
 		${5:TARGET}
 	}
 
 snippet public_static_function
 alias static
 abbr public static function () {}
-	${1:public }${2:static }function ${3:#:FunctionName}(${4})
-	{
+	${1:public }${2:static }function ${3:#:FunctionName}(${4}) {
 		${5:TARGET}
 	}
 
 snippet private_function
 alias private_function
 abbr private function () {}
-	${1:private }function ${2:#:FunctionName}(${3})
-	{
+	${1:private }function ${2:#:FunctionName}(${3}) {
 		${4:TARGET}
 	}
 
@@ -33,16 +30,14 @@ options head
 snippet function
 options head
 abbr function (){}
-	function ${1:FunctionName}(${2})
-	{
+	function ${1:FunctionName}(${2}) {
 		${3:TARGET}
 	}
 
 snippet function_literal
 options word
 abbr function (){}
-	function (${1})
-	{
+	function (${1}) {
 		${2:TARGET}
 	}
 
@@ -53,8 +48,7 @@ snippet doc_function
 	 * @return ${5:void}
 	 * @author ${6}
 	 **/
-	${1}function ${2}(${3})
-	{
+	${1}function ${2}(${3}) {
 		${0:TARGET}
 	}
 
@@ -67,8 +61,7 @@ snippet class_with_constructor
 	/**
 	 * ${1}
 	 */
-	class ${2:ClassName}${3:#:extends}
-	{
+	class ${2:ClassName}${3:#:extends} {
 		$5
 		function ${4:__construct}(${5:#:argument})
 		{
@@ -177,8 +170,7 @@ options head
 
 snippet construct
 options head
-	function __construct(${1})
-	{
+	public function __construct(${1}) {
 		${0:TARGET}
 	}
 

@@ -63,7 +63,7 @@ setlocal iskeyword+=-
 '''
 
 xml = '''
-setlocal noexpandtab
+setlocal expandtab
 '''
 
 blade = '''
