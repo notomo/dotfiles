@@ -36,6 +36,10 @@ ln -s ${install_root}/dotfiles/vim/rc/init.vim ${install_root}/.config/nvim/init
 # ideaVim
 # ln -s ${install_root}/dotfiles/idea/.ideavimrc ${install_root}/.ideavimrc
 
+# lint
+ln -s ${install_root}/dotfiles/lint/vim/.vintrc.yaml ${install_root}/.vintrc.yaml
+ln -s ${install_root}/dotfiles/lint/python/.flake8 ${install_root}/.flake8
+
 if [ "$1" == "" ]
 then
     read
