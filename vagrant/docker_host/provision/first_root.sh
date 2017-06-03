@@ -5,7 +5,15 @@ USERDIR=/home/$USERNAME
 yum update
 
 # docker, docker-compose
-yum install -y docker
+tee /etc/yum.repos.d/docker.repo <<-EOF
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+EOF
+yum install -y docker-engine
 curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 groupadd docker
@@ -31,6 +39,12 @@ git clone https://github.com/neovim/neovim.git $NEOVIMDIR
 cd $NEOVIMDIR
 make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$NEOVIMDIR"
 make install
+chown $USERNAME:$USERNAME -R $APPDIR
+
+# pt
+wget https://github.com/monochromegane/the_platinum_searcher/releases/download/v2.1.5/pt_linux_amd64.tar.gz
+tar zxf pt_linux_amd64.tar.gz
+mv pt_linux_amd64/pt /usr/local/bin/pt
 
 # git
 yum -y install wget
@@ -44,14 +58,15 @@ unset GITVERSION
 make prefix=/usr/local all
 make prefix=/usr/local install
 
-cp /vagrant/provision/.bash_profile /home/vagrant/.bash_profile
-cp /vagrant/provision/.bashrc /home/vagrant/.bashrc
+cp -f /vagrant/provision/.bash_profile /home/vagrant/.bash_profile
+cp -f /vagrant/provision/.bashrc /home/vagrant/.bashrc
 
 # python3
 yum install -y https://centos7.iuscommunity.org/ius-release.rpm
 yum install -y python34u python34u-libs python34u-devel python34u-pip
 yum-config-manager --disable ius
 pip3 install neovim
+pip3 install flake8
 
 # python2
 yum -y install python-pip --enablerepo epel
@@ -60,6 +75,25 @@ pip install neovim
 # ruby
 yum -y install ruby ruby-devel
 gem install neovim
+
+# php
+yum install -y http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+yum install -y --enablerepo=remi-php71 php php-cli php-common php-devel php-fpm php-gd php-mbstring php-mysqlnd php-pdo php-pear php-pecl-apcu php-soap php-xml php-xmlrpc
+
+# composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+mv composer.phar /usr/local/bin/composer
+
+# shell script
+yum install -y ShellCheck --enablerepo epel
+
+# golang
+yum install -y golang --enablerepo epel
+
+# Vim script
+pip3 install vim-vint
 
 # vagrant key
 VAGRANTKEYNAME=vagrant_private_key
