@@ -14,6 +14,10 @@ on_ft = 'python'
 [[plugins]]
 repo = 'zchee/deoplete-go'
 on_ft = 'go'
+build = 'make'
+hook_source = '''
+let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+'''
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -39,3 +43,4 @@ on_cmd = 'Deol'
 [[plugins]]
 repo = 'ujihisa/neco-look'
 if = "executable('look')"
+

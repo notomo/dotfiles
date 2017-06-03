@@ -5,4 +5,4 @@ let g:deoplete#sources.php = ['buffer', 'neosnippet', 'dictionary', 'around', 'f
 let g:deoplete#sources.markdown = ['buffer', 'neosnippet', 'file']
 let g:deoplete#sources.vim = ['vim', 'file', 'buffer', 'around', 'neosnippet']
 let g:deoplete#sources.python = ['jedi', 'file', 'buffer', 'around', 'neosnippet']
-
+let g:deoplete#sources.go = ['go', 'file', 'buffer', 'around', 'neosnippet']
