@@ -296,7 +296,7 @@ nnoremap <RightMouse> p
 vnoremap <RightMouse> <ESC>p
 inoremap <RightMouse> <C-r>"
 
-inoremap <BS> <Nop>
+inoremap <BS> <Left>
 
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>

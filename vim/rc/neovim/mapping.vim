@@ -17,6 +17,8 @@ tnoremap <C-a> <Home>
 tnoremap <C-b> <BS>
 tnoremap <C-d> <Del>
 
+tnoremap <BS> <Left>
+
 for s:info in tmno3#mapping#main_input()
     silent execute join(['tnoremap', s:info[s:LHS_KEY], s:info[s:RHS_KEY]])
 endfor
@@ -24,6 +26,10 @@ endfor
 for s:info in tmno3#mapping#sub_input()
     silent execute join(['tnoremap', s:info[s:LHS_KEY], s:info[s:RHS_KEY]])
 endfor
+
+let s:MAIN_INPUT_PFX = tmno3#mapping#get_main_input_key()
+execute join(['tnoremap', s:MAIN_INPUT_PFX . 'h', '<C-\><C-N>pi'])
+execute join(['tnoremap', s:MAIN_INPUT_PFX . 'o', '<Tab>'])
 
 nnoremap [term] <Nop>
 nmap <Space>t [term]

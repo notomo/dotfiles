@@ -22,6 +22,14 @@ function! tmno3#mapping#get_remap_key() abort
     return s:REMAP_KEY
 endfunction
 
+function! tmno3#mapping#get_main_input_key() abort
+    return s:MAIN_INPUT_PFX
+endfunction
+
+function! tmno3#mapping#get_sub_input_key() abort
+    return s:SUB_INPUT_PFX
+endfunction
+
 function! tmno3#mapping#tab() abort
     let mappings = []
     call add(mappings, {s:LHS_KEY : 't', s:RHS_KEY : '<Esc><Plug>(new_tab)', s:MAP_ONLY_KEY : 1, s:REMAP_KEY : 1}) " open new tab
