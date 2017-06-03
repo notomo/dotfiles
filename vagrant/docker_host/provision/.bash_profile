@@ -4,3 +4,4 @@ if [ -f ~/.bashrc ]; then
 fi
 
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/app/neovim/bin:$HOME/app/phpctags/bin:$HOME/.config/composer/vendor/bin
+export GOPATH=$HOME/.go
