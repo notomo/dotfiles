@@ -63,7 +63,7 @@ cp -f /vagrant/provision/.bashrc /home/vagrant/.bashrc
 
 # python3
 yum install -y https://centos7.iuscommunity.org/ius-release.rpm
-yum install -y python34u python34u-libs python34u-devel python34u-pip
+yum install -y python35u python35u-libs python35u-devel python35u-pip
 yum-config-manager --disable ius
 pip3 install neovim
 pip3 install flake8

@@ -44,3 +44,25 @@ on_cmd = 'Deol'
 repo = 'ujihisa/neco-look'
 if = "executable('look')"
 
+[[plugins]]
+repo = 'autozimu/LanguageClient-neovim'
+on_ft = 'php'
+depends = 'denite.nvim'
+hook_add = '''
+nnoremap [lc] <Nop>
+nmap <Leader>f [lc]
+nnoremap <silent> [lc]d :<C-u>call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> [lc]r :<C-u>call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> [lc]k :<C-u>call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> [denite]ld :<C-u>Denite documentSymbol<CR>
+nnoremap <silent> [denite]lw :<C-u>Denite workspaceSymbol<CR>
+nnoremap <silent> [denite]lr :<C-u>Denite references<CR>
+let g:LanguageClient_autoStart = 1
+'''
+
+[[plugins]]
+repo = 'roxma/LanguageServer-php-neovim'
+depends = 'LanguageClient-neovim'
+on_ft = 'php'
+build = 'composer install && composer run-script parse-stubs'
+
