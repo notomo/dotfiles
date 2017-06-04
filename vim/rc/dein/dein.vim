@@ -34,4 +34,9 @@ if dein#load_state(s:dein_dir)
     endif
 endif
 
-autocmd MyAuGroup GuiEnter * call dein#call_hook('post_source')
+if has('gui')
+    autocmd MyAuGroup GuiEnter * call dein#call_hook('post_source')
+else
+    autocmd MyAuGroup VimEnter * call dein#call_hook('post_source')
+endif
+

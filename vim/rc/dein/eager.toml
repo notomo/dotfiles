@@ -253,3 +253,73 @@ repo = 'vim-scripts/gitignore.vim'
 [[plugins]]
 repo = 'jwalton512/vim-blade'
 
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+hook_add = '''
+nnoremap [unite] <Nop>
+nmap <Space>u [unite]
+
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap [unite]F :<C-u>UniteWithBufferDir -buffer-name=files file -input=
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]c :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> [unite]p :<C-u>Unite bookmark<CR>
+nnoremap <silent> [unite]<Space> :<C-u>UniteBookmarkAdd<CR>
+nnoremap <silent> [unite]ll :<C-u>Unite line<CR>
+nnoremap <silent> [unite]ta :<C-u>Unite tab:no-current<CR>
+nnoremap [unite]si :<C-u>Unite file_rec -input=
+nnoremap <silent> [unite]sf :<C-u>Unite file_rec<CR>
+nnoremap <silent> [unite]sg :<C-u>Unite file_rec/git<CR>
+nnoremap <silent> [unite]mp :<C-u>Unite mapping<CR>
+nnoremap <silent> [unite]R :<C-u>Unite runtimepath<CR>
+nnoremap <silent> [unite]a :<C-u>Unite task<CR>
+nnoremap <silent> [unite]<CR> :<C-u>UniteResume<CR>
+nnoremap <silent> [unite]gg  :<C-u>call <SID>unite_grep()<CR>
+function! s:unite_grep() abort
+    let pattern = input("Pattern : ")
+    if pattern == ""
+        echomsg "Canceled"
+        return
+    endif
+    execute "normal! :Unite -tab -no-quit grep:. -buffer-name=GREP\<CR>" . pattern . "\<CR>"
+endfunction
+'''
+hook_post_source = 'source ~/.vim/rc/plugins/unite.vim'
+
+[[plugins]]
+repo = 'Shougo/unite-outline'
+hook_add = 'nnoremap <silent> [unite]o :<C-u>Unite outline<CR>'
+
+[[plugins]]
+repo = 'kmnk/vim-unite-giti'
+hook_add = '''
+nnoremap <silent> [unite]gb :<C-u>Unite giti/branch<CR>
+nnoremap <silent> [unite]gB :<C-u>Unite giti/branch_all<CR>
+nnoremap <silent> [unite]gc :<C-u>Unite giti/config<CR>
+nnoremap <silent> [unite]gl :<C-u>Unite giti/log<CR>
+nnoremap <silent> [unite]gs :<C-u>Unite giti/status<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+hook_add = '''
+nnoremap <silent> [exec]f :<C-u>VimFilerBufferDir -no-quit -split -toggle<CR>
+let g:vimfiler_enable_auto_cd = 1
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_ignore_pattern = ['^\.DS_Store$']
+let g:vimfiler_no_default_key_mappings = 1
+'''
+hook_post_source = 'source ~/.vim/rc/plugins/vimfiler.vim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+hook_add = '''
+nnoremap <silent> [unite]r :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]u :<C-u>Unite file_mru -force-immediately<CR>
+nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
+let g:neomru#file_mru_limit = 1000
+'''
