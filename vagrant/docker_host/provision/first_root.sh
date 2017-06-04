@@ -65,8 +65,8 @@ cp -f /vagrant/provision/.bashrc /home/vagrant/.bashrc
 yum install -y https://centos7.iuscommunity.org/ius-release.rpm
 yum install -y python35u python35u-libs python35u-devel python35u-pip
 yum-config-manager --disable ius
-pip3 install neovim
-pip3 install flake8
+pip3.5 install neovim
+pip3.5 install flake8
 
 # python2
 yum -y install python-pip --enablerepo epel
@@ -93,7 +93,7 @@ yum install -y ShellCheck --enablerepo epel
 yum install -y golang --enablerepo epel
 
 # Vim script
-pip3 install vim-vint
+pip3.5 install vim-vint
 
 # vagrant key
 VAGRANTKEYNAME=vagrant_private_key
