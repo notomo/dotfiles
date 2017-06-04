@@ -1,0 +1,17 @@
+
+<?xml version="1.0"?>
+<ruleset name="MY_PSR2">
+    <description>MY PSR2</description>
+    <rule ref="PSR2"> 
+        <exclude name="Generic.WhiteSpace.DisallowTabIndent.TabsUsed"/> 
+        <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndLine"/> 
+        <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/> 
+        <exclude name="PSR2.Classes.ClassDeclaration.CloseBraceAfterBody"/>
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"/> 
+        <exclude name="PSR2.Files.EndFileNewline"/>
+        <exclude name="PSR2.Namespaces.NamespaceDeclaration"/>
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration"/>
+    </rule> 
+
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+</ruleset>

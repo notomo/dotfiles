@@ -806,5 +806,7 @@ let g:ale_linters = {
 \   'sh': ['shellcheck'],
 \   'go': ['gofmt'],
 \}
+let g:ale_php_phpcs_standard = '~/dotfiles/lint/php/phpcs/my_psr2.xml'
+let g:ale_php_phpmd_ruleset = 'unusedcode'
 '''
 
