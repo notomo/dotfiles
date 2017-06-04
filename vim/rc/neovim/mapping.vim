@@ -39,3 +39,4 @@ nnoremap <silent> [term]v :<C-u>vsplit term://bash<CR>
 nnoremap <silent> [term]h :<C-u>split term://bash<CR>
 nnoremap <silent> [term]t :<C-u>tabedit term://bash<CR>
 
+nnoremap [exec]c :<C-u>CheckHealth<CR>
