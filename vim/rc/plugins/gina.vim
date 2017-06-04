@@ -58,8 +58,8 @@ call gina#custom#mapping#nmap(
 
 call gina#custom#mapping#nmap(
 \ 'status', 'ca',
-\ '<Plug>(gina-commit-amend)',
-\ {'silent' : 1},
+\ ':<C-u>Gina commit --amend<CR>',
+\ {'noremap' : 1, 'silent' : 1},
 \)
 
 call gina#custom#mapping#nmap(
