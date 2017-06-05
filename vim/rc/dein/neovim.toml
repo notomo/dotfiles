@@ -57,7 +57,7 @@ nnoremap <silent> [lc]k :<C-u>call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> [denite]ld :<C-u>Denite documentSymbol<CR>
 nnoremap <silent> [denite]lw :<C-u>Denite workspaceSymbol<CR>
 nnoremap <silent> [denite]lr :<C-u>Denite references<CR>
-let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStart = 0
 '''
 
 [[plugins]]

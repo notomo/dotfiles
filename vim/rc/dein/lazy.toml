@@ -710,7 +710,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {
 \   'python': ['flake8'],
 \   'vim': ['vint'],
-\   'php': ['phpcs', 'phpmd', 'php'],
+\   'php': ['phpmd', 'php'],
 \   'sh': ['shellcheck'],
 \   'go': ['gofmt'],
 \}
