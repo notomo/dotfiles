@@ -30,6 +30,18 @@ yum -y install xorg-x11-server-Xvfb
 # vim
 yum install -y vim
 
+# git
+yum -y install wget
+yum -y install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel
+yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
+GITVERSION=2.12.0
+wget https://www.kernel.org/pub/software/scm/git/git-$GITVERSION.tar.gz
+tar -zxf git-$GITVERSION.tar.gz
+cd git-$GITVERSION
+unset GITVERSION
+make prefix=/usr/local all
+make prefix=/usr/local install
+
 # neovim
 APPDIR=$USERDIR/app
 NEOVIMDIR=$APPDIR/neovim
@@ -45,18 +57,6 @@ chown $USERNAME:$USERNAME -R $APPDIR
 wget https://github.com/monochromegane/the_platinum_searcher/releases/download/v2.1.5/pt_linux_amd64.tar.gz
 tar zxf pt_linux_amd64.tar.gz
 mv pt_linux_amd64/pt /usr/local/bin/pt
-
-# git
-yum -y install wget
-yum -y install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel
-yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
-GITVERSION=2.12.0
-wget https://www.kernel.org/pub/software/scm/git/git-$GITVERSION.tar.gz
-tar -zxf git-$GITVERSION.tar.gz
-cd git-$GITVERSION
-unset GITVERSION
-make prefix=/usr/local all
-make prefix=/usr/local install
 
 cp -f /vagrant/provision/.bash_profile /home/vagrant/.bash_profile
 cp -f /vagrant/provision/.bashrc /home/vagrant/.bashrc
