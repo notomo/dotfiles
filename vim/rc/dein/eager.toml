@@ -171,9 +171,7 @@ nnoremap [fugit]s :<C-u>Gstatus<CR>:only<CR>
 nnoremap [fugit]l :<C-u>tabe %<CR>:Glog \| copen<CR>
 '''
 hook_post_source = '''
-if has('vim_starting')
-    set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-endif
+set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
 '''
 
 [[plugins]]
