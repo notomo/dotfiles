@@ -640,7 +640,7 @@ call altr#define('autoload/%.vim', 'plugin/%.vim')
 '''
 
 [[plugins]]
-repo = 'kana/vim-better-tag-jump'
+repo = 'tmn-o3/vim-better-tag-jump'
 on_func = 'bettertagjump#php#Jump'
 
 [[plugins]]
