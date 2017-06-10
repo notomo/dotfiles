@@ -525,8 +525,6 @@ inoremap j<Space><Space> <ESC>gUiwea
 " 前に入力した文字を入力
 inoremap j<Space>z <C-a>
 
-inoremap j<Space>o <C-y>
-
 " for wildmenu
 cnoremap j<Space>o <C-z>
 cnoremap <Tab> <C-n>
@@ -569,6 +567,14 @@ function! s:complete_pair() abort
     return ''
 endfunction
 inoremap <expr> j<Space>k <SID>complete_pair()
+
+function! s:complete() abort
+    if exists('v:completed_item') && !empty(v:completed_item)
+        return "\<C-y>"
+    endif
+    return "\<C-n>\<C-y>"
+endfunction
+inoremap <expr> j<Space>o <SID>complete()
 
 "}}}
 
