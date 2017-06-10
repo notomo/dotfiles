@@ -41,4 +41,6 @@ mklink ".ideavimrc" %HOMEPATH%"\dotfiles\idea\.ideavimrc"
 mklink ".flake8" %HOMEPATH%"\dotfiles\lint\python\.flake8"
 mklink ".vintrc.yaml" %HOMEPATH%"\dotfiles\lint\vim\.vintrc.yaml"
 
+mklink ".gitignore_global" %HOMEPATH%"\dotfiles\git\.gitignore_global"
+
 pause

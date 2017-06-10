@@ -40,6 +40,9 @@ ln -s ${install_root}/dotfiles/vim/rc/init.vim ${install_root}/.config/nvim/init
 ln -s ${install_root}/dotfiles/lint/vim/.vintrc.yaml ${install_root}/.vintrc.yaml
 ln -s ${install_root}/dotfiles/lint/python/.flake8 ${install_root}/.flake8
 
+# git
+ln -s ${install_root}/dotfiles/git/.gitignore_global ${install_root}/.gitignore_global
+
 if [ "$1" == "" ]
 then
     read

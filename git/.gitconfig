@@ -1,0 +1,8 @@
+
+[core]
+    excludesfile = /Users/user_name/.gitignore_global
+
+[user]
+    name = 
+    email = 
+
