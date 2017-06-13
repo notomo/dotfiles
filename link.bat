@@ -21,6 +21,9 @@ mklink /D %HOMEPATH%"\.vim\rplugin" %HOMEPATH%"\dotfiles\vim\rplugin"
 mkdir %HOMEPATH%"\.vim\tmp" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
+mkdir %HOMEPATH%"\.vim\reference" > NUL 2>&1
+if ERRORLEVEL 1 cmd /c exit 0
+
 mkdir %HOMEPATH%"\.config" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 

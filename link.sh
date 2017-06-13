@@ -26,6 +26,7 @@ mkdir -p ${install_root}/.vim/tmp/backup
 mkdir -p ${install_root}/.vim/tmp/undo
 mkdir -p ${install_root}/.vim/tmp/view
 mkdir -p ${install_root}/.vim/tmp/swap
+mkdir -p ${install_root}/.vim/reference
 
 # neovim
 mkdir -p ${install_root}/.config
