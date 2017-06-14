@@ -11,10 +11,12 @@ sh ~/dotfiles/link.sh
 composer global require squizlabs/php_codesniffer=*
 composer global require phpmd/phpmd=*
 
-# phpctags
-git clone https://github.com/vim-php/phpctags.git ~/app/phpctags
-cd ~/app/phpctags
-make
+# phpmanual
+cd ~/.vim/reference
+wget http://jp2.php.net/get/php_manual_ja.tar.gz/from/this/mirror -O php_manual_ja.tar.gz
+tar zxf php_manual_ja.tar.gz
+mv php-chunked-xhtml phpmanual
+rm php_manual_ja.tar.gz
 
 # go
 go get -u github.com/nsf/gocode
