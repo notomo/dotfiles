@@ -1,6 +1,7 @@
 
 # vagrant
 /vagrant/*/.vagrant
+/vagrant/workspace/*
 
 # vim
 

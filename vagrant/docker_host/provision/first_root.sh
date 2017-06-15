@@ -2,6 +2,10 @@
 USERNAME=vagrant
 USERDIR=/home/$USERNAME
 
+APPDIR=$USERDIR/app
+mkdir -p $APPDIR
+cd $APPDIR
+
 yum update
 
 # docker, docker-compose
@@ -37,15 +41,14 @@ yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
 GITVERSION=2.12.0
 wget https://www.kernel.org/pub/software/scm/git/git-$GITVERSION.tar.gz
 tar -zxf git-$GITVERSION.tar.gz
+rm git-$GITVERSION.tar.gz
 cd git-$GITVERSION
 unset GITVERSION
 make prefix=/usr/local all
 make prefix=/usr/local install
 
 # neovim
-APPDIR=$USERDIR/app
 NEOVIMDIR=$APPDIR/neovim
-mkdir -p $APPDIR
 yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
 git clone https://github.com/neovim/neovim.git $NEOVIMDIR
 cd $NEOVIMDIR
@@ -106,57 +109,19 @@ yum install -y golang --enablerepo epel
 # Vim script
 pip3.5 install vim-vint
 
-# vagrant key
-VAGRANTKEYNAME=vagrant_private_key
-VAGRANTKEY=$USERDIR/.ssh/$VAGRANTKEYNAME
-cp /vagrant/.vagrant/machines/default/virtualbox/private_key $VAGRANTKEY
-chown $USERNAME:$USERNAME $VAGRANTKEY
-chmod 600 $VAGRANTKEY
-
-# ssh config
-SSHDIR=$USERDIR/.ssh
-mkdir -p $SSHDIR
-cp /vagrant/provision/ssh_config $SSHDIR/config
-DOCKERHOST=`ip addr show eth1 | grep -o 'inet [0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+' | grep -o [0-9].*`
-sed -i -e "s/DOCKERHOST/$DOCKERHOST/g" $SSHDIR/config
-sed -i -e "s/VAGRANTKEYNAME/$VAGRANTKEYNAME/g" $SSHDIR/config
-chown $USERNAME:$USERNAME $SSHDIR/config
-chmod 600 $SSHDIR/config
-touch $SSHDIR/known_hosts
-chown $USERNAME:$USERNAME $SSHDIR/known_hosts
-ssh-keyscan -H $DOCKERHOST >> $SSHDIR/known_hosts
-chmod 644 $SSHDIR/known_hosts
-
 # text browser
 yum -y install lynx
 
 # dotfiles for root
-git clone https://github.com/tmn-o3/dotfiles.git
+git clone https://github.com/tmn-o3/dotfiles.git ~/dotfiles
 sh ~/dotfiles/link.sh
-
-# gui
-yum -y groupinstall "X Window System"
-yum -y install dconf
-
-# firefox
-yum -y install firefox
-
-# chrome
-sudo tee /etc/yum.repos.d/google.chrome.repo <<-EOF
-[google-chrome]
-name=google-chrome - 64-bit
-baseurl=http://dl.google.com/linux/chrome/rpm/stable/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
-EOF
-sudo yum install -y google-chrome-stable
 
 # guest additions
 yum -y  groupinstall "Development Tools"
 yum -y install kernel-devel kernel-headers
 VB_DL_URL=http://download.virtualbox.org/virtualbox
 VB_LATEST_VERSION=$(curl -s $VB_DL_URL/LATEST.TXT)
+cd $APPDIR
 wget $VB_DL_URL/$VB_LATEST_VERSION/VBoxGuestAdditions_$VB_LATEST_VERSION.iso
 mkdir /media/iso
 mount -o loop ./VBoxGuestAdditions_$VB_LATEST_VERSION.iso /media/iso
@@ -166,3 +131,26 @@ umount /media/iso
 
 # sync
 yum -y install lsyncd --enablerepo=epel
+yum -y install xinetd
+
+tee /etc/lsyncd.conf <<-EOF
+settings {
+    logfile    = "/var/log/lsyncd/lsyncd.log",
+    statusFile = "/var/log/lsyncd/lsyncd.status",
+}
+
+sync {
+    default.rsync,
+    source="/home/vagrant/workspace/",
+    target="/vagrant/workspace/",
+    delay = 1,
+}
+EOF
+
+systemctl start xinetd
+systemctl enable xinetd
+systemctl start rsyncd
+systemctl enable rsyncd
+systemctl start lsyncd
+systemctl enable lsyncd
+

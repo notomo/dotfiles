@@ -26,4 +26,4 @@ mkdir -p ~/workspace
 cd ~/workspace
 mkdir -p test
 mkdir -p memo
-
+touch .gitkeep
