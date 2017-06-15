@@ -29,6 +29,7 @@ chkconfig docker on
 yum install -y epel-release
 yum install -y xsel
 yum-config-manager --disable epel
+yum -y install libXrandr
 yum -y install xorg-x11-server-Xvfb
 
 # vim
@@ -115,19 +116,6 @@ yum -y install lynx
 # dotfiles for root
 git clone https://github.com/tmn-o3/dotfiles.git ~/dotfiles
 sh ~/dotfiles/link.sh
-
-# guest additions
-yum -y  groupinstall "Development Tools"
-yum -y install kernel-devel kernel-headers
-VB_DL_URL=http://download.virtualbox.org/virtualbox
-VB_LATEST_VERSION=$(curl -s $VB_DL_URL/LATEST.TXT)
-cd $APPDIR
-wget $VB_DL_URL/$VB_LATEST_VERSION/VBoxGuestAdditions_$VB_LATEST_VERSION.iso
-mkdir /media/iso
-mount -o loop ./VBoxGuestAdditions_$VB_LATEST_VERSION.iso /media/iso
-export KERN_DIR=`ls -t /usr/src/kernels/|head -1`
-sh /media/iso/VBoxLinuxAdditions.run
-umount /media/iso
 
 # sync
 yum -y install lsyncd --enablerepo=epel

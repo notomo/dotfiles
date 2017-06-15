@@ -1,2 +1,2 @@
-vagrant box add centos/7 --provider virtualbox
+vagrant box add bento/centos-7.3 --provider virtualbox
 vagrant up
