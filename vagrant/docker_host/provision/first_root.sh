@@ -70,6 +70,7 @@ cd $APPDIR
 wget https://github.com/monochromegane/the_platinum_searcher/releases/download/v2.1.5/pt_linux_amd64.tar.gz
 tar zxf pt_linux_amd64.tar.gz
 mv pt_linux_amd64/pt /usr/local/bin/pt
+rm pt_linux_amd64.tar.gz
 
 chown $USERNAME:$USERNAME -R $APPDIR
 
@@ -142,3 +143,18 @@ systemctl enable rsyncd
 systemctl start lsyncd
 systemctl enable lsyncd
 
+# fish
+# yum install ncurses-devel
+cd /etc/yum.repos.d/
+wget http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_7/shells:fish:release:2.repo
+yum -y install fish
+cd $APPDIR
+
+# blender
+wget http://mirror.cs.umn.edu/blender.org/release/Blender2.78/blender-2.78c-linux-glibc219-x86_64.tar.bz2
+tar xf blender-2.78c-linux-glibc219-x86_64.tar.bz2
+rm blender-2.78c-linux-glibc219-x86_64.tar.bz2
+mv blender-2.78c-linux-glibc219-x86_64 blender
+yum -y install glib*
+yum -y install libGLU
+yum -y install libXi
