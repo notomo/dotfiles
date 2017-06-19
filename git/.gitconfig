@@ -1,6 +1,6 @@
 
 [core]
-    excludesfile = /Users/user_name/.gitignore_global
+    excludesfile = ~/.gitignore_global
 
 [user]
     name = 

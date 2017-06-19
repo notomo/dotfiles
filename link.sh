@@ -43,6 +43,7 @@ ln -s ${install_root}/dotfiles/lint/python/.flake8 ${install_root}/.flake8
 
 # git
 ln -s ${install_root}/dotfiles/git/.gitignore_global ${install_root}/.gitignore_global
+cp ${install_root}/dotfiles/git/.gitconfig ${install_root}/.gitconfig
 
 if [ "$1" == "" ]
 then
