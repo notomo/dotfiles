@@ -309,12 +309,16 @@ inoremap <4-MiddleMouse> <Nop>
 "}}}
 
 " others"{{{
-function! s:open_work_text() abort
-    let l:work_text_file_path =  '~/worktexts/' . strftime('%Y_%m_%d.txt')
-    execute 'tab drop ' . l:work_text_file_path
-    execute 'set filetype=worktext'
+function! s:open_diary() abort
+    let diary_folder_path = expand('~/workspace/diary')
+    if !isdirectory(diary_folder_path)
+        call mkdir(diary_folder_path, 'p')
+    endif
+    let diary_path =  diary_folder_path . '/' . strftime('%Y%m%d.txt')
+    execute 'tab drop ' . diary_path
+    execute 'set filetype=mydiary'
 endfunction
-nnoremap <Space>ew :<C-u>call <SID>open_work_text()<CR>
+nnoremap <Space>ew :<C-u>call <SID>open_diary()<CR>
 "}}}
 
 " substitute"{{{
