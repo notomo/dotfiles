@@ -305,11 +305,6 @@ repo = 'othree/yajs.vim'
 on_ft = 'javascript'
 
 [[plugins]]
-repo = 'thinca/vim-qfreplace'
-on_cmd = 'Qfreplace'
-hook_add = 'nnoremap [exec]Q :<C-u>Qfreplace<CR>'
-
-[[plugins]]
 repo = 'thinca/vim-quickrun'
 on_map = {n = '<Plug>'}
 on_cmd = 'QuickRun'

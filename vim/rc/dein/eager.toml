@@ -257,6 +257,7 @@ build = 'make'
 
 [[plugins]]
 repo = 'Shougo/unite.vim'
+depends = 'vim-qfreplace'
 hook_add = '''
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
@@ -321,3 +322,8 @@ nnoremap <silent> [unite]u :<C-u>Unite file_mru -force-immediately<CR>
 nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
 let g:neomru#file_mru_limit = 1000
 '''
+
+[[plugins]]
+repo = 'thinca/vim-qfreplace'
+hook_add = 'nnoremap [exec]Q :<C-u>Qfreplace<CR>'
+
