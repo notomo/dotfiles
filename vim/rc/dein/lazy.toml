@@ -350,6 +350,9 @@ let g:quickrun_config['cs'] = {
 let g:quickrun_config['vim'] = {
 \   "hook/output_encode/encoding" : "utf-8",
 \}
+let g:quickrun_config['php'] = {
+\   "hook/output_encode/encoding" : "utf-8",
+\}
 
 '''
 

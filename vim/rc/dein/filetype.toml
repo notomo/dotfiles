@@ -24,6 +24,7 @@ php = '''
 setlocal noexpandtab
 setlocal matchpairs+==:;
 setlocal completeopt-=preview
+setlocal dictionary=~/dotfiles/vim/dict/php.dict
 
 if exists('loaded_matchit')
     call tmno3#matchit#sql()
