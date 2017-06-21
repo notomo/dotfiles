@@ -416,7 +416,7 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : '<Space>m', s:PATTERN_KEY : '\s+', s:STR_KEY : '\r'},
 \   {s:LHS_KEY : 'qw', s:PATTERN_KEY : "'", s:STR_KEY : '"'},
 \   {s:LHS_KEY : 'wq', s:PATTERN_KEY : '"', s:STR_KEY : "'"},
-\   {s:LHS_KEY : 'ww', s:PATTERN_KEY : '^\s*\zs(\S*)\ze\s*$', s:STR_KEY : '"\1"'},
+\   {s:LHS_KEY : 'ww', s:PATTERN_KEY : '^\s*\zs(.*)\ze\s*$', s:STR_KEY : '"\1"'},
 \   {s:LHS_KEY : 'cc', s:PATTERN_KEY : '_(.)', s:STR_KEY : '\u\1'},
 \   {s:LHS_KEY : 'ch', s:PATTERN_KEY : '([A-Z])', s:STR_KEY : '_\l\1'},
 \   {s:LHS_KEY : 'ct', s:PATTERN_KEY : ',', s:STR_KEY : '\t'},
