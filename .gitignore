@@ -16,5 +16,8 @@
 /vim/dict/cp932/
 /vim/dict/utf-8/
 
+# snippet
+/vim/snippets/mydiary.snip
+
 
 !.gitkeep
