@@ -25,6 +25,11 @@ setlocal noexpandtab
 setlocal matchpairs+==:;
 setlocal completeopt-=preview
 setlocal dictionary=~/dotfiles/vim/dict/php.dict
+if match(fnamemodify(expand('%'), ':t'), '^\k\+Test.php$') != -1
+    setlocal dictionary+=~/dotfiles/vim/dict/phpunit.dict
+else
+    setlocal dictionary-=~/dotfiles/vim/dict/phpunit.dict
+endif
 
 if exists('loaded_matchit')
     call tmno3#matchit#sql()
