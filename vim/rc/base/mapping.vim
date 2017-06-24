@@ -173,6 +173,12 @@ vnoremap [indent]t :<C-u>call <SID>convert_indent_style(1, 1)<CR>
 vnoremap [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 1)<CR>
 vnoremap [indent]o =
 vnoremap [indent]a :left<CR>gv
+
+" workaround for plugin's normal!
+nmap [indent]z zz
+nmap [indent]m zm
+nmap [indent]v zv
+
 "}}}
 
 " move"{{{
@@ -239,6 +245,17 @@ function! s:toggle_filetype() abort
     endif
 endfunction
 nnoremap [option]F :<C-u>call <SID>toggle_filetype()<CR>
+
+function! s:toggle_verbose() abort
+    if &verbose == 0
+        set verbose=12
+        set verbosefile=~/.vim/tmp/verbosefile
+    else
+        set verbose=0
+        set verbosefile=
+    endif
+endfunction
+nnoremap [option]v :<C-u>call <SID>toggle_verbose()<CR>
 
 "}}}
 
