@@ -1,0 +1,29 @@
+
+let s:cache_home = expand('~/.testvim')
+let s:dein_dir = s:cache_home . '/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+execute 'set runtimepath+=' . s:dein_repo_dir
+
+if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+endif
+execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+
+call dein#begin(s:dein_dir)
+
+" for debug
+" call dein#add('')
+
+call dein#end()
+call dein#save_state()
+
+if dein#check_install()
+    call dein#install()
+endif
+
+filetype plugin indent on
+
+
+" debug code
+

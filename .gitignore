@@ -19,5 +19,8 @@
 # snippet
 /vim/snippets/mydiary.snip
 
+# tool
+/vim/tool/minimal_test.vim
+
 
 !.gitkeep
