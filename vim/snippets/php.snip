@@ -1,19 +1,19 @@
 snippet public_function
-alias public_function
+alias pub
 abbr public function () {}
 	${1:public }${2:#:static }function ${3:#:FunctionName}(${4}) {
 		${5:TARGET}
 	}
 
 snippet public_static_function
-alias static
+alias sta
 abbr public static function () {}
 	${1:public }${2:static }function ${3:#:FunctionName}(${4}) {
 		${5:TARGET}
 	}
 
 snippet private_function
-alias private_function
+alias pri
 abbr private function () {}
 	${1:private }function ${2:#:FunctionName}(${3}) {
 		${4:TARGET}
@@ -33,6 +33,11 @@ abbr function (){}
 	function ${1:FunctionName}(${2}) {
 		${3:TARGET}
 	}
+
+snippet function_literal_one_line
+options word
+abbr function (){}
+	function (${1}) { ${2:TARGET}; }
 
 snippet function_literal
 options word
@@ -213,11 +218,9 @@ options head
 
 snippet throw
 options head
-	throw new ${1}Exception(${2:"${3:#:Error Processing Request}"}${4:});
-	${0}
+	throw new ${1}Exception("${2:#:Error Processing Request}"${3:});
 
 snippet while
-abbr wh
 options head
 	while (${1}) {
 		${0:TARGET}
