@@ -336,6 +336,8 @@ function! s:open_diary() abort
     execute 'set filetype=mydiary'
 endfunction
 nnoremap <Space>ew :<C-u>call <SID>open_diary()<CR>
+
+nnoremap [exec]j :<C-u>Jesponsiv2<Space>
 "}}}
 
 " substitute"{{{
