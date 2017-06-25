@@ -327,3 +327,5 @@ let g:neomru#file_mru_limit = 1000
 repo = 'thinca/vim-qfreplace'
 hook_add = 'nnoremap [exec]Q :<C-u>Qfreplace<CR>'
 
+[[plugins]]
+repo = 'evanmiller/nginx-vim-syntax'
