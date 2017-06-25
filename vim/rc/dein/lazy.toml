@@ -353,6 +353,10 @@ let g:quickrun_config['vim'] = {
 let g:quickrun_config['php'] = {
 \   "hook/output_encode/encoding" : "utf-8",
 \}
+let g:quickrun_config['python'] = {
+\   "command" : "python3.5",
+\   "hook/output_encode/encoding" : "utf-8",
+\}
 
 '''
 
@@ -715,4 +719,3 @@ let g:ale_linters = {
 let g:ale_php_phpcs_standard = '~/dotfiles/lint/php/phpcs/my_psr2.xml'
 let g:ale_php_phpmd_ruleset = 'unusedcode'
 '''
-
