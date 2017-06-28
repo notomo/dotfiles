@@ -6,6 +6,7 @@ fi
 alias nv="nvim"
 alias ee="exit"
 alias ll="ls -la"
+alias ss="source ~/.bashrc"
 
 if [ -x /usr/bin/Xvfb ] && [ -x /usr/bin/VBoxClient ] && [ ! -f /tmp/.X0-lock ]; then
     Xvfb -screen 0 320x240x8 > /dev/null 2>&1 &
