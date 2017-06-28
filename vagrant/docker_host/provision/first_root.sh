@@ -112,6 +112,8 @@ git clone https://github.com/tmn-o3/dotfiles.git ~/dotfiles
 sh ~/dotfiles/link.sh
 
 # sync
+sysctl fs.inotify.max_user_watches = 32768
+echo fs.inotify.max_user_watches = 32768 >> /etc/sysctl.conf
 yum -y install lsyncd --enablerepo=epel
 yum -y install xinetd
 

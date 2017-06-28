@@ -11,7 +11,8 @@ Vagrant.configure("2") do |config|
   config.ssh.guest_port = 2222
 
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "1024"
+    vb.memory = 2048
+    vb.cpus = 2
     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
   end
 
