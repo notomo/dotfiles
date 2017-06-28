@@ -50,6 +50,7 @@ nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 
 " file"{{{
 nnoremap [file]w :<C-u>write<CR>
+nnoremap [file]W :<C-u>write !sudo tee %<CR>
 nnoremap [file]o :<C-u>edit<Space>
 nnoremap [file]rn :<C-u>file<Space>
 nnoremap [file]rl :<C-u>edit!<CR>
@@ -436,6 +437,7 @@ let s:replace_map_info = [
 \   {s:LHS_KEY : 'qw', s:PATTERN_KEY : "'", s:STR_KEY : '"'},
 \   {s:LHS_KEY : 'wq', s:PATTERN_KEY : '"', s:STR_KEY : "'"},
 \   {s:LHS_KEY : 'ww', s:PATTERN_KEY : '^\s*\zs(.*)\ze\s*$', s:STR_KEY : '"\1"'},
+\   {s:LHS_KEY : 'j', s:PATTERN_KEY : '^\s*([^=[:blank:]]*).*$\zs\ze', s:STR_KEY : '\rvar_dump(\1);'},
 \   {s:LHS_KEY : 'cc', s:PATTERN_KEY : '_(.)', s:STR_KEY : '\u\1'},
 \   {s:LHS_KEY : 'ch', s:PATTERN_KEY : '([A-Z])', s:STR_KEY : '_\l\1'},
 \   {s:LHS_KEY : 'ct', s:PATTERN_KEY : ',', s:STR_KEY : '\t'},
