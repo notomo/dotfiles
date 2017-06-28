@@ -9,21 +9,13 @@ cd $APPDIR
 yum update
 
 # docker, docker-compose
-tee /etc/yum.repos.d/docker.repo <<-EOF
-[dockerrepo]
-name=Docker Repository
-baseurl=https://yum.dockerproject.org/repo/main/centos/7
-enabled=1
-gpgcheck=1
-gpgkey=https://yum.dockerproject.org/gpg
-EOF
-yum install -y docker-engine
-curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum makecache fast
+yum -y install docker-ce
+curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-groupadd docker
-usermod -aG docker vagrant
-service docker start
-chkconfig docker on
+sudo systemctl status docker.service
+sudo systemctl enable docker.service
 
 # clipboard
 yum install -y epel-release
@@ -83,6 +75,7 @@ yum install -y python35u python35u-libs python35u-devel python35u-pip
 yum-config-manager --disable ius
 pip3.5 install neovim
 pip3.5 install flake8
+pip3.5 install requests
 
 # python2
 yum -y install python-pip --enablerepo epel
@@ -126,15 +119,44 @@ tee /etc/lsyncd.conf <<-EOF
 settings {
     logfile    = "/var/log/lsyncd/lsyncd.log",
     statusFile = "/var/log/lsyncd/lsyncd.status",
+    insist = 1,
 }
 
 sync {
     default.rsync,
-    source="/home/vagrant/workspace/",
-    target="/vagrant/workspace/",
+    source="/home/vagrant/",
+    target="/hostusr/backup/",
     delay = 1,
+    excludeFrom="/etc/rsync_exclude.lst",
 }
 EOF
+touch /etc/rsync_exclude.lst
+tee /etc/rsync_exclude.lst <<-EOF
+/.cache/composer/
+/.cache/deoplete/
+/.cache/neosnippet/
+/.cache/pip/
+/.cache/thumbnails/
+/.cache/unite/
+/.cache/vimfiler/
+/.cache/vim-ref/
+/.config
+/.gem
+/.go
+/.pdepend
+/.pki
+/app
+/.bash*
+/.local/share/
+/.flake8
+/.git*
+/.vbox*
+/.vim*
+/.vintrc.yaml
+/.python_history
+EOF
+
+rsync -a /hostusr/backup/ $USERDIR
 
 systemctl start xinetd
 systemctl enable xinetd

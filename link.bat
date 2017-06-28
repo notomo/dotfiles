@@ -46,4 +46,7 @@ mklink ".vintrc.yaml" %HOMEPATH%"\dotfiles\lint\vim\.vintrc.yaml"
 
 mklink ".gitignore_global" %HOMEPATH%"\dotfiles\git\.gitignore_global"
 
+mkdir %HOMEPATH%"\backup" > NUL 2>&1
+if ERRORLEVEL 1 cmd /c exit 0
+
 pause

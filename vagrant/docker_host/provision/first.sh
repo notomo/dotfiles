@@ -4,8 +4,14 @@ source ~/.bash_profile
 source ~/.bashrc
 
 # dotfiles
-git clone https://github.com/tmn-o3/dotfiles.git
+if [ -d ~/dotfiles ]; then
+    cd ~/dotfiles
+    git pull origin master
+else
+    git clone https://github.com/tmn-o3/dotfiles.git
+fi
 sh ~/dotfiles/link.sh
+cd ~
 
 # composer
 composer global require squizlabs/php_codesniffer=*
@@ -26,4 +32,3 @@ mkdir -p ~/workspace
 cd ~/workspace
 mkdir -p test
 mkdir -p memo
-touch .gitkeep
