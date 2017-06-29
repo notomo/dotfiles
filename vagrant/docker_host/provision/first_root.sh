@@ -9,6 +9,7 @@ cd $APPDIR
 yum update
 
 # docker, docker-compose
+yum -y install yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum makecache fast
 yum -y install docker-ce
