@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "C:/Users", "/c/Users", type: nil
   config.vm.synced_folder ".", "/vagrant", type: nil
   config.vm.synced_folder "~", "/hostusr", type: nil
+  config.vm.box_check_update = false
   config.ssh.guest_port = 2222
 
   config.vm.provider "virtualbox" do |vb|
