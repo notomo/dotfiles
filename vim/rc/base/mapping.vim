@@ -163,23 +163,46 @@ endfunction
 
 nnoremap [indent]l >>
 nnoremap [indent]h <<
-nnoremap [indent]t :<C-u>call <SID>convert_indent_style(1, 0)<CR>
+nnoremap [indent]g :<C-u>call <SID>convert_indent_style(1, 0)<CR>
 nnoremap [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 0)<CR>
 nnoremap [indent]o ==
 nnoremap [indent]a :<C-u>left<CR>
 
 vnoremap [indent]l >gv
 vnoremap [indent]h <gv
-vnoremap [indent]t :<C-u>call <SID>convert_indent_style(1, 1)<CR>
+vnoremap [indent]g :<C-u>call <SID>convert_indent_style(1, 1)<CR>
 vnoremap [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 1)<CR>
 vnoremap [indent]o =
 vnoremap [indent]a :left<CR>gv
 
 " workaround for plugin's normal!
 nmap [indent]z zz
-nmap [indent]m zm
+nmap [indent]t zt
+nmap [indent]b zb
+nmap [indent]R zR
+nmap [indent]f zf
+nmap [indent]F zF
+nmap [indent]d zd
+nmap [indent]D zD
+nmap [indent]E zE
+" nmap [indent]o zo
+nmap [indent]O zO
+nmap [indent]c zc
+nmap [indent]C zC
+" nmap [indent]a za
+nmap [indent]A zA
 nmap [indent]v zv
-
+nmap [indent]x zx
+nmap [indent]X zX
+nmap [indent]m zm
+nmap [indent]M zM
+nmap [indent]r zr
+nmap [indent]n zn
+nmap [indent]N zN
+nmap [indent]i zi
+nmap [indent]j zj
+nmap [indent]k zk
+nmap [indent]<CR> z<CR>
 "}}}
 
 " move"{{{
