@@ -6,7 +6,8 @@ source ~/.bashrc
 # dotfiles
 if [ -d ~/dotfiles ]; then
     cd ~/dotfiles
-    git pull origin master
+    git fetch origin
+    git reset --hard origin/master
 else
     git clone https://github.com/tmn-o3/dotfiles.git
 fi
