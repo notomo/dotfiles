@@ -20,22 +20,18 @@ let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
 '''
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-on_cmd = 'Denite'
-hook_add = '''
-nnoremap [denite] <Nop>
-nmap <Space>d [denite]
-
-nnoremap <silent> [denite]r :<C-u>Denite unite:file_mru<CR>
-nnoremap <silent> [denite]ll :<C-u>Denite line<CR>
-nnoremap <silent> [denite]d :<C-u>Denite unite:directory_mru<CR>
-nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
-nnoremap <silent> [denite]F :<C-u>DeniteBufferDir -buffer-name=files file_rec<CR>
-nnoremap <silent> [denite]f :<C-u>DeniteBufferDir -buffer-name=files unite:file<CR>
-nnoremap <silent> [denite]o :<C-u>Denite unite:outline<CR>
-nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>
+repo = 'zchee/deoplete-go'
+on_ft = 'go'
+build = 'make'
+hook_source = '''
+let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
 '''
-hook_source = 'source ~/.vim/rc/plugins/denite.vim'
+
+[[plugins]]
+repo = 'fszymanski/deoplete-emoji'
+on_ft = 'markdown'
+hook_add = '''
+'''
 
 [[plugins]]
 repo = 'tmn-o3/denite-autocmd'
