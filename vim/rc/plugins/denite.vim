@@ -15,6 +15,7 @@ for s:info in tmno3#mapping#sub_input()
     call denite#custom#map('insert', s:info[s:LHS_KEY], s:info[s:RHS_KEY], 'noremap')
 endfor
 
+call denite#custom#map('insert', '<BS>', '<denite:move_caret_to_left>', 'noremap')
 call denite#custom#map('insert', '<C-h>', '<denite:move_caret_to_left>', 'noremap')
 call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
