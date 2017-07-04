@@ -76,3 +76,7 @@ setlocal expandtab
 blade = '''
 let b:caw_wrap_oneline_comment = ['{{-- ', ' --}}']
 '''
+
+jesponsiv2 = '''
+nnoremap <buffer> [file]rl :<C-u>JesponseReload<CR>
+'''

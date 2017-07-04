@@ -41,4 +41,5 @@ nnoremap <silent> [term]t :<C-u>tabedit term://bash<CR>
 
 nnoremap [exec]c :<C-u>CheckHealth<CR>
 
-nnoremap [exec]j :<C-u>Jesponse<Space>
+nnoremap [exec]J :<C-u>Jesponse<Space>
+nnoremap [exec]j :<C-u>JesponseCursorUrl<CR>

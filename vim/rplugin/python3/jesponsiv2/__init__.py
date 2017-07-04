@@ -3,12 +3,15 @@ import neovim
 import requests
 import json
 import subprocess
+import re
 
 @neovim.plugin
 class Jesponsiv2(object):
 
     UTF8 = 'utf-8'
     JESPONSIV2_FILE_TYPE = 'jesponsiv2'
+
+    url_pattern = re.compile('^// url: (?P<url>\S+)$')
 
     def __init__(self, vim):
         self.vim = vim
@@ -20,8 +23,35 @@ class Jesponsiv2(object):
         }
 
     @neovim.command('Jesponse', nargs=1)
-    def jesponse(self, args):
+    def create_view(self, args):
         url = args[0]
+        if self.validate_url(url) is False:
+            return self.echo_message('Invalid url: {url}'.format(url=url))
+        title = self.get_var('buffer_title')
+        plugin_buffer = self.vim.call('bufname', title)
+        self.vim.command(
+            '{cmd} {title}'.format(
+                cmd=self.get_var('open_buffer_cmd'),
+                title=title
+            )
+        )
+        if plugin_buffer != '':
+            self.vim.current.buffer.options['modifiable'] = True
+        self.setup(url, self.vim.current.buffer)
+
+    @neovim.command('JesponseReload')
+    def reload_view(self):
+        current_buffer = self.vim.current.buffer
+        file_type = current_buffer.options['filetype']
+        url_line = current_buffer[0]
+        match_result = self.url_pattern.match(url_line)
+        if match_result is None or file_type != self.JESPONSIV2_FILE_TYPE:
+            return self.echo_message('Invalid buffer')
+        url = match_result.group('url')
+        current_buffer.options['modifiable'] = True
+        self.setup(url, current_buffer)
+
+    def setup(self, url, target_buffer):
         # validate before request
         if self.validate_url(url) is False:
             return self.echo_message('Invalid url: {url}'.format(url=url))
@@ -44,13 +74,7 @@ class Jesponsiv2(object):
         else:
             buffer_lines = self.get_text_buffer_lines(response)
         self.add_buffer_header(response, buffer_lines)
-        self.vim.command(
-            '{cmd} {title}'.format(
-                cmd=self.get_var('open_buffer_cmd'),
-                title=self.get_var('buffer_title'),
-            )
-        )
-        self.setup_buffer(self.vim.current.buffer, buffer_lines)
+        self.setup_buffer(target_buffer, buffer_lines)
 
     @staticmethod
     def validate_url(url):
@@ -98,6 +122,7 @@ class Jesponsiv2(object):
         self.vim.command('silent doautocmd BufWinEnter')
         self.vim.command('silent doautocmd FileType {file_type}'.format(file_type=self.JESPONSIV2_FILE_TYPE))
         target_buffer[:] = lines
+        buffer_options['modifiable'] = False
 
     def get_var(self, attribute_name):
         var_name = 'jesponsiv2#{attribute}'.format(attribute=attribute_name)
