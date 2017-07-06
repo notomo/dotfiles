@@ -1,4 +1,4 @@
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
 import neovim
 import requests
 import json
@@ -84,6 +84,7 @@ class Jesponsiv2(object):
     def add_buffer_header(self, response, lines):
         lines[:0] = [
             '// url: ' + response.url,
+            '// decoded_url: ' + unquote(response.url),
             '// status_code: ' + str(response.status_code),
             '// content-type: ' + str(response.headers['content-type']),
             '',
