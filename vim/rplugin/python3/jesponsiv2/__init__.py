@@ -129,5 +129,5 @@ class Jesponsiv2(object):
         return self.vim.vars.get(var_name, self.default_vars[attribute_name])
 
     def echo_message(self, message):
-        self.vim.command('echomsg "{}"'.format(message))
+        self.vim.command('echomsg "{}"'.format(self.vim.call('escape', message, '\\"')))
 
