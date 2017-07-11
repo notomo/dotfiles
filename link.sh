@@ -21,7 +21,7 @@ ln -s ${install_root}/dotfiles/vim/ftplugin/ ${install_root}/.vim/ftplugin
 ln -s ${install_root}/dotfiles/vim/syntax/ ${install_root}/.vim/syntax
 ln -s ${install_root}/dotfiles/vim/indent/ ${install_root}/.vim/indent
 ln -s ${install_root}/dotfiles/vim/rplugin ${install_root}/.vim/rplugin
-ln -s ${install_root}/dotfiles/vim/plugins ${install_root}/.vim/plugins
+ln -s ${install_root}/dotfiles/vim/plugin ${install_root}/.vim/plugin
 
 mkdir -p ${install_root}/.vim/tmp/backup
 mkdir -p ${install_root}/.vim/tmp/undo
