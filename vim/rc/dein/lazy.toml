@@ -694,7 +694,6 @@ nnoremap [git]fl :<C-u>execute 'Gina log :' . <SID>get_current_relpath()<CR>
 nnoremap [git]dd :<C-u>execute 'Gina compare :' . <SID>get_current_relpath()<CR>
 nnoremap [git]df :<C-u>execute 'Gina diff :' . <SID>get_current_relpath()<CR>
 
-nnoremap [git]F :<C-u>call tmno3#gina#adjust_diff_fenc()<CR>
 '''
 hook_post_source = 'source ~/.vim/rc/plugins/gina.vim'
 
