@@ -41,7 +41,7 @@ hi def link phpBoolean Boolean
 syn keyword phpConstant __LINE__ __FILE__ __FUNCTION__ __METHOD__ __CLASS__ __DIR__ __NAMESPACE__
 hi def link phpConstant Constant
 
-syn keyword phpConditional declare else enddeclare endswitch elseif endif if switch
+syn keyword phpConditional declare else enddeclare endswitch elseif endif if switch case default
 hi def link phpConditional Conditional
 
 syn keyword phpStatement return break continue exit goto die
@@ -67,9 +67,16 @@ hi def link phpDocCustomTags Type
 hi def link phpDocTodo Todo
 hi def link phpTodo Todo
 
-syn region phpStringDouble matchgroup=phpStringDouble start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=phpIdentifier
+syn match phpBackslashSequences "\\[fnrtv\\\"$]" contained display
+syn match phpBackslashDoubleQuote "\\[\"]" contained display
+syn match phpBackslashSingleQuote "\\[\\']" contained display
+hi def link phpBackslashSequences SpecialChar
+hi def link phpBackslashDoubleQuote SpecialChar
+hi def link phpBackslashSingleQuote SpecialChar
+
+syn region phpStringDouble matchgroup=phpStringDouble start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=phpIdentifier,phpBackslashSequences,phpBackslashDoubleQuote
 syn region phpBacktick matchgroup=phpBacktick start=+`+ skip=+\\\\\|\\"+ end=+`+ contains=phpIdentifier
-syn region phpStringSingle matchgroup=phpStringSingle start=+'+ skip=+\\\\\|\\'+ end=+'+ contains=phpIdentifier
+syn region phpStringSingle matchgroup=phpStringSingle start=+'+ skip=+\\\\\|\\'+ end=+'+ contains=phpBackslashSingleQuote
 syn sync match StringEnd grouphere NONE /("|'|`)[;,]\s*$/
 hi def link phpStringDouble String
 hi def link phpBacktick String
