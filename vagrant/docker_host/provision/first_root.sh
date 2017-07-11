@@ -77,6 +77,7 @@ yum-config-manager --disable ius
 pip3.5 install neovim
 pip3.5 install flake8
 pip3.5 install requests
+pip3.5 install mypy
 
 # python2
 yum -y install python-pip --enablerepo epel
