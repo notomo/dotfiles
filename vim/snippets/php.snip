@@ -46,33 +46,10 @@ abbr function (){}
 		${2:TARGET}
 	}
 
-snippet doc_function
-	/**
-	 * ${4:#:undocumented function}
-	 *
-	 * @return ${5:void}
-	 * @author ${6}
-	 **/
-	${1}function ${2}(${3}) {
-		${0:TARGET}
-	}
-
 snippet doc
 	/**
 	 * ${0}
 	 */
-
-snippet class_with_constructor
-	/**
-	 * ${1}
-	 */
-	class ${2:ClassName}${3:#:extends} {
-		$5
-		function ${4:__construct}(${5:#:argument})
-		{
-			${0:# code...}
-		}
-	}
 
 snippet class
 options head
@@ -181,7 +158,7 @@ options head
 
 snippet case
 options head
-	case '${1:#:variable}':
+	case ${1:#:variable}:
 		${0:#:code...}
 		break;
 
@@ -189,13 +166,13 @@ snippet switch
 abbr sw
 options head
 	switch (${1:#:variable}) {
-	case '${2:#:value}':
-		${3:#:code...}
-		break;
-	${0}
-	default:
-		${4:#:code...}
-		break;
+		case ${2:#:value}:
+			${3:#:code...}
+			break;
+		${0}
+		default:
+			${4:#:code...}
+			break;
 	}
 
 snippet try
@@ -216,9 +193,17 @@ options head
 		${4:#:code}
 	}
 
+snippet thisx
+options head
+	$this->${1} = $1;
+	${0}
+
+snippet ifset
+	${1:nullable} ?? ${2:else}
+
 snippet throw
 options head
-	throw new ${1}Exception("${2:#:Error Processing Request}"${3:});
+	throw new ${1}Exception('${2:#:Error Processing Request}');
 
 snippet while
 options head
