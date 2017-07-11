@@ -1,21 +1,12 @@
-snippet connect
-abbr qt connect
-options head
-	self.${1}.connect(self.${2})
-
-snippet class_Qt
-abbr qt class
-options head
-	class ${1:#:name}(${2:QWidget}):
-		def __init__(self, ${3:parent = None}):
-            $2.__init__(self, ${4:parent = parent})
-			${0:pass}
-
 snippet init
-abbr __init__
+abbr def __init__
 options head
-	${1:#:super_class}.__init__(self${2})
-	${0}
+	def __init__(self${1:, args}):
+		${2:pass}
+
+snippet super
+abbr super(OwnClass, self).method
+	super(${1:OwnClass}, self).${2:method}(${3:#:args})
 
 snippet property
 abbr @property
@@ -51,39 +42,16 @@ options     head
 		def __init__(self,${3}):
 			${0:pass}
 
-snippet     classd
-abbr        class Class(...): "..."
-options     head
-	class ${1:#:name}(${2:object}):
-		"""${3:#:class documentation}"""
-		def __init__(self,${4}):
-			"""${5:#:__init__ documentation}"""
-			${0:pass}
-
 snippet     def
 abbr        def function(...): ...
 options     head
 	def ${1:#:name}(${2}):
 		${0:pass}
 
-snippet     defd
-abbr        def function(...): """..."""
-options     head
-	def ${1:#:name}(${2}):
-		"""${3:#:function documentation}"""
-		${0:pass}
-
 snippet     defm
 abbr        def method(self, ...): ...
 options     head
 	def ${1:#:name}(self,${2}):
-		${0:pass}
-
-snippet     defmd
-abbr        def method(self, ...): "..."
-options     head
-	def ${1:#:name}(self,${2}):
-		"""${3:#:method documentation}"""
 		${0:pass}
 
 snippet     elif
