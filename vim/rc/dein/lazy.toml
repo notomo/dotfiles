@@ -379,6 +379,7 @@ hook_source = '''
 let g:ref_open = 'vsplit'
 let g:ref_use_vimproc = 1
 let g:ref_phpmanual_path = expand("~/.vim/reference/phpmanual")
+let g:ref_pydoc_cmd = 'python3.5 -m pydoc'
 '''
 
 [[plugins]]

@@ -494,6 +494,7 @@ nnoremap <silent> [yank]; :<C-u>call <SID>yank_value(@:)<CR>
 nnoremap <silent> [yank]/ :<C-u>call <SID>yank_value(@/)<CR>
 nnoremap <silent> [yank]i :<C-u>call <SID>yank_value(@.)<CR>
 nnoremap <silent> [yank]f :<C-u>call <SID>yank_value(cfi#format('%s', ''))<CR>
+nnoremap <silent> [yank]b :<C-u>call <SID>yank_value(gina#component#repo#branch())<CR>
 function! s:yank_value(value) abort
     let [@", @+, @0, @*] = [a:value, a:value, a:value, a:value]
     echomsg 'yank '. a:value
