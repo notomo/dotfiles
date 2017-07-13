@@ -56,6 +56,7 @@ hook_post_source = 'source ~/.vim/rc/plugins/denite.vim'
 [[plugins]]
 repo = 'tmn-o3/denite-autocmd'
 on_source = 'denite.nvim'
+hook_add = 'nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>'
 
 [[plugins]]
 repo = 'Shougo/deol.nvim'

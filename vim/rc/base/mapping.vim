@@ -616,12 +616,15 @@ endfunction
 inoremap <expr> j<Space>k <SID>complete_pair()
 
 function! s:complete() abort
+    if neosnippet#expandable()
+        return "\<Plug>(neosnippet_expand)"
+    endif
     if exists('v:completed_item') && !empty(v:completed_item)
         return "\<C-y>"
     endif
     return "\<C-n>\<C-y>"
 endfunction
-inoremap <expr> j<Space>o <SID>complete()
+imap <expr> j<Space>o <SID>complete()
 
 "}}}
 
