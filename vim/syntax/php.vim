@@ -11,10 +11,13 @@ hi def link phpInclude Include
 syn keyword phpStructure abstract class interface namespace extends implements parent self trait list
 hi def link phpStructure Structure
 
-syn keyword phpException catch throw try
+syn keyword phpException catch throw try finally
 hi def link phpException Exception
 
-syn keyword phpType bool boolean int integer real double float string array object null
+syn case ignore
+syn keyword phpType null
+syn case match
+syn keyword phpType bool boolean int integer real double float string array object
 hi def link phpType Type
 
 syn keyword phpKeyword var const
@@ -35,7 +38,9 @@ hi def link phpRepeat Repeat
 syn keyword phpDefine new clone echo print
 hi def link phpDefine Define
 
+syn case ignore
 syn keyword phpBoolean true false
+syn case match
 hi def link phpBoolean Boolean
 
 syn keyword phpConstant __LINE__ __FILE__ __FUNCTION__ __METHOD__ __CLASS__ __DIR__ __NAMESPACE__
