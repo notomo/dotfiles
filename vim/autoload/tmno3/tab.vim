@@ -74,7 +74,7 @@ function! tmno3#tab#setup_submode(enter_key) abort
     for info in tmno3#mapping#tab()
         call s:tab_map(info[s:LHS_KEY], info[s:RHS_KEY], info[s:MAP_ONLY_KEY], info[s:REMAP_KEY])
     endfor
-    call submode#leave_with('tab', 'n', '', 'j')
-    call feedkeys('[tab]' . a:enter_key) " enter submode
+    call submode#leave_with(s:TAB_MODE_NM, 'n', '', 'j')
+    call feedkeys(s:TAB_KEY . a:enter_key) " enter submode
 endfunction
 
