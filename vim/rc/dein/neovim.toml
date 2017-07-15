@@ -47,7 +47,7 @@ nnoremap <silent> [denite]r :<C-u>Denite unite:file_mru<CR>
 nnoremap <silent> [denite]ll :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite unite:directory_mru<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
-nnoremap <silent> [denite]F :<C-u>DeniteBufferDir -buffer-name=files file_rec<CR>
+nnoremap <silent> [unite]sf :<C-u>DeniteBufferDir -buffer-name=files file_rec<CR>
 nnoremap <silent> [denite]f :<C-u>DeniteBufferDir -buffer-name=files unite:file<CR>
 nnoremap <silent> [denite]o :<C-u>Denite unite:outline<CR>
 '''

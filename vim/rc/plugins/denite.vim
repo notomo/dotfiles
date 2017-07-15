@@ -1,4 +1,6 @@
 
+call denite#custom#source('file_rec', 'matchers', ['matcher_substring'])
+
 call denite#custom#option('default', 'direction', 'dynamictop')
 call denite#custom#option('default', 'use-default-mappings', 'false')
 
