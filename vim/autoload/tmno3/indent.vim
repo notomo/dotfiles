@@ -25,14 +25,22 @@ function! s:indent_map(lhs, rhs, mode, remap) abort
     call submode#map(s:INDENT_MODE_NM, a:mode, remap, a:lhs, a:rhs)
 endfunction
 
-function! tmno3#indent#setup_submode(enter_key) abort
+function! tmno3#indent#setup_submode(enter_key, is_visual) abort
     for info in tmno3#mapping#indent_normal_mode()
         call s:indent_map(info[s:LHS_KEY], info[s:RHS_KEY], 'n', info[s:REMAP_KEY])
     endfor
     for info in tmno3#mapping#indent_visual_mode()
         call s:indent_map(info[s:LHS_KEY], info[s:RHS_KEY], 'v', info[s:REMAP_KEY])
     endfor
-    call submode#leave_with(s:INDENT_MODE_NM, 'nv', '', 'j')
+    call submode#map(s:INDENT_MODE_NM, 'v', '', 'j', 'j')
+    call submode#map(s:INDENT_MODE_NM, 'v', '', 'k', 'k')
+    call submode#map(s:INDENT_MODE_NM, 'v', '', 'o', 'o')
+    call submode#map(s:INDENT_MODE_NM, 'v', '', 'gg', 'gg')
+    call submode#map(s:INDENT_MODE_NM, 'v', '', 'G', 'G')
+    call submode#leave_with(s:INDENT_MODE_NM, 'nv', '', 'z')
+    if a:is_visual
+        execute 'normal! gv'
+    endif
     call feedkeys(s:INDENT_KEY . a:enter_key) " enter submode
 endfunction
 

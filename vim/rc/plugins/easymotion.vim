@@ -16,6 +16,7 @@ let s:TARGET_KEY = 't'
 
 let s:map_info = [
 \ {s:LHS_SFX_KEY : 's'      , s:TARGET_KEY : '"'},
+\ {s:LHS_SFX_KEY : 'c'      , s:TARGET_KEY : ':'},
 \ {s:LHS_SFX_KEY : 'l'      , s:TARGET_KEY : ']'},
 \ {s:LHS_SFX_KEY : 'p'      , s:TARGET_KEY : ')'},
 \ {s:LHS_SFX_KEY : 'd'      , s:TARGET_KEY : '}'},

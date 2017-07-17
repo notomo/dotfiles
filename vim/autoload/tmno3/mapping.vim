@@ -92,7 +92,7 @@ endfunction
 
 function! tmno3#mapping#indent_normal_mode() abort
     return [
-        \ {s:LHS_KEY : 'o', s:RHS_KEY : '>>', s:REMAP_KEY : 0},
+        \ {s:LHS_KEY : 'f', s:RHS_KEY : '>>', s:REMAP_KEY : 0},
         \ {s:LHS_KEY : 'l', s:RHS_KEY : '>>', s:REMAP_KEY : 0},
         \ {s:LHS_KEY : 'a', s:RHS_KEY : '<<', s:REMAP_KEY : 0},
         \ {s:LHS_KEY : 'h', s:RHS_KEY : '<<', s:REMAP_KEY : 0},
@@ -105,7 +105,7 @@ endfunction
 
 function! tmno3#mapping#indent_visual_mode() abort
     return [
-        \ {s:LHS_KEY : 'o', s:RHS_KEY : '>gv', s:REMAP_KEY : 0},
+        \ {s:LHS_KEY : 'f', s:RHS_KEY : '>gv', s:REMAP_KEY : 0},
         \ {s:LHS_KEY : 'l', s:RHS_KEY : '>gv', s:REMAP_KEY : 0},
         \ {s:LHS_KEY : 'a', s:RHS_KEY : '<gv', s:REMAP_KEY : 0},
         \ {s:LHS_KEY : 'h', s:RHS_KEY : '<gv', s:REMAP_KEY : 0},

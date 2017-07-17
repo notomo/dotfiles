@@ -156,10 +156,10 @@ vnoremap [indent] <Nop>
 vmap <Space>i [indent]
 
 for s:info in tmno3#mapping#indent_normal_mode()
-    silent execute join(['nnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call tmno3#indent#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
+    silent execute join(['nnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call tmno3#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 0)<CR>"])
 endfor
 for s:info in tmno3#mapping#indent_visual_mode()
-    silent execute join(['vnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call tmno3#indent#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
+    silent execute join(['vnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call tmno3#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 1)<CR>"])
 endfor
 
 "}}}
@@ -339,7 +339,8 @@ function! s:generate_cmd(cmd_pattern, is_visual) abort
     let cursor_pos = matchend(alter_replaced_register, s:CURSOR_KEY)
     let deleted_cursor = substitute(replaced_word, s:CURSOR_KEY, '', '')
     let result = substitute(deleted_cursor, s:REGISTER_KEY, register, 'g') . repeat("\<Left>", len(alter_replaced_register) - cursor_pos)
-    let result = substitute(result, "\n", '\\n', 'g')
+    " a\<BS> is for inccommand
+    let result = substitute(result, "\n", '\\n', 'g') . "a\<BS>"
     return a:is_visual ? result : substitute(result, ':\zs', "\<C-u>", '')
 endfunction
 
