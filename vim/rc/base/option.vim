@@ -59,6 +59,7 @@ set foldlevel=3
 set wildcharm=<C-z>
 set undoreload=0
 set updatecount=0
+set keywordprg=:help
 if v:version >= 800
     set nofixendofline
     set tagcase=match
