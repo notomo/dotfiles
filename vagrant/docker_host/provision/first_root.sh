@@ -13,7 +13,7 @@ yum -y install yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum makecache fast
 yum -y install docker-ce
-curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-$(uname -s)-$(uname -m) > /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-"$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 sudo systemctl status docker.service
 sudo systemctl enable docker.service
@@ -108,6 +108,9 @@ pip3.5 install vim-vint
 
 # text browser
 yum -y install lynx
+
+# word dict
+yum -y install words
 
 # dotfiles for root
 git clone https://github.com/tmn-o3/dotfiles.git ~/dotfiles

@@ -60,7 +60,7 @@ set wildcharm=<C-z>
 set undoreload=0
 set updatecount=0
 set keywordprg=:help
-if v:version >= 800
+if v:version >= 800 || has('nvim')
     set nofixendofline
     set tagcase=match
 endif
