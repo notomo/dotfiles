@@ -374,12 +374,25 @@ hook_source = 'let g:caw_no_default_keymappings = 1'
 [[plugins]]
 repo = 'thinca/vim-ref'
 on_map = {n = '<Plug>'}
-hook_add = 'nmap [keyword]r <Plug>(ref-keyword)'
+hook_add = '''
+nmap [keyword]r <Plug>(ref-keyword)
+nnoremap <expr> [keyword]R ":<C-u>Ref webdict " . expand("<cword>") . "<CR>"
+nnoremap <expr> [keyword]<C-r> ":<C-u>Ref webdict english " . expand("<cword>") . "<CR>"
+'''
 hook_source = '''
 let g:ref_open = 'vsplit'
 let g:ref_use_vimproc = 1
 let g:ref_phpmanual_path = expand("~/.vim/reference/phpmanual")
 let g:ref_pydoc_cmd = 'python3.5 -m pydoc'
+let g:ref_source_webdict_sites = {
+    \ 'english': {
+        \ 'url': 'http://dictionary.infoseek.ne.jp/jeword/%s',
+    \ },
+    \ 'japanese': {
+        \ 'url': 'http://dictionary.infoseek.ne.jp/ejword/%s',
+    \ },
+\ }
+let g:ref_source_webdict_sites.default = 'japanese'
 '''
 
 [[plugins]]
