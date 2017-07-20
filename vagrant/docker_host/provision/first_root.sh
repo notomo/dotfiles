@@ -78,6 +78,8 @@ pip3.5 install neovim
 pip3.5 install flake8
 pip3.5 install requests
 pip3.5 install mypy
+pip3.5 install autopep8
+pip3.5 install isort
 
 # python2
 yum -y install python-pip --enablerepo epel
