@@ -124,47 +124,8 @@ echo fs.inotify.max_user_watches = 32768 >> /etc/sysctl.conf
 yum -y install lsyncd --enablerepo=epel
 yum -y install xinetd
 
-tee /etc/lsyncd.conf <<-EOF
-settings {
-    logfile    = "/var/log/lsyncd/lsyncd.log",
-    statusFile = "/var/log/lsyncd/lsyncd.status",
-    insist = 1,
-}
-
-sync {
-    default.rsync,
-    source="/home/vagrant/",
-    target="/hostusr/backup/",
-    delay = 1,
-    excludeFrom="/etc/rsync_exclude.lst",
-}
-EOF
-touch /etc/rsync_exclude.lst
-tee /etc/rsync_exclude.lst <<-EOF
-/.cache/composer/
-/.cache/deoplete/
-/.cache/neosnippet/
-/.cache/pip/
-/.cache/thumbnails/
-/.cache/unite/
-/.cache/vimfiler/
-/.cache/vim-ref/
-/.config
-/.gem
-/.go
-/.pdepend
-/.pki
-/app
-/.bash*
-/.local/share/
-/.flake8
-/.git*
-/.vbox*
-/.vim*
-/.vintrc.yaml
-/.python_history
-EOF
-
+cp -f /vagrant/provision/lsyncd.conf /etc/lsyncd.conf
+cp -f /vagrant/provision/rsync_exclude.lst /etc/rsync_exclude.lst
 rsync -a /hostusr/backup/ $USERDIR
 
 systemctl start xinetd
