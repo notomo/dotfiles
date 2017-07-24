@@ -65,6 +65,10 @@ tar zxf pt_linux_amd64.tar.gz
 mv pt_linux_amd64/pt /usr/local/bin/pt
 rm pt_linux_amd64.tar.gz
 
+# ripgrep
+yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+yum -y install ripgrep
+
 chown $USERNAME:$USERNAME -R $APPDIR
 
 cp -f /vagrant/provision/.bash_profile $USERDIR/.bash_profile

@@ -329,3 +329,13 @@ hook_add = 'nnoremap [exec]Q :<C-u>Qfreplace<CR>'
 
 [[plugins]]
 repo = 'evanmiller/nginx-vim-syntax'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --bin'
+merged = '0'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+hook_add = 'source ~/.vim/rc/plugins/fzf.vim'
