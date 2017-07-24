@@ -42,6 +42,7 @@ ln -s "${install_root}"/dotfiles/vim/rc/init.vim "${install_root}"/.config/nvim/
 ln -s "${install_root}"/dotfiles/lint/vim/.vintrc.yaml "${install_root}"/.vintrc.yaml
 ln -s "${install_root}"/dotfiles/lint/python/.flake8 "${install_root}"/.flake8
 ln -s "${install_root}"/dotfiles/lint/python/.isort.cfg "${install_root}"/.isort.cfg
+ln -s "${install_root}"/dotfiles/lint/python/pep8 "${install_root}"/.config/pep8
 
 # git
 ln -s "${install_root}"/dotfiles/git/.gitignore_global "${install_root}"/.gitignore_global
