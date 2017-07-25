@@ -332,10 +332,12 @@ repo = 'evanmiller/nginx-vim-syntax'
 
 [[plugins]]
 repo = 'junegunn/fzf'
+if = "has('nvim')"
 build = './install --bin'
 merged = '0'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
+if = "has('nvim')"
 depends = 'fzf'
 hook_add = 'source ~/.vim/rc/plugins/fzf.vim'
