@@ -112,6 +112,9 @@ yum install -y golang --enablerepo epel
 # Vim script
 pip3.5 install vim-vint
 
+# sqlint
+gem install sqlint
+
 # text browser
 yum -y install lynx
 

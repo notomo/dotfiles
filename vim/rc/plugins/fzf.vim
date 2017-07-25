@@ -15,8 +15,8 @@ function! s:fzf(path) abort
     call fzf#vim#grep('rg --line-number --no-heading .', 0, fzf#vim#with_preview({'options': '--exact --reverse --delimiter : --nth 3..'}, 'right:50%:wrap'))
     execute 'cd ' . current_path
 endfunction
-nnoremap [unite]ss :<C-u>call <SID>fzf('.')<CR>
-nnoremap [unite]sl :<C-u>call <SID>fzf_git()<CR>
+nnoremap [unite]sr :<C-u>call <SID>fzf('.')<CR>
+nnoremap [unite]sg :<C-u>call <SID>fzf_git()<CR>
 
 let g:fzf_action = {'ctrl-o': 'tabnew'}
 let g:fzf_layout = {'window': '-tabnew'}
