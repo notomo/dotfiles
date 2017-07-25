@@ -11,6 +11,7 @@ vnoremap x "_x
 
 " change using delete register
 nnoremap c "_c
+vnoremap c "_c
 
 " repeat an ex command
 nnoremap <Space>. @:
