@@ -31,11 +31,7 @@ let g:unite_enable_auto_select = 0
 
 let g:unite_source_grep_encoding = 'utf-8'
 let g:unite_source_file_async_command = 'ls -ar'
-if executable('rg')
-  let g:unite_source_grep_command = 'rg'
-  let g:unite_source_grep_default_opts = '--line-number --smart-case'
-  let g:unite_source_grep_recursive_opt = ''
-elseif executable('pt')
+if executable('pt')
   let g:unite_source_grep_command = 'pt'
   let g:unite_source_grep_default_opts = '--nogroup --nocolor --smart-case'
   let g:unite_source_grep_recursive_opt = ''

@@ -70,11 +70,12 @@ setlocal iskeyword+=-
 '''
 
 xml = '''
-setlocal expandtab
+setlocal noexpandtab
 '''
 
 blade = '''
 let b:caw_wrap_oneline_comment = ['{{-- ', ' --}}']
+setlocal expandtab
 '''
 
 jesponsiv2 = '''
