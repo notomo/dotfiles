@@ -33,3 +33,7 @@ mkdir -p ~/workspace
 cd ~/workspace
 mkdir -p test
 mkdir -p memo
+
+# fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --bin

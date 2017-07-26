@@ -1,3 +1,6 @@
+if has('vim_starting')
+    set runtimepath+=~/.fzf
+endif
 
 function! s:fzf_git() abort
     let git = gina#core#get_or_fail()
