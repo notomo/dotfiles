@@ -1,23 +1,38 @@
 snippet public_function
 alias pub
 abbr public function () {}
-	${1:public }${2:#:static }function ${3:#:FunctionName}(${4}) {
+	${1:public} function ${3:functionName}(${4}) {
 		${5:TARGET}
 	}
 
 snippet public_static_function
 alias sta
 abbr public static function () {}
-	${1:public }${2:static }function ${3:#:FunctionName}(${4}) {
+	${1:public} ${2:static }function ${3:functionName}(${4}) {
 		${5:TARGET}
 	}
 
 snippet private_function
 alias pri
 abbr private function () {}
-	${1:private }function ${2:#:FunctionName}(${3}) {
+	${1:private} function ${2:functionName}(${3}) {
 		${4:TARGET}
 	}
+
+snippet protected_function
+alias pro
+abbr protected function () {}
+	${1:protected} function ${2:functionName}(${3}) {
+		${4:TARGET}
+	}
+
+snippet protected_var
+abbr protected $var;
+	${1:protected} $${2:var};
+
+snippet protected_const
+abbr protected const
+	${1:protected }const ${2:CONST} = ${3:TARGET};
 
 snippet if_func
 alias iffunc
@@ -50,6 +65,16 @@ snippet doc
 	/**
 	 * ${0}
 	 */
+
+snippet testdoc
+	/**
+	 * @test
+	 * @covers ::${1:testName}
+	 */
+
+snippet mock
+	$${1:mockVar} = M::mock(${2:ClassName}::class);
+	${0}
 
 snippet class
 options head
@@ -121,7 +146,11 @@ options head
 
 snippet var_dump
 options head
-  var_dump(${0:TARGET});
+	var_dump(${0:TARGET});
+
+snippet exit
+options head
+	exit;
 
 snippet else
 	else {
