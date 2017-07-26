@@ -1,0 +1,10 @@
+byDefault
+makePartial
+shouldAllowMockingMethod
+shouldAllowMockingProtectedMethods
+shouldDeferMissing
+shouldHaveReceived
+shouldIgnoreMissing
+shouldNotHaveReceived
+shouldNotReceive
+shouldReceive

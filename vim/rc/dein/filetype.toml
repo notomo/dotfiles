@@ -27,8 +27,10 @@ setlocal completeopt-=preview
 setlocal dictionary=~/dotfiles/vim/dict/php.dict
 if match(fnamemodify(expand('%'), ':t'), '^\k\+Test.php$') != -1
     setlocal dictionary+=~/dotfiles/vim/dict/phpunit.dict
+    setlocal dictionary+=~/dotfiles/vim/dict/mockery.dict
 else
     setlocal dictionary-=~/dotfiles/vim/dict/phpunit.dict
+    setlocal dictionary-=~/dotfiles/vim/dict/mockery.dict
 endif
 
 if exists('loaded_matchit')

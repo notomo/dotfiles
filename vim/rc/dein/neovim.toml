@@ -23,14 +23,6 @@ let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
 '''
 
 [[plugins]]
-repo = 'zchee/deoplete-go'
-on_ft = 'go'
-build = 'make'
-hook_source = '''
-let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
-'''
-
-[[plugins]]
 repo = 'fszymanski/deoplete-emoji'
 on_ft = 'markdown'
 hook_add = '''
