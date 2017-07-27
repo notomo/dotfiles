@@ -9,11 +9,13 @@ nnoremap <silent> [denite]r :<C-u>Denite unite:file_mru<CR>
 nnoremap <silent> [denite]ll :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite unite:directory_mru<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
-nnoremap <silent> [unite]sf :<C-u>DeniteBufferDir -buffer-name=files file_rec<CR>
+nnoremap <silent> [unite]sf :<C-u>DeniteBufferDir file_rec -split=tab<CR>
+nnoremap <silent> [denite]sg :<C-u>DeniteProjectDir file_rec -split=tab<CR>
 nnoremap <silent> [denite]f :<C-u>DeniteBufferDir -buffer-name=files unite:file<CR>
-nnoremap <silent> [denite]o :<C-u>Denite outline<CR>
-nnoremap <silent> [denite]t :<C-u>Denite tag<CR>
-nnoremap <silent> [denite]k :<C-u>DeniteCursorWord tag -immediately<CR>
+nnoremap <silent> [denite]o :<C-u>Denite outline -auto-preview<CR>
+nnoremap <silent> [denite]ta :<C-u>Denite tag -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]tk :<C-u>DeniteCursorWord tag -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]k :<C-u>DeniteCursorWord tag -immediately -no-empty<CR>
 nnoremap <silent> [denite]n :<C-u>Denite -resume -select=+1 -immediately<CR>
 nnoremap <silent> [denite]N :<C-u>Denite -resume -select=-1 -immediately<CR>
 '''

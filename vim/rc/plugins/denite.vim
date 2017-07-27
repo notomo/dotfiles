@@ -1,9 +1,19 @@
 
+call denite#custom#option('default', 'use_default_mappings', 'false')
+
+highlight myDeniteMatchText cterm=NONE guifg=#f6a3a3 guibg=NONE
+highlight myDeniteInsert cterm=NONE guifg=NONE guibg=#3d5066
+highlight myDeniteNormal cterm=NONE guifg=White guibg=#7b6980
+
+call denite#custom#option('default', 'highlight_matched_char', 'myDeniteMatchText')
+call denite#custom#option('default', 'highlight_mode_insert', 'myDeniteInsert')
+call denite#custom#option('default', 'highlight_mode_normal', 'myDeniteNormal')
+call denite#custom#option('default', 'highlight_matched_range', 'NONE')
+call denite#custom#option('default', 'split', 'tab')
+call denite#custom#option('default', 'no_empty', v:true)
+call denite#custom#option('default', 'vertical_preview', v:true)
+
 call denite#custom#source('file_rec', 'matchers', ['matcher_substring'])
-
-call denite#custom#option('default', 'direction', 'dynamictop')
-call denite#custom#option('default', 'use-default-mappings', 'false')
-
 
 call denite#custom#map('_', '<CR>', '<denite:do_action:default>', 'noremap')
 call denite#custom#map('_', '<Tab>', '<denite:choose_action>', 'noremap')

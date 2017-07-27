@@ -233,9 +233,6 @@ map e <Plug>(smartword-e)
 # hook_add = 'source ~/.vim/rc/plugins/lightline.vim'
 
 [[plugins]]
-repo = 'Shougo/neco-syntax'
-
-[[plugins]]
 repo = 'rhysd/vim-color-spring-night'
 hook_add = '''
 let g:spring_night_kill_italic = 1
