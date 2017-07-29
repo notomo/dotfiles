@@ -48,6 +48,24 @@ for s:mode_char in ['n', 'v']
     \ {'mode' : s:mode_char, 'silent' : 1},
     \)
 
+    call gina#custom#mapping#map(
+    \ '/\%(status\|stash\|branch\)', 'sm',
+    \ '<Plug>(gina-builtin-mark)',
+    \ {'mode' : s:mode_char, 'silent' : 1},
+    \)
+
+    call gina#custom#mapping#map(
+    \ '/\%(status\|stash\|branch\)', 'su',
+    \ '<Plug>(gina-builtin-mark-unset)',
+    \ {'mode' : s:mode_char, 'silent' : 1},
+    \)
+
+    call gina#custom#mapping#map(
+    \ 'status', '<Space>t',
+    \ ':call gina#action#call(''edit:tab'')<CR>',
+    \ {'noremap' : 1, 'mode' : s:mode_char, 'silent' : 1},
+    \)
+
 endfor
 
 call gina#custom#mapping#nmap(
@@ -112,6 +130,26 @@ call gina#custom#command#option(
 call gina#custom#command#option(
 \ '/\%(diff\|blame\|compare\|patch\|log\)',
 \ '--opener', 'tabedit'
+\)
+
+call gina#custom#command#option('blame', '--width', '90')
+
+call gina#custom#mapping#nmap('blame', 'j', 'j<Plug>(gina-blame-echo)')
+call gina#custom#mapping#nmap('blame', 'k', 'k<Plug>(gina-blame-echo)')
+
+let g:gina#command#blame#timestamper#format1 = '%Y-%m-%d'
+let g:gina#command#blame#timestamper#format2 = '%Y-%m-%d'
+
+call gina#custom#mapping#nmap(
+\ 'diff', '[diff]j',
+\ ':call tmno3#vimrc#to_next_syntax(''diffLine'', 1)<CR>',
+\ {'noremap': 1, 'silent': 1},
+\)
+
+call gina#custom#mapping#nmap(
+\ 'diff', '[diff]k',
+\ ':call tmno3#vimrc#to_previous_syntax(''diffLine'', -1)<CR>',
+\ {'noremap': 1, 'silent': 1},
 \)
 
 call gina#custom#mapping#nmap(
