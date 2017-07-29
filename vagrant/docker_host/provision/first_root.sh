@@ -109,6 +109,9 @@ yum install -y ShellCheck --enablerepo epel
 # golang
 yum install -y golang --enablerepo epel
 
+# clang
+yum -y install clang lldb
+
 # Vim script
 pip3.5 install vim-vint
 

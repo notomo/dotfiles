@@ -7,3 +7,4 @@ let g:deoplete#sources.markdown = ['buffer', 'neosnippet', 'file', 'around', 'em
 let g:deoplete#sources.vim = ['vim', 'file', 'buffer', 'around', 'neosnippet']
 let g:deoplete#sources.python = ['jedi', 'file', 'buffer', 'around', 'neosnippet']
 let g:deoplete#sources.go = ['go', 'file', 'buffer', 'around', 'neosnippet']
+let g:deoplete#sources.c = ['clang', 'file', 'buffer', 'around', 'neosnippet']

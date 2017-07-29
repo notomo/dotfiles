@@ -719,7 +719,7 @@ hook_source = 'let g:IM_CtrlMode = 4'
 [[plugins]]
 repo = 'w0rp/ale'
 if = "has('nvim')"
-on_ft = ['vim', 'python', 'php', 'sh', 'go']
+on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c']
 hook_source = '''
 let g:ale_open_list = 1
 let g:ale_lint_on_enter = 0
@@ -732,6 +732,7 @@ let g:ale_linters = {
 \   'sh': ['shellcheck'],
 \   'go': ['gofmt'],
 \   'sql': [],
+\   'c': ['clang'],
 \}
 let g:ale_fixers = {
 \   'python': ['isort', 'autopep8'],
