@@ -12,8 +12,8 @@ call denite#custom#option('default', 'highlight_matched_range', 'NONE')
 call denite#custom#option('default', 'split', 'tab')
 call denite#custom#option('default', 'no_empty', v:true)
 call denite#custom#option('default', 'vertical_preview', v:true)
-
-call denite#custom#source('file_rec', 'matchers', ['matcher_substring'])
+call denite#custom#option('default', 'highlight_preview_line', 'Search')
+call denite#custom#source('_', 'matchers', ['matcher_substring'])
 
 call denite#custom#map('_', '<CR>', '<denite:do_action:default>', 'noremap')
 call denite#custom#map('_', '<Tab>', '<denite:choose_action>', 'noremap')
