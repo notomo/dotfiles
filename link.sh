@@ -48,6 +48,8 @@ ln -s "${install_root}"/dotfiles/lint/python/pep8 "${install_root}"/.config/pep8
 ln -s "${install_root}"/dotfiles/git/.gitignore_global "${install_root}"/.gitignore_global
 cp "${install_root}"/dotfiles/git/.gitconfig "${install_root}"/.gitconfig
 
+ln -s "${install_root}"/dotfiles/vim/tool/.ctags "${install_root}"/.ctags
+
 if [ "$1" == "" ]
 then
     read

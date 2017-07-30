@@ -107,7 +107,12 @@ mv composer.phar /usr/local/bin/composer
 yum install -y ShellCheck --enablerepo epel
 
 # golang
-yum install -y golang --enablerepo epel
+wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
+tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
+rm go1.8.3.linux-amd64.tar.gz
+go get -u github.com/nsf/gocode
+go get golang.org/x/tools/cmd/goimports
+go get -u github.com/golang/lint/golint
 
 # clang
 yum -y install clang lldb
@@ -117,6 +122,10 @@ pip3.5 install vim-vint
 
 # sqlint
 gem install sqlint
+
+# javascript
+yum -y install npm
+npm install -g javascript-typescript-langserver
 
 # text browser
 yum -y install lynx

@@ -52,8 +52,9 @@ hook_add = '''
 
 # [[plugins]]
 # repo = 'autozimu/LanguageClient-neovim'
-# on_ft = 'php'
+# on_ft = ['python', 'go', 'javascript']
 # depends = 'denite.nvim'
+# on_source = 'deoplete.nvim'
 # hook_add = '''
 # nnoremap [lc] <Nop>
 # nmap <Leader>f [lc]
@@ -62,10 +63,19 @@ hook_add = '''
 # nnoremap <silent> [lc]k :<C-u>call LanguageClient_textDocument_hover()<CR>
 # nnoremap <silent> [denite]ld :<C-u>Denite documentSymbol<CR>
 # nnoremap <silent> [denite]lw :<C-u>Denite workspaceSymbol<CR>
-# nnoremap <silent> [denite]lr :<C-u>Denite references<CR>
-# let g:LanguageClient_autoStart = 0
-# '''
+# nnoremap <silent> [denite]lr :<C-u>Denite references -auto-preview -immediately-1<CR>
+# let g:LanguageClient_autoStart = 1
 #
+# let g:LanguageClient_serverCommands = {}
+# let g:LanguageClient_serverCommands['python'] = ['pyls']
+# " let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
+# " let g:LanguageClient_serverCommands['go'] = ['go-langserver']
+#
+# let g:LanguageClient_signColumnAlwaysOn = 0
+# let g:LanguageClient_diagnosticsEnable = 0
+#
+# '''
+
 # [[plugins]]
 # repo = 'roxma/LanguageServer-php-neovim'
 # depends = 'LanguageClient-neovim'

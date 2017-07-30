@@ -691,8 +691,8 @@ nnoremap [git]c :<C-u>Gina changes<CR>
 nnoremap [git]xl :<C-u>Gina stash list<CR>
 nnoremap [git]xs :<C-u>Gina stash save ""<Left>
 nnoremap [git]xc :<C-u>Gina stash show<CR>
-nnoremap [git]P :<C-u>Gina! push<Space>
-nnoremap [git]H :<C-u>Gina! pull<Space>
+nnoremap <expr> [git]P ':<C-u>Gina! push origin ' . gina#component#repo#branch()
+nnoremap <expr> [git]H ':<C-u>Gina! pull origin ' . gina#component#repo#branch()
 nnoremap [git]M :<C-u>Gina! merge<Space>
 nnoremap [git]F :<C-u>Gina! fetch<Space>
 
@@ -730,7 +730,7 @@ let g:ale_linters = {
 \   'vim': ['vint'],
 \   'php': ['phpmd', 'php'],
 \   'sh': ['shellcheck'],
-\   'go': ['gofmt'],
+\   'go': ['govet', 'gofmt', 'golint'],
 \   'sql': [],
 \   'c': ['clang'],
 \}
@@ -743,4 +743,5 @@ let g:ale_python_mypy_options = '--ignore-missing-imports'
 let g:ale_python_flake8_executable = 'python3.5'
 let g:ale_python_flake8_options = '-m flake8'
 let g:ale_fix_on_save = 1
+let g:ale_go_gometalinter_options = '--fast'
 '''

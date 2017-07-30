@@ -195,6 +195,9 @@ nnoremap <C-k> <C-b>
 nnoremap <C-j> <C-f>
 
 nnoremap <C-e> gi
+
+nnoremap sgj j]m^
+nnoremap sgk [m^
 "}}}
 
 " newline"{{{
@@ -239,7 +242,7 @@ function! s:toggle_verbose() abort
         set verbosefile=
     endif
 endfunction
-nnoremap [option]v :<C-u>call <SID>toggle_verbose()<CR>
+nnoremap [option]V :<C-u>call <SID>toggle_verbose()<CR>
 
 "}}}
 
