@@ -30,9 +30,13 @@ snippet protected_var
 abbr protected $var;
 	${1:protected} $${2:var};
 
+snippet public_const
+abbr protected const
+	public const ${1:CONST} = ${0};
+
 snippet protected_const
 abbr protected const
-	${1:protected }const ${2:CONST} = ${3:TARGET};
+	protected const ${1:CONST} = ${0};
 
 snippet if_func
 alias iffunc
@@ -75,6 +79,10 @@ snippet testdoc
 snippet mock
 	$${1:mockVar} = M::mock(${2:ClassName}::class);
 	${0}
+
+snippet mockShouldReceive
+	$${1:mockVar} = M::mock(${2:ClassName}::class);
+	$$1->shouldReceive(['${3:methodName}' => ${4:returnValue}]);
 
 snippet class
 options head

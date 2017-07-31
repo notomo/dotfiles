@@ -20,7 +20,6 @@ endfunction
 call unite#custom_action('openable', 'parent_file', s:parent_file)
 unlet s:parent_file
 
-call unite#custom_default_action('file', 'tab_drop')
 call unite#custom#profile('default', 'context', {
 \   'no_split' : 1,
 \   'start_insert' : 1
