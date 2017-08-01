@@ -332,3 +332,7 @@ repo = 'evanmiller/nginx-vim-syntax'
 repo = 'junegunn/fzf.vim'
 if = "has('nvim')"
 hook_add = 'source ~/.vim/rc/plugins/fzf.vim'
+
+[[plugins]]
+repo = 'junegunn/vader.vim'
+
