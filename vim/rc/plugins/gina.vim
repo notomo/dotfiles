@@ -141,13 +141,13 @@ let g:gina#command#blame#timestamper#format1 = '%Y-%m-%d'
 let g:gina#command#blame#timestamper#format2 = '%Y-%m-%d'
 
 call gina#custom#mapping#nmap(
-\ 'diff', '[diff]j',
+\ 'diff', 'sgj',
 \ ':call tmno3#vimrc#to_next_syntax(''diffLine'', 1)<CR>',
 \ {'noremap': 1, 'silent': 1},
 \)
 
 call gina#custom#mapping#nmap(
-\ 'diff', '[diff]k',
+\ 'diff', 'sgk',
 \ ':call tmno3#vimrc#to_previous_syntax(''diffLine'', -1)<CR>',
 \ {'noremap': 1, 'silent': 1},
 \)

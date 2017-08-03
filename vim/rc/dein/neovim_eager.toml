@@ -6,7 +6,7 @@ nnoremap [denite] <Nop>
 nmap <Space>d [denite]
 
 nnoremap <silent> [denite]r :<C-u>Denite unite:file_mru<CR>
-nnoremap <silent> [denite]ll :<C-u>Denite line -auto-preview<CR>
+nnoremap <silent> [unite]ll :<C-u>Denite line -auto-preview<CR>
 nnoremap <silent> [denite]d :<C-u>Denite unite:directory_mru<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
 nnoremap <silent> [unite]sf :<C-u>DeniteBufferDir file_rec -split=tab<CR>
