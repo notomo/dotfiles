@@ -24,7 +24,7 @@ ln -s "${install_root}"/dotfiles/vim/rplugin "${install_root}"/.vim/rplugin
 ln -s "${install_root}"/dotfiles/vim/plugin "${install_root}"/.vim/plugin
 
 mkdir -p "${install_root}"/.vim/tmp/backup
-mkdir -p "${install_root}"/.vim/tmp/undo
+mkdir -p "${install_root}"/.vim/tmp/und
 mkdir -p "${install_root}"/.vim/tmp/view
 mkdir -p "${install_root}"/.vim/tmp/swap
 mkdir -p "${install_root}"/.vim/reference
@@ -40,9 +40,10 @@ ln -s "${install_root}"/dotfiles/vim/rc/init.vim "${install_root}"/.config/nvim/
 
 # lint
 ln -s "${install_root}"/dotfiles/lint/vim/.vintrc.yaml "${install_root}"/.vintrc.yaml
-ln -s "${install_root}"/dotfiles/lint/python/.flake8 "${install_root}"/.flake8
-ln -s "${install_root}"/dotfiles/lint/python/.isort.cfg "${install_root}"/.isort.cfg
-ln -s "${install_root}"/dotfiles/lint/python/pep8 "${install_root}"/.config/pep8
+# ln -s "${install_root}"/dotfiles/lint/python/.flake8 "${install_root}"/.flake8
+# ln -s "${install_root}"/dotfiles/lint/python/.isort.cfg "${install_root}"/.isort.cfg
+# ln -s "${install_root}"/dotfiles/lint/python/pep8 "${install_root}"/.config/pep8
+ln -s "${install_root}"/dotfiles/lint/python/setup.cfg "${install_root}"/setup.cfg
 
 # git
 ln -s "${install_root}"/dotfiles/git/.gitignore_global "${install_root}"/.gitignore_global

@@ -84,6 +84,7 @@ pip3.5 install requests
 pip3.5 install mypy
 pip3.5 install autopep8
 pip3.5 install isort
+pip3.5 install yapf
 
 # python2
 yum -y install python-pip --enablerepo epel
