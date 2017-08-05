@@ -44,11 +44,11 @@ let g:deoplete#sources#clang#libclang_path = '/usr/lib64/llvm/libclang.so'
 let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 '''
 
-[[plugins]]
-repo = 'dbgx/lldb.nvim'
-on_ft = ['c', 'cpp']
-hook_add = '''
-'''
+# [[plugins]]
+# repo = 'dbgx/lldb.nvim'
+# on_ft = ['c', 'cpp']
+# hook_add = '''
+# '''
 
 # [[plugins]]
 # repo = 'autozimu/LanguageClient-neovim'

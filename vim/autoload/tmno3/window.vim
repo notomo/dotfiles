@@ -99,3 +99,7 @@ function! tmno3#window#vsplit_altopen() abort
     execute 'buffer ' . alt_bufnr
 endfunction
 
+function! tmno3#window#duplicate() abort
+    vsplit
+    call tmno3#window#extract_tabopen()
+endfunction

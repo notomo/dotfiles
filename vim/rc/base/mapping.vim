@@ -757,6 +757,8 @@ nnoremap [win]V :<C-u>call tmno3#window#h_to_vsplit()<CR>
 nnoremap [win]l :<C-u>call tmno3#window#extract_tabopen()<CR>
 " open the alternative buffer with vertical splitting
 nnoremap [win]b :<C-u>call tmno3#window#vsplit_altopen()<CR>
+" duplicate window
+nnoremap [win]w :<C-u>call tmno3#window#duplicate()<CR>
 "}}}
 
 " winsize"{{{

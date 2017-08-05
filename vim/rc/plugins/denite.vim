@@ -69,7 +69,31 @@ call denite#custom#map('normal', 'v', '<denite:do_action:preview>', 'noremap')
 call denite#custom#map('normal', 'o', '<denite:do_action:open>', 'noremap')
 call denite#custom#map('normal', 'sv', '<denite:do_action:vsplit>', 'noremap')
 call denite#custom#map('normal', 'sh', '<denite:do_action:split>', 'noremap')
+call denite#custom#map('normal', 'fo', '<denite:do_action:vimfiler>', 'noremap')
+call denite#custom#map('normal', 'fl', '<denite:do_action:tabvimfiler>', 'noremap')
+call denite#custom#map('normal', '<Leader>rn', '<denite:do_action:exrename>', 'noremap')
 call denite#custom#map('normal', 't<Space>', '<denite:do_action:tabopen>', 'noremap')
 call denite#custom#map('normal', '<C-l>', '<denite:redraw>', 'noremap')
 call denite#custom#map('normal', 'rr', '<denite:restart>', 'noremap')
 
+call denite#custom#var('grep', 'command', ['pt'])
+call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+
+function! Execute_unite_action(context, action_name) abort
+    let targets = a:context['targets']
+    let candidates = []
+    for target in targets
+        call add(candidates, target['source__candidate'])
+    endfor
+    call unite#action#do_candidates(a:action_name, candidates)
+endfunction
+
+call denite#custom#action('command', 'open', {context -> denite#do_action(context, 'execute', context['targets'])})
+call denite#custom#action('unite', 'open', {context -> Execute_unite_action(context, 'open')})
+call denite#custom#action('unite', 'vimfiler', {context -> Execute_unite_action(context, 'vimfiler')})
+call denite#custom#action('unite', 'exrename', {context -> Execute_unite_action(context, 'exrename')})
