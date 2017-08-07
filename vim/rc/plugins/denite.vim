@@ -77,7 +77,7 @@ call denite#custom#map('normal', '<C-l>', '<denite:redraw>', 'noremap')
 call denite#custom#map('normal', 'rr', '<denite:restart>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
-call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case'])
+call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])

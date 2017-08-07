@@ -38,6 +38,10 @@ snippet protected_const
 abbr protected const
 	protected const ${1:CONST} = ${0};
 
+snippet class_name
+abbr Class::class
+	${1:ClassName}::class
+
 snippet if_func
 alias iffunc
 abbr if (func($hoge))
@@ -77,10 +81,19 @@ snippet testdoc
 	 */
 
 snippet mock
+options head
 	$${1:mockVar} = M::mock(${2:ClassName}::class);
 	${0}
 
+snippet mmock
+	M::mock(${1:ClassName}::class);
+
+snippet shouldReceive
+options head
+	$${1:mockVar}->shouldReceive(['${2:methodName}' => ${3:returnValue}]);
+
 snippet mockShouldReceive
+options head
 	$${1:mockVar} = M::mock(${2:ClassName}::class);
 	$$1->shouldReceive(['${3:methodName}' => ${4:returnValue}]);
 

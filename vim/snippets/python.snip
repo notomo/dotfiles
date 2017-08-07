@@ -55,6 +55,13 @@ options     head
 	def ${1:#:name}(self,${2}):
 		${0:pass}
 
+snippet     classmethoddef
+abbr        def function(cls): ...
+options     head
+	@classmethod
+	def ${1:name}(cls):
+		${0:pass}
+
 snippet     elif
 abbr        elif ...: ...
 options     head

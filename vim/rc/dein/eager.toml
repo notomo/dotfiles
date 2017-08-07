@@ -258,6 +258,7 @@ hook_add = '''
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
 
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir file<CR>
 nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
 nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>
 nnoremap [unite]F :<C-u>UniteWithBufferDir -buffer-name=files file -input=
