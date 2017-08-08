@@ -1,0 +1,3 @@
+cd %HOMEPATH%"\dotfiles\vagrant\docker_host"
+start vagrant halt
+exit

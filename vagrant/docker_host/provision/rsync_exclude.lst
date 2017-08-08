@@ -6,6 +6,7 @@
 /.cache/unite/
 /.cache/vimfiler/
 /.cache/vim-ref/
+/.cache/jedi/
 /.config
 /.gem
 /.go
@@ -20,3 +21,11 @@
 /.vim*
 /.vintrc.yaml
 /.python_history
+/.fzf*
+/.links
+/.mypy_cache
+/.npm
+/.w3m
+/.elinks
+/.laradock
+/.zshrc
