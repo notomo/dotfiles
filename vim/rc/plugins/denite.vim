@@ -8,11 +8,12 @@ highlight myDeniteNormal cterm=NONE guifg=White guibg=#7b6980
 call denite#custom#option('default', 'highlight_matched_char', 'myDeniteMatchText')
 call denite#custom#option('default', 'highlight_mode_insert', 'myDeniteInsert')
 call denite#custom#option('default', 'highlight_mode_normal', 'myDeniteNormal')
-call denite#custom#option('default', 'highlight_matched_range', 'NONE')
+call denite#custom#option('default', 'highlight_matched_range', 'myDeniteMatchText')
 call denite#custom#option('default', 'split', 'tab')
 call denite#custom#option('default', 'no_empty', v:true)
 call denite#custom#option('default', 'vertical_preview', v:true)
 call denite#custom#option('default', 'highlight_preview_line', 'Search')
+call denite#custom#option('default', 'smartcase', v:true)
 call denite#custom#source('_', 'matchers', ['matcher_substring'])
 
 call denite#custom#map('_', '<CR>', '<denite:do_action:default>', 'noremap')
@@ -75,6 +76,7 @@ call denite#custom#map('normal', '<Leader>rn', '<denite:do_action:exrename>', 'n
 call denite#custom#map('normal', 't<Space>', '<denite:do_action:tabopen>', 'noremap')
 call denite#custom#map('normal', '<C-l>', '<denite:redraw>', 'noremap')
 call denite#custom#map('normal', 'rr', '<denite:restart>', 'noremap')
+call denite#custom#map('normal', 'ff', '<denite:do_action:dir_file>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags'])
@@ -97,3 +99,14 @@ call denite#custom#action('command', 'open', {context -> denite#do_action(contex
 call denite#custom#action('unite', 'open', {context -> Execute_unite_action(context, 'open')})
 call denite#custom#action('unite', 'vimfiler', {context -> Execute_unite_action(context, 'vimfiler')})
 call denite#custom#action('unite', 'exrename', {context -> Execute_unite_action(context, 'exrename')})
+
+function! Denite_dir_file(context) abort
+    let target = a:context['targets'][0]
+    if !has_key(target, 'action__path')
+        return
+    endif
+    let path = target['action__path']
+    let a:context['quit'] = v:false
+    execute 'Denite dir_file:' . path
+endfunction
+call denite#custom#action('directory', 'dir_file', {context -> Denite_dir_file(context)})
