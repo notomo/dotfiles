@@ -1,0 +1,85 @@
+
+snippet ifonly
+options head
+	if [ ${1:condition} ]
+	then
+		${2:TARGET}
+	fi
+
+snippet elif
+options head
+	elif [ ${1:condition} ]
+	then
+		${2:TARGET}
+
+snippet ifelse
+options head
+	if [ ${1:condition} ]
+	then
+		${2:TARGET}
+	else
+		${3:TARGET}
+	fi
+
+snippet is_dir
+	-d ${1:directory}
+
+snippet is_file
+	-f ${1:file}
+
+snippet is_readable
+	-r ${1:file}
+
+snippet is_writable
+	-w ${1:file}
+
+snippet is_executable
+	-x ${1:file}
+
+snippet is_zero_string
+	-z ${1:string}
+
+snippet is_not_zero_string
+	-n ${1:string}
+
+snippet exists
+	-e ${1:file}
+
+snippet arithmetics
+	$((${1:expr}))
+
+snippet shebang
+	#!/bin/sh
+
+snippet shebang_verbose
+	#!/bin/sh -v
+
+snippet until
+options head
+	until [ ${1:condition} ]
+	do
+		${2:TARGET}
+	done
+
+snippet while
+options head
+	while [ ${1:condition} ]
+	do
+		${2:TARGET}
+	done
+
+snippet for
+options head
+	for ${1:var} in ${2:list}
+	do
+		${3:TARGET}
+	done
+
+snippet case
+options head
+	case $${1:string} in
+		${2:pattern} )
+			${3:TARGET};;
+		* ) 
+			${4:TARGET};;
+	esac
