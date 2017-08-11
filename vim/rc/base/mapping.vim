@@ -36,10 +36,6 @@ nnoremap [edit]l gu
 vnoremap [edit]h gU
 vnoremap [edit]l gu
 nnoremap [edit]m i<C-@>
-nnoremap [edit]j :<C-u>join<CR>
-nnoremap [edit]J :<C-u>join!<CR>
-vnoremap [edit]j :join<CR>
-vnoremap [edit]J :join!<CR>
 
 nnoremap [edit]d *``"_cgn
 nnoremap [edit]a *``cgn<C-r>"

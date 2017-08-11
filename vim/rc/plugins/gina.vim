@@ -61,7 +61,7 @@ for s:mode_char in ['n', 'v']
     \)
 
     call gina#custom#mapping#map(
-    \ 'status', '<Space>t',
+    \ 'status', 't<Space>',
     \ ':call gina#action#call(''edit:tab'')<CR>',
     \ {'noremap' : 1, 'mode' : s:mode_char, 'silent' : 1},
     \)
@@ -111,6 +111,12 @@ call gina#custom#mapping#nmap(
 \)
 
 call gina#custom#mapping#nmap(
+\ 'branch', 'dl',
+\ '<Plug>(gina-branch-delete)',
+\ {'silent' : 1},
+\)
+
+call gina#custom#mapping#nmap(
 \ 'branch', 'rf',
 \ '<Plug>(gina-branch-reflesh)',
 \ {'silent' : 1},
@@ -154,7 +160,7 @@ call gina#custom#mapping#nmap(
 
 call gina#custom#mapping#nmap(
 \ '/\%(log\|reflog\)', '<CR>',
-\ ':call gina#action#call(''show:preview'')<CR>',
+\ ':call gina#action#call(''show:commit:right'')<CR>',
 \ {'noremap': 1, 'silent': 1},
 \)
 

@@ -47,7 +47,6 @@ augroup MyAuGroup
 augroup END
 
 autocmd MyAuGroup BufNewFile,BufRead * set iminsert=0
-autocmd MyAuGroup BufNewFile * set fileencoding=UTF-8 fileformat=unix
 
 if has('gui') && has('win32') && !has('nvim')
     autocmd MyAuGroup GUIEnter * simalt ~x
@@ -133,20 +132,6 @@ let g:zenspace#default_mode = 'on'
 '''
 
 [[plugins]]
-repo = 'tpope/vim-fugitive'
-hook_add = '''
-nnoremap [fugit] <Nop>
-nmap <Space>g [fugit]
-
-nnoremap [fugit]d :<C-u>Gvdiff<CR>
-nnoremap [fugit]s :<C-u>Gstatus<CR>:only<CR>
-nnoremap [fugit]l :<C-u>tabe %<CR>:Glog \| copen<CR>
-'''
-hook_post_source = '''
-set statusline+=%{exists('g:loaded_fugitive')?fugitive#statusline():''}
-'''
-
-[[plugins]]
 repo = 'LeafCage/yankround.vim'
 hook_add = '''
 let g:yankround_use_region_hl = 1
@@ -199,10 +184,6 @@ map w <Plug>(smartword-w)
 map b <Plug>(smartword-b)
 map e <Plug>(smartword-e)
 '''
-
-# [[plugins]]
-# repo = 'itchyny/lightline.vim'
-# hook_add = 'source ~/.vim/rc/plugins/lightline.vim'
 
 [[plugins]]
 repo = 'rhysd/vim-color-spring-night'
@@ -285,10 +266,38 @@ hook_add = 'nnoremap [exec]Q :<C-u>Qfreplace<CR>'
 repo = 'evanmiller/nginx-vim-syntax'
 
 [[plugins]]
-repo = 'junegunn/fzf.vim'
-if = "has('nvim')"
-hook_add = 'source ~/.vim/rc/plugins/fzf.vim'
-
-[[plugins]]
 repo = 'junegunn/vader.vim'
 
+[[plugins]]
+repo = 'lambdalisue/gina.vim'
+hook_add = '''
+nnoremap [git]s :<C-u>Gina status<CR>
+nnoremap [git]D :<C-u>Gina diff<CR>
+nnoremap [git]b :<C-u>Gina branch<CR>
+nnoremap [git]L :<C-u>Gina log master...HEAD<CR>
+nnoremap [git]ll :<C-u>Gina log<CR>
+nnoremap [git]rl :<C-u>Gina reflog<CR>
+nnoremap [git]ls :<C-u>Gina ls<CR>
+nnoremap [git]c :<C-u>Gina commit<CR>
+nnoremap [git]xl :<C-u>Gina stash list<CR>
+nnoremap [git]xs :<C-u>Gina stash save ""<Left>
+nnoremap [git]xc :<C-u>Gina stash show<CR>
+nnoremap <expr> [git]P ':<C-u>Gina! push origin ' . gina#component#repo#branch()
+nnoremap <expr> [git]H ':<C-u>Gina! pull origin ' . gina#component#repo#branch()
+nnoremap [git]M :<C-u>Gina! merge<Space>
+nnoremap [git]F :<C-u>Gina! fetch<Space>
+
+function! s:get_current_relpath() abort
+    let git = gina#core#get_or_fail()
+    let abspath = gina#core#repo#abspath(git, '')
+    let curpath = substitute(expand('%:p'), '\', '/', 'g')
+    let relpath = substitute(curpath, abspath, '', '')
+    return relpath
+endfunction
+nnoremap [git]B :<C-u>execute 'Gina blame :' . <SID>get_current_relpath()<CR>
+nnoremap [git]fl :<C-u>execute 'Gina log :' . <SID>get_current_relpath()<CR>
+nnoremap [git]dd :<C-u>execute 'Gina compare :' . <SID>get_current_relpath()<CR>
+nnoremap [git]df :<C-u>execute 'Gina diff :' . <SID>get_current_relpath()<CR>
+
+'''
+hook_post_source = 'source ~/.vim/rc/plugins/gina.vim'

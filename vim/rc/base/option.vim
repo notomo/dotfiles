@@ -52,7 +52,7 @@ set noundofile
 set noswapfile
 set browsedir=buffer
 set notitle
-set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{&ff}:%Y]
+set statusline=[%c]\%=%F%m%r%h%w\ \[%{&fileencoding}:%{&ff}:%Y][%{gina#component#repo#branch()}]
 set expandtab
 set nofoldenable
 set foldlevel=3
