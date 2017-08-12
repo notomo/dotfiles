@@ -15,6 +15,7 @@ call denite#custom#option('default', 'vertical_preview', v:true)
 call denite#custom#option('default', 'highlight_preview_line', 'Search')
 call denite#custom#option('default', 'smartcase', v:true)
 call denite#custom#source('_', 'matchers', ['matcher_substring'])
+call denite#custom#source('grep', 'matchers', ['matcher_ignore_path'])
 
 call denite#custom#map('_', '<CR>', '<denite:do_action:default>', 'noremap')
 call denite#custom#map('_', '<Tab>', '<denite:choose_action>', 'noremap')
@@ -77,6 +78,9 @@ call denite#custom#map('normal', 't<Space>', '<denite:do_action:tabopen>', 'nore
 call denite#custom#map('normal', '<C-l>', '<denite:redraw>', 'noremap')
 call denite#custom#map('normal', 'rr', '<denite:restart>', 'noremap')
 call denite#custom#map('normal', 'ff', '<denite:do_action:dir_file>', 'noremap')
+call denite#custom#map('normal', 'tmip', '<denite:toggle_matchers:matcher_ignore_path>', 'noremap')
+call denite#custom#map('normal', 'tmiw', '<denite:toggle_matchers:matcher_ignore_word>', 'noremap')
+call denite#custom#map('normal', 'tsr', '<denite:toggle_sorters:sorter_reverse>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags'])
@@ -85,28 +89,9 @@ call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
-
-function! Execute_unite_action(context, action_name) abort
-    let targets = a:context['targets']
-    let candidates = []
-    for target in targets
-        call add(candidates, target['source__candidate'])
-    endfor
-    call unite#action#do_candidates(a:action_name, candidates)
-endfunction
-
 call denite#custom#action('command', 'open', {context -> denite#do_action(context, 'execute', context['targets'])})
-call denite#custom#action('unite', 'open', {context -> Execute_unite_action(context, 'open')})
-call denite#custom#action('unite', 'vimfiler', {context -> Execute_unite_action(context, 'vimfiler')})
-call denite#custom#action('unite', 'exrename', {context -> Execute_unite_action(context, 'exrename')})
+call denite#custom#action('unite', 'open', {context -> tmno3#denite#execute_unite_action(context, 'open')})
+call denite#custom#action('unite', 'vimfiler', {context -> tmno3#denite#execute_unite_action(context, 'vimfiler')})
+call denite#custom#action('unite', 'exrename', {context -> tmno3#denite#execute_unite_action(context, 'exrename')})
 
-function! Denite_dir_file(context) abort
-    let target = a:context['targets'][0]
-    if !has_key(target, 'action__path')
-        return
-    endif
-    let path = target['action__path']
-    let a:context['quit'] = v:false
-    execute 'Denite dir_file:' . path
-endfunction
-call denite#custom#action('directory', 'dir_file', {context -> Denite_dir_file(context)})
+call denite#custom#action('directory', 'dir_file', {context -> tmno3#denite#dir_file(context)})
