@@ -77,6 +77,7 @@ call denite#custom#map('normal', 't<Space>', '<denite:do_action:tabopen>', 'nore
 call denite#custom#map('normal', '<C-l>', '<denite:redraw>', 'noremap')
 call denite#custom#map('normal', 'rr', '<denite:restart>', 'noremap')
 call denite#custom#map('normal', 'ff', '<denite:do_action:dir_file>', 'noremap')
+call denite#custom#map('normal', 'fp', '<denite:do_action:parent_dir_file>', 'noremap')
 call denite#custom#map('normal', 'tmip', '<denite:toggle_matchers:matcher_ignore_path>', 'noremap')
 call denite#custom#map('normal', 'tmiw', '<denite:toggle_matchers:matcher_ignore_word>', 'noremap')
 call denite#custom#map('normal', 'tsr', '<denite:toggle_sorters:sorter_reverse>', 'noremap')
@@ -95,3 +96,4 @@ call denite#custom#action('unite', 'tabvimfiler', {context -> tmno3#denite#execu
 call denite#custom#action('unite', 'exrename', {context -> tmno3#denite#execute_unite_action(context, 'exrename')})
 
 call denite#custom#action('directory', 'dir_file', {context -> tmno3#denite#dir_file(context)})
+call denite#custom#action('file,directory', 'parent_dir_file', {context -> tmno3#denite#parent_dir_file(context)})

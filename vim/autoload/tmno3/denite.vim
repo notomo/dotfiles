@@ -17,3 +17,13 @@ function! tmno3#denite#dir_file(context) abort
     let a:context['quit'] = v:false
     execute 'Denite dir_file:' . path
 endfunction
+
+function! tmno3#denite#parent_dir_file(context) abort
+    let target = a:context['targets'][0]
+    if !has_key(target, 'action__path')
+        return
+    endif
+    let path = fnamemodify(target['action__path'], ':h:h')
+    let a:context['quit'] = v:false
+    execute 'Denite -mode=normal dir_file:' . path
+endfunction
