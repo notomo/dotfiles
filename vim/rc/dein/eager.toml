@@ -254,7 +254,6 @@ repo = 'Shougo/neomru.vim'
 hook_add = '''
 nnoremap <silent> [unite]r :<C-u>Unite file_mru<CR>
 nnoremap <silent> [unite]u :<C-u>Unite file_mru -force-immediately<CR>
-nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
 let g:neomru#file_mru_limit = 1000
 '''
 

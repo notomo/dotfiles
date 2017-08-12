@@ -15,6 +15,7 @@ call denite#custom#option('default', 'vertical_preview', v:true)
 call denite#custom#option('default', 'highlight_preview_line', 'Search')
 call denite#custom#option('default', 'smartcase', v:true)
 call denite#custom#source('_', 'matchers', ['matcher_substring'])
+call denite#custom#source('directory_mru', 'sorters', ['sorter_length'])
 
 call denite#custom#map('_', '<CR>', '<denite:do_action:default>', 'noremap')
 call denite#custom#map('_', '<Tab>', '<denite:choose_action>', 'noremap')
@@ -97,3 +98,7 @@ call denite#custom#action('unite', 'exrename', {context -> tmno3#denite#execute_
 
 call denite#custom#action('directory', 'dir_file', {context -> tmno3#denite#dir_file(context)})
 call denite#custom#action('file,directory', 'parent_dir_file', {context -> tmno3#denite#parent_dir_file(context)})
+
+call denite#custom#action('directory', 'tabopen', {context ->  tmno3#denite#open('tabnew', context)})
+call denite#custom#action('directory', 'vsplit', {context ->  tmno3#denite#open('vsplit', context)})
+call denite#custom#action('directory', 'split', {context ->  tmno3#denite#open('split', context)})

@@ -7,7 +7,7 @@ nmap <Space>d [denite]
 
 nnoremap <silent> [denite]r :<C-u>Denite unite:file_mru unite:directory_mru unite:file<CR>
 nnoremap <silent> [denite]ll :<C-u>Denite line -auto-preview<CR>
-nnoremap <silent> [denite]d :<C-u>Denite unite:directory_mru<CR>
+nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
 nnoremap <silent> [unite]sf :<C-u>DeniteBufferDir -auto-preview file_rec<CR>
 nnoremap <silent> [denite]sg :<C-u>DeniteProjectDir -auto-preview file_rec<CR>
