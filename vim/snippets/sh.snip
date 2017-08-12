@@ -12,6 +12,11 @@ options head
 	then
 		${2:TARGET}
 
+snippet else
+options head
+	else [ ${1:condition} ]
+		${2:TARGET}
+
 snippet ifelse
 options head
 	if [ ${1:condition} ]
