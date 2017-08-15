@@ -39,9 +39,7 @@ snippet     class
 abbr        class Class(...): ...
 options     head
 	class ${1:#:name}(${2:object}):
-
-		def __init__(self,${3}):
-			${0:pass}
+		pass
 
 snippet     def
 abbr        def function(...): ...
@@ -60,6 +58,13 @@ abbr        def function(cls): ...
 options     head
 	@classmethod
 	def ${1:name}(cls):
+		${0:pass}
+
+snippet staticmethod
+abbr def function(): ...
+options head
+	@staticmethod
+	def ${1:name}():
 		${0:pass}
 
 snippet     elif
