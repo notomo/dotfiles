@@ -135,7 +135,7 @@ yum -y install lynx
 yum -y install words
 
 # dotfiles for root
-git clone https://github.com/tmn-o3/dotfiles.git ~/dotfiles
+git clone https://github.com/notomo/dotfiles.git ~/dotfiles
 sh ~/dotfiles/link.sh
 
 # sync

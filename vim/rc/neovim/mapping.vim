@@ -4,8 +4,8 @@ endif
 
 tnoremap jj <C-\><C-n>
 
-let s:LHS_KEY = tmno3#mapping#get_lhs_key()
-let s:RHS_KEY = tmno3#mapping#get_rhs_key()
+let s:LHS_KEY = notomo#mapping#get_lhs_key()
+let s:RHS_KEY = notomo#mapping#get_rhs_key()
 
 " not effective?
 tnoremap <C-h> <Left>
@@ -19,15 +19,15 @@ tnoremap <C-d> <Del>
 
 tnoremap <BS> <Left>
 
-for s:info in tmno3#mapping#main_input()
+for s:info in notomo#mapping#main_input()
     silent execute join(['tnoremap', s:info[s:LHS_KEY], s:info[s:RHS_KEY]])
 endfor
 
-for s:info in tmno3#mapping#sub_input()
+for s:info in notomo#mapping#sub_input()
     silent execute join(['tnoremap', s:info[s:LHS_KEY], s:info[s:RHS_KEY]])
 endfor
 
-let s:MAIN_INPUT_PFX = tmno3#mapping#get_main_input_key()
+let s:MAIN_INPUT_PFX = notomo#mapping#get_main_input_key()
 execute join(['tnoremap', s:MAIN_INPUT_PFX . 'h', '<C-\><C-N>pi'])
 execute join(['tnoremap', s:MAIN_INPUT_PFX . 'o', '<Tab>'])
 

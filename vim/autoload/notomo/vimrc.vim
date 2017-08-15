@@ -1,35 +1,35 @@
 
-function! tmno3#vimrc#exchange() abort
+function! notomo#vimrc#exchange() abort
     let pos = getpos('.')
     execute 's/\v%#(\_.)(\_.)/\2\1/g'
     call setpos('.', pos)
     normal! l
 endfunction
 
-function! tmno3#vimrc#timer_start() abort
+function! notomo#vimrc#timer_start() abort
     let g:start_time = reltime()
 endfunction
 
-function! tmno3#vimrc#timer_end() abort
+function! notomo#vimrc#timer_end() abort
     echomsg reltimestr(reltime(g:start_time)) | unlet g:start_time
 endfunction
 
-function! tmno3#vimrc#cd_current() abort
+function! notomo#vimrc#cd_current() abort
     cd %:p:h
 endfunction
 
-function! tmno3#vimrc#syntax_report() abort
+function! notomo#vimrc#syntax_report() abort
     syntime on
     redraw!
     syntime off
     Capture syntime report
 endfunction
 
-function! tmno3#vimrc#to_next_syntax(syntax_name, offset) abort
+function! notomo#vimrc#to_next_syntax(syntax_name, offset) abort
     call s:to_syntax(a:syntax_name, line('.'), a:offset, v:false, v:true)
 endfunction
 
-function! tmno3#vimrc#to_previous_syntax(syntax_name, offset) abort
+function! notomo#vimrc#to_previous_syntax(syntax_name, offset) abort
     call s:to_syntax(a:syntax_name, line('.'), a:offset, v:true, v:true)
 endfunction
 

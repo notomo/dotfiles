@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER tmno3
+MAINTAINER notomo
 
 ENV USERNAME user
 ENV USERDIR /home/$USERNAME

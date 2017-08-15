@@ -2,9 +2,9 @@
 let s:INDENT_MODE_NM = 'indent'
 let s:INDENT_KEY = '[' . s:INDENT_MODE_NM . ']'
 
-let s:LHS_KEY = tmno3#mapping#get_lhs_key()
-let s:RHS_KEY = tmno3#mapping#get_rhs_key()
-let s:REMAP_KEY = tmno3#mapping#get_remap_key()
+let s:LHS_KEY = notomo#mapping#get_lhs_key()
+let s:RHS_KEY = notomo#mapping#get_rhs_key()
+let s:REMAP_KEY = notomo#mapping#get_remap_key()
 
 function! s:convert_indent_style(to_hard, is_visual) abort
     let tmp_expandtab = &expandtab
@@ -25,11 +25,11 @@ function! s:indent_map(lhs, rhs, mode, remap) abort
     call submode#map(s:INDENT_MODE_NM, a:mode, remap, a:lhs, a:rhs)
 endfunction
 
-function! tmno3#indent#setup_submode(enter_key, is_visual) abort
-    for info in tmno3#mapping#indent_normal_mode()
+function! notomo#indent#setup_submode(enter_key, is_visual) abort
+    for info in notomo#mapping#indent_normal_mode()
         call s:indent_map(info[s:LHS_KEY], info[s:RHS_KEY], 'n', info[s:REMAP_KEY])
     endfor
-    for info in tmno3#mapping#indent_visual_mode()
+    for info in notomo#mapping#indent_visual_mode()
         call s:indent_map(info[s:LHS_KEY], info[s:RHS_KEY], 'v', info[s:REMAP_KEY])
     endfor
     call submode#map(s:INDENT_MODE_NM, 'v', '', 'j', 'j')

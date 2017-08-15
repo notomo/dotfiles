@@ -2,10 +2,10 @@
 let s:TAB_MODE_NM = 'tab'
 let s:TAB_KEY = '[' . s:TAB_MODE_NM . ']'
 
-let s:LHS_KEY = tmno3#mapping#get_lhs_key()
-let s:RHS_KEY = tmno3#mapping#get_rhs_key()
-let s:MAP_ONLY_KEY = tmno3#mapping#get_map_only_key()
-let s:REMAP_KEY = tmno3#mapping#get_remap_key()
+let s:LHS_KEY = notomo#mapping#get_lhs_key()
+let s:RHS_KEY = notomo#mapping#get_rhs_key()
+let s:MAP_ONLY_KEY = notomo#mapping#get_map_only_key()
+let s:REMAP_KEY = notomo#mapping#get_remap_key()
 
 " open new tab"{{{
 function! s:new_tab() abort
@@ -70,8 +70,8 @@ function! s:tab_map(lhs, rhs, map_only, remap) abort
     call submode#map(s:TAB_MODE_NM, 'n', remap, a:lhs, a:rhs)
 endfunction
 
-function! tmno3#tab#setup_submode(enter_key) abort
-    for info in tmno3#mapping#tab()
+function! notomo#tab#setup_submode(enter_key) abort
+    for info in notomo#mapping#tab()
         call s:tab_map(info[s:LHS_KEY], info[s:RHS_KEY], info[s:MAP_ONLY_KEY], info[s:REMAP_KEY])
     endfor
     call submode#leave_with(s:TAB_MODE_NM, 'n', '', 'j')

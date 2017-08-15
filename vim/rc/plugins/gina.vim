@@ -65,8 +65,8 @@ call gina#custom#mapping#nmap('blame', 'j', 'j<Plug>(gina-blame-echo)')
 call gina#custom#mapping#nmap('blame', 'k', 'k<Plug>(gina-blame-echo)')
 
 " diff
-call gina#custom#mapping#nmap('diff', 'sgj', ':call tmno3#vimrc#to_next_syntax(''diffLine'', 1)<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('diff', 'sgk', ':call tmno3#vimrc#to_previous_syntax(''diffLine'', -1)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('diff', 'sgj', ':call notomo#vimrc#to_next_syntax(''diffLine'', 1)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('diff', 'sgk', ':call notomo#vimrc#to_previous_syntax(''diffLine'', -1)<CR>', s:noremap_silent)
 
 " log
 call gina#custom#mapping#nmap('/\%(log\|reflog\)', '<CR>', ':call gina#action#call(''show:commit:right'')<CR>', s:noremap_silent)

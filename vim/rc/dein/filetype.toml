@@ -34,7 +34,7 @@ else
 endif
 
 if exists('loaded_matchit')
-    call tmno3#matchit#sql()
+    call notomo#matchit#sql()
 endif
 
 let b:textobj_function_select = function('textobj#function#java#select')
@@ -44,13 +44,13 @@ smarty = '''
 setlocal noexpandtab
 
 if exists('loaded_matchit')
-    call tmno3#matchit#smarty()
+    call notomo#matchit#smarty()
 endif
 '''
 
 sql = '''
 if exists('loaded_matchit')
-    call tmno3#matchit#sql()
+    call notomo#matchit#sql()
 endif
 '''
 
@@ -61,7 +61,7 @@ setlocal noexpandtab
 vim = '''
 setlocal foldmethod=marker
 if exists('loaded_matchit')
-    call tmno3#matchit#vim()
+    call notomo#matchit#vim()
 endif
 '''
 

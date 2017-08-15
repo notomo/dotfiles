@@ -9,7 +9,7 @@ setlocal formatoptions+=r
 setlocal formatoptions+=o
 
 setlocal indentkeys=0{,0},0),0],:,!^F,o,O,e,*<Return>,=?>,=<?,=*/
-setlocal indentexpr=tmno3#php#get_indent()
+setlocal indentexpr=notomo#php#get_indent()
 
 let b:undo_indent = 'setlocal '.join([
 \   'comments<',

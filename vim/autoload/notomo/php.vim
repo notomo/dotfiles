@@ -1,5 +1,5 @@
 
-function! tmno3#php#get_indent()
+function! notomo#php#get_indent()
     let curline = getline('.')
     if (col('.') - 1) != matchend(curline, '^\s*')
         return -1

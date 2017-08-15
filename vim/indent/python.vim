@@ -8,7 +8,7 @@ setlocal formatoptions+=r
 setlocal formatoptions+=o
 
 setlocal indentkeys=0{,0},0),0],:,!^F,o,O,e,*<Return>,=?>,=<?,=*/
-setlocal indentexpr=tmno3#python#get_indent()
+setlocal indentexpr=notomo#python#get_indent()
 
 let b:undo_indent = 'setlocal '.join([
 \   'comments<',

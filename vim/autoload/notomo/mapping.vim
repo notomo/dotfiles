@@ -6,31 +6,31 @@ let s:REMAP_KEY = 'rm'
 let s:MAIN_INPUT_PFX = 'j<Space>'
 let s:SUB_INPUT_PFX = 'jk'
 
-function! tmno3#mapping#get_lhs_key() abort
+function! notomo#mapping#get_lhs_key() abort
     return s:LHS_KEY
 endfunction
 
-function! tmno3#mapping#get_rhs_key() abort
+function! notomo#mapping#get_rhs_key() abort
     return s:RHS_KEY
 endfunction
 
-function! tmno3#mapping#get_map_only_key() abort
+function! notomo#mapping#get_map_only_key() abort
     return s:MAP_ONLY_KEY
 endfunction
 
-function! tmno3#mapping#get_remap_key() abort
+function! notomo#mapping#get_remap_key() abort
     return s:REMAP_KEY
 endfunction
 
-function! tmno3#mapping#get_main_input_key() abort
+function! notomo#mapping#get_main_input_key() abort
     return s:MAIN_INPUT_PFX
 endfunction
 
-function! tmno3#mapping#get_sub_input_key() abort
+function! notomo#mapping#get_sub_input_key() abort
     return s:SUB_INPUT_PFX
 endfunction
 
-function! tmno3#mapping#tab() abort
+function! notomo#mapping#tab() abort
     let mappings = []
     call add(mappings, {s:LHS_KEY : 't', s:RHS_KEY : '<Esc><Plug>(new_tab)', s:MAP_ONLY_KEY : 1, s:REMAP_KEY : 1}) " open new tab
     call add(mappings, {s:LHS_KEY : 'l', s:RHS_KEY : '<Esc>gt', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move right
@@ -49,7 +49,7 @@ function! tmno3#mapping#tab() abort
     return mappings
 endfunction
 
-function! tmno3#mapping#main_input() abort
+function! notomo#mapping#main_input() abort
     return [
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'a', s:RHS_KEY : '-'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'e', s:RHS_KEY : '='},
@@ -68,7 +68,7 @@ function! tmno3#mapping#main_input() abort
     \ ]
 endfunction
 
-function! tmno3#mapping#sub_input() abort
+function! notomo#mapping#sub_input() abort
     return [
         \ {s:LHS_KEY : s:SUB_INPUT_PFX . 'a', s:RHS_KEY : '&'},
         \ {s:LHS_KEY : s:SUB_INPUT_PFX . 'h', s:RHS_KEY : '^'},
@@ -90,7 +90,7 @@ function! tmno3#mapping#sub_input() abort
     \ ]
 endfunction
 
-function! tmno3#mapping#indent_normal_mode() abort
+function! notomo#mapping#indent_normal_mode() abort
     return [
         \ {s:LHS_KEY : 'f', s:RHS_KEY : '>>', s:REMAP_KEY : 0},
         \ {s:LHS_KEY : 'l', s:RHS_KEY : '>>', s:REMAP_KEY : 0},
@@ -103,7 +103,7 @@ function! tmno3#mapping#indent_normal_mode() abort
     \ ]
 endfunction
 
-function! tmno3#mapping#indent_visual_mode() abort
+function! notomo#mapping#indent_visual_mode() abort
     return [
         \ {s:LHS_KEY : 'f', s:RHS_KEY : '>gv', s:REMAP_KEY : 0},
         \ {s:LHS_KEY : 'l', s:RHS_KEY : '>gv', s:REMAP_KEY : 0},

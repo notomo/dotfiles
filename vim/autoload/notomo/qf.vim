@@ -28,7 +28,7 @@ function! s:get_current_qf_type() abort
     return s:NONE_TYPE
 endfunction
 
-function! tmno3#qf#open() abort
+function! notomo#qf#open() abort
     let qf_type = s:get_qf_type()
     if qf_type == s:QUICK_FIX_TYPE
         copen
@@ -37,7 +37,7 @@ function! tmno3#qf#open() abort
     endif
 endfunction
 
-function! tmno3#qf#close() abort
+function! notomo#qf#close() abort
     let qf_type = s:get_qf_type()
     if qf_type == s:QUICK_FIX_TYPE
         cclose
@@ -46,7 +46,7 @@ function! tmno3#qf#close() abort
     endif
 endfunction
 
-function! tmno3#qf#first() abort
+function! notomo#qf#first() abort
     let qf_type = s:get_qf_type()
     if qf_type == s:QUICK_FIX_TYPE
         cfirst
@@ -55,7 +55,7 @@ function! tmno3#qf#first() abort
     endif
 endfunction
 
-function! tmno3#qf#last() abort
+function! notomo#qf#last() abort
     let qf_type = s:get_qf_type()
     if qf_type == s:QUICK_FIX_TYPE
         clast
@@ -72,7 +72,7 @@ function! s:wrap_move(try_cmd, catch_cmd) abort
     endtry
 endfunction
 
-function! tmno3#qf#next() abort
+function! notomo#qf#next() abort
     let qf_type = s:get_qf_type()
     if qf_type == s:QUICK_FIX_TYPE
         call s:wrap_move('cnext', 'cfirst')
@@ -81,7 +81,7 @@ function! tmno3#qf#next() abort
     endif
 endfunction
 
-function! tmno3#qf#previous() abort
+function! notomo#qf#previous() abort
     let qf_type = s:get_qf_type()
     if qf_type == s:QUICK_FIX_TYPE
         call s:wrap_move('cprevious', 'clast')
@@ -106,11 +106,11 @@ function! s:current_open(is_preview) abort
     endif
 endfunction
 
-function! tmno3#qf#current_open() abort
+function! notomo#qf#current_open() abort
     call s:current_open(0)
 endfunction
 
-function! tmno3#qf#preview() abort
+function! notomo#qf#preview() abort
     call s:current_open(1)
 endfunction
 
@@ -146,7 +146,7 @@ function! s:get_entries(qf_type) abort
     endif
 endfunction
 
-function! tmno3#qf#delete() abort
+function! notomo#qf#delete() abort
     let qf_type = s:get_current_qf_type()
     let entries = s:get_entries(qf_type)
     if empty(entries)
@@ -159,7 +159,7 @@ function! tmno3#qf#delete() abort
     call s:set_entries(qf_type, entries, 'r')
 endfunction
 
-function! tmno3#qf#undo() abort
+function! notomo#qf#undo() abort
     let qf_type = s:get_current_qf_type()
     let entry_history = s:get_history(qf_type)
     if empty(entry_history)

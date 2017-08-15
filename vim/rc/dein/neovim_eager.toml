@@ -30,6 +30,6 @@ nnoremap <silent> [denite]th :<C-u>DeniteCursorWord help -no-empty -immediately-
 hook_post_source = 'source ~/.vim/rc/plugins/denite.vim'
 
 [[plugins]]
-repo = 'tmn-o3/denite-autocmd'
+repo = 'notomo/denite-autocmd'
 hook_add = 'nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>'
 

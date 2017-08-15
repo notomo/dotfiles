@@ -1,10 +1,10 @@
 
-function! tmno3#gina#adjust_diff_fenc() abort
+function! notomo#gina#adjust_diff_fenc() abort
     let buf_nums = tabpagebuflist()
     let show_bufs = []
     let exists_file_bufs = []
     for buf_num in buf_nums
-        let show_buf_file_path = tmno3#gina#convert_from_show_buf(buf_num)
+        let show_buf_file_path = notomo#gina#convert_from_show_buf(buf_num)
         if show_buf_file_path !=? ''
             call add(show_bufs, buf_num)
         else
@@ -20,13 +20,13 @@ function! tmno3#gina#adjust_diff_fenc() abort
     for show_buf in show_bufs
         let fenc = getbufvar(show_buf, '&fileencoding')
         if fenc != exists_fenc
-            call tmno3#gina#change_diff_fenc(exists_fenc)
+            call notomo#gina#change_diff_fenc(exists_fenc)
             break
         endif
     endfor
 endfunction
 
-function! tmno3#gina#convert_from_show_buf(buf_num) abort
+function! notomo#gina#convert_from_show_buf(buf_num) abort
     let gina_file_path = substitute(fnamemodify(bufname(a:buf_num), ':p'), '\', '/', 'g')
     let git = gina#core#get_or_fail()
     let abspath = gina#core#repo#abspath(git, '')
@@ -38,7 +38,7 @@ function! tmno3#gina#convert_from_show_buf(buf_num) abort
     return ''
 endfunction
 
-function! tmno3#gina#change_diff_fenc(fenc) abort
+function! notomo#gina#change_diff_fenc(fenc) abort
     let buf_nums = tabpagebuflist()
     let tmp_buf = buf_nums[0]
     let tmp_diff = getbufvar(tmp_buf, '&diff')

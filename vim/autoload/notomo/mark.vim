@@ -3,13 +3,13 @@ if !exists('g:mark_chars')
     let g:mark_chars = split('abcdefghijklmnopqrstuvwxyz', '\\zs')
 endif
 
-function! tmno3#mark#delete_all() abort
+function! notomo#mark#delete_all() abort
     delmark!
     let b:mark_index = -1
     echomsg 'deleted all marks'
 endfunction
 
-function! tmno3#mark#to_previous() abort
+function! notomo#mark#to_previous() abort
     let end_pos = 0
     let curline_num = line('.')
     for c in g:mark_chars
@@ -30,7 +30,7 @@ function! tmno3#mark#to_previous() abort
     endif
 endfunction
 
-function! tmno3#mark#to_next() abort
+function! notomo#mark#to_next() abort
     let start_pos = line('$')
     let start_char = ''
     let curline_num = line('.')
@@ -52,7 +52,7 @@ function! tmno3#mark#to_next() abort
     endif
 endfunction
 
-function! tmno3#mark#set() abort
+function! notomo#mark#set() abort
     if !exists('b:mark_index')
         let b:mark_index = 0
     else

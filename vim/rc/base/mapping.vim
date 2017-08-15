@@ -1,7 +1,7 @@
 scriptencoding utf-8
 
-let s:LHS_KEY = tmno3#mapping#get_lhs_key()
-let s:RHS_KEY = tmno3#mapping#get_rhs_key()
+let s:LHS_KEY = notomo#mapping#get_lhs_key()
+let s:RHS_KEY = notomo#mapping#get_rhs_key()
 
 " basic"{{{
 
@@ -28,7 +28,7 @@ nnoremap Q q:
 "}}}
 
 " edit"{{{
-nnoremap <silent> <Leader>x :<C-u>call tmno3#vimrc#exchange()<CR>
+nnoremap <silent> <Leader>x :<C-u>call notomo#vimrc#exchange()<CR>
 nnoremap [edit]r r
 vnoremap [edit]r r
 nnoremap [edit]h gU
@@ -97,7 +97,7 @@ function! s:delete_other_bufs() abort
 endfunction
 
 let s:scroll_enter = '[buf]s'
-silent execute join(['nnoremap', s:scroll_enter, ":<C-u>call tmno3#scroll#setup_submode('" . s:scroll_enter . "')<CR>"])
+silent execute join(['nnoremap', s:scroll_enter, ":<C-u>call notomo#scroll#setup_submode('" . s:scroll_enter . "')<CR>"])
 
 "}}}
 
@@ -152,11 +152,11 @@ nmap <Space>i [indent]
 vnoremap [indent] <Nop>
 vmap <Space>i [indent]
 
-for s:info in tmno3#mapping#indent_normal_mode()
-    silent execute join(['nnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call tmno3#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 0)<CR>"])
+for s:info in notomo#mapping#indent_normal_mode()
+    silent execute join(['nnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call notomo#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 0)<CR>"])
 endfor
-for s:info in tmno3#mapping#indent_visual_mode()
-    silent execute join(['vnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call tmno3#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 1)<CR>"])
+for s:info in notomo#mapping#indent_visual_mode()
+    silent execute join(['vnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call notomo#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 1)<CR>"])
 endfor
 
 "}}}
@@ -547,11 +547,11 @@ function! s:cinoremap_with_prefix(lhs, rhs) abort
     silent execute join(['cnoremap', a:lhs, a:rhs])
 endfunction
 
-for s:info in tmno3#mapping#main_input()
+for s:info in notomo#mapping#main_input()
     call s:cinoremap_with_prefix(s:info[s:LHS_KEY], s:info[s:RHS_KEY])
 endfor
 
-for s:info in tmno3#mapping#sub_input()
+for s:info in notomo#mapping#sub_input()
     call s:cinoremap_with_prefix(s:info[s:LHS_KEY], s:info[s:RHS_KEY])
 endfor
 
@@ -629,15 +629,15 @@ vnoremap [mark] <Nop>
 nmap <Leader>m [mark]
 vmap <Leader>m [mark]
 
-nnoremap [mark]s :<C-u>call tmno3#mark#set()<CR>
+nnoremap [mark]s :<C-u>call notomo#mark#set()<CR>
 
-nnoremap <expr> <silent> [mark]x tmno3#mark#to_next()
-vnoremap <expr> <silent> [mark]x tmno3#mark#to_next()
+nnoremap <expr> <silent> [mark]x notomo#mark#to_next()
+vnoremap <expr> <silent> [mark]x notomo#mark#to_next()
 
-nnoremap <expr> <silent> [mark]r tmno3#mark#to_previous()
-vnoremap <expr> <silent> [mark]r tmno3#mark#to_previous()
+nnoremap <expr> <silent> [mark]r notomo#mark#to_previous()
+vnoremap <expr> <silent> [mark]r notomo#mark#to_previous()
 
-nnoremap <silent> [mark]d :<C-u>call tmno3#mark#delete_all()<CR>
+nnoremap <silent> [mark]d :<C-u>call notomo#mark#delete_all()<CR>
 
 " go to specific mark
 nnoremap [mark]g '
@@ -691,16 +691,16 @@ onoremap g/ gn
 nnoremap [qf] <Nop>
 nmap <Space>q [qf]
 
-nnoremap [qf]o :<C-u>call tmno3#qf#open()<CR>
-nnoremap [qf]c :<C-u>call tmno3#qf#close()<CR>
-nnoremap [qf]f :<C-u>call tmno3#qf#first()<CR>
-nnoremap [qf]l :<C-u>call tmno3#qf#last()<CR>
-nnoremap [qf]n :<C-u>call tmno3#qf#next()<CR>
-nnoremap [qf]p :<C-u>call tmno3#qf#previous()<CR>
-nnoremap [qf]d :<C-u>call tmno3#qf#delete()<CR>
-nnoremap [qf]u :<C-u>call tmno3#qf#undo()<CR>
-nnoremap [qf]<CR> :<C-u>call tmno3#qf#current_open()<CR>
-nnoremap [qf]<Space> :<C-u>call tmno3#qf#preview()<CR>
+nnoremap [qf]o :<C-u>call notomo#qf#open()<CR>
+nnoremap [qf]c :<C-u>call notomo#qf#close()<CR>
+nnoremap [qf]f :<C-u>call notomo#qf#first()<CR>
+nnoremap [qf]l :<C-u>call notomo#qf#last()<CR>
+nnoremap [qf]n :<C-u>call notomo#qf#next()<CR>
+nnoremap [qf]p :<C-u>call notomo#qf#previous()<CR>
+nnoremap [qf]d :<C-u>call notomo#qf#delete()<CR>
+nnoremap [qf]u :<C-u>call notomo#qf#undo()<CR>
+nnoremap [qf]<CR> :<C-u>call notomo#qf#current_open()<CR>
+nnoremap [qf]<Space> :<C-u>call notomo#qf#preview()<CR>
 "}}}
 
 " window"{{{
@@ -734,32 +734,32 @@ nnoremap [win]v :<C-u>vsplit<CR>
 " close others
 nnoremap [win]o :<C-u>only<CR>
 " close others vertically
-nnoremap [win]j :<C-u>call tmno3#window#vonly()<CR>
+nnoremap [win]j :<C-u>call notomo#window#vonly()<CR>
 " close right vertically
-nnoremap [win]; :<C-u>call tmno3#window#ronly()<CR>
+nnoremap [win]; :<C-u>call notomo#window#ronly()<CR>
 " close left windows
-nnoremap [win]a :<C-u>call tmno3#window#lonly()<CR>
+nnoremap [win]a :<C-u>call notomo#window#lonly()<CR>
 " close preview
 nnoremap [win]p <C-w>z
 " close
 nnoremap [win]q :<C-u>q<CR>
 " open left tab's buffers vertically
-nnoremap [win]H :<C-u>call tmno3#window#vs_from_left()<CR>
+nnoremap [win]H :<C-u>call notomo#window#vs_from_left()<CR>
 " open right tab's buffers vertically
-nnoremap [win]L :<C-u>call tmno3#window#vs_from_right()<CR>
+nnoremap [win]L :<C-u>call notomo#window#vs_from_right()<CR>
 " reopen windows vertically
-nnoremap [win]V :<C-u>call tmno3#window#h_to_vsplit()<CR>
+nnoremap [win]V :<C-u>call notomo#window#h_to_vsplit()<CR>
 " close window and open tab
-nnoremap [win]l :<C-u>call tmno3#window#extract_tabopen()<CR>
+nnoremap [win]l :<C-u>call notomo#window#extract_tabopen()<CR>
 " open the alternative buffer with vertical splitting
-nnoremap [win]b :<C-u>call tmno3#window#vsplit_altopen()<CR>
+nnoremap [win]b :<C-u>call notomo#window#vsplit_altopen()<CR>
 " duplicate window
-nnoremap [win]w :<C-u>call tmno3#window#duplicate()<CR>
+nnoremap [win]w :<C-u>call notomo#window#duplicate()<CR>
 "}}}
 
 " winsize"{{{
 let s:winsize_enter = 'i'
-silent execute join(['nnoremap', '[win]' . s:winsize_enter, ":<C-u>call tmno3#window#setup_submode('" . s:winsize_enter . "')<CR>"])
+silent execute join(['nnoremap', '[win]' . s:winsize_enter, ":<C-u>call notomo#window#setup_submode('" . s:winsize_enter . "')<CR>"])
 
 " equalize
 nnoremap [win]e <C-w>=
@@ -808,8 +808,8 @@ inoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
 vnoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
 "}}}
 
-for s:info in tmno3#mapping#tab()
-    silent execute join(['nnoremap', '[tab]' . s:info[s:LHS_KEY], ":<C-u>call tmno3#tab#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
+for s:info in notomo#mapping#tab()
+    silent execute join(['nnoremap', '[tab]' . s:info[s:LHS_KEY], ":<C-u>call notomo#tab#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
 endfor
 
 "}}}

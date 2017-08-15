@@ -1,18 +1,18 @@
 let s:SCROLL_MODE_NM = 'scroll'
-let s:LHS_KEY = tmno3#mapping#get_lhs_key()
-let s:RHS_KEY = tmno3#mapping#get_rhs_key()
+let s:LHS_KEY = notomo#mapping#get_lhs_key()
+let s:RHS_KEY = notomo#mapping#get_rhs_key()
 
-function! tmno3#scroll#scroll(cmd) abort
+function! notomo#scroll#scroll(cmd) abort
     noautocmd execute "normal! \<C-w>w"
     execute 'keepjumps normal! ' . a:cmd
     noautocmd execute "normal! \<C-w>p"
 endfunction
 
 function! s:scroll_map(lhs, rhs) abort
-    call submode#map(s:SCROLL_MODE_NM, 'n', 's', a:lhs, ":call tmno3#scroll#scroll('" . a:rhs . "')<CR>")
+    call submode#map(s:SCROLL_MODE_NM, 'n', 's', a:lhs, ":call notomo#scroll#scroll('" . a:rhs . "')<CR>")
 endfunction
 
-function! tmno3#scroll#setup_submode(enter_key) abort
+function! notomo#scroll#setup_submode(enter_key) abort
     call submode#enter_with(s:SCROLL_MODE_NM, 'n', '', a:enter_key, '<Nop>')
     call submode#leave_with(s:SCROLL_MODE_NM, 'n', '', '<Space>')
     call s:scroll_map('j', '<C-v><C-e>')

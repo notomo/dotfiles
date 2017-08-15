@@ -9,7 +9,7 @@ if [ -d ~/dotfiles ]; then
     git fetch origin
     git reset --hard origin/master
 else
-    git clone git@github.com:tmn-o3/dotfiles.git
+    git clone git@github.com:notomo/dotfiles.git
 fi
 sh ~/dotfiles/link.sh
 cd ~

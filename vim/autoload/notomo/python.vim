@@ -1,5 +1,5 @@
 
-function! tmno3#python#get_indent()
+function! notomo#python#get_indent()
     let curline = getline('.')
     if (col('.') - 1) != matchend(curline, '^\s*')
         return -1

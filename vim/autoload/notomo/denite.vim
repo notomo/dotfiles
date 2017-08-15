@@ -1,5 +1,5 @@
 
-function! tmno3#denite#execute_unite_action(context, action_name) abort
+function! notomo#denite#execute_unite_action(context, action_name) abort
     let targets = a:context['targets']
     let candidates = []
     for target in targets
@@ -8,7 +8,7 @@ function! tmno3#denite#execute_unite_action(context, action_name) abort
     call unite#action#do_candidates(a:action_name, candidates)
 endfunction
 
-function! tmno3#denite#dir_file(context) abort
+function! notomo#denite#dir_file(context) abort
     let target = a:context['targets'][0]
     if !has_key(target, 'action__path')
         return
@@ -18,7 +18,7 @@ function! tmno3#denite#dir_file(context) abort
     execute 'Denite dir_file:' . path
 endfunction
 
-function! tmno3#denite#parent_dir_file(context) abort
+function! notomo#denite#parent_dir_file(context) abort
     let target = a:context['targets'][0]
     if !has_key(target, 'action__path')
         return
@@ -28,7 +28,7 @@ function! tmno3#denite#parent_dir_file(context) abort
     execute 'Denite -mode=normal dir_file:' . path
 endfunction
 
-function! tmno3#denite#open(open_cmd, context) abort
+function! notomo#denite#open(open_cmd, context) abort
     let target = a:context['targets'][0]
     if !has_key(target, 'action__path')
         return
