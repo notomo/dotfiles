@@ -26,9 +26,20 @@ for s:mode_char in ['n', 'v']
 
 endfor
 
+let g:gina#command#blame#use_default_aliases = 0
+let g:gina#command#branch#use_default_aliases = 0
+let g:gina#command#changes#use_default_aliases = 0
+let g:gina#command#grep#use_default_aliases = 0
+let g:gina#command#log#use_default_aliases = 0
+let g:gina#command#ls#use_default_aliases = 0
+let g:gina#command#reflog#use_default_aliases = 0
+let g:gina#command#stash#use_default_aliases = 0
+let g:gina#command#stash#show#use_default_aliases = 0
+let g:gina#command#status#use_default_aliases = 0
+let g:gina#command#tag#use_default_aliases = 0
+
 " status
 let g:gina#command#status#use_default_mappings = 0
-let g:gina#command#status#use_default_aliases = 0
 call gina#custom#mapping#nmap('status', 'cc', ':<C-u>Gina commit<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'ca', ':<C-u>Gina commit --amend<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'cs', ':call gina#action#call(''chaperon:tab'')<CR>', s:noremap_silent)
@@ -48,13 +59,13 @@ call gina#custom#mapping#nmap('stash', 'pop', '<Plug>(gina-stash-pop)', s:silent
 
 " branch
 call gina#custom#mapping#nmap('branch', 'rn', '<Plug>(gina-branch-move)', s:silent)
-call gina#custom#mapping#nmap('branch', 'dl', '<Plug>(gina-branch-delete)', s:silent)
+" call gina#custom#mapping#nmap('branch', 'dl', '<Plug>(gina-branch-delete)', s:silent)
 call gina#custom#mapping#nmap('branch', 'rf', '<Plug>(gina-branch-reflesh)', s:silent)
 call gina#custom#mapping#nmap('branch', 'C', '<Plug>(gina-branch-new)', s:silent)
 call gina#custom#command#option('branch', '-v', 'v')
 
 " opener
-call gina#custom#command#option('/\%(status\|changes\|ls\|stash\|commit\)', '--opener', 'botright split')
+call gina#custom#command#option('/\%(status\|changes\|ls\|commit\)', '--opener', 'botright split')
 call gina#custom#command#option('/\%(diff\|blame\|compare\|patch\|log\)', '--opener', 'tabedit')
 
 " blame
