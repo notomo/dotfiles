@@ -16,6 +16,8 @@ call denite#custom#option('default', 'highlight_preview_line', 'Search')
 call denite#custom#option('default', 'smartcase', v:true)
 call denite#custom#source('_', 'matchers', ['matcher_substring'])
 call denite#custom#source('directory_mru', 'sorters', ['sorter_length'])
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs', ['.git/', '__pycache__/'])
+call denite#custom#source('file_rec', 'matchers', ['matcher_substring', 'matcher_ignore_globs'])
 
 call denite#custom#map('_', '<CR>', '<denite:do_action:default>', 'noremap')
 call denite#custom#map('_', '<Tab>', '<denite:choose_action>', 'noremap')
