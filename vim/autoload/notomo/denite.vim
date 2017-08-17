@@ -37,3 +37,20 @@ function! notomo#denite#open(open_cmd, context) abort
     let path = target['action__path']
     execute 'edit ' . path
 endfunction
+
+function! notomo#denite#qfreplace(context) abort
+    let qflist = []
+    for target in a:context['targets']
+        if !has_key(target, 'action__line') || !has_key(target, 'action__text')
+            continue
+        endif
+        let dict = {'filename': target['action__path'], 'lnum': target['action__line'], 'text': target['action__text']}
+        call add(qflist, dict)
+    endfor
+    if len(qflist) == 0
+        return
+    endif
+    call setqflist(qflist)
+    call qfreplace#start('')
+endfunction
+

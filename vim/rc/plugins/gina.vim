@@ -56,6 +56,7 @@ call gina#custom#mapping#nmap('/\%(status\|stash\|compare\)', 'D', '<Plug>(gina-
 " stash
 call gina#custom#mapping#nmap('stash', 'ap', '<Plug>(gina-stash-apply)', s:silent)
 call gina#custom#mapping#nmap('stash', 'pop', '<Plug>(gina-stash-pop)', s:silent)
+call gina#custom#mapping#nmap('stash', '<CR>', ':call gina#action#call(''stash:show'')<CR>', s:noremap_silent)
 
 " branch
 call gina#custom#mapping#nmap('branch', 'rn', '<Plug>(gina-branch-move)', s:silent)
@@ -63,6 +64,9 @@ call gina#custom#mapping#nmap('branch', 'rn', '<Plug>(gina-branch-move)', s:sile
 call gina#custom#mapping#nmap('branch', 'rf', '<Plug>(gina-branch-reflesh)', s:silent)
 call gina#custom#mapping#nmap('branch', 'C', '<Plug>(gina-branch-new)', s:silent)
 call gina#custom#command#option('branch', '-v', 'v')
+
+" group
+call gina#custom#command#option('show', '--group', 'show')
 
 " opener
 call gina#custom#command#option('/\%(status\|changes\|ls\|commit\)', '--opener', 'botright split')

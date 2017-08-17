@@ -74,6 +74,7 @@ call denite#custom#map('normal', 'sh', '<denite:do_action:split>', 'noremap')
 call denite#custom#map('normal', 'fo', '<denite:do_action:vimfiler>', 'noremap')
 call denite#custom#map('normal', 'fl', '<denite:do_action:tabvimfiler>', 'noremap')
 call denite#custom#map('normal', '<Leader>rn', '<denite:do_action:exrename>', 'noremap')
+call denite#custom#map('normal', '<Leader>rp', '<denite:do_action:qfreplace>', 'noremap')
 call denite#custom#map('normal', 't<Space>', '<denite:do_action:tabopen>', 'noremap')
 call denite#custom#map('normal', '<C-l>', '<denite:redraw>', 'noremap')
 call denite#custom#map('normal', 'rr', '<denite:restart>', 'noremap')
@@ -95,6 +96,7 @@ call denite#custom#action('unite', 'open', {context -> notomo#denite#execute_uni
 call denite#custom#action('unite', 'vimfiler', {context -> notomo#denite#execute_unite_action(context, 'vimfiler')})
 call denite#custom#action('unite', 'tabvimfiler', {context -> notomo#denite#execute_unite_action(context, 'tabvimfiler')})
 call denite#custom#action('unite', 'exrename', {context -> notomo#denite#execute_unite_action(context, 'exrename')})
+call denite#custom#action('unite', 'qfreplace', {context -> notomo#denite#execute_unite_action(context, 'replace')})
 
 call denite#custom#action('directory', 'dir_file', {context -> notomo#denite#dir_file(context)})
 call denite#custom#action('file,directory', 'parent_dir_file', {context -> notomo#denite#parent_dir_file(context)})
@@ -102,3 +104,5 @@ call denite#custom#action('file,directory', 'parent_dir_file', {context -> notom
 call denite#custom#action('directory', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
 call denite#custom#action('directory', 'vsplit', {context ->  notomo#denite#open('vsplit', context)})
 call denite#custom#action('directory', 'split', {context ->  notomo#denite#open('split', context)})
+
+call denite#custom#action('file', 'qfreplace', {context ->  notomo#denite#qfreplace(context)})
