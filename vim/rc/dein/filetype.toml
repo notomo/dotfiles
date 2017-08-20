@@ -83,3 +83,7 @@ setlocal expandtab
 jesponsiv2 = '''
 nnoremap <buffer> [file]rl :<C-u>JesponseReload<CR>
 '''
+
+vader = '''
+nnoremap <buffer> [exec]t :<C-u>Vader %<CR>
+'''

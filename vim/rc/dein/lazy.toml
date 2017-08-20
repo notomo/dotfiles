@@ -173,9 +173,7 @@ on_map = {n = '<Plug>(anzu-n-with-echo)'}
 [[plugins]]
 repo = 'sgur/vim-py3diff'
 if = "has('python3')"
-hook_add = '''
-set diffexpr=py3diff#diffexpr()
-'''
+hook_add = 'set diffexpr=py3diff#diffexpr()'
 
 [[plugins]]
 repo = 'tyru/restart.vim'
@@ -694,30 +692,5 @@ hook_source = 'let g:IM_CtrlMode = 4'
 [[plugins]]
 repo = 'w0rp/ale'
 if = "has('nvim')"
-on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c']
-hook_source = '''
-let g:ale_open_list = 1
-let g:ale_lint_on_filetype_changed = 0
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_linters = {
-\   'python': ['flake8', 'mypy'],
-\   'vim': ['vint'],
-\   'php': ['phpmd', 'php'],
-\   'sh': ['shellcheck'],
-\   'go': ['govet', 'gofmt', 'golint'],
-\   'sql': [],
-\   'c': ['clang'],
-\}
-let g:ale_fixers = {
-\   'python': ['autopep8', 'isort'],
-\}
-let g:ale_php_phpcs_standard = '~/dotfiles/lint/php/phpcs/my_psr2.xml'
-let g:ale_php_phpmd_ruleset = 'unusedcode'
-let g:ale_python_mypy_options = '--ignore-missing-imports'
-let g:ale_python_flake8_executable = 'python3.5'
-let g:ale_python_flake8_options = '-m flake8'
-let g:ale_fix_on_save = 1
-let g:ale_go_gometalinter_options = '--fast'
-'''
+on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c', 'help']
+hook_source = 'source ~/.vim/rc/plugins/ale.vim'
