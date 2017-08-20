@@ -1,32 +1,6 @@
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-hook_add = '''
-nnoremap [denite] <Nop>
-nmap <Space>d [denite]
-
-nnoremap <silent> [denite]r :<C-u>Denite unite:file_mru unite:directory_mru unite:file<CR>
-nnoremap <silent> [denite]ll :<C-u>Denite line -auto-preview<CR>
-nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
-nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
-nnoremap <silent> [unite]sf :<C-u>DeniteBufferDir -auto-preview file_rec<CR>
-nnoremap <silent> [denite]sg :<C-u>DeniteProjectDir -auto-preview file_rec<CR>
-nnoremap <silent> [denite]f :<C-u>DeniteBufferDir dir_file -no-empty<CR>
-nnoremap <silent> [denite]o :<C-u>Denite outline -auto-preview -no-empty<CR>
-nnoremap <silent> [denite]c :<C-u>Denite change -auto-preview -no-empty<CR>
-nnoremap <silent> [denite]J :<C-u>Denite jump -auto-preview -no-empty<CR>
-nnoremap <silent> [denite]ta :<C-u>Denite tag -auto-preview -no-empty<CR>
-nnoremap <silent> [denite]tk :<C-u>DeniteCursorWord tag -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]k :<C-u>DeniteCursorWord tag -immediately -no-empty<CR>
-noremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
-nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
-nnoremap <silent> [denite]<CR> :<C-u>Denite -resume<CR>
-nnoremap <silent> [denite]gr :<C-u>Denite grep -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]to :<C-u>DeniteCursorWord outline -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]h :<C-u>Denite help<CR>
-nnoremap <silent> [denite]th :<C-u>DeniteCursorWord help -no-empty -immediately-1<CR>
-'''
 hook_post_source = 'source ~/.vim/rc/plugins/denite.vim'
 
 [[plugins]]

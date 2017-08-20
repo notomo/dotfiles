@@ -1,3 +1,24 @@
+nnoremap [unite] <Nop>
+nmap <Space>u [unite]
+
+nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
+nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>
+nnoremap [unite]F :<C-u>UniteWithBufferDir -buffer-name=files file -input=
+nnoremap <silent> [unite]p :<C-u>Unite bookmark<CR>
+nnoremap <silent> [unite]<Space> :<C-u>UniteBookmarkAdd<CR>
+nnoremap <silent> [unite]ta :<C-u>Unite tab:no-current<CR>
+nnoremap <silent> [unite]mp :<C-u>Unite mapping<CR>
+nnoremap <silent> [unite]R :<C-u>Unite runtimepath<CR>
+nnoremap <silent> [unite]<CR> :<C-u>UniteResume<CR>
+nnoremap <silent> [unite]gg  :<C-u>call <SID>unite_grep()<CR>
+function! s:unite_grep() abort
+    let pattern = input('Pattern : ')
+    if pattern ==? ''
+        echomsg 'Canceled'
+        return
+    endif
+    execute "normal! :Unite -tab -no-quit grep:. -buffer-name=GREP\<CR>" . pattern . "\<CR>"
+endfunction
 
 " tab_drop
 let s:tab_drop = {

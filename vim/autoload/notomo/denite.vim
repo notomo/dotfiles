@@ -8,14 +8,24 @@ function! notomo#denite#execute_unite_action(context, action_name) abort
     call unite#action#do_candidates(a:action_name, candidates)
 endfunction
 
-function! notomo#denite#dir_file(context) abort
+function! notomo#denite#dir_file_on_directory(context) abort
     let target = a:context['targets'][0]
     if !has_key(target, 'action__path')
         return
     endif
     let path = target['action__path']
     let a:context['quit'] = v:false
-    execute 'Denite dir_file:' . path
+    execute 'Denite -mode=normal dir_file:' . path
+endfunction
+
+function! notomo#denite#dir_file_on_file(context) abort
+    let target = a:context['targets'][0]
+    if !has_key(target, 'action__path')
+        return
+    endif
+    let path = fnamemodify(target['action__path'], ':h')
+    let a:context['quit'] = v:false
+    execute 'Denite -mode=normal dir_file:' . path
 endfunction
 
 function! notomo#denite#parent_dir_file(context) abort

@@ -1,3 +1,28 @@
+nnoremap [denite] <Nop>
+nmap <Space>d [denite]
+
+nnoremap <silent> [unite]r :<C-u>Denite file_mru directory_mru dir_file<CR>
+nnoremap <silent> [denite]l :<C-u>Denite line -auto-preview<CR>
+nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
+nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+nnoremap <silent> [denite]sf :<C-u>DeniteBufferDir -auto-preview file_rec<CR>
+nnoremap <silent> [denite]sg :<C-u>DeniteProjectDir -auto-preview file_rec<CR>
+nnoremap <silent> [denite]f :<C-u>DeniteBufferDir dir_file -no-empty<CR>
+nnoremap <silent> [denite]o :<C-u>Denite outline -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]c :<C-u>Denite change -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]J :<C-u>Denite jump -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]ta :<C-u>Denite tag -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]tk :<C-u>DeniteCursorWord tag -auto-preview -no-empty -immediately-1<CR>
+nnoremap <silent> [denite]k :<C-u>DeniteCursorWord tag -immediately -no-empty<CR>
+nnoremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
+nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
+nnoremap <silent> [denite]<CR> :<C-u>Denite -resume<CR>
+nnoremap <silent> [denite]gl :<C-u>Denite grep -auto-preview -no-empty -immediately-1<CR>
+nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -auto-preview -no-empty -immediately-1<CR>
+nnoremap <silent> [denite]to :<C-u>DeniteCursorWord outline -auto-preview -no-empty -immediately-1<CR>
+nnoremap <silent> [denite]h :<C-u>Denite help<CR>
+nnoremap <silent> [denite]th :<C-u>DeniteCursorWord help -no-empty -immediately-1<CR>
+nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
@@ -63,7 +88,7 @@ call denite#custom#map('normal', 'ga', '<denite:move_caret_to_head>', 'noremap')
 call denite#custom#map('normal', 'ge', '<denite:move_caret_to_tail>', 'noremap')
 call denite#custom#map('normal', 'cc', '<denite:change_line>', 'noremap')
 call denite#custom#map('normal', 'dd', '<denite:delete_entire_text>', 'noremap')
-call denite#custom#map('normal', 'D', '<denite:delete_text_before_caret>', 'noremap')
+call denite#custom#map('normal', 'D', '<denite:delete_text_after_caret>', 'noremap')
 call denite#custom#map('normal', 'x', '<denite:delete_char_under_caret>', 'noremap')
 call denite#custom#map('normal', 'sm', '<denite:toggle_select_down>', 'noremap')
 call denite#custom#map('normal', 'ss', '<denite:toggle_select_all>', 'noremap')
@@ -81,10 +106,13 @@ call denite#custom#map('normal', 't<Space>', '<denite:do_action:tabopen>', 'nore
 call denite#custom#map('normal', '<C-l>', '<denite:redraw>', 'noremap')
 call denite#custom#map('normal', 'rr', '<denite:restart>', 'noremap')
 call denite#custom#map('normal', 'ff', '<denite:do_action:dir_file>', 'noremap')
-call denite#custom#map('normal', 'fp', '<denite:do_action:parent_dir_file>', 'noremap')
+call denite#custom#map('normal', 'fa', '<denite:do_action:parent_dir_file>', 'noremap')
 call denite#custom#map('normal', 'tmip', '<denite:toggle_matchers:matcher_ignore_path>', 'noremap')
 call denite#custom#map('normal', 'tmiw', '<denite:toggle_matchers:matcher_ignore_word>', 'noremap')
 call denite#custom#map('normal', 'tsr', '<denite:toggle_sorters:sorter_reverse>', 'noremap')
+call denite#custom#map('normal', 'tsl', '<denite:toggle_sorters:sorter_length>', 'noremap')
+call denite#custom#map('normal', 'mh', '<denite:wincmd:h>', 'noremap')
+call denite#custom#map('normal', 'ml', '<denite:wincmd:l>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags'])
@@ -100,7 +128,8 @@ call denite#custom#action('unite', 'tabvimfiler', {context -> notomo#denite#exec
 call denite#custom#action('unite', 'exrename', {context -> notomo#denite#execute_unite_action(context, 'exrename')})
 call denite#custom#action('unite', 'qfreplace', {context -> notomo#denite#execute_unite_action(context, 'replace')})
 
-call denite#custom#action('directory', 'dir_file', {context -> notomo#denite#dir_file(context)})
+call denite#custom#action('directory', 'dir_file', {context -> notomo#denite#dir_file_on_directory(context)})
+call denite#custom#action('file', 'dir_file', {context -> notomo#denite#dir_file_on_file(context)})
 call denite#custom#action('file,directory', 'parent_dir_file', {context -> notomo#denite#parent_dir_file(context)})
 
 call denite#custom#action('directory', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})

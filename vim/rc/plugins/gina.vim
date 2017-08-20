@@ -1,3 +1,30 @@
+nnoremap [git]s :<C-u>Gina status<CR>
+nnoremap [git]D :<C-u>Gina diff<CR>
+nnoremap [git]b :<C-u>Gina branch<CR>
+nnoremap [git]L :<C-u>Gina log master...HEAD<CR>
+nnoremap [git]ll :<C-u>Gina log<CR>
+nnoremap [git]rl :<C-u>Gina reflog<CR>
+nnoremap [git]ls :<C-u>Gina ls<CR>
+nnoremap [git]c :<C-u>Gina commit<CR>
+nnoremap [git]xl :<C-u>Gina stash list<CR>
+nnoremap [git]xs :<C-u>Gina stash save ""<Left>
+nnoremap [git]xc :<C-u>Gina stash show<CR>
+nnoremap <expr> [git]P ':<C-u>Gina! push origin ' . gina#component#repo#branch()
+nnoremap <expr> [git]H ':<C-u>Gina! pull origin ' . gina#component#repo#branch()
+nnoremap [git]M :<C-u>Gina! merge<Space>
+nnoremap [git]F :<C-u>Gina! fetch<Space>
+
+function! s:get_current_relpath() abort
+    let git = gina#core#get_or_fail()
+    let abspath = gina#core#repo#abspath(git, '')
+    let curpath = substitute(expand('%:p'), '\', '/', 'g')
+    let relpath = substitute(curpath, abspath, '', '')
+    return relpath
+endfunction
+nnoremap [git]B :<C-u>execute 'Gina blame :' . <SID>get_current_relpath()<CR>
+nnoremap [git]fl :<C-u>execute 'Gina log :' . <SID>get_current_relpath()<CR>
+nnoremap [git]dd :<C-u>execute 'Gina compare :' . <SID>get_current_relpath()<CR>
+nnoremap [git]df :<C-u>execute 'Gina diff :' . <SID>get_current_relpath()<CR>
 
 let s:silent = {'silent': 1}
 let s:noremap_silent = {'noremap':1, 'silent': 1}
