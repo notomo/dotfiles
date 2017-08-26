@@ -4,6 +4,7 @@ nmap <Space>u [unite]
 nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
 nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>
 nnoremap [unite]F :<C-u>UniteWithBufferDir -buffer-name=files file -input=
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir file_rec<CR>
 nnoremap <silent> [unite]p :<C-u>Unite bookmark<CR>
 nnoremap <silent> [unite]<Space> :<C-u>UniteBookmarkAdd<CR>
 nnoremap <silent> [unite]ta :<C-u>Unite tab:no-current<CR>

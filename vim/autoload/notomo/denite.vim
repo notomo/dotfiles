@@ -64,3 +64,23 @@ function! notomo#denite#qfreplace(context) abort
     call qfreplace#start('')
 endfunction
 
+function! notomo#denite#exrename(context) abort
+    let paths = []
+    for target in a:context['targets']
+        call add(paths, target['action__path'])
+    endfor
+    call vulk_rename#execute(paths)
+endfunction
+
+function! notomo#denite#directory_open(open_cmd, context) abort
+    let target = a:context['targets'][0]
+    if !has_key(target, 'action__path')
+        return
+    endif
+    execute a:open_cmd
+    let path = target['action__path']
+    if !isdirectory(path)
+        let path = fnamemodify(target['action__path'], ':h')
+    endif
+    execute 'edit ' . path
+endfunction
