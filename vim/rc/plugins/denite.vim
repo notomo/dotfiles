@@ -137,7 +137,7 @@ call denite#custom#action('directory', 'vsplit', {context ->  notomo#denite#open
 call denite#custom#action('directory', 'split', {context ->  notomo#denite#open('split', context)})
 
 call denite#custom#action('file', 'qfreplace', {context ->  notomo#denite#qfreplace(context)})
-call denite#custom#action('file', 'exrename', {context ->  notomo#denite#exrename(context)})
+call denite#custom#action('file,directory', 'exrename', {context ->  notomo#denite#exrename(context)})
 
 call denite#custom#action('file,directory', 'vimfiler', {context ->  notomo#denite#directory_open('', context)})
 call denite#custom#action('file,directory', 'tabvimfiler', {context ->  notomo#denite#directory_open('tabnew', context)})

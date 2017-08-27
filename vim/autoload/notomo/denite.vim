@@ -49,6 +49,7 @@ function! notomo#denite#open(open_cmd, context) abort
 endfunction
 
 function! notomo#denite#qfreplace(context) abort
+    tabnew
     let qflist = []
     for target in a:context['targets']
         if !has_key(target, 'action__line') || !has_key(target, 'action__text')
@@ -62,14 +63,18 @@ function! notomo#denite#qfreplace(context) abort
     endif
     call setqflist(qflist)
     call qfreplace#start('')
+    only
 endfunction
 
 function! notomo#denite#exrename(context) abort
-    let paths = []
+    let candidates = []
     for target in a:context['targets']
-        call add(paths, target['action__path'])
+        let action_path = target['action__path']
+        let kind = isdirectory(action_path) ? 'directory' : 'file'
+        call add(candidates, {'action__path': action_path, 'kind': kind})
     endfor
-    call vulk_rename#execute(paths)
+    call unite#exrename#create_buffer(candidates)
+    only
 endfunction
 
 function! notomo#denite#directory_open(open_cmd, context) abort
