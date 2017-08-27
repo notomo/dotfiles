@@ -64,6 +64,7 @@ wget https://github.com/monochromegane/the_platinum_searcher/releases/download/v
 tar zxf pt_linux_amd64.tar.gz
 mv pt_linux_amd64/pt /usr/local/bin/pt
 rm pt_linux_amd64.tar.gz
+rm -r pt_linux_amd64
 
 # ripgrep
 yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
@@ -114,6 +115,14 @@ rm go1.8.3.linux-amd64.tar.gz
 go get -u github.com/nsf/gocode
 go get golang.org/x/tools/cmd/goimports
 go get -u github.com/golang/lint/golint
+
+# java
+wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-lin
+yum localinstall jdk-8u144-linux-x64.rpm
+rm jdk-8u144-linux-x64.rpm
+
+# plantuml
+wget https://sourceforge.net/projects/plantuml/files/plantuml.jar
 
 # clang
 yum -y install clang lldb

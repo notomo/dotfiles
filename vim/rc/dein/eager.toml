@@ -242,3 +242,7 @@ repo = 'junegunn/vader.vim'
 [[plugins]]
 repo = 'lambdalisue/gina.vim'
 hook_post_source = 'source ~/.vim/rc/plugins/gina.vim'
+
+[[plugins]]
+repo = 'aklt/plantuml-syntax'
+
