@@ -111,9 +111,12 @@ call gina#custom#mapping#nmap('diff', 'sgj', ':call notomo#vimrc#to_next_syntax(
 call gina#custom#mapping#nmap('diff', 'sgk', ':call notomo#vimrc#to_previous_syntax(''diffLine'', -1)<CR>', s:noremap_silent)
 
 " log
-call gina#custom#mapping#nmap('/\%(log\|reflog\)', '<CR>', ':call gina#action#call(''show:commit:right'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', '<CR>', ':call gina#action#call(''show:commit:right'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 'o', ':call gina#action#call(''show'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 't<Space>', ':call gina#action#call(''show:tab'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'cc', '<Plug>(gina-changes-of)', s:silent)
 call gina#custom#mapping#nmap('log', 'cf', '<Plug>(gina-changes-from)', s:silent)
 call gina#custom#mapping#nmap('log', 'cb', '<Plug>(gina-changes-between)', s:silent)
 call gina#custom#mapping#nmap('log', 'RS', '<Plug>(gina-commit-reset)', s:silent)
+call gina#custom#mapping#nmap('log', 'yr', '<Plug>(gina-yank-rev)', s:silent)
 
