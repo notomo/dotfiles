@@ -5,8 +5,8 @@ nnoremap <silent> [unite]r :<C-u>Denite file_mru directory_mru dir_file<CR>
 nnoremap <silent> [denite]l :<C-u>Denite line -auto-preview<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
-nnoremap <silent> [denite]sf :<C-u>DeniteBufferDir -auto-preview file_rec<CR>
-nnoremap <silent> [denite]sg :<C-u>DeniteProjectDir -auto-preview file_rec<CR>
+nnoremap <silent> [unite]sf :<C-u>DeniteBufferDir -auto-preview file_rec<CR>
+nnoremap <silent> [unite]sg :<C-u>DeniteProjectDir -auto-preview file_rec<CR>
 nnoremap <silent> [denite]f :<C-u>DeniteBufferDir dir_file -no-empty<CR>
 nnoremap <silent> [denite]o :<C-u>Denite outline -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]c :<C-u>Denite change -auto-preview -no-empty<CR>

@@ -4,7 +4,6 @@ nmap <Space>u [unite]
 nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
 nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>
 nnoremap [unite]F :<C-u>UniteWithBufferDir -buffer-name=files file -input=
-nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir file_rec<CR>
 nnoremap <silent> [unite]p :<C-u>Unite bookmark<CR>
 nnoremap <silent> [unite]<Space> :<C-u>UniteBookmarkAdd<CR>
 nnoremap <silent> [unite]ta :<C-u>Unite tab:no-current<CR>
@@ -63,6 +62,8 @@ call unite#custom#source('file_mru', 'ignore_pattern', '\v^(gina|gita)')
 call unite#custom#source('file', 'matchers', 'matcher_default')
 
 call unite#custom#source('directory_mru', 'sorters', ['sorter_length'])
+
+call unite#custom#default_action('giti/branch_all', 'checkout_tracking')
 
 function! s:change_source(source_name) abort
     execute 'Unite ' . a:source_name . ' -no-start-insert -input=' . join(split(getline(1), ' '), '\ ')
