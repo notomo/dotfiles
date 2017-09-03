@@ -694,3 +694,35 @@ repo = 'w0rp/ale'
 if = "has('nvim')"
 on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c', 'help']
 hook_source = 'source ~/.vim/rc/plugins/ale.vim'
+
+[[plugins]]
+repo = 'janko-m/vim-test'
+on_cmd = ['TestNearest']
+on_ft = ['vim', 'php']
+hook_add = '''
+nnoremap [test] <Nop>
+nmap <Leader>t [test]
+nnoremap [test]n :<C-u>TestNearest<CR>
+nnoremap [test]f :<C-u>TestFile<CR>
+nnoremap [test]s :<C-u>TestSuite<CR>
+nnoremap [test]t :<C-u>TestLast<CR>
+nnoremap [test]v :<C-u>TestVisit<CR>
+'''
+hook_source = '''
+let test#strategy = 'neovim'
+'''
+
+[[plugins]]
+repo = 'xolox/vim-misc'
+
+[[plugins]]
+repo = 'xolox/vim-session'
+depends = 'vim-misc'
+on_cmd = ['SaveSession', 'OpenSession']
+hook_add = '''
+nnoremap [file]<Space> :<C-u>SaveSession<CR>
+nnoremap [file]<CR> :<C-u>OpenSession<CR>
+let g:session_autoload = 'no'
+let g:session_autosave = 'no'
+let g:session_autosave_periodic = 0
+'''

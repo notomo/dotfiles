@@ -20,8 +20,6 @@ vnoremap <Space>. @:
 " redo
 nnoremap <Leader>r <C-r>
 
-noremap <Leader>t t
-
 " open commandline window
 nnoremap Q q:
 

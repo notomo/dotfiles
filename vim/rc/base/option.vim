@@ -60,6 +60,10 @@ set wildcharm=<C-z>
 set undoreload=0
 set updatecount=0
 set keywordprg=:help
+set helplang=ja
+set sessionoptions-=blank
+set sessionoptions-=buffers
+
 if v:version >= 800 || has('nvim')
     set nofixendofline
     set tagcase=match
