@@ -30,8 +30,12 @@ snippet protected_var
 abbr protected $var;
 	${1:protected} $${2:var};
 
+snippet const
+abbr const
+	const ${1:CONST} = '$1';
+
 snippet public_const
-abbr protected const
+abbr public const
 	public const ${1:CONST} = ${0};
 
 snippet protected_const
@@ -229,7 +233,7 @@ snippet try
 options head
 	try {
 		${1:TARGET}
-	} catch (${2:#:Exception} $e) {
+	} catch (${2:Exception} $e) {
 		${3:#:code}
 	}
 
@@ -237,7 +241,7 @@ snippet tryf
 options head
 	try {
 		${1:TARGET}
-	} catch (${2:#:Exception} $e) {
+	} catch (${2:Exception} $e) {
 		${3:#:code}
 	} finally {
 		${4:#:code}
@@ -261,29 +265,3 @@ options head
 		${0:TARGET}
 	}
 
-snippet gloabals
-	\$GLOBALS['${1:#:variable}']${2: = }${3:#:something}${4:;}${0}
-
-snippet cookie
-	\$_COOKIE['${1:#:variable}']
-
-snippet env
-	\$_ENV['${1:#:variable}']
-
-snippet files
-	\$_FILES['${1:#:variable}']
-
-snippet get
-	\$_GET['${1:#:variable}']
-
-snippet post
-	\$_POST['${1:#:variable}']
-
-snippet request
-	\$_REQUEST['${1:#:variable}']
-
-snippet server
-	\$_SERVER['${1:#:variable}']
-
-snippet session
-	\$_SESSION['${1:#:variable}']
