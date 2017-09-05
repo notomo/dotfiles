@@ -121,7 +121,7 @@ call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
-call denite#custom#action('command', 'open', {context -> denite#do_action(context, 'execute', context['targets'])})
+call denite#custom#action('command', 'open', {context -> notomo#denite#open_command(context)})
 call denite#custom#action('unite', 'open', {context -> notomo#denite#execute_unite_action(context, 'open')})
 call denite#custom#action('unite', 'vimfiler', {context -> notomo#denite#execute_unite_action(context, 'vimfiler')})
 call denite#custom#action('unite', 'tabvimfiler', {context -> notomo#denite#execute_unite_action(context, 'tabvimfiler')})

@@ -89,3 +89,8 @@ function! notomo#denite#directory_open(open_cmd, context) abort
     endif
     execute 'edit ' . path
 endfunction
+
+function! notomo#denite#open_command(context) abort
+    call denite#do_action(a:context, 'execute', a:context['targets'])
+    only
+endfunction
