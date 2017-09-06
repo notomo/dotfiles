@@ -87,7 +87,6 @@ snippet testdoc
 snippet mock
 options head
 	$${1:mockVar} = M::mock(${2:ClassName}::class);
-	${0}
 
 snippet mmock
 	M::mock(${1:ClassName}::class);
@@ -95,6 +94,12 @@ snippet mmock
 snippet shouldReceive
 options head
 	$${1:mockVar}->shouldReceive(['${2:methodName}' => ${3:returnValue}]);
+
+snippet shouldReceiveMulti
+options head
+	$${1:mockVar}->shouldReceive([
+		'${2:methodName}' => ${3:returnValue},
+	]);
 
 snippet mockShouldReceive
 options head

@@ -246,3 +246,6 @@ hook_post_source = 'source ~/.vim/rc/plugins/gina.vim'
 [[plugins]]
 repo = 'aklt/plantuml-syntax'
 
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+

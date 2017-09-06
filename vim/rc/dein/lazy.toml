@@ -726,3 +726,7 @@ let g:session_autoload = 'no'
 let g:session_autosave = 'no'
 let g:session_autosave_periodic = 0
 '''
+
+[[plugins]]
+repo = 'octol/vim-cpp-enhanced-highlight'
+on_ft = 'cpp'
