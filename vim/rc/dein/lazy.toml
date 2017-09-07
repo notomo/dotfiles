@@ -697,7 +697,7 @@ hook_source = 'source ~/.vim/rc/plugins/ale.vim'
 
 [[plugins]]
 repo = 'janko-m/vim-test'
-on_cmd = ['TestNearest']
+on_cmd = ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit']
 on_ft = ['vim', 'php']
 hook_add = '''
 nnoremap [test] <Nop>
@@ -708,8 +708,9 @@ nnoremap [test]s :<C-u>TestSuite<CR>
 nnoremap [test]t :<C-u>TestLast<CR>
 nnoremap [test]v :<C-u>TestVisit<CR>
 '''
-hook_source = '''
-let test#strategy = 'neovim'
+hook_source = 'source ~/.vim/rc/plugins/vim-test.vim'
+hook_post_source = '''
+let g:test#runners['PHP'] = ['PHPUnit']
 '''
 
 [[plugins]]
