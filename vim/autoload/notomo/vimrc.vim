@@ -63,3 +63,13 @@ function! s:to_syntax(syntax_name, start_line_num, offset, go_backword, wrap) ab
     endif
     call s:to_syntax(a:syntax_name, wrap_line_num, a:offset, a:go_backword, v:false)
 endfunction
+
+function! notomo#vimrc#url_decode() abort
+    let url = expand('<cWORD>')
+    return _url_decode(url)
+endfunction
+
+function! notomo#vimrc#url_encode() abort
+    let url = expand('<cWORD>')
+    return _url_encode(url)
+endfunction
