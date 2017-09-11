@@ -342,9 +342,18 @@ let g:quickrun_config['cpp/clang-cl'] = {
 \   'hook/sweep/files': ['%S:p:r.exe', '%S:p:r.obj'],
 \   "hook/output_encode/encoding" : "utf-8",
 \}
-let g:quickrun_config['cs'] = {
-\   "hook/output_encode/encoding" : "sjis",
-\}
+
+if has('unix')
+    let g:quickrun_config['cs'] = {
+    \   "type" : "cs/mcs",
+    \   "hook/output_encode/encoding" : "utf-8",
+    \}
+else
+    let g:quickrun_config['cs'] = {
+    \   "hook/output_encode/encoding" : "sjis",
+    \}
+endif
+
 let g:quickrun_config['vim'] = {
 \   "hook/output_encode/encoding" : "utf-8",
 \}
@@ -692,7 +701,7 @@ hook_source = 'let g:IM_CtrlMode = 4'
 [[plugins]]
 repo = 'w0rp/ale'
 if = "has('nvim')"
-on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c', 'help']
+on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c', 'help', 'cs']
 hook_source = 'source ~/.vim/rc/plugins/ale.vim'
 
 [[plugins]]

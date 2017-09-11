@@ -15,6 +15,8 @@ let g:ale_linters['sh'] = ['shellcheck']
 let g:ale_linters['go'] = ['govet', 'gofmt', 'golint']
 let g:ale_linters['sql'] = []
 let g:ale_linters['c'] = ['clang']
+let g:ale_linters['cs'] = ['mcs']
+let g:ale_linters['xml'] = []
 
 let g:ale_fixers = {}
 let g:ale_fixers['python'] = ['autopep8', 'isort']
