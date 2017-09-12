@@ -49,7 +49,7 @@ hi def link phpConstant Constant
 syn keyword phpConditional declare else enddeclare endswitch elseif endif if switch case default
 hi def link phpConditional Conditional
 
-syn keyword phpStatement return break continue exit goto die
+syn keyword phpStatement return break continue exit goto die yield from
 hi def link phpStatement Statement
 
 syn match phpNumber "-\=\<\d\+\>"
@@ -138,6 +138,7 @@ syn keyword phpClasses containedin=ALLBUT,phpComment,phpStringDouble,phpStringSi
 \ DOMCharacterData DOMAttr DOMElement DOMText DOMComment DOMTypeinfo DOMUserDataHandler
 \ DOMLocator DOMConfiguration DOMCdataSection DOMDocumentType DOMNotation DOMEntity
 \ DOMEntityReference DOMProcessingInstruction DOMStringExtend DOMXPath
+\ Throwable Traversable TypeError
 hi link phpClasses phpFunctions
 
 syn keyword phpFunctions apache_child_terminate apache_get_modules apache_get_version apache_getenv apache_lookup_uri apache_note apache_request_headers apache_response_headers apache_setenv ascii2ebcdic ebcdic2ascii getallheaders virtual

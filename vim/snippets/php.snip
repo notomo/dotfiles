@@ -84,6 +84,10 @@ snippet testdoc
 	 * @covers ::${1:testName}
 	 */
 
+snippet assertSame
+options head
+	$this->assertSame(${1:expected}, ${2:asserted});
+
 snippet mock
 options head
 	$${1:mockVar} = M::mock(${2:ClassName}::class);
@@ -199,13 +203,13 @@ options head
 	}
 
 snippet foreach-hashmap
-	foreach ($${1:#:variable} as $${2:#:key} => $${4:#:value}) {
+	foreach ($${1:variable} as $${2:key} => $${4:value}) {
 		${0:TARGET}
 	}
 
 snippet foreach-list
 options head
-	foreach ($${1:#:variable} as $${2:#:x}) {
+	foreach ($${1:variable} as $${2:x}) {
 		${0:TARGET}
 	}
 
