@@ -746,5 +746,6 @@ repo = 'OmniSharp/omnisharp-vim'
 on_ft = 'cs'
 build = 'xbuild server/OmniSharp.sln'
 hook_add = '''
-let g:OmniSharp_host = 'http://localhost:2000'
+let g:OmniSharp_start_without_solution = 1
+let g:OmniSharp_typeLookupInPreview = 0
 '''

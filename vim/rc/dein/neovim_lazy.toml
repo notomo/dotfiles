@@ -46,8 +46,11 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 [[plugins]]
 repo = 'Robzz/deoplete-omnisharp'
-depends = 'deoplete.nvim'
+depends = ['omnisharp-vim']
 on_ft = 'cs'
+hook_add = '''
+let g:OmniSharp_host='http://localhost:2000'
+'''
 
 # [[plugins]]
 # repo = 'dbgx/lldb.nvim'

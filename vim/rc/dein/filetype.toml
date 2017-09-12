@@ -87,3 +87,6 @@ nnoremap <buffer> [file]rl :<C-u>JesponseReload<CR>
 vader = '''
 nnoremap <buffer> [exec]t :<C-u>Vader %<CR>
 '''
+cs = '''
+setlocal completeopt-=preview
+'''
