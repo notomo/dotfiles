@@ -45,7 +45,7 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 '''
 
 [[plugins]]
-repo = 'Robzz/deoplete-omnisharp'
+repo = 'autozimu/deoplete-omnisharp'
 depends = ['omnisharp-vim']
 on_ft = 'cs'
 hook_add = '''
