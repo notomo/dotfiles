@@ -10,6 +10,8 @@ nnoremap <silent> [unite]sg :<C-u>DeniteProjectDir -auto-preview file_rec<CR>
 nnoremap <silent> [denite]f :<C-u>DeniteBufferDir dir_file -no-empty<CR>
 nnoremap <silent> [denite]o :<C-u>Denite outline -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]c :<C-u>Denite change -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]; :<C-u>Denite command -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]q :<C-u>Denite command_history<CR>
 nnoremap <silent> [denite]J :<C-u>Denite jump -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]ta :<C-u>Denite tag -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]tk :<C-u>DeniteCursorWord tag -auto-preview -no-empty -immediately-1<CR>
@@ -96,6 +98,7 @@ call denite#custom#map('normal', 'yy', '<denite:yank_to_default_register>', 'nor
 call denite#custom#map('normal', 'p', '<denite:paste_from_default_register>', 'noremap')
 call denite#custom#map('normal', 'v', '<denite:do_action:preview>', 'noremap')
 call denite#custom#map('normal', 'o', '<denite:do_action:open>', 'noremap')
+call denite#custom#map('normal', '<Space>o', '<denite:do_action:outline>', 'noremap')
 call denite#custom#map('normal', 'sv', '<denite:do_action:vsplit>', 'noremap')
 call denite#custom#map('normal', 'sh', '<denite:do_action:split>', 'noremap')
 call denite#custom#map('normal', 'fo', '<denite:do_action:vimfiler>', 'noremap')
@@ -121,6 +124,8 @@ call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
+call denite#custom#var('outline', 'ignore_types', ['v'])
+
 call denite#custom#action('command', 'open', {context -> notomo#denite#open_command(context)})
 call denite#custom#action('unite', 'open', {context -> notomo#denite#execute_unite_action(context, 'open')})
 call denite#custom#action('unite', 'vimfiler', {context -> notomo#denite#execute_unite_action(context, 'vimfiler')})
@@ -141,3 +146,5 @@ call denite#custom#action('file,directory', 'exrename', {context ->  notomo#deni
 
 call denite#custom#action('file,directory', 'vimfiler', {context ->  notomo#denite#directory_open('', context)})
 call denite#custom#action('file,directory', 'tabvimfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
+
+call denite#custom#action('file', 'outline', {context ->  notomo#denite#outline(context)})

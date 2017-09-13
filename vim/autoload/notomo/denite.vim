@@ -94,3 +94,8 @@ function! notomo#denite#open_command(context) abort
     call denite#do_action(a:context, 'execute', a:context['targets'])
     only
 endfunction
+
+function! notomo#denite#outline(context) abort
+    let target = a:context['targets'][0]
+    execute 'Denite -auto-preview outline:' . target['action__path']
+endfunction
