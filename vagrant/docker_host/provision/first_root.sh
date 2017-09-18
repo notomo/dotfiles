@@ -131,6 +131,10 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E032808
 yum-config-manager --add-repo http://download.mono-project.com/repo/centos/
 yum install -y mono-complete
 
+wget --no-check-certificate https://nuget.org/nuget.exe
+mv nuget.exe /usr/local/bin
+cp -f /vagrant/provision/nuget.sh /usr/local/bin/nuget
+
 # Vim script
 pip3.5 install vim-vint
 

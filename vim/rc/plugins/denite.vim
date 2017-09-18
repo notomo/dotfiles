@@ -10,7 +10,7 @@ nnoremap <silent> [unite]sg :<C-u>DeniteProjectDir -auto-preview file_rec<CR>
 nnoremap <silent> [denite]f :<C-u>DeniteBufferDir dir_file -no-empty<CR>
 nnoremap <silent> [denite]o :<C-u>Denite outline -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]c :<C-u>Denite change -auto-preview -no-empty<CR>
-nnoremap <silent> [denite]; :<C-u>Denite command -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
 nnoremap <silent> [denite]q :<C-u>Denite command_history<CR>
 nnoremap <silent> [denite]J :<C-u>Denite jump -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]ta :<C-u>Denite tag -auto-preview -no-empty<CR>

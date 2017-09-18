@@ -608,6 +608,7 @@ on_cmd = 'Capture'
 hook_add = '''
 nnoremap [exec]ci :<C-u>Capture<Space>
 nnoremap [exec]cm :<C-u>Capture messages<CR>
+nnoremap [exec]cv :<C-u>Capture version<CR>
 nnoremap [exec]cs :<C-u>call notomo#vimrc#syntax_report()<CR>
 '''
 
@@ -746,6 +747,7 @@ repo = 'OmniSharp/omnisharp-vim'
 on_ft = 'cs'
 build = 'xbuild server/OmniSharp.sln'
 hook_add = '''
-let g:OmniSharp_start_without_solution = 1
+let g:OmniSharp_start_without_solution = 0
 let g:OmniSharp_typeLookupInPreview = 0
+let g:Omnisharp_start_server = 0
 '''
