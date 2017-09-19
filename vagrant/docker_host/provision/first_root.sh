@@ -132,8 +132,10 @@ yum-config-manager --add-repo http://download.mono-project.com/repo/centos/
 yum install -y mono-complete
 
 wget --no-check-certificate https://nuget.org/nuget.exe
+mono nuget.exe update -self
 mv nuget.exe /usr/local/bin
 cp -f /vagrant/provision/nuget.sh /usr/local/bin/nuget
+cp -f /vagrant/provision/nugetinstall.sh /usr/local/bin/nugetinstall
 
 # Vim script
 pip3.5 install vim-vint
