@@ -1,2 +1,2 @@
 #!/bin/sh
-nuget install "$* -OutputDirectory packages -ExcludeVersion"
+nuget install "$@" -OutputDirectory packages -ExcludeVersion
