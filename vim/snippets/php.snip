@@ -86,7 +86,7 @@ snippet testdoc
 
 snippet assertSame
 options head
-	$this->assertSame(${1:expected}, ${2:asserted});
+	$this->assertSame(${1:$expected}, ${2:$result});
 
 snippet mock
 options head
@@ -226,13 +226,11 @@ options head
 		break;
 
 snippet switch
-abbr sw
 options head
-	switch (${1:#:variable}) {
-		case ${2:#:value}:
+	switch (${1:$variable}) {
+		case ${2:$value}:
 			${3:#:code...}
 			break;
-		${0}
 		default:
 			${4:#:code...}
 			break;

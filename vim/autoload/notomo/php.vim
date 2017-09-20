@@ -27,6 +27,9 @@ function! notomo#php#get_indent()
     elseif line =~# '\v.*\[[^]]*$'
         " e.g. $ary = [
         return plus_one
+    elseif line =~# '\v.*:\s*$'
+        " e.g. case 'value':
+        return plus_one
     elseif line =~# '\v\S+-\>\k+\(.*\)\s*$'
         " e.g. $var->methodChain()
         return plus_one
