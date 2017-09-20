@@ -147,6 +147,8 @@ gem install sqlint
 yum -y install npm
 npm install -g javascript-typescript-langserver
 
+npm i -g typescript
+
 # text browser
 yum -y install lynx
 

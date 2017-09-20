@@ -51,6 +51,12 @@ on_ft = 'cs'
 hook_add = '''
 let g:OmniSharp_host='http://localhost:2000'
 '''
+[[plugins]]
+repo = 'mhartington/nvim-typescript'
+on_ft = 'vue'
+hook_add = '''
+let g:nvim_typescript#vue_support = 1
+'''
 
 # [[plugins]]
 # repo = 'dbgx/lldb.nvim'

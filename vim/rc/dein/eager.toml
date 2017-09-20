@@ -249,3 +249,6 @@ repo = 'aklt/plantuml-syntax'
 [[plugins]]
 repo = 'leafgarland/typescript-vim'
 
+[[plugins]]
+repo = 'posva/vim-vue'
+
