@@ -234,7 +234,7 @@ repo = 'thinca/vim-qfreplace'
 hook_add = 'nnoremap [exec]Q :<C-u>Qfreplace<CR>'
 
 [[plugins]]
-repo = 'evanmiller/nginx-vim-syntax'
+repo = 'chr4/nginx.vim'
 
 [[plugins]]
 repo = 'junegunn/vader.vim'

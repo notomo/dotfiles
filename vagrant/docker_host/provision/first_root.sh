@@ -137,6 +137,11 @@ mv nuget.exe /usr/local/bin
 cp -f /vagrant/provision/nuget.sh /usr/local/bin/nuget
 cp -f /vagrant/provision/nugetinstall.sh /usr/local/bin/nugetinstall
 
+rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sh -c 'echo -e "[packages-microsoft-com-prod]\nname=packages-microsoft-com-prod \nbaseurl=https://packages.microsoft.com/yumrepos/microsoft-rhel7.3-prod\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/dotnetdev.repo'
+yum -y install libunwind libicu
+yum -y install dotnet-sdk-2.0.0
+
 # Vim script
 pip3.5 install vim-vint
 
