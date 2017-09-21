@@ -42,6 +42,10 @@ snippet protected_const
 abbr protected const
 	protected const ${1:CONST} = ${0};
 
+snippet self_const
+abbr self::CONST
+	self::${1:CONST}
+
 snippet class_name
 abbr Class::class
 	${1:ClassName}::class
@@ -95,20 +99,24 @@ options head
 snippet mmock
 	M::mock(${1:ClassName}::class);
 
+snippet shouldReceiveWith
+options head
+	$${1:mockVar}->shouldReceive('${2:methodName}')->withArgs([${3:$arg}]);
+
 snippet shouldReceive
 options head
-	$${1:mockVar}->shouldReceive(['${2:methodName}' => ${3:returnValue}]);
+	$${1:mockVar}->shouldReceive(['${2:methodName}' => ${3:$returnValue}]);
 
 snippet shouldReceiveMulti
 options head
 	$${1:mockVar}->shouldReceive([
-		'${2:methodName}' => ${3:returnValue},
+		'${2:methodName}' => ${3:$returnValue},
 	]);
 
 snippet mockShouldReceive
 options head
 	$${1:mockVar} = M::mock(${2:ClassName}::class);
-	$$1->shouldReceive(['${3:methodName}' => ${4:returnValue}]);
+	$$1->shouldReceive(['${3:methodName}' => ${4:$returnValue}]);
 
 snippet class
 options head
@@ -264,7 +272,7 @@ snippet ifset
 
 snippet throw
 options head
-	throw new ${1}Exception('${2:#:Error Processing Request}');
+	throw new ${1}Exception('${2:Message}');
 
 snippet while
 options head
