@@ -304,68 +304,12 @@ on_ft = 'javascript'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
-on_map = {n = '<Plug>'}
 on_cmd = 'QuickRun'
 hook_add = '''
-nmap <silent> <Leader>Q <Plug>(quickrun)
+nnoremap <silent> <Leader>Q :<C-u>call notomo#quickrun#execute()<CR>
 vnoremap <silent> <Leader>Q :QuickRun -mode v<CR>
 '''
-hook_source = '''
-if !exists('g:quickrun_config')
-    let g:quickrun_config = {}
-endif
-
-let g:quickrun_config['_'] = {
-\   "runner" : "vimproc",
-\   "hook/output_encode/enable" : 1,
-\   "hook/output_encode/encoding" : "cp932",
-\   "hook/close_unite_quickfix/enable_hook_loaded" : 1,
-\   "hook/close_quickfix/enable_exit" : 1,
-\   "hook/close_buffer/enable_failure" : 0,
-\   "hook/close_buffer/enable_empty_data" : 1,
-\   "outputter" : "multi:buffer:quickfix",
-\   "outputter/buffer/split" : ":botright 8sp",
-\   "runner/vimproc/updatetime" : 60,
-\   "hook/neco/enable" : 1,
-\   "hook/neco/redraw" : 1,
-\   "hook/neco/wait" : 2,
-\}
-
-let g:quickrun_config['cpp'] = {
-\   "type" : "cpp/clang-cl",
-\}
-let g:quickrun_config['cpp/clang-cl'] = {
-\   'command': 'clang-cl',
-\   'exec': ['%c %o %s /nologo /Fo%s:p:r.obj /Fe%s:p:r.exe > nul',
-\            '%s:p:r.exe %a'],
-\   'tempfile': '%{tempname()}.cpp',
-\   'hook/sweep/files': ['%S:p:r.exe', '%S:p:r.obj'],
-\   "hook/output_encode/encoding" : "utf-8",
-\}
-
-if has('unix')
-    let g:quickrun_config['cs'] = {
-    \   "type" : "cs/mcs",
-    \   "hook/output_encode/encoding" : "utf-8",
-    \}
-else
-    let g:quickrun_config['cs'] = {
-    \   "hook/output_encode/encoding" : "sjis",
-    \}
-endif
-
-let g:quickrun_config['vim'] = {
-\   "hook/output_encode/encoding" : "utf-8",
-\}
-let g:quickrun_config['php'] = {
-\   "hook/output_encode/encoding" : "utf-8",
-\}
-let g:quickrun_config['python'] = {
-\   "command" : "python3.5",
-\   "hook/output_encode/encoding" : "utf-8",
-\}
-
-'''
+hook_source = 'source ~/.vim/rc/plugins/quickrun.vim'
 
 [[plugins]]
 repo = 'tyru/caw.vim'
