@@ -29,3 +29,7 @@
 /.elinks
 /.laradock
 /.zshrc
+/.dotnet
+/.nuget
+/.oracle_jre_usage
+/.proselint
