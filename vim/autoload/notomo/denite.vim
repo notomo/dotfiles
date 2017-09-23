@@ -24,7 +24,6 @@ function! notomo#denite#dir_file_on_file(context) abort
         return
     endif
     let path = fnamemodify(target['action__path'], ':h')
-    let a:context['quit'] = v:false
     execute 'Denite -mode=normal dir_file:' . path
 endfunction
 
@@ -34,7 +33,6 @@ function! notomo#denite#parent_dir_file(context) abort
         return
     endif
     let path = fnamemodify(target['action__path'], ':h:h')
-    let a:context['quit'] = v:false
     execute 'Denite -mode=normal dir_file:' . path
 endfunction
 
@@ -44,8 +42,7 @@ function! notomo#denite#open(open_cmd, context) abort
         return
     endif
     execute a:open_cmd
-    let path = target['action__path']
-    execute 'edit ' . path
+    execute 'edit ' . target['action__path']
 endfunction
 
 function! notomo#denite#qfreplace(context) abort
@@ -98,4 +95,9 @@ endfunction
 function! notomo#denite#outline(context) abort
     let target = a:context['targets'][0]
     execute 'Denite -auto-preview outline:' . target['action__path']
+endfunction
+
+function! notomo#denite#change_source(source_name, context) abort
+    let input = '-input=' . a:context['input']
+    execute join(['Denite', input, a:source_name])
 endfunction
