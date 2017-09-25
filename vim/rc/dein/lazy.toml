@@ -305,6 +305,7 @@ on_ft = 'javascript'
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 on_cmd = 'QuickRun'
+on_ft = ['cs']
 hook_add = '''
 nnoremap <silent> <Leader>Q :<C-u>call notomo#quickrun#execute()<CR>
 vnoremap <silent> <Leader>Q :QuickRun -mode v<CR>

@@ -89,4 +89,5 @@ nnoremap <buffer> [exec]t :<C-u>Vader %<CR>
 '''
 cs = '''
 setlocal completeopt-=preview
+setlocal expandtab
 '''
