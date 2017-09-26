@@ -32,23 +32,23 @@ abbr protected $var;
 
 snippet const
 abbr const
-	const ${1:CONST} = '$1';
+	const ${0:CONST} = '$0';
 
 snippet public_const
 abbr public const
-	public const ${1:CONST} = ${0};
+	public const ${0:CONST} = '$0';
 
 snippet protected_const
 abbr protected const
-	protected const ${1:CONST} = ${0};
+	protected const ${0:CONST} = '$0';
 
 snippet self_const
 abbr self::CONST
-	self::${1:CONST}
+	self::${0:CONST}
 
 snippet class_name
 abbr Class::class
-	${1:ClassName}::class
+	${0:ClassName}::class
 
 snippet if_func
 alias iffunc
@@ -62,19 +62,19 @@ snippet function
 options head
 abbr function (){}
 	function ${1:FunctionName}(${2}) {
-		${3:TARGET}
+		${0:TARGET}
 	}
 
 snippet function_literal_one_line
 options word
 abbr function (){}
-	function (${1}) { ${2:TARGET}; }
+	function (${1}) { ${0:TARGET}; }
 
 snippet function_literal
 options word
 abbr function (){}
 	function (${1}) {
-		${2:TARGET}
+		${0:TARGET}
 	}
 
 snippet doc
@@ -85,38 +85,38 @@ snippet doc
 snippet testdoc
 	/**
 	 * @test
-	 * @covers ::${1:testName}
+	 * @covers ::${0:testName}
 	 */
 
 snippet assertSame
 options head
-	$this->assertSame(${1:$expected}, ${2:$result});
+	$this->assertSame(${1:$expected}, ${0:$result});
 
 snippet mock
 options head
-	$${1:mockVar} = M::mock(${2:ClassName}::class);
+	$${1:mockVar} = M::mock(${0:ClassName}::class);
 
 snippet mmock
 	M::mock(${1:ClassName}::class);
 
 snippet shouldReceiveWith
 options head
-	$${1:mockVar}->shouldReceive('${2:methodName}')->withArgs([${3:$arg}]);
+	$${1:mockVar}->shouldReceive('${2:methodName}')->withArgs([${0:$arg}]);
 
 snippet shouldReceive
 options head
-	$${1:mockVar}->shouldReceive(['${2:methodName}' => ${3:$returnValue}]);
+	$${1:mockVar}->shouldReceive(['${2:methodName}' => ${0:$returnValue}]);
 
 snippet shouldReceiveMulti
 options head
 	$${1:mockVar}->shouldReceive([
-		'${2:methodName}' => ${3:$returnValue},
+		'${2:methodName}' => ${0:$returnValue},
 	]);
 
 snippet mockShouldReceive
 options head
 	$${1:mockVar} = M::mock(${2:ClassName}::class);
-	$$1->shouldReceive(['${3:methodName}' => ${4:$returnValue}]);
+	$$1->shouldReceive(['${3:methodName}' => ${0:$returnValue}]);
 
 snippet class
 options head
@@ -143,11 +143,6 @@ options head
 		${0:TARGET}
 	}
 
-
-snippet def
-	${1}defined('${2}')${0}
-
-
 snippet dowhile
 options head
 	do {
@@ -156,35 +151,33 @@ options head
 
 snippet if?
 options head
-	$${1:#:retVal} = (${2:#:condition}) ? ${3:#:a} : ${4:#:b};
+	$${1:#:retVal} = (${2:#:condition}) ? ${3:#:a} : ${0:#:b};
 
 snippet ifelse
 options head
 	if (${1:#:condition}) {
 		${2:TARGET}
 	} else {
-		${3:#:code...}
+		${0:#:code...}
 	}
-	${0}
 
 snippet ifelseif
 options head
 	if (${1:#:condition}) {
 		${2:TARGET}
 	} else if (${3:#:condition}) {
-		${4:#:code...}
+		${0:#:code...}
 	}
-	${0}
 
 snippet ifonly
 options head
-	if (${1:#:condition}) {
+	if (${1:condition}) {
 		${0:TARGET}
 	}
 
 snippet ifline
 options head
-	if (${1:#:condition}) ${0:TARGET};
+	if (${1:condition}) ${0:TARGET};
 
 snippet var_dump
 options head
@@ -240,7 +233,7 @@ options head
 			${3:#:code...}
 			break;
 		default:
-			${4:#:code...}
+			${0:#:code...}
 			break;
 	}
 
@@ -249,7 +242,7 @@ options head
 	try {
 		${1:TARGET}
 	} catch (${2:Exception} $e) {
-		${3:#:code}
+		${0:#:code}
 	}
 
 snippet tryf
@@ -259,7 +252,7 @@ options head
 	} catch (${2:Exception} $e) {
 		${3:#:code}
 	} finally {
-		${4:#:code}
+		${0:#:code}
 	}
 
 snippet thisx
@@ -268,11 +261,11 @@ options head
 	${0}
 
 snippet ifset
-	${1:nullable} ?? ${2:else}
+	${1:nullable} ?? ${0:else}
 
 snippet throw
 options head
-	throw new ${1}Exception('${2:Message}');
+	throw new ${1}Exception('${0:Message}');
 
 snippet while
 options head
