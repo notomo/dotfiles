@@ -1,6 +1,9 @@
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
 
+if !has('nvim')
+    nnoremap <silent> [unite]r :<C-u>Unite neomru<CR>
+endif
 nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
 nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>
 nnoremap [unite]F :<C-u>UniteWithBufferDir -buffer-name=files file -input=
