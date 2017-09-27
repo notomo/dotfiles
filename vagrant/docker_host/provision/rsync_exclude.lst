@@ -13,6 +13,7 @@
 /.pdepend
 /.pki
 /app
+/workspace/readonly
 /.bash*
 /.local/share/
 /.flake8
@@ -33,3 +34,4 @@
 /.nuget
 /.oracle_jre_usage
 /.proselint
+/.templateengine
