@@ -14,7 +14,6 @@ function! notomo#denite#dir_file_on_directory(context) abort
         return
     endif
     let path = target['action__path']
-    let a:context['quit'] = v:false
     execute 'Denite -mode=normal dir_file:' . path
 endfunction
 
@@ -98,6 +97,6 @@ function! notomo#denite#outline(context) abort
 endfunction
 
 function! notomo#denite#change_source(source_name, context) abort
-    let input = '-input=' . a:context['input']
+    let input = '-input=' . escape(a:context['input'], ' ')
     execute join(['Denite', input, a:source_name])
 endfunction

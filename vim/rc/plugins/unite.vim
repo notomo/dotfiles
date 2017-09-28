@@ -2,7 +2,8 @@ nnoremap [unite] <Nop>
 nmap <Space>u [unite]
 
 if !has('nvim')
-    nnoremap <silent> [unite]r :<C-u>Unite neomru<CR>
+    nnoremap <silent> [unite]r :<C-u>Unite file_mru<CR>
+    nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
 endif
 nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
 nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>

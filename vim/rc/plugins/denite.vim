@@ -14,7 +14,10 @@ nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
 nnoremap <silent> [denite]q :<C-u>Denite command_history<CR>
 nnoremap <silent> [denite]J :<C-u>Denite jump -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]ta :<C-u>Denite tag -auto-preview -no-empty<CR>
-nnoremap <silent> [denite]tk :<C-u>DeniteCursorWord tag -auto-preview -no-empty -immediately-1<CR>
+nnoremap <silent> [keyword]O :<C-u>DeniteCursorWord tag -auto-preview -no-empty -immediately-1<CR>
+nnoremap <silent> [keyword]V :<C-u>DeniteCursorWord tag -default-action=vsplit -auto-preview -no-empty -immediately-1<CR>
+nnoremap <silent> [keyword]H :<C-u>DeniteCursorWord tag -default-action=split -auto-preview -no-empty -immediately-1<CR>
+nnoremap <silent> [keyword]T :<C-u>DeniteCursorWord tag -default-action=tabopen -auto-preview -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]k :<C-u>DeniteCursorWord tag -immediately -no-empty<CR>
 nnoremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
@@ -22,9 +25,10 @@ nnoremap <silent> [denite]<CR> :<C-u>Denite -resume<CR>
 nnoremap <silent> [denite]gl :<C-u>Denite grep -auto-preview -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -auto-preview -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]to :<C-u>DeniteCursorWord outline -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]h :<C-u>Denite help<CR>
+nnoremap <silent> [denite]h :<C-u>Denite help -default-action=open<CR>
 nnoremap <silent> [denite]th :<C-u>DeniteCursorWord help -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
+nnoremap <silent> [unite]d :<C-u>Denite file_mru -immediately<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
@@ -117,9 +121,9 @@ call denite#custom#map('normal', 'tsr', '<denite:toggle_sorters:sorter_reverse>'
 call denite#custom#map('normal', 'tsl', '<denite:toggle_sorters:sorter_length>', 'noremap')
 call denite#custom#map('normal', 'mh', '<denite:wincmd:h>', 'noremap')
 call denite#custom#map('normal', 'ml', '<denite:wincmd:l>', 'noremap')
-call denite#custom#map('normal', 'ud', '<denite:do_action:directory_mru>', 'noremap')
-call denite#custom#map('normal', 'ur', '<denite:do_action:file_mru>', 'noremap')
-call denite#custom#map('normal', 'uf', '<denite:do_action:dir_file>', 'noremap')
+call denite#custom#map('normal', 'ud', '<denite:do_action:source_directory_mru>', 'noremap')
+call denite#custom#map('normal', 'ur', '<denite:do_action:source_file_mru>', 'noremap')
+call denite#custom#map('normal', 'uf', '<denite:do_action:source_dir_file>', 'noremap')
 call denite#custom#map('normal', '<C-j>', '<denite:scroll_page_forwards>', 'noremap')
 call denite#custom#map('normal', '<C-k>', '<denite:scroll_page_backwards>', 'noremap')
 call denite#custom#map('normal', 'J', '<denite:jump_to_next_source>', 'noremap')
@@ -157,6 +161,6 @@ call denite#custom#action('file,directory', 'tabvimfiler', {context ->  notomo#d
 
 call denite#custom#action('file', 'outline', {context ->  notomo#denite#outline(context)})
 
-call denite#custom#action('file,directory', 'directory_mru', {context ->  notomo#denite#change_source('directory_mru', context)})
-call denite#custom#action('file,directory', 'file_mru', {context ->  notomo#denite#change_source('file_mru', context)})
-call denite#custom#action('file,directory', 'dir_file', {context ->  notomo#denite#change_source('dir_file', context)})
+call denite#custom#action('file,directory', 'source_directory_mru', {context ->  notomo#denite#change_source('directory_mru', context)})
+call denite#custom#action('file,directory', 'source_file_mru', {context ->  notomo#denite#change_source('file_mru', context)})
+call denite#custom#action('file,directory', 'source_dir_file', {context ->  notomo#denite#change_source('dir_file', context)})
