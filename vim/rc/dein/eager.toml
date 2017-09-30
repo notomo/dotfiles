@@ -252,3 +252,5 @@ repo = 'leafgarland/typescript-vim'
 [[plugins]]
 repo = 'posva/vim-vue'
 
+[[plugins]]
+repo = 'martinda/Jenkinsfile-vim-syntax'
