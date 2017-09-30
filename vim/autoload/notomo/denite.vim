@@ -1,10 +1,6 @@
 
 function! notomo#denite#execute_unite_action(context, action_name) abort
-    let targets = a:context['targets']
-    let candidates = []
-    for target in targets
-        call add(candidates, target['source__candidate'])
-    endfor
+    let candidates = map(a:context['targets'], {key, val -> val['source__candidate']})
     call unite#action#do_candidates(a:action_name, candidates)
 endfunction
 
@@ -99,4 +95,28 @@ endfunction
 function! notomo#denite#change_source(source_name, context) abort
     let input = '-input=' . escape(a:context['input'], ' ')
     execute join(['Denite', input, a:source_name])
+endfunction
+
+function! notomo#denite#delete_line(context) abort
+    if a:context['sources'][0]['name'] !=? 'line'
+        echomsg 'Invalid source'
+        return
+    endif
+    let line_numbers = map(a:context['targets'], {key, val -> val['action__line']})
+    call sort(line_numbers, {i1, i2 -> i2 - i1})
+    for line in line_numbers
+        execute line . 'delete'
+    endfor
+endfunction
+
+function! notomo#denite#delete_others_line(context) abort
+    if a:context['sources'][0]['name'] !=? 'line'
+        echomsg 'Invalid source'
+        return
+    endif
+    let line_numbers = map(a:context['targets'], {key, val -> val['action__line']})
+    call sort(line_numbers, {i1, i2 -> i1 - i2})
+    let lines = map(line_numbers, {key, val -> getline(val)})
+    1,$delete
+    call setline(1, lines)
 endfunction
