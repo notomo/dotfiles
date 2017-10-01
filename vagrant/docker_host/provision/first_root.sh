@@ -21,6 +21,7 @@ sudo systemctl enable docker.service
 # clipboard
 yum install -y epel-release
 yum install -y xsel
+yum install -y xclip
 yum-config-manager --disable epel
 yum -y install libXrandr
 yum -y install xorg-x11-server-Xvfb

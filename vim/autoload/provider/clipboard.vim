@@ -50,7 +50,13 @@ function! provider#clipboard#Error() abort
 endfunction
 
 function! provider#clipboard#Executable() abort
-  if has('unix') && executable('xsel')
+  if has('unix') && executable('xclip')
+    let s:copy['+'] = 'xclip -d :0 -i -selection c'
+    let s:paste['+'] = 'xclip -d :0 -o -selection c'
+    let s:copy['*'] = 'xclip -d :0 -i -selection c'
+    let s:paste['*'] = 'xclip -d :0 -o -selection c'
+    return 'xclip'
+  elseif has('unix') && executable('xsel')
     let s:copy['+'] = 'xsel --display :0 --nodetach -i -b'
     let s:paste['+'] = 'xsel --display :0 -o -b'
     let s:copy['*'] = 'xsel --display :0 --nodetach -i -p'
