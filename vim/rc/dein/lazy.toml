@@ -686,13 +686,3 @@ let g:session_autosave_periodic = 0
 [[plugins]]
 repo = 'octol/vim-cpp-enhanced-highlight'
 on_ft = 'cpp'
-
-[[plugins]]
-repo = 'OmniSharp/omnisharp-vim'
-on_ft = 'cs'
-build = 'xbuild server/OmniSharp.sln'
-hook_add = '''
-let g:OmniSharp_start_without_solution = 0
-let g:OmniSharp_typeLookupInPreview = 0
-let g:Omnisharp_start_server = 0
-'''

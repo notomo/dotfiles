@@ -15,8 +15,10 @@ sh ~/dotfiles/link.sh
 cd ~
 
 # composer
-composer global require squizlabs/php_codesniffer=*
-composer global require phpmd/phpmd=*
+mkdir -p ~/.config/composer
+cp -f /vagrant/provision/composer.json ~/.config/composer/composer.json
+cd ~/.config/composer
+composer global install
 
 # phpmanual
 cd ~/.vim/reference

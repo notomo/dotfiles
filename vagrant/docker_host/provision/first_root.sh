@@ -6,6 +6,8 @@ APPDIR=$USERDIR/app
 mkdir -p $APPDIR
 cd $APPDIR
 
+timedatectl set-timezone Asia/Tokyo
+
 yum update
 
 # docker, docker-compose

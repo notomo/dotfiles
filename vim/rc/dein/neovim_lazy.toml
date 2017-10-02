@@ -45,6 +45,16 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 '''
 
 [[plugins]]
+repo = 'OmniSharp/omnisharp-vim'
+on_ft = 'cs'
+build = 'xbuild server/OmniSharp.sln'
+hook_add = '''
+let g:OmniSharp_start_without_solution = 0
+let g:OmniSharp_typeLookupInPreview = 0
+let g:Omnisharp_start_server = 0
+'''
+
+[[plugins]]
 repo = 'autozimu/deoplete-omnisharp'
 depends = ['omnisharp-vim']
 on_ft = 'cs'
@@ -57,6 +67,11 @@ on_ft = 'vue'
 hook_add = '''
 let g:nvim_typescript#vue_support = 1
 '''
+
+[[plugins]]
+repo = 'padawan-php/deoplete-padawan'
+build = 'composer install'
+on_ft = 'php'
 
 # [[plugins]]
 # repo = 'dbgx/lldb.nvim'
