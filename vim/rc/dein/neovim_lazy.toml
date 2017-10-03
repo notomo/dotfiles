@@ -69,7 +69,8 @@ let g:nvim_typescript#vue_support = 1
 '''
 
 [[plugins]]
-repo = 'padawan-php/deoplete-padawan'
+repo = 'notomo/deoplete-padawan'
+rev = 'wip'
 build = 'composer install'
 on_ft = 'php'
 
