@@ -15,6 +15,8 @@ sh ~/dotfiles/link.sh
 cd ~
 
 # composer
+composer global require hirak/prestissimo
+# TODO
 mkdir -p ~/.config/composer
 cp -f /vagrant/provision/composer.json ~/.config/composer/composer.json
 cd ~/.config/composer
