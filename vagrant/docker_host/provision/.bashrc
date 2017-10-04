@@ -4,6 +4,7 @@ if [ -f /etc/.bashrc ]; then
 fi
 
 alias nv="nvim"
+alias nvu="nvim -u ~/test.vim"
 alias ee="exit"
 alias ll="ls -la"
 alias ss="source ~/.bashrc"

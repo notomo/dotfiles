@@ -780,6 +780,9 @@ vmap t [tab]
 nnoremap <silent> [tab]o :<C-u>tabonly<CR>
 vnoremap <silent> [tab]o :<C-u>tabonly<CR>
 
+" close all
+nnoremap <silent> [tab]<Space>q :<C-u>qall<CR>
+
 " close tab"{{{
 function! s:tabclose_c() abort
     if tabpagenr('$') == 1
