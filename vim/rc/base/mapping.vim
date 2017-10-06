@@ -291,8 +291,15 @@ nnoremap <Ins> <Nop>
 inoremap <Ins> <Nop>
 
 nnoremap <RightMouse> p
-vnoremap <RightMouse> <ESC>p
+vnoremap <RightMouse> p
 inoremap <RightMouse> <C-r>"
+
+nnoremap <S-LeftMouse> p
+vnoremap <S-LeftMouse> p
+inoremap <S-LeftMouse> <C-r>"
+
+vnoremap <3-LeftMouse> y
+vnoremap <C-LeftMouse> y
 
 noremap! <BS> <Left>
 
