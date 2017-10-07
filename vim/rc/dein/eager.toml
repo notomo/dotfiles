@@ -80,6 +80,7 @@ endfunction
 autocmd MyAuGroup ColorScheme * :call s:define_highlight()
 
 set guioptions+=M
+set guioptions+=c
 
 '''
 

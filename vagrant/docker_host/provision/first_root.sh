@@ -89,6 +89,7 @@ pip3.5 install mypy
 pip3.5 install autopep8
 pip3.5 install isort
 pip3.5 install yapf
+pip3.5 install lxml
 
 # python2
 yum -y install python-pip --enablerepo epel

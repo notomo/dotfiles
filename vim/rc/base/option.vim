@@ -6,7 +6,6 @@ endif
 set nowrap
 set showtabline=2
 set guioptions-=e
-set guioptions+=c
 set ignorecase
 set smartcase
 set hlsearch
