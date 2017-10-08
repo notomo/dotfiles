@@ -1,0 +1,7 @@
+
+if has('vim_starting')
+    set runtimepath+=~/workspace/path/to/plugin/
+    call dein#local('~/workspace/path/to',{}, ['plugin'])
+
+    call dein#remote_plugins()
+endif

@@ -13,6 +13,7 @@ __pycache__
 /vim/autoload/local/*
 /vim/rc/local/*
 !/vim/rc/local/after
+!/vim/rc/local/dein.vim.sample
 /vim/rc/local/after/*
 
 # dict
