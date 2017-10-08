@@ -65,6 +65,7 @@ syn match phpDocTags "@\(abstract\|access\|author\|category\|copyright\|deprecat
 syn match phpDocTodo "@\(todo\|fixme\|xxx\)\(\s\+\)\?"
 syn keyword phpTodo TODO FIXME XXX NOTICE HACK contained
 syn match phpComment "//.\{-}\(?>\|$\)\@=" contains=phpTodo
+syn match phpComment  "#.\{-}\(?>\|$\)\@=" contains=phpTodo
 syn region phpComment start="/\*" end="\*/" contains=phpTodo,phpDocCustomTags,phpDocTags,phpDocTodo
 hi def link phpComment Comment
 hi def link phpDocTags PreProc
