@@ -35,9 +35,14 @@ nnoremap [term] <Nop>
 nmap <Space>t [term]
 
 nnoremap <silent> [term]o :<C-u>terminal<CR>
-nnoremap <silent> [term]v :<C-u>vsplit term://bash<CR>
-nnoremap <silent> [term]h :<C-u>split term://bash<CR>
-nnoremap <silent> [term]t :<C-u>tabedit term://bash<CR>
+
+function! s:open_terminal(open_cmd) abort
+    execute a:open_cmd
+    execute 'terminal'
+endfunction
+nnoremap <silent> [term]v :<C-u>call <SID>open_terminal('vsplit')<CR>
+nnoremap <silent> [term]h :<C-u>call <SID>open_terminal('split')<CR>
+nnoremap <silent> [term]t :<C-u>call <SID>open_terminal('tabedit')<CR>
 
 nnoremap [exec]C :<C-u>CheckHealth<CR>
 
