@@ -30,3 +30,11 @@ let g:ale_python_mypy_options = '--ignore-missing-imports'
 let g:ale_python_flake8_executable = 'python3.5'
 let g:ale_python_flake8_options = '-m flake8'
 let g:ale_go_gometalinter_options = '--fast'
+
+function! s:toggle_fix_on_save() abort
+    let current_value = get(g:, 'ale_fix_on_save', 0)
+    let g:ale_fix_on_save = !current_value
+endfunction
+
+nnoremap [exec]tf :<C-u>call <SID>toggle_fix_on_save()<CR>
+
