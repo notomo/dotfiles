@@ -119,4 +119,4 @@ call gina#custom#mapping#nmap('log', 'cf', '<Plug>(gina-changes-from)', s:silent
 call gina#custom#mapping#nmap('log', 'cb', '<Plug>(gina-changes-between)', s:silent)
 call gina#custom#mapping#nmap('log', 'RS', '<Plug>(gina-commit-reset)', s:silent)
 call gina#custom#mapping#nmap('log', 'yr', '<Plug>(gina-yank-rev)', s:silent)
-
+call gina#custom#mapping#nmap('log', 'dd', ':call gina#action#call(''compare'')<CR>', s:noremap_silent)
