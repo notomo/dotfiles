@@ -74,6 +74,14 @@ rev = 'wip'
 build = 'composer install'
 on_ft = 'php'
 
+[[plugins]]
+repo = 'notomo/coverage.nvim'
+on_cmd = 'CoverageShow'
+hook_add = '''
+nnoremap [test]cs :<C-u>CoverageShow<CR>
+nnoremap [test]cu :<C-u>CoverageUnset<CR>
+'''
+
 # [[plugins]]
 # repo = 'dbgx/lldb.nvim'
 # on_ft = ['c', 'cpp']

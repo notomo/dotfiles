@@ -22,6 +22,8 @@ nnoremap [git] <Nop>
 nmap <Leader>g [git]
 vnoremap [git] <Nop>
 vmap <Leader>g [git]
+nnoremap [test] <Nop>
+nmap <Leader>t [test]
 
 let g:plugin_dicwin_disable    = 1
 let g:loaded_gzip              = 1

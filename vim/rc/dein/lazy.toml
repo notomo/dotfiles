@@ -607,6 +607,7 @@ nmap [file]b <Plug>(altr-back)
 '''
 hook_post_source = '''
 call altr#define('lazy.toml', 'eager.toml')
+call altr#define('neovim_lazy.toml', 'neovim_eager.toml')
 call altr#define('autoload/%.vim', 'plugin/%.vim')
 '''
 
@@ -655,8 +656,6 @@ repo = 'janko-m/vim-test'
 on_cmd = ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit']
 on_ft = ['vim', 'php']
 hook_add = '''
-nnoremap [test] <Nop>
-nmap <Leader>t [test]
 nnoremap [test]n :<C-u>TestNearest<CR>
 nnoremap [test]f :<C-u>TestFile<CR>
 nnoremap [test]s :<C-u>TestSuite<CR>
