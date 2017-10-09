@@ -101,7 +101,7 @@ gem install neovim
 
 # php
 yum install -y http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-yum install -y --enablerepo=remi-php71 php php-cli php-common php-devel php-fpm php-gd php-mbstring php-mysqlnd php-pdo php-pear php-pecl-apcu php-soap php-xml php-xmlrpc
+yum install -y --enablerepo=remi-php71 php php-cli php-common php-devel php-fpm php-gd php-mbstring php-mysqlnd php-pdo php-pear php-pecl-apcu php-soap php-xml php-xmlrpc php-pecl-xdebug
 
 # composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
