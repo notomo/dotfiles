@@ -76,10 +76,11 @@ on_ft = 'php'
 
 [[plugins]]
 repo = 'notomo/coverage.nvim'
-on_cmd = 'CoverageShow'
+on_ft = ['php']
 hook_add = '''
 nnoremap [test]cs :<C-u>CoverageShow<CR>
 nnoremap [test]cu :<C-u>CoverageUnset<CR>
+nnoremap [test]cc :<C-u>CoverageEcho<CR>
 '''
 
 # [[plugins]]
