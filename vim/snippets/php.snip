@@ -58,6 +58,10 @@ options head
 		${0:TARGET}
 	}
 
+snippet php
+abbr <?php
+	<?php
+
 snippet function
 options head
 abbr function (){}
@@ -65,11 +69,13 @@ abbr function (){}
 		${0:TARGET}
 	}
 
-snippet function_literal_one_line
+snippet anonymous_function_one_line
+alias afo function_literal_one_line
 abbr function (){}
 	function (${1}) { ${0:TARGET}; }
 
-snippet function_literal
+snippet anonymous_function
+alias af function_literal
 abbr function (){}
 	function (${1}) {
 		${0:TARGET}
