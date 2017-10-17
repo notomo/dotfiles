@@ -1,14 +1,14 @@
 
-snippet INSERT INTO
+snippet insert_into
 abbr INSERT INTO {columns} VALUES {values}
 options head
 	INSERT INTO ${1:table} (${2:column1, column2,...}) VALUES (${3:value1, value2,...});
 
-snippet UPDATE
+snippet update
 abbr UPDATE ... SET ... WHERE ...
 	UPDATE ${1:table} SET ${2:column} = ${3:value} WHERE ${4:condition};
 
-snippet SELECT
+snippet select
 alias le
 abbr SELECT {column} FROM {table}
 options head
@@ -17,7 +17,7 @@ options head
 	FROM
 		${1:table} ${2:short_nm}
 
-snippet SELECT WHERE
+snippet select_where
 alias lw
 abbr SELECT {column} FROM {table} WHERE {condition}
 options head
@@ -28,7 +28,7 @@ options head
 	WHERE
 		${3:condition}
 
-snippet SELECT WHERE 1
+snippet select_where_1
 alias lw1
 abbr SELECT 1 FROM {table} WHERE {condition}
 options head
@@ -36,7 +36,7 @@ options head
 	FROM ${1:table} ${2:short_nm}
 	WHERE ${3:condition}
 
-snippet SELECT JOIN WHERE
+snippet select_join_where
 alias ljw
 abbr SELECT {column} FROM {table} JOIN ... WHERE {condition}
 options head
@@ -48,98 +48,112 @@ options head
 	WHERE
 		${8:condition}
 
-snippet LEFT JOIN
+snippet left_join
 alias fjo
 abbr LEFT JOIN {table} {short_nm} ON...
 	LEFT JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:short_nm2}.${5:column2}
 
-snippet INNER JOIN
+snippet inner_join
 alias ijo
 abbr INNER JOIN {table} {short_nm} ON...
 	INNER JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:short_nm2}.${5:column2}
 
-snippet WHERE
+snippet where
 abbr WHERE {condition}
 	WHERE
 		${1:condition}
 
-snippet ORDER BY
+snippet order_by
 abbr ORDER BY {column}
 	ORDER BY ${1:T.column}${2:#: DESC}
 
-snippet GROUP BY
+snippet group_by
 abbr GROUP BY {column}
 	GROUP BY ${1:T.column}
 
-snippet LIMIT
+snippet limit
 abbr LIMIT {count}
 	LIMIT ${1:count}
 
-snippet BETWEEN
+snippet between
 abbr BETWEEN ... AND ...
 	BETWEEN ${1:A} AND ${1:B}
 
-snippet DELETE FROM
+snippet delete_from
 alias delete
 abbr DELETE FROM ... WHERE ...
 	DELETE FROM ${1:table} WHERE ${2:condition};
 
-snippet AND
+snippet and
 abbr AND ...
 	AND ${1:condition}
 
-snippet OR
+snippet or
 abbr OR ...
 	OR ${1:condition}
 
-snippet NOT EXISTS
+snippet not_exists
 abbr NOT EXISTS (...)
 	NOT EXISTS (
 		${1:select}
 	)
 
-snippet EXISTS
+snippet exists
 abbr EXISTS (...)
 	EXISTS (
 		${1:select}
 	)
 
-snippet HAVING
+snippet having
 abbr HAVING ...
 	HAVING ${1:condition}
 
-snippet COUNT
+snippet count
 abbr COUNT ...
 	COUNT(${1:column})
 
-snippet MIN DATETIME
+snippet min_datetime
 abbr 'Y-m-d 00:00:00'
 	'${1:Y}-${2:m}-${3:Y} 00:00:00'
 
-snippet MAX DATETIME
+snippet max_datetime
 abbr 'Y-m-d 23:59:59'
 	'${1:Y}-${2:m}-${3:Y} 23:59:59'
 
-snippet MIN TIME
+snippet min_time
 abbr 00:00:00
 	00:00:00
 
-snippet MAX TIME
+snippet max_time
 abbr 23:59:59
 	23:59:59
 
-snippet TIME
+snippet time
 abbr H:i:s
 	${1:H}:${2:i}:${3:s}
 
-snippet AS
+snippet as
 abbr AS name
 	AS ${1:name}
 
-snippet IS NULL
+snippet is_null
 abbr IS NULL
 	IS NULL
 
-snippet NOT IS NULL
+snippet not_is_null
 abbr NOT IS NULL
 	NOT IS NULL
+
+snippet case_when_
+abbr CASE var WHEN condition THEN value
+	CASE ${1:var} WHEN ${2:condition} THEN ${3:value}
+
+snippet when_
+abbr WHEN THEN value
+	WHEN ${1:condition} THEN ${2:value}
+
+snippet else_end
+abbr ELSE val END
+	ELSE ${0:value} END
+
+
