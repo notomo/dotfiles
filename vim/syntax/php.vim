@@ -262,6 +262,7 @@ syn keyword phpFunctions apache_child_terminate apache_get_modules apache_get_ve
 \ zip_close zip_entry_close zip_entry_compressedsize zip_entry_compressionmethod zip_entry_filesize zip_entry_name zip_entry_open zip_entry_read zip_open zip_read
 \ gzclose gzcompress gzdeflate gzencode gzeof gzfile gzgetc gzgets gzgetss gzinflate gzopen gzpassthru gzputs gzread gzrewind gzseek gztell gzuncompress gzwrite readgzfile zlib_get_coding_type
 \ filter_var lcfirst openssl_decrypt openssl_encrypt get_declared_interfaces
+\ spl_autoload spl_autoload_call spl_autoload_extensions spl_autoload_functions spl_autoload_register spl_autoload_unregister spl_classes spl_object_hash
 hi def link phpFunctions Function
 
 syn keyword phpMethods attributes children get_attr get_nodes has_children has_siblings is_asp is_comment is_html is_jsp is_jste is_text is_xhtml is_xml next prev tidy_node
