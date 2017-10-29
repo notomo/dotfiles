@@ -1,15 +1,17 @@
 
 snippet insert_into
+alias insert INSERT
 abbr INSERT INTO {columns} VALUES {values}
 options head
 	INSERT INTO ${1:table} (${2:column1, column2,...}) VALUES (${3:value1, value2,...});
 
 snippet update
+alias UPDATE
 abbr UPDATE ... SET ... WHERE ...
 	UPDATE ${1:table} SET ${2:column} = ${3:value} WHERE ${4:condition};
 
 snippet select
-alias le
+alias SELECT
 abbr SELECT {column} FROM {table}
 options head
 	SELECT
@@ -18,7 +20,6 @@ options head
 		${1:table} ${2:short_nm}
 
 snippet select_where
-alias lw
 abbr SELECT {column} FROM {table} WHERE {condition}
 options head
 	SELECT
@@ -29,7 +30,6 @@ options head
 		${3:condition}
 
 snippet select_where_1
-alias lw1
 abbr SELECT 1 FROM {table} WHERE {condition}
 options head
 	SELECT 1
@@ -37,7 +37,6 @@ options head
 	WHERE ${3:condition}
 
 snippet select_join_where
-alias ljw
 abbr SELECT {column} FROM {table} JOIN ... WHERE {condition}
 options head
 	SELECT
@@ -49,46 +48,53 @@ options head
 		${8:condition}
 
 snippet left_join
-alias fjo
+alias left LEFT
 abbr LEFT JOIN {table} {short_nm} ON...
 	LEFT JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:short_nm2}.${5:column2}
 
 snippet inner_join
-alias ijo
+alias inner INNER
 abbr INNER JOIN {table} {short_nm} ON...
 	INNER JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:short_nm2}.${5:column2}
 
 snippet where
+alias WHERE
 abbr WHERE {condition}
 	WHERE
 		${1:condition}
 
 snippet order_by
+alias order ORDER
 abbr ORDER BY {column}
 	ORDER BY ${1:T.column}${2:#: DESC}
 
 snippet group_by
+alias group GROUP
 abbr GROUP BY {column}
 	GROUP BY ${1:T.column}
 
 snippet limit
+alias LIMIT
 abbr LIMIT {count}
 	LIMIT ${1:count}
 
 snippet between
+alias BETWEEN
 abbr BETWEEN ... AND ...
 	BETWEEN ${1:A} AND ${1:B}
 
 snippet delete_from
-alias delete
+alias delete DELETE
 abbr DELETE FROM ... WHERE ...
 	DELETE FROM ${1:table} WHERE ${2:condition};
 
 snippet and
+alias AND
 abbr AND ...
 	AND ${1:condition}
 
 snippet or
+alias OR
 abbr OR ...
 	OR ${1:condition}
 
@@ -99,16 +105,19 @@ abbr NOT EXISTS (...)
 	)
 
 snippet exists
+alias EXISTS
 abbr EXISTS (...)
 	EXISTS (
 		${1:select}
 	)
 
 snippet having
+alias HAVING
 abbr HAVING ...
 	HAVING ${1:condition}
 
 snippet count
+alias COUNT
 abbr COUNT ...
 	COUNT(${1:column})
 
@@ -133,6 +142,7 @@ abbr H:i:s
 	${1:H}:${2:i}:${3:s}
 
 snippet as
+alias AS
 abbr AS name
 	AS ${1:name}
 
@@ -156,4 +166,7 @@ snippet else_end
 abbr ELSE val END
 	ELSE ${0:value} END
 
-
+snippet coalesce
+alias COALESCE
+abbr COALESCE(value, default)
+	COALESCE(${1:value}, ${0:default})
