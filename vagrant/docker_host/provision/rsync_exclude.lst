@@ -25,7 +25,6 @@
 /.python_history
 /.fzf*
 /.links
-/.mypy_cache
 /.npm
 /.w3m
 /.elinks
@@ -37,3 +36,6 @@
 /.proselint
 /.templateengine
 /.Xauthority
+node_modules/**
+__pycache__
+.mypy_cache
