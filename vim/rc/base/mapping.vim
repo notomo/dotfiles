@@ -176,8 +176,6 @@ nnoremap gi <C-i>
 nnoremap gO g;
 nnoremap gI g,
 
-vnoremap <S-j> }
-vnoremap <S-k> {
 " remap for matchit
 vmap <S-l> %
 nnoremap <silent> <S-l> :<C-u>keepjumps normal %<CR>

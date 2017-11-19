@@ -685,3 +685,13 @@ let g:session_autosave_periodic = 0
 [[plugins]]
 repo = 'octol/vim-cpp-enhanced-highlight'
 on_ft = 'cpp'
+
+[[plugins]]
+repo = 'MaxMEllon/vim-edgemotion'
+on_map = {ox = '<Plug>'}
+hook_add = '''
+xmap <S-j> <Plug>(edgemotion-j)
+xmap <S-k> <Plug>(edgemotion-k)
+omap <S-j> <Plug>(edgemotion-j)
+omap <S-k> <Plug>(edgemotion-k)
+'''
