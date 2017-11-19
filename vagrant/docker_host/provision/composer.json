@@ -1,17 +1,8 @@
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/padawan-php/padawan.php"
-        }
-    ],
     "require": {
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "*",
         "phpunit/phpunit": "*",
-        "phpstan/phpstan": "*",
-        "mkusher/padawan": "dev-master",
-        "react/filesystem": "@dev",
-        "mkusher/react-co": "@dev"
+        "phpstan/phpstan": "*"
     }
 }
