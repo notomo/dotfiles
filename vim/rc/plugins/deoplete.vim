@@ -15,3 +15,6 @@ let g:deoplete#sources.cs = ['cs', 'file', 'buffer', 'around', 'neosnippet']
 call deoplete#custom#source('neosnippet', 'rank', 10000)
 call deoplete#custom#source('tag', 'rank', 700)
 let g:deoplete#tag#cache_limit_size = 5000000
+
+inoremap <expr> j<Space>u deoplete#undo_completion()
+inoremap <expr> j<Space>; deoplete#complete_common_string()
