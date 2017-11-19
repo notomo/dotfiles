@@ -158,6 +158,7 @@ npm install -g javascript-typescript-langserver
 
 npm i -g typescript
 npm i -g neovim
+npm i -g gulp
 
 # text browser
 yum -y install lynx
