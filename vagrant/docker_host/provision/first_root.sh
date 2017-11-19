@@ -119,9 +119,6 @@ GOVERSION=1.9.2
 wget https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz
 tar -C /usr/local -xzf go$GOVERSION.linux-amd64.tar.gz
 rm go$GOVERSION.linux-amd64.tar.gz
-go get -u github.com/nsf/gocode
-go get golang.org/x/tools/cmd/goimports
-go get -u github.com/golang/lint/golint
 
 # java
 wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-lin
