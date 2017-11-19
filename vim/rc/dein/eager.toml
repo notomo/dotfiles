@@ -81,6 +81,9 @@ endfunction
 
 autocmd MyAuGroup ColorScheme * :call s:define_highlight()
 
+autocmd MyAuGroup InsertEnter * :set nocursorline
+autocmd MyAuGroup InsertLeave * :set cursorline
+
 set guioptions+=M
 set guioptions+=c
 

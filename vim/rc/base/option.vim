@@ -17,7 +17,7 @@ set noruler
 set number
 set backspace=indent,eol,start
 set whichwrap=b,s,h,l,<,>,[,]
-set nocursorline
+set cursorline
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 set list
 set laststatus=2

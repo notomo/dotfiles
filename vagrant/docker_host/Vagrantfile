@@ -9,8 +9,10 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "~", "/hostusr", type: nil
   config.vm.box_check_update = false
   config.ssh.guest_port = 2222
+  config.vm.network :forwarded_port, id: "ssh", guest: 22, host: 2222
 
   config.vm.provider "virtualbox" do |vb|
+    vb.name = Dir.pwd.gsub(/(:|\\|\/)/, '_')
     vb.memory = 2048
     vb.cpus = 2
     vb.customize [

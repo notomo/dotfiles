@@ -15,10 +15,12 @@ yum -y install yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum makecache fast
 yum -y install docker-ce
-curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-"$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-"$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-sudo systemctl status docker.service
-sudo systemctl enable docker.service
+usermod -aG docker $USERNAME
+systemctl status docker.service
+systemctl enable docker.service
+systemctl start docker.service
 
 # clipboard
 yum install -y epel-release
@@ -35,7 +37,7 @@ yum install -y vim
 yum -y install wget
 yum -y install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel
 yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
-GITVERSION=2.12.0
+GITVERSION=2.15.0
 wget https://www.kernel.org/pub/software/scm/git/git-$GITVERSION.tar.gz
 tar -zxf git-$GITVERSION.tar.gz
 rm git-$GITVERSION.tar.gz
@@ -113,12 +115,10 @@ mv composer.phar /usr/local/bin/composer
 yum install -y ShellCheck --enablerepo epel
 
 # golang
-wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
-tar -C /usr/local -xzf go1.8.3.linux-amd64.tar.gz
-rm go1.8.3.linux-amd64.tar.gz
-go get -u github.com/nsf/gocode
-go get golang.org/x/tools/cmd/goimports
-go get -u github.com/golang/lint/golint
+GOVERSION=1.9.2
+wget https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz
+tar -C /usr/local -xzf go$GOVERSION.linux-amd64.tar.gz
+rm go$GOVERSION.linux-amd64.tar.gz
 
 # java
 wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-lin
@@ -153,10 +153,12 @@ pip3.5 install vim-vint
 gem install sqlint
 
 # javascript
-yum -y install npm
+yum -y install nodejs npm --enablerepo=epel
 npm install -g javascript-typescript-langserver
 
 npm i -g typescript
+npm i -g neovim
+npm i -g gulp
 
 # text browser
 yum -y install lynx
@@ -169,8 +171,8 @@ git clone https://github.com/notomo/dotfiles.git ~/dotfiles
 sh ~/dotfiles/link.sh
 
 # sync
-sysctl fs.inotify.max_user_watches = 32768
-echo fs.inotify.max_user_watches = 32768 >> /etc/sysctl.conf
+sysctl fs.inotify.max_user_watches=32768
+echo fs.inotify.max_user_watches=32768 >> /etc/sysctl.conf
 yum -y install lsyncd --enablerepo=epel
 yum -y install xinetd
 
@@ -185,18 +187,21 @@ systemctl enable rsyncd
 systemctl start lsyncd
 systemctl enable lsyncd
 
+mkdir -p $USERDIR/.ssh
+chmod 0600 $USERDIR/.ssh/*
+
 # fish
 # yum install ncurses-devel
-cd /etc/yum.repos.d/
-wget http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_7/shells:fish:release:2.repo
-yum -y install fish
-cd $APPDIR
+# cd /etc/yum.repos.d/
+# wget http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_7/shells:fish:release:2.repo
+# yum -y install fish
+# cd $APPDIR
 
 # blender
-wget http://mirror.cs.umn.edu/blender.org/release/Blender2.78/blender-2.78c-linux-glibc219-x86_64.tar.bz2
-tar xf blender-2.78c-linux-glibc219-x86_64.tar.bz2
-rm blender-2.78c-linux-glibc219-x86_64.tar.bz2
-mv blender-2.78c-linux-glibc219-x86_64 blender
-yum -y install glib*
-yum -y install libGLU
-yum -y install libXi
+# wget http://mirror.cs.umn.edu/blender.org/release/Blender2.78/blender-2.78c-linux-glibc219-x86_64.tar.bz2
+# tar xf blender-2.78c-linux-glibc219-x86_64.tar.bz2
+# rm blender-2.78c-linux-glibc219-x86_64.tar.bz2
+# mv blender-2.78c-linux-glibc219-x86_64 blender
+# yum -y install glib*
+# yum -y install libGLU
+# yum -y install libXi

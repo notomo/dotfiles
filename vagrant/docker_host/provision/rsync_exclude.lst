@@ -7,6 +7,7 @@
 /.cache/vimfiler/
 /.cache/vim-ref/
 /.cache/jedi/
+/.cache/parso/
 /.config
 /.gem
 /.go
@@ -24,7 +25,6 @@
 /.python_history
 /.fzf*
 /.links
-/.mypy_cache
 /.npm
 /.w3m
 /.elinks
@@ -35,3 +35,7 @@
 /.oracle_jre_usage
 /.proselint
 /.templateengine
+/.Xauthority
+node_modules/**
+__pycache__
+.mypy_cache

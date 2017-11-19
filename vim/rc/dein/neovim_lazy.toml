@@ -68,11 +68,11 @@ hook_add = '''
 let g:nvim_typescript#vue_support = 1
 '''
 
-[[plugins]]
-repo = 'notomo/deoplete-padawan'
-rev = 'wip'
-build = 'composer install'
-on_ft = 'php'
+# [[plugins]]
+# repo = 'notomo/deoplete-padawan'
+# rev = 'wip'
+# build = 'composer install'
+# on_ft = 'php'
 
 [[plugins]]
 repo = 'notomo/coverage.nvim'

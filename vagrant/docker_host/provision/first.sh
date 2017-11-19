@@ -15,8 +15,6 @@ sh ~/dotfiles/link.sh
 cd ~
 
 # composer
-composer global require hirak/prestissimo
-# TODO
 mkdir -p ~/.config/composer
 cp -f /vagrant/provision/composer.json ~/.config/composer/composer.json
 cd ~/.config/composer
@@ -31,6 +29,8 @@ rm php_manual_ja.tar.gz
 
 # go
 go get -u github.com/nsf/gocode
+go get -u golang.org/x/tools/cmd/goimports
+go get -u github.com/golang/lint/golint
 
 # workspace
 mkdir -p ~/workspace
