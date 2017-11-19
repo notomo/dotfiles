@@ -156,10 +156,11 @@ pip3.5 install vim-vint
 gem install sqlint
 
 # javascript
-yum -y install npm
+yum -y install nodejs npm --enablerepo=epel
 npm install -g javascript-typescript-langserver
 
 npm i -g typescript
+npm i -g neovim
 
 # text browser
 yum -y install lynx
@@ -172,8 +173,8 @@ git clone https://github.com/notomo/dotfiles.git ~/dotfiles
 sh ~/dotfiles/link.sh
 
 # sync
-sysctl fs.inotify.max_user_watches = 32768
-echo fs.inotify.max_user_watches = 32768 >> /etc/sysctl.conf
+sysctl fs.inotify.max_user_watches=32768
+echo fs.inotify.max_user_watches=32768 >> /etc/sysctl.conf
 yum -y install lsyncd --enablerepo=epel
 yum -y install xinetd
 
@@ -187,6 +188,9 @@ systemctl start rsyncd
 systemctl enable rsyncd
 systemctl start lsyncd
 systemctl enable lsyncd
+
+mkdir -p $USERDIR/.ssh
+chmod 0600 $USERDIR/.ssh/*
 
 # fish
 # yum install ncurses-devel

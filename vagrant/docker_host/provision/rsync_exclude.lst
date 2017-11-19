@@ -7,6 +7,7 @@
 /.cache/vimfiler/
 /.cache/vim-ref/
 /.cache/jedi/
+/.cache/parso/
 /.config
 /.gem
 /.go
@@ -35,3 +36,4 @@
 /.oracle_jre_usage
 /.proselint
 /.templateengine
+/.Xauthority

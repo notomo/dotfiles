@@ -80,20 +80,17 @@ if [ ! -e "${install_root}"/.vintrc.yaml ]; then
     ln -s "${install_root}"/dotfiles/lint/vim/.vintrc.yaml "${install_root}"/.vintrc.yaml
 fi
 if [ ! -e "${install_root}"/setup.cfg ]; then
-    ln -s "${install_root}"/dotfiles/lint/vim/setup.cfg "${install_root}"/setup.cfg
+    ln -s "${install_root}"/dotfiles/lint/python/setup.cfg "${install_root}"/setup.cfg
 fi
 
 # git
 if [ ! -e "${install_root}"/.gitignore_global ]; then
-    ln -s "${install_root}"/dotfiles/lint/vim/.gitignore_global "${install_root}"/.gitignore_global
+    ln -s "${install_root}"/dotfiles/git/.gitignore_global "${install_root}"/.gitignore_global
 fi
 cp "${install_root}"/dotfiles/git/.gitconfig "${install_root}"/.gitconfig
-
-if [ ! -e "${install_root}"/.ctags ]; then
-    ln -s "${install_root}"/dotfiles/lint/vim/.ctags "${install_root}"/.ctags
-fi
 
 if [ "$1" == "" ]
 then
     read
 fi
+
