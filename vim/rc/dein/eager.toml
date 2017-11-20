@@ -77,12 +77,15 @@ function! s:define_highlight() abort
     highlight YankRoundRegion guifg=#333333 guibg=#fedf81
     highlight def link sqlStatement sqlKeyword
     highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
+    " highlight CursorLine ctermbg=234 guibg=#3a4b5c
 endfunction
 
 autocmd MyAuGroup ColorScheme * :call s:define_highlight()
 
-autocmd MyAuGroup InsertEnter * :set nocursorline
-autocmd MyAuGroup InsertLeave * :set cursorline
+autocmd MyAuGroup InsertEnter * :setlocal nocursorline
+autocmd MyAuGroup InsertLeave * :setlocal cursorline
+autocmd MyAuGroup WinEnter * :setlocal cursorline
+autocmd MyAuGroup WinLeave * :setlocal nocursorline
 
 set guioptions+=M
 set guioptions+=c
