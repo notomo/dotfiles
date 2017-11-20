@@ -1,5 +1,4 @@
 map gj <Plug>(easymotion-j)
-map gJ <Plug>(easymotion-w)
 map gk <Plug>(easymotion-k)
 map gn <Plug>(easymotion-lineanywhere)
 map gN <Plug>(easymotion-linebackward)

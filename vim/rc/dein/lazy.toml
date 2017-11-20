@@ -688,10 +688,8 @@ on_ft = 'cpp'
 
 [[plugins]]
 repo = 'MaxMEllon/vim-edgemotion'
-on_map = {ox = '<Plug>'}
+on_map = {nox = '<Plug>'}
 hook_add = '''
-xmap <S-j> <Plug>(edgemotion-j)
-xmap <S-k> <Plug>(edgemotion-k)
-omap <S-j> <Plug>(edgemotion-j)
-omap <S-k> <Plug>(edgemotion-k)
+map gJ <Plug>(edgemotion-j)
+map gK <Plug>(edgemotion-k)
 '''
