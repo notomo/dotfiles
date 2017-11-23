@@ -18,7 +18,7 @@
 /.bash*
 /.local/share/
 /.flake8
-/.git*
+/.gitignore_global
 /.vbox*
 /.vim*
 /.vintrc.yaml
@@ -36,6 +36,7 @@
 /.proselint
 /.templateengine
 /.Xauthority
-node_modules/**
+/.ssh/authorized_keys
 __pycache__
 .mypy_cache
+node_modules/**

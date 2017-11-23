@@ -8,6 +8,8 @@ alias nvu="nvim -u ~/test.vim"
 alias ee="exit"
 alias ll="ls -la"
 alias ss="source ~/.bashrc"
+alias lsr="sudo systemctl restart lsyncd"
+alias dps="docker ps -a"
 
 if [ -x /usr/bin/Xvfb ] && [ -x /usr/bin/VBoxClient ] && [ ! -f /tmp/.X0-lock ]; then
     Xvfb -screen 0 320x240x8 > /dev/null 2>&1 &

@@ -4,7 +4,9 @@ __pycache__
 
 # vagrant
 /vagrant/*/.vagrant
-/vagrant/docker_host/workspace/*
+/vagrant/*/vagrant_up.log*
+/vagrant/docker_host_test/Vagrantfile
+/vagrant/docker_host_test/provision
 
 # vim
 
