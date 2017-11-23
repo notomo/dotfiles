@@ -1,4 +1,7 @@
 
+BACKUP_FROM=$1
+BACKUP_TO=$2
+
 USERNAME=vagrant
 USERDIR=/home/$USERNAME
 
@@ -177,8 +180,9 @@ yum -y install lsyncd --enablerepo=epel
 yum -y install xinetd
 
 cp -f /vagrant/provision/lsyncd.conf /etc/lsyncd.conf
+sed -i 's#BACKUP_TO#'$BACKUP_TO'#g' /etc/lsyncd.conf
 cp -f /vagrant/provision/rsync_exclude.lst /etc/rsync_exclude.lst
-rsync -a /hostusr/backup/ $USERDIR
+rsync -a $BACKUP_FROM $USERDIR
 
 systemctl start xinetd
 systemctl enable xinetd
