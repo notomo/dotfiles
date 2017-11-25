@@ -32,7 +32,7 @@ set hidden
 set switchbuf=useopen
 set textwidth=0
 set matchpairs+=<:>
-set shiftwidth=4
+set shiftwidth=0
 set softtabstop=4
 set tabstop=4
 set smarttab

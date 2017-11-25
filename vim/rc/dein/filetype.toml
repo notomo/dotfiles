@@ -91,3 +91,8 @@ cs = '''
 setlocal completeopt-=preview
 setlocal expandtab
 '''
+
+ruby = '''
+setlocal tabstop=2
+setlocal softtabstop=2
+'''
