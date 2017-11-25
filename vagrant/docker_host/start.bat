@@ -1,3 +1,3 @@
 cd %HOMEPATH%"\dotfiles\vagrant\docker_host"
-vagrant up 2> vagrant_up.log
+vagrant up > vagrant_up.log 2>&1
 exit
