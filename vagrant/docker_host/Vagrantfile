@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 unless Vagrant.has_plugin?("dotenv")
-  raise 'dotenv is not installed!'
+  raise 'dotenv is not installed! Execute \'vagrant plugin install dotenv\'.'
 end
 
 Dotenv.load
