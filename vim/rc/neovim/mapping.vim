@@ -1,6 +1,3 @@
-if has('win32')
-    finish
-endif
 
 tnoremap jj <C-\><C-n>
 
