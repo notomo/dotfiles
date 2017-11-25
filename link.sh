@@ -87,7 +87,9 @@ fi
 if [ ! -e "${install_root}"/.gitignore_global ]; then
     ln -s "${install_root}"/dotfiles/git/.gitignore_global "${install_root}"/.gitignore_global
 fi
-cp "${install_root}"/dotfiles/git/.gitconfig "${install_root}"/.gitconfig
+if [ ! -e "${install_root}"/.gitconfig ]; then
+    cp "${install_root}"/dotfiles/git/.gitconfig "${install_root}"/.gitconfig
+fi
 
 if [ "$1" == "" ]
 then
