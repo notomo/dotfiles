@@ -175,14 +175,14 @@ echo fs.inotify.max_user_watches=32768 >> /etc/sysctl.conf
 yum -y install lsyncd --enablerepo=epel
 yum -y install xinetd
 
-mkdir -p $BACKUP_FROM
-mkdir -p $BACKUP_TO
-chown $USERNAME:$USERNAME $BACKUP_FROM
-chown $USERNAME:$USERNAME $BACKUP_TO
+mkdir -p "$BACKUP_FROM"
+mkdir -p "$BACKUP_TO"
+chown "$USERNAME:$USERNAME $BACKUP_FROM"
+chown "$USERNAME:$USERNAME $BACKUP_TO"
 cp -f /vagrant/provision/lsyncd.conf /etc/lsyncd.conf
-sed -i 's#BACKUP_TO#'$BACKUP_TO'#g' /etc/lsyncd.conf
+sed -i 's#BACKUP_TO#'"$BACKUP_TO"'#g' /etc/lsyncd.conf
 cp -f /vagrant/provision/rsync_exclude.lst /etc/rsync_exclude.lst
-rsync -a $BACKUP_FROM $USERDIR
+rsync -a --exclude-from=/vagrant/provision/rsync_exclude.lst "$BACKUP_FROM $USERDIR"
 
 systemctl start xinetd
 systemctl enable xinetd

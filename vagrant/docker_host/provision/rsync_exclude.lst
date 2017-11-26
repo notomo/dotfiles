@@ -36,6 +36,7 @@
 /.proselint
 /.templateengine
 /.Xauthority
+/.rbenv
 /.ssh/authorized_keys
 __pycache__
 .mypy_cache
