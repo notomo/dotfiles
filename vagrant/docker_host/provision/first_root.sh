@@ -41,7 +41,7 @@ yum -y install wget
 yum -y install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel
 yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
 GITVERSION=2.15.0
-wget https://www.kernel.org/pub/software/scm/git/git-$GITVERSION.tar.gz
+wget -nv https://www.kernel.org/pub/software/scm/git/git-$GITVERSION.tar.gz
 tar -zxf git-$GITVERSION.tar.gz
 rm git-$GITVERSION.tar.gz
 cd git-$GITVERSION
@@ -68,7 +68,7 @@ make install
 
 # pt
 cd $APPDIR
-wget https://github.com/monochromegane/the_platinum_searcher/releases/download/v2.1.5/pt_linux_amd64.tar.gz
+wget -nv https://github.com/monochromegane/the_platinum_searcher/releases/download/v2.1.5/pt_linux_amd64.tar.gz
 tar zxf pt_linux_amd64.tar.gz
 mv pt_linux_amd64/pt /usr/local/bin/pt
 rm pt_linux_amd64.tar.gz
@@ -115,17 +115,17 @@ yum install -y ShellCheck --enablerepo epel
 
 # golang
 GOVERSION=1.9.2
-wget https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz
+wget -nv https://storage.googleapis.com/golang/go$GOVERSION.linux-amd64.tar.gz
 tar -C /usr/local -xzf go$GOVERSION.linux-amd64.tar.gz
 rm go$GOVERSION.linux-amd64.tar.gz
 
 # java
-wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-lin
+wget -nv --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-lin
 yum localinstall jdk-8u144-linux-x64.rpm
 rm jdk-8u144-linux-x64.rpm
 
 # plantuml
-wget https://sourceforge.net/projects/plantuml/files/plantuml.jar
+wget -nv https://sourceforge.net/projects/plantuml/files/plantuml.jar
 
 # clang
 yum -y install clang lldb
@@ -134,7 +134,7 @@ rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E032808
 yum-config-manager --add-repo http://download.mono-project.com/repo/centos/
 yum install -y mono-complete
 
-wget --no-check-certificate https://nuget.org/nuget.exe
+wget -nv --no-check-certificate https://nuget.org/nuget.exe
 mono nuget.exe update -self
 mv nuget.exe /usr/local/bin
 cp -f /vagrant/provision/nuget.sh /usr/local/bin/nuget
@@ -199,12 +199,12 @@ chmod 0700 $USERDIR/.ssh
 # fish
 # yum install ncurses-devel
 # cd /etc/yum.repos.d/
-# wget http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_7/shells:fish:release:2.repo
+# wget -nv http://download.opensuse.org/repositories/shells:fish:release:2/CentOS_7/shells:fish:release:2.repo
 # yum -y install fish
 # cd $APPDIR
 
 # blender
-# wget http://mirror.cs.umn.edu/blender.org/release/Blender2.78/blender-2.78c-linux-glibc219-x86_64.tar.bz2
+# wget -nv http://mirror.cs.umn.edu/blender.org/release/Blender2.78/blender-2.78c-linux-glibc219-x86_64.tar.bz2
 # tar xf blender-2.78c-linux-glibc219-x86_64.tar.bz2
 # rm blender-2.78c-linux-glibc219-x86_64.tar.bz2
 # mv blender-2.78c-linux-glibc219-x86_64 blender

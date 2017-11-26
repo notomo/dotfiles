@@ -22,7 +22,7 @@ composer global install
 
 # phpmanual
 cd ~/.vim/reference
-wget http://jp2.php.net/get/php_manual_ja.tar.gz/from/this/mirror -O php_manual_ja.tar.gz
+wget -nv http://jp2.php.net/get/php_manual_ja.tar.gz/from/this/mirror -O php_manual_ja.tar.gz
 tar zxf php_manual_ja.tar.gz
 mv php-chunked-xhtml phpmanual
 rm php_manual_ja.tar.gz
