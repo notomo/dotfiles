@@ -31,6 +31,7 @@ rm php_manual_ja.tar.gz
 go get -u github.com/nsf/gocode
 go get -u golang.org/x/tools/cmd/goimports
 go get -u github.com/golang/lint/golint
+go get github.com/marcusolsson/tui-go
 
 # ruby
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
@@ -51,5 +52,6 @@ mkdir -p ~/workspace
 cd ~/workspace
 mkdir -p test
 mkdir -p memo
+mkdir -p readonly
 
 chmod 705 ~

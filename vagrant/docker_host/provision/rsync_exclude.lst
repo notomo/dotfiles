@@ -17,6 +17,8 @@
 /workspace/readonly
 /.bash*
 /.local/share/
+/.local/bin/
+/.local/lib/
 /.flake8
 /.gitignore_global
 /.vbox*
