@@ -42,6 +42,10 @@ rbenv global 2.4.2
 gem install neovim
 gem install rubocop
 
+# neovim-remote
+pip3.5 --user install neovim-remote
+git config --global core.editor 'nvr --remote-wait-silent'
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace
