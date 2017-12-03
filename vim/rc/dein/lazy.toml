@@ -256,14 +256,16 @@ on_func = ['cfi#format']
 
 [[plugins]]
 repo = 'rhysd/vim-operator-surround'
-depends = 'vim-operator-user'
+depends = ['vim-operator-user', 'vim-textobj-multiblock']
 on_map = {nox = '<Plug>'}
 hook_add = '''
 noremap [surround] <Nop>
 map s [surround]
 map <silent>[surround]a <Plug>(operator-surround-append)
-map <silent>[surround]d v%o%%<Plug>(operator-surround-delete)
-map <silent>[surround]r <Plug>(operator-surround-replace)
+map <silent>[surround]d v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-delete)
+xmap <silent>[surround]d <Plug>(operator-surround-delete)
+map <silent>[surround]r v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-replace)
+xmap <silent>[surround]r <Plug>(operator-surround-replace)
 '''
 hook_source = 'source ~/.vim/rc/plugins/operator-surround.vim'
 
