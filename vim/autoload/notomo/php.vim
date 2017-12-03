@@ -10,7 +10,7 @@ function! notomo#php#get_indent()
     endif
 
     let line_num = prevnonblank(v:lnum - 1)
-    let plus_one = indent(line_num) + &l:shiftwidth
+    let plus_one = indent(line_num) + shiftwidth()
     let line = getline(line_num)
     if line =~# '\v.*\([^)]*$'
         " e.g. $ary = array(
@@ -18,7 +18,7 @@ function! notomo#php#get_indent()
     elseif line =~# '\v^[^"]*"[^";]*$'
         " e.g. $str = "
         return plus_one
-    elseif line =~# "\\v^[^']*'[^';]*$"
+    elseif line =~# "\v^[^']*'[^';]*$"
         " e.g. $str = '
         return plus_one
     elseif line =~# '\v.*\{[^}]*$'
