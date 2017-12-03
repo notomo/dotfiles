@@ -262,7 +262,7 @@ hook_add = '''
 noremap [surround] <Nop>
 map s [surround]
 map <silent>[surround]a <Plug>(operator-surround-append)
-map <silent>[surround]d <Plug>(operator-surround-delete)
+map <silent>[surround]d v%o%%<Plug>(operator-surround-delete)
 map <silent>[surround]r <Plug>(operator-surround-replace)
 '''
 hook_source = 'source ~/.vim/rc/plugins/operator-surround.vim'
