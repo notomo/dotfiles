@@ -1,0 +1,130 @@
+
+snippet main
+abbr func main() {}
+	func main() {
+		${0}
+	}
+
+snippet function
+alias func
+abbr func name() (returnVar type) {}
+	func ${1:name}(${2}) (${3:returnVar} ${4:type}) {
+		${0:TARGET}
+	}
+
+snippet var
+abbr var names type;
+	var ${1:names} ${0:type}
+
+snippet var_default
+abbr var names default_value;
+	var ${1:names} = ${0:value}
+
+snippet struct_init
+	${1:name} := ${2:structName}{${3:key}: ${0:value}}
+
+snippet array
+abbr array := [...]type{value, ...}
+	${1:name} := [...]${2:typeName}{${0:value}}
+
+snippet slice
+abbr slice := []type{value, ...}
+	${1:name} := []${2:typeName}{${0:value}}
+
+snippet map
+abbr map := [keyType]valueType{key: value, ...}
+	${1:name} := [${2:keyTypeName}]${3:valueTypeName}{${4:key}: ${0:name},}
+
+snippet const
+abbr const name = value
+	const ${1:name} = ${0:value}
+
+snippet package
+	package ${1:main}
+
+snippet println
+	fmt.Println(${0:TARGET})
+
+snippet cast
+	${1:name} := ${2:type}(${0:value})
+
+snippet struct
+	type ${1:Name} struct {
+		${2:fieldName} ${0:type}
+	}
+
+snippet interface
+	type ${1:Name} interface {
+		${2:funcName}() ${0:type}
+	}
+
+snippet for
+	for ${1:condition} {
+		${0:TARGET}
+	}
+
+snippet for_var
+	for ${1:name} := ${2:variable}; ${3:condition} {
+		${0:TARGET}
+	}
+
+snippet ifelse
+	if ${1:condition} {
+		${2:TARGET}
+	} else {
+		${0:TARGET}
+	}
+
+snippet ifelseif
+options head
+	if ${1:condition} {
+		${2:TARGET}
+	} else if ${3:condition} {
+		${0:TARGET}
+	}
+
+snippet ifonly
+	if ${1:condition} {
+		${0:TARGET}
+	}
+
+snippet else
+	else {
+		${0:TARGET}
+	}
+
+snippet elseif
+	else if ${1:condition} {
+		${0:TARGET}
+	}
+
+snippet foreach
+	foreach ${1:index}, ${2:name} := range ${3:variable} {
+		${0:TARGET}
+	}
+
+snippet foreach_no_index
+	foreach _, ${1:name} := range ${2:variable} {
+		${0:TARGET}
+	}
+
+snippet switch
+	switch ${1:variable} {
+	case ${2:expr}:
+		${3:TARGET}
+	default:
+		${0:TARGET}
+	}
+
+snippet switch_no_var
+	switch {
+	case ${1:expr}:
+		${2:TARGET}
+	default:
+		${0:TARGET}
+	}
+
+snippet method
+	func (${1:receiver} *${2:structName}) ${3:name} ${4:returnType} {
+		${0:TARGET}
+	}
