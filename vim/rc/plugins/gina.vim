@@ -70,7 +70,8 @@ let g:gina#command#status#use_default_mappings = 0
 call gina#custom#mapping#nmap('status', 'cc', ':<C-u>Gina commit<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'ca', ':<C-u>Gina commit --amend<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'cs', ':call gina#action#call(''chaperon:tab'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'pp', ':call gina#action#call(''patch:tab'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'P', ':call gina#action#call(''patch:tab'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'pp', ':call gina#action#call(''patch:oneside:tab'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', '<CR>', ':call gina#action#call(''edit:tab'')<CR>', s:noremap_silent)
 
 " commit
@@ -111,6 +112,7 @@ call gina#custom#mapping#nmap('diff', 'sgj', ':call notomo#vimrc#to_next_syntax(
 call gina#custom#mapping#nmap('diff', 'sgk', ':call notomo#vimrc#to_previous_syntax(''diffLine'', -1)<CR>', s:noremap_silent)
 
 " log
+let g:gina#command#log#use_default_mappings = 0
 call gina#custom#mapping#nmap('log', '<CR>', ':call gina#action#call(''show:commit:right'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'o', ':call gina#action#call(''show'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 't<Space>', ':call gina#action#call(''show:tab'')<CR>', s:noremap_silent)
