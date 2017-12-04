@@ -44,7 +44,7 @@ gem install neovim
 gem install rubocop
 
 # neovim-remote
-pip3.5 --user install neovim-remote
+pip3.5 install --user neovim-remote
 git config --global core.editor 'nvr --remote-wait-silent'
 
 # workspace
