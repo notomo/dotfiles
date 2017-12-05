@@ -37,6 +37,7 @@ for s:mode_char in ['n', 'v']
     call gina#custom#mapping#map('status', '[git]u', '<Plug>(gina-index-unstage)', s:mode_silent)
     call gina#custom#mapping#map('status', 'U', '<Plug>(gina-index-discard)', s:mode_silent)
     call gina#custom#mapping#map('status', 't<Space>', ':call gina#action#call(''edit:tab'')<CR>', s:noremap_mode_silent)
+    call gina#custom#mapping#map('status', 'o', ':call gina#action#call(''edit:rightest'')<CR>', s:noremap_mode_silent)
 
     " stash
     call gina#custom#mapping#map('stash', 'dr', '<Plug>(gina-stash-drop)', s:mode_silent)
@@ -92,6 +93,7 @@ call gina#custom#mapping#nmap('branch', 'rn', '<Plug>(gina-branch-move)', s:sile
 call gina#custom#mapping#nmap('branch', 'rf', '<Plug>(gina-branch-reflesh)', s:silent)
 call gina#custom#mapping#nmap('branch', 'C', '<Plug>(gina-branch-new)', s:silent)
 call gina#custom#command#option('branch', '-v', 'v')
+call gina#custom#mapping#nmap('branch', 'yn', '<Plug>(gina-yank-rev)', s:silent)
 
 " group
 call gina#custom#command#option('show', '--group', 'show')
