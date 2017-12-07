@@ -94,6 +94,7 @@ call gina#custom#mapping#nmap('branch', 'rf', '<Plug>(gina-branch-reflesh)', s:s
 call gina#custom#mapping#nmap('branch', 'C', '<Plug>(gina-branch-new)', s:silent)
 call gina#custom#command#option('branch', '-v', 'v')
 call gina#custom#mapping#nmap('branch', 'yn', '<Plug>(gina-yank-rev)', s:silent)
+call gina#custom#mapping#nmap('branch', 'co', ':call gina#action#call(''show:commit:tab'')<CR>', s:noremap_silent)
 
 " group
 call gina#custom#command#option('show', '--group', 'show')
@@ -124,3 +125,5 @@ call gina#custom#mapping#nmap('log', 'cb', '<Plug>(gina-changes-between)', s:sil
 call gina#custom#mapping#nmap('log', 'RS', '<Plug>(gina-commit-reset)', s:silent)
 call gina#custom#mapping#nmap('log', 'yr', '<Plug>(gina-yank-rev)', s:silent)
 call gina#custom#mapping#nmap('log', 'dd', ':call gina#action#call(''compare'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 'RESET', ':call gina#action#call(''commit:reset:hard'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 'cp', ':call gina#action#call(''commit:cherry-pick'')<CR>', s:noremap_silent)
