@@ -10,7 +10,7 @@ function! notomo#denite#dir_file_on_directory(context) abort
         return
     endif
     let path = target['action__path']
-    execute 'Denite -mode=normal dir_file:' . path
+    execute 'Denite dir_file:' . path
 endfunction
 
 function! notomo#denite#dir_file_on_file(context) abort
@@ -19,7 +19,7 @@ function! notomo#denite#dir_file_on_file(context) abort
         return
     endif
     let path = fnamemodify(target['action__path'], ':h')
-    execute 'Denite -mode=normal dir_file:' . path
+    execute 'Denite dir_file:' . path
 endfunction
 
 function! notomo#denite#parent_dir_file(context) abort
@@ -28,7 +28,7 @@ function! notomo#denite#parent_dir_file(context) abort
         return
     endif
     let path = fnamemodify(target['action__path'], ':h:h')
-    execute 'Denite -mode=normal dir_file:' . path
+    execute 'Denite dir_file:' . path
 endfunction
 
 function! notomo#denite#open(open_cmd, context) abort

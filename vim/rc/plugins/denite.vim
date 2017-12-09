@@ -29,6 +29,7 @@ nnoremap <silent> [denite]h :<C-u>Denite help -default-action=open<CR>
 nnoremap <silent> [denite]th :<C-u>DeniteCursorWord help -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [unite]d :<C-u>Denite file_mru -immediately<CR>
+nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file_rec<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
