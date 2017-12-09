@@ -689,7 +689,7 @@ repo = 'octol/vim-cpp-enhanced-highlight'
 on_ft = 'cpp'
 
 [[plugins]]
-repo = 'MaxMEllon/vim-edgemotion'
+repo = 'haya14busa/vim-edgemotion'
 on_map = {nox = '<Plug>'}
 hook_add = '''
 map gJ <Plug>(edgemotion-j)
