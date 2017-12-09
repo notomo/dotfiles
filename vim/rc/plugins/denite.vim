@@ -131,6 +131,8 @@ call denite#custom#map('normal', 'J', '<denite:jump_to_next_source>', 'noremap')
 call denite#custom#map('normal', 'K', '<denite:jump_to_previous_source>', 'noremap')
 call denite#custom#map('normal', 'dll', '<denite:do_action:delete_line>', 'noremap')
 call denite#custom#map('normal', 'dlL', '<denite:do_action:delete_others_line>', 'noremap')
+call denite#custom#map('normal', 'sg', '<denite:do_action:project_dir_file_rec>', 'noremap')
+call denite#custom#map('normal', 'sf', '<denite:do_action:dir_file_rec>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags'])
@@ -170,3 +172,9 @@ call denite#custom#action('file,directory', 'source_dir_file', {context ->  noto
 
 call denite#custom#action('file', 'delete_line', {context ->  notomo#denite#delete_line(context)})
 call denite#custom#action('file', 'delete_others_line', {context ->  notomo#denite#delete_others_line(context)})
+
+call denite#custom#action('file', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec_on_file(context)})
+call denite#custom#action('directory', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec(context)})
+
+call denite#custom#action('file', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec_on_file(context)})
+call denite#custom#action('directory', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})

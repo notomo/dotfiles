@@ -4,31 +4,29 @@ function! notomo#denite#execute_unite_action(context, action_name) abort
     call unite#action#do_candidates(a:action_name, candidates)
 endfunction
 
-function! notomo#denite#dir_file_on_directory(context) abort
+function! s:get_target_path(fnamemod_string, context) abort
     let target = a:context['targets'][0]
     if !has_key(target, 'action__path')
         return
     endif
-    let path = target['action__path']
-    execute 'Denite dir_file:' . path
+    if empty(a:fnamemod_string)
+        let path = target['action__path']
+    else
+        let path = fnamemodify(target['action__path'], a:fnamemod_string)
+    endif
+    return path
+endfunction
+
+function! notomo#denite#dir_file_on_directory(context) abort
+    execute 'Denite dir_file:' . s:get_target_path('', a:context)
 endfunction
 
 function! notomo#denite#dir_file_on_file(context) abort
-    let target = a:context['targets'][0]
-    if !has_key(target, 'action__path')
-        return
-    endif
-    let path = fnamemodify(target['action__path'], ':h')
-    execute 'Denite dir_file:' . path
+    execute 'Denite dir_file:' . s:get_target_path(':h', a:context)
 endfunction
 
 function! notomo#denite#parent_dir_file(context) abort
-    let target = a:context['targets'][0]
-    if !has_key(target, 'action__path')
-        return
-    endif
-    let path = fnamemodify(target['action__path'], ':h:h')
-    execute 'Denite dir_file:' . path
+    execute 'Denite dir_file:' . s:get_target_path(':h:h', a:context)
 endfunction
 
 function! notomo#denite#open(open_cmd, context) abort
@@ -88,8 +86,27 @@ function! notomo#denite#open_command(context) abort
 endfunction
 
 function! notomo#denite#outline(context) abort
-    let target = a:context['targets'][0]
-    execute 'Denite -auto-preview outline:' . target['action__path']
+    execute 'Denite -auto-preview outline:' . s:get_target_path('', a:context)
+endfunction
+
+function! notomo#denite#project_dir_file_rec_on_file(context) abort
+    execute 'cd ' . s:get_target_path(':h', a:context)
+    execute 'DeniteProjectDir file_rec'
+endfunction
+
+function! notomo#denite#project_dir_file_rec(context) abort
+    execute 'cd ' . s:get_target_path('', a:context)
+    execute 'DeniteProjectDir file_rec'
+endfunction
+
+function! notomo#denite#dir_file_rec(context) abort
+    execute 'cd ' . s:get_target_path('', a:context)
+    execute 'DeniteBufferDir file_rec'
+endfunction
+
+function! notomo#denite#dir_file_rec_on_file(context) abort
+    execute 'cd ' . s:get_target_path(':h', a:context)
+    execute 'DeniteBufferDir file_rec'
 endfunction
 
 function! notomo#denite#change_source(source_name, context) abort
