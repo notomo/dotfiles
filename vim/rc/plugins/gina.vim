@@ -96,6 +96,7 @@ call gina#custom#mapping#nmap('branch', 'C', '<Plug>(gina-branch-new)', s:silent
 call gina#custom#command#option('branch', '-v', 'v')
 call gina#custom#mapping#nmap('branch', 'yn', '<Plug>(gina-yank-rev)', s:silent)
 call gina#custom#mapping#nmap('branch', 'co', ':call gina#action#call(''show:commit:tab'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('branch', 'MA', ':call gina#action#call(''commit:merge'')<CR>', s:noremap_silent)
 
 " group
 call gina#custom#command#option('show', '--group', 'show')
