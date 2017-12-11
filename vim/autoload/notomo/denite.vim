@@ -30,12 +30,13 @@ function! notomo#denite#parent_dir_file(context) abort
 endfunction
 
 function! notomo#denite#open(open_cmd, context) abort
-    let target = a:context['targets'][0]
-    if !has_key(target, 'action__path')
+    if !has_key(a:context['targets'][0], 'action__path')
         return
     endif
-    execute a:open_cmd
-    execute 'edit ' . target['action__path']
+    for target in a:context['targets']
+        execute a:open_cmd
+        execute 'edit ' . target['action__path']
+    endfor
 endfunction
 
 function! notomo#denite#qfreplace(context) abort
@@ -101,12 +102,12 @@ endfunction
 
 function! notomo#denite#dir_file_rec(context) abort
     execute 'cd ' . s:get_target_path('', a:context)
-    execute 'DeniteBufferDir file_rec'
+    execute 'Denite file_rec'
 endfunction
 
 function! notomo#denite#dir_file_rec_on_file(context) abort
     execute 'cd ' . s:get_target_path(':h', a:context)
-    execute 'DeniteBufferDir file_rec'
+    execute 'Denite file_rec'
 endfunction
 
 function! notomo#denite#change_source(source_name, context) abort
