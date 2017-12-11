@@ -13,6 +13,7 @@ nnoremap <expr> [git]P ':<C-u>Gina! push origin ' . gina#component#repo#branch()
 nnoremap <expr> [git]H ':<C-u>Gina! pull origin ' . gina#component#repo#branch()
 nnoremap [git]M :<C-u>Gina! merge<Space>
 nnoremap [git]F :<C-u>Gina! fetch<Space>
+nnoremap [git]ma :<C-u>Gina! merge --abort
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()
