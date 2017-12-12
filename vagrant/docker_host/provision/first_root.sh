@@ -152,7 +152,8 @@ pip3.5 install vim-vint
 gem install sqlint
 
 # javascript
-yum -y install nodejs npm --enablerepo=epel
+curl -sL https://rpm.nodesource.com/setup_9.x | bash -E -
+yum install -y nodejs
 npm install -g javascript-typescript-langserver
 
 npm i -g typescript
