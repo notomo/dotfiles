@@ -266,3 +266,10 @@ options head
 		${0:TARGET}
 	}
 
+snippet chain
+	->${1:method}()
+
+snippet chain_func
+	->${1:method}(function (${2}) {
+		${0:TARGET}
+	})

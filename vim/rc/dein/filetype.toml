@@ -77,7 +77,7 @@ setlocal noexpandtab
 
 blade = '''
 let b:caw_wrap_oneline_comment = ['{{-- ', ' --}}']
-setlocal expandtab
+setlocal noexpandtab
 '''
 
 jesponsiv2 = '''
