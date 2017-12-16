@@ -29,6 +29,7 @@
 /.go/src/github.com/kisielk/
 /.go/src/github.com/klauspost/
 /.go/src/github.com/lucasb/
+/.go/src/github.com/lucasb-eyer/
 /.go/src/github.com/marcusolsson/
 /.go/src/github.com/mattn/
 /.go/src/github.com/mgutz/
@@ -40,6 +41,7 @@
 /.go/src/github.com/rogpeppe/
 /.go/src/github.com/Sirupsen/
 /.go/src/github.com/therecipe/
+/.go/src/github.com/zmb3/
 /.pdepend
 /.pki
 /app
