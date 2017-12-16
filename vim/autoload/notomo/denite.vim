@@ -138,3 +138,8 @@ function! notomo#denite#delete_others_line(context) abort
     1,$delete
     call setline(1, lines)
 endfunction
+
+function! notomo#denite#project_dir_by_path(dir_path) abort
+    execute 'cd ' . a:dir_path
+    execute 'DeniteProjectDir file_rec'
+endfunction

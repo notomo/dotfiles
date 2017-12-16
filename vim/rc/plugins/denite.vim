@@ -125,6 +125,7 @@ call denite#custom#map('normal', 'ml', '<denite:wincmd:l>', 'noremap')
 call denite#custom#map('normal', 'ud', '<denite:do_action:source_directory_mru>', 'noremap')
 call denite#custom#map('normal', 'ur', '<denite:do_action:source_file_mru>', 'noremap')
 call denite#custom#map('normal', 'uf', '<denite:do_action:source_dir_file>', 'noremap')
+call denite#custom#map('normal', 'uv', '<denite:do_action:dotfiles>', 'noremap')
 call denite#custom#map('normal', '<C-j>', '<denite:scroll_page_forwards>', 'noremap')
 call denite#custom#map('normal', '<C-k>', '<denite:scroll_page_backwards>', 'noremap')
 call denite#custom#map('normal', 'J', '<denite:jump_to_next_source>', 'noremap')
@@ -178,3 +179,5 @@ call denite#custom#action('directory', 'project_dir_file_rec', {context ->  noto
 
 call denite#custom#action('file', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec_on_file(context)})
 call denite#custom#action('directory', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
+
+call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles')})
