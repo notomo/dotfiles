@@ -91,7 +91,7 @@ nnoremap [test]cc :<C-u>CoverageEcho<CR>
 
 # [[plugins]]
 # repo = 'autozimu/LanguageClient-neovim'
-# on_ft = ['python', 'go', 'javascript']
+# on_ft = ['python', 'go', 'javascript', 'lua']
 # depends = 'denite.nvim'
 # on_source = 'deoplete.nvim'
 # hook_add = '''
@@ -109,6 +109,7 @@ nnoremap [test]cc :<C-u>CoverageEcho<CR>
 # let g:LanguageClient_serverCommands['python'] = ['pyls']
 # " let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
 # " let g:LanguageClient_serverCommands['go'] = ['go-langserver']
+# let g:LanguageClient_serverCommands['lua'] = ['lua-lsp']
 #
 # let g:LanguageClient_signColumnAlwaysOn = 0
 # let g:LanguageClient_diagnosticsEnable = 0
