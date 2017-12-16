@@ -160,6 +160,11 @@ npm i -g typescript
 npm i -g neovim
 npm i -g gulp
 
+# lua
+yum install -y lua-devel
+yum install -y luarocks --enablerepo=epel
+luarocks install luacheck
+
 # text browser
 yum -y install lynx
 

@@ -18,6 +18,7 @@ let g:ale_linters['c'] = ['clang']
 let g:ale_linters['cs'] = ['mcs']
 let g:ale_linters['xml'] = []
 let g:ale_linters['ruby'] = ['rubocop']
+let g:ale_linters['lua'] = ['luacheck']
 
 let g:ale_fixers = {}
 let g:ale_fixers['python'] = ['autopep8', 'isort']
