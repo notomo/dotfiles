@@ -12,6 +12,12 @@ abbr func name() (returnVar type) {}
 		${0:TARGET}
 	}
 
+snippet no_name_func
+abbr func() (returnVar type) {}
+	func (${1}) (${2:returnVar} ${3:type}) {
+		${0:TARGET}
+	}
+
 snippet var
 abbr var names type;
 	var ${1:names} ${0:type}
