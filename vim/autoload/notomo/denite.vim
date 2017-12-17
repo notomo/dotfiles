@@ -139,7 +139,8 @@ function! notomo#denite#delete_others_line(context) abort
     call setline(1, lines)
 endfunction
 
-function! notomo#denite#project_dir_by_path(dir_path) abort
+function! notomo#denite#project_dir_by_path(dir_path, context) abort
     execute 'cd ' . a:dir_path
-    execute 'DeniteProjectDir file_rec'
+    let input = '-input=' . escape(a:context['input'], ' ')
+    execute join(['DeniteProjectDir', input, 'file_rec'])
 endfunction
