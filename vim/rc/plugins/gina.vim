@@ -14,6 +14,7 @@ nnoremap <expr> [git]H ':<C-u>Gina! pull origin ' . gina#component#repo#branch()
 nnoremap [git]M :<C-u>Gina! merge<Space>
 nnoremap [git]F :<C-u>Gina! fetch<Space>
 nnoremap [git]ma :<C-u>Gina! merge --abort
+nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()
@@ -97,6 +98,7 @@ call gina#custom#command#option('branch', '-v', 'v')
 call gina#custom#mapping#nmap('branch', 'yn', '<Plug>(gina-yank-rev)', s:silent)
 call gina#custom#mapping#nmap('branch', 'co', ':call gina#action#call(''show:commit:tab'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('branch', 'MA', ':call gina#action#call(''commit:merge'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('branch', 'cp', ':call gina#action#call(''commit:cherry-pick'')<CR>', s:noremap_silent)
 
 " group
 call gina#custom#command#option('show', '--group', 'show')
