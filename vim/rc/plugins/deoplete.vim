@@ -11,10 +11,13 @@ let g:deoplete#sources.go = ['go', 'file', 'buffer', 'around', 'neosnippet']
 let g:deoplete#sources.c = ['clang', 'file', 'buffer', 'around', 'neosnippet']
 let g:deoplete#sources.cs = ['cs', 'file', 'buffer', 'around', 'neosnippet']
 " let g:deoplete#sources.javascript = ['LanguageClient', 'file', 'buffer', 'around', 'neosnippet']
+let g:deoplete#sources['gina-commit'] = ['look', 'buffer', 'file', 'around', 'neosnippet']
 
 call deoplete#custom#source('neosnippet', 'rank', 10000)
 call deoplete#custom#source('tag', 'rank', 700)
 let g:deoplete#tag#cache_limit_size = 5000000
+
+call deoplete#custom#source('vim', 'converters', ['converter_remove_paren', 'converter_remove_overlap', 'converter_truncate_abbr', 'converter_truncate_menu'])
 
 inoremap <expr> j<Space>u deoplete#undo_completion()
 inoremap <expr> j<Space>; deoplete#complete_common_string()
