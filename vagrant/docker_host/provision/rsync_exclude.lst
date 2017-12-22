@@ -1,3 +1,4 @@
+/.cache/luarocks/
 /.cache/composer/
 /.cache/deoplete/
 /.cache/neosnippet/
@@ -40,10 +41,14 @@
 /.go/src/github.com/nsf/
 /.go/src/github.com/rogpeppe/
 /.go/src/github.com/Sirupsen/
+/.go/src/github.com/sirupsen/
 /.go/src/github.com/therecipe/
 /.go/src/github.com/zmb3/
+/.go/src/github.com/tj/
+/.go/src/github.com/go-task/
 /.pdepend
 /.pki
+/.ssh/vagrant_key.pub
 /app
 /workspace/readonly
 /.bash*
@@ -70,6 +75,7 @@
 /.templateengine
 /.Xauthority
 /.rbenv
+/.luarocks
 /.ssh/authorized_keys
 __pycache__
 .mypy_cache
