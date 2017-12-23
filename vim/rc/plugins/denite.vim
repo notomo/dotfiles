@@ -30,6 +30,10 @@ nnoremap <silent> [denite]th :<C-u>DeniteCursorWord help -no-empty -immediately-
 nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [unite]d :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file_rec<CR>
+nnoremap <silent> [denite]D :<C-u>Denite grep:~/dotfiles::!<CR>
+nnoremap <silent> [denite]F :<C-u>DeniteBufferDir grep:::!<CR>
+nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
+nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
@@ -99,7 +103,7 @@ call denite#custom#map('normal', 'D', '<denite:delete_text_after_caret>', 'norem
 call denite#custom#map('normal', 'x', '<denite:delete_char_under_caret>', 'noremap')
 call denite#custom#map('normal', 'sm', '<denite:toggle_select_down>', 'noremap')
 call denite#custom#map('normal', 'sa', '<denite:toggle_select_all>', 'noremap')
-call denite#custom#map('normal', 'yy', '<denite:yank_to_default_register>', 'noremap')
+call denite#custom#map('normal', 'yy', '<denite:do_action:yank>', 'noremap')
 call denite#custom#map('normal', 'p', '<denite:paste_from_default_register>', 'noremap')
 call denite#custom#map('normal', 'v', '<denite:do_action:preview>', 'noremap')
 call denite#custom#map('normal', 'o', '<denite:do_action:open>', 'noremap')
@@ -134,6 +138,7 @@ call denite#custom#map('normal', 'dll', '<denite:do_action:delete_line>', 'norem
 call denite#custom#map('normal', 'dlL', '<denite:do_action:delete_others_line>', 'noremap')
 call denite#custom#map('normal', 'sg', '<denite:do_action:project_dir_file_rec>', 'noremap')
 call denite#custom#map('normal', 'sf', '<denite:do_action:dir_file_rec>', 'noremap')
+call denite#custom#map('normal', '<Space>d', '<denite:do_action:grep_plugin_setting>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags'])
@@ -181,3 +186,5 @@ call denite#custom#action('file', 'dir_file_rec', {context ->  notomo#denite#dir
 call denite#custom#action('directory', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
 
 call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles', context)})
+
+call denite#custom#action('directory', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})

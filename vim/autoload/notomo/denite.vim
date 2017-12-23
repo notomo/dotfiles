@@ -144,3 +144,13 @@ function! notomo#denite#project_dir_by_path(dir_path, context) abort
     let input = '-input=' . escape(a:context['input'], ' ')
     execute join(['DeniteProjectDir', input, 'file_rec'])
 endfunction
+
+function! notomo#denite#grep_plugin_setting(context) abort
+    let target = a:context['targets'][0]
+    if !has_key(target, 'word')
+        return
+    endif
+    let plugin = target['word']
+    execute join(['Denite', 'grep:~/dotfiles/vim/rc/dein::' . plugin, '-no-empty', '-immediately-1'])
+endfunction
+
