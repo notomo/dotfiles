@@ -529,7 +529,11 @@ inoremap <C-o> <C-o>o
 inoremap <S-TAB> <C-d>
 
 " 電卓
-inoremap j<Space><CR> <C-r>=
+inoremap jk<CR> <C-r>=
+
+" 数字入力モード
+let s:number_mode_key = notomo#mapping#get_number_mode_key()
+silent execute join(['inoremap', s:number_mode_key, '<C-r>=notomo#number#setup_submode()<CR>'])
 
 " カーソル位置の単語を大文字に変換
 inoremap j<Space><Space> <ESC>gUiwea
@@ -659,6 +663,8 @@ vmap <Space>a [arith]
 
 nnoremap [arith]j <C-x>
 nnoremap [arith]k <C-a>
+nnoremap [arith]J v<C-x><ESC>
+nnoremap [arith]K v<C-a><ESC>
 vnoremap [arith]j <C-x>gv
 vnoremap [arith]k <C-a>gv
 vnoremap [arith]d g<C-x>gv

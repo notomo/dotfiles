@@ -1,6 +1,4 @@
 let s:SCROLL_MODE_NM = 'scroll'
-let s:LHS_KEY = notomo#mapping#get_lhs_key()
-let s:RHS_KEY = notomo#mapping#get_rhs_key()
 
 function! notomo#scroll#scroll(cmd) abort
     noautocmd execute "normal! \<C-w>w"
