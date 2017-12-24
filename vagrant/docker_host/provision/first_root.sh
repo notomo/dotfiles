@@ -217,3 +217,5 @@ chmod 0700 $USERDIR/.ssh
 # yum -y install glib*
 # yum -y install libGLU
 # yum -y install libXi
+
+yum -y install tree
