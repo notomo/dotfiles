@@ -108,11 +108,14 @@ call gina#custom#command#option('/\%(status\|changes\|ls\|commit\)', '--opener',
 call gina#custom#command#option('/\%(diff\|blame\|compare\|patch\|log\)', '--opener', 'tabedit')
 
 " blame
-let g:gina#command#blame#timestamper#format1 = '%Y-%m-%d'
-let g:gina#command#blame#timestamper#format2 = '%Y-%m-%d'
+let g:gina#command#blame#formatter#format = '%su%=on %ti by %au %ma%in'
+let g:gina#command#blame#formatter#timestamp_format1 = '%Y-%m-%d'
+let g:gina#command#blame#formatter#timestamp_format2 = '%Y-%m-%d'
+let g:gina#command#blame#formatter#timestamp_months = 0
 call gina#custom#command#option('blame', '--width', '90')
 call gina#custom#mapping#nmap('blame', 'j', 'j<Plug>(gina-blame-echo)')
 call gina#custom#mapping#nmap('blame', 'k', 'k<Plug>(gina-blame-echo)')
+call gina#custom#mapping#nmap('blame', 'yr', '<Plug>(gina-yank-rev)')
 
 " diff
 call gina#custom#mapping#nmap('diff', 'sgj', ':call notomo#vimrc#to_next_syntax(''diffLine'', 1)<CR>', s:noremap_silent)
