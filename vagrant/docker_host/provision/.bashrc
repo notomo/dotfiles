@@ -20,6 +20,7 @@ alias dh=docker_history
 alias drmi=docker_remove_image
 alias dip=docker_inspect
 alias dt=docker_top
+alias ds=docker_compose
 
 function docker_latest() {
     docker ps -l -q
@@ -80,6 +81,10 @@ function docker_inspect() {
 
 function docker_top() {
     docker top "$*"
+}
+
+function docker_compose() {
+    docker-compose "$*"
 }
 
 alias ev="nvr --remote-tab"
