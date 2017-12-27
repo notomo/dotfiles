@@ -48,7 +48,7 @@ function! s:vimfiler_my_settings()
     nnoremap <buffer><silent> u <C-w>l:<C-u>Unite file<CR>
     nmap <buffer> x <Plug>(vimfiler_execute_external_filer)
     nmap <buffer> X <Plug>(vimfiler_execute_system_associated)
-    nmap <buffer> <2-LeftMouse> <Plug>(vimfiler_double_click)
+    nmap <buffer> <2-LeftMouse> <Plug>(vimfiler_smart_l)
     nmap <buffer>yp <Plug>(vimfiler_yank_full_path)
     nmap <buffer>yf <Plug>(vimfiler_clipboard_copy_file)
     nmap <buffer>xf <Plug>(vimfiler_clipboard_move_file)
