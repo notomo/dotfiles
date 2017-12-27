@@ -76,6 +76,7 @@
 /.Xauthority
 /.rbenv
 /.luarocks
+/refresh_dotfiles_git.sh
 /.ssh/authorized_keys
 __pycache__
 .mypy_cache

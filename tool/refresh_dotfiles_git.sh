@@ -4,6 +4,7 @@ pushd .
 rm -r $TMP_DIR
 mkdir -p $TMP_DIR
 cp -R $DOTFILES_DIR/* $TMP_DIR
+rm -rf $DOTFILES_DIR/.git
 rm -r $DOTFILES_DIR
 git clone https://github.com/notomo/dotfiles.git $DOTFILES_DIR
 if [ -d $DOTFILES_DIR ]
