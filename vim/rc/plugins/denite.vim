@@ -34,6 +34,7 @@ nnoremap <silent> [denite]D :<C-u>Denite grep:~/dotfiles::!<CR>
 nnoremap <silent> [denite]F :<C-u>DeniteBufferDir grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
+nnoremap <silent> [denite]m :<C-u>Denite output:map<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 

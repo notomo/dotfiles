@@ -11,7 +11,6 @@ nnoremap [unite]F :<C-u>UniteWithBufferDir -buffer-name=files file -input=
 nnoremap <silent> [unite]p :<C-u>Unite bookmark<CR>
 nnoremap <silent> [unite]<Space> :<C-u>UniteBookmarkAdd<CR>
 nnoremap <silent> [unite]ta :<C-u>Unite tab:no-current<CR>
-nnoremap <silent> [unite]mp :<C-u>Unite mapping<CR>
 nnoremap <silent> [unite]R :<C-u>Unite runtimepath<CR>
 nnoremap <silent> [unite]<CR> :<C-u>UniteResume<CR>
 nnoremap <silent> [unite]gg  :<C-u>call <SID>unite_grep()<CR>
