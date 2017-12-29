@@ -528,12 +528,11 @@ inoremap <C-o> <C-o>o
 " インデント
 inoremap <S-TAB> <C-d>
 
-" 電卓
-inoremap jk<CR> <C-r>=
+" calculator
+silent execute join(['noremap!', notomo#mapping#get_calculator_key(), '<C-r>=notomo#number#setup_submode()<CR><C-r>='])
 
 " 数字入力モード
-let s:number_mode_key = notomo#mapping#get_number_mode_key()
-silent execute join(['noremap!', s:number_mode_key, '<C-r>=notomo#number#setup_submode()<CR>'])
+silent execute join(['noremap!', notomo#mapping#get_number_mode_key(), '<C-r>=notomo#number#setup_submode()<CR>'])
 
 " カーソル位置の単語を大文字に変換
 inoremap j<Space><Space> <ESC>gUiwea

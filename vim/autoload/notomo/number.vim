@@ -6,6 +6,7 @@ endfunction
 
 function! notomo#number#setup_submode() abort
     call submode#enter_with(s:NUMBER_MODE_NM, 'ci', '', notomo#mapping#get_number_mode_key(), '<Nop>')
+    call submode#enter_with(s:NUMBER_MODE_NM, 'ci', '', notomo#mapping#get_calculator_key(), '<C-r>=')
     call submode#leave_with(s:NUMBER_MODE_NM, 'ci', '', '<CR>')
     call s:number_map('a', '1')
     call s:number_map('s', '2')
@@ -49,9 +50,9 @@ function! notomo#number#setup_submode() abort
     call s:number_map('b', '<Left>')
     call s:number_map('w', '<Right>')
 
-    let s:tmp_enter_key = notomo#mapping#get_sub_input_key()  . 'N'
-    call submode#enter_with(s:NUMBER_MODE_NM, 'ci', '', s:tmp_enter_key, '<Nop>')
-    call feedkeys(s:tmp_enter_key)
+    let tmp_enter_key = notomo#mapping#get_sub_input_key()  . 'N'
+    call submode#enter_with(s:NUMBER_MODE_NM, 'ci', '', tmp_enter_key, '<Nop>')
+    call feedkeys(tmp_enter_key)
     return ''
 endfunction
 
