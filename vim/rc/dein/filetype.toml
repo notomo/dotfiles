@@ -80,6 +80,11 @@ let b:caw_wrap_oneline_comment = ['{{-- ', ' --}}']
 setlocal noexpandtab
 '''
 
+Jenkinsfile = '''
+let b:caw_oneline_comment = '//'
+let b:caw_wrap_oneline_comment = ['//']
+'''
+
 jesponsiv2 = '''
 nnoremap <buffer> [file]rl :<C-u>JesponseReload<CR>
 '''
@@ -104,4 +109,6 @@ nnoremap <buffer> [keyword]o :<C-u>GoDef<CR>
 nnoremap <buffer> [keyword]v :<C-u>vsplit \| GoDef<CR>
 nnoremap <buffer> [keyword]h :<C-u>split \| GoDef<CR>
 nnoremap <buffer> [keyword]t :<C-u>call notomo#window#duplicate() \| GoDef<CR>
+nmap <buffer> sgj ]]
+nmap <buffer> sgk [[
 '''
