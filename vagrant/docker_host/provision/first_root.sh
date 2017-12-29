@@ -219,3 +219,12 @@ chmod 0700 $USERDIR/.ssh
 # yum -y install libXi
 
 yum -y install tree
+
+# tee /etc/yum.repos.d/highway.repo <<-EOF
+# [repos.highway]
+# name=highway
+# baseurl=http://tkengo.github.io/highway/fedora
+# enabled=0
+# gpgcheck=0
+# EOF
+# yum -y install highway --enablerepo="repos.highway"
