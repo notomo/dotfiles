@@ -19,10 +19,6 @@ __pycache__
 !/vim/rc/local/*.sample
 /vim/rc/local/after/*
 
-# dict
-/vim/dict/cp932/
-/vim/dict/utf-8/
-
 # snippet
 /vim/snippets/mydiary.snip
 
