@@ -118,6 +118,7 @@ hook_add = 'let g:loaded_matchparen = 1'
 
 [[plugins]]
 repo = 'itchyny/vim-cursorword'
+if = "has('unix')"
 
 [[plugins]]
 repo = 'kana/vim-submode'
@@ -264,3 +265,11 @@ repo = 'posva/vim-vue'
 
 [[plugins]]
 repo = 'martinda/Jenkinsfile-vim-syntax'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_post_source = 'source ~/.vim/rc/plugins/denite.vim'
+
+[[plugins]]
+repo = 'notomo/denite-autocmd'
+hook_add = 'nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>'

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<package>
+    <job id="addPath">
+    <?job error="true" debug="true" ?>
+    <object progid="Scripting.FileSystemObject" />
+    <script language="VBScript">
+    <![CDATA[
+        Set shell = WScript.CreateObject("WScript.Shell")
+        Set env = shell.Environment("SYSTEM")
+        Set args = WScript.Arguments.Unnamed
+        If InStr(env.Item("PATH"), args.Item(0)) = 0 Then
+            env.Item("PATH") = env.Item("PATH") & ";" & args.Item(0)
+        End If
+    ]]>
+    </script>
+    </job>
+</package>

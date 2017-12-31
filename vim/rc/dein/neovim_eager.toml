@@ -1,9 +1,1 @@
 
-[[plugins]]
-repo = 'Shougo/denite.nvim'
-hook_post_source = 'source ~/.vim/rc/plugins/denite.vim'
-
-[[plugins]]
-repo = 'notomo/denite-autocmd'
-hook_add = 'nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>'
-
