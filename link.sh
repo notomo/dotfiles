@@ -91,7 +91,8 @@ if [ ! -e "${install_root}"/.gitconfig ]; then
     cp "${install_root}"/dotfiles/git/.gitconfig "${install_root}"/.gitconfig
 fi
 
-cp -f "${install_root}"/dotfiles/tool/refresh_dotfiles_git.sh "${install_root}"/refresh_dotfiles_git.sh
+mkdir -p "${install_root}"/app
+cp -f "${install_root}"/dotfiles/tool/refresh_dotfiles_git.sh "${install_root}"/app/refresh_dotfiles_git.sh
 
 if [ "$1" == "" ]
 then

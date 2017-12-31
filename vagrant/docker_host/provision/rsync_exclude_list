@@ -13,6 +13,7 @@
 /.gem
 /.go/bin/
 /.go/pkg/
+/.go/src/google.golang.org/
 /.go/src/golang.org/
 /.go/src/gopkg.in/
 /.go/src/honnef.co/
@@ -76,8 +77,9 @@
 /.Xauthority
 /.rbenv
 /.luarocks
-/refresh_dotfiles_git.sh
 /.ssh/authorized_keys
 __pycache__
 .mypy_cache
 node_modules/**
+/.nvim-python.log*
+/logfile_py3_rplugin
