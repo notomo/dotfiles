@@ -499,46 +499,6 @@ let g:choosewin_blink_on_land      = 0
 let g:choosewin_statusline_replace = 0
 '''
 
-[[plugins]]
-repo = 'osyo-manga/vim-watchdogs'
-if = "!has('nvim')"
-on_ft = ['php', 'vim', 'python']
-on_cmd = 'WatchdogsRun'
-depends = 'vim-quickrun'
-hook_source = '''
-let g:watchdogs_check_BufWritePost_enable_on_wq = 0
-let g:watchdogs_check_BufWritePost_enable = 1
-
-let g:watchdogs_check_BufWritePost_enables = {
-\   "php" : 1,
-\   "python" : 1,
-\   "vim" : 1,
-\}
-
-let g:watchdogs_check_CursorHold_enable = 0
-
-let g:watchdogs_check_CursorHold_enables = {
-\   "php" : 0,
-\   "vim" : 0,
-\   "python" : 0,
-\}
-
-let g:quickrun_config["watchdogs_checker/_"] = {
-\       "hook/close_quickfix/enable_exit" : 0,
-      \ }
-
-if !exists("g:quickrun_config")
-    let g:quickrun_config = {}
-endif
-
-call watchdogs#setup(g:quickrun_config)
-'''
-
-[[plugins]]
-repo = 'cohama/vim-hier'
-if = "!has('nvim')"
-on_source = ['vim-watchdogs']
-
 # [[plugins]]
 # repo = 'dhruvasagar/vim-table-mode'
 # on_ft = 'txt'
