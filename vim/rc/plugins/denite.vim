@@ -148,6 +148,8 @@ call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
+call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', (has('win32') ? '-g:' : '-g='), ''])
+
 call denite#custom#var('outline', 'ignore_types', ['v'])
 
 call denite#custom#action('command', 'open', {context -> notomo#denite#open_command(context)})
