@@ -656,3 +656,11 @@ hook_add = '''
 map gJ <Plug>(edgemotion-j)
 map gK <Plug>(edgemotion-k)
 '''
+
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+# on_event = 'InsertCharPre'
+# hook_add = '''
+# let g:deoplete#enable_at_startup = 1
+# '''
+# hook_source = 'source ~/.vim/rc/plugins/deoplete.vim'

@@ -91,6 +91,8 @@ autocmd MyAuGroup WinLeave * :setlocal nocursorline
 set guioptions+=M
 set guioptions+=c
 
+let g:python3_host_prog = 'C:/Python35/python.exe'
+
 '''
 
 [[plugins]]
@@ -273,3 +275,18 @@ hook_post_source = 'source ~/.vim/rc/plugins/denite.vim'
 [[plugins]]
 repo = 'notomo/denite-autocmd'
 hook_add = 'nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>'
+
+[[plugins]]
+repo = 'pocari/vim-denite-emoji'
+
+[[plugins]]
+repo = 'junegunn/vim-emoji'
+
+# [[plugins]]
+# repo = 'roxma/vim-hug-neovim-rpc'
+# if = "!has('nvim')"
+#
+# [[plugins]]
+# repo = 'roxma/nvim-yarp'
+# hook_add = 'let g:deoplete#enable_yarp = 1'
+# if = "!has('nvim')"
