@@ -285,6 +285,7 @@ hook_add = 'nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>'
 
 [[plugins]]
 repo = 'pocari/vim-denite-emoji'
+hook_add = 'nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>'
 
 [[plugins]]
 repo = 'junegunn/vim-emoji'
