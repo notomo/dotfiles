@@ -1,32 +1,10 @@
 
-tnoremap jj <C-\><C-n>
-
-let s:LHS_KEY = notomo#mapping#get_lhs_key()
-let s:RHS_KEY = notomo#mapping#get_rhs_key()
-
-" not effective?
-tnoremap <C-h> <Left>
-tnoremap <C-j> <Down>
-tnoremap <C-k> <Up>
-tnoremap <C-l> <Right>
-tnoremap <C-e> <End>
-tnoremap <C-a> <Home>
-tnoremap <C-b> <BS>
-tnoremap <C-d> <Del>
-
-tnoremap <BS> <Left>
-
-for s:info in notomo#mapping#main_input()
-    silent execute join(['tnoremap', s:info[s:LHS_KEY], s:info[s:RHS_KEY]])
-endfor
-
-for s:info in notomo#mapping#sub_input()
-    silent execute join(['tnoremap', s:info[s:LHS_KEY], s:info[s:RHS_KEY]])
-endfor
+if has('win32')
+    tnoremap <C-u> <ESC>
+endif
 
 let s:MAIN_INPUT_PFX = notomo#mapping#get_main_input_key()
 execute join(['tnoremap', s:MAIN_INPUT_PFX . 'h', '<C-\><C-N>pi'])
-execute join(['tnoremap', s:MAIN_INPUT_PFX . 'o', '<Tab>'])
 
 nnoremap [term] <Nop>
 nmap <Space>t [term]
