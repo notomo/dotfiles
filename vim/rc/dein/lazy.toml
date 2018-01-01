@@ -664,3 +664,8 @@ map gK <Plug>(edgemotion-k)
 # let g:deoplete#enable_at_startup = 1
 # '''
 # hook_source = 'source ~/.vim/rc/plugins/deoplete.vim'
+
+[[plugins]]
+repo = 'cocopon/colorswatch.vim'
+hook_add = 'nnoremap [exec]co :<C-u>ColorSwatchGenerate<CR>'
+

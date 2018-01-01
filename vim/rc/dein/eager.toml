@@ -298,3 +298,8 @@ repo = 'junegunn/vim-emoji'
 # repo = 'roxma/nvim-yarp'
 # hook_add = 'let g:deoplete#enable_yarp = 1'
 # if = "!has('nvim')"
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = 'source ~/.vim/rc/plugins/lightline.vim'
+
