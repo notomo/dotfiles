@@ -111,4 +111,5 @@ nnoremap <buffer> [keyword]h :<C-u>split \| GoDef<CR>
 nnoremap <buffer> [keyword]t :<C-u>call notomo#window#duplicate() \| GoDef<CR>
 nmap <buffer> sgj ]]
 nmap <buffer> sgk [[
+nnoremap <buffer> [exec]b :<C-u>GoBuild<CR>
 '''
