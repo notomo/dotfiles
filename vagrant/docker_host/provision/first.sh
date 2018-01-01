@@ -47,6 +47,11 @@ gem install rubocop
 pip3.5 install --user neovim-remote
 git config --global core.editor 'nvr --remote-wait-silent'
 
+# cd ~/app
+# wget -nv https://github.com/google/protobuf/releases/download/v3.5.1/protoc-3.5.1-linux-x86_64.zip
+# unzip protoc-3.5.1-linux-x86_64.zip -d ~/app/protoc
+# cp ~/app/protoc/bin/protoc ~/.local/bin/protoc
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace
