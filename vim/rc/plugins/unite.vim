@@ -3,7 +3,6 @@ nmap <Space>u [unite]
 
 nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
 nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>
-nnoremap <silent> [unite]ta :<C-u>Unite tab:no-current<CR>
 nnoremap <silent> [unite]<CR> :<C-u>UniteResume<CR>
 nnoremap <silent> [unite]gg  :<C-u>call <SID>unite_grep()<CR>
 function! s:unite_grep() abort

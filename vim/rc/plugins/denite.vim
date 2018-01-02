@@ -36,6 +36,7 @@ nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
 nnoremap <silent> [denite]m :<C-u>Denite output:map<CR>
 nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
+nnoremap <silent> [denite]tb :<C-u>Denite tab:no_current<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
@@ -47,7 +48,7 @@ call denite#custom#option('default', 'highlight_matched_char', 'myDeniteMatchTex
 call denite#custom#option('default', 'highlight_mode_insert', 'myDeniteInsert')
 call denite#custom#option('default', 'highlight_mode_normal', 'myDeniteNormal')
 call denite#custom#option('default', 'highlight_matched_range', 'myDeniteMatchText')
-call denite#custom#option('default', 'split', 'tab')
+call denite#custom#option('default', 'split', 'no')
 call denite#custom#option('default', 'no_empty', v:true)
 call denite#custom#option('default', 'vertical_preview', v:true)
 call denite#custom#option('default', 'highlight_preview_line', 'Search')
@@ -142,6 +143,7 @@ call denite#custom#map('normal', 'dlL', '<denite:do_action:delete_others_line>',
 call denite#custom#map('normal', 'sg', '<denite:do_action:project_dir_file_rec>', 'noremap')
 call denite#custom#map('normal', 'sf', '<denite:do_action:dir_file_rec>', 'noremap')
 call denite#custom#map('normal', '<Space>d', '<denite:do_action:grep_plugin_setting>', 'noremap')
+call denite#custom#map('normal', '<Space>m', '<denite:quick_move>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags'])
