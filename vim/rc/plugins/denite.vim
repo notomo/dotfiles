@@ -48,7 +48,7 @@ call denite#custom#option('default', 'highlight_matched_char', 'myDeniteMatchTex
 call denite#custom#option('default', 'highlight_mode_insert', 'myDeniteInsert')
 call denite#custom#option('default', 'highlight_mode_normal', 'myDeniteNormal')
 call denite#custom#option('default', 'highlight_matched_range', 'myDeniteMatchText')
-call denite#custom#option('default', 'split', 'no')
+call denite#custom#option('default', 'split', 'tab')
 call denite#custom#option('default', 'no_empty', v:true)
 call denite#custom#option('default', 'vertical_preview', v:true)
 call denite#custom#option('default', 'highlight_preview_line', 'Search')

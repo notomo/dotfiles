@@ -14,27 +14,6 @@ function! s:unite_grep() abort
     execute "normal! :Unite -tab -no-quit grep:. -buffer-name=GREP\<CR>" . pattern . "\<CR>"
 endfunction
 
-" tab_drop
-let s:tab_drop = {
-\   'description' : 'tab drop',
-\   'is_selectable' : 1,
-\ }
-function! s:tab_drop.func(candidates)
-    for l:candidate in a:candidates
-        call unite#util#smart_execute_command('tab drop', l:candidate.action__path)
-    endfor
-endfunction
-call unite#custom_action('openable', 'tab_drop', s:tab_drop)
-unlet s:tab_drop
-
-" parent_file
-let s:parent_file = {'is_selectable' : 0}
-function! s:parent_file.func(candidate)
-    execute 'Unite file:' . fnamemodify(a:candidate['action__path'], ':h:h')
-endfunction
-call unite#custom_action('openable', 'parent_file', s:parent_file)
-unlet s:parent_file
-
 call unite#custom#profile('default', 'context', {
 \   'no_split' : 1,
 \   'start_insert' : 1
@@ -51,24 +30,13 @@ if executable('pt')
   let g:unite_source_grep_recursive_opt = ''
 endif
 
-call unite#custom#source('file_mru', 'ignore_pattern', '\v^(gina|gita)')
-
-call unite#custom#source('file', 'matchers', 'matcher_default')
-
-call unite#custom#source('directory_mru', 'sorters', ['sorter_length'])
-
 call unite#custom#default_action('giti/branch_all', 'checkout_tracking')
-
-function! s:change_source(source_name) abort
-    execute 'Unite ' . a:source_name . ' -no-start-insert -input=' . join(split(getline(1), ' '), '\ ')
-endfunction
 
 autocmd MyAuGroup FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
     imap <buffer> jq <Plug>(unite_exit)
     imap <buffer> jj <Plug>(unite_insert_leave)
     nnoremap <silent> <buffer> <expr> o unite#do_action('open')
-    nnoremap <silent> <buffer> <expr> T unite#do_action('tab_drop')
     nnoremap <silent> <buffer> <expr> t<Space> unite#do_action('tabopen')
     vmap <buffer> sm <Plug>(unite_toggle_mark_selected_candidates)
     nmap <buffer> sm <Plug>(unite_toggle_mark_current_candidate)
@@ -78,14 +46,6 @@ function! s:unite_my_settings()
     nnoremap <silent> <buffer> <expr> fl unite#do_action('tabvimfiler')
     nnoremap <silent> <buffer> <expr> fo unite#do_action('vimfiler')
     nnoremap <silent> <buffer> <expr> ff unite#do_action('file')
-    nnoremap <silent> <buffer> <expr> fp unite#do_action('parent_file')
-    nnoremap <silent> <buffer> <expr> <Leader>rp unite#do_action('replace')
-    nnoremap <silent> <buffer> <expr> <Leader>rn unite#do_action('exrename')
-    nnoremap <silent> <buffer> uf :call <SID>change_source('file')<CR>
-    nnoremap <silent> <buffer> ub :call <SID>change_source('buffer')<CR>
-    nnoremap <silent> <buffer> ur :call <SID>change_source('neomru/file')<CR>
-    nnoremap <silent> <buffer> ud :call <SID>change_source('neomru/directory')<CR>
-    nnoremap <silent> <buffer> ut :call <SID>change_source('tab')<CR>
 
     nmap <buffer> i <Plug>(unite_insert_enter)
     nmap <buffer> a gg<Plug>(unite_insert_enter)
