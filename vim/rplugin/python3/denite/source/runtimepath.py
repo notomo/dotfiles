@@ -11,8 +11,6 @@ class Source(Base):
 
         self.name = 'runtimepath'
         self.kind = 'directory'
-        self.matchers = ['matcher_substring']
-        self.sorters = []
 
     def gather_candidates(self, context):
         home = os.path.expanduser('~')
