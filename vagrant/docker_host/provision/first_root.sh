@@ -54,7 +54,7 @@ NEOVIMDIR=$APPDIR/neovim
 yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
 git clone https://github.com/neovim/neovim.git $NEOVIMDIR
 cd $NEOVIMDIR
-make CMAKE_BUILD_TYPE=RelWithDebInfo
+make CMAKE_BUILD_TYPE=Release
 make install
 
 # ctags
