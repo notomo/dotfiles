@@ -3,6 +3,7 @@ let g:vimfiler_enable_auto_cd = 1
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = ['^\.DS_Store$']
 let g:vimfiler_no_default_key_mappings = 1
+let g:vimfiler_force_overwrite_statusline = 0
 
 let s:hsplit = {'is_selectable' : 1}
 function! s:hsplit.func(candidates)

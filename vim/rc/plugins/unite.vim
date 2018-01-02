@@ -1,15 +1,8 @@
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
 
-if !has('nvim')
-    nnoremap <silent> [unite]r :<C-u>Unite file_mru<CR>
-    nnoremap <silent> [unite]d :<C-u>Unite directory_mru<CR>
-endif
 nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
 nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>
-nnoremap [unite]F :<C-u>UniteWithBufferDir -buffer-name=files file -input=
-nnoremap <silent> [unite]p :<C-u>Unite bookmark<CR>
-nnoremap <silent> [unite]<Space> :<C-u>UniteBookmarkAdd<CR>
 nnoremap <silent> [unite]ta :<C-u>Unite tab:no-current<CR>
 nnoremap <silent> [unite]R :<C-u>Unite runtimepath<CR>
 nnoremap <silent> [unite]<CR> :<C-u>UniteResume<CR>

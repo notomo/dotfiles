@@ -5,42 +5,75 @@ let s:enable = {}
 let s:enable.tabline = 0
 let s:enable.statusline = 1
 let s:active = {}
-let s:active.left = [['mode'], ['column']]
+let s:active.left = [['mode'], ['position']]
 let s:active.right = [['gitbranch'], ['fileinfo'], ['filepath']]
+let s:inactive = {}
+let s:inactive.left = [[]]
+let s:inactive.right = s:active.right
 let s:component_function = {}
+let s:component_function.mode = 'LightlineMode'
 let s:component_function.gitbranch = 'LightlineGitBranch'
 let s:component_function.fileinfo = 'LightlineFileInfo'
-let s:component_function.column = 'LightlineColumn'
+let s:component_function.position = 'LightlinePosition'
 let s:component_function.filepath = 'LightlineFilePath'
-let g:lightline = {'enable': s:enable, 'active': s:active, 'inactive': s:active, 'component_function': s:component_function, }
+let g:lightline = {'enable': s:enable, 'active': s:active, 'inactive': s:inactive, 'component_function': s:component_function, }
 
 function! s:surround(value) abort
     return '[' . a:value . ']'
 endfunction
 
 function! LightlineGitBranch()
-  return s:surround(gina#component#repo#branch())
+    if &filetype ==? 'vimfiler'
+        return ''
+    endif
+    let branch = gina#component#repo#branch()
+    if empty(branch)
+        return ''
+    endif
+    return s:surround(branch)
 endfunction
 
 function! LightlineFileInfo()
-  return s:surround(&fileencoding . ':' . &fileformat . ':' . &filetype)
+    if &filetype =~? 'vimfiler\|denite'
+        return ''
+    endif
+    return s:surround(&fileencoding . ':' . &fileformat . ':' . &filetype)
 endfunction
 
-function! LightlineColumn()
-  return s:surround(col('.'))
+function! LightlinePosition()
+    if &filetype ==? 'vimfiler'
+        return ''
+    elseif &filetype ==? 'denite'
+        return denite#get_status_linenr()
+    endif
+    return s:surround(col('.'))
 endfunction
 
 function! LightlineFilePath()
+    if &filetype ==? 'vimfiler'
+        return vimfiler#get_status_string()
+    endif
     return expand('%:p:~')
 endfunction
 
+function! LightlineMode()
+    if &filetype ==? 'vimfiler'
+        return ''
+    elseif &filetype ==? 'denite'
+        " '-- NORMAL --' or '-- INSERT --' or ...
+        let mode = substitute(denite#get_status_mode(), '-\| ', '', 'g')
+        call lightline#link(tolower(mode[0]))
+        return mode
+    endif
+    return lightline#mode()
+endfunction
 
 let g:lightline.colorscheme = 'spring_night'
 let s:p = {'inactive': {}, 'normal': {}, 'insert': {}, 'select': {}, 'visual': {}, 'tabline': {}}
 
 let s:inactive_base = ['#7e8d9b', '#3a4b5c']
 let s:p.inactive.middle = [s:inactive_base]
-let s:p.inactive.left = [s:inactive_base, s:inactive_base]
+let s:p.inactive.left = [s:inactive_base]
 let s:p.inactive.right = [s:inactive_base, s:inactive_base, s:inactive_base]
 
 let s:fore = '#fffeeb'
