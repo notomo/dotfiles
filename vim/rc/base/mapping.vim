@@ -450,7 +450,8 @@ function! s:yank_date(delimiter) abort
     call s:yank_value(strftime(join(split('%Y_%m_%d','_'),a:delimiter)))
 endfunction
 nnoremap <silent> [yank]d :<C-u>call <SID>yank_date('/')<CR>
-nnoremap <silent> [yank]n :<C-u>call <SID>yank_value(expand('%'))<CR>
+nnoremap <silent> [yank]n :<C-u>call <SID>yank_value(fnamemodify(expand('%'), ':r'))<CR>
+nnoremap <silent> [yank]N :<C-u>call <SID>yank_value(expand('%'))<CR>
 nnoremap <silent> [yank]p :<C-u>call <SID>yank_value(substitute(substitute(expand('%:p'), substitute(expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\', '/', 'g'))<CR>
 nnoremap <silent> [yank]P :<C-u>call <SID>yank_value(substitute(expand('%:p'), '\', '/', 'g'))<CR>
 nnoremap <silent> [yank]; :<C-u>call <SID>yank_value(@:)<CR>
