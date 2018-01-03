@@ -7,13 +7,6 @@ let s:RHS_KEY = notomo#mapping#get_rhs_key()
 let s:MAP_ONLY_KEY = notomo#mapping#get_map_only_key()
 let s:REMAP_KEY = notomo#mapping#get_remap_key()
 
-" open new tab"{{{
-function! s:new_tab() abort
-    tabe | setlocal buftype=nofile noswapfile fileformat=unix
-endfunction
-nnoremap <silent> <Plug>(new_tab) :<C-u>call <SID>new_tab()<CR>
-"}}}
-
 " close left tabs"{{{
 function! s:tabclose_l() abort
     for i in range(2, tabpagenr())

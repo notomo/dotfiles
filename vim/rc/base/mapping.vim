@@ -812,6 +812,13 @@ endfunction
 nnoremap <silent> <Plug>(tabclose_c) :<C-u>call <SID>tabclose_c()<CR>
 "}}}
 
+" open new tab"{{{
+function! s:new_tab() abort
+    tabe | setlocal buftype=nofile noswapfile fileformat=unix
+endfunction
+nnoremap <silent> <Plug>(new_tab) :<C-u>call <SID>new_tab()<CR>
+"}}}
+
 " for mouse"{{{
 nnoremap <C-Tab> gt
 nnoremap <C-S-Tab> gT
@@ -822,6 +829,7 @@ vnoremap <C-S-Tab> <Esc>gT
 nnoremap <silent> <C-w> :<C-u>call <SID>tabclose_c()<CR>
 inoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
 vnoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
+nmap <silent> <C-t> <Plug>(new_tab)
 "}}}
 
 for s:info in notomo#mapping#tab()
