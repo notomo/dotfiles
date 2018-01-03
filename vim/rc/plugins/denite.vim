@@ -34,7 +34,7 @@ nnoremap <silent> [denite]D :<C-u>Denite grep:~/dotfiles::!<CR>
 nnoremap <silent> [denite]F :<C-u>DeniteBufferDir grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
-nnoremap <silent> [denite]m :<C-u>Denite output:map<CR>
+nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>
 nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
 nnoremap <silent> [denite]tb :<C-u>Denite tab:no_current<CR>
 
@@ -195,3 +195,5 @@ call denite#custom#action('directory', 'dir_file_rec', {context ->  notomo#denit
 call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles', context)})
 
 call denite#custom#action('directory', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})
+
+call denite#custom#action('keymap', 'open', {context ->  denite#do_action(context, 'execute', context['targets'])})
