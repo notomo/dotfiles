@@ -46,6 +46,7 @@ function! notomo#number#setup_submode() abort
     call s:number_map('<C-j>', '<Down>')
     call s:number_map('<C-b>', '<BS>')
     call s:number_map('<C-d>', '<Del>')
+    call s:number_map('v', '<C-r>+')
 
     call s:number_map('b', '<Left>')
     call s:number_map('w', '<Right>')
