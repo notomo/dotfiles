@@ -2,7 +2,7 @@
 <package>
     <job id="addPath">
     <?job error="true" debug="true" ?>
-    <object progid="Scripting.FileSystemObject" />
+    <object id="addPathObj" progid="Scripting.FileSystemObject" />
     <script language="VBScript">
     <![CDATA[
         Set shell = WScript.CreateObject("WScript.Shell")
