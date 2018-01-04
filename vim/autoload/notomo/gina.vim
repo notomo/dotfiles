@@ -11,3 +11,8 @@ function! notomo#gina#changes_of()
     let revision = s:get_revision()
     execute 'Gina changes ' . revision . '^..' . revision
 endfunction
+
+function! notomo#gina#tag_push_command()
+    let revision = s:get_revision()
+    return ':Gina! push origin ' . revision
+endfunction

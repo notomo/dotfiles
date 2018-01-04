@@ -5,6 +5,7 @@ nnoremap [git]L :<C-u>Gina log master...HEAD<CR>
 nnoremap [git]ll :<C-u>Gina log<CR>
 nnoremap [git]rl :<C-u>Gina reflog<CR>
 nnoremap [git]ls :<C-u>Gina ls<CR>
+nnoremap [git]t :<C-u>Gina tag<CR>
 nnoremap [git]c :<C-u>Gina commit<CR>
 nnoremap [git]xl :<C-u>Gina stash list<CR>
 nnoremap [git]xs :<C-u>Gina stash save ""<Left>
@@ -136,3 +137,12 @@ call gina#custom#mapping#nmap('log', 'dd', ':call gina#action#call(''compare'')<
 call gina#custom#mapping#nmap('log', 'RESET', ':call gina#action#call(''commit:reset:hard'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'cp', ':call gina#action#call(''commit:cherry-pick'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'ch', ':call gina#action#call(''commit:checkout'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 'tt', ':call gina#action#call(''commit:tag:lightweight'')<CR>', s:noremap_silent)
+
+" tag
+call gina#custom#mapping#nmap('tag', 'DD', ':call gina#action#call(''tag:delete'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('tag', 'C', ':call gina#action#call(''tag:new:lightweight'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('tag', 'P', 'notomo#gina#tag_push_command()', {'noremap':1, 'expr': 1})
+call gina#custom#mapping#nmap('tag', 'cc', ':call gina#action#call(''changes:between'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('tag', 'o', ':call gina#action#call(''show'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('tag', 't<Space>', ':call gina#action#call(''show:tab'')<CR>', s:noremap_silent)
