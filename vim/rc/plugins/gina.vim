@@ -99,6 +99,7 @@ call gina#custom#mapping#nmap('branch', 'yn', '<Plug>(gina-yank-rev)', s:silent)
 call gina#custom#mapping#nmap('branch', 'co', ':call gina#action#call(''show:commit:tab'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('branch', 'MA', ':call gina#action#call(''commit:merge'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('branch', 'cp', ':call gina#action#call(''commit:cherry-pick'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('branch', 'cc', ':call gina#action#call(''changes:between'')<CR>', s:noremap_silent)
 
 " group
 call gina#custom#command#option('show', '--group', 'show')
