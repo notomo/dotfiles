@@ -51,12 +51,7 @@ function docker_run_detach() {
 }
 
 function docker_remove() {
-    container="$*"
-    if [ "$container" == "" ]
-    then
-        container="$(docker_latest)"
-    fi
-    docker rm "$container"
+    docker rm "$@"
 }
 
 function docker_logs() {
@@ -77,15 +72,15 @@ function docker_remove_image() {
 }
 
 function docker_inspect() {
-    docker inspect "$*"
+    docker inspect "$@"
 }
 
 function docker_top() {
-    docker top "$*"
+    docker top "$@"
 }
 
 function docker_compose() {
-    docker-compose "$*"
+    docker-compose "$@"
 }
 
 alias ev="nvr --remote-tab"
