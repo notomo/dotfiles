@@ -1,4 +1,6 @@
 
+import re
+
 from .base import Base
 
 
@@ -12,7 +14,21 @@ class Kind(Base):
 
     def action_execute(self, context):
         target = context['targets'][0]
-        command = 'normal {}'.format(target['action__lhs'])
-        # TODO mode validation
-        # TODO expr
-        self.vim.call('execute', command)
+
+        # execute only normal mode keymap
+        if 'n' not in target['action__mode']:
+            return
+
+        # ex. <CR> -> \<CR>
+        lhs = re.sub(
+            '<(?=(.+)>)',
+            '\<',
+            target['action__lhs']
+        )
+
+        # ^\<Space> -> ^1\<Space>
+        # help :normal
+        lhs = re.sub('(?=^ )', '1', lhs)
+
+        command = 'normal {}'.format(lhs)
+        self.vim.command('execute "{}"'.format(command))

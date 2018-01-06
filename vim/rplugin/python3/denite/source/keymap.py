@@ -32,6 +32,7 @@ class Source(Base):
             return {
                 'word': ' '.join([w for w in words if w is not False]),
                 'action__lhs': keymap['lhs'],
+                'action__mode': mode,
             }
 
         modes = (
