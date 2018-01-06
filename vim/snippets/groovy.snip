@@ -4,3 +4,51 @@ alias var
 abbr def name = value
 	def ${1:name} = ${0:value}
 
+snippet ifonly
+	if (${1:condition}) {
+		${0:TARGET}
+	}
+
+snippet while
+	while (${1}) {
+		${0:TARGET}
+	}
+
+snippet println
+	println '${0:TARGET}'
+
+snippet multiline_string
+	def ${1:name} = '''
+	${0:TAGERT}
+	'''
+
+snippet assert
+	assert ${1:expr}, ${0:comment}
+
+snippet else
+	else {
+		${0:TARGET}
+	}
+
+snippet for
+	for ($${1:i} = ${2:0}; $$1 < ${3}; $$1++) {
+		${0:TARGET}
+	}
+
+snippet def_function
+	def ${1:name}() {
+		${0:TARGET}
+	}
+
+snippet try_catch
+	try {
+		${1:TARGET}
+	} catch (${2:Exception} $e) {
+		${0:#:code}
+	}
+
+snippet finally
+	finally {
+		${0:TARGET}
+	}
+
