@@ -19,7 +19,11 @@ repo = 'zchee/deoplete-go'
 on_ft = 'go'
 build = 'make'
 hook_source = '''
-let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+if has('win32')
+    let g:deoplete#sources#go#gocode_binary = $GOPATH . '\bin\gocode.exe'
+else
+    let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
+endif
 '''
 
 [[plugins]]
