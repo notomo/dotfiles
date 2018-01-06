@@ -105,12 +105,12 @@ snippet elseif
 	}
 
 snippet foreach
-	foreach ${1:index}, ${2:name} := range ${3:variable} {
+	for ${1:index}, ${2:name} := range ${3:variable} {
 		${0:TARGET}
 	}
 
 snippet foreach_no_index
-	foreach _, ${1:name} := range ${2:variable} {
+	for _, ${1:name} := range ${2:variable} {
 		${0:TARGET}
 	}
 
