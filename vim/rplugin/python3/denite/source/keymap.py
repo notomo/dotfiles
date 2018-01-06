@@ -14,6 +14,7 @@ class Source(Base):
 
         def create(keymap):
             mode = keymap['mode']
+            # :help maparg()
             if mode == ' ':
                 mode = 'nov'
             elif mode == '!':
@@ -24,7 +25,7 @@ class Source(Base):
                 'noremap' if keymap['noremap'] == 1 else 'map',
                 '<silent>' if keymap['silent'] == 1 else False,
                 '<nowait>' if keymap['nowait'] == 1 else False,
-                '<buffer>' if keymap['buffer'] == 1 else False,
+                '<buffer>' if keymap['buffer'] != 0 else False,
                 '<expr>' if keymap['expr'] == 1 else False,
                 keymap['lhs'].replace(' ', '<Space>'),
                 keymap['rhs'] if keymap['rhs'] != '' else '<Nop>',
@@ -50,5 +51,6 @@ class Source(Base):
 
         return [
             create(m) for m
+            # to unique dicts
             in map(dict, set(tuple(m.items()) for m in keymaps))
         ]
