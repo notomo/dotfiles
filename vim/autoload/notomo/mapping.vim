@@ -83,6 +83,7 @@ function! notomo#mapping#main_input() abort
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'fe', s:RHS_KEY : '=='},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'fo', s:RHS_KEY : '<Bar><Bar>'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'fd', s:RHS_KEY : '&&'},
+        \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'fp', s:RHS_KEY : '++'},
     \ ]
 endfunction
 
