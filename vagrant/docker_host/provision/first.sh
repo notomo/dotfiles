@@ -52,6 +52,15 @@ git config --global core.editor 'nvr --remote-wait-silent'
 # unzip protoc-3.5.1-linux-x86_64.zip -d ~/app/protoc
 # cp ~/app/protoc/bin/protoc ~/.local/bin/protoc
 
+# groovy
+cd ~/app
+mkdir -p groovy
+cd groovy
+wget -nv --no-check-certificate https://dl.bintray.com/groovy/maven/groovy-binary-2.4.3.zip
+unzip groovy-binary-2.4.3.zip
+rm groovy-binary-2.4.3.zip
+ln -s groovy-2.4.3 ./latest
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace

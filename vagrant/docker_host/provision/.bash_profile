@@ -4,7 +4,8 @@ if [ -f ~/.bashrc ]; then
 fi
 
 export GOPATH=$HOME/.go
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/composer/vendor/bin:$GOPATH/bin:/usr/local/go/bin
+export GROOVY_HOME=$HOME/app/groovy/latest
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/composer/vendor/bin:$GOPATH/bin:/usr/local/go/bin:$GROOVY_HOME/bin
 export PS1="[\u@\h \w]\$ "
 export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
 

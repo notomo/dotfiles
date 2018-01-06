@@ -120,9 +120,9 @@ tar -C /usr/local -xzf go$GOVERSION.linux-amd64.tar.gz
 rm go$GOVERSION.linux-amd64.tar.gz
 
 # java
-wget -nv --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u144-b01/090f390dda5b47b9b721c7dfaa008135/jdk-8u144-lin
-yum localinstall jdk-8u144-linux-x64.rpm
-rm jdk-8u144-linux-x64.rpm
+wget -nv --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.rpm
+yum -y localinstall jdk-8u151-linux-x64.rpm
+rm jdk-8u151-linux-x64.rpm
 
 # plantuml
 wget -nv https://sourceforge.net/projects/plantuml/files/plantuml.jar
