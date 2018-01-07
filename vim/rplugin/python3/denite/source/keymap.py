@@ -20,6 +20,8 @@ class Source(Base):
             elif mode == '!':
                 mode = 'ic'
 
+            lhs = keymap['lhs'].replace(' ', '<Space>')
+
             words = [
                 mode,
                 'noremap' if keymap['noremap'] == 1 else 'map',
@@ -27,12 +29,12 @@ class Source(Base):
                 '<nowait>' if keymap['nowait'] == 1 else False,
                 '<buffer>' if keymap['buffer'] != 0 else False,
                 '<expr>' if keymap['expr'] == 1 else False,
-                keymap['lhs'].replace(' ', '<Space>'),
+                lhs,
                 keymap['rhs'] if keymap['rhs'] != '' else '<Nop>',
             ]
             return {
                 'word': ' '.join([w for w in words if w is not False]),
-                'action__lhs': keymap['lhs'],
+                'action__lhs': lhs,
                 'action__mode': mode,
             }
 

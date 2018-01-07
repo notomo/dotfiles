@@ -144,6 +144,7 @@ call denite#custom#map('normal', 'sg', '<denite:do_action:project_dir_file_rec>'
 call denite#custom#map('normal', 'sf', '<denite:do_action:dir_file_rec>', 'noremap')
 call denite#custom#map('normal', '<Space>d', '<denite:do_action:grep_plugin_setting>', 'noremap')
 call denite#custom#map('normal', '<Space>m', '<denite:quick_move>', 'noremap')
+call denite#custom#map('normal', 'un', '<denite:do_action:unmap>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags'])
