@@ -137,7 +137,7 @@ call gina#custom#mapping#nmap('log', 'dd', ':call gina#action#call(''compare'')<
 call gina#custom#mapping#nmap('log', 'RESET', ':call gina#action#call(''commit:reset:hard'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'cp', ':call gina#action#call(''commit:cherry-pick'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'ch', ':call gina#action#call(''commit:checkout'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('log', 'tt', ':call gina#action#call(''commit:tag:lightweight'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 'T', ':call gina#action#call(''commit:tag:lightweight'')<CR>', s:noremap_silent)
 
 " tag
 call gina#custom#mapping#nmap('tag', 'DD', ':call gina#action#call(''tag:delete'')<CR>', s:noremap_silent)
