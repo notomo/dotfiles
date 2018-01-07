@@ -22,6 +22,8 @@ alias drmi=docker_remove_image
 alias dip=docker_inspect
 alias dt=docker_top
 alias ds=docker_compose
+alias rel='exec $SHELL -l'
+alias apl='sh ~/dotfiles/tool/apply_conf.sh'
 
 function docker_latest() {
     docker ps -l -q
