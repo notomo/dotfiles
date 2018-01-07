@@ -69,6 +69,12 @@ rustup component add rust-analysis --toolchain nightly
 rustup component add rust-src --toolchain nightly
 rustup run nightly cargo install rustfmt-nightly --force
 
+# dockerfile lint
+cd ~/app
+wget -nv --no-check-certificate https://github.com/hadolint/hadolint/releases/download/v1.2.5/hadolint-Linux-x86_64
+cp ./hadolint-Linux-x86_64 ~/.local/bin/hadolint
+chmod a+x ~/.local/bin/hadolint
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace
