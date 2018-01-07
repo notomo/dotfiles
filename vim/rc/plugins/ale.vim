@@ -19,10 +19,12 @@ let g:ale_linters['cs'] = ['mcs']
 let g:ale_linters['xml'] = []
 let g:ale_linters['ruby'] = ['rubocop']
 let g:ale_linters['lua'] = ['luacheck']
+let g:ale_linters['rust'] = ['rls', 'rustc']
 
 let g:ale_fixers = {}
 let g:ale_fixers['python'] = ['autopep8', 'isort']
 let g:ale_fixers['go'] = ['goimports']
+let g:ale_fixers['rust'] = ['rustfmt']
 " let g:ale_fixers['php'] = ['phpcbf']
 " let g:ale_fixers['help'] = ['align_help_tags']
 

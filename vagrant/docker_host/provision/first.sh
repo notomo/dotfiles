@@ -61,6 +61,14 @@ unzip groovy-binary-2.4.3.zip
 rm groovy-binary-2.4.3.zip
 ln -s groovy-2.4.3 ./latest
 
+# rust
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+rustup default nightly
+rustup component add rls-preview --toolchain nightly
+rustup component add rust-analysis --toolchain nightly
+rustup component add rust-src --toolchain nightly
+rustup run nightly cargo install rustfmt-nightly --force
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace

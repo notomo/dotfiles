@@ -611,7 +611,7 @@ hook_source = 'let g:IM_CtrlMode = 4'
 [[plugins]]
 repo = 'w0rp/ale'
 if = "has('nvim')"
-on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c', 'help', 'cs', 'lua']
+on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c', 'help', 'cs', 'lua', 'rust']
 hook_source = 'source ~/.vim/rc/plugins/ale.vim'
 
 [[plugins]]
