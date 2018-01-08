@@ -35,6 +35,8 @@ go get -u github.com/go-task/task/cmd/task
 go get -u golang.org/x/tools/cmd/gotype
 go get -u honnef.co/go/tools/cmd/gosimple
 go get -u honnef.co/go/tools/cmd/staticcheck
+go get -u github.com/alecthomas/gometalinter
+go get -u honnef.co/go/tools/cmd/unused
 
 # ruby
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv

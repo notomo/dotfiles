@@ -12,7 +12,7 @@ let g:ale_linters['vim'] = ['vint']
 let g:ale_linters['php'] = ['phpmd', 'php']
 " let g:ale_linters['php'] = ['phpcs', 'phpmd', 'php']
 let g:ale_linters['sh'] = ['shellcheck']
-let g:ale_linters['go'] = ['govet', 'gofmt', 'golint', 'gotype', 'staticcheck', 'gosimple']
+let g:ale_linters['go'] = ['govet', 'gofmt', 'golint', 'gotype', 'staticcheck', 'gosimple', 'gometalinter']
 let g:ale_linters['sql'] = []
 let g:ale_linters['c'] = ['clang']
 let g:ale_linters['cs'] = ['mcs']
@@ -35,7 +35,7 @@ let g:ale_php_phpmd_ruleset = 'unusedcode'
 let g:ale_python_mypy_options = '--ignore-missing-imports'
 let g:ale_python_flake8_executable = 'python3.5'
 let g:ale_python_flake8_options = '-m flake8'
-let g:ale_go_gometalinter_options = '--fast'
+let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.gometalinter.json')
 
 function! s:toggle_fix_on_save() abort
     let current_value = get(g:, 'ale_fix_on_save', 0)
