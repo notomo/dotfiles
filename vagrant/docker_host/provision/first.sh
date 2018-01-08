@@ -32,6 +32,9 @@ go get -u github.com/nsf/gocode
 go get -u golang.org/x/tools/cmd/goimports
 go get -u github.com/golang/lint/golint
 go get -u github.com/go-task/task/cmd/task
+go get -u golang.org/x/tools/cmd/gotype
+go get -u honnef.co/go/tools/cmd/gosimple
+go get -u honnef.co/go/tools/cmd/staticcheck
 
 # ruby
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
