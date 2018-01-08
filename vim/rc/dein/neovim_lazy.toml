@@ -97,7 +97,7 @@ nnoremap [test]cc :<C-u>CoverageEcho<CR>
 # repo = 'autozimu/LanguageClient-neovim'
 # on_ft = ['python', 'go', 'javascript', 'lua', 'rust']
 # rev = 'next'
-# build = './install.sh'
+# build = './install.sh languageclient-0.1.23-x86_64-unknown-linux-musl'
 # depends = 'denite.nvim'
 # on_source = 'deoplete.nvim'
 # hook_add = '''
