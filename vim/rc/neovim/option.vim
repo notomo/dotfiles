@@ -5,6 +5,7 @@ if has('unix')
 elseif has('win32')
     let g:python_host_prog = 'C:/Python27/python.exe'
     let g:python3_host_prog = 'C:/Python35/python.exe'
+    let g:ruby_host_prog = 'C:\tools\ruby24\bin\ruby.exe'
 endif
 
 set termguicolors
