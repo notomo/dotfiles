@@ -56,6 +56,7 @@ call denite#custom#option('default', 'smartcase', v:true)
 call denite#custom#option('default', 'statusline', v:false)
 call denite#custom#source('_', 'matchers', ['matcher_substring'])
 call denite#custom#source('directory_mru', 'sorters', ['sorter_length'])
+call denite#custom#source('decls', 'sorters', ['sorter_line_number', 'sorter_file_path'])
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs', ['.git/', '__pycache__/'])
 call denite#custom#source('file_rec', 'matchers', ['matcher_substring', 'matcher_ignore_globs'])
 
