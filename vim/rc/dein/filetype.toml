@@ -112,4 +112,5 @@ nnoremap <buffer> [keyword]t :<C-u>call notomo#window#duplicate() \| GoDef<CR>
 nmap <buffer> sgj ]]
 nmap <buffer> sgk [[
 nnoremap <buffer> [exec]b :<C-u>GoBuild<CR>
+nnoremap <buffer> [denite]o :<C-u>Denite decls -auto-preview<CR>
 '''
