@@ -59,6 +59,7 @@ call denite#custom#source('directory_mru', 'sorters', ['sorter_length'])
 call denite#custom#source('decls', 'sorters', ['sorter_line_number', 'sorter_file_path'])
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs', ['.git/', '__pycache__/'])
 call denite#custom#source('file_rec', 'matchers', ['matcher_substring', 'matcher_ignore_globs'])
+call denite#custom#source('grep', 'matchers', ['matcher_substring', 'matcher_ignore_globs'])
 
 call denite#custom#map('_', '<CR>', '<denite:do_action:default>', 'noremap')
 call denite#custom#map('_', '<Tab>', '<denite:choose_action>', 'noremap')
@@ -148,13 +149,13 @@ call denite#custom#map('normal', '<Space>m', '<denite:quick_move>', 'noremap')
 call denite#custom#map('normal', 'un', '<denite:do_action:unmap>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
-call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags'])
+call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags', '--hidden'])
 call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
-call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', (has('win32') ? '-g:' : '-g='), ''])
+call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', (has('win32') ? '-g:' : '-g='), ''])
 
 call denite#custom#var('outline', 'ignore_types', ['v'])
 
