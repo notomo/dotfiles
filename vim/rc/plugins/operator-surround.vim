@@ -13,13 +13,14 @@ let g:operator#surround#blocks =
 \       { 'block' : ['"', '"'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['w'] },
 \       { 'block' : ["'", "'"], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['q'] },
 \       { 'block' : ['%', '%'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['r'] },
+\       { 'block' : ['|', '|'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['o'] },
+\       { 'block' : ['*', '*'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['x'] },
 \       { 'block' : ['`', '`'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['b'] },
 \       { 'block' : ['【', '】'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['D'] },
 \       { 'block' : ['「', '」'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['L'] },
 \       { 'block' : ['（', '）'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['P'] },
 \   ],
 \   'markdown' : [
-\       { 'block' : ['*', '*'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['s'] },
 \       { 'block' : ['~~', '~~'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['T'] },
 \       { 'block' : ['**', '**'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['x'] },
 \   ]
