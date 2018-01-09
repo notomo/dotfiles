@@ -34,7 +34,6 @@ nnoremap <silent> [denite]D :<C-u>Denite grep:~/dotfiles::!<CR>
 nnoremap <silent> [denite]F :<C-u>DeniteBufferDir grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
-nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>
 nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
 nnoremap <silent> [denite]tb :<C-u>Denite tab:no_current<CR>
 
