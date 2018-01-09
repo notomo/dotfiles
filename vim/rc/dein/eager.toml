@@ -288,6 +288,10 @@ repo = 'notomo/denite-keymap'
 hook_add = 'nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>'
 
 [[plugins]]
+repo = 'notomo/denite-runtimepath'
+hook_add = 'nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>'
+
+[[plugins]]
 repo = 'pocari/vim-denite-emoji'
 hook_add = 'nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>'
 
