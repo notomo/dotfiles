@@ -1,7 +1,11 @@
 nnoremap [denite] <Nop>
 nmap <Space>d [denite]
 
-nnoremap <silent> [unite]r :<C-u>Denite file_mru directory_mru dir_file<CR>
+if has('win32')
+    nnoremap <silent> [unite]r :<C-u>Denite file_mru<CR>
+else
+    nnoremap <silent> [unite]r :<C-u>Denite file_mru directory_mru dir_file<CR>
+endif
 nnoremap <silent> [denite]l :<C-u>Denite line -auto-preview<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
@@ -145,6 +149,7 @@ call denite#custom#map('normal', 'sf', '<denite:do_action:dir_file_rec>', 'norem
 call denite#custom#map('normal', '<Space>d', '<denite:do_action:grep_plugin_setting>', 'noremap')
 call denite#custom#map('normal', '<Space>m', '<denite:quick_move>', 'noremap')
 call denite#custom#map('normal', 'un', '<denite:do_action:unmap>', 'noremap')
+call denite#custom#map('normal', '<Space>D', '<denite:do_action:debug_targets>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=tags', '--hidden'])
@@ -198,3 +203,5 @@ call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project
 call denite#custom#action('directory', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})
 
 call denite#custom#action('keymap', 'open', {context ->  denite#do_action(context, 'execute', context['targets'])})
+
+call denite#custom#action('buffer,command,directory,file,openable,word', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})

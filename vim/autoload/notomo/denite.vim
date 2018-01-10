@@ -154,3 +154,6 @@ function! notomo#denite#grep_plugin_setting(context) abort
     execute join(['Denite', 'grep:~/dotfiles/vim/rc/dein::' . plugin, '-no-empty', '-immediately-1'])
 endfunction
 
+function! notomo#denite#debug_targets(context) abort
+    echomsg string(a:context['targets'])
+endfunction
