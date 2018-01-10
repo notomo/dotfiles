@@ -157,3 +157,8 @@ endfunction
 function! notomo#denite#debug_targets(context) abort
     echomsg string(a:context['targets'])
 endfunction
+
+function! notomo#denite#append_with(context, prefix, suffix) abort
+    let words = map(a:context['targets'], {key, val -> a:prefix . val['word'] . a:suffix})
+    call append(line('.'), words)
+endfunction

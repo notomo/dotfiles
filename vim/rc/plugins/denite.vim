@@ -39,6 +39,7 @@ nnoremap <silent> [denite]F :<C-u>DeniteBufferDir grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
 nnoremap <silent> [denite]tb :<C-u>Denite tab:no_current<CR>
+nnoremap <silent> [denite]U :<C-u>Denite tag -matchers=matcher_namespace<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
@@ -205,3 +206,6 @@ call denite#custom#action('directory', 'grep_plugin_setting', {context ->  notom
 call denite#custom#action('keymap', 'open', {context ->  denite#do_action(context, 'execute', context['targets'])})
 
 call denite#custom#action('buffer,command,directory,file,openable,word', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})
+
+call denite#custom#action('buffer,command,directory,file,openable,word', 'use', {context ->  notomo#denite#append_with(context, 'use ', ';')})
+
