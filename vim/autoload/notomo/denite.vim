@@ -159,6 +159,7 @@ function! notomo#denite#debug_targets(context) abort
 endfunction
 
 function! notomo#denite#append_with(context, prefix, suffix) abort
-    let words = map(a:context['targets'], {key, val -> a:prefix . val['word'] . a:suffix})
-    call append(line('.'), words)
+    let words = map(a:context['targets'], {key, val -> a:prefix . substitute(val['word'], '\\\\', '\', 'g') . a:suffix})
+    call setline(line('.'), words[0])
+    call append(line('.'), words[1:])
 endfunction
