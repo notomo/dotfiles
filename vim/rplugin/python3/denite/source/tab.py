@@ -37,11 +37,11 @@ class Source(Base):
                 lambda w: w.buffer.options['modified'],
                 tab.windows
             )))
-            mod = ' + ' if mod_count > 0 else '   '
+            mod = '+' if mod_count > 0 else ' '
 
             return {
                 'word': '{}{}'.format(mod, name),
-                'abbr': '{}:{}{}{}'.format(number, mod, name, count_str),
+                'abbr': '{}: {} {}{}'.format(number, mod, name, count_str),
                 'action__bufnr': buf.number,
                 'action__tabnr': tab.number,
             }

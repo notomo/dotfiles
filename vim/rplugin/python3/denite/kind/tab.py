@@ -9,22 +9,13 @@ class Kind(Buffer):
 
         self.name = 'tab'
         self.default_action = 'tabswitch'
+        self.redraw_actions += ['delete']
+        self.persist_actions += ['delete']
 
     def action_open(self, context):
-        return self.__tabswitch(context)
-
-    def action_tabopen(self, context):
-        return self.__tabswitch(context)
-
-    def __tabswitch(self, context):
-        current_num = self.vim.current.tabpage.number
-        targets = list(filter(
-            lambda x: x['action__tabnr'] != current_num,
-            context['targets']
-        ))
-        if len(targets) != len(context['targets']):
-            return
-        return self.action_tabswitch(context)
+        target = context['targets'][0]
+        if target['action__tabnr'] != self.vim.current.tabpage.number:
+            return self.action_tabswitch(context)
 
     def action_delete(self, context):
         tab_nums = [target['action__tabnr'] for target in context['targets']]
