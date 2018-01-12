@@ -22,20 +22,22 @@ class Source(Tag):
             return x
 
         candidates = list(filter(
-            lambda x: re.match('\S+ \[(n|c)\]', x['abbr']) is not None,
+            lambda x: re.match('\S+ \[(n|c|t)\]', x['abbr']) is not None,
             super().gather_candidates(context)
         ))
 
         for candidate in candidates:
-            if re.match('\S+ \[n\]', candidate['abbr']) is not None:
-                candidate['action__kind_name'] = 'n'
-            else:
-                candidate['action__kind_name'] = 'c'
+            match = re.match('\S+ \[(n|c|t)\]', candidate['abbr'])
+            kind = match.group(1)
+            candidate['action__kind_name'] = kind
+
+            if kind in 'nt':
                 match = re.search('namespace:(\S+)', candidate['abbr'])
                 if match:
                     candidate['word'] = '{}\\\\{}'.format(
                         match.group(1), candidate['word']
                     )
-            candidate['abbr'] = candidate['word']
+
+            candidate['abbr'] = '[{}] {}'.format(kind, candidate['word'])
 
         return list(reduce(unique, candidates, dict()).values())
