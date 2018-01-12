@@ -115,6 +115,7 @@ vnoremap <Space>h <C-v>
 vnoremap <Space>l <S-v>
 vnoremap <Space>v v
 vnoremap v <ESC>
+nmap <Space>L V%
 
 " depends yankround
 function! s:select_paste_region() abort
