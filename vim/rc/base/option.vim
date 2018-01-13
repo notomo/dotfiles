@@ -43,6 +43,7 @@ set conceallevel=0
 set shortmess+=I
 set visualbell t_vb=
 set diffopt+=vertical
+set diffopt+=iwhite
 set mouse=a
 set grepprg=git\ grep\ -n\ $*
 set wrapscan
