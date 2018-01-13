@@ -80,6 +80,11 @@ wget -nv --no-check-certificate https://github.com/hadolint/hadolint/releases/do
 cp ./hadolint-Linux-x86_64 ~/.local/bin/hadolint
 chmod a+x ~/.local/bin/hadolint
 
+# nvim spell
+mkdir -p ~/.local/share/nvim/site/spell
+cd ~/.local/share/nvim/site/spell
+wget http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace

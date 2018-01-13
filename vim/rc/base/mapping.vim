@@ -215,6 +215,7 @@ nnoremap [option]s :<C-u>set fileencoding=shift_jis<CR>
 nnoremap [option]fd :<C-u>set fileformat=dos<CR>
 nnoremap [option]fm :<C-u>set fileformat=mac<CR>
 nnoremap [option]fu :<C-u>set fileformat=unix<CR>
+nnoremap [option]s :<C-u>setlocal spell!<CR>
 
 function! s:toggle_filetype() abort
     if execute('filetype') =~# 'OFF'

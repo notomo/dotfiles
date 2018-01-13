@@ -63,6 +63,7 @@ set keywordprg=:help
 set helplang=ja
 set sessionoptions-=blank
 set sessionoptions-=buffers
+set spelllang=en,cjk
 
 if v:version >= 800 || has('nvim')
     set nofixendofline

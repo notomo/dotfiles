@@ -79,6 +79,16 @@ function! s:define_highlight() abort
     highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
     " highlight CursorLine ctermbg=234 guibg=#3a4b5c
     highlight def link uniteExrenameModified Error
+
+    highlight clear SpellCap
+    highlight def link SpellCap NONE
+    highlight clear SpellBad
+    highlight SpellBad guifg=#ff5555
+    highlight clear SpellRare
+    highlight SpellRare guifg=#ff5555
+    highlight clear SpellLocal
+    highlight SpellLocal guifg=#ff5555
+
 endfunction
 
 autocmd MyAuGroup ColorScheme * :call s:define_highlight()

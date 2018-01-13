@@ -123,3 +123,7 @@ nmap <buffer> sgk [[
 nnoremap <buffer> [exec]b :<C-u>GoBuild<CR>
 nnoremap <buffer> [denite]o :<C-u>Denite decls -auto-preview<CR>
 '''
+
+gina-commit = '''
+setlocal spell
+'''
