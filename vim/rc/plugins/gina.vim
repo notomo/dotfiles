@@ -39,8 +39,6 @@ for s:mode_char in ['n', 'v']
     call gina#custom#mapping#map('status', '[git]a', '<Plug>(gina-index-toggle)', s:mode_silent)
     call gina#custom#mapping#map('status', '[git]u', '<Plug>(gina-index-unstage)', s:mode_silent)
     call gina#custom#mapping#map('status', 'U', '<Plug>(gina-index-discard)', s:mode_silent)
-    call gina#custom#mapping#map('status', 't<Space>', ':call gina#action#call(''edit:tab'')<CR>', s:noremap_mode_silent)
-    call gina#custom#mapping#map('status', 'o', ':call gina#action#call(''edit:rightest'')<CR>', s:noremap_mode_silent)
 
     " stash
     call gina#custom#mapping#map('stash', 'dr', '<Plug>(gina-stash-drop)', s:mode_silent)
@@ -96,7 +94,6 @@ call gina#custom#mapping#nmap('branch', 'rn', '<Plug>(gina-branch-move)', s:sile
 call gina#custom#mapping#nmap('branch', 'rf', '<Plug>(gina-branch-reflesh)', s:silent)
 call gina#custom#mapping#nmap('branch', 'C', '<Plug>(gina-branch-new)', s:silent)
 call gina#custom#command#option('branch', '-v', 'v')
-call gina#custom#mapping#nmap('branch', 'yn', '<Plug>(gina-yank-rev)', s:silent)
 call gina#custom#mapping#nmap('branch', 'co', ':call gina#action#call(''show:commit:tab'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('branch', 'MA', ':call gina#action#call(''commit:merge'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('branch', 'cp', ':call gina#action#call(''commit:cherry-pick'')<CR>', s:noremap_silent)
@@ -109,6 +106,13 @@ call gina#custom#command#option('show', '--group', 'show')
 call gina#custom#command#option('/\%(status\|changes\|ls\|commit\)', '--opener', 'botright split')
 call gina#custom#command#option('/\%(diff\|blame\|compare\|patch\|log\)', '--opener', 'tabedit')
 
+" open
+call gina#custom#mapping#nmap('/\%(log\|ls\|changes\|status\|tag\|branch\|stash\)', 'o', ':call gina#action#call("show")<CR>', s:noremap_silent)
+call gina#custom#mapping#map('/\%(log\|ls\|changes\|status\|tag\|branch\|stash\)', 't<Space>', ':call gina#action#call("show:tab")<CR>', s:noremap_silent)
+
+" yank
+call gina#custom#mapping#nmap('/\%(log\|branch\|blame\)', 'yr', ':call notomo#gina#yank_rev_with_echo()<CR>', s:noremap_silent)
+
 " blame
 let g:gina#command#blame#formatter#format = '%su%=on %ti by %au %ma%in'
 let g:gina#command#blame#formatter#timestamp_format1 = '%Y-%m-%d'
@@ -117,7 +121,6 @@ let g:gina#command#blame#formatter#timestamp_months = 0
 call gina#custom#command#option('blame', '--width', '90')
 call gina#custom#mapping#nmap('blame', 'j', 'j<Plug>(gina-blame-echo)')
 call gina#custom#mapping#nmap('blame', 'k', 'k<Plug>(gina-blame-echo)')
-call gina#custom#mapping#nmap('blame', 'yr', '<Plug>(gina-yank-rev)')
 
 " diff
 call gina#custom#mapping#nmap('diff', 'sgj', ':call notomo#vimrc#to_next_syntax(''diffLine'', 1)<CR>', s:noremap_silent)
@@ -126,13 +129,10 @@ call gina#custom#mapping#nmap('diff', 'sgk', ':call notomo#vimrc#to_previous_syn
 " log
 let g:gina#command#log#use_default_mappings = 0
 call gina#custom#mapping#nmap('log', '<CR>', ':call gina#action#call(''show:commit:right'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('log', 'o', ':call gina#action#call(''show'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('log', 't<Space>', ':call gina#action#call(''show:tab'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'cc', ':call notomo#gina#changes_of()<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'cf', '<Plug>(gina-changes-from)', s:silent)
 call gina#custom#mapping#nmap('log', 'cb', '<Plug>(gina-changes-between)', s:silent)
 call gina#custom#mapping#nmap('log', 'RS', '<Plug>(gina-commit-reset)', s:silent)
-call gina#custom#mapping#nmap('log', 'yr', '<Plug>(gina-yank-rev)', s:silent)
 call gina#custom#mapping#nmap('log', 'dd', ':call gina#action#call(''compare'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'RESET', ':call gina#action#call(''commit:reset:hard'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'cp', ':call gina#action#call(''commit:cherry-pick'')<CR>', s:noremap_silent)
@@ -144,5 +144,3 @@ call gina#custom#mapping#nmap('tag', 'DD', ':call gina#action#call(''tag:delete'
 call gina#custom#mapping#nmap('tag', 'C', ':call gina#action#call(''tag:new:lightweight'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('tag', 'P', 'notomo#gina#tag_push_command()', {'noremap':1, 'expr': 1})
 call gina#custom#mapping#nmap('tag', 'cc', ':call gina#action#call(''changes:between'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('tag', 'o', ':call gina#action#call(''show'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('tag', 't<Space>', ':call gina#action#call(''show:tab'')<CR>', s:noremap_silent)
