@@ -147,6 +147,8 @@ call denite#custom#map('normal', 'dll', '<denite:do_action:delete_line>', 'norem
 call denite#custom#map('normal', 'dlL', '<denite:do_action:delete_others_line>', 'noremap')
 call denite#custom#map('normal', 'sg', '<denite:do_action:project_dir_file_rec>', 'noremap')
 call denite#custom#map('normal', 'sf', '<denite:do_action:dir_file_rec>', 'noremap')
+call denite#custom#map('normal', 'sG', '<denite:do_action:project_dir_grep>', 'noremap')
+call denite#custom#map('normal', 'sF', '<denite:do_action:dir_file_grep>', 'noremap')
 call denite#custom#map('normal', '<Space>d', '<denite:do_action:grep_plugin_setting>', 'noremap')
 call denite#custom#map('normal', '<Space>m', '<denite:quick_move>', 'noremap')
 call denite#custom#map('normal', 'un', '<denite:do_action:unmap>', 'noremap')
@@ -198,6 +200,12 @@ call denite#custom#action('directory', 'project_dir_file_rec', {context ->  noto
 
 call denite#custom#action('file', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec_on_file(context)})
 call denite#custom#action('directory', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
+
+call denite#custom#action('file', 'project_dir_grep', {context ->  notomo#denite#project_dir_grep_on_file(context)})
+call denite#custom#action('directory', 'project_dir_grep', {context ->  notomo#denite#project_dir_grep(context)})
+
+call denite#custom#action('file', 'dir_file_grep', {context ->  notomo#denite#dir_file_grep_on_file(context)})
+call denite#custom#action('directory', 'dir_file_grep', {context ->  notomo#denite#dir_file_grep(context)})
 
 call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles', context)})
 

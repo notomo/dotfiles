@@ -100,6 +100,16 @@ function! notomo#denite#project_dir_file_rec(context) abort
     execute 'DeniteProjectDir file_rec'
 endfunction
 
+function! notomo#denite#project_dir_grep(context) abort
+    execute 'cd ' . s:get_target_path('', a:context)
+    execute 'DeniteProjectDir grep'
+endfunction
+
+function! notomo#denite#project_dir_grep_on_file(context) abort
+    execute 'cd ' . s:get_target_path(':h', a:context)
+    execute 'DeniteProjectDir grep'
+endfunction
+
 function! notomo#denite#dir_file_rec(context) abort
     execute 'cd ' . s:get_target_path('', a:context)
     execute 'Denite file_rec'
@@ -108,6 +118,16 @@ endfunction
 function! notomo#denite#dir_file_rec_on_file(context) abort
     execute 'cd ' . s:get_target_path(':h', a:context)
     execute 'Denite file_rec'
+endfunction
+
+function! notomo#denite#dir_file_grep_on_file(context) abort
+    execute 'cd ' . s:get_target_path(':h', a:context)
+    execute 'Denite grep'
+endfunction
+
+function! notomo#denite#dir_file_grep(context) abort
+    execute 'cd ' . s:get_target_path('', a:context)
+    execute 'Denite grep'
 endfunction
 
 function! notomo#denite#change_source(source_name, context) abort
