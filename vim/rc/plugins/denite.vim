@@ -38,7 +38,7 @@ nnoremap <silent> [denite]D :<C-u>Denite grep:~/dotfiles::!<CR>
 nnoremap <silent> [denite]F :<C-u>DeniteBufferDir grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
-nnoremap <silent> [denite]tb :<C-u>Denite tab:no_current<CR>
+nnoremap <silent> [denite]tb :<C-u>Denite tabwin<CR>
 nnoremap <silent> [denite]U :<C-u>Denite namespace<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
@@ -217,3 +217,4 @@ call denite#custom#action('buffer,command,directory,file,openable,word,namespace
 
 call denite#custom#action('namespace', 'use', {context ->  notomo#denite#append_with(context, 'use ', ';')})
 
+call denite#custom#action('tabwin', 'open', {context ->  denite#do_action(context, 'switch', context['targets'])})
