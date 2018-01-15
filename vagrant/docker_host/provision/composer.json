@@ -3,6 +3,7 @@
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "*",
         "phpunit/phpunit": "*",
-        "phpstan/phpstan": "*"
+        "phpstan/phpstan": "*",
+        "friendsofphp/php-cs-fixer": "^2.10"
     }
 }
