@@ -86,3 +86,6 @@ function! notomo#vimrc#search_parent_recursive(file_name_pattern, start_path) ab
     endwhile
     return ''
 endfunction
+
+function! notomo#vimrc#silent_handler(id, data, event) abort
+endfunction
