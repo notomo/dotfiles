@@ -6,7 +6,7 @@ if has('win32')
 else
     nnoremap <silent> [unite]r :<C-u>Denite file_mru directory_mru dir_file<CR>
 endif
-nnoremap <silent> [denite]l :<C-u>Denite line -auto-preview<CR>
+nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
 nnoremap <silent> [unite]sf :<C-u>DeniteBufferDir file_rec<CR>
@@ -17,7 +17,7 @@ nnoremap <silent> [denite]c :<C-u>Denite change -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
 nnoremap <silent> [denite]q :<C-u>Denite command_history<CR>
 nnoremap <silent> [denite]J :<C-u>Denite jump -auto-preview -no-empty<CR>
-nnoremap <silent> [denite]ta :<C-u>Denite tag -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]ta :<C-u>Denite tag -no-empty<CR>
 nnoremap <silent> [keyword]O :<C-u>DeniteCursorWord tag -auto-preview -no-empty -immediately-1<CR>
 nnoremap <silent> [keyword]V :<C-u>DeniteCursorWord tag -default-action=vsplit -auto-preview -no-empty -immediately-1<CR>
 nnoremap <silent> [keyword]H :<C-u>DeniteCursorWord tag -default-action=split -auto-preview -no-empty -immediately-1<CR>
@@ -40,6 +40,7 @@ nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
 nnoremap <silent> [denite]tb :<C-u>Denite tabwin<CR>
 nnoremap <silent> [denite]U :<C-u>Denite namespace<CR>
+nnoremap <expr> <silent> [denite]M notomo#denite#get_php_method_command()
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 

@@ -36,6 +36,8 @@ class Source(Tag):
                     match.group(1), candidate['word']
                 )
 
+            candidate['word'] = candidate['word'].replace('\\\\', '\\')
+
             candidate['abbr'] = '[{}] {}'.format(
                 candidate['action__kind_name'], candidate['word']
             ).replace('\\\\', '\\')
