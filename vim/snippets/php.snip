@@ -127,12 +127,17 @@ options head
 		${0:TARGET}
 	}
 
-snippet interface_class
+snippet interface
 options head
-	${1:interface} class ${2:ClassName} {
+	interface ${2:Name} {
 		${0:TARGET}
 	}
 
+snippet extends
+	extends ${0:Name}
+
+snippet implements
+	implements ${0:Name}
 
 snippet class_extends
 options head
