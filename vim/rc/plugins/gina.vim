@@ -81,6 +81,11 @@ call gina#custom#command#option('commit', '-v|--verbose')
 " stash
 call gina#custom#mapping#nmap('stash', 'ap', '<Plug>(gina-stash-apply)', s:silent)
 call gina#custom#mapping#nmap('stash', 'pop', '<Plug>(gina-stash-pop)', s:silent)
+call gina#custom#mapping#nmap('stash', 'o', ':call gina#action#call("stash:show")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('stash', 't<Space>', ':call gina#action#call("stash:show:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('stash', 'sv', ':call gina#action#call("stash:show:rightest")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('stash', 'sh', ':call gina#action#call("stash:show:bottom")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('stash', '<CR>', ':call gina#action#call("stash:show:tab")<CR>', s:noremap_silent)
 
 " branch
 call gina#custom#mapping#nmap('branch', 'rn', '<Plug>(gina-branch-move)', s:silent)
@@ -98,11 +103,11 @@ call gina#custom#command#option('/\%(status\|changes\|ls\|commit\)', '--opener',
 call gina#custom#command#option('/\%(diff\|blame\|compare\|patch\|log\)', '--opener', 'tabedit')
 
 " open
-call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\|stash\)', 'o', ':call gina#action#call("show")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\|stash\)', 't<Space>', ':call gina#action#call("show:tab")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\|stash\)', 'sv', ':call gina#action#call("show:rightest")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\|stash\)', 'sh', ':call gina#action#call("show:bottom")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('/\%(ls\|blame\|changes\|status\|tag\|stash\)', '<CR>', ':call gina#action#call("show:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 'o', ':call gina#action#call("show")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 't<Space>', ':call gina#action#call("show:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 'sv', ':call gina#action#call("show:rightest")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 'sh', ':call gina#action#call("show:bottom")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(ls\|blame\|changes\|status\|tag\)', '<CR>', ':call gina#action#call("show:tab")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'o', ':call gina#action#call("edit")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 't<Space>', ':call gina#action#call("edit:tab")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'sv', ':call gina#action#call("edit:right")<CR>', s:noremap_silent)
