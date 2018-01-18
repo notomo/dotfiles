@@ -8,7 +8,7 @@ class Source(Base):
         super().__init__(vim)
 
         self.name = 'option'
-        self.kind = 'word'
+        self.kind = 'option'
 
     def gather_candidates(self, context):
 
