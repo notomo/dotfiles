@@ -24,6 +24,7 @@ alias dt=docker_top
 alias ds=docker_compose
 alias rel='exec $SHELL -l'
 alias apl='sh ~/dotfiles/tool/apply_conf.sh'
+alias nv_i=neovim_install
 
 function docker_latest() {
     docker ps -l -q
@@ -83,6 +84,13 @@ function docker_top() {
 
 function docker_compose() {
     docker-compose "$@"
+}
+
+function neovim_install() {
+    pushd
+    cd ~/app/neovim
+    sudo make install
+    popd
 }
 
 alias ev="nvr --remote-tab"
