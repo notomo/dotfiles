@@ -191,3 +191,13 @@ function! notomo#denite#get_php_method_command() abort
     echomsg cmd
     return cmd
 endfunction
+
+function! notomo#denite#get(option_name) abort
+    if stridx(a:option_name, ';') != -1
+        return
+    endif
+    execute 'let g:notomo_tmp = &' . a:option_name
+    let value = g:notomo_tmp
+    unlet g:notomo_tmp
+    return value
+endfunction

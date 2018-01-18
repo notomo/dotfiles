@@ -41,6 +41,7 @@ nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
 nnoremap <silent> [denite]tb :<C-u>Denite tabwin<CR>
 nnoremap <silent> [denite]U :<C-u>Denite namespace<CR>
 nnoremap <expr> <silent> [denite]M notomo#denite#get_php_method_command()
+nnoremap <silent> [denite]O :<C-u>Denite option<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
