@@ -11,6 +11,7 @@ class Source(Tag):
         super().__init__(vim)
 
         self.name = 'method'
+        self.sorters = ['sorter_word']
 
     def gather_candidates(self, context):
 
@@ -24,13 +25,16 @@ class Source(Tag):
         candidates = []
         for candidate in super().gather_candidates(context):
             match = re.match(
-                '\S+ \[f\].*class:{}'.format(class_path),
+                '\S+ \[(f|d)\].*(class|interface):{}$'.format(class_path),
                 candidate['abbr']
             )
             if match is None:
                 continue
-            candidate['action__kind_name'] = 'f'
-            candidate['abbr'] = candidate['word']
+            candidate['action__kind_name'] = match.group(1)
+            candidate['abbr'] = '[{}]{}'.format(
+                candidate['action__kind_name'],
+                candidate['word']
+            )
             candidates.append(candidate)
 
         return list(reduce(unique, candidates, dict()).values())
