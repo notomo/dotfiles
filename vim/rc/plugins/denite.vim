@@ -84,6 +84,7 @@ call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap
 call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
 call denite#custom#map('insert', '<C-l>', '<denite:move_caret_to_right>', 'noremap')
 call denite#custom#map('insert', '<C-b>', '<denite:delete_char_before_caret>', 'noremap')
+call denite#custom#map('insert', '<C-d>', '<denite:delete_char_after_caret>', 'noremap')
 call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>', 'noremap')
 call denite#custom#map('insert', 'jq', '<denite:quit>', 'noremap')
 call denite#custom#map('insert', '<C-u>', '<denite:delete_text_before_caret>', 'noremap')
