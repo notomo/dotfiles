@@ -185,9 +185,11 @@ function! notomo#denite#append_with(context, prefix, suffix) abort
 endfunction
 
 function! notomo#denite#get_php_method_command() abort
-    let class_path = notomo#php#get_class_path(expand('<cword>'))
-    let class_path = substitute(class_path, '\', '/', 'g')
-    let cmd = ":\<C-u>Denite method:" . class_path . " -no-empty \<CR>"
+    let class_path = notomo#php#get_class_path()
+    if class_path =~? '^\\'
+        let class_path = class_path[1:]
+    endif
+    let cmd = ":\<C-u>Denite method:" . substitute(class_path, '\', '/', 'g') . " -no-empty \<CR>"
     echomsg cmd
     return cmd
 endfunction
