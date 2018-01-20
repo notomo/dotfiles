@@ -482,7 +482,7 @@ function! s:ia_vonoremap(lhs, rhs) abort
 endfunction
 call s:ia_vonoremap(';', 'B')
 call s:ia_vonoremap('o', 'p')
-call s:ia_vonoremap('<CR>', 'w')
+call s:ia_vonoremap('i', 'w')
 call s:ia_vonoremap('<Space>', 'W')
 call s:ia_vonoremap('t', '>')
 call s:ia_vonoremap('T', 't')
