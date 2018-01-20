@@ -2,3 +2,4 @@ tags
 .mypy_cache
 __pycache__
 .padawan
+.php_cs.cache
