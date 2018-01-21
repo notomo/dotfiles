@@ -97,9 +97,13 @@ call gina#custom#mapping#nmap('branch', 'MA', ':call gina#action#call(''commit:m
 
 " group
 call gina#custom#command#option('show', '--group', 'show')
+call gina#custom#command#option('changes', '--group', 'changes')
+call gina#custom#command#option('status', '--group', 'short')
+call gina#custom#command#option('commit', '--group', 'short')
 
 " opener
 call gina#custom#command#option('/\%(status\|changes\|ls\|commit\)', '--opener', 'botright split')
+" call gina#custom#command#option('/\%(branch\|stash\)', '--opener', 'topleft split')
 call gina#custom#command#option('/\%(diff\|blame\|compare\|patch\|log\)', '--opener', 'tabedit')
 
 " open
@@ -118,8 +122,8 @@ call gina#custom#mapping#nmap('status', '<CR>', ':call gina#action#call("edit:ta
 call gina#custom#mapping#nmap('/\%(log\|branch\|blame\)', 'yr', ':call notomo#gina#yank_rev_with_echo()<CR>', s:noremap_silent)
 
 " show changes, compare
-call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cb', ':call gina#action#call("changes:between")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cf', ':call gina#action#call("changes:from")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cb', ':call gina#action#call("changes:between:rightest")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cf', ':call gina#action#call("changes:from:rightest")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cc', ':call notomo#gina#changes_of()<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(status\|blame\|stash\|log\|compare\)', 'dd', ':call gina#action#call("compare")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(status\|blame\|stash\|log\|compare\)', 'D', ':call gina#action#call("diff")<CR>', s:noremap_silent)
