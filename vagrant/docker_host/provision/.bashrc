@@ -25,6 +25,7 @@ alias ds=docker_compose
 alias rel='exec $SHELL -l'
 alias apl='sh ~/dotfiles/tool/apply_conf.sh'
 alias nv_i=neovim_install
+alias pk=kill_process
 
 function docker_latest() {
     docker ps -l -q
@@ -91,6 +92,10 @@ function neovim_install() {
     cd ~/app/neovim
     sudo make install
     popd
+}
+
+function kill_process() {
+    pkill -KILL -f "$1"
 }
 
 alias ev="nvr --remote-tab"
