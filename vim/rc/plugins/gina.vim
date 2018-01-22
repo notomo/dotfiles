@@ -72,14 +72,13 @@ let g:gina#command#status#use_default_mappings = 0
 call gina#custom#mapping#nmap('status', 'cc', ':<C-u>Gina commit<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'ca', ':<C-u>Gina commit --amend<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'cs', ':call gina#action#call(''chaperon:tab'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'P', ':call gina#action#call(''patch:tab'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'pp', ':call gina#action#call(''patch:oneside:tab'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'pp', ':call gina#action#call("patch:tab")<CR>', s:noremap_silent)
 
 " commit
 call gina#custom#command#option('commit', '-v|--verbose')
 
 " stash
-call gina#custom#mapping#nmap('stash', 'ap', '<Plug>(gina-stash-apply)', s:silent)
+call gina#custom#mapping#nmap('stash', 'AP', '<Plug>(gina-stash-apply)', s:silent)
 call gina#custom#mapping#nmap('stash', 'pop', '<Plug>(gina-stash-pop)', s:silent)
 call gina#custom#mapping#nmap('stash', 'o', ':call gina#action#call("stash:show")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('stash', 't<Space>', ':call gina#action#call("stash:show:tab")<CR>', s:noremap_silent)
@@ -103,7 +102,7 @@ call gina#custom#command#option('commit', '--group', 'short')
 
 " opener
 call gina#custom#command#option('/\%(status\|changes\|ls\|commit\)', '--opener', 'botright split')
-" call gina#custom#command#option('/\%(branch\|stash\)', '--opener', 'topleft split')
+call gina#custom#command#option('branch', '--opener', 'topleft split')
 call gina#custom#command#option('/\%(diff\|blame\|compare\|patch\|log\)', '--opener', 'tabedit')
 
 " open
@@ -125,7 +124,8 @@ call gina#custom#mapping#nmap('/\%(log\|branch\|blame\)', 'yr', ':call notomo#gi
 call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cb', ':call gina#action#call("changes:between:rightest")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cf', ':call gina#action#call("changes:from:rightest")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cc', ':call notomo#gina#changes_of()<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('/\%(status\|blame\|stash\|log\|compare\)', 'dd', ':call gina#action#call("compare")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'dd', ':call gina#action#call("patch:oneside:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(blame\|stash\|log\|compare\)', 'dd', ':call gina#action#call("compare")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(status\|blame\|stash\|log\|compare\)', 'D', ':call gina#action#call("diff")<CR>', s:noremap_silent)
 
 " commit
