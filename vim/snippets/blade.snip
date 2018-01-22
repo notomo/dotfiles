@@ -40,3 +40,18 @@ snippet while
 		${0}
 	@endwhile
 
+snippet isset
+	@isset ($${1:var})
+		${0}
+	@endisset
+
+snippet empty
+	@empty ($${1:var})
+		${0}
+	@endempty
+
+snippet include
+	@include('${1:name}')
+
+snippet include_with
+	@include('${1:name}', [${2:key} => ${0:value}])

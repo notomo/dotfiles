@@ -1,6 +1,5 @@
 snippet init
 abbr def __init__
-options head
 	def __init__(self${1:, args}):
 		${2:pass}
 
@@ -10,167 +9,103 @@ abbr super(OwnClass, self).method
 
 snippet property
 abbr @property
-options     head
 	@property
 	def ${1:#name}(self):
 	    return self._$1
 
 snippet setter
 abbr @x.setter
-options head
 	@${1:#:name}.setter
 	def $1(self, $1):
 		self._$1 = $1
 
-snippet     selfx
-abbr        self._x = x
-options     head
+snippet selfx
+abbr self._x = x
 	self._${1:x} = $1
 	${0}
 
-snippet     #!
-abbr        #!/usr/bin/env python3
-alias       shebang
-options     head
+snippet #!
+abbr #!/usr/bin/env python3
+alias shebang
 	#!/usr/bin/env python3
 	${0}
 
-snippet     class
-abbr        class Class(...): ...
-options     head
+snippet class
 	class ${1:#:name}(${2:object}):
 		pass
 
-snippet     def
-abbr        def function(...): ...
-options     head
+snippet def
 	def ${1:#:name}(${2}):
 		${0:pass}
 
-snippet     defm
-abbr        def method(self, ...): ...
-options     head
+snippet defm
 	def ${1:#:name}(self,${2}):
 		${0:pass}
 
-snippet     classmethoddef
-abbr        def function(cls): ...
-options     head
+snippet classmethoddef
 	@classmethod
 	def ${1:name}(cls):
 		${0:pass}
 
 snippet staticmethod
-abbr def function(): ...
-options head
 	@staticmethod
 	def ${1:name}():
 		${0:pass}
 
-snippet     elif
-abbr        elif ...: ...
-options     head
+snippet elif
 	elif ${1:#:condition}:
 		${0:pass}
 
-snippet     else
-abbr        else: ...
-options     head
+snippet else
 	else:
 		${0:pass}
 
-snippet     ifelse
-abbr        ifelse: ...
-options     head
+snippet ifelse
 	if ${1:#:condition}:
 		${2:#:pass}
 	else:
 		${0:#:pass}
 
-snippet     with_open
-alias       fileidiom
-options     head
+snippet with_open
 	with open(${1:#:file}, '${2:r}') as ${3:f}:
 		${0:pass}
 
-snippet     for
-abbr        for ... in ...: ...
-options     head
+snippet for
 	for ${1:#:value} in ${2:#:list}:
 		${0:pass}
 
-snippet     ifonly
-abbr        if ...: ...
-options     head
+snippet ifonly
 	if ${1:#:condition}:
 		${0:pass}
 
-snippet     ifmain
-abbr        if __name__ == '__main__': ...
-alias       main
-options     head
+snippet ifmain
+alias main
 	if __name__ == '__main__':
 		${0:pass}
 
-snippet     tryexcept
-abbr        try: ... except ...: ...
-options     head
+snippet tryexcept
 	try:
 		${1:pass}
 	except ${2:#:ExceptionClass}:
 		${3:pass}
 
-snippet     tryfinally
-abbr        try: ... finally: ...
-options     head
+snippet tryfinally
 	try:
 		${1:pass}
 	finally:
 		${2:pass}
 
-snippet     while
-abbr        while ...: ...
-options     head
+snippet while
 	while ${1:#:condition}:
 		${0:pass}
 
-snippet     with
-abbr        with {func}({file}) as :
-options     head
+snippet with
 	with ${1:open}(${2:#:filename, mode}) as ${3:f}:
 		${0:pass}
 
-snippet     filter
-abbr        [x for x in {list} if {condition}]
-	[$1 for ${1:x} in ${2:#:list} if ${3:#:condition}]
-
-snippet     print
-options     word
+snippet print
 	print(${0:#:TARGET})
 
-snippet     coding
-abbr        # -*- coding ...
+snippet coding
+abbr # -*- coding ...
 	# -*- coding: utf-8 -*-
-
-snippet     getattr
-abbr        getattr(..., ...)
-options     word
-	getattr(${1:#:obj}, ${2:#:attr})
-
-snippet     setattr
-abbr        setattr(..., ...)
-	setattr(${1:#:obj}, ${2:#:attr}, ${3:#:value})
-
-snippet     hasattr
-abbr        hasattr(..., ...)
-options     word
-	hasattr(${1:#:obj}, ${2:#:attr})
-
-snippet     pdb
-abbr        import pdb..
-	import pdb; pdb.set_trace()
-
-snippet     ipdb
-abbr        import ipdb..
-	import ipdb; ipdb.set_trace()
-
