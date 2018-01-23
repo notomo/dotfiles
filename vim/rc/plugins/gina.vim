@@ -7,7 +7,7 @@ nnoremap [git]rl :<C-u>Gina reflog<CR>
 nnoremap [git]ls :<C-u>Gina ls<CR>
 nnoremap [git]t :<C-u>Gina tag<CR>
 nnoremap [git]c :<C-u>Gina commit<CR>
-nnoremap [git]xl :<C-u>Gina stash list<CR>
+nnoremap [git]xl :<C-u>Gina stash_for_list list<CR>
 nnoremap [git]xs :<C-u>Gina stash save ""<Left>
 nnoremap [git]xc :<C-u>Gina stash show<CR>
 nnoremap <expr> [git]P ':<C-u>Gina! push origin ' . gina#component#repo#branch()
@@ -102,7 +102,8 @@ call gina#custom#command#option('commit', '--group', 'short')
 
 " opener
 call gina#custom#command#option('/\%(status\|changes\|ls\|commit\)', '--opener', 'botright split')
-call gina#custom#command#option('branch', '--opener', 'topleft split')
+call gina#custom#command#alias('stash', 'stash_for_list')
+call gina#custom#command#option('/\%(stash_for_list\|branch\)', '--opener', 'topleft split')
 call gina#custom#command#option('/\%(diff\|blame\|compare\|patch\|log\)', '--opener', 'tabedit')
 
 " open
