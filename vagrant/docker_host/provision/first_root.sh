@@ -100,6 +100,8 @@ pip3.5 install lxml
 yum -y install python-pip --enablerepo epel
 pip install neovim
 
+ln -s /usr/bin/python3.5 /usr/bin/python3
+
 # php
 yum install -y http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 yum install -y --enablerepo=remi-php71 php php-cli php-common php-devel php-fpm php-gd php-mbstring php-mysqlnd php-pdo php-pear php-pecl-apcu php-soap php-xml php-xmlrpc php-pecl-xdebug
