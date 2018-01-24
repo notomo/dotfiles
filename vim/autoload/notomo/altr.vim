@@ -1,10 +1,8 @@
 
-let g:notomo#altr#test_patterns = {}
-let g:notomo#altr#test_patterns['go'] = {'app': '%.go', 'test': '%_test.go'}
 
-" HACk
+" HACK
 function! notomo#altr#new() abort
-    let pattern = g:notomo#altr#test_patterns[&filetype]['app']
+    let pattern = g:altr_test_patterns[&filetype]['app']
     let rule = get(altr#_rule_table(), pattern, 0)
     let altr_pattern = rule['back_pattern']
     if altr_pattern !=? rule['forward_pattern']
