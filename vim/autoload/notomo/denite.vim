@@ -180,8 +180,7 @@ endfunction
 
 function! notomo#denite#append_with(context, prefix, suffix) abort
     let words = map(a:context['targets'], {key, val -> a:prefix . val['word'] . a:suffix})
-    call setline(line('.'), words[0])
-    call append(line('.'), words[1:])
+    call append(line('.'), words)
 endfunction
 
 function! notomo#denite#get_php_method_command() abort
@@ -192,6 +191,24 @@ function! notomo#denite#get_php_method_command() abort
     let cmd = ":\<C-u>Denite method:" . substitute(class_path, '\', '/', 'g') . " -no-empty \<CR>"
     echomsg cmd
     return cmd
+endfunction
+
+function! notomo#denite#add_php_use_statement() abort
+    let cursor_class_path = notomo#php#get_cursor_class_path()
+    if notomo#php#get_alias(cursor_class_path) !=? ''
+        echomsg cursor_class_path . ' is already used.'
+        return
+    endif
+    if cursor_class_path =~? '^\\'
+        let cursor_class_path = cursor_class_path[1:]
+    endif
+    let last_use_line_number = notomo#php#get_last_use_line_numer()
+
+    execute 'normal! m`'
+    call cursor(last_use_line_number, 1)
+    let cmd = 'Denite namespace -input=' . substitute(cursor_class_path, '\', '\\', 'g') . '$ -no-empty -immediately-1 -matchers=matcher_regexp'
+    execute cmd
+    execute 'normal! ``'
 endfunction
 
 function! notomo#denite#get(option_name) abort

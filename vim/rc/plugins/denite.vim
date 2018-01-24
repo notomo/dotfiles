@@ -40,6 +40,7 @@ nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
 nnoremap <silent> [denite]tb :<C-u>Denite tabwin<CR>
 nnoremap <silent> [denite]U :<C-u>Denite namespace<CR>
+nnoremap <silent> [denite]P :<C-u>call notomo#denite#add_php_use_statement()<CR>
 nnoremap <expr> <silent> [denite]M notomo#denite#get_php_method_command()
 nnoremap <silent> [denite]O :<C-u>Denite option<CR>
 

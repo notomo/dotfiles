@@ -40,34 +40,53 @@ endfunction
 
 function! notomo#php#get_class_path()
     " ex. SubNameSpace\Class
-    let path = matchstr(expand('<cWORD>'), '\v\zs(\\)?(\w+\\)*' . expand('<cword>') . '(\\\w+)*\ze([^0-9A-Za-z])?')
+    let path = notomo#php#get_cursor_class_path()
     if path =~? '^\\'
         " global path
         return path
     endif
-    " ex. SubNameSpace
-    let alias_name = matchstr(path, '^\zs\k\w*\ze.*')
-    echomsg alias_name
 
-    let cursor_pos = getpos('.')
-    call cursor(1, 1)
-    let line_num = search('\v\s*use\s+(\S+)?(\s+as\s+)?' . alias_name . '\s*;', 'nW')
-    echomsg line_num
-    call setpos('.', cursor_pos)
-
-    if line_num == 0
-        let alias_path = notomo#php#get_namespace() . '\' . alias_name
-    else
-        " ex. UsedNameSpace\SubNameSpace
-        let alias_path = matchstr(getline(line_num), '\v\s*use\s+\zs\S+\ze(\s+|;)')
+    let alias = notomo#php#get_alias(path)
+    let alias_name = notomo#php#get_alias_name(path)
+    if alias ==? ''
+        let alias = notomo#php#get_namespace() . '\' . alias_name
     endif
 
     " ex. UsedNameSpace\SubNameSpace\Class
-    return alias_path . path[len(alias_name):]
+    return alias . path[len(alias_name):]
 endfunction
 
 function! notomo#php#get_namespace()
     let line_num = search('\v\s*namespace\s+\S+\s*;', 'nbW')
     let namespace = matchstr(getline(line_num), '\v\s*namespace\s+\zs\S+\ze\s*;')
     return namespace
+endfunction
+
+function! notomo#php#get_alias(path) abort
+    " ex. SubNameSpace
+    let alias_name = notomo#php#get_alias_name(a:path)
+
+    let cursor_pos = getpos('.')
+    call cursor(1, 1)
+    let line_num = search('\v\s*use\s+(\S+)?(\s+as\s+)?' . alias_name . '\s*;', 'nW')
+    echomsg line_num
+    call setpos('.', cursor_pos)
+    if line_num == 0
+        return ''
+    endif
+
+    let alias = matchstr(getline(line_num), '\v\s*use\s+\zs\S+\ze(\s+|;)')
+    return alias
+endfunction
+
+function! notomo#php#get_alias_name(path) abort
+    return matchstr(a:path, '^\zs\k\w*\ze.*')
+endfunction
+
+function! notomo#php#get_cursor_class_path() abort
+    return matchstr(expand('<cWORD>'), '\v\zs(\\)?(\w+\\)*' . expand('<cword>') . '(\\\w+)*\ze([^0-9A-Za-z])?')
+endfunction
+
+function! notomo#php#get_last_use_line_numer() abort
+    return search('\v^use\s+(\S+)?(\s+as\s+)?', 'bnW')
 endfunction
