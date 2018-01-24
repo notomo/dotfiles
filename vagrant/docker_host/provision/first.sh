@@ -85,6 +85,11 @@ mkdir -p ~/.local/share/nvim/site/spell
 cd ~/.local/share/nvim/site/spell
 wget http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
 
+# lemonade
+go get -d github.com/pocke/lemonade
+cd "$GOPATH"/src/github.com/pocke/lemonade/
+make install
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace
