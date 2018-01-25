@@ -222,6 +222,8 @@ chmod 0700 $USERDIR/.ssh
 
 yum -y install tree
 
+yum -y install xdg-utils
+
 # tee /etc/yum.repos.d/highway.repo <<-EOF
 # [repos.highway]
 # name=highway
