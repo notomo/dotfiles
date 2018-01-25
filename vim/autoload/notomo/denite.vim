@@ -206,7 +206,7 @@ function! notomo#denite#add_php_use_statement() abort
 
     execute 'normal! m`'
     call cursor(last_use_line_number, 1)
-    let cmd = 'Denite namespace -input=' . substitute(cursor_class_path, '\', '\\', 'g') . '$ -no-empty -immediately-1 -matchers=matcher_regexp'
+    let cmd = 'Denite namespace -input=\\' . substitute(cursor_class_path, '\', '\\', 'g') . '$ -no-empty -immediately-1 -matchers=matcher_regexp'
     execute cmd
     execute 'normal! ``'
 endfunction

@@ -43,6 +43,7 @@ nnoremap <silent> [denite]U :<C-u>Denite namespace<CR>
 nnoremap <silent> [denite]P :<C-u>call notomo#denite#add_php_use_statement()<CR>
 nnoremap <expr> <silent> [denite]M notomo#denite#get_php_method_command()
 nnoremap <silent> [denite]O :<C-u>Denite option<CR>
+nnoremap <silent> [denite]L :<C-u>Denite dein_log<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 

@@ -69,7 +69,6 @@ function! notomo#php#get_alias(path) abort
     let cursor_pos = getpos('.')
     call cursor(1, 1)
     let line_num = search('\v\s*use\s+(\S+)?(\s+as\s+)?' . alias_name . '\s*;', 'nW')
-    echomsg line_num
     call setpos('.', cursor_pos)
     if line_num == 0
         return ''
