@@ -85,7 +85,7 @@ setlocal noexpandtab
 '''
 
 blade = '''
-let b:caw_wrap_oneline_comment = ['{{-- ', ' --}}']
+let b:caw_wrap_oneline_comment = ['{{--', '--}}']
 setlocal noexpandtab
 '''
 
