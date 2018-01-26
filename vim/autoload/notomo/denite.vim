@@ -205,10 +205,14 @@ function! notomo#denite#add_php_use_statement() abort
     let last_use_line_number = notomo#php#get_last_use_line_numer()
 
     execute 'normal! m`'
+    let line_count = line('$')
     call cursor(last_use_line_number, 1)
     let cmd = 'Denite namespace -input=\\' . substitute(cursor_class_path, '\', '\\', 'g') . '$ -no-empty -immediately-1 -matchers=matcher_regexp'
     execute cmd
     execute 'normal! ``'
+    if line('$') > line_count
+        echomsg getline(last_use_line_number + 1) . ' appended!'
+    endif
 endfunction
 
 function! notomo#denite#get(option_name) abort
