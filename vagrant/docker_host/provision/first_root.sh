@@ -95,6 +95,7 @@ pip3.5 install autopep8
 pip3.5 install isort
 pip3.5 install yapf
 pip3.5 install lxml
+pip3.5 install python-language-server
 
 # python2
 yum -y install python-pip --enablerepo epel
