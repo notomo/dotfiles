@@ -24,6 +24,7 @@ alias dt=docker_top
 alias ds=docker_compose
 alias rel='exec $SHELL -l'
 alias apl='sh ~/dotfiles/tool/apply_conf.sh'
+alias nv_b='sh ~/dotfiles/vim/tool/build_neovim.sh'
 alias nv_i=neovim_install
 alias pk=kill_process
 
