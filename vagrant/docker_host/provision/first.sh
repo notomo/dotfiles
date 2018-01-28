@@ -90,6 +90,15 @@ go get -d github.com/pocke/lemonade
 cd "$GOPATH"/src/github.com/pocke/lemonade/
 make install
 
+# haskell
+curl -sSL https://get.haskellstack.org/ | sh
+stack install hlint
+stack install hfmt
+cd ~/app
+git clone https://github.com/haskell/haskell-ide-engine
+cd haskell-ide-engine
+stack install
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace

@@ -1,6 +1,7 @@
 
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['buffer', 'file', 'around', 'neosnippet']
+let g:deoplete#sources.haskell = ['buffer', 'neosnippet', 'LanguageClient', 'dictionary', 'around', 'file']
 " let g:deoplete#sources.php = ['buffer', 'neosnippet', 'LanguageClient', 'dictionary', 'around', 'file']
 let g:deoplete#sources.php = ['buffer', 'neosnippet', 'tag', 'dictionary', 'around', 'file']
 " let g:deoplete#sources.php = ['buffer', 'neosnippet', 'tag', 'dictionary', 'around', 'file', 'padawan']

@@ -71,6 +71,7 @@
 /.zshrc
 /.dotnet
 /.nuget
+/.stack
 /.oracle_jre_usage
 /.proselint
 /.templateengine

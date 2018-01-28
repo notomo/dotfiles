@@ -66,3 +66,10 @@ let g:quickrun_config['php'] = {
 \   'hook/output_encode/encoding': 'utf-8',
 \}
 
+let g:quickrun_config['haskell'] = {'type': 'haskell/stack'}
+let g:quickrun_config['haskell/stack'] = {
+\   'command' : 'stack',
+\   'exec' : '%c %o %s %a',
+\   'cmdopt' : 'runghc',
+\   'hook/output_encode/encoding': 'utf-9',
+\ }
