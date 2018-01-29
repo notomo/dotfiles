@@ -12,6 +12,8 @@ class Source(Base):
         self.name = 'url_bookmark'
         self.kind = 'url_bookmark'
 
+        self.sorters = ['sorter_word', 'sorter_length']
+
     def gather_candidates(self, context):
 
         def create(line, file_path, number):
