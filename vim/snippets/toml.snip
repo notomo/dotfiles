@@ -42,3 +42,17 @@ options head
 	hook_post_source = '''
 	${0}
 	'''
+
+snippet hook_post_update_one_line
+alias post_updateone
+abbr hook_post_update = ''
+options head
+	hook_post_update = '${0}'
+
+snippet hook_post_update
+abbr hook_post_update = ''''''
+options head
+	hook_post_update = '''
+	${0}
+	'''
+
