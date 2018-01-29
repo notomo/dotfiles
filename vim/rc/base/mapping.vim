@@ -216,6 +216,7 @@ nnoremap [option]fd :<C-u>set fileformat=dos<CR>
 nnoremap [option]fm :<C-u>set fileformat=mac<CR>
 nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 nnoremap [option]s :<C-u>setlocal spell!<CR>
+nnoremap [option]d :<C-u>setlocal diff!<CR>
 
 function! s:toggle_filetype() abort
     if execute('filetype') =~# 'OFF'
