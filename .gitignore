@@ -24,6 +24,8 @@ __pycache__
 
 # snippet
 /vim/snippets/mydiary.snip
+/vim/snippets/php/*
+/vim/snippets/sql/*
 
 # tool
 /vim/tool/minimal_test.vim
