@@ -10,10 +10,10 @@ nnoremap [git]c :<C-u>Gina commit<CR>
 nnoremap [git]xl :<C-u>Gina stash_for_list list<CR>
 nnoremap [git]xs :<C-u>Gina stash save ""<Left>
 nnoremap [git]xc :<C-u>Gina stash show<CR>
-nnoremap <expr> [git]P ':<C-u>Gina! push origin ' . gina#component#repo#branch()
-nnoremap <expr> [git]H ':<C-u>Gina! pull origin ' . gina#component#repo#branch()
+nnoremap <expr> [git]P ':<C-u>Gina! push ' . notomo#gina#get_remote_name() . ' ' . gina#component#repo#branch()
+nnoremap <expr> [git]H ':<C-u>Gina! pull ' . notomo#gina#get_remote_name() . ' ' . gina#component#repo#branch()
 nnoremap [git]M :<C-u>Gina! merge<Space>
-nnoremap [git]F :<C-u>Gina! fetch<Space>
+nnoremap <expr> [git]F ':<C-u>Gina! fetch ' . notomo#gina#get_remote_name()
 nnoremap [git]ma :<C-u>Gina! merge --abort
 nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
 
