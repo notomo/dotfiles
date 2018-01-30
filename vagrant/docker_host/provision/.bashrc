@@ -27,6 +27,7 @@ alias apl='sh ~/dotfiles/tool/apply_conf.sh'
 alias nv_b='sh ~/dotfiles/vim/tool/build_neovim.sh'
 alias nv_i=neovim_install
 alias pk=kill_process
+alias less='less -N'
 
 function docker_latest() {
     docker ps -l -q
