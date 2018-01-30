@@ -3,8 +3,10 @@ nmap <Space>d [denite]
 
 if has('win32')
     nnoremap <silent> [unite]r :<C-u>Denite file_mru<CR>
+    xnoremap <silent> [unite]r :<C-u>Denite file_mru<CR>
 else
     nnoremap <silent> [unite]r :<C-u>Denite file_mru dir_file<CR>
+    xnoremap <silent> [unite]r :<C-u>Denite file_mru dir_file<CR>
 endif
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>

@@ -1,5 +1,7 @@
 nnoremap [unite] <Nop>
 nmap <Space>u [unite]
+xnoremap [unite] <Nop>
+xmap <Space>u [unite]
 
 nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
 nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>
