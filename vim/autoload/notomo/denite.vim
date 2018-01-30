@@ -224,3 +224,7 @@ function! notomo#denite#get(option_name) abort
     unlet g:notomo_tmp
     return value
 endfunction
+
+function! notomo#denite#project_dir(context) abort
+    execute 'DeniteProjectDir file_rec'
+endfunction

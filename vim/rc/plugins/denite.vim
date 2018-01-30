@@ -4,7 +4,7 @@ nmap <Space>d [denite]
 if has('win32')
     nnoremap <silent> [unite]r :<C-u>Denite file_mru<CR>
 else
-    nnoremap <silent> [unite]r :<C-u>Denite file_mru directory_mru dir_file<CR>
+    nnoremap <silent> [unite]r :<C-u>Denite file_mru dir_file<CR>
 endif
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
@@ -146,6 +146,7 @@ call denite#custom#map('normal', 'ud', '<denite:do_action:source_directory_mru>'
 call denite#custom#map('normal', 'ur', '<denite:do_action:source_file_mru>', 'noremap')
 call denite#custom#map('normal', 'uf', '<denite:do_action:source_dir_file>', 'noremap')
 call denite#custom#map('normal', 'uv', '<denite:do_action:dotfiles>', 'noremap')
+call denite#custom#map('normal', 'ug', '<denite:do_action:project_dir>', 'noremap')
 call denite#custom#map('normal', '<C-j>', '<denite:scroll_page_forwards>', 'noremap')
 call denite#custom#map('normal', '<C-k>', '<denite:scroll_page_backwards>', 'noremap')
 call denite#custom#map('normal', 'J', '<denite:jump_to_next_source>', 'noremap')
@@ -225,3 +226,5 @@ call denite#custom#action('buffer,command,directory,file,openable,word,namespace
 call denite#custom#action('namespace', 'use', {context ->  notomo#denite#append_with(context, 'use ', ';')})
 
 call denite#custom#action('tabwin', 'open', {context ->  denite#do_action(context, 'switch', context['targets'])})
+
+call denite#custom#action('file', 'project_dir', {context ->  notomo#denite#project_dir(context)})
