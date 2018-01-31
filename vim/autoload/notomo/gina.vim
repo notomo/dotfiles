@@ -25,5 +25,6 @@ endfunction
 function! notomo#gina#get_remote_name()
     let branch = gina#component#repo#branch()
     let tracking_branch = gina#component#repo#track()
-    return tracking_branch[:-(len(branch) + 2)]
+    let remote_name = tracking_branch[:-(len(branch) + 2)]
+    return empty(remote_name) ? 'origin' : remote_name
 endfunction
