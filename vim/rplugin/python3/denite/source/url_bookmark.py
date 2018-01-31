@@ -12,7 +12,7 @@ class Source(Base):
         self.name = 'url_bookmark'
         self.kind = 'url_bookmark'
 
-        self.sorters = ['sorter_word', 'sorter_length']
+        self.sorters = ['sorter_length', 'sorter_word']
 
     def gather_candidates(self, context):
 

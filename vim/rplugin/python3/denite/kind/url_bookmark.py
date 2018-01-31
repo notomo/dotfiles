@@ -21,9 +21,9 @@ class Kind(File):
     def _url_encode(self, url):
         parsed = urllib.parse.urlparse(url)
         parsed = parsed._replace(
-            path=urllib.parse.quote(parsed.path, safe='%/')
+            path=urllib.parse.quote(parsed.path, safe='/')
         )
         parsed = parsed._replace(
-            query=urllib.parse.quote(parsed.query, safe='%/')
+            query=urllib.parse.quote(parsed.query, safe='%/=')
         )
         return urllib.parse.urlunparse(parsed)
