@@ -73,6 +73,7 @@ call gina#custom#mapping#nmap('status', 'cc', ':<C-u>Gina commit<CR>', s:noremap
 call gina#custom#mapping#nmap('status', 'ca', ':<C-u>Gina commit --amend<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'cs', ':call gina#action#call(''chaperon:tab'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'pp', ':call gina#action#call("patch:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'S', ':call notomo#gina#stash_file()<CR>', s:noremap_silent)
 
 " commit
 call gina#custom#command#option('commit', '-v|--verbose')
