@@ -44,7 +44,7 @@ function! LightlinePosition()
     if &filetype ==? 'vimfiler'
         return ''
     elseif &filetype ==? 'denite'
-        return denite#get_status_linenr()
+        return denite#get_status('linenr')
     endif
     return s:surround(col('.'))
 endfunction
@@ -61,7 +61,7 @@ function! LightlineMode()
         return ''
     elseif &filetype ==? 'denite'
         " '-- NORMAL --' or '-- INSERT --' or ...
-        let mode = substitute(denite#get_status_mode(), '-\| ', '', 'g')
+        let mode = substitute(denite#get_status('mode'), '-\| ', '', 'g')
         call lightline#link(tolower(mode[0]))
         return mode
     endif
