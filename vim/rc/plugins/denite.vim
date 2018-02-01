@@ -48,6 +48,11 @@ nnoremap <silent> [denite]O :<C-u>Denite option<CR>
 nnoremap <silent> [denite]L :<C-u>Denite dein_log<CR>
 nnoremap <silent> [denite]A :<C-u>Denite alias<CR>
 nnoremap <silent> [denite]B :<C-u>Denite url_bookmark<CR>
+nnoremap <expr> <silent> [keyword]sg ":\<C-u>DeniteProjectDir file_rec -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
+nnoremap <expr> <silent> [keyword]sf ":\<C-u>DeniteBufferDir file_rec -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
+nnoremap <expr> <silent> [keyword]so ":\<C-u>DeniteBufferDir outline -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
+nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
+nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
