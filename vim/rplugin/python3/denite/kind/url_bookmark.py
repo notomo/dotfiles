@@ -24,6 +24,6 @@ class Kind(File):
             path=urllib.parse.quote(parsed.path, safe='/')
         )
         parsed = parsed._replace(
-            query=urllib.parse.quote(parsed.query, safe='%/=')
+            query=urllib.parse.quote(parsed.query, safe='%/=&')
         )
         return urllib.parse.urlunparse(parsed)
