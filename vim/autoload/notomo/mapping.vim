@@ -105,7 +105,8 @@ function! notomo#mapping#sub_input() abort
         \ {s:LHS_KEY : s:SUB_INPUT_PFX . ';', s:RHS_KEY : '"'},
         \ {s:LHS_KEY : s:SUB_INPUT_PFX . ',', s:RHS_KEY : "'"},
         \ {s:LHS_KEY : s:SUB_INPUT_PFX . 'g', s:RHS_KEY : '=>'},
-        \ {s:LHS_KEY : s:SUB_INPUT_PFX . 'f', s:RHS_KEY : '->'}
+        \ {s:LHS_KEY : s:SUB_INPUT_PFX . 'f', s:RHS_KEY : '->'},
+        \ {s:LHS_KEY : s:SUB_INPUT_PFX . 'z', s:RHS_KEY : '<-'},
     \ ]
 endfunction
 
