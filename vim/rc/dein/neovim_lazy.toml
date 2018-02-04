@@ -122,6 +122,8 @@ nnoremap [test]cc :<C-u>CoverageEcho<CR>
 # let g:LanguageClient_signColumnAlwaysOn = 0
 # let g:LanguageClient_diagnosticsEnable = 0
 #
+# let g:LanguageClient_loggingLevel = 'INFO'
+#
 # '''
 
 # [[plugins]]
@@ -154,5 +156,6 @@ let g:atags_on_generate_stderr = 'notomo#vimrc#silent_handler'
 '''
 
 [[plugins]]
-repo = 'itchyny/vim-haskell-indent'
+repo = 'kana/vim-filetype-haskell'
 on_ft = 'haskell'
+
