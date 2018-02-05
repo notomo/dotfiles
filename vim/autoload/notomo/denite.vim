@@ -212,6 +212,8 @@ function! notomo#denite#add_php_use_statement() abort
     execute 'normal! ``'
     if line('$') > line_count
         echomsg getline(last_use_line_number + 1) . ' appended!'
+    else
+        echomsg 'Not found!'
     endif
 endfunction
 
