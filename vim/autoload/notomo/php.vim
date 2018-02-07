@@ -4,8 +4,9 @@ function! notomo#php#get_indent()
     if (col('.') - 1) != matchend(curline, '^\s*')
         return -1
     endif
-    if curline =~# '\v^\s*[]})"''];?$'
+    if curline =~# '\v^\s*[]})"'']+;?$'
         " e.g. $ary = array(\n);
+        " e.g. $value = method([\n]);
         return -1
     endif
 

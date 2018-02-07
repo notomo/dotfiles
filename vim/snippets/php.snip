@@ -26,6 +26,9 @@ abbr protected function () {}
 		${4:TARGET}
 	}
 
+snippet abstract_function
+	${1:abstract} protected function ${2:functionName}(${3});
+
 snippet protected_var
 abbr protected $var;
 	${1:protected} $${2:var};
@@ -49,6 +52,9 @@ abbr self::CONST
 snippet class_name
 abbr Class::class
 	${0:ClassName}::class
+
+snippet new
+	new ${1:ClassName}(${0});
 
 snippet if_func
 alias iffunc
@@ -285,7 +291,7 @@ snippet instanceof_if
 	}
 
 snippet return
-	return ${0:TARGET}
+	return ${0:$value}
 
 snippet return_doc
 	@return ${1:type} ${0:description}
@@ -295,3 +301,6 @@ snippet param_doc
 
 snippet throws_doc
 	@throws ${0:Name}Exception
+
+snippet dataProvider
+	@dataProvider ${0:methodName}
