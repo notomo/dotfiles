@@ -279,5 +279,19 @@ snippet chain_func
 		${0:TARGET}
 	})
 
-snippet instanceof
-	${1:$instance} instanceof ${0:Class}
+snippet instanceof_if
+	if (${1:$instance} instanceof ${2:Class}) {
+		${0:TARGET}
+	}
+
+snippet return
+	return ${0:TARGET}
+
+snippet return_doc
+	@return ${1:type} ${0:description}
+
+snippet param_doc
+	@param ${1:type} $${0:name}
+
+snippet throws_doc
+	@throws ${0:Name}Exception
