@@ -11,9 +11,9 @@ endif
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
-nnoremap <silent> [unite]sf :<C-u>DeniteBufferDir file_rec<CR>
+nnoremap <silent> [unite]sf :<C-u>Denite file_rec<CR>
 nnoremap <silent> [unite]sg :<C-u>DeniteProjectDir file_rec<CR>
-nnoremap <silent> [denite]f :<C-u>DeniteBufferDir dir_file -no-empty<CR>
+nnoremap <silent> [denite]f :<C-u>Denite dir_file -no-empty<CR>
 nnoremap <silent> [denite]o :<C-u>Denite outline -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]c :<C-u>Denite change -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
@@ -28,7 +28,7 @@ nnoremap <silent> [denite]k :<C-u>DeniteCursorWord tag -immediately -no-empty<CR
 nnoremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> [denite]<CR> :<C-u>Denite -resume<CR>
-nnoremap <silent> [denite]gl :<C-u>DeniteBufferDir grep -no-empty -immediately-1<CR>
+nnoremap <silent> [denite]gl :<C-u>Denite grep -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]to :<C-u>DeniteCursorWord outline -auto-preview -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]h :<C-u>Denite help -default-action=open<CR>
@@ -37,7 +37,7 @@ nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [unite]d :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file_rec<CR>
 nnoremap <silent> [denite]D :<C-u>Denite grep:~/dotfiles::!<CR>
-nnoremap <silent> [denite]F :<C-u>DeniteBufferDir grep:::!<CR>
+nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
 nnoremap <silent> [denite]tb :<C-u>Denite tabwin<CR>
