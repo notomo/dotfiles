@@ -30,6 +30,7 @@ alias nv_i=neovim_install
 alias pk=kill_process
 alias less='less -N'
 alias ps='ps au'
+alias gc=git_clone_from_github
 
 function docker_latest() {
     docker ps -l -q
@@ -100,6 +101,10 @@ function neovim_install() {
 
 function kill_process() {
     pkill -KILL -f "$1"
+}
+
+function git_clone_from_github() {
+    git clone https://github.com/"$1".git
 }
 
 alias ev="nvr --remote-tab"
