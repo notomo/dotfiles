@@ -1,4 +1,17 @@
-nnoremap <silent> [exec]f :<C-u>VimFilerBufferDir -no-quit -split -toggle<CR>
+nnoremap <silent> [exec]f :<C-u>call <SID>vimfiler_toggle()<CR>
+
+function! s:vimfiler_toggle() abort
+    VimFilerBufferDir -no-quit -split -toggle
+    if &filetype !=? 'vimfiler'
+        return
+    endif
+    let alter_buffer_name = bufname('#')
+    if alter_buffer_name ==? ''
+        return
+    endif
+    call search(alter_buffer_name)
+endfunction
+
 let g:vimfiler_enable_auto_cd = 1
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_ignore_pattern = ['^\.DS_Store$']
