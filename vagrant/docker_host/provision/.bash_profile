@@ -7,7 +7,6 @@ export GOPATH=$HOME/.go
 export GROOVY_HOME=$HOME/app/groovy/latest
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/composer/vendor/bin:$GOPATH/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
 export PS1="[\u@\h \w]\$ "
-export NVIM_LISTEN_ADDRESS=~/.local/nvimsocket
 
 # for rustfmt: https://github.com/rust-lang-nursery/rustfmt/issues/1687
 if [ -d "$HOME/.cargo" ]; then
