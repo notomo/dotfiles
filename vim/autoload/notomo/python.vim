@@ -4,7 +4,7 @@ function! notomo#python#get_indent()
     if (col('.') - 1) != matchend(curline, '^\s*')
         return -1
     endif
-    if curline =~# '\v^\s*[])"'']$'
+    if curline =~# '\v^\s*[])"'']+$'
         " e.g. var = func(\n)
         return -1
     endif
