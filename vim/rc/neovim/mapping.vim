@@ -19,7 +19,7 @@ nnoremap <silent> [term]v :<C-u>call <SID>open_terminal('vsplit')<CR>
 nnoremap <silent> [term]h :<C-u>call <SID>open_terminal('split')<CR>
 nnoremap <silent> [term]t :<C-u>call <SID>open_terminal('tabedit')<CR>
 
-nnoremap [exec]C :<C-u>CheckHealth<CR>
+nnoremap [exec]C :<C-u>checkhealth<CR>
 
 nnoremap [exec]J :<C-u>Jesponse<Space>
 nnoremap [exec]j :<C-u>JesponseCursorUrl<CR>
