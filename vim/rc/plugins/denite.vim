@@ -54,6 +54,7 @@ nnoremap <expr> <silent> [keyword]so ":\<C-u>DeniteBufferDir outline -no-empty -
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 nnoremap <silent> [denite]c :<C-u>Denite completion<CR>
+nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
