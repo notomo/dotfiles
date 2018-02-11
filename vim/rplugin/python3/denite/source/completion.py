@@ -37,10 +37,12 @@ class Source(Base):
         )
         if start < 0:
             start = 0
-        completions = output.split()[start:]
 
-        if completions[-1:] == ['^A']:
-            completions.pop()
+        # c_CTRL-A returns '^A' when nothing is completed.
+        if output.endswith('^A'):
+            output = output[:-2]
+
+        completions = output.split()[start:]
 
         return [
             create(x) for x in completions
