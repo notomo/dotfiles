@@ -22,7 +22,7 @@ class Source(Base):
 
         context['is_interactive'] = True
 
-        input_text = context['input']
+        input_text = context['input'].replace('"', '\\"')
 
         # HACK
         self.vim.command(
