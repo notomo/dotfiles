@@ -53,6 +53,7 @@ nnoremap <expr> <silent> [keyword]sf ":\<C-u>DeniteBufferDir file_rec -no-empty 
 nnoremap <expr> <silent> [keyword]so ":\<C-u>DeniteBufferDir outline -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
+nnoremap <silent> [denite]c :<C-u>Denite completion<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
@@ -71,6 +72,7 @@ call denite#custom#option('default', 'highlight_preview_line', 'Search')
 call denite#custom#option('default', 'smartcase', v:true)
 call denite#custom#option('default', 'statusline', v:false)
 call denite#custom#source('_', 'matchers', ['matcher_substring'])
+call denite#custom#source('completion', 'matchers', [])
 call denite#custom#source('directory_mru', 'sorters', ['sorter_length'])
 call denite#custom#source('decls', 'sorters', ['sorter_line_number', 'sorter_file_path'])
 call denite#custom#filter('matcher_ignore_globs', 'ignore_globs', ['.git/', '__pycache__/'])
@@ -235,3 +237,5 @@ call denite#custom#action('namespace', 'use', {context ->  notomo#denite#append_
 call denite#custom#action('tabwin', 'open', {context ->  denite#do_action(context, 'switch', context['targets'])})
 
 call denite#custom#action('file', 'project_dir', {context ->  notomo#denite#project_dir(context)})
+
+call denite#custom#action('completion', 'open', {context ->  denite#do_action(context, 'append_and_execute', context['targets'])})
