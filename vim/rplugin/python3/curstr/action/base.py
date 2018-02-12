@@ -3,10 +3,12 @@ from abc import ABCMeta, abstractmethod
 
 import neovim.api.nvim as nvim  # noqa
 
+from curstr.options import Options
+
 
 class Action(metaclass=ABCMeta):
 
-    def __init__(self, vim: nvim.Nvim, options) -> None:
+    def __init__(self, vim: nvim.Nvim, options: Options) -> None:
         self._options = options
         self._vim = vim
         self._target_string = None

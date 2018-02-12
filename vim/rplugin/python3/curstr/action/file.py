@@ -18,7 +18,7 @@ class Action(Base):
 
     def execute(self):
         self._vim.command('{} {}'.format(
-            self._get_open_command(self._options['opener']),
+            self._get_open_command(self._options.get('opener')),
             self._get_target_string()
         ))
 

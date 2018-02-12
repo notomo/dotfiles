@@ -1,9 +1,8 @@
 
-from typing import Dict  # noqa
-
 from neovim.api.nvim import Nvim
 
 from .loader import Loader
+from .options import Options
 
 
 class Curstr(object):
@@ -16,14 +15,14 @@ class Curstr(object):
             self._vim.vars['curstr#_channel_id'] = self._vim.channel_id
 
     def execute(self, arg_string: str):
-        options = self._get_options(arg_string)
+        options = Options(arg_string)
         action = self._get_executable_action(options)
         if action is not None:
             action.execute()
         else:
             self.echo_message('Not found!')
 
-    def _get_executable_action(self, options):
+    def _get_executable_action(self, options: Options):
         action_option = options.get('action', '')
         action_names = []
         if action_option:
@@ -43,34 +42,8 @@ class Curstr(object):
             if action.executable():
                 return action
 
-    def _get_options(self, arg_string: str):
-        return {
-            **self._get_default_options(),
-            **self._parse_options(arg_string)
-        }
-
-    def _get_default_options(self) -> Dict[str, str]:
-        return {
-            'opener': 'edit',
-            'action': ''
-        }
-
     def _get_default_action(self) -> str:
         return 'file'
-
-    def _parse_options(self, arg_string: str) -> Dict[str, str]:
-        options = {}
-        for arg in arg_string.split(' '):
-            key_value = arg.split('=')
-            key = key_value[0]
-            if not key.startswith('-'):
-                continue
-            elif len(key_value) > 1:
-                options[key[1:]] = key_value[1]
-            else:
-                options[key[1:]] = '1'
-
-        return options
 
     def echo_message(self, message):
         self._vim.command(
