@@ -11,20 +11,23 @@ class Action(metaclass=ABCMeta):
     def __init__(self, vim: nvim.Nvim, options: Options) -> None:
         self._options = options
         self._vim = vim
-        self._target_string = None
+        self._target = None
 
-    def _get_target_string(self) -> str:
-        if isinstance(self._target_string, str):
-            return self._target_string
-        self._target_string = self.__get_target_string()
-        return self._target_string
+    def _get_target(self):
+        if self._target is not None:
+            return self._target
+        self._target = self._find_target()
+        return self._target
+
+    def _filetype_in(self, *filetypes) -> bool:
+        return self._vim.current.buffer.options['filetype'] in filetypes
 
     @abstractmethod
-    def __get_target_string(self) -> str:
+    def _find_target(self):
         pass
 
     @abstractmethod
-    def execute(self, target: str):
+    def execute(self, target):
         pass
 
     @abstractmethod

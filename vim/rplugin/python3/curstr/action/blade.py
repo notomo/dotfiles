@@ -1,26 +1,29 @@
 
 import os.path
 
+from curstr.target.file import File as Target
+
 from .file import Action as File
 
 
 class Action(File):
 
-    def __get_target_string(self) -> str:
+    def _find_target(self) -> Target:
         views_path = self._get_laravel_views_path()
 
         if not views_path:
-            return ''
+            return Target()
 
-        cfile = super(Action, self).__get_target_string()
-        return '{}.blade.php'.format(
+        cfile = self._vim.call('expand', '<cfile>')
+        path = '{}.blade.php'.format(
             os.path.join(views_path, *cfile.split('.'))
         )
+        return Target(path)
 
     def executable(self) -> bool:
         return (
             super(Action, self).executable() and
-            self._vim.current.buffer.options['filetype'] in ('php', 'blade')
+            self._filetype_in('php', 'blade')
         )
 
     def _get_laravel_views_path(self) -> str:
