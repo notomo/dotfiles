@@ -18,6 +18,7 @@ endif
 
 python = '''
 setlocal completeopt-=preview
+setlocal nomodeline
 '''
 
 php = '''

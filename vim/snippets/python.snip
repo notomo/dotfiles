@@ -1,11 +1,10 @@
 snippet init
 abbr def __init__
-	def __init__(self${1:, args}):
-		${2:pass}
+	def __init__(self) -> None:
+		${0:pass}
 
 snippet super
-abbr super(OwnClass, self).method
-	super(${1:OwnClass}, self).${2:method}(${3:#:args})
+	super().${2:method}(${3:#:args})
 
 snippet property
 abbr @property
@@ -105,6 +104,15 @@ snippet with
 
 snippet print
 	print(${0:#:TARGET})
+
+snippet import
+	import ${0:module}
+
+snippet from
+	from ${1:module} import ${0:attribute}
+
+snippet typing
+	from typing import ${0:attribute}
 
 snippet coding
 abbr # -*- coding ...
