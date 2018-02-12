@@ -581,21 +581,6 @@ repo = 'notomo/vim-better-tag-jump'
 on_func = 'bettertagjump#php#Jump'
 
 [[plugins]]
-repo = 'kana/vim-gf-user'
-on_map = {n = '<Plug>(gf-user-gf)'}
-hook_add = '''
-nmap [keyword]f <Plug>(gf-user-gf)
-nmap [keyword]l <Plug>(gf-user-<C-w><C-f>)
-'''
-hook_source = '''
-let g:gf_user_no_default_key_mappings = 1
-'''
-
-[[plugins]]
-repo = 'sgur/vim-gf-autoload'
-on_source = ['vim-gf-user']
-
-[[plugins]]
 repo = 'osyo-manga/vim-jplus'
 on_map = {nv = '<Plug>(jplus'}
 hook_add = '''

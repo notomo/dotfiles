@@ -282,6 +282,8 @@ endfunction
 nnoremap [keyword]v :<C-u>call <SID>split_tag_open('vsplit')<CR>
 nnoremap [keyword]o :<C-u>call <SID>tag_open()<CR>
 nnoremap [keyword]h :<C-u>call <SID>split_tag_open('split')<CR>
+
+nnoremap <silent> [keyword]f :<C-u>Curstr -opener=tab<CR>
 "}}}
 
 " Nop"{{{
