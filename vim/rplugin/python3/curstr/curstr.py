@@ -1,14 +1,14 @@
 
 from typing import Dict  # noqa
 
-import neovim.api.nvim as nvim  # noqa
+from neovim.api.nvim import Nvim
 
 from .loader import Loader
 
 
 class Curstr(object):
 
-    def __init__(self, vim: nvim.Nvim) -> None:
+    def __init__(self, vim: Nvim) -> None:
         self._vim = vim
         self._loader = Loader(self._vim)
 

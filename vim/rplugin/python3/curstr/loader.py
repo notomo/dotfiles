@@ -6,12 +6,12 @@ from modulefinder import Module  # noqa
 from typing import Dict  # noqa
 from typing import Callable, Generator
 
-import neovim.api.nvim as nvim  # noqa
+from neovim.api.nvim import Nvim
 
 
 class Loader(object):
 
-    def __init__(self, vim: nvim.Nvim) -> None:
+    def __init__(self, vim: Nvim) -> None:
         self._vim = vim
 
         self._action_classes = {}  # type: Dict[str, Callable]
