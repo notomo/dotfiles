@@ -1,8 +1,12 @@
 
+from typing import Optional
+
 from neovim.api.nvim import Nvim
 
+from .action.base import Action
 from .loader import Loader
 from .options import Options
+from .setting import Setting
 
 
 class Curstr(object):
@@ -14,7 +18,7 @@ class Curstr(object):
         if hasattr(self._vim, 'channel_id'):
             self._vim.vars['curstr#_channel_id'] = self._vim.channel_id
 
-    def execute(self, arg_string: str):
+    def execute(self, arg_string: str) -> None:
         options = Options(arg_string)
         action = self._get_executable_action(options)
         if action is not None:
@@ -22,19 +26,13 @@ class Curstr(object):
         else:
             self.echo_message('Not found!')
 
-    def _get_executable_action(self, options: Options):
+    def _get_executable_action(self, options: Options) -> Optional[Action]:
         action_option = options.get('action', '')
-        action_names = []
         if action_option:
-            action_names.append(action_option)
+            action_names = [action_option]
         else:
-            action_names.extend(
-                self._vim.vars['curstr_actions'].get(
-                    self._vim.current.buffer.options['filetype'], []
-                )
-            )
-            action_names.append(self._get_default_action())
-            action_names = sorted(set(action_names), key=action_names.index)
+            setting = Setting(self._vim)
+            action_names = setting.get_action_names()
 
         for action_name in action_names:
             action_class = self._loader.get_action_class(action_name)
@@ -42,8 +40,7 @@ class Curstr(object):
             if action.executable():
                 return action
 
-    def _get_default_action(self) -> str:
-        return 'file'
+        return None
 
     def echo_message(self, message):
         self._vim.command(
