@@ -8,8 +8,8 @@ from .curstr import Curstr
 class CurstrHandler(object):
 
     def __init__(self, vim):
-        self._vim = vim
+        self._curstr = Curstr(vim)
 
     @neovim.function('_execute_curstr', sync=True)
     def execute(self, args):
-        Curstr(self._vim).execute(args[0])
+        self._curstr.execute(args[0])
