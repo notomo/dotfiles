@@ -29,6 +29,7 @@ class Action(Base):
                 target.path
             ))
         if is_current and has_position:
+            # FIXME: save column
             self._vim.command('mark \'')
         if has_position:
             self._vim.call('cursor', target.row, target.column)
