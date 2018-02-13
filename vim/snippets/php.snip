@@ -1,37 +1,37 @@
 snippet public_function
 alias pub
 abbr public function () {}
-	${1:public} function ${3:functionName}(${4}) {
-		${5:TARGET}
+	public function ${1:functionName}(${2}) {
+		${3:TARGET}
 	}
 
 snippet public_static_function
 alias sta
 abbr public static function () {}
-	${1:public} ${2:static }function ${3:functionName}(${4}) {
-		${5:TARGET}
+	public static function ${1:functionName}(${2}) {
+		${3:TARGET}
 	}
 
 snippet private_function
 alias pri
 abbr private function () {}
-	${1:private} function ${2:functionName}(${3}) {
-		${4:TARGET}
+	private function ${1:functionName}(${2}) {
+		${3:TARGET}
 	}
 
 snippet protected_function
 alias pro
 abbr protected function () {}
-	${1:protected} function ${2:functionName}(${3}) {
-		${4:TARGET}
+	protected function ${1:functionName}(${2}) {
+		${3:TARGET}
 	}
 
 snippet abstract_function
-	${1:abstract} protected function ${2:functionName}(${3});
+	abstract ${1:protected} function ${2:functionName}(${3});
 
 snippet protected_var
 abbr protected $var;
-	${1:protected} $${2:var};
+	protected $${2:var};
 
 snippet const
 abbr const
@@ -68,7 +68,7 @@ snippet php
 abbr <?php
 	<?php
 
-snippet function
+snippet function_only
 options head
 abbr function (){}
 	function ${1:FunctionName}(${2}) {
@@ -76,12 +76,12 @@ abbr function (){}
 	}
 
 snippet anonymous_function_one_line
-alias afo function_literal_one_line
+alias function_one_line
 abbr function (){}
 	function (${1}) { ${0:TARGET}; }
 
 snippet anonymous_function
-alias af function_literal
+alias function func closure
 abbr function (){}
 	function (${1}) {
 		${0:TARGET}
@@ -99,7 +99,12 @@ snippet testdoc
 	 */
 
 snippet assertSame
+alias same
 	$this->assertSame(${1:$expected}, ${0:$result});
+
+snippet assertNull
+alias null
+	$this->assertNull(${0:$result});
 
 snippet mock
 	$${1:mockVar} = M::mock(${0:ClassName}::class);
@@ -129,7 +134,7 @@ snippet class
 
 snippet abstract_class
 options head
-	${1:abstract} class ${2:ClassName} {
+	abstract class ${1:ClassName} {
 		${0:TARGET}
 	}
 
@@ -203,7 +208,7 @@ snippet elseif
 		${0:TARGET}
 	}
 
-snippet for
+snippet for-index
 options head
 	for ($${1:i} = ${2:0}; $$1 < ${3}; $$1++) {
 		${0:TARGET}
@@ -215,6 +220,7 @@ snippet foreach-hashmap
 	}
 
 snippet foreach-list
+alias for
 	foreach ($${1:variable} as $${2:x}) {
 		${0:TARGET}
 	}
@@ -291,7 +297,7 @@ snippet instanceof_if
 	}
 
 snippet return
-	return ${0:$value}
+	return ${0:$value};
 
 snippet return_doc
 	@return ${1:type} ${0:description}

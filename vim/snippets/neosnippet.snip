@@ -8,4 +8,7 @@ options head
 		${3:#:TARGET}
 
 snippet variable
-	\${1:${1:targetName}}
+	\${1:${0:targetName}}
+
+snippet alias
+	alias ${0:name}
