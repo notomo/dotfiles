@@ -594,9 +594,9 @@ function! s:complete() abort
         return "\<Plug>(neosnippet_expand)"
     endif
     if exists('v:completed_item') && !empty(v:completed_item)
-        return "\<C-y>"
+        return "\<C-y>\<Plug>(neosnippet_expand)"
     endif
-    return "\<C-n>\<C-y>"
+    return "\<C-n>\<C-y>\<Plug>(neosnippet_expand)"
 endfunction
 imap <expr> j<Space>o <SID>complete()
 
