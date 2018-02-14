@@ -283,7 +283,10 @@ nnoremap [keyword]v :<C-u>call <SID>split_tag_open('vsplit')<CR>
 nnoremap [keyword]o :<C-u>call <SID>tag_open()<CR>
 nnoremap [keyword]h :<C-u>call <SID>split_tag_open('split')<CR>
 
-nnoremap <silent> [keyword]f :<C-u>Curstr -opener=tab<CR>
+nnoremap <silent> [keyword]fo :<C-u>Curstr -action=open<CR>
+nnoremap <silent> [keyword]ft :<C-u>Curstr -action=tab_open<CR>
+nnoremap <silent> [keyword]fv :<C-u>Curstr -action=vertical_open<CR>
+nnoremap <silent> [keyword]fh :<C-u>Curstr -action=horizontal_open<CR>
 "}}}
 
 " Nop"{{{

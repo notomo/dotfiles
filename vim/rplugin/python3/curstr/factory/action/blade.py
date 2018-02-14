@@ -1,30 +1,21 @@
 
 import os.path
 
-from curstr.target.file import File as Target
+from curstr.action_group.base import ActionGroup
+from curstr.options import Options
 
-from .file import Action as File
+from .file import ActionFactory as FileActionFactory
 
 
-class Action(File):
+class ActionFactory(FileActionFactory):
 
-    def _find_target(self) -> Target:
+    def _create_action_group(self, options: Options) -> ActionGroup:
         views_path = self._get_laravel_views_path()
-
-        if not views_path:
-            return Target()
-
         cfile = self._vim.call('expand', '<cfile>')
         path = '{}.blade.php'.format(
             os.path.join(views_path, *cfile.split('.'))
         )
-        return Target(path)
-
-    def executable(self) -> bool:
-        return (
-            super(Action, self).executable() and
-            self._filetype_in('php', 'blade')
-        )
+        return self._get_action_group(path)
 
     def _get_laravel_views_path(self) -> str:
         path = self._vim.call('fnamemodify', './', ':p')

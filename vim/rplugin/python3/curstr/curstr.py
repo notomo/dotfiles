@@ -3,7 +3,7 @@ from typing import Optional
 
 from neovim.api.nvim import Nvim
 
-from .action.base import Action
+from .action import Action
 from .loader import Loader
 from .options import Options
 from .setting import Setting
@@ -27,17 +27,20 @@ class Curstr(object):
             self.echo_message('Not found!')
 
     def _get_executable_action(self, options: Options) -> Optional[Action]:
+        setting = Setting(self._vim)
+        action_names = setting.get_action_names()
         action_option = options.get('action', '')
         if action_option:
-            action_names = [action_option]
-        else:
-            setting = Setting(self._vim)
-            action_names = setting.get_action_names()
+            action_names = [
+                (factory_name, action_option)
+                for factory_name, action_name
+                in action_names
+            ]
 
-        for action_name in action_names:
-            action_class = self._loader.get_action_class(action_name)
-            action = action_class(self._vim, options)
-            if action.executable():
+        for factory_name, action_name in action_names:
+            action_factory = self._loader.get_action_factory(factory_name)
+            action = action_factory.create(action_name, options)
+            if action.is_executable():
                 return action
 
         return None
