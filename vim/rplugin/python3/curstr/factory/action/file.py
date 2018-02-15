@@ -16,17 +16,7 @@ class ActionFactory(Base):
         return self._get_action_group(path)
 
     def _get_action_group(self, path: str) -> ActionGroup:
-        home = os.path.expanduser('~')
-        absolute_path = path.replace('~', home)
-        if not self.__validate_path(absolute_path):
+        absolute_path = self._vim.call('fnamemodify', path, ':p')
+        if not os.path.isfile(absolute_path):
             return Nothing(self._vim)
         return File(self._vim, absolute_path)
-
-    def __validate_path(self, path: str) -> bool:
-        if len(path) == 0:
-            return False
-
-        if not os.path.isfile(path):
-            return False
-
-        return True
