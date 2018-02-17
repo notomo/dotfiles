@@ -602,18 +602,12 @@ let g:test#runners['PHP'] = ['PHPUnit']
 '''
 
 [[plugins]]
-repo = 'xolox/vim-misc'
-
-[[plugins]]
-repo = 'xolox/vim-session'
-depends = 'vim-misc'
-on_cmd = ['SaveSession', 'OpenSession']
+repo = 'lambdalisue/session.vim'
+on_cmd = 'Session'
 hook_add = '''
-nnoremap [file]<Space> :<C-u>SaveSession<CR>
-nnoremap [file]<CR> :<C-u>OpenSession<CR>
-let g:session_autoload = 'no'
-let g:session_autosave = 'no'
-let g:session_autosave_periodic = 0
+nnoremap [file]<Space> :<C-u>SessionSave!<CR>
+nnoremap [file]<CR> :<C-u>SessionOpen<CR>
+nnoremap [denite]S :<C-u>Denite session<CR>
 '''
 
 [[plugins]]
