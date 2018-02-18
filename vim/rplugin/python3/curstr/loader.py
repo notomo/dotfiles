@@ -59,6 +59,9 @@ class Loader(object):
 
         raise ActionFactoryNotFoundException(factory_name)
 
+    def set_alias(self, alias_name: str, names: List[str]):
+        self._alias.set(alias_name, names)
+
     def echo_message(self, message):
         self._vim.command(
             'echomsg "{}"'.format(

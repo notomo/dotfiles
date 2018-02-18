@@ -1,5 +1,5 @@
 
-from typing import Optional
+from typing import List, Optional
 
 from neovim.api.nvim import Nvim
 
@@ -33,6 +33,9 @@ class Curstr(object):
             return True
         except ActionFactoryNotFoundException:
             return False
+
+    def set_factory_alias(self, alias_name: str, names: List[str]):
+        self._loader.set_alias(alias_name, names)
 
     def _get_executable_action(self, options: Options) -> Optional[Action]:
         setting = Setting(self._vim)

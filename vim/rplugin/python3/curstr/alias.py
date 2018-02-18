@@ -31,3 +31,6 @@ class Alias(object):
             raise InvalidSettingException(
                 'Invalid alias definition: {}'.format(factory_name)
             )
+
+    def set(self, alias_name: str, names: List[str]):
+        self._aliases[alias_name] = names
