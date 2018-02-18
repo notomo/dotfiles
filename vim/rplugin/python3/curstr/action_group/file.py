@@ -29,5 +29,5 @@ class File(ActionGroup):
             opener, self._path
         ))
 
-    def _get_default_action_name(self) -> str:
-        return 'open'
+    def action_default(self):
+        self.action_open()
