@@ -304,7 +304,8 @@ hook_add = 'nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>'
 repo = 'junegunn/vim-emoji'
 
 [[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
+repo = 'notomo/vim-hug-neovim-rpc'
+rev = 'wait-ch-open'
 if = "!has('nvim')"
 
 [[plugins]]
