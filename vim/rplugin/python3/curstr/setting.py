@@ -3,6 +3,8 @@ from typing import List, Tuple
 
 from neovim.api.nvim import Nvim
 
+from curstr.exception import InvalidSettingException
+
 
 class Setting(object):
 
@@ -39,7 +41,3 @@ class Setting(object):
 
         [factory_name, action_name] = factory_and_action_name
         return (factory_name, action_name)
-
-
-class InvalidSettingException(Exception):
-    pass
