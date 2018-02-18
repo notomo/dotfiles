@@ -18,6 +18,6 @@ class CurstrHandler(object):
     def load(self, args):
         return self._curstr.load_action_factory(args[0])
 
-    # @neovim.function('_curstr_custom', sync=True)
-    # def custom(self, args):
-    #     pass
+    @neovim.function('_curstr_custom', sync=True)
+    def custom(self, args):
+        self._curstr.custom(args[0], args[1])

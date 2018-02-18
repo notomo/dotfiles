@@ -1,4 +1,5 @@
 
+from typing import Dict  # noqa
 from typing import List, Tuple
 
 from neovim.api.nvim import Nvim
@@ -10,12 +11,13 @@ class Setting(object):
 
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim
+        self._actions = {}  # type: Dict[str, List[str]]
 
     def get_action_names(self) -> List[Tuple[str, str]]:
         action_names = []  # type: List[Tuple[str, str]]
         action_names.extend([
             self._parse_action_path(path) for path
-            in self._vim.vars['curstr_actions'].get(
+            in self._actions.get(
                 self._vim.current.buffer.options['filetype'], []
             )
         ])
@@ -23,6 +25,9 @@ class Setting(object):
         action_names = sorted(set(action_names), key=action_names.index)
 
         return action_names
+
+    def set_action(self, filetype: str, actions: List[str]):
+        self._actions[filetype] = actions
 
     def _get_default_action(self) -> Tuple[str, str]:
         return ('file', 'default')

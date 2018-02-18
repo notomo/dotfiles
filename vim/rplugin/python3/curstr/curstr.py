@@ -1,5 +1,5 @@
 
-from typing import List, Optional
+from typing import Optional
 
 from neovim.api.nvim import Nvim
 
@@ -15,6 +15,7 @@ class Curstr(object):
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim
         self._loader = Loader(self._vim)
+        self._setting = Setting(self._vim)
 
         if hasattr(self._vim, 'channel_id'):
             self._vim.vars['curstr#_channel_id'] = self._vim.channel_id
@@ -34,12 +35,16 @@ class Curstr(object):
         except ActionFactoryNotFoundException:
             return False
 
-    def set_factory_alias(self, alias_name: str, names: List[str]):
-        self._loader.set_alias(alias_name, names)
+    def custom(self, custom_type: str, args):
+        if custom_type == 'alias':
+            return self._loader.set_alias(args['alias'], args['targets'])
+        if custom_type == 'action':
+            return self._setting.set_action(
+                args['filetype'], args['actions']
+            )
 
     def _get_executable_action(self, options: Options) -> Optional[Action]:
-        setting = Setting(self._vim)
-        action_names = setting.get_action_names()
+        action_names = self._setting.get_action_names()
         action_option = options.get('action', '')
         if action_option:
             action_names = [

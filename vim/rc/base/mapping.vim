@@ -287,6 +287,11 @@ nnoremap <silent> [keyword]fo :<C-u>Curstr -action=open<CR>
 nnoremap <silent> [keyword]ft :<C-u>Curstr -action=tab_open<CR>
 nnoremap <silent> [keyword]fv :<C-u>Curstr -action=vertical_open<CR>
 nnoremap <silent> [keyword]fh :<C-u>Curstr -action=horizontal_open<CR>
+
+call curstr#custom#action('php', ['tag', 'blade'])
+call curstr#custom#action('blade', ['blade'])
+call curstr#custom#action('vim', ['file', 'vim/function', 'vim/help'])
+call curstr#custom#action('python', ['vim/function'])
 "}}}
 
 " Nop"{{{

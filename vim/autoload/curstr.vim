@@ -13,7 +13,6 @@ function! curstr#initialize() abort
     if exists('g:curstr#_channel_id')
         return
     endif
-    let g:curstr_actions = get(g:, 'curstr_actions', {})
 
     if !exists('g:loaded_remote_plugins')
       runtime! plugin/rplugin.vim
