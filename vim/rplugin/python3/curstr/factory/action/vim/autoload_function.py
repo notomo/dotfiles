@@ -6,26 +6,19 @@ from typing import Tuple
 from curstr.action_group.base import ActionGroup
 from curstr.action_group.file_position import FilePosition
 from curstr.action_group.nothing import Nothing
-from curstr.action_group.position import Position
+from curstr.factory.action.file import ActionFactory as FileActionFactory
 from curstr.options import Options
-
-from .file import ActionFactory as FileActionFactory
 
 
 class ActionFactory(FileActionFactory):
 
     def _create_action_group(self, options: Options) -> ActionGroup:
         try:
-            self._vim.command('setlocal iskeyword+={}'.format(':,<,>,#'))
+            self._vim.command('setlocal iskeyword+={}'.format('#'))
             cword = self._vim.call('expand', '<cword>')
         finally:
-            self._vim.command('setlocal iskeyword-={}'.format(':,<,>,#'))
+            self._vim.command('setlocal iskeyword-={}'.format('#'))
 
-        if cword.startswith('s:') or cword.startswith('<SID>'):
-            return Position(
-                self._vim,
-                *self.__search_function_position(cword)
-            )
         if '#' not in cword:
             return Nothing(self._vim)
 
@@ -67,12 +60,3 @@ class ActionFactory(FileActionFactory):
                 row += 1
 
         return (0, 0)
-
-    def __search_function_position(self, name: str) -> Tuple[int, int]:
-        match = re.match('(s:|<SID>)(?P<name>\S+)', name)
-        function_name = match.group('name')
-        return self._vim.call(
-            'searchpos',
-            '\\v\s*fu%[nction]!?\s*s:\zs{}\('.format(function_name),
-            'nw'
-        )

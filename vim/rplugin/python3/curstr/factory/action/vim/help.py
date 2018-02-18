@@ -5,9 +5,8 @@ from typing import List  # noqa
 from curstr.action_group.base import ActionGroup
 from curstr.action_group.help import Help
 from curstr.action_group.nothing import Nothing
+from curstr.factory.action.base import ActionFactory as Base
 from curstr.options import Options
-
-from .base import ActionFactory as Base
 
 
 class ActionFactory(Base):

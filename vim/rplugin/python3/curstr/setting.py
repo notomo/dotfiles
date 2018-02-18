@@ -21,6 +21,7 @@ class Setting(object):
         ])
         action_names.append(self._get_default_action())
         action_names = sorted(set(action_names), key=action_names.index)
+
         return action_names
 
     def _get_default_action(self) -> Tuple[str, str]:

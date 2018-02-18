@@ -29,7 +29,7 @@ class Curstr(object):
 
     def load_action_factory(self, factory_name: str) -> bool:
         try:
-            self._loader.get_action_factory(factory_name)
+            self._loader.get_action_factories(factory_name)
             return True
         except ActionFactoryNotFoundException:
             return False
@@ -46,10 +46,10 @@ class Curstr(object):
             ]
 
         for factory_name, action_name in action_names:
-            action_factory = self._loader.get_action_factory(factory_name)
-            action = action_factory.create(action_name, options)
-            if action.is_executable():
-                return action
+            for factory in self._loader.get_action_factories(factory_name):
+                action = factory.create(action_name, options)
+                if action.is_executable():
+                    return action
 
         return None
 
