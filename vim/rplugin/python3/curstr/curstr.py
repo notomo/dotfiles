@@ -4,7 +4,6 @@ from typing import Optional
 from neovim.api.nvim import Nvim
 
 from .action import Action
-from .exception import ActionFactoryNotFoundException
 from .loader import Loader
 from .options import Options
 from .setting import Setting
@@ -27,13 +26,6 @@ class Curstr(object):
             action.execute()
         else:
             self.echo_message('Not found!')
-
-    def load_action_factory(self, factory_name: str) -> bool:
-        try:
-            self._loader.get_action_factories(factory_name)
-            return True
-        except ActionFactoryNotFoundException:
-            return False
 
     def custom(self, custom_type: str, args):
         if custom_type == 'alias':
