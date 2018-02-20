@@ -126,7 +126,8 @@ endfunction
 "}}}
 
 " select mode"{{{
-snoremap <CR> <DEL>
+snoremap <CR> <ESC>gv"_c
+snoremap j<Space>h <ESC>gv"_c<C-r>+
 "}}}
 
 " grep"{{{
