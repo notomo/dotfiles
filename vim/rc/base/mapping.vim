@@ -37,7 +37,7 @@ nnoremap [edit]m i<C-@>
 
 nnoremap [edit]d *``"_cgn
 nnoremap [edit]a *``cgn<C-r>"
-vnoremap <expr> [edit]d "y/\\V\<C-r>=substitute(escape(@\", '/\'), '\\n', '\\\\n', 'g')\<CR>\<CR>" . '``cgn'
+vnoremap <expr> [edit]d "y/\\V\<C-r>=notomo#vimrc#escape_search_pattern(@\")\<CR>\<CR>" . '``cgn'
 "}}}
 
 " kana"{{{

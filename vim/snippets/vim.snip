@@ -81,3 +81,9 @@ snippet autoload
 	function! `substitute(matchstr(neosnippet#util#expand('%:p:r'), '/autoload/\zs.*$'), '/', '#', 'g')`#${1:#:func_name}(${2:#:args}) abort
 		${0}
 	endfunction
+
+snippet let
+	let ${1:variable} = ${0:value}
+
+snippet lets
+	let s:${1:variable} = ${0:value}

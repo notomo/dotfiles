@@ -89,3 +89,8 @@ endfunction
 
 function! notomo#vimrc#silent_handler(id, data, event) abort
 endfunction
+
+function! notomo#vimrc#escape_search_pattern(str) abort
+    let escaped = escape(a:str, '\/')
+    return substitute(escaped, "\n", '\\n', 'g')
+endfunction
