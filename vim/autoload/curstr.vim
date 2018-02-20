@@ -13,4 +13,5 @@ function! curstr#initialize() abort
     if !exists('g:loaded_remote_plugins')
         runtime! plugin/rplugin.vim
     endif
+    call curstr#custom#init()
 endfunction
