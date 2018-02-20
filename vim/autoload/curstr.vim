@@ -10,11 +10,7 @@ function! curstr#load(factory_name) abort
 endfunction
 
 function! curstr#initialize() abort
-    if exists('g:curstr#_channel_id')
-        return
-    endif
-
     if !exists('g:loaded_remote_plugins')
-      runtime! plugin/rplugin.vim
+        runtime! plugin/rplugin.vim
     endif
 endfunction

@@ -20,6 +20,7 @@ function! curstr#custom#action(filetype, actions) abort
 endfunction
 
 function! curstr#custom#init() abort
+    call curstr#initialize()
     for [type, dicts] in items(s:init_customizes)
         for dict in dicts
             call _curstr_custom(type, dict)
