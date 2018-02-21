@@ -18,14 +18,14 @@ class Alias(object):
             ],
         }
 
-    def apply_alias(self, factory_name: str) -> List[str]:
+    def apply(self, factory_name: str) -> List[str]:
         aliased = self._aliases.get(factory_name, factory_name)
         if aliased == factory_name:
             return [factory_name]
 
         try:
             return list(chain.from_iterable(
-                map(self.apply_alias, aliased)
+                map(self.apply, aliased)
             ))
         except RecursionError:
             raise InvalidSettingException(

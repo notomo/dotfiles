@@ -18,16 +18,17 @@ class Loader(object):
 
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim
-        self._alias = Alias(vim)
 
         self._action_factories = {}  # type: Dict[str, ActionFactory]
 
-    def get_action_factories(self, factory_name: str) -> List[ActionFactory]:
+    def get_action_factories(
+        self, factory_name: str, alias: Alias
+    ) -> List[ActionFactory]:
         return [
             self._action_factories[name]
             if name in self._action_factories
             else self._load_action_factory(name)
-            for name in self._alias.apply_alias(factory_name)
+            for name in alias.apply(factory_name)
         ]
 
     def _load_action_factory(self, factory_name: str) -> ActionFactory:
@@ -58,9 +59,6 @@ class Loader(object):
                 return path
 
         raise ActionFactoryNotFoundException(factory_name)
-
-    def set_alias(self, alias_name: str, names: List[str]):
-        self._alias.set(alias_name, names)
 
     def echo_message(self, message):
         self._vim.command(

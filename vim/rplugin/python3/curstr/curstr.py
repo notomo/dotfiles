@@ -4,6 +4,7 @@ from typing import Optional
 from neovim.api.nvim import Nvim
 
 from .action import Action
+from .alias import Alias
 from .loader import Loader
 from .options import Options
 from .setting import Setting
@@ -15,6 +16,7 @@ class Curstr(object):
         self._vim = vim
         self._loader = Loader(self._vim)
         self._setting = Setting(self._vim)
+        self._alias = Alias(self._vim)
 
         if hasattr(self._vim, 'channel_id'):
             self._vim.vars['curstr#_channel_id'] = self._vim.channel_id
@@ -29,7 +31,7 @@ class Curstr(object):
 
     def custom(self, custom_type: str, args):
         if custom_type == 'alias':
-            return self._loader.set_alias(args['alias'], args['targets'])
+            return self._alias.set(args['alias'], args['targets'])
         if custom_type == 'action':
             return self._setting.set_action(
                 args['filetype'], args['actions']
@@ -46,7 +48,9 @@ class Curstr(object):
             ]
 
         for factory_name, action_name in action_names:
-            for factory in self._loader.get_action_factories(factory_name):
+            for factory in self._loader.get_action_factories(
+                factory_name, self._alias
+            ):
                 action = factory.create(action_name, options)
                 if action.is_executable():
                     return action
