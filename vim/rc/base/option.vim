@@ -64,6 +64,9 @@ set sessionoptions-=blank
 set sessionoptions-=buffers
 set spelllang=en,cjk
 set shiftround
+if has('termguicolors')
+    set termguicolors
+endif
 
 if v:version >= 800 || has('nvim')
     set nofixendofline

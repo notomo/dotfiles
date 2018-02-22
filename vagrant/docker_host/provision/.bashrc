@@ -6,6 +6,7 @@ fi
 alias nv="nvim"
 alias nvu="nvim -u ~/dotfiles/vim/local/test.vim"
 alias nvt="~/app/neovim/build/bin/nvim"
+alias vi="vim"
 alias ee="exit"
 alias ll="ls -la"
 alias ss="source ~/.bashrc"

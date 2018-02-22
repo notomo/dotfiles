@@ -101,7 +101,11 @@ autocmd MyAuGroup WinLeave * :setlocal nocursorline
 set guioptions+=M
 set guioptions+=c
 
-let g:python3_host_prog = 'C:/Python35/python.exe'
+if has('win32')
+    let g:python3_host_prog = 'C:/Python35/python.exe'
+else
+    let g:python3_host_prog = '/usr/bin/python3.5'
+endif
 
 '''
 
@@ -201,7 +205,10 @@ map e <Plug>(smartword-e)
 
 [[plugins]]
 repo = 'rhysd/vim-color-spring-night'
-hook_add = 'let g:spring_night_kill_italic = 1'
+hook_add = '''
+let g:spring_night_kill_italic = 1
+let g:spring_night_high_contrast = []
+'''
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'

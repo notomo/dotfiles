@@ -33,9 +33,6 @@ yum-config-manager --disable epel
 yum -y install libXrandr
 yum -y install xorg-x11-server-Xvfb
 
-# vim
-yum install -y vim
-
 # git
 yum -y install wget
 yum -y install dh-autoreconf curl-devel expat-devel gettext-devel openssl-devel perl-devel zlib-devel
@@ -55,6 +52,21 @@ yum -y install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
 git clone https://github.com/neovim/neovim.git $NEOVIMDIR
 cd $NEOVIMDIR
 make CMAKE_BUILD_TYPE=Release
+make install
+
+# vim
+VIMDIR=$APPDIR/vim
+git clone https://github.com/neovim/neovim.git $VIMDIR
+cd $VIMDIR/src
+./configure \
+--with-features=huge \
+--enable-gui=gtk2 \
+--enable-pythoninterp \
+--with-python-config-dir=/usr/lib64/python2.7/config \
+--enable-python3interp \
+--with-python3-config-dir=/usr/lib64/python3.5/config-3.5m \
+--enable-fail-if-missing
+make
 make install
 
 # ctags
@@ -98,6 +110,7 @@ pip3.5 install lxml
 pip3.5 install python-language-server
 
 # python2
+yum -y install python-devel 
 yum -y install python-pip --enablerepo epel
 pip install neovim
 
