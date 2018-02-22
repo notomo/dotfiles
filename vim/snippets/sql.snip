@@ -3,19 +3,19 @@ snippet insert_into
 alias insert INSERT
 abbr INSERT INTO {columns} VALUES {values}
 options head
-	INSERT INTO ${1:table} (${2:column1, column2,...}) VALUES (${3:value1, value2,...});
+	INSERT INTO ${1:table} (${2:column1, column2,...}) VALUES (${0:value1, value2,...});
 
 snippet update
 alias UPDATE
 abbr UPDATE ... SET ... WHERE ...
-	UPDATE ${1:table} SET ${2:column} = ${3:value} WHERE ${4:condition};
+	UPDATE ${1:table} SET ${2:column} = ${3:value} WHERE ${0:condition};
 
 snippet select
 alias SELECT
 abbr SELECT {column} FROM {table}
 options head
 	SELECT
-		${3:column}
+		${0:column}
 	FROM
 		${1:table} ${2:short_nm}
 
@@ -23,7 +23,7 @@ snippet select_where
 abbr SELECT {column} FROM {table} WHERE {condition}
 options head
 	SELECT
-		${4:column}
+		${0:column}
 	FROM
 		${1:table} ${2:short_nm}
 	WHERE
@@ -34,13 +34,13 @@ abbr SELECT 1 FROM {table} WHERE {condition}
 options head
 	SELECT 1
 	FROM ${1:table} ${2:short_nm}
-	WHERE ${3:condition}
+	WHERE ${0:condition}
 
 snippet select_join_where
 abbr SELECT {column} FROM {table} JOIN ... WHERE {condition}
 options head
 	SELECT
-		${9:column}
+		${0:column}
 	FROM
 		${1:table} ${2:short_nm}
 	${3:INNER} JOIN ${4:table2} ${5:short_nm2} ON $5.${6:column} = $2.${7:column2}
@@ -50,76 +50,76 @@ options head
 snippet left_join
 alias left LEFT
 abbr LEFT JOIN {table} {short_nm} ON...
-	LEFT JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:short_nm2}.${5:column2}
+	LEFT JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:short_nm2}.${0:column2}
 
 snippet inner_join
 alias inner INNER
 abbr INNER JOIN {table} {short_nm} ON...
-	INNER JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:short_nm2}.${5:column2}
+	INNER JOIN ${1:table} ${2:short_nm} ON $2.${3:column} = ${4:short_nm2}.${0:column2}
 
 snippet where
 alias WHERE
 abbr WHERE {condition}
 	WHERE
-		${1:condition}
+		${0:condition}
 
 snippet order_by
 alias order ORDER
 abbr ORDER BY {column}
-	ORDER BY ${1:T.column}${2:#: DESC}
+	ORDER BY ${1:T.column}${0:#: DESC}
 
 snippet group_by
 alias group GROUP
 abbr GROUP BY {column}
-	GROUP BY ${1:T.column}
+	GROUP BY ${0:T.column}
 
 snippet limit
 alias LIMIT
 abbr LIMIT {count}
-	LIMIT ${1:count}
+	LIMIT ${0:count}
 
 snippet between
 alias BETWEEN
 abbr BETWEEN ... AND ...
-	BETWEEN ${1:A} AND ${1:B}
+	BETWEEN ${1:A} AND ${0:B}
 
 snippet delete_from
 alias delete DELETE
 abbr DELETE FROM ... WHERE ...
-	DELETE FROM ${1:table} WHERE ${2:condition};
+	DELETE FROM ${1:table} WHERE ${0:condition};
 
 snippet and
 alias AND
 abbr AND ...
-	AND ${1:condition}
+	AND ${0:condition}
 
 snippet or
 alias OR
 abbr OR ...
-	OR ${1:condition}
+	OR ${0:condition}
 
 snippet not_exists
 abbr NOT EXISTS (...)
 	NOT EXISTS (
-		${1:select}
+		${0:select}
 	)
 
 snippet exists
 alias EXISTS
 abbr EXISTS (...)
 	EXISTS (
-		${1:select}
+		${0:select}
 	)
 
 snippet having
 alias HAVING
 abbr HAVING ...
-	HAVING ${1:condition}
+	HAVING ${0:condition}
 
 snippet count
 alias COUNT
 abbr COUNT ...
-	COUNT(${1:column})
+	COUNT(${0:column})
 
 snippet min_datetime
 abbr 'Y-m-d 00:00:00'
@@ -139,28 +139,36 @@ abbr 23:59:59
 
 snippet time
 abbr H:i:s
-	${1:H}:${2:i}:${3:s}
+	${1:H}:${2:i}:${0:s}
 
 snippet as
 alias AS
 abbr AS name
-	AS ${1:name}
+	AS ${0:name}
 
 snippet is_null
 abbr IS NULL
 	IS NULL
 
-snippet not_is_null
-abbr NOT IS NULL
-	NOT IS NULL
+snippet is_not_null
+abbr IS NOT NULL
+	IS NOT NULL
+
+snippet not
+abbr NOT
+	NOT
+
+snippet case
+abbr CASE WHEN condition THEN value
+	CASE WHEN ${1:condition} THEN ${0:value}
 
 snippet case_when
 abbr CASE var WHEN condition THEN value
-	CASE ${1:var} WHEN ${2:condition} THEN ${3:value}
+	CASE ${1:var} WHEN ${2:condition} THEN ${0:value}
 
 snippet when
 abbr WHEN THEN value
-	WHEN ${1:condition} THEN ${2:value}
+	WHEN ${1:condition} THEN ${0:value}
 
 snippet else_end
 abbr ELSE val END

@@ -286,8 +286,16 @@ options head
 snippet chain
 	->${1:method}()
 
+snippet cchain
+	${1:method}()
+
 snippet chain_func
 	->${1:method}(function (${2}) {
+		${0:TARGET}
+	})
+
+snippet cchain_func
+	${1:method}(function (${2}) {
 		${0:TARGET}
 	})
 
@@ -295,6 +303,9 @@ snippet instanceof_if
 	if (${1:$instance} instanceof ${2:Class}) {
 		${0:TARGET}
 	}
+
+snippet map
+	array_map(function (${2}) { return ${0:TARGET}; }, ${1:array, ...})
 
 snippet return
 	return ${0:$value};
