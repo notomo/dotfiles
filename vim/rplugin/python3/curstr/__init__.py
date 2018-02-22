@@ -17,3 +17,7 @@ class CurstrHandler(object):
     @neovim.function('_curstr_custom', sync=True)
     def custom(self, args):
         self._curstr.custom(args[0], args[1])
+
+    @neovim.function('_curstr_unload', sync=True)
+    def unload(self, args):
+        self._curstr.unload()

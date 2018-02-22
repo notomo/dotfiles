@@ -14,9 +14,7 @@ class Curstr(object):
 
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim
-        self._loader = Loader(self._vim)
-        self._setting = Setting(self._vim)
-        self._alias = Alias(self._vim)
+        self._initialize()
 
         if hasattr(self._vim, 'channel_id'):
             self._vim.vars['curstr#_channel_id'] = self._vim.channel_id
@@ -36,6 +34,15 @@ class Curstr(object):
             return self._setting.set_action(
                 args['filetype'], args['actions']
             )
+
+    def unload(self):
+        self._initialize()
+        self.echo_message('Unloaded!')
+
+    def _initialize(self):
+        self._loader = Loader(self._vim)
+        self._setting = Setting(self._vim)
+        self._alias = Alias(self._vim)
 
     def _get_executable_action(self, options: Options) -> Optional[Action]:
         action_names = self._setting.get_action_names()
