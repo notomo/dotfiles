@@ -10,4 +10,5 @@ REM slice by index
 set target_path=%target_path:~0,-1%
 
 "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" controlvm %target_path% poweroff
+taskkill /im RLogin.exe
 exit
