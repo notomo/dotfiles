@@ -100,6 +100,16 @@ function! notomo#denite#project_dir_file_rec(context) abort
     execute 'DeniteProjectDir file_rec'
 endfunction
 
+function! notomo#denite#project_directory_rec_on_file(context) abort
+    execute 'cd ' . s:get_target_path(':h', a:context)
+    execute 'DeniteProjectDir directory_rec'
+endfunction
+
+function! notomo#denite#project_directory_rec(context) abort
+    execute 'cd ' . s:get_target_path('', a:context)
+    execute 'DeniteProjectDir directory_rec'
+endfunction
+
 function! notomo#denite#project_dir_grep(context) abort
     execute 'cd ' . s:get_target_path('', a:context)
     execute 'DeniteProjectDir grep'
