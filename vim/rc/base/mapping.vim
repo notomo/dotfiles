@@ -295,6 +295,7 @@ if has('nvim')
     call curstr#custom#action('blade', ['blade'])
     call curstr#custom#action('vim', ['file', 'vim/function', 'vim/help'])
     call curstr#custom#action('python', ['vim/function'])
+    call curstr#custom#action('_', ['file', 'directory'])
 endif
 "}}}
 
