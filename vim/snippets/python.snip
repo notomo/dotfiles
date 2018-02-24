@@ -4,24 +4,23 @@ abbr def __init__
 		${0:pass}
 
 snippet super
-	super().${2:method}(${3:#:args})
+	super().${2:method}(${0:#:args})
 
 snippet property
 abbr @property
 	@property
-	def ${1:#name}(self):
+	def ${1:name}(self):
 	    return self._$1
 
 snippet setter
 abbr @x.setter
-	@${1:#:name}.setter
+	@${1:name}.setter
 	def $1(self, $1):
 		self._$1 = $1
 
 snippet selfx
 abbr self._x = x
 	self._${1:x} = $1
-	${0}
 
 snippet #!
 abbr #!/usr/bin/env python3
@@ -30,7 +29,7 @@ alias shebang
 	${0}
 
 snippet class
-	class ${1:#:name}(${2:object}):
+	class ${1:#:name}(${0:object}):
 		pass
 
 snippet def
@@ -130,7 +129,7 @@ snippet type
 	 # type: ${0:Name}
 
 snippet raise
-	raise ${1:Name}Exception('${0:message}')
+	raise ${1:Name}('${0:message}')
 
 snippet coding
 abbr # -*- coding ...
