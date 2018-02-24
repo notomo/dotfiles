@@ -6,13 +6,13 @@ from typing import Tuple
 from curstr.action_group.base import ActionGroup
 from curstr.action_group.file_position import FilePosition
 from curstr.action_group.nothing import Nothing
+from curstr.custom import ActionSourceOption
 from curstr.factory.action.file import ActionFactory as FileActionFactory
-from curstr.options import Options
 
 
 class ActionFactory(FileActionFactory):
 
-    def _create_action_group(self, options: Options) -> ActionGroup:
+    def _create_action_group(self, option: ActionSourceOption) -> ActionGroup:
         try:
             self._vim.command('setlocal iskeyword+={}'.format('#'))
             cword = self._vim.call('expand', '<cword>')

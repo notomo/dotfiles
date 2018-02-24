@@ -3,7 +3,7 @@ class LogicException(Exception):
     pass
 
 
-class InvalidSettingException(Exception):
+class InvalidCustomException(Exception):
     pass
 
 

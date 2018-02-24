@@ -2,14 +2,14 @@
 import os.path
 
 from curstr.action_group.base import ActionGroup
-from curstr.options import Options
+from curstr.custom import ActionSourceOption
 
 from .file import ActionFactory as FileActionFactory
 
 
 class ActionFactory(FileActionFactory):
 
-    def _create_action_group(self, options: Options) -> ActionGroup:
+    def _create_action_group(self, option: ActionSourceOption) -> ActionGroup:
         views_path = self._get_laravel_views_path()
         cfile = self._vim.call('expand', '<cfile>')
         path = '{}.blade.php'.format(
