@@ -296,7 +296,7 @@ if has('nvim')
     call curstr#custom#filetype_action_source('python', ['vim/function'])
     call curstr#custom#action_source_alias('openable', ['file', 'directory'])
     call curstr#custom#filetype_action_source('_', ['openable'])
-    call curstr#custom#execute_option('use_cache', v:false)
+    call curstr#custom#execute_option('use-cache', v:false)
 endif
 "}}}
 

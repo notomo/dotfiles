@@ -13,9 +13,9 @@ class ActionSource(metaclass=ABCMeta):
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim
 
-    def create(self, action_name: str, option: ActionSourceOption) -> Action:
+    def create(self, option: ActionSourceOption) -> Action:
         action_group = self._create_action_group(option)
-        return Action(action_group, action_name)
+        return Action(action_group, option.action_name)
 
     @abstractmethod
     def _create_action_group(self, option: ActionSourceOption) -> ActionGroup:
