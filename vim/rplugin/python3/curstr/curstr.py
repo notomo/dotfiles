@@ -1,5 +1,5 @@
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from neovim.api.nvim import Nvim
 
@@ -26,8 +26,9 @@ class Curstr(object):
         else:
             self.echo_message('Not found!')
 
-    def custom(self, custom_type: str, args: Dict[str, Any]):
-        self._custom.set(custom_type, args)
+    def custom(self, custom_type: str, args_list: List[Dict[str, Any]]):
+        for args in args_list:
+            self._custom.set(custom_type, args)
 
     def _get_action(self, execute_option: ExecuteOption) -> Optional[Action]:
         source_options = self._custom.get_action_source_options(execute_option)

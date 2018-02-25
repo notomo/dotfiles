@@ -33,12 +33,13 @@ function! curstr#custom#action_source_option(action_source_name, option_name, va
 endfunction
 
 function! curstr#custom#init() abort
+    if !exists('s:init_customizes')
+        return
+    endif
     for [type, dicts] in items(s:init_customizes)
-        for dict in dicts
-            call _curstr_custom(type, dict)
-        endfor
+        call _curstr_custom(type, dicts)
     endfor
-    let s:init_customizes = {}
+    unlet s:init_customizes
 endfunction
 
 function! s:custom(type, dict) abort
@@ -46,5 +47,5 @@ function! s:custom(type, dict) abort
         call add(s:init_customizes[a:type], a:dict)
         return
     endif
-    call _curstr_custom(a:type, a:dict)
+    call _curstr_custom(a:type, [a:dict])
 endfunction
