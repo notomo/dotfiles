@@ -3,8 +3,10 @@ from abc import ABCMeta, abstractmethod
 
 from neovim.api.nvim import Nvim
 
+from curstr.echoable import Echoable
 
-class ActionGroup(metaclass=ABCMeta):
+
+class ActionGroup(Echoable, metaclass=ABCMeta):
 
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim

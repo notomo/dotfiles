@@ -3,6 +3,7 @@ from typing import Any, Dict, List
 
 from neovim.api.nvim import Nvim
 
+from curstr.echoable import Echoable
 from curstr.exception import LogicException
 
 from .action_source import ActionSourceCustom, ActionSourceOption
@@ -10,7 +11,7 @@ from .execute import ExecuteCustom, ExecuteOption
 from .filetype import FiletypeCustom
 
 
-class CustomFacade(object):
+class CustomFacade(Echoable):
 
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim

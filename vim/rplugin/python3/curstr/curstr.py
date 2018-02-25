@@ -3,12 +3,14 @@ from typing import Any, Dict, List, Optional
 
 from neovim.api.nvim import Nvim
 
+from curstr.echoable import Echoable
+
 from .action import Action
 from .custom import CustomFacade, ExecuteOption
 from .loader import Loader
 
 
-class Curstr(object):
+class Curstr(Echoable):
 
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim
@@ -42,10 +44,3 @@ class Curstr(object):
             if action.is_executable():
                 return action
         return None
-
-    def echo_message(self, message):
-        self._vim.command(
-            'echomsg "{}"'.format(
-                self._vim.call('escape', str(message), '\\"')
-            )
-        )

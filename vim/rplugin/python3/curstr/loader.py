@@ -9,10 +9,11 @@ from typing import Dict  # noqa
 from neovim.api.nvim import Nvim
 
 from curstr.action.source import ActionSource
+from curstr.echoable import Echoable
 from curstr.exception import ActionSourceNotFoundException
 
 
-class Loader(object):
+class Loader(Echoable):
 
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim
@@ -55,10 +56,3 @@ class Loader(object):
                 return path
 
         raise ActionSourceNotFoundException(source_name)
-
-    def echo_message(self, message):
-        self._vim.command(
-            'echomsg "{}"'.format(
-                self._vim.call('escape', str(message), '\\"')
-            )
-        )
