@@ -35,6 +35,10 @@ class Curstr(object):
             return self._filetype_custom.set(
                 args['filetype'], args['action_source_names']
             )
+        if custom_type == 'filetype_alias':
+            return self._filetype_custom.set_alias(
+                args['alias'], args['filetype']
+            )
         if custom_type == 'action_source_alias':
             return self._action_source_custom.set_alias(
                 args['alias'], args['action_source_names']

@@ -291,10 +291,12 @@ nnoremap <silent> [keyword]fh :<C-u>Curstr -action=horizontal_open<CR>
 
 if has('nvim')
     call curstr#custom#filetype_action_source('php', ['tag', 'blade'])
-    call curstr#custom#filetype_action_source('blade', ['blade'])
+    call curstr#custom#filetype_alias('blade', 'php')
     call curstr#custom#filetype_action_source('vim', ['file', 'vim/function', 'vim/help'])
     call curstr#custom#filetype_action_source('python', ['vim/function'])
-    call curstr#custom#filetype_action_source('_', ['file', 'directory'])
+    call curstr#custom#action_source_alias('openable', ['file', 'directory'])
+    call curstr#custom#filetype_action_source('_', ['openable'])
+    call curstr#custom#execute_option('use_cache', v:false)
 endif
 "}}}
 
