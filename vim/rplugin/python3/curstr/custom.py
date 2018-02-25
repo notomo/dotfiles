@@ -2,12 +2,28 @@
 from itertools import chain
 from typing import Any, Dict, List  # noqa
 
+from neovim.api.nvim import Nvim
+
 from curstr.exception import InvalidCustomException
 
 
-class FiletypeCustom(object):
+class Custom(object):
 
-    def __init__(self) -> None:
+    def __init__(self, vim: Nvim) -> None:
+        self._vim = vim
+
+    def echo_message(self, message):
+        self._vim.command(
+            'echomsg "{}"'.format(
+                self._vim.call('escape', str(message), '\\"')
+            )
+        )
+
+
+class FiletypeCustom(Custom):
+
+    def __init__(self, vim: Nvim) -> None:
+        super().__init__(vim)
         self._action_source_names = {'_': ['file']}
 
     def set(self, filetype: str, action_source_names: List[str]):
@@ -40,9 +56,10 @@ class ActionSourceOption(object):
         return self._options.get(key, default)
 
 
-class ActionSourceCustom(object):
+class ActionSourceCustom(Custom):
 
-    def __init__(self) -> None:
+    def __init__(self, vim: Nvim) -> None:
+        super().__init__(vim)
         self._action_source_aliases = {
             'vim/function': [
                 'vim/autoload_function',
@@ -72,7 +89,7 @@ class ActionSourceCustom(object):
 
         options = [
             ActionSourceOption(
-                name, {**self.get_option(name), **option._options}
+                name, {**self.get_option(name)._options, **option._options}
             )
             for name in aliased
         ]
@@ -95,9 +112,10 @@ class ActionSourceCustom(object):
         return ActionSourceOption(action_source_name, option)
 
 
-class ExecuteCustom(object):
+class ExecuteCustom(Custom):
 
-    def __init__(self) -> None:
+    def __init__(self, vim: Nvim) -> None:
+        super().__init__(vim)
         self._options = {
             'use-cache': '1',
             'action': '',

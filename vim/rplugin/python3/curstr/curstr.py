@@ -14,9 +14,9 @@ class Curstr(object):
 
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim
-        self._filetype_custom = FiletypeCustom()
-        self._action_source_custom = ActionSourceCustom()
-        self._execute_custom = ExecuteCustom()
+        self._filetype_custom = FiletypeCustom(vim)
+        self._action_source_custom = ActionSourceCustom(vim)
+        self._execute_custom = ExecuteCustom(vim)
         self._loader = Loader(self._vim)
 
         if hasattr(self._vim, 'channel_id'):
