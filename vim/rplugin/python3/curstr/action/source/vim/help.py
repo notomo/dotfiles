@@ -2,9 +2,9 @@
 import os.path
 from typing import List  # noqa
 
-from curstr.action.group import ActionGroup, Help, Nothing
-from curstr.custom import ActionSourceOption
+from curstr.action.group import ActionGroup, Help, Helps, Nothing
 from curstr.action.source import ActionSource as Base
+from curstr.custom import ActionSourceOption
 
 
 class ActionSource(Base):
@@ -30,4 +30,4 @@ class ActionSource(Base):
         if not contained:
             return Nothing(self._vim)
 
-        return Help(self._vim, contained.pop())
+        return Helps(self._vim, contained)
