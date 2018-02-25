@@ -27,7 +27,7 @@ class ActionSource(Base):
 
                 extend([x for x in words if word in x])
 
-        if not contained:
+        if not contained or option.get('exactly'):
             return Nothing(self._vim)
 
         return Helps(self._vim, contained)

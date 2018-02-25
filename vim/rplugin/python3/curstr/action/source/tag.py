@@ -22,7 +22,7 @@ class ActionSource(Base):
 
             append(name)
 
-        if not contained:
+        if not contained or option.get('exactly'):
             return Nothing(self._vim)
 
         return Tags(self._vim, contained)

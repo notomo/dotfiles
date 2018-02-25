@@ -1,5 +1,6 @@
 
 from itertools import chain
+from typing import Any  # noqa
 from typing import Dict, List, Tuple
 
 from neovim.api.nvim import Nvim
@@ -42,7 +43,11 @@ class ActionSourceCustom(Custom):
                 'vim/script_function',
             ],
         }
-        self._action_source_options = {}  # type: Dict[str, Dict[str, str]]
+        self._action_source_options = {
+            '_': {
+                'exactly': False,
+            }
+        }  # type: Dict[str, Dict[str, Any]]
 
     def set_alias(self, alias: str, action_source_names: List[str]):
         self._action_source_aliases[alias] = action_source_names
@@ -60,7 +65,10 @@ class ActionSourceCustom(Custom):
 
         executed_action_name = execute_option.action_name
         return [
-            ActionSourceOption(name, executed_action_name, option)
+            ActionSourceOption(
+                name, executed_action_name,
+                {**self._action_source_options['_'], **option}
+            )
             for name, option in aliased
         ]
 
