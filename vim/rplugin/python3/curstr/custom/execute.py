@@ -51,7 +51,9 @@ class ExecuteCustom(Custom):
 class ExecuteOption(object):
 
     def __init__(self, action_source_names: List[str], options: Dict) -> None:
-        self._action_source_names = action_source_names
+        self._action_source_names = [
+            x for x in action_source_names if len(x) > 0
+        ]
         self._action_name = options.get('action', '')
         self._use_cache = bool(options.get('use-cache', True))
 
