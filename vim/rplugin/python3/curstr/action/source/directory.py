@@ -1,15 +1,13 @@
 
 import os.path
 
-from curstr.action_group.base import ActionGroup
-from curstr.action_group.directory import Directory
-from curstr.action_group.nothing import Nothing
+from curstr.action.group import ActionGroup, Directory, Nothing
 from curstr.custom import ActionSourceOption
 
-from .base import ActionFactory as Base
+from .base import ActionSource as Base
 
 
-class ActionFactory(Base):
+class ActionSource(Base):
 
     def _create_action_group(self, option: ActionSourceOption) -> ActionGroup:
         path = self._vim.call('expand', '<cfile>')

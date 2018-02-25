@@ -3,14 +3,12 @@ import os.path
 import re
 from typing import Tuple
 
-from curstr.action_group.base import ActionGroup
-from curstr.action_group.file_position import FilePosition
-from curstr.action_group.nothing import Nothing
+from curstr.action.group import ActionGroup, FilePosition, Nothing
 from curstr.custom import ActionSourceOption
-from curstr.factory.action.file import ActionFactory as FileActionFactory
+from curstr.action.source.file import ActionSource as FileActionSource
 
 
-class ActionFactory(FileActionFactory):
+class ActionSource(FileActionSource):
 
     def _create_action_group(self, option: ActionSourceOption) -> ActionGroup:
         try:

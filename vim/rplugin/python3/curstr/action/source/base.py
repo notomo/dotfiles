@@ -4,11 +4,11 @@ from abc import ABCMeta, abstractmethod
 from neovim.api.nvim import Nvim
 
 from curstr.action import Action
-from curstr.action_group.base import ActionGroup
+from curstr.action.group import ActionGroup
 from curstr.custom import ActionSourceOption
 
 
-class ActionFactory(metaclass=ABCMeta):
+class ActionSource(metaclass=ABCMeta):
 
     def __init__(self, vim: Nvim) -> None:
         self._vim = vim

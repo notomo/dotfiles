@@ -2,15 +2,13 @@
 
 from typing import List  # noqa
 
-from curstr.action_group.base import ActionGroup
-from curstr.action_group.nothing import Nothing
-from curstr.action_group.tag import Tag
+from curstr.action.group import ActionGroup, Nothing, Tag
 from curstr.custom import ActionSourceOption
 
-from .base import ActionFactory as Base
+from .base import ActionSource as Base
 
 
-class ActionFactory(Base):
+class ActionSource(Base):
 
     def _create_action_group(self, option: ActionSourceOption) -> ActionGroup:
         word = self._vim.call('expand', '<cword>')

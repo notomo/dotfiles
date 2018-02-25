@@ -2,14 +2,12 @@
 import os.path
 from typing import List  # noqa
 
-from curstr.action_group.base import ActionGroup
-from curstr.action_group.help import Help
-from curstr.action_group.nothing import Nothing
+from curstr.action.group import ActionGroup, Help, Nothing
 from curstr.custom import ActionSourceOption
-from curstr.factory.action.base import ActionFactory as Base
+from curstr.action.source import ActionSource as Base
 
 
-class ActionFactory(Base):
+class ActionSource(Base):
 
     def _create_action_group(self, option: ActionSourceOption) -> ActionGroup:
         word = self._vim.call('expand', '<cword>')

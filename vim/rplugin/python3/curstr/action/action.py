@@ -1,6 +1,5 @@
 
-from curstr.action_group.base import ActionGroup
-from curstr.action_group.nothing import Nothing
+from curstr.action.group import ActionGroup, Nothing
 
 
 class Action(object):

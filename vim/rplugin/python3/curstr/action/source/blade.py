@@ -1,13 +1,13 @@
 
 import os.path
 
-from curstr.action_group.base import ActionGroup
+from curstr.action.group import ActionGroup
 from curstr.custom import ActionSourceOption
 
-from .file import ActionFactory as FileActionFactory
+from .file import ActionSource as FileActionSource
 
 
-class ActionFactory(FileActionFactory):
+class ActionSource(FileActionSource):
 
     def _create_action_group(self, option: ActionSourceOption) -> ActionGroup:
         views_path = self._get_laravel_views_path()
