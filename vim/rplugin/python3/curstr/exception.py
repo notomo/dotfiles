@@ -16,3 +16,16 @@ class ActionSourceNotFoundException(Exception):
         return 'ActionSource "{}" is not found.'.format(
             self._action_source_name
         )
+
+
+class ActionModuleNotFoundException(Exception):
+
+    def __init__(self, module_type: str, action_module_name: str) -> None:
+        self._module_type = module_type
+        self._action_module_name = action_module_name
+
+    def __str__(self):
+        return 'action {} "{}" is not found.'.format(
+            self._module_type,
+            self._action_module_name
+        )
