@@ -1,6 +1,7 @@
 
 import importlib
-from modulefinder import Module  # noqa
+import sys
+from modulefinder import Module
 from typing import Dict  # noqa
 
 from neovim.api.nvim import Nvim
@@ -28,10 +29,15 @@ class Loader(Echoable):
         module_name = 'curstr.action.source.{}'.format(
             '.'.join(source_name.split('/'))
         )
-        module = importlib.import_module(module_name)  # type: Module
+        module = self._import(module_name)
         if hasattr(module, 'ActionSource'):
             action_source = module.ActionSource(self._vim)
             self._action_sources[source_name] = action_source
             return action_source
 
         raise ActionSourceNotFoundException(source_name)
+
+    def _import(self, module_name: str) -> Module:
+        if module_name in sys.modules.keys():
+            return importlib.reload(sys.modules[module_name])
+        return importlib.import_module(module_name)
