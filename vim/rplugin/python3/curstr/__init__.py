@@ -10,8 +10,8 @@ from .importer import Importer
 class CurstrHandler(object):
 
     def __init__(self, vim):
-        self._importer = Importer(vim)
-        self._curstr = Curstr(vim)
+        importer = Importer(vim)
+        self._curstr = Curstr(vim, importer)
 
     @neovim.function('_curstr_execute', sync=True)
     def execute(self, args):

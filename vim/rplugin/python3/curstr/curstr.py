@@ -7,15 +7,15 @@ from curstr.echoable import Echoable
 
 from .action import Action
 from .custom import CustomFacade, ExecuteOption
-from .loader import Loader
+from .importer import Importer
 
 
 class Curstr(Echoable):
 
-    def __init__(self, vim: Nvim) -> None:
+    def __init__(self, vim: Nvim, importer: Importer) -> None:
         self._vim = vim
         self._custom = CustomFacade(vim)
-        self._loader = Loader(self._vim)
+        self._importer = importer
 
         if hasattr(self._vim, 'channel_id'):
             self._vim.vars['curstr#_channel_id'] = self._vim.channel_id
@@ -37,7 +37,7 @@ class Curstr(Echoable):
 
         use_cache = execute_option.use_cache
         for source_option in source_options:
-            action_source = self._loader.get_action_source(
+            action_source = self._importer.get_action_source(
                 source_option.name, use_cache
             )
             action = action_source.create(source_option)
