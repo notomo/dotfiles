@@ -31,6 +31,7 @@ nnoremap [edit]r r
 vnoremap [edit]r r
 nnoremap [edit]h gU
 nnoremap [edit]l gu
+nnoremap [edit]t viwo<ESC>g~l
 vnoremap [edit]h gU
 vnoremap [edit]l gu
 nnoremap [edit]m i<C-@>
