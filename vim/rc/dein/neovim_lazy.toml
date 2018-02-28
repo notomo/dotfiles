@@ -159,3 +159,6 @@ let g:atags_on_generate_stderr = 'notomo#vimrc#silent_handler'
 repo = 'kana/vim-filetype-haskell'
 on_ft = 'haskell'
 
+[[plugins]]
+repo = 'notomo/curstr.nvim'
+hook_source = 'source ~/.vim/rc/plugins/curstr.vim'
