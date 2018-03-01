@@ -134,3 +134,12 @@ snippet raise
 snippet coding
 abbr # -*- coding ...
 	# -*- coding: utf-8 -*-
+
+snippet mock
+	${0:name} = Mock()
+
+snippet mock_with_spec
+	${1:name} = Mock(spec=${0:ClassName})
+
+snippet mock_return_value
+	${1:mock}.return_value = ${0:value}
