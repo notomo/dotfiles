@@ -19,6 +19,8 @@ let g:operator#surround#blocks =
 \       { 'block' : ['【', '】'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['D'] },
 \       { 'block' : ['「', '」'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['L'] },
 \       { 'block' : ['（', '）'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['P'] },
+\       { 'block' : ["```\n", "\n```"], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['c'] },
+\       { 'block' : ["<pre>\n", "\n</pre>"], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['apre'] },
 \   ],
 \   'markdown' : [
 \       { 'block' : ['~~', '~~'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['T'] },
