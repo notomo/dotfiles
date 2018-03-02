@@ -175,6 +175,7 @@ npm install -g javascript-typescript-langserver
 npm i -g typescript
 npm i -g neovim
 npm i -g gulp
+npm i -g htmlhint
 
 # lua
 yum install -y lua-devel

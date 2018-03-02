@@ -21,6 +21,7 @@ let g:ale_linters['ruby'] = ['rubocop']
 let g:ale_linters['lua'] = ['luacheck']
 let g:ale_linters['rust'] = ['rls', 'rustc']
 let g:ale_linters['dockerfile'] = ['hadolint']
+let g:ale_linters['html'] = ['htmlhint']
 
 let g:ale_fixers = {}
 let g:ale_fixers['python'] = ['autopep8', 'isort']
