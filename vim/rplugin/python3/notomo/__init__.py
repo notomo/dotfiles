@@ -51,7 +51,6 @@ class Notomo(object):
                 'expand',
                 self._vim.vars['local#var#document_root']
             )
-
             path = ''
         else:
             document_root = self._vim.call('getcwd')
@@ -85,3 +84,4 @@ class Notomo(object):
         open_url = 'http://{}:{}/{}'.format(host, port, path)
         self.open_browser([open_url])
         self._vim.command('tabprevious')
+        self._vim.command('+tabclose')
