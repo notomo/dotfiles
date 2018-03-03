@@ -99,7 +99,7 @@ vmap [exec]b [browser]
 
 nmap [browser]s <Plug>(openbrowser-search)
 vmap [browser]s <Plug>(openbrowser-search)
-nmap [browser]o :<C-u>call _open_browser(expand('<cWORD>'))<CR>
+nnoremap [browser]o :<C-u>call _open_browser(expand('<cWORD>'))<CR>
 nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 
 if has('nvim') && executable('lemonade') && has('unix')
