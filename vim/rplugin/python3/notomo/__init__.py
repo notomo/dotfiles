@@ -41,12 +41,13 @@ class Notomo(object):
 
     @neovim.function('_run_http_server_and_open', sync=True)
     def run_http_server_and_open(self, args):
+        open_current = args[0]
         port = self._vim.vars.get(
             'local#var#port',
             random.randint(49152, 65535)
         )
 
-        if 'local#var#document_root' in self._vim.vars:
+        if 'local#var#document_root' in self._vim.vars and not open_current:
             document_root = self._vim.call(
                 'expand',
                 self._vim.vars['local#var#document_root']
