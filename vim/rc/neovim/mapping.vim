@@ -23,3 +23,5 @@ nnoremap [exec]C :<C-u>checkhealth<CR>
 
 nnoremap [exec]J :<C-u>Jesponse<Space>
 nnoremap [exec]j :<C-u>JesponseCursorUrl<CR>
+
+nnoremap [exec]m :<C-u>call _run_http_server_and_open()<CR>

@@ -37,6 +37,7 @@ go get -u honnef.co/go/tools/cmd/gosimple
 go get -u honnef.co/go/tools/cmd/staticcheck
 go get -u github.com/alecthomas/gometalinter
 go get -u honnef.co/go/tools/cmd/unused
+go get -u github.com/mattn/mkup
 
 # ruby
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
