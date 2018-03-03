@@ -547,6 +547,7 @@ call altr#define('neovim_lazy.toml', 'neovim_eager.toml')
 call altr#define('autoload/%.vim', 'plugin/%.vim')
 call altr#define('%.go', '%_test.go')
 call altr#define('autoload/notomo/%.vim', 'rc/plugins/%.vim')
+call altr#define('test/rplugin/%/test_%.py', 'rplugin/%/%.py')
 '''
 
 [[plugins]]
@@ -576,8 +577,8 @@ hook_source = 'source ~/.vim/rc/plugins/ale.vim'
 
 [[plugins]]
 repo = 'janko-m/vim-test'
-on_cmd = ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit']
-on_ft = ['vim', 'php']
+on_cmd = 'Test'
+on_ft = ['vim', 'php', 'python']
 hook_add = '''
 nnoremap [test]n :<C-u>TestNearest<CR>
 nnoremap [test]f :<C-u>TestFile<CR>

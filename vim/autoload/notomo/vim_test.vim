@@ -31,3 +31,15 @@ endfunction
 function! s:docker(cmd) abort
     return join(['docker exec', g:local#var#container_name, a:cmd])
 endfunction
+
+function! notomo#vim_test#set_project_root() abort
+    if &filetype ==? ''
+        return
+    endif
+    if &filetype !=? 'python'
+        unlet! g:test#project_root
+        return
+    endif
+    let config_file = notomo#vimrc#search_parent_recursive('\.coveragerc', './')
+    let g:test#project_root = fnamemodify(config_file, ':h')
+endfunction
