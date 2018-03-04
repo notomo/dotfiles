@@ -4,5 +4,5 @@ call curstr#custom#filetype_action_source('vim', ['file', 'vim/function', 'vim/h
 call curstr#custom#filetype_alias('toml', 'vim')
 call curstr#custom#filetype_action_source('python', ['vim/function'])
 call curstr#custom#action_source_alias('openable', ['file', 'directory'])
-call curstr#custom#filetype_action_source('_', ['openable'])
+call curstr#custom#filetype_action_source('_', ['openable', 'vim/function'])
 call curstr#custom#execute_option('use-cache', v:false)
