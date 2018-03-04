@@ -36,10 +36,16 @@ function! notomo#vim_test#set_project_root() abort
     if &filetype ==? ''
         return
     endif
-    if &filetype !=? 'python'
-        unlet! g:test#project_root
+    if &filetype ==? 'python'
+        let config_file = notomo#vimrc#search_parent_recursive('\.coveragerc', './')
+        let g:test#project_root = fnamemodify(config_file, ':h')
         return
     endif
-    let config_file = notomo#vimrc#search_parent_recursive('\.coveragerc', './')
-    let g:test#project_root = fnamemodify(config_file, ':h')
+    if &filetype ==? 'vim'
+        let config_file = notomo#vimrc#search_parent_recursive('\.themisrc', './')
+        let g:test#project_root = fnamemodify(config_file, ':h:h')
+        return
+    endif
+    unlet! g:test#project_root
+    return
 endfunction
