@@ -60,9 +60,12 @@ else
 endif
 
 let g:quickrun_config['vim'] = {
-\   'hook/output_encode/encoding': 'utf-8',
+\   'hooko/output_encode/encoding': 'utf-8',
 \}
 let g:quickrun_config['php'] = {
+\   'hook/output_encode/encoding': 'utf-8',
+\}
+let g:quickrun_config['sh'] = {
 \   'hook/output_encode/encoding': 'utf-8',
 \}
 
