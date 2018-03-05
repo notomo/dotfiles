@@ -46,14 +46,14 @@ alias func
 		${0:TARGET}
 	endfunction
 
-snippet try
+snippet try_catch
 	try
 		${1:TARGET}
 	catch /${2:#:pattern}/
 		${3}
 	endtry
 
-snippet tryfinally
+snippet try_finally
 alias tryf
 	try
 		${1:TARGET}
@@ -87,3 +87,7 @@ snippet let
 
 snippet lets
 	let s:${1:variable} = ${0:value}
+
+snippet themis_log
+alias log
+	call themis#log(${0:message})
