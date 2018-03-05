@@ -586,6 +586,7 @@ nnoremap [test]f :<C-u>TestFile<CR>
 nnoremap [test]s :<C-u>TestSuite<CR>
 nnoremap [test]t :<C-u>TestLast<CR>
 nnoremap [test]v :<C-u>TestVisit<CR>
+nnoremap [test]C :<C-u>call notomo#vim_test#toggle_coverage()<CR>
 '''
 hook_source = 'source ~/.vim/rc/plugins/vim_test.vim'
 hook_post_source = '''

@@ -1,15 +1,16 @@
 
 function! notomo#vim_test#transform(cmd) abort
-    if &filetype ==? 'python' && a:cmd =~? '^nose2'
-        return s:nose2(a:cmd)
+    let command = s:coverage(a:cmd)
+    if &filetype ==? 'python' && command =~? '^nose2'
+        return s:nose2(command)
     endif
-    if &filetype ==? 'python' && a:cmd =~? '^pytest'
-        return s:pytest(a:cmd)
+    if &filetype ==? 'python' && command =~? '^pytest'
+        return s:pytest(command)
     endif
     if exists('g:local#var#container_name') && stridx(g:local#var#container_name, ' ') == -1
-        return s:docker(a:cmd)
+        return s:docker(command)
     endif
-    return a:cmd
+    return command
 endfunction
 
 function! s:nose2(cmd) abort
@@ -32,6 +33,17 @@ function! s:docker(cmd) abort
     return join(['docker exec', g:local#var#container_name, a:cmd])
 endfunction
 
+function! s:coverage(cmd) abort
+    if !s:enabled_coverage
+        return a:cmd
+    endif
+    if &filetype ==? 'php' && a:cmd =~? '^phpunit'
+        let command = substitute(a:cmd, '--no-coverage', '', 'g')
+        return command
+    endif
+    return a:cmd
+endfunction
+
 function! notomo#vim_test#set_project_root() abort
     if &filetype ==? ''
         return
@@ -48,4 +60,10 @@ function! notomo#vim_test#set_project_root() abort
     endif
     unlet! g:test#project_root
     return
+endfunction
+
+let s:enabled_coverage = v:false
+function! notomo#vim_test#toggle_coverage() abort
+    let s:enabled_coverage = !s:enabled_coverage
+    echomsg 'coverage ' . (s:enabled_coverage ? 'enabled!' : 'disabled!')
 endfunction
