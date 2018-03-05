@@ -9,10 +9,14 @@ class Source(Base):
         super().__init__(vim)
 
         self.name = 'denite_source'
-        self.kind = 'completion'
+        self.kind = 'denite_source'
 
     def gather_candidates(self, context):
         return [
-            {'word': 'Denite {}'.format(x)} for x in
+            {
+                'word': source,
+                'abbr': 'Denite {}'.format(source),
+            }
+            for source in
             self.vim.call('denite#helper#_get_available_sources')
         ]
