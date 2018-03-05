@@ -41,6 +41,10 @@ class Notomo(object):
 
     @neovim.function('_run_http_server_and_open', sync=True)
     def run_http_server_and_open(self, args):
+        if not self._vim.call('executable', 'mkup'):
+            self.echo_message('mkup is not executable.')
+            return
+
         open_current = args[0]
         port = self._vim.vars.get(
             'local#var#port',
