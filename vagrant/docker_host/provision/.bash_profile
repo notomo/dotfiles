@@ -11,6 +11,7 @@ export PS1="[\u@\h \w]\$ "
 export PATH=$PATH:$HOME/.vim/dein/repos/github.com/thinca/vim-themis/bin
 export THEMIS_VIM=nvim
 export THEMIS_ARGS="-e -s --headless"
+export THEMIS_PROFILE_LOG=profile.txt
 
 # export NVIM_PYTHON_LOG_FILE=$HOME/log
 # export NVIM_PYTHON_LOG_LEVEL=ERROR
