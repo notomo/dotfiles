@@ -33,6 +33,7 @@ alias less='less -N'
 alias ps='ps au'
 alias gc=git_clone_from_github
 alias gra=git_remote_add_from_github
+alias themis='NVIM_RPLUGIN_MANIFEST=$HOME/rplugin.vim themis'
 
 function docker_latest() {
     docker ps -l -q
