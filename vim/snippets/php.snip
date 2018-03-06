@@ -47,13 +47,16 @@ abbr protected const
 
 snippet self_const
 abbr self::CONST
+options word
 	self::${0:CONST}
 
 snippet class_name
 abbr Class::class
+options word
 	${0:ClassName}::class
 
 snippet new
+options word
 	new ${1:ClassName}(${0});
 
 snippet if_func
@@ -106,10 +109,17 @@ snippet assertNull
 alias null
 	$this->assertNull(${0:$result});
 
+snippet assertTrue
+	$this->assertTrue(${0:$result});
+
+snippet assertFalse
+	$this->assertFalse(${0:$result});
+
 snippet mock
 	$${1:mockVar} = M::mock(${0:ClassName}::class);
 
 snippet mmock
+options word
 	M::mock(${1:ClassName}::class);
 
 snippet shouldReceiveWith
@@ -271,6 +281,7 @@ options head
 	$this->${1:TARGET} = $$1;
 
 snippet ifset
+options word
 	${1:nullable} ?? ${0:else}
 
 snippet throw
@@ -299,12 +310,12 @@ snippet cchain_func
 		${0:TARGET}
 	})
 
-snippet instanceof_if
-	if (${1:$instance} instanceof ${2:Class}) {
-		${0:TARGET}
-	}
+snippet instanceof
+options word
+	${1:$instance} instanceof ${2:Class}
 
 snippet map
+options word
 	array_map(function (${2}) { return ${0:TARGET}; }, ${1:array, ...})
 
 snippet return
