@@ -45,6 +45,7 @@ function! notomo#window#vsplit_from_tab(tab_num) abort
     let cur_tab = tabpagenr()
     execute 'noautocmd tabnext ' . a:tab_num
     let buf_num = &filetype ==? 'vimfiler' ? bufnr('#') : bufnr('%')
+    let curpos = getpos('.')
     execute 'noautocmd tabnext ' . cur_tab
     if buf_num == -1
         return
@@ -52,6 +53,7 @@ function! notomo#window#vsplit_from_tab(tab_num) abort
     vsplit
     execute "noautocmd normal! \<C-w>l"
     execute 'noautocmd buffer ' . buf_num
+    call setpos('.', curpos)
     execute "noautocmd normal! \<C-w>h"
     execute a:tab_num . 'tabclose'
     execute 'normal! <C-w>='
