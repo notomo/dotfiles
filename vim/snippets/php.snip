@@ -57,7 +57,7 @@ options word
 
 snippet new
 options word
-	new ${1:ClassName}(${0});
+	new ${1:ClassName}(${0})
 
 snippet if_func
 alias iffunc
@@ -332,3 +332,9 @@ snippet throws_doc
 
 snippet dataProvider
 	@dataProvider ${0:methodName}
+
+snippet depends
+	@depends ${0:methodName}
+
+snippet covers
+	@covers ::${0:methodName}
