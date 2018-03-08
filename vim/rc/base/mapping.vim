@@ -450,11 +450,8 @@ endfor
 nnoremap [yank] <Nop>
 nmap <Space>y [yank]
 
-function! s:yank_date(delimiter) abort
-    let delimiter = a:delimiter ==? '' ? '_' : a:delimiter
-    call s:yank_value(strftime(join(split('%Y_%m_%d','_'),a:delimiter)))
-endfunction
-nnoremap <silent> [yank]d :<C-u>call <SID>yank_date('/')<CR>
+nnoremap <silent> [yank]d :<C-u>call <SID>yank_value(strftime('%Y-%m-%d'))<CR>
+nnoremap <silent> [yank]D :<C-u>call <SID>yank_value(strftime('%Y-%m-%d %T'))<CR>
 nnoremap <silent> [yank]n :<C-u>call <SID>yank_value(fnamemodify(expand('%'), ':r'))<CR>
 nnoremap <silent> [yank]N :<C-u>call <SID>yank_value(expand('%'))<CR>
 nnoremap <silent> [yank]p :<C-u>call <SID>yank_value(substitute(substitute(expand('%:p'), substitute(expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\', '/', 'g'))<CR>
