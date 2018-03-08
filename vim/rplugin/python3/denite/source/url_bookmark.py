@@ -18,7 +18,7 @@ class Source(Base):
 
         def create(line, file_path, number):
             factors = [factor.rstrip() for factor in line.split("\t")]
-            url = factors[0]
+            url = factors[-1]
 
             return {
                 'word': ' '.join(factors),
