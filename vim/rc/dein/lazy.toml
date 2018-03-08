@@ -593,6 +593,7 @@ hook_post_source = '''
 let g:test#runners['PHP'] = ['PHPUnit']
 let g:test#runners['Python'] = ['PyTest']
 let g:test#python#pytest#options = '-s'
+let g:test#php#phpunit#options = '--no-coverage'
 '''
 
 [[plugins]]
