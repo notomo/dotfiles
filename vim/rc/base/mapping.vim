@@ -684,6 +684,7 @@ nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
 " relode vimrc
 nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
 nnoremap [exec]e :<C-u>smile<CR>
+nnoremap [exec]cc :<C-u>messages clear<CR>
 "}}}
 
 function! s:goto_func() abort
