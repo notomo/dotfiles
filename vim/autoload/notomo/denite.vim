@@ -194,7 +194,7 @@ function! notomo#denite#append_with(context, prefix, suffix) abort
 endfunction
 
 function! notomo#denite#get_php_method_command() abort
-    let class_path = notomo#php#get_class_path()
+    let [class_path, _] = notomo#php#get_class_path_and_attribute()
     if class_path =~? '^\\'
         let class_path = class_path[1:]
     endif
@@ -225,6 +225,16 @@ function! notomo#denite#add_php_use_statement() abort
     else
         echomsg 'Not found!'
     endif
+endfunction
+
+function! notomo#denite#php_tag_jump() abort
+    let [class_path, attribute] = notomo#php#get_class_path_and_attribute()
+    if class_path =~? '^\\'
+        let class_path = class_path[1:]
+    endif
+    let cmd = 'Denite php/tag:' . substitute(class_path, '\', '/', 'g') . ':' . attribute . ' -no-empty -immediately-1'
+    execute cmd
+    echomsg cmd
 endfunction
 
 function! notomo#denite#get(option_name) abort

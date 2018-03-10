@@ -39,12 +39,23 @@ function! notomo#php#get_indent()
     return -1
 endfunction
 
-function! notomo#php#get_class_path()
+function! notomo#php#get_class_path_and_attribute()
     " ex. SubNameSpace\Class
-    let path = notomo#php#get_cursor_class_path()
+
+    let path = notomo#php#get_class_path_from_attribute()
+    let attribute = expand('<cword>')
+    if path ==? ''
+        let path = notomo#php#get_cursor_class_path()
+        let attribute = ''
+    endif
+
+    if getline('.') =~? '\v^\s*use\s+\S+\s*;'
+        return [path, attribute]
+    endif
+
     if path =~? '^\\'
         " global path
-        return path
+        return [path, '']
     endif
 
     let alias = notomo#php#get_alias(path)
@@ -53,8 +64,12 @@ function! notomo#php#get_class_path()
         let alias = notomo#php#get_namespace() . '\' . alias_name
     endif
 
+    if getline('.') =~? '\v^\s*use'
+        return [alias, '']
+    endif
+
     " ex. UsedNameSpace\SubNameSpace\Class
-    return alias . path[len(alias_name):]
+    return [alias . path[len(alias_name):], attribute]
 endfunction
 
 function! notomo#php#get_namespace()
@@ -69,7 +84,7 @@ function! notomo#php#get_alias(path) abort
 
     let cursor_pos = getpos('.')
     call cursor(1, 1)
-    let line_num = search('\v^use\s+(\S+\\|\s+as\s+)?' . alias_name . '\s*;', 'nW')
+    let line_num = search('\v^use\s+\S+(\S+\\|\s+as\s+)?' . alias_name . '\s*;', 'nW')
     call setpos('.', cursor_pos)
     if line_num == 0
         return ''
@@ -85,6 +100,11 @@ endfunction
 
 function! notomo#php#get_cursor_class_path() abort
     return matchstr(expand('<cWORD>'), '\v\zs(\\)?(\w+\\)*' . expand('<cword>') . '(\\\w+)*\ze([^0-9A-Za-z])?')
+endfunction
+
+function! notomo#php#get_class_path_from_attribute() abort
+    " TODO: self, $this
+    return matchstr(expand('<cWORD>'), '\v\zs(\\)?(\w[a-zA-Z0-9]*(\\)?)+\ze::' . expand('<cword>'))
 endfunction
 
 function! notomo#php#get_last_use_line_numer() abort
