@@ -15,11 +15,6 @@ function! s:get_path() abort
     return path
 endfunction
 
-function! notomo#gina#changes_of()
-    let revision = s:get_revision()
-    execute 'Gina changes --opener="botright vsplit" ' . revision . '^..' . revision
-endfunction
-
 function! notomo#gina#tag_push_command()
     let revision = s:get_revision()
     return ':Gina! push origin ' . revision

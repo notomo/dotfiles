@@ -125,7 +125,7 @@ call gina#custom#mapping#nmap('/\%(log\|branch\|blame\)', 'yr', ':call notomo#gi
 " show changes, compare
 call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cb', ':call gina#action#call("changes:between:rightest")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cf', ':call gina#action#call("changes:from:rightest")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cc', ':call notomo#gina#changes_of()<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cc', ':call gina#action#call("changes:of:rightest")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'dd', ':call gina#action#call("patch:oneside:tab")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(blame\|stash\|log\|compare\)', 'dd', ':call gina#action#call("compare")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(status\|blame\|stash\|log\|compare\)', 'D', ':call gina#action#call("diff")<CR>', s:noremap_silent)
