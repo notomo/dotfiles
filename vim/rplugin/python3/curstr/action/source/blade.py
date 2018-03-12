@@ -1,13 +1,15 @@
 
 import os.path
 
-from curstr.action.group import ActionGroup
+from curstr.action.group import ActionGroup, File, FileDispatcher
 from curstr.custom import ActionSourceOption
 
-from .file import ActionSource as FileActionSource
+from .base import ActionSource as Base
 
 
-class ActionSource(FileActionSource):
+class ActionSource(Base):
+
+    _DISPATCHER_CLASS = FileDispatcher
 
     def _create_action_group(self, option: ActionSourceOption) -> ActionGroup:
         views_path = self._get_laravel_views_path()
@@ -15,7 +17,7 @@ class ActionSource(FileActionSource):
         path = '{}.blade.php'.format(
             os.path.join(views_path, *cfile.split('.'))
         )
-        return self._get_action_group(path)
+        return self._dispatcher.dispatch((File, path))
 
     def _get_laravel_views_path(self) -> str:
         path = self._vim.call('fnamemodify', './', ':p')
