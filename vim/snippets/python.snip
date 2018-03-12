@@ -168,3 +168,10 @@ snippet and
 
 snippet or
 	or ${0:condition}
+
+snippet abstruct_class
+	from abc import ABCMeta, abstractmethod
+
+	class ${1:#:name}(metaclass=ABCMeta):
+		pass
+
