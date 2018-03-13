@@ -1,6 +1,6 @@
 call curstr#custom#filetype_action_source('php', ['tag', 'blade'])
 call curstr#custom#filetype_alias('blade', 'php')
-call curstr#custom#filetype_action_source('vim', ['file', 'vim/function', 'vim/help'])
+call curstr#custom#filetype_action_source('vim', ['file', 'vim/runtime', 'vim/function', 'vim/help'])
 call curstr#custom#filetype_alias('toml', 'vim')
 call curstr#custom#filetype_action_source('python', ['vim/function'])
 call curstr#custom#action_source_alias('openable', ['file', 'directory'])

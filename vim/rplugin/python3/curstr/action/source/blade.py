@@ -17,7 +17,7 @@ class ActionSource(Base):
         path = '{}.blade.php'.format(
             os.path.join(views_path, *cfile.split('.'))
         )
-        return self._dispatcher.dispatch((File, path))
+        return self._dispatcher.dispatch_one(File, path)
 
     def _get_laravel_views_path(self) -> str:
         path = self._vim.call('fnamemodify', './', ':p')
