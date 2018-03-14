@@ -68,10 +68,13 @@ if has('termguicolors')
     set termguicolors
 endif
 
-if v:version >= 800 || has('nvim')
+if exists('+fixendofline')
     set nofixendofline
+endif
+if exists('+tagcase')
     set tagcase=match
 endif
+
 if !has('nvim')
     set viminfo+=n~/.vim/tmp/viminfo.txt
     set swapsync=
