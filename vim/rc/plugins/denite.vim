@@ -5,8 +5,8 @@ if has('win32')
     nnoremap <silent> [unite]r :<C-u>Denite file_mru<CR>
     xnoremap <silent> [unite]r :<C-u>Denite file_mru<CR>
 else
-    nnoremap <silent> [unite]r :<C-u>Denite file_mru dir_file<CR>
-    xnoremap <silent> [unite]r :<C-u>Denite file_mru dir_file<CR>
+    nnoremap <silent> [unite]r :<C-u>DeniteProjectDir file_mru file_rec<CR>
+    xnoremap <silent> [unite]r :<C-u>DeniteProjectDir file_mru file_rec<CR>
 endif
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
@@ -52,8 +52,8 @@ nnoremap <silent> [denite]B :<C-u>Denite url_bookmark<CR>
 nnoremap <expr> <silent> [keyword]sg ":\<C-u>DeniteProjectDir file_rec -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 nnoremap <expr> <silent> [keyword]sf ":\<C-u>DeniteBufferDir file_rec -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 nnoremap <expr> <silent> [keyword]so ":\<C-u>DeniteBufferDir outline -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
-nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
-nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
+nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
+nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
 nnoremap <silent> [denite]c :<C-u>Denite completion<CR>
 nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
 nnoremap <silent> [denite]K :<C-u>call notomo#denite#php_tag_jump()<CR>
