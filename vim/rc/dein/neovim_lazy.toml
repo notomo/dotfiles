@@ -153,6 +153,8 @@ hook_add = '''
 nnoremap [exec]t :<C-u>call atags#generate()<CR>
 let g:atags_build_commands_list = ['ctags -R .']
 let g:atags_on_generate_stderr = 'notomo#vimrc#silent_handler'
+let g:atags_on_generate_stdout = 'notomo#vimrc#silent_handler'
+let g:atags_quiet = 1
 '''
 
 [[plugins]]
