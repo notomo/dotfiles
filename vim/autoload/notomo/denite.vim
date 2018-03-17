@@ -81,11 +81,6 @@ function! notomo#denite#directory_open(open_cmd, context) abort
     execute 'edit ' . path
 endfunction
 
-function! notomo#denite#open_command(context) abort
-    call denite#do_action(a:context, 'execute', a:context['targets'])
-    only
-endfunction
-
 function! notomo#denite#outline(context) abort
     execute 'Denite -auto-preview outline:' . s:get_target_path('', a:context)
 endfunction

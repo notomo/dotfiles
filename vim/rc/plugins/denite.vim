@@ -32,7 +32,7 @@ nnoremap <silent> [denite]<CR> :<C-u>Denite -resume<CR>
 nnoremap <silent> [denite]gl :<C-u>Denite grep -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]to :<C-u>DeniteCursorWord outline -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]h :<C-u>Denite help -default-action=open<CR>
+nnoremap <silent> [denite]h :<C-u>Denite curstr/altr/help -default-action=open<CR>
 nnoremap <silent> [denite]th :<C-u>DeniteCursorWord help -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [unite]d :<C-u>Denite file_mru -immediately<CR>
@@ -187,7 +187,6 @@ call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '-
 
 call denite#custom#var('outline', 'ignore_types', ['v'])
 
-call denite#custom#action('command', 'open', {context -> notomo#denite#open_command(context)})
 call denite#custom#action('unite', 'open', {context -> notomo#denite#execute_unite_action(context, 'open')})
 call denite#custom#action('unite', 'vimfiler', {context -> notomo#denite#execute_unite_action(context, 'vimfiler')})
 call denite#custom#action('unite', 'tabvimfiler', {context -> notomo#denite#execute_unite_action(context, 'tabvimfiler')})
