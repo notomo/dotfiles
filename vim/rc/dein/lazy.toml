@@ -111,7 +111,7 @@ endif
 '''
 
 [[plugins]]
-repo = 'notomo/incsearch.vim'
+repo = 'haya14busa/incsearch.vim'
 on_map = {nox = '<Plug>(incsearch-'}
 hook_add = '''
 map / <Plug>(incsearch-easymotion-/)\v
@@ -498,17 +498,6 @@ on_ft = 'markdown'
 hook_source = '''
 let g:vim_markdown_no_default_key_mappings = 1
 let g:vim_markdown_folding_disabled = 1
-'''
-
-[[plugins]]
-repo = 'notomo/vim-operator-search'
-depends = ['vim-operator-user', 'vim-textobj-function', 'incsearch.vim']
-on_map = {nx = '<Plug>(operator-search'}
-hook_add = '''
-nmap <Leader>sj <Plug>(operator-search-word)af
-nmap <Leader>s<Space>j <Plug>(operator-search-register)af
-nmap <Leader>sJ <Plug>(operator-search)af
-nmap <Leader>S <Plug>(operator-search)
 '''
 
 [[plugins]]
