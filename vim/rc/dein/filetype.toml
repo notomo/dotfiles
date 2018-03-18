@@ -21,6 +21,10 @@ setlocal completeopt-=preview
 setlocal nomodeline
 '''
 
+qfreplace = '''
+setlocal nomodeline
+'''
+
 php = '''
 setlocal noexpandtab
 setlocal matchpairs+==:;
