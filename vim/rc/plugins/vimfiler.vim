@@ -21,10 +21,22 @@ let g:vimfiler_force_overwrite_statusline = 0
 let s:hsplit = {'is_selectable' : 1}
 function! s:hsplit.func(candidates)
     wincmd p
-    execute 'split '. a:candidates[0].action__path
+    for candidate in a:candidates
+        execute 'split '. candidate.action__path
+    endfor
 endfunction
 call unite#custom_action('file', 'hsplit', s:hsplit)
 unlet s:hsplit
+
+let s:quit_tabopen = {'is_selectable' : 1}
+function! s:quit_tabopen.func(candidates)
+    quit
+    for candidate in a:candidates
+        execute 'tabedit '. candidate.action__path
+    endfor
+endfunction
+call unite#custom_action('file', 'quit_tabopen', s:quit_tabopen)
+unlet s:quit_tabopen
 
 function! s:new_file() abort
     let file_names = input('New file names separated with commas : ')
@@ -57,7 +69,7 @@ function! s:vimfiler_my_settings()
     nmap <buffer> Q <Plug>(vimfiler_hide)
     nmap <buffer> <Space>pv <Plug>(vimfiler_preview_file)
     nnoremap <silent><buffer><expr> T vimfiler#do_action('tab_drop')
-    nnoremap <silent><buffer><expr> t<Space> vimfiler#do_action('tabopen')
+    nnoremap <silent><buffer><expr> t<Space> vimfiler#do_action('quit_tabopen')
     nmap <buffer> a <Plug>(vimfiler_choose_action)
     nnoremap <buffer><silent> u <C-w>l:<C-u>Unite file<CR>
     nmap <buffer> x <Plug>(vimfiler_execute_external_filer)
