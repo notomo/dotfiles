@@ -36,3 +36,14 @@ function! notomo#gina#stash_file()
     let path = s:get_path()
     execute 'Gina stash push -- ' . path
 endfunction
+
+function! notomo#gina#fixup()
+    let revision = s:get_revision()
+    execute 'Gina! commit --fixup=' . revision
+endfunction
+
+function! notomo#gina#rebase_i()
+    let revision = s:get_revision()
+    terminal
+    call jobsend(b:terminal_job_id, 'git rebase -i --autosquash ' . revision . '~' . "\<CR>")
+endfunction

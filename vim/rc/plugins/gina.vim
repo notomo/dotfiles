@@ -16,6 +16,8 @@ nnoremap [git]M :<C-u>Gina! merge<Space>
 nnoremap <expr> [git]F ':<C-u>Gina! fetch ' . notomo#gina#get_remote_name()
 nnoremap [git]ma :<C-u>Gina! merge --abort
 nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
+nnoremap [git]ra :<C-u>Gina! rebase --abort
+nnoremap [git]R :<C-u>Gina! rebase<Space>
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()
@@ -143,8 +145,8 @@ call gina#custom#mapping#nmap('blame', 'j', 'j<Plug>(gina-blame-echo)')
 call gina#custom#mapping#nmap('blame', 'k', 'k<Plug>(gina-blame-echo)')
 
 " diff
-call gina#custom#mapping#nmap('diff', 'sgj', ':call notomo#vimrc#to_next_syntax(''diffLine'', 1)<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('diff', 'sgk', ':call notomo#vimrc#to_previous_syntax(''diffLine'', -1)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(diff\|commit\)', 'sgj', ':call notomo#vimrc#to_next_syntax(''diffLine'', 1)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(diff\|commit\)', 'sgk', ':call notomo#vimrc#to_previous_syntax(''diffLine'', -1)<CR>', s:noremap_silent)
 
 " log
 let g:gina#command#log#use_default_mappings = 0
@@ -153,6 +155,8 @@ call gina#custom#mapping#nmap('log', 'RS', '<Plug>(gina-commit-reset)', s:silent
 call gina#custom#mapping#nmap('log', 'RESET', ':call gina#action#call(''commit:reset:hard'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'ch', ':call gina#action#call(''commit:checkout'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'T', ':call gina#action#call(''commit:tag:lightweight'')<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 'I', ':call notomo#gina#rebase_i()<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 'F', ':call notomo#gina#fixup()<CR>', s:noremap_silent)
 
 " tag
 call gina#custom#mapping#nmap('tag', 'DD', ':call gina#action#call(''tag:delete'')<CR>', s:noremap_silent)
