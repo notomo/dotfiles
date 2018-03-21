@@ -126,3 +126,9 @@ nnoremap <buffer> [denite]o :<C-u>Denite decls -auto-preview<CR>
 gina-commit = '''
 setlocal spell
 '''
+
+javascript = '''
+setlocal completeopt-=preview
+setlocal tabstop=2
+setlocal softtabstop=2
+'''

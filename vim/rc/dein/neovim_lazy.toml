@@ -171,3 +171,16 @@ nnoremap <silent> [keyword]fh :<C-u>Curstr -action=horizontal_open<CR>
 nnoremap <silent> [keyword]f<CR> :<C-u>Curstr<CR>
 '''
 hook_source = 'source ~/.vim/rc/plugins/curstr.vim'
+
+[[plugins]]
+repo = 'carlitux/deoplete-ternjs'
+on_ft = 'javascript'
+hook_source = '''
+let g:deoplete#sources#ternjs#timeout = 1
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#depths = 1
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#omit_object_prototype = 0
+let g:deoplete#sources#ternjs#include_keywords = 1
+'''
+

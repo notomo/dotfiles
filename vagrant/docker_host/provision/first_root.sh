@@ -176,6 +176,8 @@ npm i -g typescript
 npm i -g neovim
 npm i -g gulp
 npm i -g htmlhint
+npm i -g eslint
+npm i -g prettier
 
 # lua
 yum install -y lua-devel
