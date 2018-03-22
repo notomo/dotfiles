@@ -108,5 +108,13 @@ function! notomo#php#get_class_path_from_attribute() abort
 endfunction
 
 function! notomo#php#get_last_use_line_numer() abort
-    return search('\v^use\s+(\S+)?(\s+as\s+)?', 'bnW')
+    let line_num = search('\v^use\s+(\S+)?(\s+as\s+)?', 'bnW')
+    if line_num != 0
+        return line_num
+    endif
+    let line_num = search('\v\s*namespace\s+\S+\s*;', 'nbW')
+    if line_num != 0
+        return line_num + 1
+    endif
+    return 0
 endfunction
