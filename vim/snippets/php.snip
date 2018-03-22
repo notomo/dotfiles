@@ -101,6 +101,11 @@ snippet testdoc
 	 * @covers ::${0:testName}
 	 */
 
+snippet inheritDoc
+	/**
+	 * {@inheritDoc}
+	 */
+
 snippet assertSame
 alias same
 	$this->assertSame(${1:$expected}, ${0:$result});
@@ -206,6 +211,11 @@ options head
 
 snippet exit
 options head
+	exit;
+
+snippet var_dump_exit
+options head
+	var_dump(${0:TARGET});
 	exit;
 
 snippet else
@@ -344,7 +354,7 @@ options word
 	array_key_exists($${1:key}, $${1:array})
 
 snippet trait
-	trait {
+	trait ${1:Name} {
 		${0}
 	}
 
@@ -353,3 +363,11 @@ snippet todo
 
 snippet todo_doc
 	@todo ${0:message}
+
+snippet or
+options word
+	|| ${0:condition}
+
+snippet and
+options word
+	&& ${0:condition}
