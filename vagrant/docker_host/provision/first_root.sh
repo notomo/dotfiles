@@ -178,6 +178,7 @@ npm i -g gulp
 npm i -g htmlhint
 npm i -g eslint
 npm i -g prettier
+npm i -g tslint
 
 # lua
 yum install -y lua-devel

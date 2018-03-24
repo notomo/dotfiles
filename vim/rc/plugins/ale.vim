@@ -23,12 +23,14 @@ let g:ale_linters['rust'] = ['rls', 'rustc']
 let g:ale_linters['dockerfile'] = ['hadolint']
 let g:ale_linters['html'] = ['htmlhint']
 let g:ale_linters['javascript'] = ['eslint']
+let g:ale_linters['typescript'] = ['tslint']
 
 let g:ale_fixers = {}
 let g:ale_fixers['python'] = ['autopep8', 'isort']
 let g:ale_fixers['go'] = ['goimports']
 let g:ale_fixers['rust'] = ['rustfmt']
 let g:ale_fixers['javascript'] = ['prettier']
+let g:ale_fixers['typescript'] = ['prettier']
 " let g:ale_fixers['php'] = ['phpcbf']
 " let g:ale_fixers['help'] = ['align_help_tags']
 

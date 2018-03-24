@@ -68,6 +68,9 @@ let g:quickrun_config['php'] = {
 let g:quickrun_config['sh'] = {
 \   'hook/output_encode/encoding': 'utf-8',
 \}
+let g:quickrun_config['typescript'] = {
+\   'hook/output_encode/encoding': 'utf-8',
+\}
 
 let g:quickrun_config['haskell'] = {'type': 'haskell/stack'}
 let g:quickrun_config['haskell/stack'] = {
