@@ -70,6 +70,9 @@ repo = 'mhartington/nvim-typescript'
 on_ft = 'vue'
 hook_add = '''
 let g:nvim_typescript#vue_support = 1
+nnoremap [keyword]k :<C-u>TSType<CR>
+nnoremap [keyword]K :<C-u>TSDoc<CR>
+nnoremap [keyword]R :<C-u>TSRefs<CR>
 '''
 
 # [[plugins]]
