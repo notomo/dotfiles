@@ -1,1 +1,76 @@
 include javascript.snip
+
+snippet lambda
+options word
+	(${1:args}) => {
+		${0:TARGET}
+	}
+
+snippet class
+	class ${1:Name} {
+		${0:TARGET}
+	}
+
+snippet let_type
+	let ${1:name}: ${0:type};
+
+snippet const_type
+	const ${1:name}: ${0:type};
+
+snippet array
+	let ${1:array_name}: ${2:type}[] = ${0:value};
+
+snippet interface
+	interface ${1:Name} {
+		${0:TARGET}
+	}
+
+snippet interface_function
+options word
+		(${1:name}: ${0:type})
+
+snippet array_interface
+options word
+		[index: ${1:indexType}]
+
+snippet factor_interface
+alias variable_type
+options word
+	${1:name}: ${0:type};
+
+snippet optional_interface
+options word
+	${1:name}?
+
+snippet readonly_factor
+	readonly ${0:name}
+
+snippet method_interface
+options word
+	${1:name}(${0:args})
+
+snippet constructor_interface
+options word
+	new (${0:args})
+
+snippet constructor
+	constructor(${1:args}) {
+		${0:TARGET}
+	}
+
+snippet implements
+	implements ${0:Name}
+
+snippet extends
+	extends ${0:Name}
+
+snippet method
+	${1:name}(${2:args}) {
+		${0:TARGET}
+	}
+
+snippet import
+	import { ${1:name} } from "${0:file}"
+
+snippet export
+	export ${0:name}

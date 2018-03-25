@@ -23,7 +23,7 @@ let g:ale_linters['rust'] = ['rls', 'rustc']
 let g:ale_linters['dockerfile'] = ['hadolint']
 let g:ale_linters['html'] = ['htmlhint']
 let g:ale_linters['javascript'] = ['eslint']
-let g:ale_linters['typescript'] = ['tslint']
+let g:ale_linters['typescript'] = ['tslint', 'tsserver']
 
 let g:ale_fixers = {}
 let g:ale_fixers['python'] = ['autopep8', 'isort']
