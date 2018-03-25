@@ -34,6 +34,7 @@ alias ps='ps au'
 alias gc=git_clone_from_github
 alias gra=git_remote_add_from_github
 alias themis='NVIM_RPLUGIN_MANIFEST=$HOME/rplugin.vim themis'
+alias npmd=npm_install_dev
 
 function docker_latest() {
     docker ps -l -q
@@ -112,6 +113,10 @@ function git_clone_from_github() {
 
 function git_remote_add_from_github() {
     git remote add upstream https://github.com/"$1".git
+}
+
+function npm_install_dev() {
+    npm install --save-dev "$1"
 }
 
 alias ev="nvr --remote-tab"

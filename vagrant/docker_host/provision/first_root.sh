@@ -179,6 +179,7 @@ npm i -g htmlhint
 npm i -g eslint
 npm i -g prettier
 npm i -g tslint
+npm i -g fixjson
 
 # lua
 yum install -y lua-devel

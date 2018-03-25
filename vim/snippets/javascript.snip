@@ -35,3 +35,14 @@ snippet array_foreach
 	${1:array}.forEach(function(v, i) {
 		${0:TARGET}
 	})
+
+snippet require
+	require("${0:name}")
+
+snippet gulp_task
+	gulp.task("${1:taskName}", () => {
+		${0:TARGET}
+	});
+
+snippet gulp_watch
+	gulp.watch("${1:sourcePath}", [${0:taskNames}]);

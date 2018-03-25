@@ -31,6 +31,7 @@ let g:ale_fixers['go'] = ['goimports']
 let g:ale_fixers['rust'] = ['rustfmt']
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['typescript'] = ['prettier']
+let g:ale_fixers['json'] = ['fixjson']
 " let g:ale_fixers['php'] = ['phpcbf']
 " let g:ale_fixers['help'] = ['align_help_tags']
 
