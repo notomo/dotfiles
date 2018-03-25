@@ -46,3 +46,14 @@ snippet gulp_task
 
 snippet gulp_watch
 	gulp.watch("${1:sourcePath}", [${0:taskNames}]);
+
+snippet switch
+options head
+	switch (${1:variable}) {
+		case ${2:value}:
+			${3:#:code...}
+			break;
+		default:
+			${0:#:code...}
+			break;
+	}

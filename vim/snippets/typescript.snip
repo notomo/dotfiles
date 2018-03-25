@@ -27,11 +27,11 @@ snippet interface
 
 snippet interface_function
 options word
-		(${1:name}: ${0:type})
+	(${1:name}: ${0:type})
 
 snippet array_interface
 options word
-		[index: ${1:indexType}]
+	[index: ${1:indexType}]
 
 snippet factor_interface
 alias variable_type
@@ -74,3 +74,6 @@ snippet import
 
 snippet export
 	export ${0:name}
+
+snippet thisx
+	this.${1:name} = $1;
