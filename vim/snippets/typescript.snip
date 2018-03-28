@@ -11,13 +11,32 @@ snippet class
 		${0:TARGET}
 	}
 
+snippet enum
+	enum ${1:Name} {
+		${2:value1},
+		${0:value2}
+	}
+
+snippet get
+	get ${1:name}(): ${0:type} {
+		return this._$1;
+	}
+
+snippet set
+	set ${1:name}(${2:value}) {
+		this._$1 = $2
+	}
+
 snippet let_type
 	let ${1:name}: ${0:type};
 
 snippet const_type
-	const ${1:name}: ${0:type};
+	const ${1:name}: ${2:type} = ${0:value}
 
-snippet array
+snippet array_const
+	const ${1:array_name}: ${2:type}[] = ${0:value};
+
+snippet array_let
 	let ${1:array_name}: ${2:type}[] = ${0:value};
 
 snippet interface
@@ -26,34 +45,50 @@ snippet interface
 	}
 
 snippet interface_function
-options word
-	(${1:name}: ${0:type})
+	interface ${1:IName} {
+		(${2:name}: ${3:type}): ${0:returnType}
+	}
 
 snippet array_interface
-options word
-	[index: ${1:indexType}]
+	interface ${1:IName} {
+		[index: ${2:indexType}]: ${0:type};
+	}
 
-snippet factor_interface
-alias variable_type
+snippet variable_interface
+alias arg
 options word
-	${1:name}: ${0:type};
+    ${1:name}: ${0:type}
 
-snippet optional_interface
+snippet optional
 options word
-	${1:name}?
+	${0:name}?
 
-snippet readonly_factor
+snippet readonly
 	readonly ${0:name}
+
+snippet private
+options word
+	private ${0:name}
+
+snippet public
+options word
+	public ${0:name}
+
+snippet protected
+options word
+	protected ${0:name}
 
 snippet method_interface
 options word
 	${1:name}(${0:args})
 
 snippet constructor_interface
-options word
-	new (${0:args})
+	interface ${1:IName} {
+		new (${0:args})
+	}
 
 snippet constructor
+alias init
 	constructor(${1:args}) {
 		${0:TARGET}
 	}
@@ -64,8 +99,13 @@ snippet implements
 snippet extends
 	extends ${0:Name}
 
-snippet method
-	${1:name}(${2:args}) {
+snippet public_method
+	public ${1:name}(${2:args}) {
+		${0:TARGET}
+	}
+
+snippet protected_method
+	protected ${1:name}(${2:args}) {
 		${0:TARGET}
 	}
 
@@ -77,3 +117,13 @@ snippet export
 
 snippet thisx
 	this.${1:name} = $1;
+
+snippet new
+options word
+	new ${1:Class}(${0:args});
+
+snippet super
+	super();
+
+snippet type_assert
+	${1:name} as ${0:type}
