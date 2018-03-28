@@ -663,8 +663,8 @@ vnoremap [arith] <Nop>
 nmap <Space>a [arith]
 vmap <Space>a [arith]
 
-nnoremap [arith]j <C-x>
-nnoremap [arith]k <C-a>
+nnoremap <expr> [arith]j notomo#arithmatic#inc_dec('dec')
+nnoremap <expr> [arith]k notomo#arithmatic#inc_dec('inc')
 nnoremap [arith]J v<C-x><ESC>
 nnoremap [arith]K v<C-a><ESC>
 vnoremap [arith]j <C-x>gv
