@@ -84,3 +84,4 @@ __pycache__
 node_modules/**
 /.nvim-python.log*
 /logfile_py3_rplugin
+.git
