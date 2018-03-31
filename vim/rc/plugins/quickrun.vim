@@ -68,8 +68,10 @@ let g:quickrun_config['php'] = {
 let g:quickrun_config['sh'] = {
 \   'hook/output_encode/encoding': 'utf-8',
 \}
+
 let g:quickrun_config['typescript'] = {
 \   'hook/output_encode/encoding': 'utf-8',
+\   'exec': ['%c --target es5 --experimentalDecorators --module commonjs %o %s', 'node %s:r.js'],
 \}
 
 let g:quickrun_config['haskell'] = {'type': 'haskell/stack'}
