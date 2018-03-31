@@ -16,14 +16,19 @@ function! s:convert(case_type, word) abort
     return mapper[a:case_type](a:word)
 endfunction
 
-function! notomo#case#substitute_helper(match, snake_case_word) abort
+function! notomo#case#substitute_helper(snake_equal_camel, match, word) abort
     let case_type = s:get_type(a:match)
-    return s:convert(case_type, a:snake_case_word)
+    if a:snake_equal_camel && (case_type ==? s:SNAKE || case_type ==? s:CAMEL)
+        let case_type = s:get_type(a:word)
+    endif
+    return s:convert(case_type, a:word)
 endfunction
 
 function! notomo#case#substitute_pattern(word) abort
-    let pattern = join(map([s:UPPER, s:SNAKE, s:CAMEL, s:PASKAL], {key, type -> s:convert(type, a:word)}), '|')
-    return 's/\v(' . pattern . ')/\=notomo#case#substitute_helper(submatch(0), "")/g' . "\<Left>\<Left>\<Left>\<Left>"
+    let patterns = map([s:UPPER, s:SNAKE, s:CAMEL, s:PASKAL], {key, type -> s:convert(type, a:word)})
+    let snake_equal_camel = patterns[1] ==# patterns[2] ? '1' : '0'
+    let pattern = join(patterns, '|')
+    return 's/\v(' . pattern . ')/\=notomo#case#substitute_helper(' . snake_equal_camel . ', submatch(0), "")/g' . "\<Left>\<Left>\<Left>\<Left>"
 endfunction
 
 function! s:get_type(str) abort
