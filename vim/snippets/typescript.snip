@@ -11,6 +11,11 @@ snippet class
 		${0:TARGET}
 	}
 
+snippet abstract_class
+	abstract class ${1:Name} {
+		${0:TARGET}
+	}
+
 snippet enum
 	enum ${1:Name} {
 		${2:value1},
@@ -78,6 +83,12 @@ snippet protected
 options word
 	protected ${0:name}
 
+snippet method
+options word
+	${1:name}(${2:args}) {
+		${0:TARGET}
+	}
+
 snippet method_interface
 options word
 	${1:name}(${0:args})
@@ -112,6 +123,9 @@ snippet protected_method
 snippet import
 	import { ${1:name} } from "${0:file}"
 
+snippet import_default
+	import ${1:name} from "${0:file}"
+
 snippet export
 	export ${0:name}
 
@@ -126,4 +140,8 @@ snippet super
 	super();
 
 snippet type_assert
-	${1:name} as ${0:type}
+alias as
+	as ${0:type}
+
+snippet type
+	type ${0:type}
