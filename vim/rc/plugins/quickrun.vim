@@ -71,7 +71,7 @@ let g:quickrun_config['sh'] = {
 
 let g:quickrun_config['typescript'] = {
 \   'hook/output_encode/encoding': 'utf-8',
-\   'exec': ['%c --target es5 --experimentalDecorators --module commonjs %o %s', 'node %s:r.js'],
+\   'exec': ['%c --target es6 --experimentalDecorators --module commonjs %o %s', 'node %s:r.js'],
 \}
 
 let g:quickrun_config['haskell'] = {'type': 'haskell/stack'}
