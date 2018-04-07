@@ -190,7 +190,6 @@ let g:deoplete#sources#ternjs#include_keywords = 1
 [[plugins]]
 repo = 'notomo/ctrlb.nvim'
 hook_add = '''
-nnoremap [exec]<Space>c :<C-u>Ctrlb tab:close<CR>
-nnoremap [exec]<Space>r :<C-u>Ctrlb tab:reload<CR>
-nnoremap [denite]<Space>t :<C-u>Denite ctrlb/tab<CR>
+nnoremap [exec]cb :<C-u>CtrlbOpen<CR>
 '''
+hook_source = 'source ~/.vim/rc/plugins/ctrlb.vim'
