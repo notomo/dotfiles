@@ -145,3 +145,12 @@ alias as
 
 snippet type
 	type ${0:type}
+
+snippet is_undefined
+options word
+	=== undefined
+
+snippet then
+	then((${1:arg}: ${2:type}) => {
+		${0:TARGET}
+	})
