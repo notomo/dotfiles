@@ -19,4 +19,10 @@ function! s:settings()
     nnoremap <buffer> [denite]s :<C-u>Denite ctrlb/bookmark/search<CR>
     nnoremap <buffer> [denite]h :<C-u>Denite ctrlb/history/search<CR>
     nnoremap <buffer> [denite]ta :<C-u>Denite ctrlb/tab<CR>
+    nnoremap <buffer> gg :<C-u>Ctrlb scroll:toTop<CR>
+    nnoremap <buffer> G :<C-u>Ctrlb scroll:toBottom<CR>
+    nnoremap <buffer> k :<C-u>Ctrlb scroll:up<CR>
+    nnoremap <buffer> j :<C-u>Ctrlb scroll:down<CR>
+    nnoremap <buffer> gb :<C-u>Ctrlb navigation:back<CR>
+    nnoremap <buffer> gf :<C-u>Ctrlb navigation:forward<CR>
 endfunction
