@@ -1,0 +1,4 @@
+home_dir: '/home/{{ ansible_ssh_user }}'
+app_dir: '{{ home_dir }}/app'
+is_macos: '{{ ansible_os_family == "Darwin" }}'
+is_centos: '{{ ansible_os_family == "RedHat" }}'

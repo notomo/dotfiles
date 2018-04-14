@@ -1,0 +1,50 @@
+
+- name: set variables
+  set_fact:
+    neovim_dir: "{{ app_dir }}/neovim"
+
+- name: install dependencies with yum 
+  yum: name={{ item }} enablerepo=epel
+  with_items:
+      - ninja-build
+      - libtool
+      - autoconf
+      - automake
+      - cmake
+      - gcc
+      - gcc-c++
+      - make
+      - pkgconfig
+      - unzip
+  when: is_centos
+
+- name: install dependencies with homebrew
+  homebrew: name={{ item }}
+  with_items:
+    - ninja
+    - libtool
+    - automake
+    - cmake
+    - pkg-config
+    - gettext
+  when: is_macos
+
+- name: git clone
+  git:
+    repo: https://github.com/neovim/neovim.git
+    dest: "{{ neovim_dir }}"
+    version: master
+
+- name: build
+  make:
+    chdir: "{{ neovim_dir }}"
+    params:
+      CMAKE_BUILD_TYPE: Release
+
+- name: install
+  make:
+    target: install
+    chdir: "{{ neovim_dir }}"
+
+- name: pip install
+  pip: name=neovim

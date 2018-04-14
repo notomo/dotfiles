@@ -2,3 +2,8 @@
 [[plugins]]
 repo = 'thinca/vim-themis'
 
+[[plugins]]
+repo = 'pearofducks/ansible-vim'
+hook_post_source = '''
+autocmd MyAuGroup BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+'''
