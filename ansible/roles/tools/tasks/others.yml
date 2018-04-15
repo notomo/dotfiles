@@ -1,0 +1,14 @@
+
+- name: install with homebrew
+  homebrew: name={{ item }}
+  with_items:
+    - lynx
+    - tree
+  when: is_macos
+
+- name: install dependencies with yum
+  yum: name={{ item }} enablerepo=epel
+  with_items:
+      - lynx
+      - tree
+  when: is_centos

@@ -1,5 +1,8 @@
 - hosts: 'local'
   roles:
-    - 'base'
+    - 'dotfiles'
+    - 'tools'
+    - 'php'
+    - 'neovim'
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'

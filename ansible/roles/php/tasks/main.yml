@@ -1,0 +1,7 @@
+
+- name: install with homebrew
+  homebrew: name={{ item }}
+  with_items:
+    - php
+    - composer
+  when: is_macos

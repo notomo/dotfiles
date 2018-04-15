@@ -1,0 +1,4 @@
+
+- name: install with homebrew
+  homebrew: name=ctags
+  when: is_macos
