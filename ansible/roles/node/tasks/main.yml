@@ -5,7 +5,7 @@
 
 - name: install node.js package globally
   npm:
-    name: {{ item }}
+    name: "{{ item }}"
     global: yes
   with_items:
     - typescript
