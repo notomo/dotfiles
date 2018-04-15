@@ -311,6 +311,10 @@ repo = 'pocari/vim-denite-emoji'
 hook_add = 'nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>'
 
 [[plugins]]
+repo = 'mtsr404/denite-gitr'
+hook_add = 'nnoremap <silent> [denite]F :<C-u>:Denite git_diffs:master -winheight=10 -split=horizontal -mode=insert -buffer-name=difffiles -post-action=open<CR>'
+
+[[plugins]]
 repo = 'junegunn/vim-emoji'
 
 [[plugins]]
