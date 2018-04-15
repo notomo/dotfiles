@@ -30,5 +30,7 @@ __pycache__
 # tool
 /vim/tool/minimal_test.vim
 
+# ansible
+/ansible/**/*.retry
 
 !.gitkeep

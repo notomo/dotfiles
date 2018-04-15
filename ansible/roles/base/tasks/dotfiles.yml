@@ -1,0 +1,57 @@
+
+- name: set variables
+  set_fact:
+    dotfiles_dir: "{{ home_dir }}/dotfiles"
+    link_dict:
+      vim/rc/.vimrc: .vimrc
+      vim/rc: .vim/rc
+      vim/dict: .vim/dict
+      vim/autoload: .vim/autoload
+      vim/snippets: .vim/snippets
+      vim/after: .vim/after
+      vim/ftplugin: .vim/ftplugin
+      vim/syntax: .vim/syntax
+      vim/indent: .vim/indent
+      vim/rplugin: .vim/rplugin
+      vim/plugin: .vim/plugin
+      vim/rc/init.vim: .config/nvim/init.vim
+      lint/vim/.vintrc.yaml: .vintrc.yaml
+      lint/python/setup.cfg: setup.cfg
+      git/.gitignore_global: .gitignore_global
+
+- name: mkdir
+  file:
+    path: "{{ home_dir }}/{{ item }}"
+    state: directory
+  with_items:
+    - .vim/tmp/backup
+    - .vim/tmp/undo
+    - .vim/tmp/view
+    - .vim/tmp/swap
+    - .vim/reference
+    - .config
+
+- name: check if dotfiles exists
+  stat: path={{ dotfiles_dir }}
+  register: dotfiles_exists
+
+- name: git clone
+  git:
+    repo: https://github.com/notomo/dotfiles.git
+    dest: "{{ dotfiles_dir }}"
+    version: master
+  when: not dotfiles_exists
+
+- name: create symbolic link
+  file:
+    src: "{{ dotfiles_dir }}/{{ item.key }}"
+    dest: "{{ home_dir }}/{{ item.value }}"
+    state: link
+  with_dict:
+    - "{{ link_dict }}"
+
+- name: create symbolic link for neovim
+  file:
+    src: "{{ home_dir }}/.vim"
+    dest: "{{ home_dir }}/.config/nvim"
+    state: link
