@@ -144,3 +144,9 @@ nnoremap <buffer> [keyword]v :<C-u>vsplit \| TSDef<CR>
 nnoremap <buffer> [keyword]h :<C-u>split \| TSDef<CR>
 nnoremap <buffer> [keyword]t :<C-u>call notomo#window#duplicate() \| TSDef<CR>
 '''
+
+ansible = '''
+setlocal tabstop=2
+setlocal softtabstop=2
+setlocal expandtab
+'''

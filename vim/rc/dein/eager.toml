@@ -98,6 +98,9 @@ autocmd MyAuGroup InsertLeave * :setlocal cursorline
 autocmd MyAuGroup WinEnter * :setlocal cursorline
 autocmd MyAuGroup WinLeave * :setlocal nocursorline
 
+autocmd MyAuGroup BufRead,BufNewFile */roles/*.yml set filetype=yaml.ansible
+autocmd MyAuGroup BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+
 set guioptions+=M
 set guioptions+=c
 
