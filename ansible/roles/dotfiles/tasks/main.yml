@@ -29,7 +29,7 @@
     - .vim/tmp/view
     - .vim/tmp/swap
     - .vim/reference
-    - .config/nvim
+    - .config
 
 - name: check if dotfiles exists
   stat: path={{ dotfiles_dir }}
@@ -42,6 +42,12 @@
     version: master
   when: not dotfiles_exists
 
+- name: create symbolic link for neovim
+  file:
+    src: "{{ home_dir }}/.vim"
+    dest: "{{ home_dir }}/.config/nvim"
+    state: link
+
 - name: create symbolic link
   file:
     src: "{{ dotfiles_dir }}/{{ item.key }}"
@@ -49,9 +55,3 @@
     state: link
   with_dict:
     - "{{ link_dict }}"
-
-- name: create symbolic link for neovim
-  file:
-    src: "{{ home_dir }}/.vim"
-    dest: "{{ home_dir }}/.config/nvim"
-    state: link
