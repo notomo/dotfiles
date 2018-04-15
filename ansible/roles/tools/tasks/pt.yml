@@ -1,6 +1,6 @@
 
-- homebrew_tap:
-  name: monochromegane/pt
+- name: tap
+  homebrew_tap: name=monochromegane/pt
   when: is_macos
 
 - name: install
