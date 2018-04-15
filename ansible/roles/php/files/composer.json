@@ -1,0 +1,10 @@
+{
+    "require": {
+        "squizlabs/php_codesniffer": "*",
+        "pdepend/pdepend": "^2.5.2",
+        "phpmd/phpmd": "*",
+        "phpunit/phpunit": "*",
+        "phpstan/phpstan": "*",
+        "friendsofphp/php-cs-fixer": "^2.10"
+    }
+}

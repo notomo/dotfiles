@@ -5,3 +5,14 @@
     - php
     - composer
   when: is_macos
+
+- name: copy composer.json
+  copy:
+    src: composer.json
+    dest: "{{ home_dir }}/.composer/composer.json"
+
+- name: comoser install
+  composer:
+    command: install
+    global_command: yes
+    working_dir: "{{ home_dir }}/.composer"
