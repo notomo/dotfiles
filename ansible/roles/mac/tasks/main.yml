@@ -15,3 +15,20 @@
     type: bool
     value: true
   notify: restart finder
+
+- name: show path bar
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowPathbar
+    type: bool
+    value: true
+  notify: restart finder
+
+- name: auto hide dock
+  osx_defaults:
+    domain: com.apple.dock
+    key: autohide
+    type: int
+    value: 1
+    state: present
+  notify: restart dock
