@@ -29,7 +29,7 @@
     - .vim/tmp/view
     - .vim/tmp/swap
     - .vim/reference
-    - .config
+    - .config/nvim
 
 - name: check if dotfiles exists
   stat: path={{ dotfiles_dir }}
