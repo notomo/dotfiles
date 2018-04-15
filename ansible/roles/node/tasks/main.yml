@@ -1,0 +1,20 @@
+
+- name: install node with homebrew
+  homebrew: name=node
+  when: is_macos
+
+- name: install node.js package globally
+  npm:
+    name: {{ item }}
+    global: yes
+  with_items:
+    - typescript
+    - gulp
+    - neovim
+    - gulp
+    - htmlhint
+    - fixjson
+    - javascript-typescript-langserver
+    - eslint
+    - prettier
+    - tslint
