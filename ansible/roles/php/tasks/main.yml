@@ -1,4 +1,8 @@
 
+- name: set variables
+  set_fact:
+    phpmanual_dir: "{{ home_dir }}/.vim/reference/phpmanual"
+
 - name: install with homebrew
   homebrew: name={{ item }}
   with_items:
@@ -16,3 +20,15 @@
     command: install
     global_command: yes
     working_dir: "{{ home_dir }}/.composer"
+
+- name: mkdir for phpmanual
+  file:
+    path: "{{ phpmanual_dir }}"
+    state: directory
+
+- name: unarchive phpmanual
+  unarchive:
+    src: http://jp2.php.net/get/php_manual_ja.tar.gz/from/this/mirror
+    dest: "{{ phpmanual_dir }}"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
