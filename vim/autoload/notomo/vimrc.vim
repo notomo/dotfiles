@@ -25,20 +25,15 @@ function! notomo#vimrc#syntax_report() abort
     Capture syntime report
 endfunction
 
-function! notomo#vimrc#to_next_syntax(syntax_name, offset) abort
-    call s:to_syntax(a:syntax_name, line('.'), a:offset, v:false, v:true)
+function! notomo#vimrc#to_next_syntax(syntax_pattern, column, offset) abort
+    call s:to_syntax(a:syntax_pattern, line('.'), a:column, a:offset, v:false, v:true)
 endfunction
 
-function! notomo#vimrc#to_previous_syntax(syntax_name, offset) abort
-    call s:to_syntax(a:syntax_name, line('.'), a:offset, v:true, v:true)
+function! notomo#vimrc#to_previous_syntax(syntax_pattern, column, offset) abort
+    call s:to_syntax(a:syntax_pattern, line('.'), a:column, a:offset, v:true, v:true)
 endfunction
 
-function! s:to_syntax(syntax_name, start_line_num, offset, go_backword, wrap) abort
-    let syntax_id = hlID(a:syntax_name)
-    if syntax_id == 0
-        echomsg 'Invalid syntax name: ' . a:syntax_name
-        return
-    endif
+function! s:to_syntax(syntax_pattern, start_line_num, column, offset, go_backword, wrap) abort
     if a:go_backword
         let Is_limit_line = {line_num, limit_line_num -> line_num > limit_line_num }
         let limit_line_num = 0
@@ -52,7 +47,8 @@ function! s:to_syntax(syntax_name, start_line_num, offset, go_backword, wrap) ab
     endif
     let line_num = a:start_line_num + move_line_num
     while Is_limit_line(line_num, limit_line_num)
-        if syntax_id == synID(line_num, 1, 1)
+        " if syntax_id == synID(line_num, a:column, 1)
+        if synIDattr(synID(line_num, a:column, 1), 'name') =~# a:syntax_pattern
             call setpos('.', [bufnr('%'), line_num + a:offset, 1, 0])
             return
         endif
@@ -61,7 +57,7 @@ function! s:to_syntax(syntax_name, start_line_num, offset, go_backword, wrap) ab
     if a:wrap == v:false
         return
     endif
-    call s:to_syntax(a:syntax_name, wrap_line_num, a:offset, a:go_backword, v:false)
+    call s:to_syntax(a:syntax_pattern, wrap_line_num, a:column, a:offset, a:go_backword, v:false)
 endfunction
 
 function! notomo#vimrc#url_decode() abort
