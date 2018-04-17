@@ -1,0 +1,4 @@
+
+- name: install git with homebrew
+  homebrew: name=git
+  when: is_macos
