@@ -1,5 +1,7 @@
 - hosts: 'local'
   roles:
+    - 'git'
+    - 'workspace'
     - 'mac'
     - 'dotfiles'
     - 'tools'
