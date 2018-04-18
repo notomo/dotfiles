@@ -53,5 +53,4 @@
     src: "{{ dotfiles_dir }}/{{ item.key }}"
     dest: "{{ home_dir }}/{{ item.value }}"
     state: link
-  with_dict:
-    - "{{ link_dict }}"
+  with_dict: "{{ link_dict }}"
