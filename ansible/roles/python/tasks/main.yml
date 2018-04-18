@@ -45,3 +45,6 @@
     - yapf
     - lxml
     - python-language-server
+    - websocket-client
+    - websocket-server
+    - vim-vint
