@@ -34,7 +34,7 @@
     ansible_python_interpreter: "{{ home_dir }}/.pyenv/shims/python"
   when: pyenv_version
 
-- pip: name={{ item.name }}
+- pip: name={{ item }}
   with_items:
     - neovim
     - flake8
