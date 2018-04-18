@@ -5,6 +5,7 @@
     - 'mac'
     - 'dotfiles'
     - 'tools'
+    - 'python'
     - 'php'
     - 'node'
     - 'docker'

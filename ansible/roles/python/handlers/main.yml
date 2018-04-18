@@ -1,0 +1,3 @@
+
+- name: source bash_profile
+  shell: bash -lc "source {{ home_dir }}/.bash_profile"

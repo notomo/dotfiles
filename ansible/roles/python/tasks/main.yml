@@ -1,0 +1,47 @@
+
+- name: set variables
+  set_fact:
+    python_version: "3.5.4"
+
+- name: git clone pyenv
+  git:
+    repo: https://github.com/pyenv/pyenv.git
+    dest: "{{ home_dir }}/.pyenv"
+    version: master
+
+- name: add pyenv settings to bash_profile
+  blockinfile:
+    dest: "{{ home_dir }}/.bash_profile"
+    content: |
+      export PYENV_ROOT="$HOME/.pyenv"
+      export PATH="$PYENV_ROOT/bin:$PATH"
+      eval "$(pyenv init -)"
+  notify: source bash_profile
+
+- shell: bash -lc "pyenv versions | grep {{ python_version }}"
+  register: pyenv_version
+  ignore_errors: yes
+  changed_when: False
+
+- shell: bash -lc "pyenv install {{ python_version }}"
+  when: pyenv_version|failed
+
+- shell: bash -lc "pyenv global {{ python_version }}"
+  when: pyenv_version|failed
+
+- name: set variables
+  set_fact:
+    ansible_python_interpreter: "{{ home_dir }}/.pyenv/shims/python"
+  when: pyenv_version
+
+- pip: name={{ item.name }}
+  with_items:
+    - neovim
+    - flake8
+    - requests
+    - mypy
+    - autopep8
+    - isort
+    - yapf
+    - lxml
+    - python-language-server

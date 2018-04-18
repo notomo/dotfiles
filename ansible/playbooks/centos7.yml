@@ -4,6 +4,7 @@
     - 'workspace'
     - 'dotfiles'
     - 'tools'
+    - 'python'
     - 'php'
     - 'node'
     - 'docker'
