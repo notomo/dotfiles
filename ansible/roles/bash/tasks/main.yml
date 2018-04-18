@@ -1,0 +1,8 @@
+
+- name: create bash setting files
+  file:
+    path: "{{ home_dir }}/{{ item }}"
+    state: touch
+  with_items:
+    - .bash_profile
+    - .bashrc
