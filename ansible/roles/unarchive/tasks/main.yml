@@ -1,0 +1,6 @@
+
+- name: install gnu-tar with homebrew
+  homebrew: name={{ item }}
+  with_items:
+    - gnu-tar
+  when: is_macos
