@@ -197,7 +197,7 @@ call denite#custom#action('directory', 'dir_file', {context -> notomo#denite#dir
 call denite#custom#action('file', 'dir_file', {context -> notomo#denite#dir_file_on_file(context)})
 call denite#custom#action('file,directory', 'parent_dir_file', {context -> notomo#denite#parent_dir_file(context)})
 
-call denite#custom#action('directory', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
+call denite#custom#action('file,directory', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
 call denite#custom#action('directory', 'vsplit', {context ->  notomo#denite#open('vsplit', context)})
 call denite#custom#action('directory', 'split', {context ->  notomo#denite#open('split', context)})
 
