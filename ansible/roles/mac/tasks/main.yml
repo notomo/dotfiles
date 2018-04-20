@@ -32,3 +32,9 @@
     value: 1
     state: present
   notify: restart dock
+
+- name: install with homebrew_cask
+  homebrew_cask: name={{ item }}
+  with_items:
+    - Karabiner-Elements
+  when: is_macos

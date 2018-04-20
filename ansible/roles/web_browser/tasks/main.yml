@@ -1,0 +1,7 @@
+
+- name: install web browsers with homebrew_cask
+  homebrew_cask: name={{ item }}
+  with_items:
+    - google-chrome
+    - firefox
+  when: is_macos
