@@ -4,3 +4,4 @@ __pycache__
 .padawan
 .php_cs.cache
 .tern-port
+.DS_Store
