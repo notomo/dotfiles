@@ -45,6 +45,3 @@
   make:
     target: install
     chdir: "{{ neovim_dir }}"
-
-- name: pip install
-  pip: name=neovim

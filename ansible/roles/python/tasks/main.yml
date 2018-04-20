@@ -36,24 +36,21 @@
 - shell: bash -lc "pyenv install {{ python2_version }}"
   when: pyenv2_version is failed
 
-- name: set variables
-  set_fact:
-    ansible_python_interpreter: "{{ home_dir }}/.pyenv/shims/python2"
-  when: pyenv2_version
+- shell: bash -lc "pyenv global {{ python2_version }}"
+  changed_when: False
 
-- pip: name={{ item }}
+- pip:
+    name: "{{ item }}"
+    executable: "{{ home_dir }}/.pyenv/shims/pip2"
   with_items:
     - neovim
 
 - shell: bash -lc "pyenv global {{ python3_version }}"
-  when: pyenv_version is failed
+  changed_when: False
 
-- name: set variables
-  set_fact:
-    ansible_python_interpreter: "{{ home_dir }}/.pyenv/shims/python3"
-  when: pyenv_version
-
-- pip: name={{ item }}
+- pip:
+    name: "{{ item }}"
+    executable: "{{ home_dir }}/.pyenv/shims/pip3"
   with_items:
     - neovim
     - flake8
