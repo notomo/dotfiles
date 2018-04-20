@@ -11,6 +11,7 @@
 
 - name: add pyenv settings to bash_profile
   blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK python role"
     dest: "{{ home_dir }}/.bash_profile"
     content: |
       export PYENV_ROOT="$HOME/.pyenv"

@@ -63,6 +63,7 @@
 
 - name: add .bash_profile content
   blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK bash role"
     dest: "{{ home_dir }}/.bash_profile"
     content: |
       if [ -f ~/.bashrc ]; then
