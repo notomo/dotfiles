@@ -64,3 +64,6 @@
     - websocket-client
     - websocket-server
     - vim-vint
+
+- shell: bash -lc "pyenv global {{ python2_version }} {{ python3_version }}"
+  changed_when: False
