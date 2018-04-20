@@ -1,7 +1,7 @@
 
-- name: install docker with homebrew
-  homebrew: name={{ item }}
+- name: install docker with homebrew_cask
+  homebrew_cask: name={{ item }}
   with_items:
     - docker
-    - docker-compose
   when: is_macos
+  notify: start docker
