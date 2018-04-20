@@ -1,7 +1,8 @@
 
 - name: set variables
   set_fact:
-    python_version: "3.5.4"
+    python3_version: "3.5.4"
+    python2_version: "2.7.14"
 
 - name: git clone pyenv
   git:
@@ -19,20 +20,37 @@
       eval "$(pyenv init -)"
   notify: source bash_profile
 
-- shell: bash -lc "pyenv versions | grep {{ python_version }}"
+- shell: bash -lc "pyenv versions | grep {{ python3_version }}"
   register: pyenv_version
   ignore_errors: yes
   changed_when: False
 
-- shell: bash -lc "pyenv install {{ python_version }}"
+- shell: bash -lc "pyenv install {{ python3_version }}"
   when: pyenv_version is failed
 
-- shell: bash -lc "pyenv global {{ python_version }}"
+- shell: bash -lc "pyenv versions | grep {{ python2_version }}"
+  register: pyenv2_version
+  ignore_errors: yes
+  changed_when: False
+
+- shell: bash -lc "pyenv install {{ python2_version }}"
+  when: pyenv2_version is failed
+
+- name: set variables
+  set_fact:
+    ansible_python_interpreter: "{{ home_dir }}/.pyenv/shims/python2"
+  when: pyenv2_version
+
+- pip: name={{ item }}
+  with_items:
+    - neovim
+
+- shell: bash -lc "pyenv global {{ python3_version }}"
   when: pyenv_version is failed
 
 - name: set variables
   set_fact:
-    ansible_python_interpreter: "{{ home_dir }}/.pyenv/shims/python"
+    ansible_python_interpreter: "{{ home_dir }}/.pyenv/shims/python3"
   when: pyenv_version
 
 - pip: name={{ item }}
