@@ -25,10 +25,10 @@
   changed_when: False
 
 - shell: bash -lc "pyenv install {{ python_version }}"
-  when: pyenv_version|failed
+  when: pyenv_version is failed
 
 - shell: bash -lc "pyenv global {{ python_version }}"
-  when: pyenv_version|failed
+  when: pyenv_version is failed
 
 - name: set variables
   set_fact:
