@@ -38,3 +38,19 @@
   with_items:
     - Karabiner-Elements
   when: is_macos
+
+- name: set default finder location
+  osx_defaults:
+    domain: com.apple.finder
+    key: NewWindowTarget
+    type: string
+    value: "PfLo"
+  notify: restart finder
+
+- name: set default finder location path
+  osx_defaults:
+    domain: com.apple.finder
+    key: NewWindowTargetPath
+    type: string
+    value: "file://${HOME}"
+  notify: restart finder
