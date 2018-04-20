@@ -37,7 +37,8 @@
   homebrew_cask: name={{ item }}
   with_items:
     - Karabiner-Elements
-  when: is_macos
+    - vagrant
+    - virtualbox
 
 - name: set default finder location
   osx_defaults:
@@ -54,3 +55,45 @@
     type: string
     value: "file://${HOME}"
   notify: restart finder
+
+- name: disable automatically adjust brightness
+  osx_defaults:
+    domain: com.apple.BezelServices
+    key: dAuto
+    type: bool
+    value: false
+
+- name: set key repeat
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: KeyRepeat
+    type: int
+    value: 2
+
+- name: set initial key repeat
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: InitialKeyRepeat
+    type: int
+    value: 15
+
+- name: use function key normally
+  osx_defaults:
+    domain: NSGlobalDomain
+    key: com.apple.Keyboard_fnState
+    type: bool
+    value: true
+
+- name: disable keyboard brightness adjustment
+  osx_defaults:
+    domain: com.apple.BezelServices
+    key: kDim
+    type: bool
+    value: false
+
+- name: disable keyboard brightness adjustment
+  osx_defaults:
+    domain: /Library/Preferences/com.apple.iokit.AmbientLightSensor
+    key: "Automatic Keyboard Enabled"
+    type: bool
+    value: false
