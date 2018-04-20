@@ -26,9 +26,17 @@
     path: "{{ phpmanual_dir }}"
     state: directory
 
+- name: find phpmanual
+  find:
+    paths:  "{{ phpmanual_dir }}"
+    patterns: ".html"
+    file_type: file
+  register: phpmanual_files
+
 - name: unarchive phpmanual
   unarchive:
     src: http://jp2.php.net/get/php_manual_ja.tar.gz/from/this/mirror
     dest: "{{ phpmanual_dir }}"
     remote_src: yes
     extra_opts: [--strip-components=1]
+  when: not phpmanual_files.matched
