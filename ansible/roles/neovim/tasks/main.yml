@@ -3,7 +3,7 @@
   set_fact:
     neovim_dir: "{{ app_dir }}/neovim"
 
-- name: install dependencies with yum 
+- name: install dependencies with yum
   yum: name={{ item }} enablerepo=epel
   with_items:
       - ninja-build
@@ -29,19 +29,28 @@
     - gettext
   when: is_macos
 
+- name: check neovim version
+  shell: 'nvim -v | head -n 1 | grep NVIM'
+  register: neovim_exists
+  ignore_errors: yes
+  changed_when: False
+
 - name: git clone
   git:
     repo: https://github.com/neovim/neovim.git
     dest: "{{ neovim_dir }}"
     version: master
+  when: neovim_exists is failed
 
 - name: build
   make:
     chdir: "{{ neovim_dir }}"
     params:
       CMAKE_BUILD_TYPE: Release
+  when: neovim_exists is failed
 
 - name: install
   make:
     target: install
     chdir: "{{ neovim_dir }}"
+  when: neovim_exists is failed
