@@ -1,0 +1,33 @@
+
+- homebrew: name=golang
+  when: is_macos
+
+- name: check go modules
+  command: "go list {{ item }}"
+  register: go_module_exists
+  changed_when: False
+  failed_when: go_module_exists.rc not in [0, 1]
+  with_items:
+    - github.com/nsf/gocode
+    - golang.org/x/tools/cmd/goimports
+    - github.com/golang/lint/golint
+    - github.com/go-task/task/cmd/task
+    - golang.org/x/tools/cmd/gotype
+    - honnef.co/go/tools/cmd/gosimple
+    - honnef.co/go/tools/cmd/staticcheck
+    - github.com/alecthomas/gometalinter
+    - honnef.co/go/tools/cmd/unused
+    - github.com/mattn/mkup
+
+- name: go get
+  command: "go get {{ item.item }}"
+  when: item.rc == 1
+  with_items: "{{ go_module_exists.results }}"
+
+- name: add go path
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK golang role"
+    dest: "{{ home_dir }}/.bash_profile"
+    content: |
+      export GOPATH=$HOME/go
+      export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin

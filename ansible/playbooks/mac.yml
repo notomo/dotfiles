@@ -5,6 +5,7 @@
     - 'bash'
     - 'workspace'
     - 'ruby'
+    - 'golang'
     - 'mac'
     - 'dotfiles'
     - 'tools'
