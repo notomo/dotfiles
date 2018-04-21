@@ -3,32 +3,52 @@
   set_fact:
     vim_dir: "{{ app_dir }}/vim"
 
-- name: check vim version
-  shell: 'vim --version | head -n 1 | grep "VIM - Vi IMproved 8"'
-  register: vim8_exists
-  ignore_errors: yes
-  changed_when: False
+- name: install vim with homebrew
+  homebrew:
+    name: vim
+    install_options: with-python3
+  when: is_macos
 
-- name: git clone
-  git:
-    repo: https://github.com/vim/vim.git
-    dest: "{{ vim_dir }}"
-    version: master
-  when: vim8_exists.stdout == ""
 
-- name: config
-  shell: ./configure --with-features=huge --enable-pythoninterp --enable-python3interp
-  args:
-    chdir: "{{ vim_dir }}/src"
-  when: vim8_exists.stdout == ""
+# TODO: built neovim could not load python3
 
-- name: build
-  make:
-    chdir: "{{ vim_dir }}/src"
-  when: vim8_exists.stdout == ""
-
-- name: install
-  make:
-    target: install
-    chdir: "{{ vim_dir }}/src"
-  when: vim8_exists.stdout == ""
+# - name: check vim version
+#   # shell: 'vim --version | head -n 1 | grep "VIM - Vi IMproved 8"'
+#   shell: 'vim --version | head -n 1 | grep "VIM - Vi IMproved 8hoge"'
+#   register: vim8_exists
+#   ignore_errors: yes
+#   changed_when: False
+#
+# - name: git clone
+#   git:
+#     repo: https://github.com/vim/vim.git
+#     dest: "{{ vim_dir }}"
+#     version: master
+#   when: vim8_exists.stdout == ""
+#
+# - name: clean
+#   make:
+#     target: distclean
+#   when: vim8_exists.stdout == ""
+#
+# - name: clean
+#   make:
+#     target: clean
+#   when: vim8_exists.stdout == ""
+#
+# - name: config
+#   shell: ./configure --with-features=huge --enable-pythoninterp=dynamic --with-python-config-dir=/usr/lib/python2.7/config --enable-python3interp=dynamic --with-python3-config-dir=/usr/local/Cellar/python/3.6.5/Frameworks/Python.framework/Versions/3.6/lib/python3.6/config-3.6m-darwin
+#   args:
+#     chdir: "{{ vim_dir }}/src"
+#   when: vim8_exists.stdout == ""
+#
+# - name: build
+#   make:
+#     chdir: "{{ vim_dir }}/src"
+#   when: vim8_exists.stdout == ""
+#
+# - name: install
+#   make:
+#     target: install
+#     chdir: "{{ vim_dir }}/src"
+#   when: vim8_exists.stdout == ""
