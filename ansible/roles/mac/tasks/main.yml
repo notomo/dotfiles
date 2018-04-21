@@ -24,6 +24,22 @@
     value: true
   notify: restart finder
 
+- name: show path bar
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowPathbar
+    type: bool
+    value: true
+  notify: restart finder
+
+- name: show tab bar
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowTabView
+    type: bool
+    value: true
+  notify: restart finder
+
 - name: auto hide dock
   osx_defaults:
     domain: com.apple.dock
@@ -53,34 +69,20 @@
     domain: com.apple.finder
     key: NewWindowTargetPath
     type: string
-    value: "file://${HOME}"
+    value: "file://{{ home_dir }}"
   notify: restart finder
 
 - name: disable automatically adjust brightness
   osx_defaults:
     domain: com.apple.BezelServices
     key: dAuto
-    type: bool
-    value: false
-
-- name: set key repeat
-  osx_defaults:
-    domain: NSGlobalDomain
-    key: KeyRepeat
-    type: int
-    value: 2
-
-- name: set initial key repeat
-  osx_defaults:
-    domain: NSGlobalDomain
-    key: InitialKeyRepeat
     type: int
     value: 15
 
 - name: use function key normally
   osx_defaults:
     domain: NSGlobalDomain
-    key: com.apple.Keyboard_fnState
+    key: com.apple.keyboard.fnState
     type: bool
     value: true
 
@@ -91,9 +93,10 @@
     type: bool
     value: false
 
-- name: disable keyboard brightness adjustment
+- name: remove default apps in dock
   osx_defaults:
-    domain: /Library/Preferences/com.apple.iokit.AmbientLightSensor
-    key: "Automatic Keyboard Enabled"
-    type: bool
-    value: false
+    domain: com.apple.dock
+    key: persistent-apps
+    type: array
+    value: []
+  notify: restart dock
