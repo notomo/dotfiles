@@ -1,0 +1,8 @@
+
+- homebrew: name=ruby
+  when: is_macos
+
+- gem:
+    name: "{{ item }}"
+  with_items:
+    - neovim

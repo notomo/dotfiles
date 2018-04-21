@@ -4,6 +4,7 @@
     - 'git'
     - 'bash'
     - 'workspace'
+    - 'ruby'
     - 'dotfiles'
     - 'tools'
     - 'python'
