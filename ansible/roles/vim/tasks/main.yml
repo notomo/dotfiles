@@ -1,0 +1,34 @@
+
+- name: set variables
+  set_fact:
+    vim_dir: "{{ app_dir }}/vim"
+
+- name: check vim version
+  shell: 'vim --version | head -n 1 | grep "VIM - Vi IMproved 8"'
+  register: vim8_exists
+  ignore_errors: yes
+  changed_when: False
+
+- name: git clone
+  git:
+    repo: https://github.com/vim/vim.git
+    dest: "{{ vim_dir }}"
+    version: master
+  when: vim8_exists.stdout == ""
+
+- name: config
+  shell: ./configure --with-features=huge --enable-pythoninterp --enable-python3interp
+  args:
+    chdir: "{{ vim_dir }}/src"
+  when: vim8_exists.stdout == ""
+
+- name: build
+  make:
+    chdir: "{{ vim_dir }}/src"
+  when: vim8_exists.stdout == ""
+
+- name: install
+  make:
+    target: install
+    chdir: "{{ vim_dir }}/src"
+  when: vim8_exists.stdout == ""
