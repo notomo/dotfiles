@@ -106,6 +106,8 @@ set guioptions+=c
 
 if has('win32')
     let g:python3_host_prog = 'C:/Python35/python.exe'
+elseif has('mac')
+    let g:python3_host_prog = '/usr/local/bin/python3'
 else
     let g:python3_host_prog = '/usr/bin/python3.5'
 endif
