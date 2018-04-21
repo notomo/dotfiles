@@ -42,6 +42,17 @@
     version: master
   when: neovim_exists.stdout == ""
 
+- name: clean
+  command: "rm -r {{ neovim_dir }}/build"
+  ignore_errors: yes
+  when: neovim_exists.stdout == ""
+
+- name: clean
+  make:
+    target: distclean
+    chdir: "{{ neovim_dir }}"
+  when: neovim_exists.stdout == ""
+
 - name: build
   make:
     chdir: "{{ neovim_dir }}"
