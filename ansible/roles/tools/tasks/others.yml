@@ -4,11 +4,15 @@
   with_items:
     - lynx
     - tree
+    - wget
+    - nkf
   when: is_macos
 
 - name: install dependencies with yum
   yum: name={{ item }} enablerepo=epel
   with_items:
-      - lynx
-      - tree
+    - lynx
+    - tree
+    - wget
+    - nkf
   when: is_centos
