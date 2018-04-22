@@ -17,5 +17,6 @@
     - 'web_browser'
     - 'terminal'
     - 'vim'
+    - 'mysql'
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
