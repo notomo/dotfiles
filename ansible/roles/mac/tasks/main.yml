@@ -68,6 +68,26 @@
     - keepassx
     - skitch
 
+- name: disable .DS_Store creation
+  osx_defaults:
+    domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: bool
+    value: true
+  notify: restart finder
+
+- name: set mouse cursor speed
+  osx_defaults:
+    key: com.apple.mouse.scaling
+    type: float
+    value: 3.0
+
+- name: set scroll direction
+  osx_defaults:
+    key: com.apple.swipescrolldirection
+    type: int
+    value: 0
+
 - name: set default finder location
   osx_defaults:
     domain: com.apple.finder
