@@ -1,7 +1,6 @@
 - hosts: 'local'
   roles:
     - 'unarchive'
-    - 'git'
     - 'bash'
     - 'workspace'
     - 'ruby'
@@ -19,5 +18,6 @@
     - 'vim'
     - 'mysql'
     - 'font'
+    - 'git'
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
