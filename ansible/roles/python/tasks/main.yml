@@ -27,3 +27,4 @@
     - websocket-client
     - websocket-server
     - vim-vint
+    - neovim-remote
