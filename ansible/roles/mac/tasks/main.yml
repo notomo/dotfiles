@@ -88,6 +88,14 @@
     type: int
     value: 0
 
+- name: set menu bar clock format
+  osx_defaults:
+    domain: com.apple.menuextra.clock
+    key: DateFormat
+    type: string
+    value: "M\\U6708d\\U65e5(EEE)  H:mm"
+  notify: restart menubar
+
 - name: set default finder location
   osx_defaults:
     domain: com.apple.finder
