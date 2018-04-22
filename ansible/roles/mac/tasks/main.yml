@@ -49,6 +49,11 @@
     state: present
   notify: restart dock
 
+- name: tap homebrew
+  homebrew_tap: name={{ item }}
+  with_items:
+    - caskroom/homebrew-drivers
+
 - name: install with homebrew_cask
   homebrew_cask: name={{ item }}
   with_items:
@@ -58,6 +63,8 @@
     - alfred
     - google-japanese-ime
     - filezilla
+    - logitech-unifying
+    # - logitech-options
 
 - name: set default finder location
   osx_defaults:
