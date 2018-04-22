@@ -66,6 +66,7 @@
     - logitech-unifying
     # - logitech-options
     - keepassx
+    - skitch
 
 - name: set default finder location
   osx_defaults:
@@ -131,5 +132,6 @@
     - "Google Chrome"
     - Firefox
     - VirtualBox
+    - keepassx
   when: dock_defaults.stdout.find(item) == -1
   notify: restart dock
