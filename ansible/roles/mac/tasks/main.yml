@@ -55,6 +55,8 @@
     - Karabiner-Elements
     - vagrant
     - virtualbox
+    - alfred
+    - google-japanese-ime
 
 - name: set default finder location
   osx_defaults:
