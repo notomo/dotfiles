@@ -1,0 +1,34 @@
+
+- name: make fonts download directory
+  file:
+    path: "{{ app_dir }}/fonts/SourceHanCodeJP"
+    state: directory
+
+- name: check font
+  stat:
+    path: "{{ home_dir }}/Library/Fonts/SourceHanCodeJP.ttc"
+  register: font_installed
+
+- name: get font
+  action: command wget https://github.com/adobe-fonts/source-han-code-jp/archive/2.011R.tar.gz -O {{ app_dir }}/fonts/SourceHanCodeJP.tar.gz
+  when: font_installed.stat.exists == false
+
+# - name: get font
+#   get_url:
+#     url: https://github.com/adobe-fonts/source-han-code-jp/archive/2.011R.tar.gz
+#     dest: "{{ app_dir }}/fonts/SourceHanCodeJP.tar.gz"
+#     validate_certs: false
+#   when: font_installed.stat.exists == false
+
+- name: unarchive font
+  unarchive:
+    src: "{{ app_dir }}/fonts/SourceHanCodeJP.tar.gz"
+    dest: "{{ app_dir }}/fonts/SourceHanCodeJP"
+    extra_opts: [--strip-components=1]
+  when: font_installed.stat.exists == false
+
+- name: copy font
+  copy:
+    src: "{{ app_dir }}/fonts/SourceHanCodeJP/OTC/SourceHanCodeJP.ttc"
+    dest: "{{ home_dir }}/Library/Fonts/SourceHanCodeJP.ttc"
+  when: font_installed.stat.exists == false
