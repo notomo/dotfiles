@@ -65,6 +65,7 @@
     - filezilla
     - logitech-unifying
     # - logitech-options
+    - keepassx
 
 - name: set default finder location
   osx_defaults:
