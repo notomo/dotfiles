@@ -57,6 +57,7 @@
     - virtualbox
     - alfred
     - google-japanese-ime
+    - filezilla
 
 - name: set default finder location
   osx_defaults:
