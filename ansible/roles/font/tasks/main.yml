@@ -9,16 +9,10 @@
     path: "{{ home_dir }}/Library/Fonts/SourceHanCodeJP.ttc"
   register: font_installed
 
+# NOTICE: for unarchive ssl error
 - name: get font
   action: command wget https://github.com/adobe-fonts/source-han-code-jp/archive/2.011R.tar.gz -O {{ app_dir }}/fonts/SourceHanCodeJP.tar.gz
   when: font_installed.stat.exists == false
-
-# - name: get font
-#   get_url:
-#     url: https://github.com/adobe-fonts/source-han-code-jp/archive/2.011R.tar.gz
-#     dest: "{{ app_dir }}/fonts/SourceHanCodeJP.tar.gz"
-#     validate_certs: false
-#   when: font_installed.stat.exists == false
 
 - name: unarchive font
   unarchive:
