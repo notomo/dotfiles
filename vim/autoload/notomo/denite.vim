@@ -34,8 +34,13 @@ function! notomo#denite#open(open_cmd, context) abort
         return
     endif
     for target in a:context['targets']
+        if has_key(target, 'action__line')
+            let line = ' +' . target['action__line'] . ' '
+        else
+            let line = ''
+        endif
         execute a:open_cmd
-        execute 'edit ' . target['action__path']
+        execute 'edit ' . line . target['action__path']
     endfor
 endfunction
 
