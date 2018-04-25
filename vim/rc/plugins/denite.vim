@@ -57,6 +57,7 @@ nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('
 nnoremap <silent> [denite]c :<C-u>Denite completion<CR>
 nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
 nnoremap <silent> [denite]K :<C-u>call notomo#denite#php_tag_jump()<CR>
+nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . '<CR>'
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
