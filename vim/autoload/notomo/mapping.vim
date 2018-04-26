@@ -8,12 +8,6 @@ let s:SUB_INPUT_PFX = 'jk'
 let s:NUMBER_MODE_KEY = s:MAIN_INPUT_PFX . '<CR>'
 let s:CALCULATOR_KEY = s:SUB_INPUT_PFX . '<CR>'
 
-let s:UPPER_CASE_MODE_KEY_SUFFIX = 'z'
-let s:UPPER_CASE_MODE_KEY = s:MAIN_INPUT_PFX . s:UPPER_CASE_MODE_KEY_SUFFIX
-
-let s:CTRL_MODE_KEY_SUFFIX = 'f'
-let s:CTRL_MODE_KEY = s:MAIN_INPUT_PFX . s:CTRL_MODE_KEY_SUFFIX
-
 function! notomo#mapping#get_lhs_key() abort
     return s:LHS_KEY
 endfunction
@@ -44,14 +38,6 @@ endfunction
 
 function! notomo#mapping#get_calculator_key() abort
     return s:CALCULATOR_KEY
-endfunction
-
-function! notomo#mapping#get_upper_case_mode_key() abort
-    return s:UPPER_CASE_MODE_KEY
-endfunction
-
-function! notomo#mapping#get_ctrl_mode_key() abort
-    return s:CTRL_MODE_KEY
 endfunction
 
 function! notomo#mapping#tab() abort
@@ -92,8 +78,6 @@ function! notomo#mapping#main_input() abort
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'v', s:RHS_KEY : '<C-q>'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'c', s:RHS_KEY : '::'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . ';', s:RHS_KEY : ':='},
-        \ {s:LHS_KEY : s:MAIN_INPUT_PFX . s:UPPER_CASE_MODE_KEY_SUFFIX, s:RHS_KEY : '<C-r>=notomo#upper_case#setup_submode()<CR>'},
-        \ {s:LHS_KEY : s:MAIN_INPUT_PFX . s:CTRL_MODE_KEY_SUFFIX, s:RHS_KEY : '<C-r>=notomo#ctrl#setup_submode()<CR>'},
     \ ]
 endfunction
 
