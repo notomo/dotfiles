@@ -636,27 +636,6 @@ vnoremap [diff]g :diffget<CR>
 vnoremap [diff]p :diffput<CR>
 "}}}
 
-" mark"{{{
-nnoremap [mark] <Nop>
-vnoremap [mark] <Nop>
-nmap <Leader>m [mark]
-vmap <Leader>m [mark]
-
-nnoremap [mark]s :<C-u>call notomo#mark#set()<CR>
-
-nnoremap <expr> <silent> [mark]x notomo#mark#to_next()
-vnoremap <expr> <silent> [mark]x notomo#mark#to_next()
-
-nnoremap <expr> <silent> [mark]r notomo#mark#to_previous()
-vnoremap <expr> <silent> [mark]r notomo#mark#to_previous()
-
-nnoremap <silent> [mark]d :<C-u>call notomo#mark#delete_all()<CR>
-
-" go to specific mark
-nnoremap [mark]g '
-vnoremap [mark]g '
-"}}}
-
 " arithmatic"{{{
 nnoremap [arith] <Nop>
 vnoremap [arith] <Nop>
