@@ -64,37 +64,6 @@ nmap <Space>b [buf]
 nnoremap [buf]a <C-^>
 nnoremap <silent> [buf]n :<C-u>enew \| setlocal buftype=nofile noswapfile fileformat=unix<CR>
 nnoremap [buf]Q :<C-u>qa<CR>
-nnoremap [buf]O :<C-u>call <SID>open_not_saved_bufs()<CR>
-nnoremap [buf]o :<C-u>call <SID>delete_other_bufs()<CR>
-
-function! s:open_not_saved_buf() abort
-    let curbuf_num = bufnr('%')
-    if getbufvar(curbuf_num, '&modified')
-        tabe expand('%')
-    endif
-endfunction
-function! s:open_not_saved_bufs() abort
-    tabe | setlocal buftype=nofile noswapfile | tabonly
-    bufdo call s:open_not_saved_buf()
-    if tabpagenr('$') > 1
-        tabclose | tabl
-    endif
-endfunction
-
-function! s:delete_buf(curbufs) abort
-    let curbuf_num = bufnr('%')
-    if index(a:curbufs, curbuf_num) >= 0 || getbufvar(curbuf_num, '&modified')
-        return
-    endif
-    bwipeout!
-endfunction
-
-function! s:delete_other_bufs() abort
-    tabonly
-    let curbufs = tabpagebuflist()
-    bufdo call s:delete_buf(curbufs)
-endfunction
-
 "}}}
 
 " swap :;"{{{
@@ -126,13 +95,6 @@ endfunction
 " select mode"{{{
 snoremap <CR> <ESC>gv"_c
 snoremap j<Space>h <ESC>gv"_c<C-r>+
-"}}}
-
-" grep"{{{
-nnoremap <Space>Gd :<C-u>vimgrep //j *<Left><Left><Left><Left>
-nnoremap <Space>Gr :<C-u>grep! '' *<Left><Left><Left>
-nnoremap <Space>Gt :<C-u>cexpr ''<CR>:tabdo vimgrepadd //j %<Left><Left><Left><Left>
-nnoremap <Space>Gb :<C-u>cexpr ''<CR>:bufdo vimgrepadd //j %<Left><Left><Left><Left>
 "}}}
 
 " ESC"{{{
