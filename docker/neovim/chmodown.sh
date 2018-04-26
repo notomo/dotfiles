@@ -1,6 +1,0 @@
-
-USERNAME=user
-USERDIR=/home/$USERNAME
-
-chmod 777 -R $USERDIR/.cache
-chown $USERNAME:$USERNAME -R $USERDIR/.cache
