@@ -95,9 +95,6 @@ function! s:delete_other_bufs() abort
     bufdo call s:delete_buf(curbufs)
 endfunction
 
-let s:scroll_enter = '[buf]s'
-silent execute join(['nnoremap', s:scroll_enter, ":<C-u>call notomo#scroll#setup_submode('" . s:scroll_enter . "')<CR>"])
-
 "}}}
 
 " swap :;"{{{
