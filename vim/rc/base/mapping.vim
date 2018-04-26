@@ -9,6 +9,9 @@ let s:RHS_KEY = notomo#mapping#get_rhs_key()
 nnoremap x "_x
 vnoremap x "_x
 
+nnoremap [operator]x "_d
+vnoremap [operator]x "_d
+
 " change using delete register
 nnoremap c "_c
 vnoremap c "_c
@@ -178,30 +181,6 @@ nnoremap [option]fm :<C-u>set fileformat=mac<CR>
 nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 nnoremap [option]s :<C-u>setlocal spell!<CR>
 nnoremap [option]d :<C-u>diffoff!<CR>
-
-function! s:toggle_filetype() abort
-    if execute('filetype') =~# 'OFF'
-        silent! filetype plugin indent on
-        syntax enable
-    else
-        filetype plugin indent off
-        syntax off
-        filetype off
-    endif
-endfunction
-nnoremap [option]F :<C-u>call <SID>toggle_filetype()<CR>
-
-function! s:toggle_verbose() abort
-    if &verbose == 0
-        set verbose=12
-        set verbosefile=~/.vim/tmp/verbosefile
-    else
-        set verbose=0
-        set verbosefile=
-    endif
-endfunction
-nnoremap [option]V :<C-u>call <SID>toggle_verbose()<CR>
-
 "}}}
 
 " keyword"{{{
@@ -627,22 +606,6 @@ nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \
 nnoremap [exec]e :<C-u>smile<CR>
 nnoremap [exec]cC :<C-u>messages clear<CR>
 "}}}
-
-function! s:goto_func() abort
-    let func_name = cfi#format('%s', '')
-    if func_name ==? ''
-        echomsg 'No function'
-        return
-    endif
-    execute "normal! m'"
-    call search('\v^\s*(\S{-1,}\s+)*function\s+' . func_name . '\(.*\)', 'b')
-endfunction
-nnoremap <silent> <Leader>sk :<C-u>call <SID>goto_func()<CR>
-
-nnoremap [operator]x "_d
-vnoremap [operator]x "_d
-
-onoremap g/ gn
 
 " quickfix and locationlist"{{{
 nnoremap [qf] <Nop>
