@@ -9,15 +9,6 @@ fi
 if [ ! -e "${install_root}"/.vimrc ]; then
     ln -s "${install_root}"/dotfiles/vim/rc/.vimrc "${install_root}"/.vimrc
 fi
-# if [ ! -e "${install_root}"/.gvimrc ]; then
-#     ln -s "${install_root}"/dotfiles/vim/rc/.gvimrc "${install_root}"/.gvimrc
-# fi
-# if [ ! -e "${install_root}"/.vimrc_first ]; then
-#     ln -s "${install_root}"/dotfiles/vim/rc/.vimrc_first "${install_root}"/.vimrc_first
-# fi
-# if [ ! -e "${install_root}"/.gvimrc_first ]; then
-#     ln -s "${install_root}"/dotfiles/vim/rc/.gvimrc_first "${install_root}"/.gvimrc_first
-# fi
 
 mkdir -p "${install_root}"/.vim
 # vim
@@ -66,14 +57,6 @@ fi
 if [ ! -e "${install_root}"/.config/nvim/init.vim ]; then
     ln -s "${install_root}"/dotfiles/vim/rc/init.vim "${install_root}"/.config/nvim/init.vim
 fi
-# if [ ! -e "${install_root}"/.config/nvim/ginit.vim ]; then
-#     ln -s "${install_root}"/dotfiles/vim/rc/ginit.vim "${install_root}"/.config/nvim/ginit.vim
-# fi
-
-# ideaVim
-# if [ ! -e "${install_root}"/.ideavimrc ]; then
-#     ln -s "${install_root}"/dotfiles/lint/vim/.ideavimrc "${install_root}"/.ideavimrc
-# fi
 
 # lint
 if [ ! -e "${install_root}"/.vintrc.yaml ]; then
