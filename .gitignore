@@ -1,7 +1,4 @@
 
-# python
-__pycache__
-
 # vagrant
 /vagrant/*/.vagrant
 /vagrant/*/vagrant_up.log*
