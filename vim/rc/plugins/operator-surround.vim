@@ -22,8 +22,4 @@ let g:operator#surround#blocks =
 \       { 'block' : ["```\n", "\n```"], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['c'] },
 \       { 'block' : ["<pre>\n", "\n</pre>"], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['apre'] },
 \   ],
-\   'markdown' : [
-\       { 'block' : ['~~', '~~'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['T'] },
-\       { 'block' : ['**', '**'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['x'] },
-\   ]
 \ }

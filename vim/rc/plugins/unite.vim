@@ -6,15 +6,6 @@ xmap <Space>u [unite]
 nnoremap <silent> [unite]n :<C-u>UniteNext<CR>
 nnoremap <silent> [unite]N :<C-u>UnitePrevious<CR>
 nnoremap <silent> [unite]<CR> :<C-u>UniteResume<CR>
-nnoremap <silent> [unite]gg  :<C-u>call <SID>unite_grep()<CR>
-function! s:unite_grep() abort
-    let pattern = input('Pattern : ')
-    if pattern ==? ''
-        echomsg 'Canceled'
-        return
-    endif
-    execute "normal! :Unite -tab -no-quit grep:. -buffer-name=GREP\<CR>" . pattern . "\<CR>"
-endfunction
 
 call unite#custom#profile('default', 'context', {
 \   'no_split' : 1,
@@ -24,18 +15,8 @@ call unite#custom#profile('default', 'context', {
 let g:unite_no_default_keymappings = 1
 let g:unite_enable_auto_select = 0
 
-let g:unite_source_grep_encoding = 'utf-8'
-let g:unite_source_file_async_command = 'ls -ar'
-if executable('pt')
-  let g:unite_source_grep_command = 'pt'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --smart-case'
-  let g:unite_source_grep_recursive_opt = ''
-endif
-
-call unite#custom#default_action('giti/branch_all', 'checkout_tracking')
-
-autocmd MyAuGroup FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
+autocmd MyAuGroup FileType unite call s:settings()
+function! s:settings()
     imap <buffer> jq <Plug>(unite_exit)
     imap <buffer> jj <Plug>(unite_insert_leave)
     nnoremap <silent> <buffer> <expr> o unite#do_action('open')
@@ -54,14 +35,10 @@ function! s:unite_my_settings()
     nmap <buffer> I <Plug>(unite_insert_head)
     nmap <buffer> A <Plug>(unite_append_end)
     nmap <buffer> q <Plug>(unite_exit)
-    nmap <buffer> <C-r> <Plug>(unite_restart)
     nmap <buffer> * <Plug>(unite_toggle_mark_all_candidates)
     nmap <buffer> <Tab> <Plug>(unite_choose_action)
-    nmap <buffer> <C-l> <Plug>(unite_redraw)
     nmap <buffer> j <Plug>(unite_loop_cursor_down)
     nmap <buffer> k <Plug>(unite_loop_cursor_up)
-    nmap <buffer> <2-LeftMouse> <Plug>(unite_do_default_action)
-    nmap <buffer> <RightMouse> <Plug>(unite_exit)
     nmap <buffer> p <Plug>(unite_smart_preview)
     nmap <buffer> <CR> <Plug>(unite_do_default_action)
     nmap <buffer> gg <Plug>(unite_cursor_top)
@@ -69,11 +46,6 @@ function! s:unite_my_settings()
 
     imap <buffer> <C-u> <Plug>(unite_delete_backward_line)
     imap <buffer> <CR> <Plug>(unite_do_default_action)
-    imap <buffer> <C-n> <Plug>(unite_select_next_page)
-    imap <buffer> <C-p> <Plug>(unite_select_previous_page)
-    imap <buffer> <2-LeftMouse> <Plug>(unite_do_default_action)
-    imap <buffer> <RightMouse> <Plug>(unite_exit)
     imap <buffer> <C-b> <Plug>(unite_delete_backward_char)
-    imap <buffer> <C-N> <Plug>(unite_narrowing_input_history)
 endfunction
 
