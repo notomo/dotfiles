@@ -41,7 +41,6 @@ nnoremap <silent> [denite]D :<C-u>Denite grep:~/dotfiles::!<CR>
 nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
-nnoremap <silent> [denite]tb :<C-u>Denite tabwin<CR>
 nnoremap <silent> [denite]U :<C-u>Denite namespace<CR>
 nnoremap <silent> [denite]P :<C-u>call notomo#denite#add_php_use_statement()<CR>
 nnoremap <expr> <silent> [denite]M notomo#denite#get_php_method_command()
@@ -54,7 +53,6 @@ nnoremap <expr> <silent> [keyword]sf ":\<C-u>DeniteBufferDir file_rec -no-empty 
 nnoremap <expr> <silent> [keyword]so ":\<C-u>DeniteBufferDir outline -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
-nnoremap <silent> [denite]c :<C-u>Denite completion<CR>
 nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
 nnoremap <silent> [denite]K :<C-u>call notomo#denite#php_tag_jump()<CR>
 nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . '<CR>'
@@ -76,7 +74,6 @@ call denite#custom#option('default', 'highlight_preview_line', 'Search')
 call denite#custom#option('default', 'smartcase', v:true)
 call denite#custom#option('default', 'statusline', v:false)
 call denite#custom#source('_', 'matchers', ['matcher/regexp'])
-call denite#custom#source('completion', 'matchers', [])
 call denite#custom#source('directory_mru', 'sorters', ['sorter_length'])
 call denite#custom#source('decls', 'sorters', ['sorter_line_number', 'sorter_file_path'])
 call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', ['.git', '.mypy_cache/', '__pycache__/*', '__pycache__', '.mypy_cache', '.pytest_cache/', '.pytest_cache'])
@@ -151,8 +148,6 @@ call denite#custom#map('normal', 'ff', '<denite:do_action:dir_file>', 'noremap')
 call denite#custom#map('normal', 'fa', '<denite:do_action:parent_dir_file>', 'noremap')
 call denite#custom#map('normal', 'tmp', '<denite:toggle_matchers:matcher_path>', 'noremap')
 call denite#custom#map('normal', 'tmip', '<denite:toggle_matchers:matcher_ignore_path>', 'noremap')
-call denite#custom#map('normal', 'tmiw', '<denite:toggle_matchers:matcher_ignore_word>', 'noremap')
-call denite#custom#map('normal', 'tsr', '<denite:change_sorters:sorter_reverse>', 'noremap')
 call denite#custom#map('normal', 'tsl', '<denite:change_sorters:sorter_length>', 'noremap')
 call denite#custom#map('normal', 'mh', '<denite:wincmd:h>', 'noremap')
 call denite#custom#map('normal', 'ml', '<denite:wincmd:l>', 'noremap')
@@ -187,12 +182,6 @@ call denite#custom#var('grep', 'final_opts', [])
 call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '--ignore=.git', (has('win32') ? '-g:' : '-g='), ''])
 
 call denite#custom#var('outline', 'ignore_types', ['v'])
-
-call denite#custom#action('unite', 'open', {context -> notomo#denite#execute_unite_action(context, 'open')})
-call denite#custom#action('unite', 'vimfiler', {context -> notomo#denite#execute_unite_action(context, 'vimfiler')})
-call denite#custom#action('unite', 'tabvimfiler', {context -> notomo#denite#execute_unite_action(context, 'tabvimfiler')})
-call denite#custom#action('unite', 'exrename', {context -> notomo#denite#execute_unite_action(context, 'exrename')})
-call denite#custom#action('unite', 'qfreplace', {context -> notomo#denite#execute_unite_action(context, 'replace')})
 
 call denite#custom#action('directory', 'dir_file', {context -> notomo#denite#dir_file_on_directory(context)})
 call denite#custom#action('file', 'dir_file', {context -> notomo#denite#dir_file_on_file(context)})
@@ -242,8 +231,4 @@ call denite#custom#action('buffer,command,directory,file,openable,word,namespace
 
 call denite#custom#action('namespace', 'use', {context ->  notomo#denite#append_with(context, 'use ', ';')})
 
-call denite#custom#action('tabwin', 'open', {context ->  denite#do_action(context, 'switch', context['targets'])})
-
 call denite#custom#action('file', 'project_dir', {context ->  notomo#denite#project_dir(context)})
-
-call denite#custom#action('completion', 'open', {context ->  denite#do_action(context, 'append_and_execute', context['targets'])})
