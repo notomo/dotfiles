@@ -1,13 +1,5 @@
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-on_event = 'InsertCharPre'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-'''
-hook_source = 'source ~/.vim/rc/plugins/deoplete.vim'
-
-[[plugins]]
 repo = 'zchee/deoplete-jedi'
 on_ft = 'python'
 hook_source = '''
@@ -73,21 +65,6 @@ let g:nvim_typescript#vue_support = 1
 nnoremap [keyword]k :<C-u>TSType<CR>
 nnoremap [keyword]K :<C-u>TSDoc<CR>
 nnoremap [keyword]R :<C-u>TSRefs<CR>
-'''
-
-# [[plugins]]
-# repo = 'notomo/deoplete-padawan'
-# rev = 'wip'
-# build = 'composer install'
-# on_ft = 'php'
-
-[[plugins]]
-repo = 'notomo/coverage.nvim'
-on_ft = ['php']
-hook_add = '''
-nnoremap [test]cs :<C-u>CoverageShow<CR>
-nnoremap [test]cu :<C-u>CoverageUnset<CR>
-nnoremap [test]cc :<C-u>CoverageEcho<CR>
 '''
 
 # [[plugins]]
@@ -199,3 +176,50 @@ repo = 'cocopon/pgmnt.vim'
 hook_add = '''
 nnoremap [exec]h :<C-u>PgmntDevInspect<CR>
 '''
+
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = 'javascript'
+
+[[plugins]]
+repo = 'OrangeT/vim-csharp'
+on_ft = 'cs'
+
+[[plugins]]
+repo = 'w0rp/ale'
+on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c', 'help', 'cs', 'lua', 'rust', 'dockerfile', 'javascript', 'typescript', 'json']
+hook_source = 'source ~/.vim/rc/plugins/ale.vim'
+
+[[plugins]]
+repo = 'janko-m/vim-test'
+on_cmd = 'Test'
+on_ft = ['vim', 'php', 'python']
+hook_add = '''
+nnoremap [test]n :<C-u>TestNearest<CR>
+nnoremap [test]f :<C-u>TestFile<CR>
+nnoremap [test]s :<C-u>TestSuite<CR>
+nnoremap [test]t :<C-u>TestLast<CR>
+nnoremap [test]v :<C-u>TestVisit<CR>
+nnoremap [test]C :<C-u>call notomo#vim_test#toggle_coverage()<CR>
+'''
+hook_source = 'source ~/.vim/rc/plugins/vim_test.vim'
+hook_post_source = '''
+let g:test#runners['PHP'] = ['PHPUnit']
+let g:test#runners['Python'] = ['PyTest']
+let g:test#python#pytest#options = '-s'
+let g:test#php#phpunit#options = '--no-coverage'
+'''
+
+[[plugins]]
+repo = 'lambdalisue/session.vim'
+on_cmd = 'Session'
+hook_add = '''
+nnoremap [file]<Space> :<C-u>SessionSave!<CR>
+nnoremap [file]<CR> :<C-u>SessionOpen<CR>
+nnoremap [denite]S :<C-u>Denite session<CR>
+'''
+
+[[plugins]]
+repo = 'octol/vim-cpp-enhanced-highlight'
+on_ft = 'cpp'
+

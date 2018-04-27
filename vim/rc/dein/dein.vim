@@ -20,6 +20,9 @@ if dein#load_state(s:dein_dir)
     if has('nvim')
         call dein#load_toml(s:dein_dir . '/neovim_eager.toml', {'lazy' : 0})
         call dein#load_toml(s:dein_dir . '/neovim_lazy.toml', {'lazy' : 1})
+    else
+        call dein#load_toml(s:dein_dir . '/vim_eager.toml', {'lazy' : 0})
+        call dein#load_toml(s:dein_dir . '/vim_lazy.toml', {'lazy' : 1})
     endif
     call dein#load_toml(s:dein_dir . '/filetype.toml')
 

@@ -1,3 +1,42 @@
 
 [[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'notomo/denite-keymap'
+hook_add = 'nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>'
+
+[[plugins]]
+repo = 'mtsr404/denite-gitr'
+hook_add = 'nnoremap <silent> [denite]F :<C-u>:Denite git_diffs:master -winheight=10 -split=horizontal -mode=insert -buffer-name=difffiles -post-action=open<CR>'
+
+[[plugins]]
 repo = 'thinca/vim-themis'
+
+[[plugins]]
+repo = 'aklt/plantuml-syntax'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'martinda/Jenkinsfile-vim-syntax'
+
+[[plugins]]
+repo = 'chr4/nginx.vim'
+
+[[plugins]]
+repo = 'jwalton512/vim-blade'
+
+[[plugins]]
+repo = 'vim-scripts/gitignore.vim'
+
+# [[plugins]]
+# repo = 'junegunn/vader.vim'
+

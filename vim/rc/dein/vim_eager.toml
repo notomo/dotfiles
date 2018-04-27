@@ -1,0 +1,14 @@
+
+[[plugins]]
+repo = 'notomo/vim-hug-neovim-rpc'
+rev = 'wait-ch-open'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+hook_add = 'let g:deoplete#enable_yarp = 1'
+
+[[plugins]]
+repo = 'thinca/vim-singleton'
+if = "has('clientserver')"
+hook_post_source = 'call singleton#enable()'
+

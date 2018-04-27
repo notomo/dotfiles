@@ -1,2 +1,0 @@
-
-let g:coverage_report_path = 'tests/Reports/xml'

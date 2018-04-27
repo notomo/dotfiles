@@ -131,9 +131,6 @@ repo = 'kana/vim-textobj-user'
 repo = 'kana/vim-operator-user'
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
 repo = 'itchyny/vim-parenmatch'
 hook_add = 'let g:loaded_matchparen = 1'
 
@@ -147,11 +144,6 @@ hook_add = '''
 let g:submode_keep_leaving_key = 1
 let g:submode_timeout = 0
 '''
-
-[[plugins]]
-repo = 'thinca/vim-singleton'
-if = "has('clientserver')"
-hook_post_source = 'call singleton#enable()'
 
 [[plugins]]
 repo = 'thinca/vim-zenspace'
@@ -216,16 +208,6 @@ let g:spring_night_high_contrast = []
 '''
 
 [[plugins]]
-repo = 'vim-jp/vimdoc-ja'
-if = "has('nvim')"
-
-[[plugins]]
-repo = 'vim-scripts/gitignore.vim'
-
-[[plugins]]
-repo = 'jwalton512/vim-blade'
-
-[[plugins]]
 repo = 'Shougo/vimproc.vim'
 hook_add = '''
 let g:vimproc#download_windows_dll = 0
@@ -271,26 +253,8 @@ repo = 'thinca/vim-qfreplace'
 hook_add = 'nnoremap [exec]Q :<C-u>Qfreplace<CR>'
 
 [[plugins]]
-repo = 'chr4/nginx.vim'
-
-[[plugins]]
-repo = 'junegunn/vader.vim'
-
-[[plugins]]
 repo = 'lambdalisue/gina.vim'
 hook_post_source = 'source ~/.vim/rc/plugins/gina.vim'
-
-[[plugins]]
-repo = 'aklt/plantuml-syntax'
-
-[[plugins]]
-repo = 'leafgarland/typescript-vim'
-
-[[plugins]]
-repo = 'posva/vim-vue'
-
-[[plugins]]
-repo = 'martinda/Jenkinsfile-vim-syntax'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
@@ -301,10 +265,6 @@ repo = 'notomo/denite-autocmd'
 hook_add = 'nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>'
 
 [[plugins]]
-repo = 'notomo/denite-keymap'
-hook_add = 'nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>'
-
-[[plugins]]
 repo = 'notomo/denite-runtimepath'
 hook_add = 'nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>'
 
@@ -313,21 +273,7 @@ repo = 'pocari/vim-denite-emoji'
 hook_add = 'nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>'
 
 [[plugins]]
-repo = 'mtsr404/denite-gitr'
-hook_add = 'nnoremap <silent> [denite]F :<C-u>:Denite git_diffs:master -winheight=10 -split=horizontal -mode=insert -buffer-name=difffiles -post-action=open<CR>'
-
-[[plugins]]
 repo = 'junegunn/vim-emoji'
-
-[[plugins]]
-repo = 'notomo/vim-hug-neovim-rpc'
-rev = 'wait-ch-open'
-if = "!has('nvim')"
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-hook_add = 'let g:deoplete#enable_yarp = 1'
-if = "!has('nvim')"
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'

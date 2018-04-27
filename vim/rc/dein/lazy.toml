@@ -60,22 +60,6 @@ repo = 'osyo-manga/vim-textobj-blockwise'
 depends = 'vim-textobj-user'
 on_map = {ox = '<Plug>'}
 
-# [[plugins]]
-# repo = 'bps/vim-textobj-python'
-# depends = 'vim-textobj-user'
-# on_map = {ox = '<Plug>'}
-# on_ft = 'python'
-# hook_add = '''
-# xmap <buffer> af <Plug>(textobj-python-function-a)
-# omap <buffer> af <Plug>(textobj-python-function-a)
-# xmap <buffer> if <Plug>(textobj-python-function-i)
-# omap <buffer> if <Plug>(textobj-python-function-i)
-# xmap <buffer> ac <Plug>(textobj-python-class-a)
-# omap <buffer> ac <Plug>(textobj-python-class-a)
-# xmap <buffer> ic <Plug>(textobj-python-class-i)
-# omap <buffer> ic <Plug>(textobj-python-class-i)
-# '''
-
 [[plugins]]
 repo = 'kana/vim-textobj-line'
 depends = 'vim-textobj-user'
@@ -157,13 +141,6 @@ on_map = {n = '<Plug>(anzu-n-with-echo)'}
 repo = 'sgur/vim-py3diff'
 if = "has('python3')"
 hook_add = 'set diffexpr=py3diff#diffexpr()'
-
-[[plugins]]
-repo = 'tyru/restart.vim'
-if = "has('gui')"
-on_cmd = 'Restart'
-hook_add = 'nnoremap [exec]R :<C-u>Restart<CR>'
-hook_source = 'let g:restart_sessionoptions = "curdir,help,tabpages"'
 
 [[plugins]]
 repo = 'haya14busa/incsearch-easymotion.vim'
@@ -253,17 +230,6 @@ xmap <silent>[surround]r <Plug>(operator-surround-replace)
 hook_source = 'source ~/.vim/rc/plugins/operator-surround.vim'
 
 [[plugins]]
-repo = 'thinca/vim-fontzoom'
-on_cmd = 'Fontzoom'
-on_map = {n = '<Plug>'}
-hook_add = '''
-nmap <C-Up> <Plug>(fontzoom-larger)
-nmap <C-Down> <Plug>(fontzoom-smaller)
-nnoremap <M-Up> :<C-u>Fontzoom!<CR>
-nnoremap <M-Down> :<C-u>Fontzoom!<CR>
-'''
-
-[[plugins]]
 repo = 'h1mesuke/vim-alignta'
 on_cmd = 'Alignta'
 hook_add = '''
@@ -282,10 +248,6 @@ repo = 'lilydjwg/colorizer'
 on_ft = ['javascript', 'css', 'html', 'vim']
 on_cmd = 'ColorToggle'
 hook_add = 'nnoremap [exec]C :<C-u>ColorToggle<CR>'
-
-[[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = 'javascript'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -390,15 +352,6 @@ on_cmd = 'Linediff'
 hook_add = 'vnoremap [diff]l :Linediff<CR>'
 
 [[plugins]]
-repo = 'sjl/gundo.vim'
-on_cmd = 'GundoToggle'
-hook_add = 'nnoremap <Leader>u :<C-u>GundoToggle<CR>'
-
-[[plugins]]
-repo = 'OrangeT/vim-csharp'
-on_ft = 'cs'
-
-[[plugins]]
 repo = 'mhinz/vim-signify'
 on_cmd = 'Signify'
 on_map = {n = '<plug>(signify-'}
@@ -417,38 +370,6 @@ on_ft = 'toml'
 [[plugins]]
 repo = 'tmhedberg/matchit'
 on_ft = ['html', 'smarty', 'vim', 'sql', 'php']
-
-# [[plugins]]
-# repo = 'mattn/ssh-add-vim'
-# on_cmd = ['SshAdd']
-
-[[plugins]]
-repo = 'haya14busa/vim-debugger'
-on_cmd = ['DebugOn', 'Debugger']
-hook_post_source = '''
-cnoremap [debug] <Nop>
-cmap j; [debug]
-cnoremap [debug]s step<CR>
-cnoremap [debug]g cont<CR>
-cnoremap [debug]n next<CR>
-cnoremap [debug]i interrupt<CR>
-cnoremap [debug]q quit<CR>
-cnoremap [debug]c Current<CR>
-cnoremap [debug]f File<CR>
-'''
-
-[[plugins]]
-repo = 'thinca/vim-prettyprint'
-on_cmd = ['PP']
-on_func = ['PP']
-
-[[plugins]]
-repo = 'thinca/vim-editvar'
-on_cmd = ['Editvar']
-
-# [[plugins]]
-# repo = 'thinca/vim-themis'
-# on_ft = 'vim'
 
 [[plugins]]
 repo = 'haya14busa/vim-operator-flashy'
@@ -517,11 +438,6 @@ repo = 'thinca/vim-textobj-function-javascript'
 depends = 'vim-textobj-function'
 on_ft = 'javascript'
 
-# [[plugins]]
-# repo = 'Shougo/echodoc.vim'
-# on_event = 'CompleteDone'
-# hook_source = 'call echodoc#enable()'
-
 [[plugins]]
 repo = 'kana/vim-altr'
 on_map = {n = '<Plug>'}
@@ -558,45 +474,6 @@ vmap [edit]J <Plug>(jplus-input)
 repo = 'fuenor/im_control.vim'
 on_event = 'InsertEnter'
 hook_source = 'let g:IM_CtrlMode = 4'
-
-[[plugins]]
-repo = 'w0rp/ale'
-if = "has('nvim')"
-on_ft = ['vim', 'python', 'php', 'sh', 'go', 'c', 'help', 'cs', 'lua', 'rust', 'dockerfile', 'javascript', 'typescript', 'json']
-hook_source = 'source ~/.vim/rc/plugins/ale.vim'
-
-[[plugins]]
-repo = 'janko-m/vim-test'
-on_cmd = 'Test'
-on_ft = ['vim', 'php', 'python']
-hook_add = '''
-nnoremap [test]n :<C-u>TestNearest<CR>
-nnoremap [test]f :<C-u>TestFile<CR>
-nnoremap [test]s :<C-u>TestSuite<CR>
-nnoremap [test]t :<C-u>TestLast<CR>
-nnoremap [test]v :<C-u>TestVisit<CR>
-nnoremap [test]C :<C-u>call notomo#vim_test#toggle_coverage()<CR>
-'''
-hook_source = 'source ~/.vim/rc/plugins/vim_test.vim'
-hook_post_source = '''
-let g:test#runners['PHP'] = ['PHPUnit']
-let g:test#runners['Python'] = ['PyTest']
-let g:test#python#pytest#options = '-s'
-let g:test#php#phpunit#options = '--no-coverage'
-'''
-
-[[plugins]]
-repo = 'lambdalisue/session.vim'
-on_cmd = 'Session'
-hook_add = '''
-nnoremap [file]<Space> :<C-u>SessionSave!<CR>
-nnoremap [file]<CR> :<C-u>SessionOpen<CR>
-nnoremap [denite]S :<C-u>Denite session<CR>
-'''
-
-[[plugins]]
-repo = 'octol/vim-cpp-enhanced-highlight'
-on_ft = 'cpp'
 
 [[plugins]]
 repo = 'haya14busa/vim-edgemotion'

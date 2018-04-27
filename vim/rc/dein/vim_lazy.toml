@@ -1,0 +1,19 @@
+
+[[plugins]]
+repo = 'tyru/restart.vim'
+if = "has('gui')"
+on_cmd = 'Restart'
+hook_add = 'nnoremap [exec]R :<C-u>Restart<CR>'
+hook_source = 'let g:restart_sessionoptions = "curdir,help,tabpages"'
+
+[[plugins]]
+repo = 'thinca/vim-fontzoom'
+if = "has('gui')"
+on_cmd = 'Fontzoom'
+on_map = {n = '<Plug>'}
+hook_add = '''
+nmap <C-Up> <Plug>(fontzoom-larger)
+nmap <C-Down> <Plug>(fontzoom-smaller)
+nnoremap <M-Up> :<C-u>Fontzoom!<CR>
+nnoremap <M-Down> :<C-u>Fontzoom!<CR>
+'''
