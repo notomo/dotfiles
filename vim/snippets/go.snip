@@ -100,6 +100,14 @@ snippet iferr
 		${0:TARGET}
 	}
 
+snippet if_has_key
+	if ${1:value}, ok := ${2:dict}[${3:key}]; ok {
+		${0:TARGET}
+	}
+
+snippet panic
+	panic(err)
+
 snippet else
 	else {
 		${0:TARGET}
@@ -146,6 +154,9 @@ snippet select
 
 snippet method
 alias receiver_method
-	func (${1:receiver} *${2:structName}) ${3:name}() ${4:returnType} {
+	func (${1:receiver} *${2:structName}) ${3:name}() ${4:returnType }{
 		${0:TARGET}
 	}
+
+snippet json_tag
+	\`json:"${0:name}"\`
