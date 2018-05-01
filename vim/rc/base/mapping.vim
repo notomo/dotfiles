@@ -724,6 +724,7 @@ function! s:new_tab() abort
     tabe | setlocal buftype=nofile noswapfile fileformat=unix
 endfunction
 nnoremap <silent> <Plug>(new_tab) :<C-u>call <SID>new_tab()<CR>
+nnoremap [tab]t :<C-u>call <SID>new_tab()<CR>
 "}}}
 
 " for mouse"{{{
