@@ -8,14 +8,14 @@ abbr func main() {}
 snippet function
 alias func
 abbr func name() (returnVar type) {}
-	func ${1:name}(${2:args}) (${3:returnVar} ${4:type}) {
+	func ${1:name}(${2:args}) ${3:type }{
 		${0:TARGET}
 	}
 
 snippet no_name_func
 alias lambda
 abbr func() (returnVar type) {}
-	func (${1:args}) (${2:returnVar} ${3:type}) {
+	func (${1:args}) ${2:type }{
 		${0:TARGET}
 	}
 
@@ -160,3 +160,6 @@ alias receiver_method
 
 snippet json_tag
 	\`json:"${0:name}"\`
+
+snippet defer
+	defer ${0:TARGET}
