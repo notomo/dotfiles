@@ -117,9 +117,11 @@ nnoremap <buffer> [keyword]o :<C-u>GoDef<CR>
 nnoremap <buffer> [keyword]v :<C-u>vsplit \| GoDef<CR>
 nnoremap <buffer> [keyword]h :<C-u>split \| GoDef<CR>
 nnoremap <buffer> [keyword]t :<C-u>call notomo#window#duplicate() \| GoDef<CR>
+nmap <buffer> [keyword]k <Plug>(go-info)
 nmap <buffer> sgj ]]
 nmap <buffer> sgk [[
 nnoremap <buffer> [exec]b :<C-u>GoBuild<CR>
+nnoremap <buffer> [test]g :<C-u>GoCoverageToggle<CR>
 nnoremap <buffer> [denite]o :<C-u>Denite decls -auto-preview<CR>
 '''
 
