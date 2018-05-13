@@ -1,8 +1,8 @@
 
 nnoremap <expr> [browser]<CR> ':<C-u>Ctrlb tab:open -url=' . _url_encode(expand('<cWORD>')) . '<CR>'
 
-autocmd MyAuGroup FileType ctrlb call s:settings()
-function! s:settings()
+autocmd MyAuGroup FileType ctrlb-ctrl call s:ctrl_settings()
+function! s:ctrl_settings()
     nnoremap <buffer> l :<C-u>Ctrlb tab:next<CR>
     nnoremap <buffer> h :<C-u>Ctrlb tab:previous<CR>
     nnoremap <buffer> ga :<C-u>Ctrlb tab:first<CR>
@@ -27,4 +27,9 @@ function! s:settings()
     nnoremap <buffer> j :<C-u>Ctrlb scroll:down<CR>
     nnoremap <buffer> gb :<C-u>Ctrlb navigation:back<CR>
     nnoremap <buffer> gf :<C-u>Ctrlb navigation:forward<CR>
+endfunction
+
+autocmd MyAuGroup FileType ctrlb-history call s:history_settings()
+function! s:history_settings()
+    nnoremap <buffer> <expr> <CR> ':<C-u>Ctrlb tab:tabOpen -url=' . _url_encode(expand('<cWORD>')) . '<CR>'
 endfunction
