@@ -31,5 +31,6 @@ endfunction
 
 autocmd MyAuGroup FileType ctrlb-history call s:history_settings()
 function! s:history_settings()
-    nnoremap <buffer> <expr> <CR> ':<C-u>Ctrlb tab:tabOpen -url=' . _url_encode(expand('<cWORD>')) . '<CR>'
+    nmap <buffer> <CR> <Plug>(ctrlb-history-open)
+    nmap <buffer> t<Space> <Plug>(ctrlb-history-tab-open)
 endfunction
