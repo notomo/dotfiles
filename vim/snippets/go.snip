@@ -52,6 +52,9 @@ snippet package
 snippet println
 	fmt.Println(${0:TARGET})
 
+snippet sprintf
+	fmt.Sprintf("${1:formatString}", ${1:args})
+
 snippet cast
 	${1:name} := ${2:type}(${0:value})
 
@@ -163,3 +166,8 @@ snippet json_tag
 
 snippet defer
 	defer ${0:TARGET}
+
+snippet import
+	import (
+		${0:TARGET}
+	)
