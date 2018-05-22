@@ -9,10 +9,11 @@ function! s:ctrl_settings()
     nnoremap <buffer> ge :<C-u>Ctrlb tab:last<CR>
     nnoremap <buffer> rl :<C-u>Ctrlb tab:reload<CR>
     nnoremap <buffer> t<Space> :<C-u>Ctrlb tab:create<CR>
+    nnoremap <buffer> t<CR> :<C-u>Ctrlb tab:duplicate<CR>
     nnoremap <buffer> cc :<C-u>Ctrlb tab:close<CR>
+    nnoremap <buffer> dd :<C-u>Ctrlb tab:closeOthers<CR>
     nnoremap <buffer> tdl :<C-u>Ctrlb tab:closeRight<CR>
     nnoremap <buffer> tda :<C-u>Ctrlb tab:closeLeft<CR>
-    nnoremap <buffer> oo :<C-u>Ctrlb tab:closeOthers<CR>
     nnoremap <buffer> tma :<C-u>Ctrlb tab:moveLeft<CR>
     nnoremap <buffer> tml :<C-u>Ctrlb tab:moveRight<CR>
     nnoremap <buffer> tms :<C-u>Ctrlb tab:moveFirst<CR>
