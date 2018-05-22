@@ -28,6 +28,9 @@ function! s:ctrl_settings()
     nnoremap <buffer> j :<C-u>Ctrlb scroll:down<CR>
     nnoremap <buffer> gb :<C-u>Ctrlb navigation:back<CR>
     nnoremap <buffer> gf :<C-u>Ctrlb navigation:forward<CR>
+    nnoremap <buffer> J :<C-u>Ctrlb zoom:down<CR>
+    nnoremap <buffer> K :<C-u>Ctrlb zoom:up<CR>
+    nnoremap <buffer> R :<C-u>Ctrlb zoom:reset<CR>
 endfunction
 
 autocmd MyAuGroup FileType ctrlb-history call s:history_settings()
