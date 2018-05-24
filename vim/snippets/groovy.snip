@@ -9,6 +9,13 @@ snippet ifonly
 		${0:TARGET}
 	}
 
+snippet ifelse
+	if (${1:condition}) {
+		${2:TARGET}
+	} else {
+		${0}
+	}
+
 snippet while
 	while (${1}) {
 		${0:TARGET}
@@ -43,7 +50,7 @@ snippet def_function
 snippet try_catch
 	try {
 		${1:TARGET}
-	} catch (${2:Exception} $e) {
+	} catch (${2:Exception} e) {
 		${0:#:code}
 	}
 

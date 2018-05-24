@@ -98,6 +98,10 @@ let b:caw_wrap_oneline_comment = ['//']
 setlocal noexpandtab
 '''
 
+groovy = '''
+setlocal noexpandtab
+'''
+
 vader = '''
 nnoremap <buffer> [exec]t :<C-u>Vader %<CR>
 '''

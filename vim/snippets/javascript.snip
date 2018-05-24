@@ -60,5 +60,15 @@ options head
 
 snippet log
 options word
-	console.log("${0:message}");
+	console.log(${0:message});
 
+snippet try_catch
+	try {
+		${1:TARGET}
+	} catch (e) {
+		${0:#:code}
+	}
+
+snippet typeof
+options word
+	typeof ${0:x}
