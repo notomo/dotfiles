@@ -205,6 +205,9 @@ nnoremap [test]C :<C-u>call notomo#vim_test#toggle_coverage()<CR>
 '''
 hook_source = 'source ~/.vim/rc/plugins/vim_test.vim'
 hook_post_source = '''
+if !exists('g:test#runners')
+    let g:test#runners = {}
+endif
 let g:test#runners['PHP'] = ['PHPUnit']
 let g:test#runners['Python'] = ['PyTest']
 let g:test#python#pytest#options = '-s'
