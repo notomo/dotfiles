@@ -11,7 +11,7 @@ endif
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec<CR>
-nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+nnoremap <silent> [denite]B :<C-u>Denite buffer<CR>
 nnoremap <silent> [unite]sf :<C-u>Denite file_rec<CR>
 nnoremap <silent> [unite]sg :<C-u>DeniteProjectDir file_rec<CR>
 nnoremap <silent> [denite]f :<C-u>Denite dir_file -no-empty<CR>
@@ -47,7 +47,7 @@ nnoremap <expr> <silent> [denite]M notomo#denite#get_php_method_command()
 nnoremap <silent> [denite]O :<C-u>Denite option<CR>
 nnoremap <silent> [denite]L :<C-u>Denite dein_log<CR>
 nnoremap <silent> [denite]A :<C-u>Denite alias<CR>
-nnoremap <silent> [denite]B :<C-u>Denite url_bookmark<CR>
+nnoremap <silent> [denite]b :<C-u>Denite url_bookmark<CR>
 nnoremap <expr> <silent> [keyword]sg ":\<C-u>DeniteProjectDir file_rec -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 nnoremap <expr> <silent> [keyword]sf ":\<C-u>DeniteBufferDir file_rec -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
 nnoremap <expr> <silent> [keyword]so ":\<C-u>DeniteBufferDir outline -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
@@ -57,6 +57,7 @@ nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
 nnoremap <silent> [denite]K :<C-u>call notomo#denite#php_tag_jump()<CR>
 nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . '<CR>'
 nnoremap <silent> [denite]go :<C-u>Denite go/package<CR>
+nnoremap <silent> [denite]to :<C-u>Denite todo<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
