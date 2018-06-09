@@ -416,9 +416,9 @@ function! s:ia_vonoremap(lhs, rhs) abort
     let inner_rhs = 'i' . a:rhs
     let around_lhs = 'a' . a:lhs
     let around_rhs = 'a' . a:rhs
-    silent execute join(['vnoremap', inner_lhs, inner_rhs])
+    silent execute join(['xnoremap', inner_lhs, inner_rhs])
     silent execute join(['onoremap', inner_lhs, inner_rhs])
-    silent execute join(['vnoremap', around_lhs, around_rhs])
+    silent execute join(['xnoremap', around_lhs, around_rhs])
     silent execute join(['onoremap', around_lhs, around_rhs])
 endfunction
 call s:ia_vonoremap(';', 'B')
@@ -693,12 +693,12 @@ nnoremap [win]m :<C-u>SM 4<CR>
 
 nnoremap [tab] <Nop>
 nmap t [tab]
-vnoremap [tab] <Nop>
-vmap t [tab]
+xnoremap [tab] <Nop>
+xmap t [tab]
 
 " close others
 nnoremap <silent> [tab]o :<C-u>tabonly<CR>
-vnoremap <silent> [tab]o :<C-u>tabonly<CR>
+xnoremap <silent> [tab]o :<C-u>tabonly<CR>
 
 " close all
 nnoremap <silent> [tab]<Space>q :<C-u>qall<CR>

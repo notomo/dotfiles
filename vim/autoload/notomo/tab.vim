@@ -52,13 +52,13 @@ function! s:tab_map(lhs, rhs, map_only, remap) abort
     if a:map_only
         if a:remap == 1
             silent execute join(['nmap', s:TAB_KEY . a:lhs, a:rhs])
-            silent execute join(['vmap', s:TAB_KEY . a:lhs, a:rhs])
+            silent execute join(['xmap', s:TAB_KEY . a:lhs, a:rhs])
         else
             silent execute join(['nnoremap', s:TAB_KEY . a:lhs, a:rhs])
-            silent execute join(['vnoremap', s:TAB_KEY . a:lhs, a:rhs])
+            silent execute join(['xnoremap', s:TAB_KEY . a:lhs, a:rhs])
         endif
     else
-        call submode#enter_with(s:TAB_MODE_NM , 'nv', remap, s:TAB_KEY . a:lhs, a:rhs)
+        call submode#enter_with(s:TAB_MODE_NM , 'nx', remap, s:TAB_KEY . a:lhs, a:rhs)
     endif
     call submode#map(s:TAB_MODE_NM, 'n', remap, a:lhs, a:rhs)
 endfunction
