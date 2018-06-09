@@ -15,8 +15,11 @@ class Source(Base):
     def gather_candidates(self, context):
 
         def create(line, file_path, number):
+            word = line.rstrip()
+            if word.startswith('#') or word == '':
+                return None
             return {
-                'word': line.rstrip(),
+                'word': word,
                 'action__path': file_path,
                 'action__line': number,
             }
@@ -36,10 +39,13 @@ class Source(Base):
         ]
         for path in paths:
             todo_file = open(path)
-            todos.extend([
-                create(line, path, i)
-                for i, line
-                in enumerate(todo_file, start=1)
-            ])
+            todos.extend(filter(
+                lambda x: x is not None,
+                (
+                    create(line, path, i)
+                    for i, line
+                    in enumerate(todo_file, start=1)
+                )
+            ))
 
         return todos

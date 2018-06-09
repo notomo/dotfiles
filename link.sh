@@ -42,6 +42,9 @@ fi
 if [ ! -e "${install_root}"/.vim/plugin ]; then
     ln -s "${install_root}"/dotfiles/vim/plugin "${install_root}"/.vim/plugin
 fi
+if [ ! -e "${install_root}"/.vim/ftdetect ]; then
+    ln -s "${install_root}"/dotfiles/vim/ftdetect "${install_root}"/.vim/ftdetect
+fi
 
 mkdir -p "${install_root}"/.vim/tmp/backup
 mkdir -p "${install_root}"/.vim/tmp/undo
