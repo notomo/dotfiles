@@ -49,9 +49,9 @@ endfunction
 function! notomo#python#semshi_highlight()
     highlight semshiLocal ctermfg=NONE guifg=NONE
     highlight semshiImported ctermfg=NONE guifg=NONE
-    highlight semshiParameter ctermfg=NONE guifg=NONE
     highlight semshiUnresolved ctermfg=NONE guifg=NONE
 
+    highlight semshiParameter ctermfg=NONE guifg=NONE cterm=underline gui=underline
     highlight semshiGlobal ctermfg=229 guifg=#fffaaa
     highlight semshiParameterUnused ctermfg=189 guifg=#e7d5ff
     highlight semshiFree ctermfg=132 guifg=#a9667a

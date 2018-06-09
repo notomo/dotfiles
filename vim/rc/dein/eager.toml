@@ -112,6 +112,10 @@ else
     let g:python3_host_prog = '/usr/bin/python3.5'
 endif
 
+if has('nvim')
+    autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
+endif
+
 '''
 
 [[plugins]]

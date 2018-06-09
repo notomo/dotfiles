@@ -40,3 +40,8 @@ repo = 'vim-scripts/gitignore.vim'
 # [[plugins]]
 # repo = 'junegunn/vader.vim'
 
+[[plugins]]
+repo = 'numirias/semshi'
+hook_add = '''
+let g:semshi#simplify_markup = v:false
+'''
