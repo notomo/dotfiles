@@ -33,7 +33,7 @@ endfunction
 function! notomo#python#semshi_mapping() abort
     nnoremap <buffer> sgj :<C-u>Semshi goto function next<CR>
     nnoremap <buffer> sga :<C-u>Semshi goto function first<CR>
-    nnoremap <buffer> sge :<C-u>Semshi goto function lasst<CR>
+    nnoremap <buffer> sge :<C-u>Semshi goto function last<CR>
     nnoremap <buffer> sgk :<C-u>Semshi goto function prev<CR>
 
     nnoremap <buffer> sna :<C-u>Semshi goto name first<CR>
