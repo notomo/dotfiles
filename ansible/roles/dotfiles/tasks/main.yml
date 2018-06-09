@@ -19,7 +19,6 @@
       lint/vim/.vintrc.yaml: .vintrc.yaml
       lint/python/setup.cfg: setup.cfg
       git/.gitignore_global: .gitignore_global
-      setup/mac/karabiner.json: .config/karabiner/karabiner.json
 
 - name: mkdir
   file:
@@ -33,6 +32,11 @@
     - .vim/reference
     - .config
     - .config/karabiner
+
+- name: copy karabiner.json
+  copy:
+    src: karabiner.json
+    dest: "{{ home_dir }}/.config/karabiner/karabiner.json"
 
 - name: check if dotfiles exists
   stat: path={{ dotfiles_dir }}
