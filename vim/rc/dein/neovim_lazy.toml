@@ -59,6 +59,7 @@ let g:OmniSharp_host='http://localhost:2000'
 '''
 [[plugins]]
 repo = 'mhartington/nvim-typescript'
+build = './install.sh'
 on_ft = 'vue'
 hook_add = '''
 let g:nvim_typescript#vue_support = 1
@@ -94,7 +95,7 @@ nnoremap [keyword]R :<C-u>TSRefs<CR>
 # let g:LanguageClient_serverCommands = {}
 # " let g:LanguageClient_serverCommands['python'] = ['pyls']
 # " let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
-# " let g:LanguageClient_serverCommands['go'] = ['go-langserver']
+# let g:LanguageClient_serverCommands['go'] = ['go-langserver', '-trace', '-logfile', '~/go_lsp.log']
 # " let g:LanguageClient_serverCommands['lua'] = ['lua-lsp']
 # let g:LanguageClient_serverCommands['rust'] = ['rustup', 'run', 'nightly', 'rls']
 # let g:LanguageClient_serverCommands['haskell'] = ['hie', '--lsp']
@@ -226,6 +227,14 @@ nnoremap [denite]S :<C-u>Denite session<CR>
 [[plugins]]
 repo = 'octol/vim-cpp-enhanced-highlight'
 on_ft = 'cpp'
+
+[[plugins]]
+repo = 'tenfyzhong/CompleteParameter.vim'
+on_ft = ['go', 'python', 'typescript']
+hook_source = '''
+let g:complete_parameter_py_keep_value = 1
+let g:complete_parameter_echo_signature = 1
+'''
 
 [[plugins]]
 repo = 'numirias/semshi'

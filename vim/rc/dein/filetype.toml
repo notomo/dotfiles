@@ -21,6 +21,7 @@ setlocal completeopt-=preview
 setlocal nomodeline
 let b:cursorword = 0
 call notomo#python#semshi_mapping()
+call notomo#param#mapping()
 '''
 
 qfreplace = '''
@@ -130,6 +131,7 @@ nmap <buffer> sgk [[
 nnoremap <buffer> [exec]b :<C-u>GoBuild<CR>
 nnoremap <buffer> [test]g :<C-u>GoCoverageToggle<CR>
 nnoremap <buffer> [denite]o :<C-u>Denite decls -auto-preview<CR>
+call notomo#param#mapping()
 '''
 
 gina-commit = '''
@@ -152,6 +154,7 @@ nnoremap <buffer> [keyword]o :<C-u>TSDef<CR>
 nnoremap <buffer> [keyword]v :<C-u>vsplit \| TSDef<CR>
 nnoremap <buffer> [keyword]h :<C-u>split \| TSDef<CR>
 nnoremap <buffer> [keyword]t :<C-u>call notomo#window#duplicate() \| TSDef<CR>
+call notomo#param#mapping()
 '''
 
 ansible = '''
