@@ -18,6 +18,7 @@
     - github.com/alecthomas/gometalinter
     - honnef.co/go/tools/cmd/unused
     - github.com/mattn/mkup
+    - github.com/github/hub
 
 - name: go get
   command: "go get {{ item.item }}"

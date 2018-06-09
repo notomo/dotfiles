@@ -243,6 +243,12 @@ yum -y install tree
 
 yum -y install xdg-utils
 
+if [ -e /usr/bin/xdg-open ]
+then
+    mv /usr/bin/xdg-open /usr/bin/xdg-open.tmp
+fi
+ln -s "$GOPATH"/bin/lemonade /usr/bin/xdg-open
+
 # tee /etc/yum.repos.d/highway.repo <<-EOF
 # [repos.highway]
 # name=highway

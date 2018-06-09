@@ -23,3 +23,5 @@ nnoremap [exec]C :<C-u>checkhealth<CR>
 
 nnoremap [exec]m :<C-u>call _run_http_server_and_open(v:false)<CR>
 nnoremap [exec]M :<C-u>call _run_http_server_and_open(v:true)<CR>
+
+nnoremap [exec]o :<C-u>call jobstart("hub browse")<CR>
