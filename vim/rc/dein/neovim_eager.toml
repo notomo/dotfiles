@@ -44,4 +44,5 @@ repo = 'vim-scripts/gitignore.vim'
 repo = 'numirias/semshi'
 hook_add = '''
 let g:semshi#simplify_markup = v:false
+let g:semshi#tolerate_syntax_errors = v:false
 '''
