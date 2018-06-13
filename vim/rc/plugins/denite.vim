@@ -61,10 +61,6 @@ nnoremap <silent> [denite]to :<C-u>Denite todo<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
-highlight myDeniteMatchText cterm=NONE guifg=#f6a3a3 guibg=NONE
-highlight myDeniteInsert cterm=NONE guifg=NONE guibg=#3d5066
-highlight myDeniteNormal cterm=NONE guifg=White guibg=#7b6980
-
 call denite#custom#option('default', 'highlight_matched_char', 'myDeniteMatchText')
 call denite#custom#option('default', 'highlight_mode_insert', 'myDeniteInsert')
 call denite#custom#option('default', 'highlight_mode_normal', 'myDeniteNormal')
