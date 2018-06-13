@@ -43,18 +43,17 @@ function! notomo#python#semshi_mapping() abort
 
     nnoremap <buffer> scj :<C-u>Semshi goto class next<CR>
     nnoremap <buffer> sck :<C-u>Semshi goto class prev<CR>
-
 endfunction
 
 function! notomo#python#semshi_highlight()
     highlight semshiLocal ctermfg=NONE guifg=NONE
     highlight semshiImported ctermfg=NONE guifg=NONE
     highlight semshiUnresolved ctermfg=NONE guifg=NONE
+    highlight semshiFree ctermfg=NONE guifg=NONE
 
     highlight semshiParameter ctermfg=NONE guifg=NONE cterm=underline gui=underline
     highlight semshiGlobal ctermfg=229 guifg=#fffaaa
     highlight semshiParameterUnused ctermfg=189 guifg=#e7d5ff
-    highlight semshiFree ctermfg=132 guifg=#a9667a
     highlight semshiBuiltin ctermfg=210 guifg=#fd8489
     highlight semshiSelected ctermfg=255 guifg=#ffffff ctermbg=60 guibg=#607080
 
