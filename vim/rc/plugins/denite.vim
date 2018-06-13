@@ -150,6 +150,7 @@ call denite#custom#map('normal', 'tmip', '<denite:toggle_matchers:matcher_ignore
 call denite#custom#map('normal', 'tsl', '<denite:change_sorters:sorter_length>', 'noremap')
 call denite#custom#map('normal', 'mh', '<denite:wincmd:h>', 'noremap')
 call denite#custom#map('normal', 'ml', '<denite:wincmd:l>', 'noremap')
+call denite#custom#map('normal', 'M', '<denite:do_action:convert>', 'noremap')
 call denite#custom#map('normal', 'ud', '<denite:do_action:source_directory_mru>', 'noremap')
 call denite#custom#map('normal', 'ur', '<denite:do_action:source_file_mru>', 'noremap')
 call denite#custom#map('normal', 'uf', '<denite:do_action:source_dir_file>', 'noremap')
@@ -231,3 +232,5 @@ call denite#custom#action('buffer,command,directory,file,openable,word,namespace
 call denite#custom#action('namespace', 'use', {context ->  notomo#denite#append_with(context, 'use ', ';')})
 
 call denite#custom#action('file', 'project_dir', {context ->  notomo#denite#project_dir(context)})
+
+call denite#custom#action('url_bookmark', 'convert', {context ->  notomo#denite#convert(context)})

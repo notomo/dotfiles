@@ -250,3 +250,8 @@ endfunction
 function! notomo#denite#project_dir(context) abort
     execute 'DeniteProjectDir file_rec'
 endfunction
+
+function! notomo#denite#convert(context) abort
+    let url = escape(a:context['targets'][0]['action__url'], ':')
+    execute 'Denite url_substitute_pattern:' . url
+endfunction
