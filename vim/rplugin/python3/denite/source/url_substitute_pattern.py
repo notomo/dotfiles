@@ -14,6 +14,9 @@ class Source(Base):
 
     def gather_candidates(self, context):
 
+        if len(context['args']) == 0:
+            return []
+
         base_url = context['args'][0]
 
         def create(line, file_path, number):

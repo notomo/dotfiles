@@ -55,7 +55,7 @@ nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand(
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
 nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
 nnoremap <silent> [denite]K :<C-u>call notomo#denite#php_tag_jump()<CR>
-nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . '<CR>'
+nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
 nnoremap <silent> [denite]go :<C-u>Denite go/package<CR>
 nnoremap <silent> [denite]to :<C-u>Denite todo<CR>
 
