@@ -1,5 +1,6 @@
 
 nnoremap <expr> [browser]<CR> ':<C-u>Ctrlb tab:open -url=' . _url_encode(expand('<cWORD>')) . '<CR>'
+nnoremap [exec]L :<C-u>Ctrlb tab:reload<CR>
 
 autocmd MyAuGroup FileType ctrlb-ctrl call s:ctrl_settings()
 function! s:ctrl_settings()
