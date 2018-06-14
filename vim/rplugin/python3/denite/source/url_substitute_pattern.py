@@ -30,7 +30,7 @@ class Source(Base):
                 )
 
             return {
-                'word': ' '.join([tag, url]),
+                'word': '\t'.join([tag, url]),
                 'action__path': file_path,
                 'action__line': number,
                 'action__url': url,

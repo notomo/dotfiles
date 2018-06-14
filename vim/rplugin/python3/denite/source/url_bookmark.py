@@ -21,7 +21,7 @@ class Source(Base):
             url = factors[-1]
 
             return {
-                'word': ' '.join(factors),
+                'word': '\t'.join(factors),
                 'action__path': file_path,
                 'action__line': number,
                 'action__url': url,
