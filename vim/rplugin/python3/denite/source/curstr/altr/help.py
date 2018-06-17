@@ -10,6 +10,3 @@ class Source(Help):
 
         self.name = 'curstr/altr/help'
         self.kind = 'curstr/altr/help'
-
-    def gather_candidates(self, context):
-        return super().gather_candidates(context)

@@ -12,13 +12,13 @@ try:
             self.default_action = 'tabopen'
 
         def action_open(self, context):
-            self._curstr(context, 'action_open')
+            self._curstr(context, 'open')
 
         def action_tabopen(self, context):
-            self._curstr(context, 'action_tab_open')
+            self._curstr(context, 'tab_open')
 
         def action_vsplit(self, context):
-            self._curstr(context, 'action_vertical_open')
+            self._curstr(context, 'vertical_open')
 
         def _curstr(self, context, action_name):
             targets = context['targets']

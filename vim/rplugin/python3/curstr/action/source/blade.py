@@ -2,7 +2,6 @@
 import os.path
 
 from curstr.action.group import ActionGroup, FileDispatcher
-from curstr.custom import SourceOption
 
 from .base import Source as Base
 
@@ -11,9 +10,9 @@ class Source(Base):
 
     DISPATCHER_CLASS = FileDispatcher
 
-    def create(self, option: SourceOption) -> ActionGroup:
+    def create(self) -> ActionGroup:
         views_path = self._get_laravel_views_path()
-        cfile = self._vim.call('expand', '<cfile>')
+        cfile = self._cursor.get_file_path()
         path = '{}.blade.php'.format(
             os.path.join(views_path, *cfile.split('.'))
         )
