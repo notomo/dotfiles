@@ -1,4 +1,4 @@
-call curstr#custom#filetype_source('php', ['tag', 'blade'])
+call curstr#custom#filetype_source('php', ['blade'])
 call curstr#custom#filetype_alias('blade', 'php')
 call curstr#custom#source_alias('vim/runtime', ['vim/runtime/pattern/file', 'vim/runtime/pattern/directory', 'vim/runtime/file', 'vim/runtime/directory'])
 call curstr#custom#source_alias('file', ['file/buffer_relative', 'file/path'])
