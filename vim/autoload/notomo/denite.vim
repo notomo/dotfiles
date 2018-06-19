@@ -255,3 +255,24 @@ function! notomo#denite#convert(context) abort
     let url = escape(a:context['targets'][0]['action__url'], ':')
     execute 'Denite url_substitute_pattern:' . url
 endfunction
+
+function! notomo#denite#get_splitted() abort
+    let default_isfname = &isfname
+    try
+        execute 'setlocal isfname+=' . '\'
+        let path = expand('<cfile>')
+    finally
+        execute 'setlocal isfname=' . default_isfname
+    endtry
+
+    let separators = ['\.', '\', '\/']
+    let splitted = filter(map(separators, {_, v -> split(path, v)}), {_, v -> len(v) > 1})
+
+    let words = []
+    for factors in splitted
+        call extend(words, factors)
+    endfor
+    call add(words, expand('<cword>'))
+
+    return tolower(join(uniq(sort(words)), '\ ')) . '\ '
+endfunction
