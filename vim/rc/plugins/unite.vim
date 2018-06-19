@@ -30,6 +30,8 @@ function! s:settings()
     nnoremap <silent> <buffer> <expr> fo unite#do_action('vimfiler')
     nnoremap <silent> <buffer> <expr> ff unite#do_action('file')
 
+    nnoremap <silent> <buffer> <expr> t<CR> unite#do_action('checkout_tracking')
+
     nmap <buffer> i <Plug>(unite_insert_enter)
     nmap <buffer> a gg<Plug>(unite_insert_enter)
     nmap <buffer> I <Plug>(unite_insert_head)
