@@ -49,4 +49,9 @@ class Source(Base):
                 in enumerate(url_file, start=1)
             ])
 
-        return urls
+        urls = [
+            x for x in urls
+            if 'http' in x['action__url'] and
+            ':' in x['action__url']
+        ]
+        return list({v['action__url']: v for v in urls}.values())
