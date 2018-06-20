@@ -59,6 +59,7 @@ nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . esca
 nnoremap <silent> [denite]go :<C-u>Denite go/package<CR>
 nnoremap <silent> [denite]to :<C-u>Denite todo<CR>
 nnoremap <expr> <silent> [keyword]gs ":\<C-u>DeniteProjectDir file_rec -input=" . notomo#denite#get_splitted() . " -no-empty\<CR>"
+nnoremap <silent> [denite]ts :<C-u>Denite proto_dir:filetype -default-action=tabvimfiler -immediately-1<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
