@@ -54,4 +54,4 @@ class Source(Base):
             if 'http' in x['action__url'] and
             ':' in x['action__url']
         ]
-        return list({v['action__url']: v for v in urls}.values())
+        return list({v['action__url']: v for v in reversed(urls)}.values())
