@@ -175,6 +175,7 @@ call denite#custom#map('normal', '<Space>d', '<denite:do_action:grep_plugin_sett
 call denite#custom#map('normal', '<Space>m', '<denite:quick_move>', 'noremap')
 call denite#custom#map('normal', 'un', '<denite:do_action:unmap>', 'noremap')
 call denite#custom#map('normal', '<Space>D', '<denite:do_action:debug_targets>', 'noremap')
+call denite#custom#map('normal', 't<CR>', '<denite:do_action:browser_activate>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=.git', '--ignore=tags', '--hidden'])

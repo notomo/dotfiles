@@ -18,6 +18,11 @@ class Kind(File):
             url = self._url_encode(target['action__url'])
             self.vim.command('OpenBrowser {}'.format(url))
 
+    def action_browser_activate(self, context):
+        for target in context['targets']:
+            url = self._url_encode(target['action__url'])
+            self.vim.command('Ctrlb tab:tabOpen -url={}'.format(url))
+
     def _url_encode(self, url):
         parsed = urllib.parse.urlparse(url)
         parsed = parsed._replace(
