@@ -35,6 +35,8 @@ alias gc=git_clone_from_github
 alias gra=git_remote_add_from_github
 alias themis='NVIM_RPLUGIN_MANIFEST=$HOME/rplugin.vim themis'
 alias npmd=npm_install_dev
+alias create_patch='git diff --cached'
+alias apply_patch='git apply'
 
 function docker_latest() {
     docker ps -l -q
