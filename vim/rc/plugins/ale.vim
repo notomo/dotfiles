@@ -9,7 +9,12 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {}
 let g:ale_linters['python'] = ['flake8', 'mypy']
 let g:ale_linters['vim'] = ['vint']
-let g:ale_linters['php'] = ['phpmd', 'php']
+let g:ale_linters['php'] = ['phpmd', 'php', 'langserver']
+if has('mac')
+    let g:ale_php_langserver_executable = expand('~/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php')
+else
+    let g:ale_php_langserver_executable = expand('~/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php')
+endif
 " let g:ale_linters['php'] = ['phpcs', 'phpmd', 'php']
 let g:ale_linters['sh'] = ['shellcheck']
 let g:ale_linters['go'] = ['govet', 'gofmt', 'golint', 'gosimple', 'gometalinter']

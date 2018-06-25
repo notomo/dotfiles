@@ -46,6 +46,8 @@ if exists('loaded_matchit')
 endif
 
 let b:textobj_function_select = function('textobj#function#java#select')
+
+nnoremap <buffer> [keyword]T :<C-u>ALEGoToDefinitionInTab<CR>
 '''
 
 smarty = '''
