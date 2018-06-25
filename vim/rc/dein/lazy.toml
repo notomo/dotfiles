@@ -437,6 +437,7 @@ on_map = {n = '<Plug>'}
 hook_add = '''
 nmap [file]f <Plug>(altr-forward)
 nmap [file]b <Plug>(altr-back)
+nnoremap [file]t :<C-u>call notomo#window#duplicate()<CR>:call altr#forward()<CR>
 nnoremap [test]e :<C-u>call notomo#altr#new()<CR>
 '''
 hook_post_source = '''
