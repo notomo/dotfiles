@@ -25,5 +25,7 @@ call deoplete#custom#source('tag', 'rank', 700)
 
 call deoplete#custom#source('vim', 'converters', ['converter_remove_paren', 'converter_remove_overlap', 'converter_truncate_abbr', 'converter_truncate_menu'])
 
+call deoplete#custom#var('file', 'force_completion_length', 1)
+
 inoremap <expr> j<Space>u deoplete#undo_completion()
 inoremap <expr> j<Space>; deoplete#complete_common_string()
