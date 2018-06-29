@@ -23,6 +23,11 @@ class Kind(File):
             url = self._url_encode(target['action__url'])
             self.vim.command('Ctrlb tab:tabOpen -url={}'.format(url))
 
+    def action_yank(self, context):
+        for target in context['targets']:
+            target['word'] = target['word'].split('\t')[-1]
+        super().action_yank(context)
+
     def _url_encode(self, url):
         parsed = urllib.parse.urlparse(url)
         parsed = parsed._replace(
