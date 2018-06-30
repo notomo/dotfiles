@@ -12,6 +12,12 @@ abbr func name() (returnVar type) {}
 		${0:TARGET}
 	}
 
+snippet gofunc
+abbr go func() (returnVar type) {}
+	go func(${1:args}) ${2:type }{
+		${0:TARGET}
+	}
+
 snippet no_name_func
 alias lambda
 abbr func() (returnVar type) {}
