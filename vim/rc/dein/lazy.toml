@@ -154,7 +154,8 @@ repo = 'kana/vim-operator-replace'
 depends = 'vim-operator-user'
 on_map = '<Plug>'
 hook_add = '''
-map r <Plug>(operator-replace)
+nmap r <Plug>(operator-replace)
+xmap r <Plug>(operator-replace)
 onoremap <Plug>(builtin-gn) gn
 nnoremap <Plug>(builtin-/) /
 nmap [edit]n *``<Plug>(operator-replace)<Plug>(builtin-gn)
@@ -213,11 +214,12 @@ depends = ['vim-operator-user', 'vim-textobj-multiblock']
 on_map = {nox = '<Plug>'}
 hook_add = '''
 noremap [surround] <Nop>
-map s [surround]
-map <silent>[surround]a <Plug>(operator-surround-append)
-map <silent>[surround]d v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-delete)
+nmap s [surround]
+nmap <silent>[surround]a <Plug>(operator-surround-append)
+xmap <silent>[surround]a <Plug>(operator-surround-append)
+xmap <silent>[surround]d v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-delete)
 xmap <silent>[surround]d <Plug>(operator-surround-delete)
-map <silent>[surround]r v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-replace)
+nmap <silent>[surround]r v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-replace)
 xmap <silent>[surround]r <Plug>(operator-surround-replace)
 '''
 hook_source = 'source ~/.vim/rc/plugins/operator-surround.vim'
@@ -459,9 +461,9 @@ repo = 'osyo-manga/vim-jplus'
 on_map = {nv = '<Plug>(jplus'}
 hook_add = '''
 nmap [edit]j <Plug>(jplus)
-vmap [edit]j <Plug>(jplus)
+xmap [edit]j <Plug>(jplus)
 nmap [edit]J <Plug>(jplus-input)
-vmap [edit]J <Plug>(jplus-input)
+xmap [edit]J <Plug>(jplus-input)
 '''
 
 [[plugins]]
