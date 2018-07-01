@@ -181,6 +181,7 @@ nnoremap [option]fm :<C-u>set fileformat=mac<CR>
 nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 nnoremap [option]s :<C-u>setlocal spell!<CR>
 nnoremap [option]d :<C-u>diffoff!<CR>
+nnoremap [option]w :<C-u>setlocal wrap!<CR>
 "}}}
 
 " keyword"{{{

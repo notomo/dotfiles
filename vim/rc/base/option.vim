@@ -64,6 +64,7 @@ set sessionoptions-=blank
 set sessionoptions-=buffers
 set spelllang=en,cjk
 set shiftround
+set linebreak
 if has('termguicolors')
     set termguicolors
 endif
