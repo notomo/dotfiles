@@ -215,6 +215,8 @@ on_map = {nox = '<Plug>'}
 hook_add = '''
 noremap [surround] <Nop>
 nmap s [surround]
+xnoremap [surround] <Nop>
+xmap s [surround]
 nmap <silent>[surround]a <Plug>(operator-surround-append)
 xmap <silent>[surround]a <Plug>(operator-surround-append)
 xmap <silent>[surround]d v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-delete)

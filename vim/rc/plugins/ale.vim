@@ -9,7 +9,8 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_linters = {}
 let g:ale_linters['python'] = ['flake8', 'mypy']
 let g:ale_linters['vim'] = ['vint']
-let g:ale_linters['php'] = ['phpmd', 'php', 'langserver']
+" let g:ale_linters['php'] = ['phpmd', 'php', 'langserver']
+let g:ale_linters['php'] = ['phpmd', 'php']
 if has('mac')
     let g:ale_php_langserver_executable = expand('~/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php')
 else
