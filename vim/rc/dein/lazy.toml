@@ -19,8 +19,8 @@ on_map = {ox = '<Plug>'}
 hook_add = '''
 omap ae <Plug>(textobj-entire-a)
 omap ie <Plug>(textobj-entire-i)
-vmap ae <Plug>(textobj-entire-a)
-vmap ie <Plug>(textobj-entire-i)
+xmap ae <Plug>(textobj-entire-a)
+xmap ie <Plug>(textobj-entire-i)
 '''
 
 [[plugins]]
@@ -30,8 +30,8 @@ on_map = {ox = '<Plug>'}
 hook_add = '''
 omap aj <Plug>(textobj-multiblock-a)
 omap ij <Plug>(textobj-multiblock-i)
-vmap aj <Plug>(textobj-multiblock-a)
-vmap ij <Plug>(textobj-multiblock-i)
+xmap aj <Plug>(textobj-multiblock-a)
+xmap ij <Plug>(textobj-multiblock-i)
 '''
 hook_source = '''
 let g:textobj_multiblock_blocks = [
@@ -65,8 +65,8 @@ repo = 'kana/vim-textobj-line'
 depends = 'vim-textobj-user'
 on_map = {ox = '<Plug>'}
 hook_add = '''
-vmap ag <Plug>(textobj-line-a)
-vmap ig <Plug>(textobj-line-i)
+xmap ag <Plug>(textobj-line-a)
+xmap ig <Plug>(textobj-line-i)
 omap ag <Plug>(textobj-line-a)
 omap ig <Plug>(textobj-line-i)
 '''
@@ -78,11 +78,11 @@ on_cmd = 'OpenBrowser'
 hook_add = '''
 nnoremap [browser] <Nop>
 nmap [exec]b [browser]
-vnoremap [browser] <Nop>
-vmap [exec]b [browser]
+xnoremap [browser] <Nop>
+xmap [exec]b [browser]
 
 nmap [browser]s <Plug>(openbrowser-search)
-vmap [browser]s <Plug>(openbrowser-search)
+xmap [browser]s <Plug>(openbrowser-search)
 nnoremap [browser]o :<C-u>call _open_browser(expand('<cWORD>'))<CR>
 nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 '''
@@ -159,7 +159,7 @@ xmap r <Plug>(operator-replace)
 onoremap <Plug>(builtin-gn) gn
 nnoremap <Plug>(builtin-/) /
 nmap [edit]n *``<Plug>(operator-replace)<Plug>(builtin-gn)
-vmap <expr> [edit]n "\"ry<Plug>(builtin-/)\\V\<C-r>=notomo#vimrc#escape_search_pattern(@r)\<CR>\<CR>" . "``\"+<Plug>(operator-replace)<Plug>(builtin-gn)"
+xmap <expr> [edit]n "\"ry<Plug>(builtin-/)\\V\<C-r>=notomo#vimrc#escape_search_pattern(@r)\<CR>\<CR>" . "``\"+<Plug>(operator-replace)<Plug>(builtin-gn)"
 '''
 
 [[plugins]]
@@ -230,14 +230,14 @@ hook_source = 'source ~/.vim/rc/plugins/operator-surround.vim'
 repo = 'h1mesuke/vim-alignta'
 on_cmd = 'Alignta'
 hook_add = '''
-vnoremap [alignta] <Nop>
-vmap <Leader>a [alignta]
-vnoremap [alignta]i :<C-u>'<,'>Alignta =><CR>
-vnoremap [alignta]e :<C-u>'<,'>Alignta =<CR>
-vnoremap [alignta], :<C-u>'<,'>Alignta ,<CR>
-vnoremap [alignta]c :<C-u>'<,'>Alignta :<CR>
-vnoremap [alignta]p :<C-u>'<,'>Alignta )<CR>
-vnoremap [alignta]<Space> :<C-u>'<,'>Alignta <<0 \ <CR>
+xnoremap [alignta] <Nop>
+xmap <Leader>a [alignta]
+xnoremap [alignta]i :<C-u>'<,'>Alignta =><CR>
+xnoremap [alignta]e :<C-u>'<,'>Alignta =<CR>
+xnoremap [alignta], :<C-u>'<,'>Alignta ,<CR>
+xnoremap [alignta]c :<C-u>'<,'>Alignta :<CR>
+xnoremap [alignta]p :<C-u>'<,'>Alignta )<CR>
+xnoremap [alignta]<Space> :<C-u>'<,'>Alignta <<0 \ <CR>
 '''
 
 [[plugins]]
@@ -252,7 +252,7 @@ on_cmd = 'QuickRun'
 on_ft = ['cs']
 hook_add = '''
 nnoremap <silent> <Leader>Q :<C-u>call notomo#quickrun#execute()<CR>
-vnoremap <silent> <Leader>Q :QuickRun -mode v<CR>
+xnoremap <silent> <Leader>Q :QuickRun -mode v<CR>
 '''
 hook_source = 'source ~/.vim/rc/plugins/quickrun.vim'
 
@@ -261,9 +261,9 @@ repo = 'tyru/caw.vim'
 on_map = {nx = '<Plug>'}
 hook_add = '''
 nmap <Space>c <Plug>(caw:hatpos:toggle)
-vmap <Space>c <Plug>(caw:hatpos:toggle)
+xmap <Space>c <Plug>(caw:hatpos:toggle)
 nmap <Space><Space>c <Plug>(caw:wrap:toggle)
-vmap <Space><Space>c <Plug>(caw:wrap:toggle)
+xmap <Space><Space>c <Plug>(caw:wrap:toggle)
 '''
 hook_source = 'let g:caw_no_default_keymappings = 1'
 
@@ -346,7 +346,7 @@ autocmd MyAuGroup FileType toml let b:switch_custom_definitions +=
 [[plugins]]
 repo = 'AndrewRadev/linediff.vim'
 on_cmd = 'Linediff'
-hook_add = 'vnoremap [diff]l :Linediff<CR>'
+hook_add = 'xnoremap [diff]l :Linediff<CR>'
 
 [[plugins]]
 repo = 'mhinz/vim-signify'
@@ -425,8 +425,8 @@ on_map = {ox = '<Plug>(textobj-function-'}
 hook_add = '''
 omap af <Plug>(textobj-function-a)
 omap if <Plug>(textobj-function-i)
-vmap af <Plug>(textobj-function-a)
-vmap if <Plug>(textobj-function-i)
+xmap af <Plug>(textobj-function-a)
+xmap if <Plug>(textobj-function-i)
 '''
 hook_source = 'let g:textobj_function_no_default_key_mappings = 1'
 

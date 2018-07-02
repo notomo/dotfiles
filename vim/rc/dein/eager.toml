@@ -2,26 +2,26 @@ hook_add = '''
 
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]
-vnoremap [exec] <Nop>
-vmap <Space>x [exec]
+xnoremap [exec] <Nop>
+xmap <Space>x [exec]
 nnoremap [keyword] <Nop>
 nmap <Space>k [keyword]
 nnoremap [diff] <Nop>
 nmap <Leader>d [diff]
-vnoremap [diff] <Nop>
-vmap <Leader>d [diff]
+xnoremap [diff] <Nop>
+xmap <Leader>d [diff]
 nnoremap [edit] <Nop>
 nmap <Space>e [edit]
-vnoremap [edit] <Nop>
-vmap <Space>e [edit]
+xnoremap [edit] <Nop>
+xmap <Space>e [edit]
 nnoremap [file] <Nop>
 nmap <Space>f [file]
 noremap [operator] <Nop>
 map <Space><Leader> [operator]
 nnoremap [git] <Nop>
 nmap <Leader>g [git]
-vnoremap [git] <Nop>
-vmap <Leader>g [git]
+xnoremap [git] <Nop>
+xmap <Leader>g [git]
 nnoremap [test] <Nop>
 nmap <Leader>t [test]
 

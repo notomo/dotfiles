@@ -16,8 +16,8 @@ function! s:convert_indent_style(to_hard, is_visual) abort
 endfunction
 nnoremap <silent> <Plug>(convert_indent_to_tab) :<C-u>call <SID>convert_indent_style(1, 0)<CR>
 nnoremap <silent> <Plug>(convert_indent_to_space) :<C-u>call <SID>convert_indent_style(0, 0)<CR>
-vnoremap <silent> <Plug>(convert_indent_to_tab) :<C-u>call <SID>convert_indent_style(1, 1)<CR>
-vnoremap <silent> <Plug>(convert_indent_to_space) :<C-u>call <SID>convert_indent_style(0, 1)<CR>
+xnoremap <silent> <Plug>(convert_indent_to_tab) :<C-u>call <SID>convert_indent_style(1, 1)<CR>
+xnoremap <silent> <Plug>(convert_indent_to_space) :<C-u>call <SID>convert_indent_style(0, 1)<CR>
 
 function! s:indent_map(lhs, rhs, mode, remap) abort
     let remap = a:remap == 1 ? 'r' : ''

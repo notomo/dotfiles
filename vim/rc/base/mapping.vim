@@ -7,18 +7,18 @@ let s:RHS_KEY = notomo#mapping#get_rhs_key()
 
 " delete a character using delete register
 nnoremap x "_x
-vnoremap x "_x
+xnoremap x "_x
 
 nnoremap [operator]x "_d
-vnoremap [operator]x "_d
+xnoremap [operator]x "_d
 
 " change using delete register
 nnoremap c "_c
-vnoremap c "_c
+xnoremap c "_c
 
 " repeat an ex command
 nnoremap <Space>. @:
-vnoremap <Space>. @:
+xnoremap <Space>. @:
 
 " redo
 nnoremap <Leader>r <C-r>
@@ -31,17 +31,17 @@ nnoremap Q q:
 " edit"{{{
 nnoremap <silent> <Leader>x :<C-u>call notomo#vimrc#exchange()<CR>
 nnoremap [edit]r r
-vnoremap [edit]r r
+xnoremap [edit]r r
 nnoremap [edit]h gU
 nnoremap [edit]l gu
 nnoremap [edit]t viwo<ESC>g~l
-vnoremap [edit]h gU
-vnoremap [edit]l gu
+xnoremap [edit]h gU
+xnoremap [edit]l gu
 nnoremap [edit]m i<C-@>
 
 nnoremap [edit]d *``"_cgn
 nnoremap [edit]a *``cgn<C-r>"
-vnoremap <expr> [edit]d "y/\\V\<C-r>=notomo#vimrc#escape_search_pattern(@\")\<CR>\<CR>" . '``cgn'
+xnoremap <expr> [edit]d "y/\\V\<C-r>=notomo#vimrc#escape_search_pattern(@\")\<CR>\<CR>" . '``cgn'
 "}}}
 
 " kana"{{{
@@ -72,8 +72,8 @@ nnoremap [buf]Q :<C-u>qa<CR>
 " swap :;"{{{
 nnoremap ;  :
 nnoremap :  ;
-vnoremap ;  :
-vnoremap :  ;
+xnoremap ;  :
+xnoremap :  ;
 "}}}
 
 " visual mode"{{{
@@ -81,10 +81,10 @@ nnoremap <Space>h <C-v>
 nnoremap <Space>l <S-v>
 nnoremap <Space>v gv
 nnoremap <Space>p :<C-u>call <SID>select_paste_region()<CR>
-vnoremap <Space>h <C-v>
-vnoremap <Space>l <S-v>
-vnoremap <Space>v v
-vnoremap v <ESC>
+xnoremap <Space>h <C-v>
+xnoremap <Space>l <S-v>
+xnoremap <Space>v v
+xnoremap v <ESC>
 nmap <Space>L V%
 
 " depends yankround
@@ -109,17 +109,18 @@ onoremap jj <ESC>
 snoremap jj <ESC>
 "}}}
 
+
 " indent"{{{
 nnoremap [indent] <Nop>
 nmap <Space>i [indent]
-vnoremap [indent] <Nop>
-vmap <Space>i [indent]
+xnoremap [indent] <Nop>
+xmap <Space>i [indent]
 
 for s:info in notomo#mapping#indent_normal_mode()
     silent execute join(['nnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call notomo#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 0)<CR>"])
 endfor
 for s:info in notomo#mapping#indent_visual_mode()
-    silent execute join(['vnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call notomo#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 1)<CR>"])
+    silent execute join(['xnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call notomo#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 1)<CR>"])
 endfor
 
 "}}}
@@ -127,8 +128,8 @@ endfor
 " move"{{{
 nnoremap k gk
 nnoremap j gj
-vnoremap k gk
-vnoremap j gj
+xnoremap k gk
+xnoremap j gj
 
 noremap ge $
 noremap ga ^
@@ -141,10 +142,10 @@ nnoremap gi <C-i>
 nnoremap gO g;
 nnoremap gI g,
 
-vnoremap <S-j> }
-vnoremap <S-k> {
+xnoremap <S-j> }
+xnoremap <S-k> {
 " remap for matchit
-vmap <S-l> %
+xmap <S-l> %
 nnoremap <silent> <S-l> :<C-u>keepjumps normal %<CR>
 
 nnoremap <silent> <S-j> :<C-u>keepjumps normal! }<CR>
@@ -227,9 +228,9 @@ nnoremap [keyword]h :<C-u>call <SID>split_tag_open('split')<CR>
 
 " Nop"{{{
 nnoremap <F1> <Nop>
-vnoremap q <Nop>
-vnoremap ZQ <Nop>
-vnoremap ZZ <Nop>
+xnoremap q <Nop>
+xnoremap ZQ <Nop>
+xnoremap ZZ <Nop>
 
 nnoremap <Ins> <Nop>
 inoremap <Ins> <Nop>
@@ -273,8 +274,8 @@ nnoremap <Space>ew :<C-u>call <SID>open_diary()<CR>
 " substitute"{{{
 nnoremap [substitute] <Nop>
 nmap <Space>s [substitute]
-vnoremap [substitute] <Nop>
-vmap <Space>s [substitute]
+xnoremap [substitute] <Nop>
+xmap <Space>s [substitute]
 
 let s:CURSOR_KEY = '{cursor}'
 let s:REGISTER_KEY = '{register}'
@@ -294,7 +295,7 @@ function! s:generate_cmd(cmd_pattern, is_visual) abort
 endfunction
 
 nnoremap <expr> [substitute]f <SID>generate_cmd(':%s/\v{cursor}//g', 0)
-vnoremap <expr> [substitute]f <SID>generate_cmd(':s/\v%V{cursor}%V//g', 1)
+xnoremap <expr> [substitute]f <SID>generate_cmd(':s/\v%V{cursor}%V//g', 1)
 
 nnoremap <expr> [substitute]wi <SID>generate_cmd(':%s/\v{word}/{cursor}/g', 0)
 nnoremap <expr> [substitute]ww <SID>generate_cmd(':%s/\v{word}/{word}{cursor}/g', 0)
@@ -307,26 +308,26 @@ nnoremap <expr> [substitute]yv <SID>generate_cmd('gv:s/\v%V{register}%V/{word}{c
 nnoremap <expr> [substitute]vy <SID>generate_cmd('gv:s/\v%V{word}%V/{register}{cursor}/g', 1)
 
 nnoremap <expr> [substitute]yi <SID>generate_cmd(':%s/\v{register}/{cursor}/g', 0)
-vnoremap <expr> [substitute]yi <SID>generate_cmd(':s/\v{register}/{cursor}/g', 1)
+xnoremap <expr> [substitute]yi <SID>generate_cmd(':s/\v{register}/{cursor}/g', 1)
 nnoremap <expr> [substitute]yy <SID>generate_cmd(':%s/\v{register}/{register}{cursor}/g', 0)
-vnoremap <expr> [substitute]yy <SID>generate_cmd(':s/\v{register}/{register}{cursor}/g', 1)
+xnoremap <expr> [substitute]yy <SID>generate_cmd(':s/\v{register}/{register}{cursor}/g', 1)
 nnoremap <expr> [substitute]iy <SID>generate_cmd(':%s/\v{cursor}/{register}/g', 0)
-vnoremap <expr> [substitute]iy <SID>generate_cmd(':s/\v{cursor}/{register}/g', 1)
+xnoremap <expr> [substitute]iy <SID>generate_cmd(':s/\v{cursor}/{register}/g', 1)
 
 nnoremap <expr> [substitute]yw <SID>generate_cmd(':%s/\v{register}/{word}{cursor}/g', 0)
 nnoremap <expr> [substitute]wy <SID>generate_cmd(':%s/\v{word}/{register}{cursor}/g', 0)
 
 nnoremap <expr> [substitute]c <SID>generate_cmd(':%s/\C\v{cursor}//g', 0)
-vnoremap <expr> [substitute]c <SID>generate_cmd(':s/\C\v{cursor}//g', 1)
+xnoremap <expr> [substitute]c <SID>generate_cmd(':s/\C\v{cursor}//g', 1)
 
 nnoremap <expr> [substitute]e <SID>generate_cmd(':%s/\v$/{cursor}/g', 0)
-vnoremap <expr> [substitute]e <SID>generate_cmd(':s/\v$/{cursor}/g', 1)
+xnoremap <expr> [substitute]e <SID>generate_cmd(':s/\v$/{cursor}/g', 1)
 
 nnoremap <expr> [substitute]de <SID>generate_cmd(':v/{cursor}/d', 0)
-vnoremap <expr> [substitute]de <SID>generate_cmd(':v/{cursor}/d', 0)
+xnoremap <expr> [substitute]de <SID>generate_cmd(':v/{cursor}/d', 0)
 
 nnoremap <expr> [substitute]di <SID>generate_cmd(':g/{cursor}/d', 0)
-vnoremap <expr> [substitute]di <SID>generate_cmd(':g/{cursor}/d', 0)
+xnoremap <expr> [substitute]di <SID>generate_cmd(':g/{cursor}/d', 0)
 
 nnoremap <expr> [substitute]aw ':%' . notomo#case#substitute_pattern(expand('<cword>'))
 nnoremap <expr> [substitute]ay ':%' . notomo#case#substitute_pattern(@+)
@@ -335,16 +336,16 @@ nnoremap <expr> [substitute]ay ':%' . notomo#case#substitute_pattern(@+)
 " replace"{{{
 nnoremap [replace] <Nop>
 nmap <Space>r [replace]
-vnoremap [replace] <Nop>
-vmap <Space>r [replace]
+xnoremap [replace] <Nop>
+xmap <Space>r [replace]
 
-function! s:nvnoremap_replace(lhs, pattern, str) abort
+function! s:nxnoremap_replace(lhs, pattern, str) abort
     let pattern = substitute(a:pattern, '\', '\\\\', 'g')
     let str = substitute(a:str, '\', '\\\\', 'g')
     let substitute_str = 's/\\v' . pattern . '/' . str . '/ge\\|noh'
     let v_substitute_str = "'<,'>" . 's/\\v%V' . pattern . '%V/' . str . '/g'
     silent execute join(['nnoremap', '<silent>', '[replace]' . a:lhs, 'q::s@^@' . substitute_str . '@g<CR><CR>'])
-    silent execute join(['vnoremap', '<silent>', '[replace]' . a:lhs, 'q::s@^.*$@' . v_substitute_str . '@g<CR><CR>'])
+    silent execute join(['xnoremap', '<silent>', '[replace]' . a:lhs, 'q::s@^.*$@' . v_substitute_str . '@g<CR><CR>'])
 endfunction
 
 let s:PATTERN_KEY = 'p'
@@ -384,7 +385,7 @@ if exists('g:replace_map_info')
 endif
 
 for s:info in s:replace_map_info
-    call s:nvnoremap_replace(s:info[s:LHS_KEY], s:info[s:PATTERN_KEY], s:info[s:STR_KEY])
+    call s:nxnoremap_replace(s:info[s:LHS_KEY], s:info[s:PATTERN_KEY], s:info[s:STR_KEY])
 endfor
 "}}}
 
@@ -573,26 +574,26 @@ nnoremap [diff]k [c
 nnoremap [diff]g :<C-u>diffget<CR>
 nnoremap [diff]p :<C-u>diffput<CR>
 nnoremap [diff]q :<C-u>diffoff!<CR>
-vnoremap [diff]j ]c
-vnoremap [diff]k [c
-vnoremap [diff]g :diffget<CR>
-vnoremap [diff]p :diffput<CR>
+xnoremap [diff]j ]c
+xnoremap [diff]k [c
+xnoremap [diff]g :diffget<CR>
+xnoremap [diff]p :diffput<CR>
 "}}}
 
 " arithmatic"{{{
 nnoremap [arith] <Nop>
-vnoremap [arith] <Nop>
+xnoremap [arith] <Nop>
 nmap <Space>a [arith]
-vmap <Space>a [arith]
+xmap <Space>a [arith]
 
 nnoremap <expr> [arith]j notomo#arithmatic#inc_dec('dec')
 nnoremap <expr> [arith]k notomo#arithmatic#inc_dec('inc')
 nnoremap [arith]J v<C-x><ESC>
 nnoremap [arith]K v<C-a><ESC>
-vnoremap [arith]j <C-x>gv
-vnoremap [arith]k <C-a>gv
-vnoremap [arith]d g<C-x>gv
-vnoremap [arith]u g<C-a>gv
+xnoremap [arith]j <C-x>gv
+xnoremap [arith]k <C-a>gv
+xnoremap [arith]d g<C-x>gv
+xnoremap [arith]u g<C-a>gv
 "}}}
 
 " exec"{{{

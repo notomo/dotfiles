@@ -21,7 +21,7 @@ function! s:settings()
     imap <buffer> jj <Plug>(unite_insert_leave)
     nnoremap <silent> <buffer> <expr> o unite#do_action('open')
     nnoremap <silent> <buffer> <expr> t<Space> unite#do_action('tabopen')
-    vmap <buffer> sm <Plug>(unite_toggle_mark_selected_candidates)
+    xmap <buffer> sm <Plug>(unite_toggle_mark_selected_candidates)
     nmap <buffer> sm <Plug>(unite_toggle_mark_current_candidate)
 
     nnoremap <silent> <buffer> <expr> sh unite#do_action('split')
