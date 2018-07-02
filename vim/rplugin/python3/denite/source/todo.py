@@ -47,5 +47,6 @@ class Source(Base):
                     in enumerate(todo_file, start=1)
                 )
             ))
+            todo_file.close()
 
         return todos

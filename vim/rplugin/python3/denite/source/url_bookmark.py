@@ -39,5 +39,6 @@ class Source(Base):
                 for i, line
                 in enumerate(url_file, start=1)
             ])
+            url_file.close()
 
         return urls
