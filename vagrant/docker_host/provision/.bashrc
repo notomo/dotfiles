@@ -4,7 +4,7 @@ if [ -f /etc/.bashrc ]; then
 fi
 
 alias nv="nvim"
-alias nvu="nvim -u ~/dotfiles/vim/local/test.vim"
+alias nvu="nvim -u ~/dotfiles/vim/local/test.vim --noplugin"
 alias nvt="~/app/neovim/build/bin/nvim"
 alias vi="vim"
 alias ee="exit"
