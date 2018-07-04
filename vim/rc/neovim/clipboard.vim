@@ -1,8 +1,4 @@
 
-if !has('nvim-0.2.1')
-    finish
-endif
-
 if has('unix') && executable('xclip')
     let g:clipboard = {
         \ 'name': 'xclip_in_vagrant',
@@ -10,5 +6,11 @@ if has('unix') && executable('xclip')
         \ 'paste': {'+': 'xclip -d :0 -o -selection c', '*': 'xclip -d :0 -o -selection c'},
         \ 'cache_enabled': 1,
     \ }
+elseif has('win32')
+    let g:clipboard = {
+        \ 'name': 'win32yank',
+        \ 'copy': {'+': 'win32yank -i --crlf', '*': 'win32yank -i --crlf'},
+        \ 'paste': {'+': 'win32yank -o --lf', '*': 'win32yank -o --lf'},
+        \ 'cache_enabled': 0,
+    \ }
 endif
-
