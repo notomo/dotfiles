@@ -8,17 +8,6 @@ let s:RHS_KEY = notomo#mapping#get_rhs_key()
 
 tnoremap jj <C-\><C-n>
 
-" not effective?
-tnoremap <C-h> <Left>
-tnoremap <C-j> <Down>
-tnoremap <C-k> <Up>
-tnoremap <C-l> <Right>
-tnoremap <C-e> <End>
-tnoremap <C-a> <Home>
-tnoremap <C-b> <BS>
-tnoremap <C-d> <Del>
-
-tnoremap <BS> <Left>
 if has('win32')
     tnoremap <C-u> <C-Home>
 endif

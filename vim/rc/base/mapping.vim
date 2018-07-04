@@ -246,8 +246,6 @@ inoremap <S-LeftMouse> <C-r>"
 vnoremap <3-LeftMouse> y
 vnoremap <C-LeftMouse> y
 
-noremap! <BS> <Left>
-
 noremap <MiddleMouse> <Nop>
 inoremap <MiddleMouse> <Nop>
 noremap <2-MiddleMouse> <Nop>
@@ -458,17 +456,15 @@ noremap zD <Nop>
 
 " command and insert"{{{
 
-" 移動
-inoremap <C-h> <Left>
-noremap! <C-j> <Down>
-noremap! <C-k> <Up>
-inoremap <C-l> <Right>
+noremap! <C-b> <Left>
+noremap! <C-f> <Right>
+inoremap <C-k> <C-o>C
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
 noremap! <C-e> <End>
 inoremap <C-a> <C-o>^
 cnoremap <C-a> <Home>
-
-" 編集
-noremap! <C-b> <BS>
+noremap! <C-h> <BS>
 noremap! <C-d> <Del>
 inoremap <C-o> <C-o>o
 
