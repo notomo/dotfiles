@@ -47,3 +47,12 @@ function! notomo#gina#rebase_i()
     terminal
     call jobsend(b:terminal_job_id, 'git rebase -i --autosquash ' . revision . '~' . "\<CR>")
 endfunction
+
+function! notomo#gina#toggle_buffer(command, file_type)
+    let current_ft = &filetype
+    if current_ft ==? a:file_type
+        quit
+        return
+    endif
+    execute 'Gina ' . a:command
+endfunction
