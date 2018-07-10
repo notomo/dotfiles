@@ -630,10 +630,8 @@ nmap m [winmv]
 " left
 nnoremap [winmv]a <C-w>h
 " down
-nnoremap [winmv]j <C-w>j
 nnoremap [winmv]x <C-w>j
 " up
-nnoremap [winmv]k <C-w>k
 nnoremap [winmv]w <C-w>k
 " right
 nnoremap [winmv]l <C-w>l
