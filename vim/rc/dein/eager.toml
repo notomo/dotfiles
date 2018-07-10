@@ -238,11 +238,8 @@ hook_add = 'nnoremap <silent> [unite]o :<C-u>Unite outline<CR>'
 [[plugins]]
 repo = 'kmnk/vim-unite-giti'
 hook_add = '''
-nnoremap <silent> [unite]gb :<C-u>Unite giti/branch<CR>
-nnoremap <silent> [unite]gB :<C-u>Unite giti/branch_all<CR>
-nnoremap <silent> [unite]gc :<C-u>Unite giti/config<CR>
-nnoremap <silent> [unite]gl :<C-u>Unite giti/log<CR>
-nnoremap <silent> [unite]gs :<C-u>Unite giti/status<CR>
+nnoremap <silent> [unite]bb :<C-u>Unite giti/branch<CR>
+nnoremap <silent> [unite]ba :<C-u>Unite giti/branch_all<CR>
 '''
 
 [[plugins]]
