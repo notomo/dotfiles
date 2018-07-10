@@ -492,3 +492,19 @@ hook_add = '''
 let g:deoplete#enable_at_startup = 1
 '''
 hook_source = 'source ~/.vim/rc/plugins/deoplete.vim'
+
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
+on_map = {nox = '<Plug>'}
+hook_add = '''
+let g:clever_f_across_no_line = 1
+let g:clever_f_mark_char = 0
+let g:clever_f_not_overwrites_standard_mappings = 1
+let g:clever_f_chars_match_any_signs = ';'
+nmap f <Plug>(clever-f-f)
+xmap f <Plug>(clever-f-f)
+omap f <Plug>(clever-f-f)
+nmap F <Plug>(clever-f-F)
+xmap F <Plug>(clever-f-F)
+omap F <Plug>(clever-f-F)
+'''
