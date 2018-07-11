@@ -522,7 +522,7 @@ function! s:complete_pair() abort
             return r . s:JOIN_UNDO . "\<Left>"
         endif
     endfor
-    return ''
+    return "\<Right>"
 endfunction
 inoremap <expr> j<Space>k <SID>complete_pair()
 
