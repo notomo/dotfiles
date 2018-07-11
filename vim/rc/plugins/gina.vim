@@ -1,6 +1,6 @@
-nnoremap [git]s :<C-u>call notomo#gina#toggle_buffer('status', 'gina-status')<CR>
+nnoremap <silent> [git]s :<C-u>call notomo#gina#toggle_buffer('status', 'gina-status')<CR>
 nnoremap [git]D :<C-u>Gina diff<CR>
-nnoremap [git]b :<C-u>call notomo#gina#toggle_buffer('branch', 'gina-branch')<CR>
+nnoremap <silent> [git]b :<C-u>call notomo#gina#toggle_buffer('branch', 'gina-branch')<CR>
 nnoremap [git]L :<C-u>Gina log master...HEAD<CR>
 nnoremap [git]ll :<C-u>Gina log<CR>
 nnoremap [git]rl :<C-u>Gina reflog<CR>
