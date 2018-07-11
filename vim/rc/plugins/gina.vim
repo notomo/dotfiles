@@ -134,6 +134,7 @@ call gina#custom#mapping#nmap('/\%(status\|blame\|stash\|log\|compare\)', 'D', '
 
 " commit
 call gina#custom#mapping#nmap('/\%(branch\|log\)', 'cp', ':call gina#action#call("commit:cherry-pick")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('commit', '[file]w', ':wq<CR>', {'noremap':1})
 
 " blame
 let g:gina#command#blame#formatter#format = '%su%=on %ti by %au %ma%in'
