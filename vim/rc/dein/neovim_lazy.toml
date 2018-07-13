@@ -46,6 +46,7 @@ let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
 
 [[plugins]]
 repo = 'OmniSharp/omnisharp-vim'
+if = "has('python2')"
 on_ft = 'cs'
 build = 'xbuild server/OmniSharp.sln'
 hook_add = '''
@@ -56,6 +57,7 @@ let g:Omnisharp_start_server = 0
 
 [[plugins]]
 repo = 'autozimu/deoplete-omnisharp'
+if = "has('python2')"
 depends = ['omnisharp-vim']
 on_ft = 'cs'
 hook_add = '''
