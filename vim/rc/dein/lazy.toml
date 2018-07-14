@@ -91,21 +91,33 @@ nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 repo = 'haya14busa/incsearch.vim'
 on_map = {nox = '<Plug>(incsearch-'}
 hook_add = '''
-map / <Plug>(incsearch-easymotion-/)\v
-map <Space>/k <Plug>(incsearch-easymotion-?)
-map <Space>/j <Plug>(incsearch-easymotion-stay)
+nmap / <Plug>(incsearch-easymotion-/)\v
+xmap / <Plug>(incsearch-easymotion-/)\v
+omap / <Plug>(incsearch-easymotion-/)\v
+nmap <Space>/k <Plug>(incsearch-easymotion-?)
+xmap <Space>/k <Plug>(incsearch-easymotion-?)
+omap <Space>/k <Plug>(incsearch-easymotion-?)
+nmap <Space>/j <Plug>(incsearch-easymotion-stay)
+xmap <Space>/j <Plug>(incsearch-easymotion-stay)
+omap <Space>/j <Plug>(incsearch-easymotion-stay)
 
 nmap s/ <Plug>(incsearch-easymotion-/)<C-r><C-w>
 nmap sk <Plug>(incsearch-easymotion-?)<C-r><C-w>
 nmap sj <Plug>(incsearch-easymotion-stay)<C-r><C-w>
-noremap <expr> s. incsearch#go({'pattern': histget('/', -1)})
+nnoremap <expr> s. incsearch#go({'pattern': histget('/', -1)})
+xnoremap <expr> s. incsearch#go({'pattern': histget('/', -1)})
+onoremap <expr> s. incsearch#go({'pattern': histget('/', -1)})
 
 nmap s<Space>/ <Plug>(incsearch-easymotion-/)<C-r>"
 nmap s<Space>k <Plug>(incsearch-easymotion-?)<C-r>"
 nmap s<Space>j <Plug>(incsearch-easymotion-stay)<C-r>"
 
-map n <Plug>(incsearch-nohl-n)
-map N <Plug>(incsearch-nohl-N)
+nmap n <Plug>(incsearch-nohl-n)
+xmap n <Plug>(incsearch-nohl-n)
+omap n <Plug>(incsearch-nohl-n)
+nmap N <Plug>(incsearch-nohl-N)
+xmap N <Plug>(incsearch-nohl-N)
+omap N <Plug>(incsearch-nohl-N)
 nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
 nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
 
@@ -144,9 +156,15 @@ on_map = {nox = '<Plug>(incsearch-easymotion-'}
 repo = 'bkad/CamelCaseMotion'
 on_map = {nox = '<Plug>CamelCaseMotion_'}
 hook_add = '''
-map <Leader>w <Plug>CamelCaseMotion_w
-map <Leader>b <Plug>CamelCaseMotion_b
-map <Leader>e <Plug>CamelCaseMotion_e
+nmap <Leader>w <Plug>CamelCaseMotion_w
+xmap <Leader>w <Plug>CamelCaseMotion_w
+omap <Leader>w <Plug>CamelCaseMotion_w
+nmap <Leader>b <Plug>CamelCaseMotion_b
+xmap <Leader>b <Plug>CamelCaseMotion_b
+omap <Leader>b <Plug>CamelCaseMotion_b
+nmap <Leader>e <Plug>CamelCaseMotion_e
+xmap <Leader>e <Plug>CamelCaseMotion_e
+omap <Leader>e <Plug>CamelCaseMotion_e
 '''
 
 [[plugins]]
@@ -214,7 +232,7 @@ repo = 'rhysd/vim-operator-surround'
 depends = ['vim-operator-user', 'vim-textobj-multiblock']
 on_map = {nox = '<Plug>'}
 hook_add = '''
-noremap [surround] <Nop>
+nnoremap [surround] <Nop>
 nmap s [surround]
 xnoremap [surround] <Nop>
 xmap s [surround]
@@ -373,7 +391,9 @@ on_ft = ['html', 'smarty', 'vim', 'sql', 'php']
 repo = 'haya14busa/vim-operator-flashy'
 on_map = {nox = '<Plug>'}
 hook_add = '''
-map y <Plug>(operator-flashy)
+nmap y <Plug>(operator-flashy)
+xmap y <Plug>(operator-flashy)
+omap y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
 '''
 hook_source = 'let g:operator#flashy#flash_time = 100'
@@ -479,8 +499,12 @@ hook_source = 'let g:IM_CtrlMode = 4'
 repo = 'haya14busa/vim-edgemotion'
 on_map = {nox = '<Plug>'}
 hook_add = '''
-map gJ <Plug>(edgemotion-j)
-map gK <Plug>(edgemotion-k)
+nmap gJ <Plug>(edgemotion-j)
+xmap gJ <Plug>(edgemotion-j)
+omap gJ <Plug>(edgemotion-j)
+nmap gK <Plug>(edgemotion-k)
+xmap gK <Plug>(edgemotion-k)
+omap gK <Plug>(edgemotion-k)
 '''
 
 [[plugins]]

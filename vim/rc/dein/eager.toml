@@ -16,8 +16,10 @@ xnoremap [edit] <Nop>
 xmap <Space>e [edit]
 nnoremap [file] <Nop>
 nmap <Space>f [file]
-noremap [operator] <Nop>
-map <Space><Leader> [operator]
+nnoremap [operator] <Nop>
+nmap <Space><Leader> [operator]
+xnoremap [operator] <Nop>
+xmap <Space><Leader> [operator]
 nnoremap [git] <Nop>
 nmap <Leader>g [git]
 xnoremap [git] <Nop>

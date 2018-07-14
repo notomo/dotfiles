@@ -201,7 +201,7 @@ hook_source = 'source ~/.vim/rc/plugins/ale.vim'
 [[plugins]]
 repo = 'janko-m/vim-test'
 on_cmd = 'Test'
-on_ft = ['vim', 'php', 'python']
+on_ft = ['vim', 'php', 'python', 'typescript']
 hook_add = '''
 nnoremap [test]n :<C-u>TestNearest<CR>
 nnoremap [test]f :<C-u>TestFile<CR>

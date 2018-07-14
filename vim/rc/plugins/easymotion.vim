@@ -1,14 +1,18 @@
-map gj <Plug>(easymotion-j)
-map gk <Plug>(easymotion-k)
-map gn <Plug>(easymotion-lineanywhere)
-map gN <Plug>(easymotion-linebackward)
-map gw <Plug>(easymotion-bd-w)
-map g<Enter> <Plug>(easymotion-bd-n)
-map gL <Plug>(easymotion-overwin-line)
-map gW <Plug>(easymotion-overwin-w)
-map gu <Plug>(easymotion-jumptoanywhere)
-
-let g:EasyMotion_re_anywhere = '\v("\zs.)|(#\zs.)|' . "('\\zs.)"
+nmap gj <Plug>(easymotion-j)
+xmap gj <Plug>(easymotion-j)
+omap gj <Plug>(easymotion-j)
+nmap gk <Plug>(easymotion-k)
+xmap gk <Plug>(easymotion-k)
+omap gk <Plug>(easymotion-k)
+nmap gn <Plug>(easymotion-lineanywhere)
+xmap gn <Plug>(easymotion-lineanywhere)
+omap gn <Plug>(easymotion-lineanywhere)
+nmap gw <Plug>(easymotion-bd-w)
+xmap gw <Plug>(easymotion-bd-w)
+omap gw <Plug>(easymotion-bd-w)
+nmap g<Enter> <Plug>(easymotion-bd-n)
+xmap g<Enter> <Plug>(easymotion-bd-n)
+omap g<Enter> <Plug>(easymotion-bd-n)
 
 let s:LHS_SFX_KEY = 'l'
 let s:TARGET_KEY = 't'
@@ -30,6 +34,8 @@ let s:map_info = [
 \ ]
 
 for s:info in s:map_info
-    silent execute join(['map', 'g' . s:info[s:LHS_SFX_KEY], '<Plug>(easymotion-tl)' . s:info[s:TARGET_KEY]])
+    silent execute join(['nmap', 'g' . s:info[s:LHS_SFX_KEY], '<Plug>(easymotion-tl)' . s:info[s:TARGET_KEY]])
+    silent execute join(['xmap', 'g' . s:info[s:LHS_SFX_KEY], '<Plug>(easymotion-tl)' . s:info[s:TARGET_KEY]])
+    silent execute join(['omap', 'g' . s:info[s:LHS_SFX_KEY], '<Plug>(easymotion-tl)' . s:info[s:TARGET_KEY]])
 endfor
 

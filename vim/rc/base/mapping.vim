@@ -131,10 +131,18 @@ nnoremap j gj
 xnoremap k gk
 xnoremap j gj
 
-noremap ge $
-noremap ga ^
-noremap gh 0
-noremap gz G
+nnoremap ge $
+xnoremap ge $
+onoremap ge $
+nnoremap ga ^
+xnoremap ga ^
+onoremap ga ^
+nnoremap gh 0
+xnoremap gh 0
+onoremap gh 0
+nnoremap gz G
+xnoremap gz G
+onoremap gz G
 
 nnoremap go <C-o>
 nnoremap gi <C-i>
@@ -437,21 +445,21 @@ call s:ia_vonoremap('b', '`')
 "}}}
 
 " fold"{{{
-noremap [fold] <Nop>
-map <Leader>z [fold]
-noremap [fold]j zj
-noremap [fold]k zk
-noremap [fold]n ]z
-noremap [fold]p [z
-noremap [fold]h zc
-noremap [fold]l zo
-noremap [fold]a za
-noremap [fold]m zM
-noremap [fold]i zMzv
-noremap [fold]r zR
-noremap [fold]f zf
-noremap [fold]d zd
-noremap zD <Nop>
+nnoremap [fold] <Nop>
+nmap <Leader>z [fold]
+nnoremap [fold]j zj
+nnoremap [fold]k zk
+nnoremap [fold]n ]z
+nnoremap [fold]p [z
+nnoremap [fold]h zc
+nnoremap [fold]l zo
+nnoremap [fold]a za
+nnoremap [fold]m zM
+nnoremap [fold]i zMzv
+nnoremap [fold]r zR
+nnoremap [fold]f zf
+nnoremap [fold]d zd
+nnoremap zD <Nop>
 "}}}
 
 " command and insert"{{{
