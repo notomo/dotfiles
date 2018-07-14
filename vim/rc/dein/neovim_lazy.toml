@@ -217,6 +217,7 @@ if !exists('g:test#runners')
 endif
 let g:test#runners['PHP'] = ['PHPUnit']
 let g:test#runners['Python'] = ['PyTest']
+let g:test#runners['JavaScript'] = ['Jest']
 let g:test#python#pytest#options = '-s'
 let g:test#php#phpunit#options = '--no-coverage'
 '''

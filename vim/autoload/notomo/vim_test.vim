@@ -58,6 +58,11 @@ function! notomo#vim_test#set_project_root() abort
         let g:test#project_root = fnamemodify(config_file, ':h:h')
         return
     endif
+    if &filetype ==? 'typescript'
+        let config_file = notomo#vimrc#search_parent_recursive('package\.json', './')
+        let g:test#project_root = fnamemodify(config_file, ':h')
+        return
+    endif
     unlet! g:test#project_root
     return
 endfunction

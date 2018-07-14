@@ -451,6 +451,7 @@ call altr#define('neovim_lazy.toml', 'neovim_eager.toml')
 call altr#define('%/autoload/%.vim', '%/test/autoload/%.vim')
 call altr#define('%/plugin/%.vim', '%/test/plugin/%.vim')
 call altr#define('%.go', '%_test.go')
+call altr#define('%.ts', '%.test.ts')
 call altr#define('autoload/notomo/%.vim', 'rc/plugins/%.vim')
 call altr#define('test/rplugin/%/test_%.py', 'rplugin/%/%.py')
 '''

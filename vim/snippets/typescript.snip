@@ -157,3 +157,17 @@ snippet then
 
 snippet guard_type
 	${1:arg} is ${0:type}
+
+snippet describe
+	describe("${1:description}", () => {
+		${0:TARGET}
+	})
+
+snippet it
+	it("${1:description}", () => {
+		${0:TARGET}
+	})
+
+snippet expect
+	expect(${1:result}).toBe(${0:expected})
+
