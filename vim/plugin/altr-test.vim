@@ -7,3 +7,4 @@ if !exists('g:altr_test_patterns')
     let g:altr_test_patterns = {}
 endif
 let g:altr_test_patterns['go'] = {'app': '%.go', 'test': '%_test.go'}
+let g:altr_test_patterns['typescript'] = {'app': '%.ts', 'test': '%_test.ts'}
