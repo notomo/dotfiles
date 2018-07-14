@@ -31,3 +31,5 @@
 /ansible/**/*.retry
 
 !.gitkeep
+
+__pycache__
