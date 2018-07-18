@@ -38,6 +38,7 @@ alias themis='NVIM_RPLUGIN_MANIFEST=$HOME/rplugin.vim themis'
 alias npmd=npm_install_dev
 alias create_patch='git diff --cached'
 alias apply_patch='git apply'
+alias df='df -h'
 
 function docker_latest() {
     docker ps -l -q
