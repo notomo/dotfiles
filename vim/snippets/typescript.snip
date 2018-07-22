@@ -110,6 +110,12 @@ snippet implements
 snippet extends
 	extends ${0:Name}
 
+snippet public_readonly
+	public readonly ${0}
+
+snippet protected_readonly
+	protected readonly ${0}
+
 snippet public_method
 	public ${1:name}(${2:args}) {
 		${0:TARGET}
@@ -137,7 +143,7 @@ options word
 	new ${1:Class}(${0:args});
 
 snippet super
-	super();
+	super(${0});
 
 snippet type_assert
 alias as
