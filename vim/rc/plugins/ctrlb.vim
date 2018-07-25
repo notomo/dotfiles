@@ -3,6 +3,8 @@ nnoremap <expr> [browser]<CR> ':<C-u>Ctrlb tab:tabOpen -url=' . _url_encode(expa
 nnoremap [exec]L :<C-u>Ctrlb tab:reload<CR>
 nnoremap [exec]gg :<C-u>Ctrlb scroll:toTop<CR>
 nnoremap [exec]gh :<C-u>Ctrlb tab:previous<CR>
+nnoremap [exec]ga :<C-u>Ctrlb tab:first<CR>
+nnoremap [exec]ge :<C-u>Ctrlb tab:last<CR>
 nnoremap [exec]gl :<C-u>Ctrlb tab:next<CR>
 nnoremap [exec]G :<C-u>Ctrlb scroll:toBottom<CR>
 
