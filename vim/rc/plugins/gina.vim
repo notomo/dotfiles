@@ -144,6 +144,7 @@ let g:gina#command#blame#formatter#timestamp_months = 0
 call gina#custom#command#option('blame', '--width', '90')
 call gina#custom#mapping#nmap('blame', 'j', 'j<Plug>(gina-blame-echo)')
 call gina#custom#mapping#nmap('blame', 'k', 'k<Plug>(gina-blame-echo)')
+call gina#custom#mapping#nmap('blame', '<CR>', ':call gina#action#call(''show:commit:tab'')<CR>', s:noremap_silent)
 
 " diff
 call gina#custom#mapping#nmap('/\%(diff\|commit\)', 'sgj', ':call notomo#vimrc#to_next_syntax(''diffLine'', 1, 1)<CR>', s:noremap_silent)
