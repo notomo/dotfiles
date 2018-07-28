@@ -6,7 +6,7 @@ fi
 export GOPATH=$HOME/.go
 export GROOVY_HOME=$HOME/app/groovy/latest
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/composer/vendor/bin:$GOPATH/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
-export PS1="[\u@\h \w]\$ "
+export PS1="[\u@\h \w]\n\$ "
 
 export PATH=$PATH:$HOME/.vim/dein/repos/github.com/thinca/vim-themis/bin
 export THEMIS_VIM=nvim
