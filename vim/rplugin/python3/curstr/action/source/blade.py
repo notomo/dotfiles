@@ -33,3 +33,8 @@ class Source(Base):
             )
 
         return ''
+
+    def get_options(self):
+        return {
+            'filetyps': ['php', 'blade'],
+        }

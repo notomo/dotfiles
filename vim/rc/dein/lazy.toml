@@ -315,54 +315,6 @@ repo = 'Shougo/neoinclude.vim'
 on_if = 1
 
 [[plugins]]
-repo = 'AndrewRadev/switch.vim'
-on_cmd = 'Switch'
-hook_add = 'nnoremap [edit]s :<C-u>Switch<CR>'
-hook_source = '''
-let g:switch_mapping = ""
-
-let g:switch_custom_definitions = [
-\   {
-\     '\<[a-z0-9]\+_\k\+\>': {
-\       '_\(.\)' : '\U\1'
-\     },
-\     '\<[a-z0-9]\+[A-Z]\k\+\>': {
-\       '\([A-Z]\)' : '_\l\1'
-\     },
-\   },
-\ ]
-
-autocmd MyAuGroup FileType php let b:switch_custom_definitions =
-\ [
-\   {
-\     '\$this->\(\k\+\)' : 'self::$\1',
-\     'self::\$\(\k\+\)' : '$\1',
-\     '\$\(\k\+\)' : '$this->\1',
-\   },
-\   ['private', 'protected', 'public'],
-\ ]
-
-autocmd MyAuGroup FileType sql let b:switch_custom_definitions =
-\ [
-\   switch#NormalizedCase(['inner', 'left'])
-\ ]
-
-autocmd MyAuGroup FileType vim,toml let b:switch_custom_definitions =
-\ [
-\   {
-\     '\v(\w)?map' : '\1noremap',
-\     '\v(\w)?noremap' : '\1map',
-\   },
-\ ]
-
-autocmd MyAuGroup FileType toml let b:switch_custom_definitions +=
-\ [
-\   ['hook_add', 'hook_source', 'hook_post_source'],
-\ ]
-
-'''
-
-[[plugins]]
 repo = 'AndrewRadev/linediff.vim'
 on_cmd = 'Linediff'
 hook_add = 'xnoremap [diff]l :Linediff<CR>'
