@@ -4,12 +4,6 @@
         "pdepend/pdepend": "^2.5.2",
         "phpmd/phpmd": "*",
         "phpunit/phpunit": "*",
-        "phpstan/phpstan": "*",
         "friendsofphp/php-cs-fixer": "^2.10"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "require": {
-        "felixfbecker/language-server": "*"
     }
 }

@@ -3,6 +3,13 @@
 source ~/.bash_profile
 source ~/.bashrc
 
+# neovim
+cd ~/app
+wget -nv https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+mkdir -p ~/.local/bin
+cp nvim.appimage ~/.local/bin/nvim
+chmod u+x ~/.local/bin/nvim
+
 # dotfiles
 if [ -d ~/dotfiles ]; then
     cd ~/dotfiles
@@ -41,7 +48,6 @@ go get -u github.com/github/hub
 
 # neovim-remote
 pip3.5 install --user neovim-remote
-git config --global core.editor 'nvr --remote-wait-silent'
 
 # nvim spell
 mkdir -p ~/.local/share/nvim/site/spell
@@ -56,11 +62,18 @@ make install
 # bell off
 echo "set bell-style none" >> ~/.inputrc
 
+# xdg-open
+if [ -e /usr/bin/xdg-open ]
+then
+    sudo mv /usr/bin/xdg-open /usr/bin/xdg-open.tmp
+fi
+sudo ln -s "$GOPATH"/bin/lemonade /usr/bin/xdg-open
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace
 mkdir -p test
 mkdir -p memo
-mkdir -p readonly
+mkdir -p lsync
 
 chmod 705 ~

@@ -47,14 +47,6 @@ make prefix=/usr/local install
 # neovim build tools
 yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
 
-# neovim
-cd $APPDIR
-wget -nv https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-chmod u+x nvim.appimage
-chown $USERNAME:$USERNAME nvim.appimage
-mkdir -p $USERDIR/.local/bin
-cp nvim.appimage $USERDIR/.local/bin/nvim
-
 # ctags
 CTAGSDIR=$APPDIR/ctags
 git clone https://github.com/universal-ctags/ctags.git $CTAGSDIR
