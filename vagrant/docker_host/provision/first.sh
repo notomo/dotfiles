@@ -46,7 +46,7 @@ git config --global core.editor 'nvr --remote-wait-silent'
 # nvim spell
 mkdir -p ~/.local/share/nvim/site/spell
 cd ~/.local/share/nvim/site/spell
-wget http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
+wget -nv http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl
 
 # lemonade
 go get -d github.com/pocke/lemonade

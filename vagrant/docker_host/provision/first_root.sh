@@ -49,7 +49,7 @@ yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgc
 
 # neovim
 cd $APPDIR
-wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+wget -nv https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 chmod u+x nvim.appimage
 chown $USERNAME:$USERNAME nvim.appimage
 mkdir -p $USERDIR/.local/bin
