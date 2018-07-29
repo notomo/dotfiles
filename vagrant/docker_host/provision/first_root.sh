@@ -18,6 +18,7 @@ yum -y install docker-ce
 curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-"$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 usermod -aG docker $USERNAME
+cp -f /vagrant/provision/daemon.json /etc/docker/daemon.json
 systemctl status docker.service
 systemctl enable docker.service
 systemctl start docker.service
