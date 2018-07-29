@@ -29,6 +29,7 @@ yum install -y xclip
 yum-config-manager --disable epel
 yum -y install libXrandr
 yum -y install xorg-x11-server-Xvfb
+yum -y --enablerepo=epel install fuse-sshfs 
 
 # git
 yum -y install wget
@@ -94,7 +95,7 @@ ln -s /usr/bin/python3.5 /usr/bin/python3
 
 # php
 yum install -y http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-yum install -y --enablerepo=remi-php71 php php-cli php-common php-devel php-fpm php-gd php-mbstring php-mysqlnd php-pdo php-pear php-pecl-apcu php-soap php-xml php-xmlrpc php-pecl-xdebug
+yum install -y --enablerepo=remi-php71 php php-cli php-common php-devel php-fpm php-gd php-mbstring php-mysqlnd php-pdo php-pecl-apcu php-soap php-xml php-xmlrpc php-pecl-xdebug
 
 # composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -114,7 +115,6 @@ pip3.5 install vim-vint
 # javascript
 curl -sL https://rpm.nodesource.com/setup_9.x | bash -E -
 yum install -y nodejs
-npm install -g javascript-typescript-langserver
 
 npm i -g typescript
 npm i -g neovim
