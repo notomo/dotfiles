@@ -44,13 +44,16 @@ unset GITVERSION
 make prefix=/usr/local all
 make prefix=/usr/local install
 
-# neovim
-NEOVIMDIR=$APPDIR/neovim
+# neovim build tools
 yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip
-git clone https://github.com/neovim/neovim.git $NEOVIMDIR
-cd $NEOVIMDIR
-make CMAKE_BUILD_TYPE=Release
-make install
+
+# neovim
+cd $APPDIR
+wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+chmod u+x nvim.appimage
+chown $USERNAME:$USERNAME nvim.appimage
+mkdir -p $USERDIR/.local/bin
+cp nvim.appimage $USERDIR/.local/bin/nvim
 
 # ctags
 CTAGSDIR=$APPDIR/ctags
