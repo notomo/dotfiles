@@ -53,6 +53,9 @@ go get -d github.com/pocke/lemonade
 cd "$GOPATH"/src/github.com/pocke/lemonade/
 make install
 
+# bell off
+echo "set bell-style none" >> ~/.inputrc
+
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace
