@@ -70,6 +70,7 @@ chown $USERNAME:$USERNAME -R $APPDIR
 
 cp -f /vagrant/provision/.bash_profile $USERDIR/.bash_profile
 cp -f /vagrant/provision/.bashrc $USERDIR/.bashrc
+cp -f /vagrant/provision/.inputrc $USERDIR/.inputrc
 
 # python3
 yum install -y https://centos7.iuscommunity.org/ius-release.rpm
