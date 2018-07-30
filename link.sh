@@ -68,6 +68,9 @@ fi
 if [ ! -e "${install_root}"/setup.cfg ]; then
     ln -s "${install_root}"/dotfiles/lint/python/setup.cfg "${install_root}"/setup.cfg
 fi
+if [ ! -e "${install_root}"/.rubocop.yml ]; then
+    ln -s "${install_root}"/dotfiles/lint/ruby/.rubocop.yml "${install_root}"/.rubocop.yml
+fi
 
 # git
 if [ ! -e "${install_root}"/.gitignore_global ]; then
