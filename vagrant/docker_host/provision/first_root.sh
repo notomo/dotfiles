@@ -18,10 +18,11 @@ yum -y install docker-ce
 curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-"$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 usermod -aG docker $USERNAME
-cp -f /vagrant/provision/daemon.json /etc/docker/daemon.json
 systemctl status docker.service
 systemctl enable docker.service
 systemctl start docker.service
+cp -f /vagrant/provision/daemon.json /etc/docker/daemon.json
+systemctl restart docker.service
 
 # clipboard
 yum install -y epel-release
@@ -94,9 +95,7 @@ yum install -y http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 yum install -y --enablerepo=remi-php71 php php-cli php-common php-devel php-fpm php-gd php-mbstring php-mysqlnd php-pdo php-pecl-apcu php-soap php-xml php-xmlrpc php-pecl-xdebug
 
 # composer
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
+curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
 # golang

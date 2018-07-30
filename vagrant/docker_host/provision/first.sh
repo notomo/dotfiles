@@ -11,15 +11,9 @@ cp nvim.appimage ~/.local/bin/nvim
 chmod u+x ~/.local/bin/nvim
 
 # dotfiles
-if [ -d ~/dotfiles ]; then
-    cd ~/dotfiles
-    git fetch origin
-    git reset --hard origin/master
-else
-    git clone https://github.com/notomo/dotfiles.git
-fi
-sh ~/dotfiles/link.sh
 cd ~
+git clone https://github.com/notomo/dotfiles.git
+sh ~/dotfiles/link.sh
 
 # composer
 mkdir -p ~/.config/composer
