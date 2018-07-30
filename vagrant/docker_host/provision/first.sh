@@ -53,9 +53,6 @@ go get -d github.com/pocke/lemonade
 cd "$GOPATH"/src/github.com/pocke/lemonade/
 make install
 
-# bell off
-echo "set bell-style none" >> ~/.inputrc
-
 # xdg-open
 if [ -e /usr/bin/xdg-open ]
 then
