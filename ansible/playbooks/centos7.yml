@@ -1,9 +1,7 @@
 - hosts: 'local'
   roles:
-    - 'unarchive'
     - 'bash'
     - 'workspace'
-    - 'ruby'
     - 'golang'
     - 'dotfiles'
     - 'tools'
@@ -12,10 +10,6 @@
     - 'node'
     - 'docker'
     - 'neovim'
-    - 'web_browser'
-    - 'terminal'
-    - 'mysql'
-    - 'font'
     - 'git'
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'

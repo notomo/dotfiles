@@ -10,6 +10,31 @@
     - composer
   when: is_macos
 
+- name: install yum repository for php
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+  when: is_centos
+  become: yes
+
+- name: install php with yum
+  yum: name={{ item }} enablerepo=remi-php71
+  with_items:
+    - php
+    - php-cli
+    - php-common
+    - php-devel
+    - php-fpm
+    - php-gd
+    - php-mbstring
+    - php-mysqlnd
+    - php-pdo
+    - php-pecl-apcu
+    - php-soap
+    - php-xml
+    - php-xmlrpc
+    - php-pecl-xdebug
+  when: is_centos
+  become: yes
+
 - name: copy composer.json
   copy:
     src: composer.json

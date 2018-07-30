@@ -6,3 +6,11 @@
   with_items:
     - proto
     - memo
+
+- name: make workspace directory for centos
+  file:
+    path: "{{ home_dir }}/workspace/{{ item }}"
+    state: directory
+  with_items:
+    - lsync
+  when: is_centos

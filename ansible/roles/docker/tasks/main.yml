@@ -5,3 +5,30 @@
     - docker
   when: is_macos
   notify: start docker
+
+- name: add repository for docker
+  yum_repository:
+    name: dockerrepo
+    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+    enabled: yes
+  become: True
+  when: is_centos
+
+- name: install with yum
+  yum: name=docker-ce
+  become: True
+  when: is_centos
+
+- name: enable docker service
+  systemd:
+    name: docker
+    enabled: yes
+  become: True
+  when: is_centos
+
+- name: start docker service
+  systemd:
+    name: docker
+    state: started
+  become: True
+  when: is_centos

@@ -31,12 +31,18 @@
     - .vim/tmp/swap
     - .vim/reference
     - .config
-    - .config/karabiner
+
+- name: mkdir for karabiner
+  file:
+    path: "{{ home_dir }}/.config/karabiner"
+    state: directory
+  when: is_macos
 
 - name: copy karabiner.json
   copy:
     src: karabiner.json
     dest: "{{ home_dir }}/.config/karabiner/karabiner.json"
+  when: is_macos
 
 - name: check if dotfiles exists
   stat: path={{ dotfiles_dir }}
