@@ -5,9 +5,6 @@
 /vagrant/*/vagrant_key
 /vagrant/docker_host_test/Vagrantfile
 /vagrant/docker_host_test/provision
-/ansible/playbooks/.vagrant
-/ansible/playbooks/vagrant_up.log*
-/ansible/playbooks/vagrant_key
 
 # setup
 /setup/*/*.log
@@ -32,6 +29,9 @@
 
 # ansible
 /ansible/**/*.retry
+/ansible/.vagrant
+/ansible/vagrant_*.log*
+/ansible/vagrant_key
 
 !.gitkeep
 

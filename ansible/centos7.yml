@@ -1,4 +1,4 @@
-- hosts: 'local'
+- hosts: all
   roles:
     - 'bash'
     - 'workspace'
@@ -12,4 +12,4 @@
     - 'neovim'
     - 'git'
   vars_files:
-    - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
+    - './vars/RedHat.yml'
