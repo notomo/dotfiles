@@ -259,7 +259,7 @@ repo = 'Shougo/neomru.vim'
 hook_add = '''
 let g:neomru#file_mru_limit = 1000
 if !exists('g:neomru#file_mru_ignore_pattern')
-    let g:neomru#file_mru_ignore_pattern = '\|\%(^\%(gina\)://\)'
+    let g:neomru#file_mru_ignore_pattern = '\%(^\%(gina\)://\)'
 endif
 '''
 
