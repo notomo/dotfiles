@@ -258,7 +258,9 @@ hook_post_source = 'source ~/.vim/rc/plugins/vimfiler.vim'
 repo = 'Shougo/neomru.vim'
 hook_add = '''
 let g:neomru#file_mru_limit = 1000
-let g:neomru#file_mru_ignore_pattern .= '\|\%(^\%(gina\)://\)'
+if !exists('g:neomru#file_mru_ignore_pattern')
+    let g:neomru#file_mru_ignore_pattern = '\|\%(^\%(gina\)://\)'
+endif
 '''
 
 [[plugins]]
