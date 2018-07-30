@@ -1,0 +1,54 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+unless Vagrant.has_plugin?('dotenv')
+  raise 'dotenv is not installed! Execute \'vagrant plugin install dotenv\'.'
+end
+
+Dotenv.load
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'bento/centos-7.3'
+
+  ssh_port = ENV['SSH_FORWARDED_HOST_PORT']
+
+  config.vm.network 'private_network', ip: ENV['PRIVATE_NETWORK_IP']
+  config.vm.network :forwarded_port, id: 'ssh', guest: 22, host: ssh_port
+  config.vm.synced_folder '.', '/vagrant', type: nil
+  config.vm.synced_folder '~', ENV['HOST_HOME_DIR'], type: nil
+  config.vm.box_check_update = ENV['BOX_CHECK_UPDATE'] != '0'
+  config.ssh.guest_port = ssh_port
+
+  id_path = './.vagrant/machines/default/virtualbox/id'
+  key_name = 'vagrant_key'
+  key_path = './' + key_name
+  if File.exist?(key_path) &&
+     File.exist?(id_path) && File.mtime(key_path) > File.mtime(id_path)
+    config.ssh.private_key_path = key_path
+  end
+
+  if Vagrant.has_plugin?('vagrant-vbguest')
+    config.vbguest.auto_update = ENV['VBGUEST_AUTO_UPDATE'] != '0'
+    config.vbguest.no_remote = ENV['VBGUEST_NO_REMOTE'] != '0'
+  end
+
+  config.vm.provider 'virtualbox' do |vb|
+    vb.name = Dir.pwd.gsub(%r{:|\\|\/}, '#')
+    vb.memory = ENV['VIRTUALBOX_MEMORY']
+    vb.cpus = ENV['VIRTUALBOX_CPUS']
+    vb.customize [
+      'modifyvm', :id,
+      '--hwvirtex', 'on',
+      '--nestedpaging', 'on',
+      '--largepages', 'on',
+      '--ioapic', 'on',
+      '--pae', 'on',
+      '--paravirtprovider', 'kvm',
+      '--clipboard', 'bidirectional'
+    ]
+  end
+
+  config.vm.provision 'ansible_local' do |ansible|
+    ansible.playbook = 'centos7.yml'
+  end
+end
