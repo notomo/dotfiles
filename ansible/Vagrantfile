@@ -49,6 +49,9 @@ Vagrant.configure('2') do |config|
   end
 
   config.vm.provision 'ansible_local' do |ansible|
-    ansible.playbook = 'centos7.yml'
+    ansible.playbook = 'playbooks/centos7.yml'
+    ansible.config_file = 'ansible.cfg'
+    ansible.inventory_path = 'inventory/default'
+    ansible.limit = 'local'
   end
 end
