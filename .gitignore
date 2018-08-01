@@ -31,7 +31,6 @@
 /ansible/**/*.retry
 /ansible/.vagrant
 /ansible/vagrant_*.log*
-/ansible/vagrant_key
 
 !.gitkeep
 

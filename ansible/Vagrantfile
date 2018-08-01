@@ -19,14 +19,6 @@ Vagrant.configure('2') do |config|
   config.vm.box_check_update = ENV['BOX_CHECK_UPDATE'] != '0'
   config.ssh.guest_port = ssh_port
 
-  id_path = './.vagrant/machines/default/virtualbox/id'
-  key_name = 'vagrant_key'
-  key_path = './' + key_name
-  if File.exist?(key_path) &&
-     File.exist?(id_path) && File.mtime(key_path) > File.mtime(id_path)
-    config.ssh.private_key_path = key_path
-  end
-
   if Vagrant.has_plugin?('vagrant-vbguest')
     config.vbguest.auto_update = ENV['VBGUEST_AUTO_UPDATE'] != '0'
     config.vbguest.no_remote = ENV['VBGUEST_NO_REMOTE'] != '0'
