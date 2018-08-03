@@ -13,7 +13,7 @@ nnoremap [git]xc :<C-u>Gina stash show<CR>
 nnoremap <expr> [git]P ':<C-u>Gina! push ' . notomo#gina#get_remote_name() . ' ' . gina#component#repo#branch()
 nnoremap <expr> [git]H ':<C-u>Gina! pull ' . notomo#gina#get_remote_name() . ' ' . gina#component#repo#branch()
 nnoremap [git]M :<C-u>Gina! merge<Space>
-nnoremap <expr> [git]F ':<C-u>Gina! fetch ' . notomo#gina#get_remote_name()
+nnoremap <expr> [git]F ':<C-u>Gina! fetch ' . notomo#gina#get_remote_name() . ' --prune'
 nnoremap [git]ma :<C-u>Gina! merge --abort
 nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
 nnoremap [git]ra :<C-u>Gina! rebase --abort
