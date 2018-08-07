@@ -1,0 +1,1 @@
+let local#var#document_root = '~/.vim/dein/repos/github.com/notomo/curstr.nvim/test/report/html/'
