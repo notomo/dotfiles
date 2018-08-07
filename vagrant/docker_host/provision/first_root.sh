@@ -83,6 +83,8 @@ pip3.5 install mypy
 pip3.5 install autopep8
 pip3.5 install isort
 pip3.5 install yapf
+pip3.5 install pytest
+pip3.5 install pytest-cov
 
 # python2
 yum -y install python-devel 
@@ -148,5 +150,6 @@ chmod 0600 $USERDIR/.ssh/*
 chmod 0700 $USERDIR/.ssh
 
 yum -y install tree
+yum -y install telnet
 
 yum -y install xdg-utils

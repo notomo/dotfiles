@@ -67,7 +67,6 @@ sudo ln -s "$GOPATH"/bin/lemonade /usr/bin/xdg-open
 # workspace
 mkdir -p ~/workspace
 cd ~/workspace
-mkdir -p test
 mkdir -p memo
 mkdir -p lsync/chrome
 
