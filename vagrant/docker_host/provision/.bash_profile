@@ -21,6 +21,10 @@ if [ -d "$HOME/.cargo" ]; then
     export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 fi
 
+if [ -d "$HOME/dotfiles" ]; then 
+    cd ~/dotfiles
+fi
+
 if [ -f "$HOME/.local/.bash_profile" ]; then
     source "$HOME/.local/.bash_profile"
 fi
