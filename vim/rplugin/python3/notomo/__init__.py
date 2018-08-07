@@ -90,3 +90,15 @@ class Notomo(object):
         self.open_browser([open_url])
         self._vim.command('tabprevious')
         self._vim.command('+tabclose')
+
+    @neovim.function('_open_note', sync=True)
+    def open_note(self, args):
+        dir_path = os.path.expanduser('~/workspace/memo')
+        if not os.path.isdir(dir_path):
+            os.makedirs(dir_path)
+
+        file_path = os.path.join(dir_path, 'note.md')
+        if not os.path.isfile(file_path):
+            open(file_path, 'a').close()
+
+        self._vim.command('e {}'.format(file_path))
