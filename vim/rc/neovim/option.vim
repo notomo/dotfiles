@@ -19,3 +19,7 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinko
 if executable('nvr')
     let $VISUAL = 'nvr -cc split --remote-wait'
 endif
+
+if len($VAGRANT_PRIVATE_NETWORK_IP) > 0
+    let local#var#host = $VAGRANT_PRIVATE_NETWORK_IP
+endif
