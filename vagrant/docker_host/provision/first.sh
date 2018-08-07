@@ -39,6 +39,10 @@ go get -u github.com/alecthomas/gometalinter
 go get -u honnef.co/go/tools/cmd/unused
 go get -u github.com/mattn/mkup
 go get -u github.com/github/hub
+go get -u github.com/notomo/wsxhub/cmd/wsxhub
+go get -u github.com/notomo/wsxhub/cmd/wsxhubd
+go get -u github.com/notomo/elsied/cmd/elsied
+go get -u github.com/notomo/elsied/cmd/elsie
 
 # neovim-remote
 pip3.5 install --user neovim-remote
@@ -65,7 +69,12 @@ mkdir -p ~/workspace
 cd ~/workspace
 mkdir -p test
 mkdir -p memo
-mkdir -p lsync
+mkdir -p lsync/chrome
+
+cd ~/workspace/lsync/chrome
+git clone https://github.com/notomo/ctrlb.git
+cd ctrlb
+npm install
 
 # .local/rc
 touch ~/.local/.bashrc
