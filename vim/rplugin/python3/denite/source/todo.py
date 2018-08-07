@@ -24,29 +24,29 @@ class Source(Base):
                 'action__line': number,
             }
 
+        def new_file(path: str):
+            with open(path, 'a') as f:
+                lines = [
+                    'todo sample\n',
+                    '# done sample\n',
+                ]
+                f.writelines(lines)
+
         home = os.path.expanduser('~')
+        path = '~/.denite_todo'.replace('~', home)
+        if not os.path.isfile(path):
+            new_file(path)
+
         todos = []
-        file_paths = [
-            '~/.denite_todo',
-        ]
-        paths = [
-            path for path
-            in [
-                p.replace('~', home) for p
-                in file_paths
-            ]
-            if os.path.isfile(path)
-        ]
-        for path in paths:
-            todo_file = open(path)
-            todos.extend(filter(
-                lambda x: x is not None,
-                (
-                    create(line, path, i)
-                    for i, line
-                    in enumerate(todo_file, start=1)
-                )
-            ))
-            todo_file.close()
+        todo_file = open(path)
+        todos.extend(filter(
+            lambda x: x is not None,
+            (
+                create(line, path, i)
+                for i, line
+                in enumerate(todo_file, start=1)
+            )
+        ))
+        todo_file.close()
 
         return todos

@@ -1,5 +1,5 @@
 
-import os.path
+from os.path import expanduser, isfile
 
 from .base import Base
 
@@ -36,19 +36,26 @@ class Source(Base):
                 'action__url': url,
             }
 
-        home = os.path.expanduser('~')
+        def new_file(path: str):
+            with open(path, 'a') as f:
+                lines = [
+                    'relative\t^\ze\/\thttps://github.com',
+                ]
+                f.writelines(lines)
+
+        home = expanduser('~')
+        path = '~/.denite_url_substitute_pattern'.replace('~', home)
+        if not isfile(path):
+            new_file(path)
+
         urls = []
-        file_paths = [
-            '~/.denite_url_substitute_pattern',
-        ]
-        for path in file_paths:
-            url_file = open(path.replace('~', home))
-            urls.extend([
-                create(line, path, i)
-                for i, line
-                in enumerate(url_file, start=1)
-            ])
-            url_file.close()
+        url_file = open(path)
+        urls.extend([
+            create(line, path, i)
+            for i, line
+            in enumerate(url_file, start=1)
+        ])
+        url_file.close()
 
         urls = [
             x for x in urls

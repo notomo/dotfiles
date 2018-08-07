@@ -27,18 +27,33 @@ class Source(Base):
                 'action__url': url,
             }
 
-        home = os.path.expanduser('~')
-        urls = []
-        file_paths = [
-            '~/.denite_url_bookmark',
-        ]
-        for path in file_paths:
-            url_file = open(path.replace('~', home))
+        def new_file(path: str):
+            with open(path, 'a') as f:
+                lines = [
+                    'sample\thttps://github.com/notomo/dotfiles',
+                ]
+                f.writelines(lines)
+
+        def gather(path: str):
+            urls = []
+            url_file = open(path, 'r')
             urls.extend([
                 create(line, path, i)
                 for i, line
                 in enumerate(url_file, start=1)
             ])
             url_file.close()
+            return urls
+
+        home = os.path.expanduser('~')
+        path = '~/.denite_url_bookmark'.replace('~', home)
+        if not os.path.isfile(path):
+            new_file(path)
+
+        urls = gather(path)
+
+        if not urls:
+            new_file(path)
+            urls = gather(path)
 
         return urls
