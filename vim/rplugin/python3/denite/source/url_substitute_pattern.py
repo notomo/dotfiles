@@ -43,8 +43,7 @@ class Source(Base):
                 ]
                 f.writelines(lines)
 
-        home = expanduser('~')
-        path = '~/.denite_url_substitute_pattern'.replace('~', home)
+        path = expanduser('~/.denite_url_substitute_pattern')
         if not isfile(path):
             new_file(path)
 

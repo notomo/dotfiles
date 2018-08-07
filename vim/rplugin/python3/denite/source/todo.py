@@ -32,8 +32,7 @@ class Source(Base):
                 ]
                 f.writelines(lines)
 
-        home = os.path.expanduser('~')
-        path = '~/.denite_todo'.replace('~', home)
+        path = os.path.expanduser('~/.denite_todo')
         if not os.path.isfile(path):
             new_file(path)
 

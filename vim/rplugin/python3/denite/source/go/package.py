@@ -23,8 +23,7 @@ class Source(Base):
                 'action__line': number
             }
 
-        home = os.path.expanduser('~')
-        list_path = '~/.denite_go_package'.replace('~', home)
+        list_path = os.path.expanduser('~/.denite_go_package')
 
         if not os.path.isfile(list_path):
             self._create_list_file(list_path)

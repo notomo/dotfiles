@@ -45,8 +45,7 @@ class Source(Base):
             url_file.close()
             return urls
 
-        home = os.path.expanduser('~')
-        path = '~/.denite_url_bookmark'.replace('~', home)
+        path = os.path.expanduser('~/.denite_url_bookmark')
         if not os.path.isfile(path):
             new_file(path)
 

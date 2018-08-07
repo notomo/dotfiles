@@ -18,8 +18,7 @@ class Source(Base):
             open(path, 'a').close()
 
         proto_dir_path = '~/workspace/proto'
-        home = os.path.expanduser('~')
-        path = proto_dir_path.replace('~', home)
+        path = os.path.expanduser(proto_dir_path)
 
         def create(directory: str):
             return {
