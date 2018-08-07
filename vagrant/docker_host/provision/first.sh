@@ -67,4 +67,8 @@ mkdir -p test
 mkdir -p memo
 mkdir -p lsync
 
+# .local/rc
+touch ~/.local/.bashrc
+touch ~/.local/.bash_profile
+
 chmod 705 ~
