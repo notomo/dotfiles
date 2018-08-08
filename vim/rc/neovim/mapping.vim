@@ -26,4 +26,4 @@ nnoremap [exec]M :<C-u>call _run_http_server_and_open(v:true)<CR>
 
 nnoremap [exec]o :<C-u>call jobstart("hub browse")<CR>
 
-nnoremap [exec]n :<C-u>call _open_note()<CR>
+nnoremap [exec]N :<C-u>call _open_note()<CR>
