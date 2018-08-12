@@ -32,9 +32,14 @@ options word
 	}
 
 snippet array_foreach
-	${1:array}.forEach(function(v, i) {
+	${1:array}.forEach((v, i) => {
 		${0:TARGET}
 	})
+
+snippet for-of
+	for (const ${1:value} of ${2:iterable}) {
+		${0:TARGET}
+	}
 
 snippet require
 	require("${0:name}")
