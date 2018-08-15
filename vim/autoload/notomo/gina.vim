@@ -51,7 +51,11 @@ endfunction
 function! notomo#gina#toggle_buffer(command, file_type)
     let current_ft = &filetype
     if current_ft ==? a:file_type
-        quit
+        if len(tabpagebuflist(tabpagenr())) == 1
+            edit #
+        else
+            quit
+        endif
         return
     endif
     execute 'Gina ' . a:command
