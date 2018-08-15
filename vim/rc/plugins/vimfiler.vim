@@ -30,8 +30,14 @@ unlet s:hsplit
 
 let s:quit_tabopen = {'is_selectable' : 1}
 function! s:quit_tabopen.func(candidates)
-    quit
-    for candidate in a:candidates
+    if tabpagenr('$') == 1 && len(tabpagebuflist(tabpagenr())) == 1
+        let candidates = a:candidates[1:]
+        execute 'edit ' . a:candidates[0].action__path
+    else
+        quit
+        let candidates = a:candidates
+    endif
+    for candidate in candidates
         execute 'tabedit '. candidate.action__path
     endfor
 endfunction
