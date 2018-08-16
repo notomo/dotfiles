@@ -11,7 +11,7 @@ options word
 
 snippet mapcommand
 options word
-	:<C-u>${1:command}<${0:#:CR}>
+	:<C-u>${0:command}<CR>
 
 snippet ifonly
 	if ${1:#:condition}
@@ -80,7 +80,7 @@ snippet augroup
 	augroup END
 
 snippet autocmd
-	autocmd MyAuGroup ${1:event} ${2:pattern} ${0:command}
+	autocmd MyAuGroup ${1:event} ${2:pattern} ${3:command}
 
 snippet autoload
 	function! `substitute(matchstr(neosnippet#util#expand('%:p:r'), '/autoload/\zs.*$'), '/', '#', 'g')`#${1:#:func_name}(${2:#:args}) abort
