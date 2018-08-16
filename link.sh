@@ -45,6 +45,9 @@ fi
 if [ ! -e "${install_root}"/.vim/ftdetect ]; then
     ln -s "${install_root}"/dotfiles/vim/ftdetect "${install_root}"/.vim/ftdetect
 fi
+if [ ! -e "${install_root}"/.vim/template ]; then
+    ln -s "${install_root}"/dotfiles/vim/template "${install_root}"/.vim/template
+fi
 
 mkdir -p "${install_root}"/.vim/tmp/backup
 mkdir -p "${install_root}"/.vim/tmp/undo

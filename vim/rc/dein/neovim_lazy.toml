@@ -242,3 +242,7 @@ hook_source = '''
 let g:complete_parameter_py_keep_value = 1
 let g:complete_parameter_echo_signature = 1
 '''
+
+[[plugins]]
+repo = 'thinca/vim-template'
+on_cmd = 'TemplateLoad'

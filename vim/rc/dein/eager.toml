@@ -120,6 +120,7 @@ endif
 
 if has('nvim')
     autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
+    autocmd MyAuGroup FileType php execute 'TemplateLoad /filetype/' . &l:filetype
 endif
 
 '''

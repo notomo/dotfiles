@@ -1,0 +1,6 @@
+:if search('<+CURSOR+>')
+:    normal! "_da>
+:endif
+<?php
+
+<+CURSOR+>

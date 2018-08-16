@@ -18,6 +18,8 @@ mklink /D %HOMEPATH%"\.vim\syntax" %HOMEPATH%"\dotfiles\vim\syntax"
 mklink /D %HOMEPATH%"\.vim\indent" %HOMEPATH%"\dotfiles\vim\indent"
 mklink /D %HOMEPATH%"\.vim\rplugin" %HOMEPATH%"\dotfiles\vim\rplugin"
 mklink /D %HOMEPATH%"\.vim\plugin" %HOMEPATH%"\dotfiles\vim\plugin"
+mklink /D %HOMEPATH%"\.vim\ftdetect" %HOMEPATH%"\dotfiles\vim\ftdetect"
+mklink /D %HOMEPATH%"\.vim\template" %HOMEPATH%"\dotfiles\vim\template"
 
 mkdir %HOMEPATH%"\.vim\tmp" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
