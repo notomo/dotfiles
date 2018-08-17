@@ -294,6 +294,10 @@ snippet ifset
 options word
 	${1:nullable} ?? ${0:else}
 
+snippet use_variable
+options word
+	use ($${0:variable}) 
+
 snippet throw
 options head
 	throw new ${1}Exception('${0:Message}');
@@ -304,25 +308,14 @@ options head
 		${0:TARGET}
 	}
 
-snippet chain
-	->${1:method}()
-
-snippet cchain
-	${1:method}()
-
 snippet chain_func
 	->${1:method}(function (${2}) {
 		${0:TARGET}
 	})
 
-snippet cchain_func
-	${1:method}(function (${2}) {
-		${0:TARGET}
-	})
-
 snippet instanceof
 options word
-	${1:$instance} instanceof ${2:Class}
+	instanceof ${0:Class}
 
 snippet map
 options word
