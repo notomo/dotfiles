@@ -409,26 +409,6 @@ depends = 'vim-textobj-function'
 on_ft = 'javascript'
 
 [[plugins]]
-repo = 'kana/vim-altr'
-on_map = {n = '<Plug>'}
-hook_add = '''
-nmap [file]f <Plug>(altr-forward)
-nmap [file]b <Plug>(altr-back)
-nnoremap [file]t :<C-u>call notomo#window#duplicate()<CR>:call altr#forward()<CR>
-nnoremap [test]e :<C-u>call notomo#altr#new()<CR>
-'''
-hook_post_source = '''
-call altr#define('lazy.toml', 'eager.toml')
-call altr#define('neovim_lazy.toml', 'neovim_eager.toml')
-call altr#define('%/autoload/%.vim', '%/test/autoload/%.vim')
-call altr#define('%/plugin/%.vim', '%/test/plugin/%.vim')
-call altr#define('%.go', '%_test.go')
-call altr#define('%.ts', '%.test.ts')
-call altr#define('autoload/notomo/%.vim', 'rc/plugins/%.vim')
-call altr#define('test/rplugin/%/test_%.py', 'rplugin/%/%.py')
-'''
-
-[[plugins]]
 repo = 'notomo/vim-better-tag-jump'
 on_func = 'bettertagjump#php#Jump'
 

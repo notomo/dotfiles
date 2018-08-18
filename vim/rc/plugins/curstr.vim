@@ -34,5 +34,25 @@ call curstr#custom#source_option('debug', 'patterns', [['\v^\s*([^=[:space:]]*).
 call curstr#custom#source_alias('quote', ['togglable/line/regex'])
 call curstr#custom#source_option('quote', 'patterns', [["\\v^([^'\"].*[^'\"])$", "'\\1'"], ["\\v^'(.*)'$", '"\1"'], ['\v"(.*)"', '\1']])
 
+let s:pattern_groups = [
+    \ ['%_test.go', '%.go'],
+    \ ['%.test.ts', '%.ts'],
+    \ ['%lazy.toml', '%eager.toml'],
+    \ ['%/autoload/notomo/%.vim', '%/rc/plugins/%.vim'],
+    \ ['%/test/rplugin/%/test_%.py', '%/rplugin/%/%.py'],
+    \ ['%/test/autoload/%.vim', '%/autoload/%.vim'],
+    \ ['%/test/plugin/%.vim', '%/plugin/%.vim'],
+\ ]
+call curstr#custom#source_alias('altr_next', ['togglable/file'])
+call curstr#custom#source_option('altr_next', 'pattern_groups', s:pattern_groups)
+call curstr#custom#source_alias('altr_previous', ['altr_next'])
+call curstr#custom#source_option('altr_previous', 'offset', -1)
+nnoremap [file]f :<C-u>Curstr altr_next<CR>
+nnoremap [file]b :<C-u>Curstr altr_previous<CR>
+
+call curstr#custom#source_alias('altr_next_new', ['altr_next'])
+call curstr#custom#source_option('altr_next_new', 'create', v:true)
+nnoremap [file]t :<C-u>Curstr altr_next_new<CR>
+
 
 call curstr#custom#execute_option('use-cache', v:false)
