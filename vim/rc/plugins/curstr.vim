@@ -49,6 +49,8 @@ call curstr#custom#source_alias('altr_previous', ['altr_next'])
 call curstr#custom#source_option('altr_previous', 'offset', -1)
 nnoremap [file]f :<C-u>Curstr altr_next<CR>
 nnoremap [file]b :<C-u>Curstr altr_previous<CR>
+nnoremap [file]l :<C-u>Curstr altr_next -action=tab_open<CR>
+nnoremap [file]h :<C-u>Curstr altr_next -action=vertical_open<CR>
 
 call curstr#custom#source_alias('altr_next_new', ['altr_next'])
 call curstr#custom#source_option('altr_next_new', 'create', v:true)
