@@ -48,6 +48,9 @@ fi
 if [ ! -e "${install_root}"/.vim/template ]; then
     ln -s "${install_root}"/dotfiles/vim/template "${install_root}"/.vim/template
 fi
+if [ ! -e "${install_root}"/dotfiles/vim/rc/local/local.vim ]; then
+    cp "${install_root}"/dotfiles/vim/rc/local/local.vim.sample "${install_root}"/dotfiles/vim/rc/local/local.vim
+fi
 
 mkdir -p "${install_root}"/.vim/tmp/backup
 mkdir -p "${install_root}"/.vim/tmp/undo
