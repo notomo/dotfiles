@@ -1,17 +1,17 @@
 
-autocmd MyAuGroup BufWrite ~/.vim/dein/repos/github.com/notomo/curstr.nvim/**/*.py cd ~/.vim/dein/repos/github.com/notomo/curstr.nvim | call atags#generate()
+autocmd MyAuGroup BufWrite ~/.vim/dein/repos/github.com/notomo/curstr.nvim/*.py call atags#generate()
 autocmd MyAuGroup BufRead,BufEnter ~/.vim/dein/repos/github.com/notomo/curstr.nvim/* call s:curstr_settings()
 function! s:curstr_settings() abort
     let g:local#var#document_root = '~/.vim/dein/repos/github.com/notomo/curstr.nvim/test/report/html/'
-    let g:atags_build_commands_list = ['make tag']
+    let g:atags_build_commands_list = ['cd ~/.vim/dein/repos/github.com/notomo/curstr.nvim', 'make tag']
 endfunction
 
-autocmd MyAuGroup BufRead,BufEnter ~/workspace/**/ctrlb/* call s:ctrlb_settings()
+autocmd MyAuGroup BufRead,BufEnter ~/workspace/*/ctrlb/* call s:ctrlb_settings()
 let s:ctrlb_coverage = ''
 function! s:ctrlb_settings() abort
     if empty(s:ctrlb_coverage)
-        let root = notomo#vimrc#search_parent_recursive('package.json', './')
-        let s:ctrlb_coverage = fnamemodify(root, ':h:s?$?/coverage/lcov-report?')
+        let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
+        let s:ctrlb_coverage = fnamemodify(root, ':p:h:s?$?/coverage/lcov-report?')
     endif
     let g:local#var#document_root = s:ctrlb_coverage
 endfunction
