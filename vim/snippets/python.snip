@@ -4,7 +4,7 @@ abbr def __init__
 		${0:pass}
 
 snippet super
-	super().${2:method}(${0:#:args})
+	super().${1:method}(${0:#:args})
 
 snippet property
 abbr @property
@@ -85,13 +85,13 @@ snippet tryexcept
 	try:
 		${1:pass}
 	except ${2:#:ExceptionClass}:
-		${3:pass}
+		${0:pass}
 
 snippet tryfinally
 	try:
 		${1:pass}
 	finally:
-		${2:pass}
+		${0:pass}
 
 snippet while
 	while ${1:#:condition}:
@@ -158,10 +158,10 @@ snippet fixture
 		pass
 
 snippet hasattr
-	hasattr(${1:object}, ${1:attribute_Name})
+	hasattr(${1:object}, ${0:attribute_name})
 
 snippet themis_log
-	self._vim.call('themis#log', ${1:message})
+	self._vim.call('themis#log', ${0:message})
 
 snippet and
 	and ${0:condition}
@@ -180,4 +180,4 @@ snippet yield
 
 snippet lambda
 options word
-	lambda ${1:x}: ${1:return_expr}
+	lambda ${1:x}: ${0:return_expr}
