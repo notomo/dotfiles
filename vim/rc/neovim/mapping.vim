@@ -27,3 +27,24 @@ nnoremap [exec]M :<C-u>call _run_http_server_and_open(v:true)<CR>
 nnoremap [exec]o :<C-u>call jobstart("hub browse")<CR>
 
 nnoremap [exec]N :<C-u>call _open_note()<CR>
+
+nnoremap [test]t :<C-u>call <SID>execute_project_test()<CR>
+
+function! s:execute_project_test() abort
+    let makefile_path = notomo#vimrc#search_parent_recursive('Makefile', './')
+    if !empty(makefile_path)
+        call s:execute_test(fnamemodify(makefile_path, ':h'), 'make test')
+        return
+    endif
+    let package_json_path = notomo#vimrc#search_parent_recursive('package.json', './')
+    if !empty(package_json_path)
+        call s:execute_test(fnamemodify(package_json_path, ':h'), 'npm test')
+        return
+    endif
+endfunction
+
+function! s:execute_test(dir, test_command) abort
+    let commands = ['cd ' . a:dir, a:test_command]
+    tabedit
+    execute 'terminal ' . join(commands, ';')
+endfunction
