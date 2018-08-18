@@ -23,6 +23,7 @@ set list
 set laststatus=2
 set cmdheight=2
 set scrolloff=8
+set sidescrolloff=24
 set showmatch
 set wildmenu
 set wildmode=longest:full
