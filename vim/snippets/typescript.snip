@@ -11,6 +11,11 @@ snippet class
 		${0:TARGET}
 	}
 
+snippet namespace
+	namespace ${1:Name} {
+		${0:TARGET}
+	}
+
 snippet abstract_class
 	abstract class ${1:Name} {
 		${0:TARGET}
@@ -155,7 +160,12 @@ snippet type
 	type ${0:type}
 
 snippet typeof
+options word
 	typeof ${0:type}
+
+snippet keyof
+options word
+	keyof ${0:type}
 
 snippet is_undefined
 options word
