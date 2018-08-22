@@ -110,10 +110,10 @@ alias init
 	}
 
 snippet implements
-	implements ${0:Name}
+	implements ${0:Name} 
 
 snippet extends
-	extends ${0:Name}
+	extends ${0:Name} 
 
 snippet public_readonly
 options word
@@ -159,13 +159,13 @@ alias as
 snippet type
 	type ${0:type}
 
-snippet typeof
-options word
-	typeof ${0:type}
-
 snippet keyof
 options word
 	keyof ${0:type}
+
+snippet generics
+options word
+	${1:Name}<${0:T}>
 
 snippet is_undefined
 options word
