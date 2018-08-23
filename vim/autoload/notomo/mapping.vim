@@ -5,7 +5,7 @@ let s:MAP_ONLY_KEY = 'o'
 let s:REMAP_KEY = 'rm'
 let s:MAIN_INPUT_PFX = 'j<Space>'
 let s:SUB_INPUT_PFX = 'jk'
-let s:NUMBER_MODE_KEY = s:MAIN_INPUT_PFX . '<CR>'
+let s:NUMBER_MODE_KEY = s:MAIN_INPUT_PFX . 'n'
 let s:CALCULATOR_KEY = s:SUB_INPUT_PFX . '<CR>'
 
 function! notomo#mapping#get_lhs_key() abort
@@ -67,7 +67,6 @@ function! notomo#mapping#main_input() abort
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'g', s:RHS_KEY : '\'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'w', s:RHS_KEY : '""<Left>'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'b', s:RHS_KEY : '``<Left>'},
-        \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'B', s:RHS_KEY : '```<CR><CR>```<Left><Left><Left><Left>'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'l', s:RHS_KEY : '[]<Left>'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 't', s:RHS_KEY : '<><Left>'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'p', s:RHS_KEY : '()<Left>'},
@@ -78,9 +77,7 @@ function! notomo#mapping#main_input() abort
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'c', s:RHS_KEY : '::'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'fe', s:RHS_KEY : ':='},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'm', s:RHS_KEY : '<CR>'},
-        \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'L', s:RHS_KEY : '[]<Left><CR><ESC>O'},
-        \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'P', s:RHS_KEY : '()<Left><CR><ESC>O'},
-        \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'D', s:RHS_KEY : '{}<Left><CR><ESC>O'},
+        \ {s:LHS_KEY : s:MAIN_INPUT_PFX . '<CR>', s:RHS_KEY : '<CR><ESC>O'},
     \ ]
 endfunction
 
