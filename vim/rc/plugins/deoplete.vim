@@ -34,6 +34,7 @@ call deoplete#custom#var('file', 'force_completion_length', 1)
 
 inoremap <expr> j<Space>u deoplete#undo_completion()
 inoremap <expr> j<Space>; deoplete#complete_common_string()
+inoremap j<Space>0 <C-x><C-o>
 
 autocmd MyAuGroup FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 autocmd MyAuGroup FileType html,blade setlocal omnifunc=emmet#completeTag
