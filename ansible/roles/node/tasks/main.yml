@@ -18,3 +18,6 @@
     - prettier
     - tslint
     - wscat
+    - vue-language-server
+    # - stylelint
+    # - stylelint-config-standard

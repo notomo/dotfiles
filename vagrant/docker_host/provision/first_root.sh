@@ -121,6 +121,8 @@ npm i -g eslint
 npm i -g prettier
 npm i -g tslint
 npm i -g fixjson
+# npm i -g vue-language-server
+# npm i -g stylelint stylelint-config-standard
 
 # text browser
 yum -y install lynx

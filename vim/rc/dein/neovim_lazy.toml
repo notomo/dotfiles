@@ -68,7 +68,6 @@ repo = 'mhartington/nvim-typescript'
 build = './install.sh'
 on_ft = 'vue'
 hook_add = '''
-let g:nvim_typescript#vue_support = 1
 nnoremap [keyword]k :<C-u>TSType<CR>
 nnoremap [keyword]K :<C-u>TSDoc<CR>
 nnoremap [keyword]R :<C-u>TSRefs<CR>
@@ -82,7 +81,7 @@ nnoremap [keyword]R :<C-u>TSRefs<CR>
 
 # [[plugins]]
 # repo = 'autozimu/LanguageClient-neovim'
-# on_ft = ['php' 'python', 'go', 'javascript', 'lua', 'rust', 'haskell']
+# on_ft = ['php' 'python', 'go', 'javascript', 'lua', 'rust', 'haskell', 'vue']
 # rev = 'next'
 # build = './install.sh'
 # depends = 'denite.nvim'
@@ -101,10 +100,11 @@ nnoremap [keyword]R :<C-u>TSRefs<CR>
 # let g:LanguageClient_serverCommands = {}
 # " let g:LanguageClient_serverCommands['python'] = ['pyls']
 # " let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
-# let g:LanguageClient_serverCommands['go'] = ['go-langserver', '-trace', '-logfile', '~/go_lsp.log']
+# " let g:LanguageClient_serverCommands['go'] = ['go-langserver', '-trace', '-logfile', '~/go_lsp.log']
 # " let g:LanguageClient_serverCommands['lua'] = ['lua-lsp']
-# let g:LanguageClient_serverCommands['rust'] = ['rustup', 'run', 'nightly', 'rls']
-# let g:LanguageClient_serverCommands['haskell'] = ['hie', '--lsp']
+# " let g:LanguageClient_serverCommands['rust'] = ['rustup', 'run', 'nightly', 'rls']
+# " let g:LanguageClient_serverCommands['haskell'] = ['hie', '--lsp']
+# let g:LanguageClient_serverCommands['vue'] = ['vls']
 #
 # let g:LanguageClient_signColumnAlwaysOn = 0
 # let g:LanguageClient_diagnosticsEnable = 0
@@ -246,3 +246,6 @@ let g:complete_parameter_echo_signature = 1
 [[plugins]]
 repo = 'thinca/vim-template'
 on_cmd = 'TemplateLoad'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
