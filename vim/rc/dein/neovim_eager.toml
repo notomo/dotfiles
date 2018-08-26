@@ -46,3 +46,7 @@ hook_add = '''
 let g:semshi#simplify_markup = v:false
 let g:semshi#tolerate_syntax_errors = v:false
 '''
+
+[[plugins]]
+repo = 'nikvdp/ejs-syntax'
+
