@@ -30,7 +30,7 @@ let g:ale_linters['dockerfile'] = ['hadolint']
 let g:ale_linters['html'] = ['htmlhint']
 let g:ale_linters['javascript'] = []
 let g:ale_linters['typescript'] = ['tsserver']
-let g:ale_linters['css'] = ['stylelint']
+let g:ale_linters['css'] = []
 let g:ale_linters['scss'] = g:ale_linters['css']
 
 let g:ale_fixers = {}
@@ -59,5 +59,5 @@ function! s:toggle_fix_on_save() abort
     let g:ale_fix_on_save = !current_value
 endfunction
 
-nnoremap [exec]tf :<C-u>call <SID>toggle_fix_on_save()<CR>
+nnoremap [exec]T :<C-u>call <SID>toggle_fix_on_save()<CR>
 

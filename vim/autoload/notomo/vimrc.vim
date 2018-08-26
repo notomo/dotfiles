@@ -90,3 +90,24 @@ function! notomo#vimrc#escape_search_pattern(str) abort
     let escaped = escape(a:str, '\/')
     return substitute(escaped, "\n", '\\n', 'g')
 endfunction
+
+function! notomo#vimrc#add_closed_tag() abort
+    let pos = getpos('.')
+    let reg = @a
+
+    execute 'normal! "ayi>'
+    let yanked = @a
+    let tag_name = split(yanked)[0]
+
+    if tag_name !~? '^\/'
+        let closed_tag = '</' . tag_name . '>'
+        call setline('.', getline('.') . closed_tag)
+        execute 'normal %'
+        execute 'normal! h'
+        startinsert
+    else
+        call setpos('.', pos)
+    endif
+
+    let @a = reg
+endfunction

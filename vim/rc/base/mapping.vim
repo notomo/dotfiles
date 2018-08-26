@@ -612,6 +612,8 @@ nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
 nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
 nnoremap [exec]e :<C-u>smile<CR>
 nnoremap [exec]cC :<C-u>messages clear<CR>
+
+nnoremap [exec]t :<C-u>call notomo#vimrc#add_closed_tag()<CR>
 "}}}
 
 " quickfix and locationlist"{{{
