@@ -33,6 +33,7 @@ let g:ale_linters['typescript'] = ['tsserver']
 let g:ale_linters['css'] = []
 let g:ale_linters['scss'] = g:ale_linters['css']
 let g:ale_linters['vue'] = []
+let g:ale_pattern_options = {'\.vue$': {'ale_enabled': 0}}
 
 let g:ale_fixers = {}
 let g:ale_fixers['python'] = ['autopep8', 'isort']
