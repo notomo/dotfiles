@@ -66,12 +66,7 @@ let g:OmniSharp_host='http://localhost:2000'
 [[plugins]]
 repo = 'mhartington/nvim-typescript'
 build = './install.sh'
-on_ft = 'vue'
-hook_add = '''
-nnoremap [keyword]k :<C-u>TSType<CR>
-nnoremap [keyword]K :<C-u>TSDoc<CR>
-nnoremap [keyword]R :<C-u>TSRefs<CR>
-'''
+on_ft = 'typescript'
 
 # [[plugins]]
 # repo = 'dbgx/lldb.nvim'
