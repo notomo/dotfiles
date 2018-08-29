@@ -10,6 +10,13 @@ function! notomo#php#get_indent()
         return -1
     endif
 
+    let new_line_num = prevnonblank(v:lnum)
+    let new_line = getline(new_line_num)
+    if new_line =~# '\v^\s*\).*'
+        " e.g. function(\n) {
+        return -1
+    endif
+
     let line_num = prevnonblank(v:lnum - 1)
     let plus_one = indent(line_num) + shiftwidth()
     let line = getline(line_num)

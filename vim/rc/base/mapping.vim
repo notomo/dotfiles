@@ -511,6 +511,8 @@ endfunction
 for s:info in notomo#mapping#main_input()
     call s:cinoremap_with_prefix(s:info[s:LHS_KEY], s:info[s:RHS_KEY])
 endfor
+let s:main_input_key = notomo#mapping#get_main_input_key()
+execute 'inoremap <expr> ' . s:main_input_key . '<CR> notomo#vimrc#to_multiline()'
 
 for s:info in notomo#mapping#sub_input()
     call s:cinoremap_with_prefix(s:info[s:LHS_KEY], s:info[s:RHS_KEY])
