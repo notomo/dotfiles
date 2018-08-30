@@ -114,12 +114,12 @@ endfunction
 
 function! notomo#vimrc#to_multiline() abort
     let char = getline('.')[col('.') - 1] 
-    if char !~? '\v\>|}|\)|]'
+    if char !~? '\v\>|}|\)|]|\<'
         return ''
     endif
 
     let chars = getline('.')[col('.') - 2:col('.') - 1]
-    if chars =~? '\v\<\>|\{\}|\(\)|\[\]'
+    if chars =~? '\v\>\<|\<\>|\{\}|\(\)|\[\]'
         return "\<CR>\<ESC>O"
     endif
 
