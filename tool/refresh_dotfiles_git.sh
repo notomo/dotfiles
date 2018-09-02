@@ -1,6 +1,6 @@
 DOTFILES_DIR=~/dotfiles
 TMP_DIR=~/dotfiles_tmp
-pushd .
+pushd ~
 rm -r $TMP_DIR
 mkdir -p $TMP_DIR
 cp -R $DOTFILES_DIR/* $TMP_DIR
@@ -15,3 +15,4 @@ then
     git reset --hard origin/master
 fi
 popd
+cp ~/dotfiles/vim/rc/local/local.vim.sample ~/dotfiles/vim/rc/local/local.vim
