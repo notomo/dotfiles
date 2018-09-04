@@ -5,7 +5,7 @@ nnoremap [git]L :<C-u>Gina log master...HEAD<CR>
 nnoremap [git]ll :<C-u>Gina log<CR>
 nnoremap [git]rl :<C-u>Gina reflog<CR>
 nnoremap [git]ls :<C-u>Gina ls<CR>
-nnoremap [git]t :<C-u>Gina tag<CR>
+nnoremap [git]T :<C-u>Gina tag<CR>
 nnoremap [git]c :<C-u>Gina commit<CR>
 nnoremap [git]xl :<C-u>call notomo#gina#toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>
 nnoremap [git]xs :<C-u>Gina stash save ""<Left>
