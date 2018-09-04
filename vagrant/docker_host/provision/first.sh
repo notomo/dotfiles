@@ -69,6 +69,7 @@ mkdir -p ~/workspace
 cd ~/workspace
 mkdir -p memo
 mkdir -p lsync/chrome
+mkdir -p nodejs
 
 cd ~/workspace/lsync/chrome
 git clone https://github.com/notomo/ctrlb.git
