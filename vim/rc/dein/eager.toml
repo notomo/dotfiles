@@ -221,7 +221,7 @@ omap e <Plug>(smartword-e)
 repo = 'rhysd/vim-color-spring-night'
 hook_add = '''
 let g:spring_night_kill_italic = 1
-let g:spring_night_high_contrast = []
+let g:spring_night_high_contrast = 0
 '''
 
 [[plugins]]
