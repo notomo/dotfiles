@@ -15,3 +15,10 @@ function! s:ctrlb_settings() abort
     endif
     let g:local#var#document_root = s:ctrlb_coverage
 endfunction
+
+autocmd MyAuGroup BufRead,BufEnter ~/workspace/nodejs/sinchock-web/* call s:sinchock_web_settings()
+function! s:sinchock_web_settings() abort
+    call curstr#custom#source_alias('interface_impl', ['togglable/file'])
+    call curstr#custom#source_option('interface_impl', 'pattern_groups', [['%impls/models/%', '%domain/models/%'], ['%impls/repositories/mock/%', '%domain/repositories/%']])
+    nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
+endfunction
