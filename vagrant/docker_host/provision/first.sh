@@ -39,10 +39,9 @@ go get -u github.com/alecthomas/gometalinter
 go get -u honnef.co/go/tools/cmd/unused
 go get -u github.com/mattn/mkup
 go get -u github.com/github/hub
-go get -u github.com/notomo/wsxhub/cmd/wsxhub
-go get -u github.com/notomo/wsxhub/cmd/wsxhubd
-go get -u github.com/notomo/elsied/cmd/elsied
-go get -u github.com/notomo/elsied/cmd/elsie
+go get -u github.com/notomo/wsxhub/...
+go get -u github.com/notomo/elsied/...
+go get -u github.com/jackc/sqlfmt/...
 
 # neovim-remote
 pip3.5 install --user neovim-remote

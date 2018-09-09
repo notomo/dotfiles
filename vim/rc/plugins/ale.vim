@@ -33,7 +33,7 @@ let g:ale_linters['typescript'] = ['tsserver']
 let g:ale_linters['css'] = []
 let g:ale_linters['scss'] = g:ale_linters['css']
 let g:ale_linters['vue'] = []
-let g:ale_pattern_options = {'\.vue$': {'ale_enabled': 0}}
+let g:ale_pattern_options = {'\.vue$': {'ale_enabled': 0}, '\.sql$': {'ale_fix_on_save': 0}}
 
 let g:ale_fixers = {}
 let g:ale_fixers['python'] = ['autopep8', 'isort']
@@ -45,6 +45,7 @@ let g:ale_fixers['css'] = ['prettier']
 let g:ale_fixers['scss'] = g:ale_fixers['css']
 let g:ale_fixers['vue'] = ['prettier']
 let g:ale_fixers['json'] = ['fixjson']
+let g:ale_fixers['sql'] = ['sqlfmt']
 " let g:ale_fixers['php'] = ['phpcbf']
 " let g:ale_fixers['help'] = ['align_help_tags']
 
@@ -56,6 +57,7 @@ let g:ale_python_flake8_executable = 'python3.5'
 let g:ale_python_flake8_options = '-m flake8'
 let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.gometalinter.json')
 " let g:ale_css_stylelint_options = '--config=' . expand('~/dotfiles/lint/css/.stylelintrc') . ' --configBasedir=' . systemlist('npm root -g')[0]
+let g:ale_sql_sqlfmt_options = '-u'
 
 function! s:toggle_fix_on_save() abort
     let current_value = get(g:, 'ale_fix_on_save', 0)
@@ -63,4 +65,5 @@ function! s:toggle_fix_on_save() abort
 endfunction
 
 nnoremap [exec]T :<C-u>call <SID>toggle_fix_on_save()<CR>
+nnoremap [exec]F :<C-u>ALEFix<CR>
 

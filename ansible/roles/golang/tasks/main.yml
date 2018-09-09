@@ -19,6 +19,7 @@
     - honnef.co/go/tools/cmd/unused
     - github.com/mattn/mkup
     - github.com/github/hub
+    - github.com/jackc/sqlfmt/...
 
 - name: go get
   command: "go get {{ item.item }}"
