@@ -64,6 +64,9 @@ snippet array_interface
 		[index: ${2:indexType}]: ${0:type};
 	}
 
+snippet mapped_type
+	{ [${2:P} in ${1:Unioned}]: ${3:Type} }
+
 snippet variable_interface
 alias arg
 options word
@@ -75,22 +78,22 @@ options word
 
 snippet readonly
 options word
-	readonly ${0:name}
+	readonly ${0:name} 
 
 snippet abstract
-	abstract ${0:name}
+	abstract ${0:name} 
 
 snippet private
 options word
-	private ${0:name}
+	private ${0:name} 
 
 snippet public
 options word
-	public ${0:name}
+	public ${0:name} 
 
 snippet protected
 options word
-	protected ${0:name}
+	protected ${0:name} 
 
 snippet method
 options word
@@ -121,11 +124,11 @@ snippet extends
 
 snippet public_readonly
 options word
-	public readonly ${0}
+	public readonly ${0} 
 
 snippet protected_readonly
 options word
-	protected readonly ${0}
+	protected readonly ${0} 
 
 snippet public_method
 	public ${1:name}(${2:args}) {
@@ -144,7 +147,7 @@ snippet import_default
 	import ${0:name} from "${1:file}"
 
 snippet export
-	export ${0:name}
+	export ${0:name} 
 
 snippet thisx
 	this.${1:name} = $1;
@@ -165,7 +168,7 @@ snippet type
 
 snippet keyof
 options word
-	keyof ${0:type}
+	keyof ${0:type} 
 
 snippet generics
 options word
