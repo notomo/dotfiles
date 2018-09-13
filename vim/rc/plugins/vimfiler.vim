@@ -84,6 +84,7 @@ function! s:vimfiler_my_settings()
     nmap <buffer> <2-LeftMouse> <Plug>(vimfiler_smart_l)
     nmap <buffer>yp <Plug>(vimfiler_yank_full_path)
     nmap <buffer>yf <Plug>(vimfiler_clipboard_copy_file)
+    nnoremap <buffer>yr :<C-u>call notomo#vimrc#yank_and_echo(fnamemodify(vimfiler#get_filename(), ':t'))<CR>
     nmap <buffer>xf <Plug>(vimfiler_clipboard_move_file)
     nmap <buffer>p <Plug>(vimfiler_clipboard_paste)
     nmap <buffer>rn <Plug>(vimfiler_rename_file)

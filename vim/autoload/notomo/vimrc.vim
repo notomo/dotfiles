@@ -125,3 +125,8 @@ function! notomo#vimrc#to_multiline() abort
 
     return "\<CR>\<ESC>%a\<CR>\<ESC>$a"
 endfunction
+
+function! notomo#vimrc#yank_and_echo(value) abort
+    let [@", @+, @0, @*] = [a:value, a:value, a:value, a:value]
+    echomsg 'yank '. a:value
+endfunction

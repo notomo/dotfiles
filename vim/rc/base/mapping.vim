@@ -399,24 +399,21 @@ endfor
 nnoremap [yank] <Nop>
 nmap <Space>y [yank]
 
-nnoremap <silent> [yank]d :<C-u>call <SID>yank_value(strftime('%Y-%m-%d'))<CR>
-nnoremap <silent> [yank]D :<C-u>call <SID>yank_value(strftime('%Y-%m-%d %T'))<CR>
-nnoremap <silent> [yank]n :<C-u>call <SID>yank_value(fnamemodify(expand('%'), ':r'))<CR>
-nnoremap <silent> [yank]N :<C-u>call <SID>yank_value(expand('%'))<CR>
-nnoremap <silent> [yank]p :<C-u>call <SID>yank_value(substitute(substitute(expand('%:p'), substitute(expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\', '/', 'g'))<CR>
-nnoremap <silent> [yank]P :<C-u>call <SID>yank_value(substitute(expand('%:p'), '\', '/', 'g'))<CR>
-nnoremap <silent> [yank]; :<C-u>call <SID>yank_value(@:)<CR>
-nnoremap <silent> [yank]/ :<C-u>call <SID>yank_value(@/)<CR>
-nnoremap <silent> [yank]i :<C-u>call <SID>yank_value(@.)<CR>
-nnoremap <silent> [yank]f :<C-u>call <SID>yank_value(cfi#format('%s', ''))<CR>
-nnoremap <silent> [yank]b :<C-u>call <SID>yank_value(gina#component#repo#branch())<CR>
-nnoremap <silent> [yank]ud :<C-u>call <SID>yank_value(notomo#vimrc#url_decode())<CR>
-nnoremap <silent> [yank]ue :<C-u>call <SID>yank_value(notomo#vimrc#url_encode())<CR>
-nnoremap <silent> [yank]l :<C-u>call <SID>yank_value(line('.'))<CR>
-function! s:yank_value(value) abort
-    let [@", @+, @0, @*] = [a:value, a:value, a:value, a:value]
-    echomsg 'yank '. a:value
-endfunction
+nnoremap <silent> [yank]d :<C-u>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d'))<CR>
+nnoremap <silent> [yank]D :<C-u>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d %T'))<CR>
+nnoremap <silent> [yank]n :<C-u>call notomo#vimrc#yank_and_echo(fnamemodify(expand('%'), ':r'))<CR>
+nnoremap <silent> [yank]N :<C-u>call notomo#vimrc#yank_and_echo(expand('%'))<CR>
+nnoremap <silent> [yank]p :<C-u>call notomo#vimrc#yank_and_echo(substitute(substitute(expand('%:p'), substitute(expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\', '/', 'g'))<CR>
+nnoremap <silent> [yank]P :<C-u>call notomo#vimrc#yank_and_echo(substitute(expand('%:p'), '\', '/', 'g'))<CR>
+nnoremap <silent> [yank]; :<C-u>call notomo#vimrc#yank_and_echo(@:)<CR>
+nnoremap <silent> [yank]/ :<C-u>call notomo#vimrc#yank_and_echo(@/)<CR>
+nnoremap <silent> [yank]i :<C-u>call notomo#vimrc#yank_and_echo(@.)<CR>
+nnoremap <silent> [yank]f :<C-u>call notomo#vimrc#yank_and_echo(cfi#format('%s', ''))<CR>
+nnoremap <silent> [yank]b :<C-u>call notomo#vimrc#yank_and_echo(gina#component#repo#branch())<CR>
+nnoremap <silent> [yank]ud :<C-u>call notomo#vimrc#yank_and_echo(notomo#vimrc#url_decode())<CR>
+nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(notomo#vimrc#url_encode())<CR>
+nnoremap <silent> [yank]l :<C-u>call notomo#vimrc#yank_and_echo(line('.'))<CR>
+nnoremap <silent> [yank]c :<C-u>call notomo#vimrc#yank_and_echo(col('.'))<CR>
 "}}}
 
 " inner and around vomapping"{{{
