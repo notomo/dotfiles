@@ -57,7 +57,7 @@ nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
 nnoremap <silent> [denite]K :<C-u>call notomo#denite#php_tag_jump()<CR>
 nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
 nnoremap <silent> [denite]go :<C-u>Denite go/src<CR>
-nnoremap <silent> [denite]to :<C-u>Denite todo -immediately<CR>
+nnoremap <silent> [denite]to :<C-u>Denite todo -immediately -default-action=tabopen<CR>
 nnoremap <expr> <silent> [keyword]gs ":\<C-u>DeniteProjectDir file_rec -input=" . notomo#denite#get_splitted() . " -no-empty\<CR>"
 nnoremap <silent> [denite]ts :<C-u>Denite proto_dir:filetype -default-action=tabvimfiler -immediately-1<CR>
 nnoremap <silent> [denite]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
