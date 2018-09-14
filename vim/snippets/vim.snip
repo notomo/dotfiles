@@ -30,7 +30,7 @@ snippet ifelse
 	if ${1:#:condition}
 		${2:TARGET}
 	else
-		${3}
+		${0}
 	endif
 
 snippet for
@@ -53,7 +53,7 @@ snippet try_catch
 	try
 		${1:TARGET}
 	catch /${2:#:pattern}/
-		${3}
+		${0}
 	endtry
 
 snippet try_finally
@@ -61,7 +61,7 @@ alias tryf
 	try
 		${1:TARGET}
 	finally
-		${2}
+		${0}
 	endtry
 
 snippet catch
