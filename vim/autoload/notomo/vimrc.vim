@@ -130,3 +130,10 @@ function! notomo#vimrc#yank_and_echo(value) abort
     let [@", @+, @0, @*] = [a:value, a:value, a:value, a:value]
     echomsg 'yank '. a:value
 endfunction
+
+function! notomo#vimrc#save_session() abort
+    let y_or_n = input('y/n: ')
+    if y_or_n ==? 'y'
+        SessionSave!
+    endif
+endfunction

@@ -220,7 +220,7 @@ let g:test#php#phpunit#options = '--no-coverage'
 repo = 'lambdalisue/session.vim'
 on_cmd = 'Session'
 hook_add = '''
-nnoremap [file]<Space> :<C-u>SessionSave!<CR>
+nnoremap [file]<Space> :<C-u>call notomo#vimrc#save_session()<CR>
 nnoremap [file]<CR> :<C-u>SessionOpen<CR>
 nnoremap [denite]S :<C-u>Denite session<CR>
 '''

@@ -707,7 +707,7 @@ nnoremap <silent> [tab]o :<C-u>tabonly<CR>
 xnoremap <silent> [tab]o :<C-u>tabonly<CR>
 
 " close all
-nnoremap <silent> [tab]<Space>q :<C-u>qall<CR>
+nnoremap <silent> [tab]O :<C-u>qall<CR>
 
 " close tab"{{{
 function! s:tabclose_c() abort
