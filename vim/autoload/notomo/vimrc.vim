@@ -132,8 +132,12 @@ function! notomo#vimrc#yank_and_echo(value) abort
 endfunction
 
 function! notomo#vimrc#save_session() abort
-    let y_or_n = input('y/n: ')
-    if y_or_n ==? 'y'
+    let y_or_n = input('Enter/n: ')
+    redraw
+    if y_or_n !=? 'n'
         SessionSave!
+        echomsg 'save!'
+    else
+        echomsg 'canceled'
     endif
 endfunction
