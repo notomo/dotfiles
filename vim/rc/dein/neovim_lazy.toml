@@ -168,8 +168,7 @@ let g:deoplete#sources#ternjs#include_keywords = 1
 [[plugins]]
 repo = 'notomo/ctrlb.nvim'
 hook_add = '''
-nnoremap [exec]cb :<C-u>CtrlbOpen ctrl<CR>
-nnoremap [exec]ch :<C-u>CtrlbOpen history<CR>
+nnoremap [exec]cb :<C-u>CtrlbOpen -json={"direction":"vertical","items":[{"name":"currentTab"},{"name":"ctrl"}]}<CR>
 '''
 hook_source = 'source ~/.vim/rc/plugins/ctrlb.vim'
 
