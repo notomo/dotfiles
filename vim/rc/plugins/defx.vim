@@ -1,4 +1,4 @@
-nnoremap <silent> [exec]d :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')` -split=vertical<CR>
+nnoremap <silent> [exec]D :<C-u>Defx `expand('%:p:h')` -search=`expand('%:p')` -split=vertical<CR>
 
 autocmd MyAuGroup FileType defx call s:settings()
 function! s:settings() abort
