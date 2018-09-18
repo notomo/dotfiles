@@ -11,7 +11,7 @@ endif
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec<CR>
-nnoremap <silent> [denite]B :<C-u>Denite buffer<CR>
+nnoremap <silent> [denite]B :<C-u>Denite buffer:!<CR>
 nnoremap <silent> [unite]sf :<C-u>Denite file_rec<CR>
 nnoremap <silent> [unite]sg :<C-u>DeniteProjectDir file_rec<CR>
 nnoremap <silent> [denite]f :<C-u>Denite dir_file -no-empty<CR>
