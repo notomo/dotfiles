@@ -246,3 +246,8 @@ repo = 'mattn/emmet-vim'
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 on_ft = 'vue'
+
+[[plugins]]
+repo = 'Shougo/defx.nvim'
+if = 'executable("python3.6")'
+hook_source = 'source ~/.vim/rc/plugins/defx.vim'
