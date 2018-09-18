@@ -6,7 +6,7 @@ hook_source = '''
 if has('mac')
     let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
 else
-    let g:deoplete#sources#jedi#python_path = '/usr/bin/python3.5'
+    let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
 endif
 '''
 

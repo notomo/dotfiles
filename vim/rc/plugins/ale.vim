@@ -53,7 +53,7 @@ let g:ale_php_phpcs_standard = '~/dotfiles/lint/php/phpcs/my_psr2.xml'
 " let g:ale_php_phpcbf_standard = g:ale_php_phpcs_standard
 let g:ale_php_phpmd_ruleset = 'unusedcode'
 let g:ale_python_mypy_options = '--ignore-missing-imports'
-let g:ale_python_flake8_executable = 'python3.5'
+let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_options = '-m flake8'
 let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.gometalinter.json')
 " let g:ale_css_stylelint_options = '--config=' . expand('~/dotfiles/lint/css/.stylelintrc') . ' --configBasedir=' . systemlist('npm root -g')[0]

@@ -46,7 +46,7 @@ if has('unix')
     \   'hook/output_encode/encoding': 'utf-8',
     \}
     let g:quickrun_config['python'] = {
-    \   'command': 'python3.5',
+    \   'command': 'python3',
     \   'hook/output_encode/encoding': 'utf-8',
     \}
 else

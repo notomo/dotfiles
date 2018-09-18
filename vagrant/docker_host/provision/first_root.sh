@@ -74,24 +74,24 @@ cp -f /vagrant/provision/.inputrc $USERDIR/.inputrc
 
 # python3
 yum install -y https://centos7.iuscommunity.org/ius-release.rpm
-yum install -y python35u python35u-libs python35u-devel python35u-pip
+yum install -y python36u python36u-libs python36u-devel python36u-pip
 yum-config-manager --disable ius
-pip3.5 install neovim
-pip3.5 install flake8
-pip3.5 install requests
-pip3.5 install mypy
-pip3.5 install autopep8
-pip3.5 install isort
-pip3.5 install yapf
-pip3.5 install pytest
-pip3.5 install pytest-cov
+pip3.6 install neovim
+pip3.6 install flake8
+pip3.6 install requests
+pip3.6 install mypy
+pip3.6 install autopep8
+pip3.6 install isort
+pip3.6 install yapf
+pip3.6 install pytest
+pip3.6 install pytest-cov
 
 # python2
 yum -y install python-devel 
 yum -y install python-pip --enablerepo epel
 pip install neovim
 
-ln -s /usr/bin/python3.5 /usr/bin/python3
+ln -s /usr/bin/python3.6 /usr/bin/python3
 
 # php
 yum install -y http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
