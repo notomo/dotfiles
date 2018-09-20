@@ -167,6 +167,7 @@ let g:deoplete#sources#ternjs#include_keywords = 1
 
 [[plugins]]
 repo = 'notomo/ctrlb.nvim'
+build = 'npm run setup'
 hook_add = '''
 nnoremap [exec]cb :<C-u>CtrlbOpen -json={"direction":"vertical","items":[{"name":"currentTab"},{"name":"ctrl"}]}<CR>
 '''
