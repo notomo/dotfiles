@@ -1,8 +1,6 @@
-
 NEOVIM_DIR=~/app/neovim
 
-if [ -d $NEOVIM_DIR ]
-then
+if [ -d $NEOVIM_DIR ]; then
     cd $NEOVIM_DIR
     sudo rm -r build
     sudo make distclean

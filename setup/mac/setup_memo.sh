@@ -1,4 +1,3 @@
-
 # connect power supply
 xcode-select --install
 # click install

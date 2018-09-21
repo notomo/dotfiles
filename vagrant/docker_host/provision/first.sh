@@ -1,4 +1,3 @@
-
 # bash
 source ~/.bash_profile
 source ~/.bashrc
@@ -42,6 +41,7 @@ go get -u github.com/github/hub
 go get -u github.com/notomo/wsxhub/...
 go get -u github.com/notomo/elsied/...
 go get -u github.com/jackc/sqlfmt/...
+go get -u mvdan.cc/sh/cmd/shfmt
 
 # neovim-remote
 pip3.5 install --user neovim-remote
@@ -57,8 +57,7 @@ cd "$GOPATH"/src/github.com/pocke/lemonade/
 make install
 
 # xdg-open
-if [ -e /usr/bin/xdg-open ]
-then
+if [ -e /usr/bin/xdg-open ]; then
     sudo mv /usr/bin/xdg-open /usr/bin/xdg-open.tmp
 fi
 sudo ln -s "$GOPATH"/bin/lemonade /usr/bin/xdg-open

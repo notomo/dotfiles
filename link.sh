@@ -1,7 +1,5 @@
-
 install_root=~
-if [ "$1" != "" ]
-then
+if [ "$1" != "" ]; then
     install_root=$1
 fi
 
@@ -89,8 +87,6 @@ fi
 mkdir -p "${install_root}"/app
 cp -f "${install_root}"/dotfiles/tool/refresh_dotfiles_git.sh "${install_root}"/app/refresh_dotfiles_git.sh
 
-if [ "$1" == "" ]
-then
+if [ "$1" == "" ]; then
     read
 fi
-

@@ -1,15 +1,13 @@
 
 snippet ifonly
 options head
-	if [ ${1:condition} ]
-	then
+	if [ ${1:condition} ]; then
 		${2:TARGET}
 	fi
 
 snippet elif
 options head
-	elif [ ${1:condition} ]
-	then
+	elif [ ${1:condition} ]; then
 		${2:TARGET}
 
 snippet else
@@ -19,8 +17,7 @@ options head
 
 snippet ifelse
 options head
-	if [ ${1:condition} ]
-	then
+	if [ ${1:condition} ]; then
 		${2:TARGET}
 	else
 		${3:TARGET}

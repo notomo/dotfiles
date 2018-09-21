@@ -1,4 +1,3 @@
-
 USERNAME=vagrant
 USERDIR=/home/$USERNAME
 
@@ -15,7 +14,7 @@ yum -y install yum-utils
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum makecache fast
 yum -y install docker-ce
-curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-"$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose
+curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-"$(uname -s)-$(uname -m)" >/usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 usermod -aG docker $USERNAME
 systemctl status docker.service
@@ -31,7 +30,7 @@ yum install -y xclip
 yum-config-manager --disable epel
 yum -y install libXrandr
 yum -y install xorg-x11-server-Xvfb
-yum -y --enablerepo=epel install fuse-sshfs 
+yum -y --enablerepo=epel install fuse-sshfs
 
 # git
 yum -y install wget
@@ -87,7 +86,7 @@ pip3.6 install pytest
 pip3.6 install pytest-cov
 
 # python2
-yum -y install python-devel 
+yum -y install python-devel
 yum -y install python-pip --enablerepo epel
 pip install neovim
 
@@ -132,7 +131,7 @@ yum -y install words
 
 # sync
 sysctl fs.inotify.max_user_watches=32768
-echo fs.inotify.max_user_watches=32768 >> /etc/sysctl.conf
+echo fs.inotify.max_user_watches=32768 >>/etc/sysctl.conf
 yum -y install lsyncd --enablerepo=epel
 yum -y install xinetd
 

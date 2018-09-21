@@ -36,6 +36,7 @@ let g:ale_linters['vue'] = []
 let g:ale_pattern_options = {'\.vue$': {'ale_enabled': 0}, '\.sql$': {'ale_fix_on_save': 0}}
 
 let g:ale_fixers = {}
+let g:ale_fixers['sh'] = ['shfmt']
 let g:ale_fixers['python'] = ['autopep8', 'isort']
 let g:ale_fixers['go'] = ['goimports']
 let g:ale_fixers['rust'] = ['rustfmt']
