@@ -37,17 +37,8 @@ snippet set
 		this._$1 = $2
 	}
 
-snippet let_type
-	let ${1:name}: ${0:type};
-
-snippet const_type
-	const ${1:name}: ${2:type} = ${0:value}
-
-snippet array_const
-	const ${1:array_name}: ${2:type}[] = ${0:value};
-
-snippet array_let
-	let ${1:array_name}: ${2:type}[] = ${0:value};
+snippet let
+	let ${1:name}
 
 snippet interface
 	interface ${1:Name} {
@@ -203,9 +194,9 @@ snippet it
 	})
 
 snippet beforeEach
-  beforeEach(() => {
-	${0:TARGET}
-  });
+	beforeEach(() => {
+		${0:TARGET}
+	});
 
 snippet mock
     const ${1:mock}Class = jest.fn<$1>(() => ({
@@ -218,3 +209,6 @@ snippet expect
 
 snippet throw
 	throw new ${1:Name}Error("${0}");
+
+snippet promise_type
+	Promise<${0}>
