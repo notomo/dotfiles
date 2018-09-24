@@ -1,17 +1,26 @@
 {
   "direction": "horizontal",
+  "sizeParcents": [
+    20,
+    80
+  ],
   "items": [
     {
       "name": "bookmarkTree"
     },
     {
       "direction": "vertical",
+      "sizeParcents": [
+        10,
+        90
+      ],
       "items": [
         {
           "name": "currentTab"
         },
         {
-          "name": "ctrl"
+          "name": "ctrl",
+          "active": true
         }
       ]
     }
