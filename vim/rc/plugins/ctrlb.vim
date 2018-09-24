@@ -40,8 +40,8 @@ function! s:ctrl_settings()
     nnoremap <buffer> R :<C-u>Ctrlb zoom:reset<CR>
 endfunction
 
-autocmd MyAuGroup FileType ctrlb-history call s:history_settings()
-function! s:history_settings()
-    nmap <buffer> <CR> <Plug>(ctrlb-history-open)
-    nmap <buffer> t<Space> <Plug>(ctrlb-history-tab-open)
+autocmd MyAuGroup FileType ctrlb-bookmarkTree call s:bookmark_tree_settings()
+function! s:bookmark_tree_settings()
+    nnoremap <buffer> <CR> :<C-u>call ctrlb#do_action('bookmarkTree', 'open')<CR>
+    nnoremap <buffer> t<Space> :<C-u>call ctrlb#do_action('bookmarkTree', 'tabOpen')<CR>
 endfunction

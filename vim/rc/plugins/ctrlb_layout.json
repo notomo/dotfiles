@@ -1,0 +1,19 @@
+{
+  "direction": "horizontal",
+  "items": [
+    {
+      "name": "bookmarkTree"
+    },
+    {
+      "direction": "vertical",
+      "items": [
+        {
+          "name": "currentTab"
+        },
+        {
+          "name": "ctrl"
+        }
+      ]
+    }
+  ]
+}
