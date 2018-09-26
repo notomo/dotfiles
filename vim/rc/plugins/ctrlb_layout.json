@@ -1,8 +1,8 @@
 {
   "direction": "horizontal",
   "sizeParcents": [
-    20,
-    80
+    40,
+    60
   ],
   "items": [
     {
