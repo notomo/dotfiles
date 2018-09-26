@@ -50,3 +50,5 @@ let g:semshi#tolerate_syntax_errors = v:false
 [[plugins]]
 repo = 'nikvdp/ejs-syntax'
 
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'
