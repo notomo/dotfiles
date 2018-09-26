@@ -66,6 +66,8 @@ set sessionoptions-=buffers
 set spelllang=en,cjk
 set shiftround
 set linebreak
+set copyindent
+set preserveindent
 if has('termguicolors')
     set termguicolors
 endif
