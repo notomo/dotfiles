@@ -123,6 +123,8 @@ if has('nvim')
     autocmd MyAuGroup FileType php execute 'TemplateLoad /filetype/' . &l:filetype
 endif
 
+autocmd MyAuGroup OptionSet diff setlocal nocursorline
+autocmd MyAuGroup WinEnter,InsertLeave * if &diff == 1 | setlocal nocursorline | endif
 '''
 
 [[plugins]]
