@@ -1,5 +1,6 @@
 
 nnoremap <expr> [browser]<CR> ':<C-u>Ctrlb tab:tabOpen -url=' . expand('<cWORD>') . '<CR>'
+nnoremap <expr> [browser]b ':<C-u>Ctrlb tab:open -url=' . expand('<cWORD>') . '<CR>'
 nnoremap [exec]L :<C-u>Ctrlb tab:reload<CR>
 nnoremap [exec]gg :<C-u>Ctrlb scroll:toTop<CR>
 nnoremap [exec]gh :<C-u>Ctrlb tab:previous<CR>
