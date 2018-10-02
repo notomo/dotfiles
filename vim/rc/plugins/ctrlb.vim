@@ -51,3 +51,10 @@ function! s:bookmark_tree_settings()
     nnoremap <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
     nnoremap <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
 endfunction
+
+autocmd MyAuGroup FileType ctrlb-historyList call s:history_list_settings()
+function! s:history_list_settings()
+    nnoremap <buffer> o :<C-u>call ctrlb#do_action('historyList', 'open')<CR>
+    nnoremap <buffer> <CR> :<C-u>call ctrlb#do_action('historyList', 'open')<CR>
+    nnoremap <buffer> t<Space> :<C-u>call ctrlb#do_action('historyList', 'tabOpen')<CR>
+endfunction

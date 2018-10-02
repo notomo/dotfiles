@@ -12,7 +12,8 @@
       "direction": "vertical",
       "sizeParcents": [
         10,
-        90
+        10,
+        80
       ],
       "items": [
         {
@@ -21,6 +22,9 @@
         {
           "name": "ctrl",
           "active": true
+        },
+        {
+          "name": "historyList"
         }
       ]
     }
