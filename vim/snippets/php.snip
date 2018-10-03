@@ -1,3 +1,6 @@
+snippet namespace
+	namespace ${0};
+
 snippet public_function
 alias pub
 abbr public function () {}
@@ -72,7 +75,6 @@ abbr <?php
 	<?php
 
 snippet function_only
-options head
 abbr function (){}
 	function ${1:FunctionName}(${2}) {
 		${0:TARGET}
