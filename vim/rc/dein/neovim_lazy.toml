@@ -169,7 +169,8 @@ let g:deoplete#sources#ternjs#include_keywords = 1
 repo = 'notomo/ctrlb.nvim'
 build = 'npm run setup'
 hook_add = '''
-nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpen -json-file=" . expand("~/dotfiles/vim/rc/plugins/ctrlb_layout.json") . "\<CR>"
+nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpenLayout " . expand("~/dotfiles/vim/rc/plugins/ctrlb_layout.json") . "\<CR>"
+nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
 '''
 hook_source = 'source ~/.vim/rc/plugins/ctrlb.vim'
 
