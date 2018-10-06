@@ -52,7 +52,6 @@ nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 
 " file"{{{
 nnoremap [file]w :<C-u>write<CR>
-nnoremap [file]W :<C-u>write !sudo tee %<CR>
 nnoremap [file]o :<C-u>edit<Space>
 nnoremap [file]rn :<C-u>file<Space>
 nnoremap [file]rl :<C-u>edit!<CR>

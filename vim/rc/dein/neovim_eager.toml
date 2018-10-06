@@ -52,3 +52,11 @@ repo = 'nikvdp/ejs-syntax'
 
 [[plugins]]
 repo = 'mechatroner/rainbow_csv'
+
+[[plugins]]
+repo = 'lambdalisue/suda.vim'
+if = 'has("unix")'
+hook_add = '''
+let g:suda_startup = 1
+nnoremap [file]W :<C-u>write suda://%<CR>
+'''
