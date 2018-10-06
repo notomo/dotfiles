@@ -170,3 +170,5 @@ call gina#custom#mapping#nmap('log', 'F', ':call notomo#gina#fixup()<CR>', s:nor
 call gina#custom#mapping#nmap('tag', 'DD', ':call gina#action#call(''tag:delete'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('tag', 'C', ':call gina#action#call(''tag:new:lightweight'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('tag', 'P', 'notomo#gina#tag_push_command()', {'noremap':1, 'expr': 1})
+
+let g:gina#core#console#enable_message_history = 1
