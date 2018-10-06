@@ -1,5 +1,5 @@
 
-if has('unix') && executable('xclip')
+if has('linux') && executable('xclip')
     let g:clipboard = {
         \ 'name': 'xclip_in_vagrant',
         \ 'copy': {'+': 'xclip -d :0 -i -selection c', '*': 'xclip -d :0 -i -selection c'},
