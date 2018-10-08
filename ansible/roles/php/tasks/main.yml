@@ -35,6 +35,11 @@
   when: is_centos
   become: yes
 
+- name: mkdir .composer
+  file:
+    path: "{{ home_dir }}/.composer"
+    state: directory
+
 - name: copy composer.json
   copy:
     src: composer.json
