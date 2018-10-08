@@ -38,43 +38,11 @@
   blockinfile:
     dest: "{{ home_dir }}/.bashrc"
     content: |
-      if [ -f /etc/.bashrc ]; then
-          . /etc/.bashrc
-      fi
-      alias nv="nvim"
-      alias vi="vim"
-      alias ee="exit"
-      alias ll="ls -la"
-      alias ss="source ~/.bashrc"
-      alias rel='exec $SHELL -l'
-      alias less='less -N'
-      alias ps='ps au'
-      alias themis='NVIM_RPLUGIN_MANIFEST=$HOME/rplugin.vim themis'
-      alias pk=kill_process
-      function kill_process() {
-        pkill -KILL -f "$1"
-      }
-      function git_clone_from_github() {
-          git clone https://github.com/"$1".git
-      }
-      if [ -f "$HOME/.local/.bashrc" ]; then
-          source "$HOME/.local/.bashrc"
-      fi
+      {{ lookup('file', '.bashrc') }}
 
 - name: add .bash_profile content
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK bash role"
     dest: "{{ home_dir }}/.bash_profile"
     content: |
-      if [ -f ~/.bashrc ]; then
-          . ~/.bashrc
-      fi
-      export PATH=$PATH:$HOME/.local/bin:$HOME/bin
-      export PS1="[\u@\h \w]\$ "
-      export PATH=$PATH:$HOME/.vim/dein/repos/github.com/thinca/vim-themis/bin
-      export THEMIS_VIM=nvim
-      export THEMIS_ARGS="-e -s --headless"
-      export THEMIS_PROFILE_LOG=profile.txt
-      if [ -f "$HOME/.local/.bash_profile" ]; then
-          source "$HOME/.local/.bash_profile"
-      fi
+      {{ lookup('file', '.bash_profile') }}
