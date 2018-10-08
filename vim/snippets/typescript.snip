@@ -204,8 +204,17 @@ snippet mock
     }));
     const ${2:name} = new $1Class();
 
+snippet mocktype
+	let ${0:name}: jest.Mock;
+
+snippet mockfn
+	${0:name} = jest.fn()
+
+snippet called
+	expect(${0:result}).toHaveBeenCalled()
+
 snippet expect
-	expect(${1:result}).toBe(${0:expected})
+	expect(${1:result}).${2:toEqual}(${0:expected})
 
 snippet throw
 	throw new ${1:Name}Error("${0}");
