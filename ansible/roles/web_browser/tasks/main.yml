@@ -5,3 +5,4 @@
     - google-chrome
     - firefox
   when: is_macos
+  ignore_errors: yes

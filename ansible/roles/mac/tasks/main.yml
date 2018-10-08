@@ -67,6 +67,7 @@
     # - logitech-options
     - keepassx
     - skitch
+  ignore_errors: yes
 
 - name: disable .DS_Store creation
   osx_defaults:
