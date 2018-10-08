@@ -19,11 +19,13 @@
     - honnef.co/go/tools/cmd/unused
     - github.com/mattn/mkup
     - github.com/github/hub
+    - github.com/pocke/lemonade
     - github.com/jackc/sqlfmt/...
+    - github.com/notomo/wsxhub/...
 
 - name: go get
   command: "go get {{ item.item }}"
-  when: item.rc == 1
+  when: item.stderr != "" or item.rc == 1
   with_items: "{{ go_module_exists.results }}"
 
 - name: add go path
