@@ -1,67 +1,22 @@
-
-- name: set variables
-  set_fact:
-    neovim_dir: "{{ app_dir }}/neovim"
-
-- name: install dependencies with yum
-  yum: name={{ item }} enablerepo=epel
-  with_items:
-      - ninja-build
-      - libtool
-      - autoconf
-      - automake
-      - cmake
-      - gcc
-      - gcc-c++
-      - make
-      - pkgconfig
-      - unzip
+- name: install for appimage
+  yum: name=fuse-sshfs enablerepo=epel
   when: is_centos
 
-- name: install dependencies with homebrew
-  homebrew: name={{ item }}
-  with_items:
-    - ninja
-    - libtool
-    - automake
-    - cmake
-    - pkg-config
-    - gettext
-  when: is_macos
+- name: mkdir .local/bin
+  file:
+    path: "{{ home_dir }}/.local/bin"
+    state: directory
+  when: is_centos
 
-- name: check neovim version
-  shell: 'nvim -v | head -n 1 | grep NVIM'
-  register: neovim_exists
-  changed_when: False
-  ignore_errors: yes
+- name: check nvim
+  stat:
+    path: "{{ home_dir }}/.local/bin/nvim"
+  register: nvim_installed
+  when: is_centos
 
-- name: git clone
-  git:
-    repo: https://github.com/neovim/neovim.git
-    dest: "{{ neovim_dir }}"
-    version: master
-  when: neovim_exists.stdout == ""
-
-- name: clean
-  command: "rm -r {{ neovim_dir }}/build"
-  ignore_errors: yes
-  when: neovim_exists.stdout == ""
-
-- name: clean
-  make:
-    target: distclean
-    chdir: "{{ neovim_dir }}"
-  when: neovim_exists.stdout == ""
-
-- name: build
-  make:
-    chdir: "{{ neovim_dir }}"
-    params:
-      CMAKE_BUILD_TYPE: Release
-  when: neovim_exists.stdout == ""
-
-- name: install
-  make:
-    target: install
-    chdir: "{{ neovim_dir }}"
-  when: neovim_exists.stdout == ""
+- name: download nvim
+  get_url:
+    url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+    dest: "{{ home_dir }}/.local/bin/nvim"
+    mode: u+x
+  when: is_centos and nvim_installed.stat.exists == false
