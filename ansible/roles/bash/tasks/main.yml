@@ -46,3 +46,8 @@
     dest: "{{ home_dir }}/.bash_profile"
     content: |
       {{ lookup('file', '.bash_profile') }}
+
+- name: copy .inputrc
+  copy:
+    src: .inputrc
+    dest: "{{ home_dir }}/.inputrc"
