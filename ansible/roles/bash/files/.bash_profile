@@ -1,11 +1,10 @@
-
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
 export GOPATH=$HOME/.go
 export GROOVY_HOME=$HOME/app/groovy/latest
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/composer/vendor/bin:$GOPATH/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:$GOPATH/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
 export PS1="[\u@\h \w]\n\$ "
 
 export PATH=$PATH:$HOME/.vim/dein/repos/github.com/thinca/vim-themis/bin
@@ -21,7 +20,7 @@ if [ -d "$HOME/.cargo" ]; then
     export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 fi
 
-if [ -d "$HOME/dotfiles" ]; then 
+if [ -d "$HOME/dotfiles" ]; then
     cd ~/dotfiles
 fi
 
