@@ -62,6 +62,10 @@ snippet new
 options word
 	new ${1:ClassName}(${0})
 
+snippet arg
+options word
+	${1:string} $${2:name}
+
 snippet if_func
 alias iffunc
 abbr if (func($hoge))
@@ -296,7 +300,7 @@ snippet ifset
 options word
 	${1:nullable} ?? ${0:else}
 
-snippet use_variable
+snippet use
 options word
 	use ($${0:variable}) 
 
