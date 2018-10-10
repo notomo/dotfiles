@@ -59,6 +59,6 @@ mkdir %HOMEPATH%"\workspace" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
 cd %HOMEPATH%"\.config"
-mklink "lemonade.toml" %HOMEPATH%"\dotfiles\setup\windows\lemonade.toml"
+copy %HOMEPATH%"\dotfiles\setup\windows\lemonade.toml" "lemonade.toml" /Y
 
 pause
