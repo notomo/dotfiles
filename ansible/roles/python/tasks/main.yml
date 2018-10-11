@@ -5,26 +5,70 @@
     - python3
   when: is_macos
 
+- name: install yum repository for python3
+  yum: name=https://centos7.iuscommunity.org/ius-release.rpm
+  when: is_centos
+  become: yes
+
+- name: install python3 with yum
+  yum: name={{ item }}
+  with_items:
+    - python36u
+    - python36u-libs
+    - python36u-devel
+    - python36u-pip
+  when: is_centos
+  become: yes
+
+- name: install python2 with yum
+  yum: name={{ item }} enablerepo=epel
+  with_items:
+    - python-devel
+    - python-pip
+  when: is_centos
+  become: yes
+
+- name: set variables
+  set_fact:
+    python2_packages:
+      - neovim
+    python3_packages:
+      - neovim
+      - flake8
+      - requests
+      - mypy
+      - autopep8
+      - isort
+      - yapf
+      - lxml
+      - python-language-server
+      - websocket-client
+      - websocket-server
+      - vim-vint
+      # - neovim-remote TODO: require gcc
+
 - pip:
     name: "{{ item }}"
     executable: pip2
-  with_items:
-    - neovim
+  with_items: "{{ python2_packages }}"
+  when: is_macos
+
+- pip:
+    name: "{{ item }}"
+    executable: pip2
+  with_items: "{{ python2_packages }}"
+  when: is_centos
+  become: yes
 
 - pip:
     name: "{{ item }}"
     executable: pip3
-  with_items:
-    - neovim
-    - flake8
-    - requests
-    - mypy
-    - autopep8
-    - isort
-    - yapf
-    - lxml
-    - python-language-server
-    - websocket-client
-    - websocket-server
-    - vim-vint
-    - neovim-remote
+  with_items: "{{ python3_packages }}"
+  when: is_macos
+
+- pip:
+    name: "{{ item }}"
+    executable: pip3.6
+  with_items: "{{ python3_packages }}"
+  when: is_centos
+  become: yes
