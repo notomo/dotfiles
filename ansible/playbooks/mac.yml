@@ -1,23 +1,23 @@
 - hosts: 'local'
   roles:
-    - 'unarchive'
-    - 'bash'
-    - 'workspace'
-    - 'ruby'
-    - 'golang'
-    - 'mac'
-    - 'dotfiles'
-    - 'tools'
-    - 'python'
-    - 'php'
-    - 'node'
-    - 'docker'
-    - 'neovim'
-    - 'web_browser'
-    - 'terminal'
-    - 'vim'
-    - 'mysql'
-    - 'font'
-    - 'git'
+    - { role: 'unarchive', tags: 'unarchive' }
+    - { role: 'bash', tags: 'bash' }
+    - { role: 'workspace', tags: 'workspace' }
+    - { role: 'ruby', tags: 'ruby' }
+    - { role: 'golang', tags: 'golang' }
+    - { role: 'mac', tags: 'mac' }
+    - { role: 'dotfiles', tags: 'dotfiles' }
+    - { role: 'tools', tags: 'tools' }
+    - { role: 'python', tags: 'python' }
+    - { role: 'php', tags: 'php' }
+    - { role: 'node', tags: 'node' }
+    - { role: 'docker', tags: 'docker' }
+    - { role: 'neovim', tags: 'neovim' }
+    - { role: 'web_browser', tags: 'web_browser' }
+    - { role: 'terminal', tags: 'terminal' }
+    - { role: 'vim', tags: 'vim' }
+    - { role: 'mysql', tags: 'mysql' }
+    - { role: 'font', tags: 'font' }
+    - { role: 'git', tags: 'git' }
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
