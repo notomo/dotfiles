@@ -8,6 +8,8 @@ nnoremap [exec]ga :<C-u>Ctrlb tab:first<CR>
 nnoremap [exec]ge :<C-u>Ctrlb tab:last<CR>
 nnoremap [exec]gl :<C-u>Ctrlb tab:next<CR>
 nnoremap [exec]G :<C-u>Ctrlb scroll:toBottom<CR>
+nnoremap [exec]p :<C-u>Ctrlb tab:duplicate<CR>
+nnoremap [exec]x :<C-u>Ctrlb tab:close<CR>
 
 autocmd MyAuGroup FileType ctrlb-ctrl call s:ctrl_settings()
 function! s:ctrl_settings()
