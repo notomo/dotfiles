@@ -1,11 +1,4 @@
 
-- name: mkdir .local
-  file:
-    path: "{{ home_dir }}/{{ item }}"
-    state: directory
-  with_items:
-    - .local
-
 - name: create .bashrc
   file:
     path: "{{ home_dir }}/.bashrc"

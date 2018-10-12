@@ -1,7 +1,7 @@
 - hosts: 'local'
   roles:
-    - 'bash'
     - 'workspace'
+    - 'bash'
     - 'golang'
     - 'dotfiles'
     - 'tools'

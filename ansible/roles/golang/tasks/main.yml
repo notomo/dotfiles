@@ -8,16 +8,6 @@
   register: golang_installed
   when: is_centos
 
-- name: mkdir app
-  file:
-    path: "{{ app_dir }}"
-    state: directory
-
-- name: mkdir .local
-  file:
-    path: "{{ home_dir }}/.local"
-    state: directory
-
 - name: download golang
   get_url:
     url: https://storage.googleapis.com/golang/go1.11.1.linux-amd64.tar.gz

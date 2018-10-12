@@ -14,3 +14,13 @@
   with_items:
     - lsync
   when: is_centos
+
+- name: make .local/bin directory
+  file:
+    path: "{{ home_dir }}/.local/bin"
+    state: directory
+
+- name: make app directory
+  file:
+    path: "{{ home_dir }}/app"
+    state: directory

@@ -2,11 +2,6 @@
   yum: name=fuse-sshfs enablerepo=epel
   when: is_centos
 
-- name: mkdir .local/bin
-  file:
-    path: "{{ home_dir }}/.local/bin"
-    state: directory
-
 - name: check nvim
   stat:
     path: "{{ home_dir }}/.local/bin/nvim"
