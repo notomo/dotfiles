@@ -45,6 +45,39 @@
     src: composer.json
     dest: "{{ home_dir }}/.composer/composer.json"
 
+- name: check composer
+  stat:
+    path: "/usr/local/bin/composer"
+  register: composer_installed
+  when: is_centos
+
+- name: check composer_installer
+  stat:
+    path: "{{ app_dir }}/composer_installer.php"
+  register: composer_installer_downloaded
+  when: is_centos
+
+- name: download composer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: "{{ app_dir }}/composer_installer.php"
+  when: is_centos and composer_installer_downloaded.stat.exists == false
+
+- name: install composer
+  shell:
+    chdir: "{{ app_dir }}"
+    cmd: "php composer_installer.php"
+  when: is_centos and composer_installed.stat.exists == false
+
+- name: copy composer.phar
+  copy:
+    src: "{{ app_dir }}/composer.phar"
+    dest: /usr/local/bin/composer
+    remote_src: True
+    mode: 0755
+  become: yes
+  when: is_centos and composer_installed.stat.exists == false
+
 - name: comoser install
   composer:
     command: install
