@@ -16,3 +16,4 @@
     - wget
     - nkf
   when: is_centos
+  become: yes
