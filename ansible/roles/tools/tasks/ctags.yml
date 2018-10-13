@@ -1,6 +1,0 @@
-
-- name: install ctags with homebrew
-  homebrew:
-    name: universal-ctags/universal-ctags/universal-ctags
-    state: head
-  when: is_macos

@@ -1,0 +1,53 @@
+
+- name: install ctags with homebrew
+  homebrew:
+    name: universal-ctags/universal-ctags/universal-ctags
+    state: head
+  when: is_macos
+
+- name: set variables
+  set_fact:
+    ctags_dir: "{{ app_dir }}/ctags"
+  when: is_centos
+
+- name: check ctags install
+  stat:
+    path: "{{ home_dir }}/.local/bin/ctags"
+  register: ctags_installed
+  when: is_centos
+
+- name: check ctags download
+  stat:
+    path: "{{ ctags_dir }}"
+  register: ctags_downloaded
+  when: is_centos
+
+- name: git clone ctags
+  git:
+    repo: https://github.com/universal-ctags/ctags.git
+    dest: "{{ ctags_dir }}"
+    version: master
+  when: is_centos and ctags_downloaded.stat.exists == false
+
+- name: autogen ctags
+  shell: ./autogen.sh
+  args:
+    chdir: "{{ ctags_dir }}"
+  when: is_centos and ctags_installed.stat.exists == false
+
+- name: configure ctags
+  shell: ./configure --prefix={{ home_dir }}/.local
+  args:
+    chdir: "{{ ctags_dir }}"
+  when: is_centos and ctags_installed.stat.exists == false
+
+- name: ctags make
+  make:
+    chdir: "{{ ctags_dir }}"
+  when: is_centos and ctags_installed.stat.exists == false
+
+- name: ctags make install
+  make:
+    target: install
+    chdir: "{{ ctags_dir }}"
+  when: is_centos and ctags_installed.stat.exists == false
