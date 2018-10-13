@@ -15,5 +15,8 @@
     - tree
     - wget
     - nkf
+    - words
+    - telnet
+    - xdg-utils
   when: is_centos
   become: yes
