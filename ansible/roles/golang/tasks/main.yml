@@ -35,7 +35,7 @@
   with_items:
     - github.com/nsf/gocode
     - golang.org/x/tools/cmd/goimports
-    - github.com/golang/lint/golint
+    - golang.org/x/lint/golint
     - github.com/go-task/task/cmd/task
     - golang.org/x/tools/cmd/gotype
     - honnef.co/go/tools/cmd/gosimple
@@ -47,11 +47,15 @@
     - github.com/pocke/lemonade
     - github.com/jackc/sqlfmt/...
     - github.com/notomo/wsxhub/...
+  environment:
+    GOPATH: "{{ home_dir }}/go"
 
 - name: go get
   command: "~/.local/go/bin/go get {{ item.item }}"
   when: item.stderr != "" or item.rc == 1
   with_items: "{{ go_module_exists.results }}"
+  environment:
+    GOPATH: "{{ home_dir }}/go"
 
 - name: add go path
   blockinfile:
