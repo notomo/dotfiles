@@ -6,12 +6,13 @@
   when: is_macos
   notify: start docker
 
+- name: install yum-utils
+  yum: name=yum-utils
+  become: yes
+  when: is_centos
+
 - name: add repository for docker
-  yum_repository:
-    name: dockerrepo
-    description: docker repository
-    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
-    enabled: yes
+  shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   become: yes
   when: is_centos
 
@@ -31,6 +32,23 @@
   systemd:
     name: docker
     state: started
+  become: yes
+  when: is_centos
+
+- name: add user to docker group
+  user:
+    name: vagrant
+    groups: docker
+    append: yes
+  become: yes
+  when: is_centos
+
+- name: restart docker service
+  systemd:
+    name: docker
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
   become: yes
   when: is_centos
 
