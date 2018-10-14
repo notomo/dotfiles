@@ -3,21 +3,62 @@
   homebrew: name=node
   when: is_macos
 
+- name: check node_installer
+  stat:
+    path: "{{ app_dir }}/node_installer"
+  register: node_installer_downloaded
+  when: is_centos
+
+- name: download installer
+  get_url:
+    url: https://rpm.nodesource.com/setup_9.x
+    dest: "{{ app_dir }}/node_installer"
+  when: is_centos and node_installer_downloaded.stat.exists == false
+
+- name: check node install
+  command: "node -v"
+  register: node_installed
+  changed_when: False
+  failed_when: False
+  when: is_centos
+
+- name: install node
+  shell:
+    chdir: "{{ app_dir }}"
+    cmd: "bash node_installer"
+  become: yes
+  when: is_centos and node_installed.rc != 0
+
+- name: install nodejs with yum
+  yum: name=nodejs
+  become: yes
+  when: is_centos
+
+- name: set variables
+  set_fact:
+    node_packages:
+      - typescript
+      - neovim
+      - htmlhint
+      - fixjson
+      - javascript-typescript-langserver
+      - eslint
+      - prettier
+      - tslint
+      - wscat
+      - vue-language-server
+
 - name: install node.js package globally
   npm:
     name: "{{ item }}"
     global: yes
-  with_items:
-    - typescript
-    - gulp
-    - neovim
-    - htmlhint
-    - fixjson
-    - javascript-typescript-langserver
-    - eslint
-    - prettier
-    - tslint
-    - wscat
-    - vue-language-server
-    # - stylelint
-    # - stylelint-config-standard
+  with_items: "{{ node_packages }}"
+  when: is_macos
+
+- name: install node.js package globally
+  npm:
+    name: "{{ item }}"
+    global: yes
+  with_items: "{{ node_packages }}"
+  become: yes
+  when: is_centos
