@@ -1,0 +1,5 @@
+
+- name: set timezone to Asia/Tokyo
+  timezone:
+    name: Asia/Tokyo
+  become: yes
