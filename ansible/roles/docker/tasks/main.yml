@@ -9,26 +9,50 @@
 - name: add repository for docker
   yum_repository:
     name: dockerrepo
+    description: docker repository
     baseurl: https://download.docker.com/linux/centos/docker-ce.repo
     enabled: yes
-  become: True
+  become: yes
   when: is_centos
 
 - name: install with yum
   yum: name=docker-ce
-  become: True
+  become: yes
   when: is_centos
 
 - name: enable docker service
   systemd:
     name: docker
     enabled: yes
-  become: True
+  become: yes
   when: is_centos
 
 - name: start docker service
   systemd:
     name: docker
     state: started
-  become: True
+  become: yes
   when: is_centos
+
+- name: check docker-compose
+  stat:
+    path: "{{ home_dir }}/.local/bin/docker-compose"
+  register: docker_compose_installed
+  when: is_centos
+
+- name: get uname -s
+  shell: uname -s
+  register: uname_s
+  when: is_centos and docker_compose_installed.stat.exists == false
+
+- name: get uname -m
+  shell: uname -m
+  register: uname_m
+  when: is_centos and docker_compose_installed.stat.exists == false
+
+- name: download docker-compose
+  get_url:
+    url: https://github.com/docker/compose/releases/download/1.22.0/docker-compose-{{ uname_s.stdout }}-{{ uname_m.stdout }}
+    dest: "{{ home_dir }}/.local/bin/docker-compose"
+    mode: u+x
+  when: is_centos and docker_compose_installed.stat.exists == false
