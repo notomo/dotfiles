@@ -1,4 +1,3 @@
-
 if [ -f /etc/.bashrc ]; then
     . /etc/.bashrc
 fi
@@ -40,6 +39,7 @@ alias npmd=npm_install_dev
 alias create_patch='git diff --cached'
 alias apply_patch='git apply'
 alias df='df -h'
+alias gco='git checkout -t' # {remote}/{branch_name}
 
 function docker_latest() {
     docker ps -l -q
@@ -47,8 +47,7 @@ function docker_latest() {
 
 function docker_build() {
     name="$1"
-    if [ "$name" == "" ]
-    then
+    if [ "$name" == "" ]; then
         docker build .
     else
         docker build -t "$name" .
@@ -57,8 +56,7 @@ function docker_build() {
 
 function docker_run_tmp() {
     container="$1"
-    if [ "$container" == "" ]
-    then
+    if [ "$container" == "" ]; then
         container="$(docker_latest)"
     fi
     docker run -it --rm --name tmp "$container" bash
@@ -74,8 +72,7 @@ function docker_remove() {
 
 function docker_logs() {
     container="$1"
-    if [ "$container" == "" ]
-    then
+    if [ "$container" == "" ]; then
         container="$(docker_latest)"
     fi
     docker logs -ft "$1"
@@ -135,4 +132,3 @@ fi
 if [ -f "$HOME/.local/.bashrc" ]; then
     source "$HOME/.local/.bashrc"
 fi
-
