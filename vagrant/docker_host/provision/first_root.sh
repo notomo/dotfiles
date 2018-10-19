@@ -89,6 +89,7 @@ pip3.6 install pytest-cov
 yum -y install python-devel
 yum -y install python-pip --enablerepo epel
 pip install neovim
+pip install ansible-lint
 
 ln -s /usr/bin/python3.6 /usr/bin/python3
 
