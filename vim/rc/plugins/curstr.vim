@@ -1,7 +1,7 @@
 
 call curstr#custom#filetype_alias('toml', 'vim')
 
-call curstr#custom#source_alias('openable', ['blade', 'vim/function', 'vim/runtime', 'file', 'directory'])
+call curstr#custom#source_alias('openable', ['blade', 'vim/function', 'file', 'directory', 'vim/runtime'])
 
 
 call curstr#custom#source_alias('bool', ['togglable/word/simple'])
