@@ -10,6 +10,9 @@ nnoremap [exec]gl :<C-u>Ctrlb tab:next<CR>
 nnoremap [exec]G :<C-u>Ctrlb scroll:toBottom<CR>
 nnoremap [exec]p :<C-u>Ctrlb tab:duplicate<CR>
 nnoremap [exec]x :<C-u>Ctrlb tab:close<CR>
+nnoremap [exec]<Space> :<C-u>Ctrlb tab:create<CR>
+nnoremap [exec]dl :<C-u>Ctrlb tab:closeRight<CR>
+nnoremap [exec]da :<C-u>Ctrlb tab:closeLeft<CR>
 
 autocmd MyAuGroup FileType ctrlb-ctrl call s:ctrl_settings()
 function! s:ctrl_settings()
