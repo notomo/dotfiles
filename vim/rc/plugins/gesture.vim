@@ -1,0 +1,8 @@
+call gesture#register(["UP","DOWN"], "G")
+call gesture#register(["DOWN","UP"], "gg")
+call gesture#register(["DOWN","RIGHT"], "[exec]f")
+call gesture#register(["RIGHT", "DOWN", "LEFT"], "p")
+call gesture#register(["RIGHT"], "[tab]l")
+call gesture#register(["LEFT"], "[tab]a")
+call gesture#register(["DOWN","LEFT"], "[tab]q")
+call gesture#register(["RIGHT","LEFT"], "[file]rl")

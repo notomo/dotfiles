@@ -254,3 +254,13 @@ on_ft = 'vue'
 repo = 'Shougo/defx.nvim'
 if = 'executable("python3.6")'
 hook_source = 'source ~/.vim/rc/plugins/defx.vim'
+
+[[plugins]]
+repo = 'notomo/gesture.nvim'
+build = 'npm run setup'
+hook_add = '''
+nmap <LeftMouse> <Plug>(gesture-execute)
+nmap <LeftDrag> <Plug>(gesture-execute)
+nmap <LeftRelease> <Plug>(gesture-finish)
+'''
+hook_source = 'source ~/.vim/rc/plugins/gesture.vim'
