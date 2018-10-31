@@ -113,7 +113,9 @@ autocmd MyAuGroup FileType vimfiler call s:set_vimfiler()
 function! s:set_vimfiler()
     augroup my-filetype-vimfiler
         autocmd! * <buffer>
-        autocmd CursorMoved <buffer> execute "normal \<Plug>(vimfiler_print_filename)"
+        if !empty(getline('.'))
+            autocmd CursorMoved <buffer> execute "normal \<Plug>(vimfiler_print_filename)"
+        endif
     augroup END
 endfunction
 
