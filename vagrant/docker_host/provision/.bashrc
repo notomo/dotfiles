@@ -40,6 +40,7 @@ alias create_patch='git diff --cached'
 alias apply_patch='git apply'
 alias df='df -h'
 alias gco='git checkout -t' # {remote}/{branch_name}
+alias dsl="docker_compose logs -f --tail=100"
 
 function docker_latest() {
     docker ps -l -q
