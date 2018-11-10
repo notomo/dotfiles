@@ -259,7 +259,6 @@ hook_source = 'source ~/.vim/rc/plugins/defx.vim'
 repo = 'notomo/gesture.nvim'
 build = 'npm run setup'
 hook_add = '''
-nmap <silent> <LeftMouse> <Plug>(gesture-execute)
 nmap <silent> <LeftDrag> <Plug>(gesture-execute)
 nmap <silent> <LeftRelease> <Plug>(gesture-finish)
 '''
