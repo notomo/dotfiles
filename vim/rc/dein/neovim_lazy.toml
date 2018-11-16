@@ -127,6 +127,7 @@ let g:go_list_type = "quickfix"
 let g:go_snippet_engine = ""
 let g:go_gocode_unimported_packages = 1
 let g:go_template_autocreate = 0
+let g:go_info_mode = 'guru'
 '''
 
 [[plugins]]
