@@ -5,6 +5,8 @@ let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_virtualtext_cursor = 1
+let g:ale_virtualtext_prefix = ' '
 
 let g:ale_linters = {}
 let g:ale_linters['python'] = ['flake8', 'mypy']
@@ -67,4 +69,3 @@ endfunction
 
 nnoremap [exec]T :<C-u>call <SID>toggle_fix_on_save()<CR>
 nnoremap [exec]F :<C-u>ALEFix<CR>
-
