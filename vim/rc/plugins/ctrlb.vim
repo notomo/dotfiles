@@ -50,8 +50,10 @@ autocmd MyAuGroup FileType ctrlb-bookmarkTree call s:bookmark_tree_settings()
 function! s:bookmark_tree_settings()
     nnoremap <buffer> <CR> :<C-u>call ctrlb#do_action('bookmarkTree', 'open')<CR>
     nnoremap <buffer> l :<C-u>call ctrlb#do_action('bookmarkTree', 'open')<CR>
+    nnoremap <buffer> o :<C-u>call ctrlb#do_action('bookmarkTree', 'open')<CR>
     nnoremap <buffer> h :<C-u>call ctrlb#do_action('bookmarkTree', 'openParent')<CR>
     nnoremap <buffer> t<Space> :<C-u>call ctrlb#do_action('bookmarkTree', 'tabOpen')<CR>
+    xnoremap <buffer> t<Space> :call ctrlb#do_action('bookmarkTree', 'tabOpen')<CR>
     nnoremap <buffer> D :<C-u>call ctrlb#do_action('bookmarkTree', 'debug')<CR>
     nnoremap <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
     nnoremap <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
