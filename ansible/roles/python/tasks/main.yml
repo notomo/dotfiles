@@ -31,10 +31,10 @@
 - name: set variables
   set_fact:
     python2_packages:
-      - neovim
+      - pynvim
       - ansible-lint
     python3_packages:
-      - neovim
+      - pynvim
       - flake8
       - requests
       - mypy

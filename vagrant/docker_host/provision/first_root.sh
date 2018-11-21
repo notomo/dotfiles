@@ -75,7 +75,7 @@ cp -f /vagrant/provision/.inputrc $USERDIR/.inputrc
 yum install -y https://centos7.iuscommunity.org/ius-release.rpm
 yum install -y python36u python36u-libs python36u-devel python36u-pip
 yum-config-manager --disable ius
-pip3.6 install neovim
+pip3.6 install pynvim
 pip3.6 install flake8
 pip3.6 install requests
 pip3.6 install mypy
@@ -88,7 +88,7 @@ pip3.6 install pytest-cov
 # python2
 yum -y install python-devel
 yum -y install python-pip --enablerepo epel
-pip install neovim
+pip install pynvim
 pip install ansible-lint
 
 ln -s /usr/bin/python3.6 /usr/bin/python3
