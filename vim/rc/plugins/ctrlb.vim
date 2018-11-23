@@ -64,5 +64,8 @@ function! s:history_list_settings()
     nnoremap <buffer> o :<C-u>call ctrlb#do_action('historyList', 'open')<CR>
     nnoremap <buffer> <CR> :<C-u>call ctrlb#do_action('historyList', 'open')<CR>
     nnoremap <buffer> t<Space> :<C-u>call ctrlb#do_action('historyList', 'tabOpen')<CR>
+    xnoremap <buffer> t<Space> :call ctrlb#do_action('historyList', 'tabOpen')<CR>
     nnoremap <buffer> D :<C-u>call ctrlb#do_action('historyList', 'debug')<CR>
+    nnoremap <buffer> R :<C-u>call ctrlb#do_action('historyList', 'remove')<CR>
+    xnoremap <buffer> R :call ctrlb#do_action('historyList', 'remove')<CR>
 endfunction
