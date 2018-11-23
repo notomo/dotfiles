@@ -33,6 +33,14 @@
     content: |
       {{ lookup('file', '.bashrc') }}
 
+- name: add .bashrc content on mac
+  blockinfile:
+    dest: "{{ home_dir }}/.bashrc"
+    content: |
+      alias anct='cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml --tags'
+      alias psa='ps -aux'
+  when: is_macos
+
 - name: add .bash_profile content
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK bash role"
