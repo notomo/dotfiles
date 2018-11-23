@@ -3,4 +3,15 @@
   homebrew_cask: name={{ item }}
   with_items:
     - iterm2
+    - alacritty
   when: is_macos
+
+- name: mkdir .config/alacritty
+  file:
+    path: "{{ home_dir }}/.config/alacritty"
+    state: directory
+
+- name: copy alacritty.yml
+  copy:
+    src: alacritty.yml
+    dest: "{{ home_dir }}/.config/alacritty/alacritty.yml"
