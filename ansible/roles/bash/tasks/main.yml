@@ -35,6 +35,7 @@
 
 - name: add .bashrc content on mac
   blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK bash on mac"
     dest: "{{ home_dir }}/.bashrc"
     content: |
       alias anct='cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml --tags'
