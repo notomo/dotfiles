@@ -97,6 +97,11 @@ let b:caw_wrap_oneline_comment = ['{{--', '--}}']
 setlocal expandtab
 '''
 
+markdown = '''
+nmap <buffer> <Space>c <Plug>(caw:wrap:toggle:operator)_
+xmap <buffer> <Space>c <Plug>(caw:wrap:toggle:operator)
+'''
+
 Jenkinsfile = '''
 let b:caw_oneline_comment = '//'
 let b:caw_wrap_oneline_comment = ['//']
