@@ -5,7 +5,7 @@ let s:enable = {}
 let s:enable.tabline = 0
 let s:enable.statusline = 1
 let s:active = {}
-let s:active.left = [['mode'], ['position']]
+let s:active.left = [['mode'], ['position_map'], ['position']]
 let s:active.right = [['gitbranch'], ['fileinfo'], ['filepath']]
 let s:inactive = {}
 let s:inactive.left = [[]]
@@ -15,6 +15,7 @@ let s:component_function.mode = 'LightlineMode'
 let s:component_function.gitbranch = 'LightlineGitBranch'
 let s:component_function.fileinfo = 'LightlineFileInfo'
 let s:component_function.position = 'LightlinePosition'
+let s:component_function.position_map = 'LightlinePositionMap'
 let s:component_function.filepath = 'LightlineFilePath'
 let g:lightline = {'enable': s:enable, 'active': s:active, 'inactive': s:inactive, 'component_function': s:component_function, }
 
@@ -49,6 +50,31 @@ function! LightlinePosition()
     return s:surround(col('.'))
 endfunction
 
+function! LightlinePositionMap()
+    if &filetype ==? 'denite'
+        return ''
+    endif
+
+    if winwidth(0) < 100
+        return ''
+    endif
+
+    let current = line('.')
+    let line_count = line('$')
+    let length = 20
+
+    let currentPosition = float2nr(round(current * 1.0 / line_count * length))
+
+    let otherMark = '-'
+    let otherLine = repeat(otherMark, length)
+
+    let front = currentPosition == 0 ? '' :  otherLine[:currentPosition - 1]
+    let rear = otherLine[currentPosition :]
+    let line =  front . '+' . rear
+
+    return s:surround(line)
+endfunction
+
 function! LightlineFilePath()
     if &filetype ==? 'vimfiler'
         return vimfiler#get_status_string()
@@ -80,11 +106,11 @@ let s:fore = '#fffeeb'
 let s:normal_base = [s:fore, '#536273']
 
 let s:p.normal.middle = [s:normal_base]
-let s:p.normal.left = [[s:fore, '#798fab'], s:normal_base]
+let s:p.normal.left = [[s:fore, '#798fab'], s:normal_base, s:normal_base]
 let s:p.normal.right = [s:normal_base, s:normal_base, s:normal_base]
 
 let s:p.insert.middle = s:p.normal.middle
-let s:p.insert.left = [[s:fore, '#6a9681'], s:normal_base]
+let s:p.insert.left = [[s:fore, '#6a9681'], s:normal_base, s:normal_base]
 let s:p.insert.right = s:p.normal.right
 
 let s:p.select = s:p.insert
