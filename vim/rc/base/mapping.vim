@@ -468,8 +468,7 @@ cnoremap <C-j> <Down>
 noremap! <C-e> <End>
 inoremap <C-a> <C-o>^
 cnoremap <C-a> <Home>
-" NOTICE: cnoremap <C-h> <BS> is not working on mac
-noremap! <C-h> <Left><Del>
+noremap! <C-h> <BS>
 noremap! <C-d> <Del>
 inoremap <C-o> <C-o>o
 
