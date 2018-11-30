@@ -491,8 +491,6 @@ inoremap j<Space>z <C-a>
 cnoremap j<Space>o <C-z>
 cnoremap <Tab> <C-n>
 cnoremap <S-Tab> <C-p>
-cnoremap <C-h> <Space><BS><Left>
-cnoremap <C-l> <Space><BS><Right>
 
 if v:version >= 800
     let s:JOIN_UNDO = "\<C-g>U"
