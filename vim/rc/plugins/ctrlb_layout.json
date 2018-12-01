@@ -6,7 +6,19 @@
   ],
   "items": [
     {
-      "name": "bookmarkTree"
+      "direction": "vertical",
+      "sizeParcents": [
+        50,
+        50
+      ],
+      "items": [
+        {
+          "name": "tabList"
+        },
+        {
+          "name": "bookmarkTree"
+        }
+      ]
     },
     {
       "direction": "vertical",

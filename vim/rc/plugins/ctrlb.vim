@@ -66,6 +66,19 @@ function! s:history_list_settings()
     nnoremap <buffer> t<Space> :<C-u>call ctrlb#do_action('historyList', 'tabOpen')<CR>
     xnoremap <buffer> t<Space> :call ctrlb#do_action('historyList', 'tabOpen')<CR>
     nnoremap <buffer> D :<C-u>call ctrlb#do_action('historyList', 'debug')<CR>
-    nnoremap <buffer> R :<C-u>call ctrlb#do_action('historyList', 'remove')<CR>
-    xnoremap <buffer> R :call ctrlb#do_action('historyList', 'remove')<CR>
+    nnoremap <buffer> dd :<C-u>call ctrlb#do_action('historyList', 'remove')<CR>
+    xnoremap <buffer> d :call ctrlb#do_action('historyList', 'remove')<CR>
+endfunction
+
+autocmd MyAuGroup FileType ctrlb-tabList call s:tab_list_settings()
+function! s:tab_list_settings()
+    nnoremap <buffer> <CR> :<C-u>call ctrlb#do_action('tabList', 'activate')<CR>
+    nnoremap <buffer> t<Space> :<C-u>call ctrlb#do_action('tabList', 'duplicate')<CR>
+    xnoremap <buffer> t<Space> :call ctrlb#do_action('tabList', 'duplicate')<CR>
+    nnoremap <buffer> rl :<C-u>call ctrlb#do_action('tabList', 'reload')<CR>
+    nnoremap <buffer> dd :<C-u>call ctrlb#do_action('tabList', 'close')<CR>
+    xnoremap <buffer> d :call ctrlb#do_action('tabList', 'close')<CR>
+    nnoremap <buffer> D :<C-u>call ctrlb#do_action('tabList', 'debug')<CR>
+    nnoremap <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
+    nnoremap <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
 endfunction
