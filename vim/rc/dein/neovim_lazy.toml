@@ -254,7 +254,7 @@ on_ft = 'vue'
 
 [[plugins]]
 repo = 'Shougo/defx.nvim'
-if = 'executable("python3.6")'
+if = 'executable("python3.6") || executable("python3.7")'
 hook_source = 'source ~/.vim/rc/plugins/defx.vim'
 
 [[plugins]]

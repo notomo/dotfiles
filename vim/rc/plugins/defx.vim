@@ -7,7 +7,7 @@ function! s:settings() abort
     nnoremap <silent> <buffer> <expr> yf defx#do_action('copy')
     nnoremap <silent> <buffer> <expr> xf defx#do_action('move')
     nnoremap <silent> <buffer> <expr> p defx#do_action('paste')
-    nnoremap <silent> <buffer> <expr> l defx#do_action('open')
+    nnoremap <silent> <buffer> <expr> l defx#do_action('drop')
     nnoremap <silent> <buffer> <expr> sh defx#do_action('open', 'botright split')
     nnoremap <silent> <buffer> <expr> sv defx#do_action('open', 'botright vsplit')
     nnoremap <silent> <buffer> <expr> P defx#do_action('open', 'pedit')
