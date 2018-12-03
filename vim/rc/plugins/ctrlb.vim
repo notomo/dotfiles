@@ -73,6 +73,7 @@ endfunction
 autocmd MyAuGroup FileType ctrlb-tabList call s:tab_list_settings()
 function! s:tab_list_settings()
     nnoremap <buffer> <CR> :<C-u>call ctrlb#do_action('tabList', 'activate')<CR>
+    nnoremap <buffer> o :<C-u>call ctrlb#do_action('tabList', 'activate')<CR>
     nnoremap <buffer> t<Space> :<C-u>call ctrlb#do_action('tabList', 'duplicate')<CR>
     xnoremap <buffer> t<Space> :call ctrlb#do_action('tabList', 'duplicate')<CR>
     nnoremap <buffer> rl :<C-u>call ctrlb#do_action('tabList', 'reload')<CR>
