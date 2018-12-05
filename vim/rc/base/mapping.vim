@@ -42,6 +42,7 @@ nnoremap [edit]m i<C-@>
 nnoremap [edit]d *``"_cgn
 nnoremap [edit]a *``cgn<C-r>"
 xnoremap <expr> [edit]d "y/\\V\<C-r>=notomo#vimrc#escape_search_pattern(@\")\<CR>\<CR>" . '``cgn'
+nnoremap [edit]T :<C-u>call notomo#vimrc#add_closed_tag()<CR>
 "}}}
 
 " kana"{{{
@@ -608,8 +609,7 @@ nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
 nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
 nnoremap [exec]e :<C-u>smile<CR>
 nnoremap [exec]cC :<C-u>messages clear<CR>
-
-nnoremap [exec]t :<C-u>call notomo#vimrc#add_closed_tag()<CR>
+nnoremap [exec]t :<C-u>tabe ~/workspace/todo/README.md<CR>
 "}}}
 
 " quickfix and locationlist"{{{
