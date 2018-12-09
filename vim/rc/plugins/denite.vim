@@ -40,12 +40,11 @@ nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file_r
 nnoremap <silent> [denite]D :<C-u>Denite grep:~/dotfiles::!<CR>
 nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
-nnoremap <silent> [denite]p :<C-u>Denite dein<CR>
+nnoremap <silent> [denite]p :<C-u>Denite plugin<CR>
 nnoremap <silent> [denite]U :<C-u>Denite namespace<CR>
 nnoremap <silent> [denite]P :<C-u>call notomo#denite#add_php_use_statement()<CR>
 nnoremap <expr> <silent> [denite]M notomo#denite#get_php_method_command()
 nnoremap <silent> [denite]O :<C-u>Denite option<CR>
-nnoremap <silent> [denite]L :<C-u>Denite dein_log<CR>
 nnoremap <silent> [denite]A :<C-u>Denite alias<CR>
 nnoremap <silent> [denite]b :<C-u>Denite url_bookmark<CR>
 nnoremap <expr> <silent> [keyword]sg ":\<C-u>DeniteProjectDir file_rec -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"

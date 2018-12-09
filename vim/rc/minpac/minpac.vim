@@ -9,9 +9,8 @@ endif
 packadd minpac
 call minpac#init()
 
-call minpac#add('k-takata/minpac', {'type': 'opt'})
-
 source ~/.vim/rc/minpac/eager.vim
+source ~/.vim/rc/minpac/filetype.vim
 if has('nvim')
     source ~/.vim/rc/minpac/neovim_eager.vim
 endif
@@ -24,14 +23,22 @@ endif
 
 packloadall
 
+" source post
 source ~/.vim/rc/plugins/unite.vim
 source ~/.vim/rc/plugins/vimfiler.vim
 source ~/.vim/rc/plugins/denite.vim
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
-
-
-" NOTICE: for test
-syntax enable
-filetype plugin indent on
-colorscheme spring-night
+source ~/.vim/rc/plugins/deoplete.vim
+source ~/.vim/rc/plugins/curstr.vim
+source ~/.vim/rc/plugins/gesture.vim
+IncSearchNoreMap <Tab> <Over>(incsearch-next)
+IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
+IncSearchNoreMap <C-Space> <Tab>
+IncSearchNoreMap <C-j> <Down>
+IncSearchNoreMap <C-k> <Up>
+IncSearchNoreMap <C-l> <Right>
+IncSearchNoreMap <Space> <CR>
+IncSearchNoreMap <S-Space> <Space>
+IncSearchNoreMap <C-n> <Over>(incsearch-scroll-f)
+IncSearchNoreMap <C-p> <Over>(incsearch-scroll-b)

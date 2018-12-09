@@ -27,15 +27,10 @@ filetype plugin indent off
 
 let g:mapleader = ','
 let g:maplocalleader = '<Leader>l'
-runtime! rc/dein/dein.vim
+runtime! rc/minpac/minpac.vim
 
 syntax enable
 filetype plugin indent on
-
-if !has('vim_starting')
-    call dein#call_hook('source')
-    call dein#call_hook('post_source')
-endif
 
 runtime! rc/local/*.vim
 runtime! rc/base/*.vim
@@ -44,4 +39,3 @@ if has('nvim')
 endif
 
 runtime! rc/local/after/*.vim
-

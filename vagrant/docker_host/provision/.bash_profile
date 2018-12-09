@@ -7,7 +7,7 @@ export GROOVY_HOME=$HOME/app/groovy/latest
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/composer/vendor/bin:$GOPATH/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
 export PS1="\n[\u@\h \w]\n\$ "
 
-export PATH=$PATH:$HOME/.vim/dein/repos/github.com/thinca/vim-themis/bin
+export PATH=$PATH:$HOME/.vim/pack/minpac/start/vim-themis/bin
 export THEMIS_VIM=nvim
 export THEMIS_ARGS="-e -s --headless"
 export THEMIS_PROFILE_LOG=profile.txt
