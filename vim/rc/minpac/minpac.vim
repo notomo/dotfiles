@@ -1,5 +1,7 @@
 
-let s:minpac_dir = expand('~/.vim/pack/minpac/opt/minpac')
+let s:pack_dir = expand('~/.vim/minpac')
+let s:minpac_dir = s:pack_dir . '/pack/minpac/opt/minpac'
+execute 'set packpath^=' . s:pack_dir
 let s:initialized = v:false
 if has('vim_starting') && !isdirectory(s:minpac_dir)
     execute '!git clone --depth 1 https://github.com/k-takata/minpac ' . s:minpac_dir
