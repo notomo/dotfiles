@@ -13,7 +13,7 @@ function! s:add(name, options) abort
     endif
     if has_key(a:options, 'event')
         let event = a:options['event']
-        execute 'autocmd MyAuGroup InsertEnter packadd ' . name
+        execute 'autocmd MyAuGroup ' . event . ' * packadd ' . name
     endif
 
     call minpac#add(a:name, {'type': 'opt'})
