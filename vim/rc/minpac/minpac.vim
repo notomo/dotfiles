@@ -20,7 +20,9 @@ source ~/.vim/rc/minpac/lazy.vim
 
 if s:initialized
     call minpac#update()
-    UpdateRemotePlugins
+    if has('nvim')
+        UpdateRemotePlugins
+    endif
 endif
 
 packloadall
@@ -31,9 +33,11 @@ source ~/.vim/rc/plugins/vimfiler.vim
 source ~/.vim/rc/plugins/denite.vim
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
-source ~/.vim/rc/plugins/deoplete.vim
-source ~/.vim/rc/plugins/curstr.vim
-source ~/.vim/rc/plugins/gesture.vim
+if has('nvim')
+    source ~/.vim/rc/plugins/deoplete.vim
+    source ~/.vim/rc/plugins/curstr.vim
+    source ~/.vim/rc/plugins/gesture.vim
+endif
 IncSearchNoreMap <Tab> <Over>(incsearch-next)
 IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
 IncSearchNoreMap <C-Space> <Tab>

@@ -465,9 +465,6 @@ omap gK <Plug>(edgemotion-k)
 call minpac#add('cocopon/colorswatch.vim')
 nnoremap [exec]co :<C-u>ColorSwatchGenerate<CR>
 
-call minpac#add('Shougo/deoplete.nvim')
-let g:deoplete#enable_at_startup = 1
-
 call minpac#add('rhysd/clever-f.vim')
 let g:clever_f_across_no_line = 1
 let g:clever_f_mark_char = 0

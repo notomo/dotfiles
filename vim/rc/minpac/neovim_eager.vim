@@ -76,3 +76,6 @@ let g:test#runners['Python'] = ['PyTest']
 let g:test#runners['JavaScript'] = ['Jest']
 let g:test#python#pytest#options = '-s'
 let g:test#php#phpunit#options = '--no-coverage'
+
+call minpac#add('Shougo/deoplete.nvim')
+let g:deoplete#enable_at_startup = 1
