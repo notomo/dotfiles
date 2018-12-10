@@ -599,8 +599,6 @@ xnoremap [arith]u g<C-a>gv
 
 " exec"{{{
 nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
-nnoremap <silent> [exec]u :<C-u>sort nu<CR>
-nnoremap <silent> [exec]U :<C-u>sort! nu<CR>
 " execute current line
 nnoremap <expr> [exec]l ':' . getline('.') . '<CR>'
 " source current buffer
