@@ -49,10 +49,7 @@ nnoremap [exec]cm :<C-u>Capture messages<CR>
 nnoremap [exec]cv :<C-u>Capture version<CR>
 nnoremap [exec]cs :<C-u>call notomo#vimrc#syntax_report()<CR>
 
-call s:add('plasticboy/vim-markdown', {'ft' : 'markdown'})
-let g:vim_markdown_no_default_key_mappings = 1
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 0
+call s:add('rhysd/vim-gfm-syntax', {'ft' : 'markdown'})
 
 call s:add('thinca/vim-textobj-function-javascript', {'ft' : 'javascript'})
 
