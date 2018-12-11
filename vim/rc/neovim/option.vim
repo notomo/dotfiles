@@ -11,7 +11,7 @@ elseif has('win32')
     let g:ruby_host_prog = 'C:\tools\ruby24\bin\ruby.exe'
 endif
 
-set runtimepath+=~/dotfiles/vim/rc/rplugin
+set runtimepath+=~/dotfiles/vim/rc/rplugins
 
 set clipboard+=unnamedplus
 set inccommand=nosplit

@@ -1,13 +1,13 @@
 
-autocmd MyAuGroup BufWrite ~/.vim/pack/minpac/start/curstr.nvim/*.py call atags#generate()
-autocmd MyAuGroup BufRead,BufEnter ~/.vim/pack/minpac/start/curstr.nvim/* call s:curstr_settings()
+autocmd MyAuGroup BufWrite ~/.vim/minpac/pack/minpac/start/curstr.nvim/*.py call atags#generate()
+autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/start/curstr.nvim/* call s:curstr_settings()
 function! s:curstr_settings() abort
-    let g:local#var#document_root = '~/.vim/pack/minpac/start/curstr.nvim/test/report/html/'
-    let g:atags_build_commands_list = ['cd ~/.vim/pack/minpac/start/curstr.nvim', 'make tag']
+    let g:local#var#document_root = '~/.vim/minpac/pack/minpac/start/curstr.nvim/test/report/html/'
+    let g:atags_build_commands_list = ['cd ~/.vim/minpac/pack/minpac/start/curstr.nvim', 'make tag']
 endfunction
 
 let s:ctrlb_nvim_coverage = ''
-autocmd MyAuGroup BufRead,BufEnter ~/.vim/pack/minpac/start/ctrlb.nvim/* call s:ctrlb_nvim_settings()
+autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/start/ctrlb.nvim/* call s:ctrlb_nvim_settings()
 function! s:ctrlb_nvim_settings() abort
     if empty(s:ctrlb_nvim_coverage)
         let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
@@ -34,7 +34,7 @@ function! s:sinchock_web_settings() abort
 endfunction
 
 let s:gesture_nvim_coverage = ''
-autocmd MyAuGroup BufRead,BufEnter ~/.vim/pack/minpac/start/gesture.nvim/* call s:gesture_nvim_settings()
+autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/start/gesture.nvim/* call s:gesture_nvim_settings()
 function! s:gesture_nvim_settings() abort
     if empty(s:gesture_nvim_coverage)
         let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
