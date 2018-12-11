@@ -385,6 +385,7 @@ source ~/.vim/rc/plugins/operator-surround.vim
 call minpac#add('thinca/vim-quickrun')
 nnoremap <silent> <Leader>Q :<C-u>call notomo#quickrun#execute()<CR>
 xnoremap <silent> <Leader>Q :QuickRun -mode v<CR>
+source ~/.vim/rc/plugins/quickrun.vim
 
 call minpac#add('tyru/caw.vim')
 nmap <Space>c <Plug>(caw:hatpos:toggle:operator)_
