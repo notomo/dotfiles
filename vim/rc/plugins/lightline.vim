@@ -5,7 +5,7 @@ let s:enable = {}
 let s:enable.tabline = 0
 let s:enable.statusline = 1
 let s:active = {}
-let s:active.left = [['mode'], ['position_map'], ['position']]
+let s:active.left = [['mode'], ['position_map'], ['position'], ['gesture_lines']]
 let s:active.right = [['gitbranch'], ['fileinfo'], ['filepath']]
 let s:inactive = {}
 let s:inactive.left = [[]]
@@ -16,6 +16,7 @@ let s:component_function.gitbranch = 'LightlineGitBranch'
 let s:component_function.fileinfo = 'LightlineFileInfo'
 let s:component_function.position = 'LightlinePosition'
 let s:component_function.position_map = 'LightlinePositionMap'
+let s:component_function.gesture_lines = 'LightlineGestureLines'
 let s:component_function.filepath = 'LightlineFilePath'
 let g:lightline = {'enable': s:enable, 'active': s:active, 'inactive': s:inactive, 'component_function': s:component_function, }
 
@@ -73,6 +74,14 @@ function! LightlinePositionMap()
     let line =  front . '+' . rear
 
     return s:surround(line)
+endfunction
+
+function! LightlineGestureLines()
+    if &filetype =~? 'vimfiler\|denite'
+        return ''
+    endif
+    let directions = map(gesture#get_lines(), { _, v -> v.direction . v.length })
+    return s:surround(join(directions, ','))
 endfunction
 
 function! LightlineFilePath()

@@ -52,8 +52,8 @@ nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
 source ~/.vim/rc/plugins/ctrlb.vim
 
 call minpac#add('notomo/gesture.nvim', {'do' : '!npm run setup'})
-nmap <silent> <LeftDrag> <Plug>(gesture-execute)
-nmap <silent> <LeftRelease> <Plug>(gesture-finish)
+nnoremap <silent> <LeftDrag> :<C-u>call gesture#execute()<CR>
+nnoremap <silent> <LeftRelease> :<C-u>call gesture#finish()<CR>
 
 if executable('python3.6') || executable('python3.7')
     call minpac#add('Shougo/defx.nvim')
