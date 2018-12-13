@@ -12,7 +12,6 @@ packadd minpac
 call minpac#init()
 
 source ~/.vim/rc/minpac/eager.vim
-source ~/.vim/rc/minpac/filetype.vim
 if has('nvim')
     source ~/.vim/rc/minpac/neovim_eager.vim
 endif

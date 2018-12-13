@@ -119,6 +119,10 @@ else
     let g:python3_host_prog = '/usr/bin/python3'
 endif
 
+let g:python_highlight_all = 1
+let g:markdown_fenced_languages = ['vim']
+let g:ft_ignroe_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$'
+
 if has('nvim')
     autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
     autocmd MyAuGroup FileType php execute 'TemplateLoad /filetype/' . &l:filetype
