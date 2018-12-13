@@ -77,7 +77,7 @@ function! LightlinePositionMap()
 endfunction
 
 function! LightlineGestureLines()
-    if &filetype =~? 'vimfiler\|denite'
+    if !has('nvim') || &filetype =~? 'vimfiler\|denite'
         return ''
     endif
     let directions = map(gesture#get_lines(), { _, v -> v.direction . v.length })
