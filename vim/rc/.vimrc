@@ -3,7 +3,7 @@ set encoding=utf-8
 scriptencoding utf-8
 let $LANG='ja_JP.UTF-8'
 
-if has('vim_starting')
+if (!has('nvim') || has('win32')) && has('vim_starting')
     set runtimepath^=~/.vim/
     set runtimepath+=~/.vim/after
     if has('kaoriya')
