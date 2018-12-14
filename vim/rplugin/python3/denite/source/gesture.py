@@ -35,9 +35,10 @@ class Source(Base):
 
     def _transform_gesture(self, gesture):
         return {
-            'lines': map(
-                lambda line: self._format_line(line),
-                gesture['lines']
+            'inputs': map(
+                lambda i: self._format_line(
+                    i) if i['kind'] == 'direction' else self._format_text(i),
+                gesture['inputs']
             ),
             'rhs': gesture['rhs'],
             'id': gesture['id'],
@@ -46,7 +47,7 @@ class Source(Base):
     def _format_word(self, gesture) -> str:
         return '{}: {} => {}'.format(
             gesture['id'],
-            ','.join(gesture['lines']),
+            ','.join(gesture['inputs']),
             gesture['rhs'],
         )
 
@@ -59,7 +60,22 @@ class Source(Base):
         if line['max_length'] is not None:
             condition = '{} < {}'.format(condition, line['max_length'])
 
-        formatted = line['direction']
+        formatted = line['value']
+        if not condition == 'x':
+            formatted = '{}({})'.format(formatted, condition)
+
+        return formatted
+
+    def _format_text(self, text) -> str:
+        condition = 'x'
+
+        if text['min_count'] is not None:
+            condition = '{} < x'.format(text['min_count'])
+
+        if text['max_count'] is not None:
+            condition = '{} < {}'.format(condition, text['max_count'])
+
+        formatted = text['value']
         if not condition == 'x':
             formatted = '{}({})'.format(formatted, condition)
 

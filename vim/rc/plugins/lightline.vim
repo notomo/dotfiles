@@ -80,7 +80,7 @@ function! LightlineGestureLines()
     if !has('nvim') || &filetype =~? 'vimfiler\|denite'
         return ''
     endif
-    let directions = map(gesture#get_lines(), { _, v -> v.direction . v.length })
+    let directions = map(gesture#get_inputs(), { _, v -> v.value })
     return s:surround(join(directions, ','))
 endfunction
 
