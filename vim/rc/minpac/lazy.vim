@@ -76,10 +76,6 @@ endif
 
 call s:add('fszymanski/deoplete-emoji', {'ft' : 'markdown'})
 
-call s:add('zchee/deoplete-clang', {'ft' : 'c'})
-let g:deoplete#sources#clang#libclang_path = '/usr/lib64/llvm/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
-
 call s:add('mhartington/nvim-typescript', {'ft' : 'typescript', 'do' : 'silent! !./install.sh' })
 
 call s:add('fatih/vim-go', {'ft' : 'go', 'do' : 'GoInstallBinaries' })

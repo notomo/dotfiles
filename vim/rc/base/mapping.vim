@@ -194,44 +194,10 @@ nnoremap [option]w :<C-u>setlocal wrap!<CR>
 "}}}
 
 " keyword"{{{
-function! s:tab_tag_open() abort
-    try
-        call bettertagjump#php#Jump()
-        noautocmd tab split
-        noautocmd tabprevious
-        noautocmd execute "normal! \<C-o>"
-        noautocmd tabnext
-    catch
-        echo 'Not found tag'
-    endtry
-endfunction
-nnoremap [keyword]t :<C-u>call <SID>tab_tag_open()<CR>
-
-function! s:split_tag_open(split_cmd) abort
-    try
-        let curbuf_num = bufnr('%')
-        call bettertagjump#php#Jump()
-        if curbuf_num != bufnr('%')
-            noautocmd execute 'buffer ' . curbuf_num
-        endif
-        execute a:split_cmd
-        noautocmd execute "normal! \<C-o>"
-    catch
-        echo 'Not found tag'
-    endtry
-endfunction
-
-function! s:tag_open() abort
-    try
-        call bettertagjump#php#Jump()
-    catch
-        echo 'Not found tag'
-    endtry
-endfunction
-
-nnoremap [keyword]v :<C-u>call <SID>split_tag_open('vsplit')<CR>
-nnoremap [keyword]o :<C-u>call <SID>tag_open()<CR>
-nnoremap [keyword]h :<C-u>call <SID>split_tag_open('split')<CR>
+nnoremap [keyword]v :<C-u>vertical stjump <C-r>=expand('<cword>')<CR><CR>
+nnoremap [keyword]t :<C-u>tab stjump <C-r>=expand('<cword>')<CR><CR>
+nnoremap [keyword]o <C-]>
+nnoremap [keyword]h :<C-u>stjump <C-r>=expand('<cword>')<CR><CR>
 "}}}
 
 " Nop"{{{

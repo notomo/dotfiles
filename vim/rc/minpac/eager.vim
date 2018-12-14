@@ -451,8 +451,6 @@ xmap af <Plug>(textobj-function-a)
 xmap if <Plug>(textobj-function-i)
 let g:textobj_function_no_default_key_mappings = 1
 
-call minpac#add('notomo/vim-better-tag-jump')
-
 call minpac#add('osyo-manga/vim-jplus')
 nmap [edit]j <Plug>(jplus)
 xmap [edit]j <Plug>(jplus)
@@ -466,9 +464,6 @@ omap gJ <Plug>(edgemotion-j)
 nmap gK <Plug>(edgemotion-k)
 xmap gK <Plug>(edgemotion-k)
 omap gK <Plug>(edgemotion-k)
-
-call minpac#add('cocopon/colorswatch.vim')
-nnoremap [exec]co :<C-u>ColorSwatchGenerate<CR>
 
 call minpac#add('rhysd/clever-f.vim')
 let g:clever_f_across_no_line = 1
