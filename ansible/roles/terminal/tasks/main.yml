@@ -10,8 +10,10 @@
   file:
     path: "{{ home_dir }}/.config/alacritty"
     state: directory
+  when: is_macos
 
 - name: copy alacritty.yml
   copy:
     src: alacritty.yml
     dest: "{{ home_dir }}/.config/alacritty/alacritty.yml"
+  when: is_macos
