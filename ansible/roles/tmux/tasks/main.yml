@@ -1,0 +1,46 @@
+
+- name: check tmux
+  stat:
+    path: "{{ home_dir }}/.local/bin/tmux"
+  register: tmux_installed
+  when: is_centos
+
+- name: check tmux download
+  stat:
+    path: "{{ app_dir }}/tmux.tar.gz"
+  register: tmux_downloaded
+  when: is_centos
+
+- name: make tmux directory
+  file:
+    path: "{{ app_dir }}/tmux"
+    state: directory
+  when: is_centos and tmux_installed.stat.exists == false
+
+- name: download tmux
+  action: command wget https://github.com/tmux/tmux/releases/download/2.8/tmux-2.8.tar.gz -O {{ app_dir }}/tmux.tar.gz
+  when: is_centos and tmux_downloaded.stat.exists == false and tmux_installed.stat.exists == false
+
+- name: unarchive tmux
+  unarchive:
+    src: "{{ app_dir }}/tmux.tar.gz"
+    dest: "{{ app_dir }}/tmux"
+    extra_opts: [--strip-components=1]
+  when: is_centos and tmux_downloaded.stat.exists == false and tmux_installed.stat.exists == false
+
+- name: config tmux
+  shell: PKG_CONFIG_PATH=${HOME}/local/lib/pkgconfig ./configure --prefix=${HOME}/.local
+  args:
+    chdir: "{{ app_dir }}/tmux"
+  when: is_centos and tmux_downloaded.stat.exists == false and tmux_installed.stat.exists == false
+
+- name: build tmux
+  make:
+    chdir: "{{ app_dir }}/tmux"
+  when: is_centos and tmux_downloaded.stat.exists == false and tmux_installed.stat.exists == false
+
+- name: install tmux
+  make:
+    target: install
+    chdir: "{{ app_dir }}/tmux"
+  when: is_centos and tmux_downloaded.stat.exists == false and tmux_installed.stat.exists == false

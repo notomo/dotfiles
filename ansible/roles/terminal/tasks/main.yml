@@ -17,3 +17,6 @@
     src: alacritty.yml
     dest: "{{ home_dir }}/.config/alacritty/alacritty.yml"
   when: is_macos
+
+- homebrew: name=tmux
+  when: is_macos
