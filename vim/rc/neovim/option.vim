@@ -5,6 +5,7 @@ if has('mac')
 elseif has('unix')
     let g:python_host_prog = '/usr/bin/python'
     let g:python3_host_prog = '/usr/bin/python3'
+    let g:ruby_host_prog = '~/.rbenv/shims/neovim-ruby-host'
 elseif has('win32')
     let g:python_host_prog = 'C:/Python27/python.exe'
     let g:python3_host_prog = 'C:/Python35/python.exe'
