@@ -15,6 +15,8 @@ export THEMIS_PROFILE_LOG=profile.txt
 # export NVIM_PYTHON_LOG_FILE=$HOME/log
 # export NVIM_PYTHON_LOG_LEVEL=ERROR
 
+export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
+
 # for rustfmt: https://github.com/rust-lang-nursery/rustfmt/issues/1687
 if [ -d "$HOME/.cargo" ]; then
     export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
