@@ -52,6 +52,8 @@ function! s:bookmark_tree_settings()
     nnoremap <buffer> l :<C-u>call ctrlb#do_action('bookmarkTree', 'open')<CR>
     nnoremap <buffer> o :<C-u>call ctrlb#do_action('bookmarkTree', 'open')<CR>
     nnoremap <buffer> h :<C-u>call ctrlb#do_action('bookmarkTree', 'openParent')<CR>
+    nnoremap <buffer> dd :<C-u>call ctrlb#do_action('bookmarkTree', 'remove')<CR>
+    xnoremap <buffer> d :call ctrlb#do_action('bookmarkTree', 'remove')<CR>
     nnoremap <buffer> t<Space> :<C-u>call ctrlb#do_action('bookmarkTree', 'tabOpen')<CR>
     xnoremap <buffer> t<Space> :call ctrlb#do_action('bookmarkTree', 'tabOpen')<CR>
     nnoremap <buffer> D :<C-u>call ctrlb#do_action('bookmarkTree', 'debug')<CR>
