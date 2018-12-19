@@ -25,3 +25,7 @@ call gesture#register().down().left().down().map('[win]o')
 call gesture#register().down().left().down().left().map('[tab]o')
 
 call gesture#register().up().right().map('[denite]ud')
+call gesture#register().right().text('KEY_A').map('[exec]t', {'nowait' : v:true})
+
+" left hand keyboard gesture
+nnoremap <expr> a notomo#gesture#key('a', 'KEY_A')

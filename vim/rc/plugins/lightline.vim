@@ -5,7 +5,11 @@ let s:enable = {}
 let s:enable.tabline = 0
 let s:enable.statusline = 1
 let s:active = {}
-let s:active.left = [['mode'], ['position_map'], ['position'], ['gesture_lines']]
+
+" for gesture debug
+" let s:active.left = [['mode'], ['position_map'], ['position'], ['gesture_lines']]
+let s:active.left = [['mode'], ['position_map'], ['position']]
+
 let s:active.right = [['gitbranch'], ['fileinfo'], ['filepath']]
 let s:inactive = {}
 let s:inactive.left = [[]]
