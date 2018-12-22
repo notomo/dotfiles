@@ -43,6 +43,7 @@ go get -u github.com/notomo/elsied/...
 go get -u github.com/jackc/sqlfmt/...
 go get -u mvdan.cc/sh/cmd/shfmt
 go get -u github.com/kyoshidajp/ghkw
+go get -u github.com/kisielk/godepgraph
 
 # neovim-remote
 pip3.5 install --user neovim-remote

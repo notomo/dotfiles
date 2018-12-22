@@ -47,6 +47,7 @@
     - github.com/pocke/lemonade
     - github.com/jackc/sqlfmt/...
     - github.com/notomo/wsxhub/...
+    - github.com/kisielk/godepgraph
   environment:
     GOPATH: "{{ home_dir }}/go"
 
