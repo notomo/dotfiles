@@ -1,6 +1,7 @@
 - name: install for appimage
   yum: name=fuse-sshfs enablerepo=epel
   when: is_centos
+  become: yes
 
 - name: check nvim
   stat:
