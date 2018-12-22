@@ -49,7 +49,6 @@ call minpac#add('notomo/ctrlb.nvim', {'do' : '!npm run setup'})
 nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpenLayout ~/dotfiles/vim/rc/plugins/ctrlb_layout.json\<CR>"
 nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
 nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
-source ~/.vim/rc/plugins/ctrlb.vim
 
 call minpac#add('notomo/gesture.nvim', {'do' : '!npm run setup'})
 nnoremap <silent> <LeftDrag> :<C-u>call gesture#draw()<CR>

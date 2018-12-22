@@ -14,6 +14,8 @@ nnoremap [exec]<Space> :<C-u>Ctrlb tab/create<CR>
 nnoremap [exec]dl :<C-u>Ctrlb tab/closeRight<CR>
 nnoremap [exec]da :<C-u>Ctrlb tab/closeLeft<CR>
 
+call ctrlb#config#set('timeout', 1)
+
 autocmd MyAuGroup FileType ctrlb-ctrl call s:ctrl_settings()
 function! s:ctrl_settings()
     nnoremap <buffer> l :<C-u>Ctrlb tab/next<CR>

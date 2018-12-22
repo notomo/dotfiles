@@ -36,6 +36,7 @@ if has('nvim')
     source ~/.vim/rc/plugins/deoplete.vim
     source ~/.vim/rc/plugins/curstr.vim
     source ~/.vim/rc/plugins/gesture.vim
+    source ~/.vim/rc/plugins/ctrlb.vim
 endif
 IncSearchNoreMap <Tab> <Over>(incsearch-next)
 IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
