@@ -8,6 +8,7 @@
     state: present
     update_cache: true
   with_items:
+    - gcc
     - bzip2
     - openssl-devel
     - libyaml-devel
@@ -45,6 +46,11 @@
       fi
   when: is_centos
 
+- name: load rbenv
+  shell: source ~/.bashrc
+  when: is_centos
+  changed_when: False
+
 - name: check ruby versions
   shell: bash -lc "rbenv versions | grep 2.4.2"
   when: is_centos
@@ -58,10 +64,6 @@
 
 - name: set global ruby version
   shell: bash -lc "rbenv global 2.4.2"
-  when: is_centos and ruby_installed_versions|failed
-
-- name: load rbenv
-  shell: source ~/.bashrc
   when: is_centos and ruby_installed_versions|failed
 
 - name: set variables
