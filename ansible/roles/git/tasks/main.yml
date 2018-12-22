@@ -3,12 +3,69 @@
   homebrew: name=git
   when: is_macos
 
-- name: install yum repository for git
-  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+- name: install git dependencies with yum
+  yum:
+    name:
+      - curl-devel
+      - expat-devel
+      - gettext-devel
+      - openssl-devel
+      - perl-devel
+      - zlib-devel
+      - libtool
+      - autoconf
+      - automake
+      - cmake
+      - gcc
+      - gcc-c++
+      - make
+      - pkgconfig
+      - unzip
   when: is_centos
   become: yes
 
-- name: install git with yum
-  yum: name=git
+- name: make git directory
+  file:
+    path: "{{ app_dir }}/git"
+    state: directory
   when: is_centos
+
+- name: check git
+  stat:
+    path: /usr/local/bin/git
+  register: git_exists
+  when: is_centos
+
+- name: check git download
+  stat:
+    path: "{{ app_dir }}/git.tar.gz"
+  register: git_downloaded
+  when: is_centos
+
+- name: download git
+  action: command wget https://www.kernel.org/pub/software/scm/git/git-2.20.1.tar.gz -O {{ app_dir }}/git.tar.gz
+  when: is_centos and git_downloaded.stat.exists == false
+
+- name: unarchive git
+  unarchive:
+    src: "{{ app_dir }}/git.tar.gz"
+    dest: "{{ app_dir }}/git"
+    extra_opts: [--strip-components=1]
+  when: is_centos and git_downloaded.stat.exists == false
+
+- name: build git
+  make:
+    chdir: "{{ app_dir }}/git"
+    target: all
+    params:
+      prefix: /usr/local
+  when: is_centos and git_exists.stat.exists == false
+
+- name: install git
+  make:
+    target: install
+    chdir: "{{ app_dir }}/git"
+    params:
+      prefix: /usr/local
+  when: is_centos and git_exists.stat.exists == false
   become: yes
