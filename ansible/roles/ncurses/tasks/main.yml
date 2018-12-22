@@ -23,7 +23,7 @@
 
 - name: config ncurses
 
-  shell: ./configure --enable-pc-files --prefix=${HOME}/.local --with-pkg-config-libdir=${HOME}/local/lib/pkgconfig --with-termlib
+  shell: ./configure --enable-pc-files --prefix=${HOME}/.local --with-pkg-config-libdir=${HOME}/.local/lib/pkgconfig --with-termlib
   args:
     chdir: "{{ app_dir }}/ncurses"
   when: is_centos and ncurses_downloaded.stat.exists == false

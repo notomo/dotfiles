@@ -29,7 +29,7 @@
   when: is_centos and tmux_downloaded.stat.exists == false and tmux_installed.stat.exists == false
 
 - name: config tmux
-  shell: PKG_CONFIG_PATH=${HOME}/local/lib/pkgconfig ./configure --prefix=${HOME}/.local
+  shell: PKG_CONFIG_PATH=${HOME}/.local/lib/pkgconfig ./configure --prefix=${HOME}/.local
   args:
     chdir: "{{ app_dir }}/tmux"
   when: is_centos and tmux_downloaded.stat.exists == false and tmux_installed.stat.exists == false
