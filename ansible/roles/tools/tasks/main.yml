@@ -1,22 +1,23 @@
 
 - name: install with homebrew
-  homebrew: name={{ item }}
-  with_items:
-    - lynx
-    - tree
-    - wget
-    - nkf
+  homebrew:
+    name:
+      - lynx
+      - tree
+      - wget
+      - nkf
   when: is_macos
 
 - name: install dependencies with yum
-  yum: name={{ item }} enablerepo=epel
-  with_items:
-    - lynx
-    - tree
-    - wget
-    - nkf
-    - words
-    - telnet
-    - xdg-utils
+  yum:
+    name:
+      - lynx
+      - tree
+      - wget
+      - nkf
+      - words
+      - telnet
+      - xdg-utils
+    enablerepo: epel
   when: is_centos
   become: yes

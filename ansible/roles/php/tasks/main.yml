@@ -4,10 +4,10 @@
     phpmanual_dir: "{{ home_dir }}/.vim/reference/phpmanual"
 
 - name: install with homebrew
-  homebrew: name={{ item }}
-  with_items:
-    - php
-    - composer
+  homebrew:
+    name:
+      - php
+      - composer
   when: is_macos
 
 - name: install yum repository for php
@@ -16,22 +16,23 @@
   become: yes
 
 - name: install php with yum
-  yum: name={{ item }} enablerepo=remi-php71
-  with_items:
-    - php
-    - php-cli
-    - php-common
-    - php-devel
-    - php-fpm
-    - php-gd
-    - php-mbstring
-    - php-mysqlnd
-    - php-pdo
-    - php-pecl-apcu
-    - php-soap
-    - php-xml
-    - php-xmlrpc
-    - php-pecl-xdebug
+  yum:
+    name:
+      - php
+      - php-cli
+      - php-common
+      - php-devel
+      - php-fpm
+      - php-gd
+      - php-mbstring
+      - php-mysqlnd
+      - php-pdo
+      - php-pecl-apcu
+      - php-soap
+      - php-xml
+      - php-xmlrpc
+      - php-pecl-xdebug
+    enablerepo: remi-php71
   when: is_centos
   become: yes
 

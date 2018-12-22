@@ -4,19 +4,18 @@
 
 - name: install dependencies with yum
   yum:
-    name: "{{ item }}"
+    name:
+      - gcc
+      - bzip2
+      - openssl-devel
+      - libyaml-devel
+      - libffi-devel
+      - readline-devel
+      - zlib-devel
+      - gdbm-devel
+      - ncurses-devel
     state: present
     update_cache: true
-  with_items:
-    - gcc
-    - bzip2
-    - openssl-devel
-    - libyaml-devel
-    - libffi-devel
-    - readline-devel
-    - zlib-devel
-    - gdbm-devel
-    - ncurses-devel
   when: is_centos
   become: yes
 
@@ -60,11 +59,11 @@
 
 - name: install ruby
   shell: bash -lc "rbenv install 2.4.2"
-  when: is_centos and ruby_installed_versions|failed
+  when: is_centos and ruby_installed_versions is failed
 
 - name: set global ruby version
   shell: bash -lc "rbenv global 2.4.2"
-  when: is_centos and ruby_installed_versions|failed
+  when: is_centos and ruby_installed_versions is failed
 
 - name: set variables
   set_fact:

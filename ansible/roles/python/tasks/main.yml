@@ -1,8 +1,8 @@
 
-- homebrew: name={{ item }}
-  with_items:
-    - python2
-    - python3
+- homebrew:
+    name:
+      - python2
+      - python3
   when: is_macos
 
 - name: install yum repository for python3
@@ -11,20 +11,21 @@
   become: yes
 
 - name: install python3 with yum
-  yum: name={{ item }}
-  with_items:
-    - python36u
-    - python36u-libs
-    - python36u-devel
-    - python36u-pip
+  yum:
+    name:
+      - python36u
+      - python36u-libs
+      - python36u-devel
+      - python36u-pip
   when: is_centos
   become: yes
 
 - name: install python2 with yum
-  yum: name={{ item }} enablerepo=epel
-  with_items:
-    - python-devel
-    - python-pip
+  yum:
+    name:
+      - python-devel
+      - python-pip
+    enablerepo: epel
   when: is_centos
   become: yes
 
@@ -49,27 +50,23 @@
       # - neovim-remote TODO: require gcc
 
 - pip:
-    name: "{{ item }}"
+    name: "{{ python2_packages }}"
     executable: pip2
-  with_items: "{{ python2_packages }}"
   when: is_macos
 
 - pip:
-    name: "{{ item }}"
+    name: "{{ python2_packages }}"
     executable: pip2
-  with_items: "{{ python2_packages }}"
   when: is_centos
   become: yes
 
 - pip:
-    name: "{{ item }}"
+    name: "{{ python3_packages }}"
     executable: pip3
-  with_items: "{{ python3_packages }}"
   when: is_macos
 
 - pip:
-    name: "{{ item }}"
+    name: "{{ python3_packages }}"
     executable: pip3.6
-  with_items: "{{ python3_packages }}"
   when: is_centos
   become: yes
