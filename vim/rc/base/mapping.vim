@@ -573,7 +573,7 @@ nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
 nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
 nnoremap [exec]e :<C-u>smile<CR>
 nnoremap [exec]cC :<C-u>messages clear<CR>
-nnoremap [exec]t :<C-u>tabe ~/workspace/todo/README.md<CR>
+nnoremap [exec]t :<C-u>tabe ~/workspace/notomo-life/todo/README.md<CR>
 "}}}
 
 " quickfix and locationlist"{{{
