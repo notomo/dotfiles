@@ -1,11 +1,3 @@
-
-# vagrant
-/vagrant/*/.vagrant
-/vagrant/*/vagrant_up.log*
-/vagrant/*/vagrant_key
-/vagrant/docker_host_test/Vagrantfile
-/vagrant/docker_host_test/provision
-
 # setup
 /setup/*/*.log
 
