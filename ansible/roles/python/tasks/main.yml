@@ -55,7 +55,7 @@
       - websocket-client
       - websocket-server
       - vim-vint
-      # - neovim-remote TODO: require gcc
+      - neovim-remote
 
 - pip:
     name: "{{ python2_packages }}"
