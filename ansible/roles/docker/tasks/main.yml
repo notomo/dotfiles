@@ -21,6 +21,13 @@
   become: yes
   when: is_centos
 
+- name: copy daemon.json
+  copy:
+    src: daemon.json
+    dest: "/etc/docker/daemon.json"
+  become: yes
+  when: is_centos
+
 - name: enable docker service
   systemd:
     name: docker
