@@ -29,6 +29,8 @@ alias pk=kill_process
 alias less='less -N'
 alias ps='ps au'
 alias gc=git_clone_from_github
+alias gcw=git_clone_from_github_wiki
+alias wscatl=wscat_to_local
 alias gra=git_remote_add_from_github
 alias themis='NVIM_RPLUGIN_MANIFEST=$HOME/rplugin.vim themis'
 alias npmd=npm_install_dev
@@ -111,12 +113,20 @@ function git_clone_from_github() {
     git clone https://github.com/"$1".git
 }
 
+function git_clone_from_github_wiki() {
+    git clone https://github.com/"$1".wiki.git
+}
+
 function git_remote_add_from_github() {
     git remote add upstream https://github.com/"$1".git
 }
 
 function npm_install_dev() {
     npm install --save-dev "$1"
+}
+
+function wscat_to_local() {
+    wscat -o localhost:$1 -c ws://localhost:$1
 }
 
 alias ev="nvr --remote-tab"

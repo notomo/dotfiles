@@ -68,3 +68,21 @@
     dest: "{{ home_dir }}/{{ item.value }}"
     state: link
   with_dict: "{{ link_dict }}"
+
+- name: add aliases for centos
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK aliases"
+    dest: "{{ home_dir }}/.bashrc"
+    content: |
+      alias anc="cd ~/dotfiles/ansible;ansible-playbook playbooks/centos7.yml"
+      alias anct="cd ~/dotfiles/ansible;ansible-playbook playbooks/centos7.yml --tags"
+  when: is_centos
+
+- name: add aliases for mac
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK aliases"
+    dest: "{{ home_dir }}/.bashrc"
+    content: |
+      alias anc="cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml"
+      alias anct="cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml --tags"
+  when: is_macos
