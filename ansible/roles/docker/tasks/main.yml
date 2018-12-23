@@ -68,16 +68,16 @@
 - name: get uname -s
   shell: uname -s
   register: uname_s
-  when: is_centos and docker_compose_installed.stat.exists == false
+  when: is_centos and not docker_compose_installed.stat.exists
 
 - name: get uname -m
   shell: uname -m
   register: uname_m
-  when: is_centos and docker_compose_installed.stat.exists == false
+  when: is_centos and not docker_compose_installed.stat.exists
 
 - name: download docker-compose
   get_url:
     url: https://github.com/docker/compose/releases/download/1.22.0/docker-compose-{{ uname_s.stdout }}-{{ uname_m.stdout }}
     dest: "{{ home_dir }}/.local/bin/docker-compose"
     mode: u+x
-  when: is_centos and docker_compose_installed.stat.exists == false
+  when: is_centos and not docker_compose_installed.stat.exists

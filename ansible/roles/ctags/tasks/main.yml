@@ -27,27 +27,27 @@
     repo: https://github.com/universal-ctags/ctags.git
     dest: "{{ ctags_dir }}"
     version: master
-  when: is_centos and ctags_downloaded.stat.exists == false
+  when: is_centos and not ctags_downloaded.stat.exists
 
 - name: autogen ctags
   shell: ./autogen.sh
   args:
     chdir: "{{ ctags_dir }}"
-  when: is_centos and ctags_installed.stat.exists == false
+  when: is_centos and not ctags_installed.stat.exists
 
 - name: configure ctags
   shell: ./configure --prefix={{ home_dir }}/.local
   args:
     chdir: "{{ ctags_dir }}"
-  when: is_centos and ctags_installed.stat.exists == false
+  when: is_centos and not ctags_installed.stat.exists
 
 - name: ctags make
   make:
     chdir: "{{ ctags_dir }}"
-  when: is_centos and ctags_installed.stat.exists == false
+  when: is_centos and not ctags_installed.stat.exists
 
 - name: ctags make install
   make:
     target: install
     chdir: "{{ ctags_dir }}"
-  when: is_centos and ctags_installed.stat.exists == false
+  when: is_centos and not ctags_installed.stat.exists

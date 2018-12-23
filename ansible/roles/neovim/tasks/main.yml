@@ -12,34 +12,34 @@
   stat:
     path: "{{ app_dir }}/nvim.tar.gz"
   register: nvim_downloaded
-  when: is_macos and nvim_installed.stat.exists == false
+  when: is_macos and not nvim_installed.stat.exists
 
 - name: make nvim directory
   file:
     path: "{{ app_dir }}/nvim"
     state: directory
-  when: is_macos and nvim_installed.stat.exists == false
+  when: is_macos and not nvim_installed.stat.exists
 
 - name: download nvim
   get_url:
     url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
     dest: "{{ home_dir }}/.local/bin/nvim"
     mode: u+x
-  when: is_centos and nvim_installed.stat.exists == false
+  when: is_centos and not nvim_installed.stat.exists
 
 - name: download nvim on mac
   action: command wget https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz -O {{ app_dir }}/nvim.tar.gz
-  when: is_macos and nvim_installed.stat.exists == false and nvim_installed.stat.exists == false
+  when: is_macos and not nvim_installed.stat.exists and not nvim_installed.stat.exists
 
 - name: unarchive nvim
   unarchive:
     src: "{{ app_dir }}/nvim.tar.gz"
     dest: "{{ app_dir }}/nvim"
-  when: is_macos and nvim_installed.stat.exists == false and nvim_installed.stat.exists == false
+  when: is_macos and not nvim_installed.stat.exists and not nvim_installed.stat.exists
 
 - name: create nvim symbolic link
   file:
     src: "{{ app_dir }}/nvim/nvim-osx64/bin/nvim"
     dest: "{{ home_dir }}/.local/bin/nvim"
     state: link
-  when: is_macos and nvim_installed.stat.exists == false and nvim_installed.stat.exists == false
+  when: is_macos and not nvim_installed.stat.exists and not nvim_installed.stat.exists

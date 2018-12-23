@@ -12,20 +12,20 @@
   get_url:
     url: https://storage.googleapis.com/golang/go1.11.1.linux-amd64.tar.gz
     dest: "{{ app_dir }}/go1.11.1.linux-amd64.tar.gz"
-  when: is_centos and golang_installed.stat.exists == false
+  when: is_centos and not golang_installed.stat.exists
 
 - name: mkdir go
   file:
     path: "{{ home_dir }}/.local/go"
     state: directory
-  when: is_centos and golang_installed.stat.exists == false
+  when: is_centos and not golang_installed.stat.exists
 
 - name: unarchive golang
   unarchive:
     src: "{{ app_dir }}/go1.11.1.linux-amd64.tar.gz"
     dest: "{{ home_dir }}/.local/go"
     extra_opts: [--strip-components=1]
-  when: is_centos and golang_installed.stat.exists == false
+  when: is_centos and not golang_installed.stat.exists
 
 - name: check go modules
   command: "~/.local/go/bin/go list {{ item }}"
@@ -53,7 +53,7 @@
 
 - name: go get
   command: "~/.local/go/bin/go get {{ item.item }}"
-  when: item.stderr != "" or item.rc == 1
+  when: item.stderr or item.rc == 1
   with_items: "{{ go_module_exists.results }}"
   environment:
     GOPATH: "{{ home_dir }}/go"
@@ -83,14 +83,14 @@
     remote_src: True
     src: /usr/bin/xdg-open
     dest: /usr/bin/xdg-open.tmp
-  when: is_centos and open_stat.stat.islnk is defined and open_stat.stat.islnk == False
+  when: is_centos and open_stat.stat.islnk is defined and not open_stat.stat.islnk
   become: yes
 
 - name: remove xdg-open
   file:
     path: /usr/bin/xdg-open
     state: absent
-  when: is_centos and open_stat.stat.islnk is defined and open_stat.stat.islnk == False
+  when: is_centos and open_stat.stat.islnk is defined and not open_stat.stat.islnk
   become: yes
   ignore_errors: yes
 

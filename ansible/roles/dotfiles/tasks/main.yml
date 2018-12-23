@@ -54,7 +54,7 @@
     repo: https://github.com/notomo/dotfiles.git
     dest: "{{ dotfiles_dir }}"
     version: master
-  when: dotfiles_exists.stat.exists == false
+  when: not dotfiles_exists.stat.exists
 
 - name: create symbolic link for neovim
   file:

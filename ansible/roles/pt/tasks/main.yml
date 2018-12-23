@@ -19,7 +19,7 @@
   get_url:
     url: https://github.com/monochromegane/the_platinum_searcher/releases/download/v2.1.6/pt_linux_amd64.tar.gz
     dest: "{{ app_dir }}/pt_linux_amd64.tar.gz"
-  when: is_centos and pt_downloaded.stat.exists == false
+  when: is_centos and not pt_downloaded.stat.exists
 
 - name: check pt unarchive
   stat:
@@ -38,11 +38,11 @@
     src: "{{ app_dir }}/pt_linux_amd64.tar.gz"
     dest: "{{ app_dir }}/pt"
     extra_opts: [--strip-components=1]
-  when: is_centos and pt_unarchived.stat.exists == false
+  when: is_centos and not pt_unarchived.stat.exists
 
 - name: copy pt
   copy:
     src: "{{ app_dir }}/pt/pt"
     dest: "{{ home_dir }}/.local/bin/pt"
     mode: 0755
-  when: is_centos and pt_installed.stat.exists == false
+  when: is_centos and not pt_installed.stat.exists

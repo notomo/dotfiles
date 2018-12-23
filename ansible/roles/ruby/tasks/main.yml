@@ -73,7 +73,7 @@
 
 - gem:
     name: "{{ item }}"
-    executable: "{{ home_dir}}/.rbenv/shims/gem"
+    executable: "{{ home_dir }}/.rbenv/shims/gem"
     user_install: False
   with_items: "{{ gem_packages }}"
   when: is_centos

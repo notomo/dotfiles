@@ -12,17 +12,17 @@
 # NOTICE: for unarchive ssl error
 - name: get font
   action: command wget https://github.com/adobe-fonts/source-han-code-jp/archive/2.011R.tar.gz -O {{ app_dir }}/fonts/SourceHanCodeJP.tar.gz
-  when: font_installed.stat.exists == false
+  when: not font_installed.stat.exists
 
 - name: unarchive font
   unarchive:
     src: "{{ app_dir }}/fonts/SourceHanCodeJP.tar.gz"
     dest: "{{ app_dir }}/fonts/SourceHanCodeJP"
     extra_opts: [--strip-components=1]
-  when: font_installed.stat.exists == false
+  when: not font_installed.stat.exists
 
 - name: copy font
   copy:
     src: "{{ app_dir }}/fonts/SourceHanCodeJP/OTC/SourceHanCodeJP.ttc"
     dest: "{{ home_dir }}/Library/Fonts/SourceHanCodeJP.ttc"
-  when: font_installed.stat.exists == false
+  when: not font_installed.stat.exists

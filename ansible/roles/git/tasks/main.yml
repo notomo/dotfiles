@@ -44,14 +44,14 @@
 
 - name: download git
   action: command wget https://www.kernel.org/pub/software/scm/git/git-2.20.1.tar.gz -O {{ app_dir }}/git.tar.gz
-  when: is_centos and git_downloaded.stat.exists == false
+  when: is_centos and not git_downloaded.stat.exists
 
 - name: unarchive git
   unarchive:
     src: "{{ app_dir }}/git.tar.gz"
     dest: "{{ app_dir }}/git"
     extra_opts: [--strip-components=1]
-  when: is_centos and git_downloaded.stat.exists == false
+  when: is_centos and not git_downloaded.stat.exists
 
 - name: build git
   make:
@@ -59,7 +59,7 @@
     target: all
     params:
       prefix: /usr/local
-  when: is_centos and git_exists.stat.exists == false
+  when: is_centos and not git_exists.stat.exists
 
 - name: install git
   make:
@@ -67,5 +67,5 @@
     chdir: "{{ app_dir }}/git"
     params:
       prefix: /usr/local
-  when: is_centos and git_exists.stat.exists == false
+  when: is_centos and not git_exists.stat.exists
   become: yes
