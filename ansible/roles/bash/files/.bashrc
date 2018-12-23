@@ -1,7 +1,3 @@
-if [ -f /etc/.bashrc ]; then
-    . /etc/.bashrc
-fi
-
 alias nv="nvim"
 alias nvu="nvim -u ~/dotfiles/vim/local/test.vim"
 alias nvU="nvim -u ~/dotfiles/vim/local/test.vim --noplugin"
@@ -134,3 +130,5 @@ fi
 if [ -f "$HOME/.local/.bashrc" ]; then
     source "$HOME/.local/.bashrc"
 fi
+
+export PS1="\n[\u@\h \w]\n\$ "

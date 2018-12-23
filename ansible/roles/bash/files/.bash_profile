@@ -1,11 +1,5 @@
-if [ -f ~/.bashrc ]; then
-    . ~/.bashrc
-fi
-
-export GOPATH=$HOME/.go
 export GROOVY_HOME=$HOME/app/groovy/latest
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:$GOPATH/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
-export PS1="\n[\u@\h \w]\n\$ "
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
 
 export PATH=$PATH:$HOME/.vim/minpac/pack/minpac/start/vim-themis/bin
 export THEMIS_VIM=nvim
