@@ -1,40 +1,6 @@
-- name: check libevent download
-  stat:
-    path: "{{ app_dir }}/libevent.tar.gz"
-  register: libevent_downloaded
+- name: install dependencies with yum
+  yum:
+    name:
+      - libevent-devel
   when: is_centos
-
-- name: make libevent directory
-  file:
-    path: "{{ app_dir }}/libevent"
-    state: directory
-  when: is_centos
-
-- name: download libevent
-  action: command wget https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gz -O {{ app_dir }}/libevent.tar.gz
-  when: is_centos and libevent_downloaded.stat.exists == false
-
-- name: unarchive libevent
-  unarchive:
-    src: "{{ app_dir }}/libevent.tar.gz"
-    dest: "{{ app_dir }}/libevent"
-    extra_opts: [--strip-components=1]
-  when: is_centos and libevent_downloaded.stat.exists == false
-
-- name: config libevent
-  shell: ./configure --prefix=${HOME}/.local
-  args:
-    chdir: "{{ app_dir }}/libevent"
-  when: is_centos and libevent_downloaded.stat.exists == false
-
-- name: build libevent
-  make:
-    chdir: "{{ app_dir }}/libevent"
-  when: is_centos and libevent_downloaded.stat.exists == false
-
-- name: install libevent
-  make:
-    target: install
-    chdir: "{{ app_dir }}/libevent"
-  when: is_centos and libevent_downloaded.stat.exists == false
   become: yes

@@ -1,41 +1,6 @@
-- name: check ncurses download
-  stat:
-    path: "{{ app_dir }}/ncurses.tar.gz"
-  register: ncurses_downloaded
+- name: install dependencies with yum
+  yum:
+    name:
+      - ncurses-devel
   when: is_centos
-
-- name: make ncurses directory
-  file:
-    path: "{{ app_dir }}/ncurses"
-    state: directory
-  when: is_centos
-
-- name: download ncurses
-  action: command wget ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz -O {{ app_dir }}/ncurses.tar.gz
-  when: is_centos and ncurses_downloaded.stat.exists == false
-
-- name: unarchive ncurses
-  unarchive:
-    src: "{{ app_dir }}/ncurses.tar.gz"
-    dest: "{{ app_dir }}/ncurses"
-    extra_opts: [--strip-components=1]
-  when: is_centos and ncurses_downloaded.stat.exists == false
-
-- name: config ncurses
-
-  shell: ./configure --enable-pc-files --prefix=${HOME}/.local --with-pkg-config-libdir=${HOME}/.local/lib/pkgconfig --with-termlib
-  args:
-    chdir: "{{ app_dir }}/ncurses"
-  when: is_centos and ncurses_downloaded.stat.exists == false
-
-- name: build ncurses
-  make:
-    chdir: "{{ app_dir }}/ncurses"
-  when: is_centos and ncurses_downloaded.stat.exists == false
-
-- name: install ncurses
-  make:
-    target: install
-    chdir: "{{ app_dir }}/ncurses"
-  when: is_centos and ncurses_downloaded.stat.exists == false
   become: yes
