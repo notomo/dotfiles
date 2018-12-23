@@ -2,25 +2,25 @@
 snippet ifonly
 options head
 	if [ ${1:condition} ]; then
-		${2:TARGET}
+		${0:TARGET}
 	fi
 
 snippet elif
 options head
 	elif [ ${1:condition} ]; then
-		${2:TARGET}
+		${0:TARGET}
 
 snippet else
 options head
 	else [ ${1:condition} ]
-		${2:TARGET}
+		${0:TARGET}
 
 snippet ifelse
 options head
 	if [ ${1:condition} ]; then
 		${2:TARGET}
 	else
-		${3:TARGET}
+		${0:TARGET}
 	fi
 
 snippet is_dir
@@ -60,21 +60,21 @@ snippet until
 options head
 	until [ ${1:condition} ]
 	do
-		${2:TARGET}
+		${0:TARGET}
 	done
 
 snippet while
 options head
 	while [ ${1:condition} ]
 	do
-		${2:TARGET}
+		${0:TARGET}
 	done
 
 snippet for
 options head
 	for ${1:var} in ${2:list}
 	do
-		${3:TARGET}
+		${0:TARGET}
 	done
 
 snippet case
@@ -83,5 +83,5 @@ options head
 		${2:pattern} )
 			${3:TARGET};;
 		* ) 
-			${4:TARGET};;
+			${0:TARGET};;
 	esac
