@@ -42,20 +42,19 @@ mklink "init.vim" %HOMEPATH%"\dotfiles\vim\rc\init.vim"
 mklink "ginit.vim" %HOMEPATH%"\dotfiles\vim\rc\ginit.vim"
 
 cd %HOMEPATH%
-mklink ".ideavimrc" %HOMEPATH%"\dotfiles\idea\.ideavimrc"
 
 mklink ".flake8" %HOMEPATH%"\dotfiles\lint\python\.flake8"
 mklink ".vintrc.yaml" %HOMEPATH%"\dotfiles\lint\vim\.vintrc.yaml"
 
 mklink ".gitignore_global" %HOMEPATH%"\dotfiles\git\.gitignore_global"
 
-mkdir %HOMEPATH%"\backup" > NUL 2>&1
-if ERRORLEVEL 1 cmd /c exit 0
-
 mkdir %HOMEPATH%"\app" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
 mkdir %HOMEPATH%"\workspace" > NUL 2>&1
+if ERRORLEVEL 1 cmd /c exit 0
+
+mkdir %HOMEPATH%"\workspace\lsync" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
 cd %HOMEPATH%"\.config"
