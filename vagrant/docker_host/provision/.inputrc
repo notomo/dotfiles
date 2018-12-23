@@ -1,8 +1,0 @@
-"\C-n":history-search-forward
-"\C-p":history-search-backward
-set show-all-if-ambiguous on
-set visible-stats on
-set completion-ignore-case on
-set colored-completion-prefix on
-set colored-stats on
-set bell-style none

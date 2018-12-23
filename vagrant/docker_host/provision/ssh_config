@@ -1,5 +1,0 @@
-
-Host vagrant
-    HostName DOCKERHOST
-    User vagrant
-    IdentityFile  /home/vagrant/.ssh/VAGRANTKEYNAME
