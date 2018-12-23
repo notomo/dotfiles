@@ -46,4 +46,8 @@ Vagrant.configure('2') do |config|
     ansible.inventory_path = 'inventory/default'
     ansible.limit = 'local'
   end
+
+  config.vm.provision 'shell', privileged: false, inline: <<-SHELL
+    echo export VAGRANT_PRIVATE_NETWORK_IP=#{ENV['PRIVATE_NETWORK_IP']} >> ~/.local/.bash_profile
+  SHELL
 end
