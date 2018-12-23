@@ -65,3 +65,9 @@
     content: |
       export GOPATH=$HOME/go
       export PATH=$PATH:$GOPATH/bin:$HOME/.local/go/bin
+
+- name: copy lemonade.toml
+  copy:
+    src: lemonade.toml
+    dest: "{{ home_dir }}/.config/lemonade.toml"
+  when: is_centos
