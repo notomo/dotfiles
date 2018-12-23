@@ -17,6 +17,7 @@
     - { role: 'timezone', tags: 'timezone' }
     - { role: 'tmux', tags: 'tmux' }
     - { role: 'xvfb', tags: 'xvfb' }
+    - { role: 'lsync', tags: 'lsync' }
     - { role: 'gitconfig', tags: 'gitconfig' }
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
