@@ -1,0 +1,22 @@
+
+- name: install repository for gdb
+  yum:
+    name:
+      - centos-release-scl-rh
+  when: is_centos
+  become: yes
+
+- name: install gdb with yum
+  yum:
+    name:
+      - devtoolset-7-gdb
+    enablerepo: centos-sclo-rh-testing
+  when: is_centos
+  become: yes
+
+- name: add gdb path
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK gdb role"
+    dest: "{{ home_dir }}/.bash_profile"
+    content: |
+      export PATH=$PATH:/opt/rh/devtoolset-7/root/usr/bin

@@ -2,3 +2,4 @@
 dependencies:
   - role: python
   - role: ruby
+  - role: gdb
