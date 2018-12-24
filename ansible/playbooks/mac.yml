@@ -15,6 +15,7 @@
     - { role: 'neovim', tags: 'neovim' }
     - { role: 'web_browser', tags: 'web_browser' }
     - { role: 'terminal', tags: 'terminal' }
+    - { role: 'tmux', tags: 'tmux' }
     - { role: 'vim', tags: 'vim' }
     - { role: 'mysql', tags: 'mysql' }
     - { role: 'font', tags: 'font' }

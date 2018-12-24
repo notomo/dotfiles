@@ -1,4 +1,9 @@
 
+- name: install tmux with homebrew
+  homebrew:
+    name: tmux
+  when: is_macos
+
 - name: check tmux
   stat:
     path: "{{ home_dir }}/.local/bin/tmux"
