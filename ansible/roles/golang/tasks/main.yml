@@ -28,7 +28,7 @@
   when: is_centos and not golang_installed.stat.exists
 
 - name: check go modules
-  command: "~/.local/go/bin/go list {{ item }}"
+  command: "go list {{ item }}"
   register: go_module_exists
   changed_when: False
   failed_when: go_module_exists.rc not in [0, 1]
@@ -52,7 +52,7 @@
     GOPATH: "{{ home_dir }}/go"
 
 - name: go get
-  command: "~/.local/go/bin/go get {{ item.item }}"
+  command: "go get {{ item.item }}"
   when: item.stderr or item.rc == 1
   with_items: "{{ go_module_exists.results }}"
   environment:
