@@ -32,7 +32,13 @@ nnoremap <silent> [denite]<CR> :<C-u>Denite -resume<CR>
 nnoremap <silent> [denite]gl :<C-u>Denite grep -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]to :<C-u>DeniteCursorWord outline -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]h :<C-u>Denite curstr/altr/help -default-action=open<CR>
+
+if has('nvim')
+    nnoremap <silent> [denite]h :<C-u>Denite curstr/altr/help -default-action=open<CR>
+else
+    nnoremap <silent> [denite]h :<C-u>Denite help<CR>
+endif
+
 nnoremap <silent> [denite]th :<C-u>DeniteCursorWord help -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [unite]d :<C-u>Denite file_mru -immediately<CR>
