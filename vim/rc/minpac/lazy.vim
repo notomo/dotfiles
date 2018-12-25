@@ -76,8 +76,6 @@ endif
 
 call s:add('fszymanski/deoplete-emoji', {'ft' : 'markdown'})
 
-call s:add('mhartington/nvim-typescript', {'ft' : 'typescript', 'do' : 'silent! !./install.sh' })
-
 call s:add('fatih/vim-go', {'ft' : 'go', 'do' : 'GoInstallBinaries' })
 let g:go_auto_type_info = 0
 let g:go_auto_sameids = 0

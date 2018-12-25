@@ -78,3 +78,5 @@ let g:test#php#phpunit#options = '--no-coverage'
 
 call minpac#add('Shougo/deoplete.nvim')
 let g:deoplete#enable_at_startup = 1
+
+call minpac#add('mhartington/nvim-typescript')
