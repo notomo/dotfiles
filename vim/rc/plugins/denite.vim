@@ -8,6 +8,7 @@ else
     nnoremap <silent> [unite]r :<C-u>DeniteProjectDir file_mru file_rec<CR>
     xnoremap <silent> [unite]r :<C-u>DeniteProjectDir file_mru file_rec<CR>
 endif
+nnoremap <silent> [denite]y :<C-u>Denite file_bookmark<CR>
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec<CR>
