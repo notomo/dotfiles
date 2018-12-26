@@ -6,6 +6,9 @@ export THEMIS_VIM=nvim
 export THEMIS_ARGS="-e -s --headless"
 export THEMIS_PROFILE_LOG=profile.txt
 
+# used by firefox
+export DISPLAY=:0
+
 # export NVIM_PYTHON_LOG_FILE=$HOME/log
 # export NVIM_PYTHON_LOG_LEVEL=ERROR
 
