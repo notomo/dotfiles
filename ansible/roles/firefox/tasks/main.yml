@@ -1,0 +1,53 @@
+
+- name: install firefox with homebrew_cask
+  homebrew_cask:
+    name: firefox
+  when: is_macos
+  ignore_errors: yes
+
+- name: install dependencies with yum
+  yum:
+    name:
+      - gtk3
+  when: is_centos
+  become: yes
+
+- name: make firefox directory
+  file:
+    path: "{{ app_dir }}/firefox"
+    state: directory
+  when: is_centos
+
+- name: check firefox download
+  stat:
+    path: "{{ app_dir }}/firefox.tar.bz2"
+  register: firefox_downloaded
+  when: is_centos
+
+- name: download firefox
+  action: |
+    command \
+      wget \
+      https://download-installer.cdn.mozilla.net/pub/firefox/releases/64.0b9/linux-x86_64/ja/firefox-64.0b9.tar.bz2 \
+      -O {{ app_dir }}/firefox.tar.bz2
+  when: is_centos and not firefox_downloaded.stat.exists
+
+- name: check firefox binary
+  stat:
+    path: "{{ app_dir }}/firefox/firefox"
+  register: firefox_binary
+  when: is_centos
+
+- name: unarchive firefox
+  unarchive:
+    src: "{{ app_dir }}/firefox.tar.bz2"
+    dest: "{{ app_dir }}/firefox"
+    extra_opts: [--strip-components=1]
+  when: is_centos and not firefox_binary.stat.exists
+
+- name: create symbolic link for firefox
+  file:
+    src: "{{ app_dir }}/firefox/firefox"
+    dest: "{{ home_dir }}/.local/bin/firefox"
+    state: link
+  when: is_centos
