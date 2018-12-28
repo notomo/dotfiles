@@ -18,6 +18,7 @@
       - words
       - telnet
       - xdg-utils
+      - xclip
     enablerepo: epel
   when: is_centos
   become: yes
