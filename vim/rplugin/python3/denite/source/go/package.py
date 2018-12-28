@@ -12,18 +12,19 @@ class Source(Base):
 
         self.name = 'go/package'
         self.kind = 'go/package'
+        self.sorters = ['sorter_length']
 
     def gather_candidates(self, context):
 
         def create(line, file_path, number):
-            word = line.rstrip()
+            [import_path, directory] = line.rstrip().split(' ')
             return {
-                'word': word,
-                'action__path': file_path,
+                'word': import_path,
+                'action__path': directory,
                 'action__line': number
             }
 
-        list_path = os.path.expanduser('~/.denite_go_package')
+        list_path = os.path.expanduser('~/.local/.denite_go_package')
 
         if not os.path.isfile(list_path):
             self._create_list_file(list_path)
@@ -40,7 +41,7 @@ class Source(Base):
 
     def _create_list_file(self, path):
         process = subprocess.Popen(
-            ['go', 'list', '...'],
+            ['go', 'list', '-f', '{{.ImportPath}} {{.Dir}}', '...'],
             stdout=subprocess.PIPE,
         )
         text = process.communicate()[0].decode('ascii')

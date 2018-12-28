@@ -63,6 +63,7 @@ nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
 nnoremap <silent> [denite]K :<C-u>call notomo#denite#php_tag_jump()<CR>
 nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
 nnoremap <silent> [denite]go :<C-u>Denite go/src<CR>
+nnoremap <silent> [denite]gp :<C-u>Denite go/package<CR>
 nnoremap <silent> [denite]to :<C-u>Denite todo -immediately -default-action=tabopen<CR>
 nnoremap <expr> <silent> [keyword]gs ":\<C-u>DeniteProjectDir file_rec -input=" . notomo#denite#get_splitted() . " -no-empty\<CR>"
 nnoremap <silent> [denite]ts :<C-u>Denite proto_dir:filetype -default-action=tabvimfiler -immediately-1<CR>
@@ -196,43 +197,43 @@ call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '-
 
 call denite#custom#var('outline', 'ignore_types', ['v'])
 
-call denite#custom#action('directory', 'dir_file', {context -> notomo#denite#dir_file_on_directory(context)})
+call denite#custom#action('directory,go/package', 'dir_file', {context -> notomo#denite#dir_file_on_directory(context)})
 call denite#custom#action('file', 'dir_file', {context -> notomo#denite#dir_file_on_file(context)})
-call denite#custom#action('file,directory', 'parent_dir_file', {context -> notomo#denite#parent_dir_file(context)})
+call denite#custom#action('file,directory,go/package', 'parent_dir_file', {context -> notomo#denite#parent_dir_file(context)})
 
-call denite#custom#action('file,directory', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
-call denite#custom#action('directory', 'vsplit', {context ->  notomo#denite#open('vsplit', context)})
-call denite#custom#action('directory', 'split', {context ->  notomo#denite#open('split', context)})
+call denite#custom#action('file,directory,go/package', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
+call denite#custom#action('directory,go/package', 'vsplit', {context ->  notomo#denite#open('vsplit', context)})
+call denite#custom#action('directory,go/package', 'split', {context ->  notomo#denite#open('split', context)})
 
 call denite#custom#action('file', 'qfreplace', {context ->  notomo#denite#qfreplace(context)})
-call denite#custom#action('file,directory', 'exrename', {context ->  notomo#denite#exrename(context)})
+call denite#custom#action('file,directory,go/package', 'exrename', {context ->  notomo#denite#exrename(context)})
 
-call denite#custom#action('file,directory', 'vimfiler', {context ->  notomo#denite#directory_open('', context)})
-call denite#custom#action('file,directory', 'tabvimfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
+call denite#custom#action('file,directory,go/package', 'vimfiler', {context ->  notomo#denite#directory_open('', context)})
+call denite#custom#action('file,directory,go/package', 'tabvimfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
 
 call denite#custom#action('file', 'outline', {context ->  notomo#denite#outline(context)})
 
-call denite#custom#action('file,directory', 'source_directory_mru', {context ->  notomo#denite#change_source('directory_mru', context)})
-call denite#custom#action('file,directory', 'source_file_mru', {context ->  notomo#denite#change_source('file_mru', context)})
-call denite#custom#action('file,directory', 'source_dir_file', {context ->  notomo#denite#change_source('dir_file', context)})
+call denite#custom#action('file,directory,go/package', 'source_directory_mru', {context ->  notomo#denite#change_source('directory_mru', context)})
+call denite#custom#action('file,directory,go/package', 'source_file_mru', {context ->  notomo#denite#change_source('file_mru', context)})
+call denite#custom#action('file,directory,go/package', 'source_dir_file', {context ->  notomo#denite#change_source('dir_file', context)})
 
 call denite#custom#action('file', 'delete_line', {context ->  notomo#denite#delete_line(context)})
 call denite#custom#action('file', 'delete_others_line', {context ->  notomo#denite#delete_others_line(context)})
 
 call denite#custom#action('file', 'project_directory_rec', {context ->  notomo#denite#project_directory_rec_on_file(context)})
-call denite#custom#action('directory', 'project_directory_rec', {context ->  notomo#denite#project_directory_rec(context)})
+call denite#custom#action('directory,go/package', 'project_directory_rec', {context ->  notomo#denite#project_directory_rec(context)})
 
 call denite#custom#action('file', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec_on_file(context)})
-call denite#custom#action('directory', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec(context)})
+call denite#custom#action('directory,go/package', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec(context)})
 
 call denite#custom#action('file', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec_on_file(context)})
-call denite#custom#action('directory', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
+call denite#custom#action('directory,go/package', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
 
 call denite#custom#action('file', 'project_dir_grep', {context ->  notomo#denite#project_dir_grep_on_file(context)})
-call denite#custom#action('directory', 'project_dir_grep', {context ->  notomo#denite#project_dir_grep(context)})
+call denite#custom#action('directory,go/package', 'project_dir_grep', {context ->  notomo#denite#project_dir_grep(context)})
 
 call denite#custom#action('file', 'dir_file_grep', {context ->  notomo#denite#dir_file_grep_on_file(context)})
-call denite#custom#action('directory', 'dir_file_grep', {context ->  notomo#denite#dir_file_grep(context)})
+call denite#custom#action('directory,go/package', 'dir_file_grep', {context ->  notomo#denite#dir_file_grep(context)})
 
 call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles', context)})
 
@@ -247,3 +248,5 @@ call denite#custom#action('namespace', 'use', {context ->  notomo#denite#append_
 call denite#custom#action('file', 'project_dir', {context ->  notomo#denite#project_dir(context)})
 
 call denite#custom#action('url_bookmark', 'convert', {context ->  notomo#denite#convert(context)})
+
+call denite#custom#action('go/package', 'decls', {context ->  notomo#denite#decls(context)})

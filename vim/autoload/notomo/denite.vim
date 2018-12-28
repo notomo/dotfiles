@@ -276,3 +276,7 @@ function! notomo#denite#get_splitted() abort
 
     return tolower(join(uniq(sort(words)), '\ ')) . '\ '
 endfunction
+
+function! notomo#denite#decls(context) abort
+    execute 'Denite go/decls:' . a:context['targets'][0]['action__path']
+endfunction

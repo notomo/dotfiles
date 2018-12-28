@@ -12,4 +12,3 @@ nnoremap <buffer> [exec]gr :<C-u>GoReferrers<CR>
 nnoremap <buffer> [exec]gi :<C-u>GoImplements<CR>
 nnoremap <buffer> [test]g :<C-u>GoCoverageToggle<CR>
 nnoremap <buffer> [denite]o :<C-u>Denite decls -auto-preview<CR>
-nnoremap <buffer> [denite]gp :<C-u>DeniteCursorWord go/package -no-empty -immediately-1<CR>
