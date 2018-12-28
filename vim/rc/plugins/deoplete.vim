@@ -30,9 +30,8 @@ call deoplete#custom#source('tag', 'rank', 700)
 
 call deoplete#custom#source('vim', 'converters', ['converter_remove_paren', 'converter_remove_overlap', 'converter_truncate_abbr', 'converter_truncate_menu'])
 
-inoremap <expr> j<Space>u deoplete#undo_completion()
-inoremap <expr> j<Space>; deoplete#complete_common_string()
-inoremap j<Space>0 <C-x><C-o>
+inoremap <expr> j<Space>u deoplete#manual_complete(['look'])
+inoremap j<Space>; <C-x><C-l>
 
 autocmd MyAuGroup FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 autocmd MyAuGroup FileType html,blade setlocal omnifunc=emmet#completeTag
