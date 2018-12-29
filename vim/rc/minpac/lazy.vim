@@ -1,19 +1,31 @@
 
+function! s:packadd_once(name, group) abort
+    execute 'packadd ' . a:name
+    execute 'autocmd! ' a:group
+endfunction
+
+function! s:define_lazy_load(name, group, event, pattern) abort
+    let args = join([a:name, a:group], "','")
+    execute 'autocmd ' a:group . ' ' . a:event . ' ' . a:pattern . " call s:packadd_once('" . args . "')"
+endfunction
+
 function! s:add(name, options) abort
     let name = join(split(a:name, '/')[1:], '')
+    let group = 'MyLazyLoad' . name
+    execute 'augroup ' . group . ' | autocmd! | augroup END'
 
     if has_key(a:options, 'ft')
         let ft = a:options['ft']
         let filetypes = type(ft) == v:t_list ? join(ft, ',') : ft
-        execute 'autocmd MyAuGroup FileType ' . filetypes . ' packadd ' . name
+        call s:define_lazy_load(name, group, 'FileType', filetypes)
     endif
     if has_key(a:options, 'cmd')
         let cmd = a:options['cmd']
-        execute 'autocmd MyAuGroup CmdUndefined ' . cmd . ' packadd ' . name
+        call s:define_lazy_load(name, group, 'CmdUndefined', cmd)
     endif
     if has_key(a:options, 'event')
         let event = a:options['event']
-        execute 'autocmd MyAuGroup ' . event . ' * packadd ' . name
+        call s:define_lazy_load(name, group, event, '*')
     endif
 
     call minpac#add(a:name, {'type': 'opt'})
