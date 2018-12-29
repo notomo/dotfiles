@@ -13,6 +13,7 @@ class Source(Base):
 
         self.name = 'go/decls'
         self.kind = 'file'
+        self.sorters = ['sorter_decls']
 
     def gather_candidates(self, context):
         basename = os.path.basename
@@ -25,6 +26,10 @@ class Source(Base):
                 'action__path': line['filename'],
                 'action__line': line['line'],
                 'action__col': line['col'],
+                'action__is_receiver': (
+                    line['full'].replace('func ', '').replace(
+                        'type ', '')[0] is '('
+                )
             }
 
         path = context['args'][0]
@@ -44,4 +49,5 @@ class Source(Base):
             ) and x['filename'].find('_test.go') == -1,
             result_json['decls']
         )
+
         return [create(line) for line in exports]
