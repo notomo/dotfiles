@@ -32,7 +32,7 @@ class Source(Base):
                 ]
                 f.writelines(lines)
 
-        path = os.path.expanduser('~/.denite_todo')
+        path = os.path.expanduser('~/.local/.denite_todo')
         if not os.path.isfile(path):
             new_file(path)
 

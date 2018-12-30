@@ -51,6 +51,9 @@ mklink ".gitignore_global" %HOMEPATH%"\dotfiles\git\.gitignore_global"
 mkdir %HOMEPATH%"\app" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
+mkdir %HOMEPATH%"\.local" > NUL 2>&1
+if ERRORLEVEL 1 cmd /c exit 0
+
 mkdir %HOMEPATH%"\workspace" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
