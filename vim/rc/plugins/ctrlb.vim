@@ -15,6 +15,7 @@ nnoremap [exec]dl :<C-u>Ctrlb tab/closeRight<CR>
 nnoremap [exec]da :<C-u>Ctrlb tab/closeLeft<CR>
 
 call ctrlb#config#set('timeout', 1)
+call ctrlb#config#set('server_port', 8003)
 call ctrlb#config#set('port', 8004)
 
 autocmd MyAuGroup FileType ctrlb-ctrl call s:ctrl_settings()
