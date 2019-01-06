@@ -51,8 +51,8 @@ nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
 nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
 
 call minpac#add('notomo/gesture.nvim', {'do' : '!npm run setup'})
-nnoremap <silent> <LeftDrag> :<C-u>call gesture#draw()<CR>
-nnoremap <silent> <LeftRelease> :<C-u>call gesture#finish()<CR>
+noremap <silent> <LeftDrag> :<C-u>call gesture#draw()<CR>
+noremap <silent> <LeftRelease> :<C-u>call gesture#finish()<CR>
 
 if executable('python3.6') || executable('python3.7')
     call minpac#add('Shougo/defx.nvim')
