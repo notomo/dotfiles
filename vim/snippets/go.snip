@@ -12,12 +12,6 @@ abbr func name() (returnVar type) {}
 		${0:TARGET}
 	}
 
-snippet gofunc
-abbr go func() (returnVar type) {}
-	go func(${1:args}) ${2:type }{
-		${0:TARGET}
-	}
-
 snippet no_name_func
 alias lambda
 abbr func() (returnVar type) {}
@@ -45,8 +39,8 @@ abbr slice := []type{value, ...}
 	${1:name} := []${2:typeName}{${0:value}}
 
 snippet map
-abbr map := [keyType]valueType{key: value, ...}
-	${1:name} := [${2:keyTypeName}]${3:valueTypeName}{${4:key}: ${0:name},}
+abbr map := map[keyType]valueType{key: value, ...}
+	${1:name} := map[${2:keyTypeName}]${3:valueTypeName}{${4:key}: ${0:name},}
 
 snippet const
 abbr const name = value
@@ -61,12 +55,18 @@ snippet println
 snippet sprintf
 	fmt.Sprintf("${1:formatString}", ${1:args})
 
+snippet make
+	${0:value} := make(${1:type,})
+
 snippet cast
 	${1:name} := ${2:type}(${0:value})
 
+snippet type
+	type ${0:Name}
+
 snippet struct
-	type ${1:Name} struct {
-		${2:fieldName} ${0:type}
+	struct {
+		${1:fieldName} ${0:type}
 	}
 
 snippet interface
@@ -92,7 +92,6 @@ snippet ifelse
 	}
 
 snippet ifelseif
-options head
 	if ${1:condition} {
 		${2:TARGET}
 	} else if ${3:condition} {
@@ -162,7 +161,7 @@ snippet select
 	}
 
 snippet method
-alias receiver_method
+alias receiver
 	func (${1:receiver} *${2:structName}) ${3:name}() ${4:returnType }{
 		${0:TARGET}
 	}
