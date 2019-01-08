@@ -33,7 +33,7 @@
   changed_when: False
   failed_when: go_module_exists.rc not in [0, 1]
   with_items:
-    - github.com/nsf/gocode
+    - github.com/stamblerre/gocode
     - golang.org/x/tools/cmd/goimports
     - golang.org/x/lint/golint
     - github.com/go-task/task/cmd/task
@@ -48,6 +48,7 @@
     - github.com/jackc/sqlfmt/...
     - github.com/notomo/wsxhub/...
     - github.com/kisielk/godepgraph
+    - golang.org/x/tools/cmd/golsp
   environment:
     GOPATH: "{{ home_dir }}/go"
 
