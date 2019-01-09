@@ -46,6 +46,13 @@ class Source(Base):
         )
         text = process.communicate()[0].decode('ascii')
 
-        f = open(path, 'w')
+        # HACK: append builtin
+        any_standard_package = 'archive/tar '
+        start = text.find(any_standard_package) + len(any_standard_package)
+        end = text.find('\n', start) - len(any_standard_package)
+        builtin_path = text[start:end] + '/builtin'
+
+        f = open(path, 'a')
         f.write(text)
+        f.writelines(['builtin ' + builtin_path])
         f.close()

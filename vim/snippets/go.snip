@@ -62,6 +62,9 @@ snippet sprintf
 snippet make
 	${0:value} := make(${1:type,})
 
+snippet delete
+	delete(${1:map}, ${1:key})
+
 snippet cast
 	${1:name} := ${2:type}(${0:value})
 
@@ -81,8 +84,14 @@ snippet interface
 		${1:funcName}() ${0:type}
 	}
 
+snippet enum
+	const (
+		${1:Zero}  = iota
+		${0:One}
+	)
+
 snippet for
-	for ${1:condition }{
+	for ${1:condition} {
 		${0:TARGET}
 	}
 
@@ -173,7 +182,6 @@ snippet select
 	}
 
 snippet method
-alias receiver
 	func (${1:receiver} *${2:structName}) ${3:name}() ${4:returnType }{
 		${0:TARGET}
 	}
