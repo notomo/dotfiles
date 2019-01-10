@@ -57,16 +57,22 @@ snippet println
 	fmt.Println(${0:TARGET})
 
 snippet sprintf
-	fmt.Sprintf("${1:formatString}", ${1:args})
+	fmt.Sprintf("${1:formatString}", ${0:args})
 
 snippet make
 	${0:value} := make(${1:type,})
+
+snippet append
+	$1 = append(${1:slice}, ${0:value,})
 
 snippet delete
 	delete(${1:map}, ${1:key})
 
 snippet cast
 	${1:name} := ${2:type}(${0:value})
+
+snippet range
+	range ${0:iterable}
 
 snippet chan
 	chan ${0:type}
@@ -81,7 +87,7 @@ snippet struct
 
 snippet interface
 	interface {
-		${1:funcName}() ${0:type}
+		${1:FuncName}() ${0:type}
 	}
 
 snippet enum
@@ -182,7 +188,7 @@ snippet select
 	}
 
 snippet method
-	func (${1:receiver} *${2:structName}) ${3:name}() ${4:returnType }{
+	func (${1:receiver} *${2:structName}) ${3:name}() ${4:returnType} {
 		${0:TARGET}
 	}
 
