@@ -97,7 +97,7 @@ nnoremap <silent> [denite]lr :<C-u>Denite references -auto-preview -immediately-
 let g:LanguageClient_autoStart = 1
 
 let g:LanguageClient_serverCommands = {}
-let g:LanguageClient_serverCommands['go'] = ['golsp', '-mode', 'stdio']
+" let g:LanguageClient_serverCommands['go'] = ['golsp', '-mode', 'stdio']
 " let g:LanguageClient_serverCommands['python'] = ['pyls']
 " let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
 " let g:LanguageClient_serverCommands['lua'] = ['lua-lsp']

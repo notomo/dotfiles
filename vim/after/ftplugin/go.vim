@@ -11,7 +11,7 @@ nnoremap <buffer> <silent> sgk :<C-u>call go#textobj#FunctionJump('n', 'prev')<C
 xnoremap <buffer> <silent> sgj :<C-u>call go#textobj#FunctionJump('v', 'next')<CR>
 xnoremap <buffer> <silent> sgk :<C-u>call go#textobj#FunctionJump('v', 'prev')<CR>
 
-nnoremap <buffer> [exec]bl :<C-u>GoBuild<CR>
+nnoremap <buffer> [exec]bL :<C-u>GoBuild<CR>
 nnoremap <buffer> [exec]gr :<C-u>GoReferrers<CR>
 nnoremap <buffer> [exec]gi :<C-u>GoImplements<CR>
 nnoremap <buffer> [test]g :<C-u>GoCoverageToggle<CR>
