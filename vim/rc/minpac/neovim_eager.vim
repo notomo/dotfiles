@@ -109,3 +109,29 @@ let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_diagnosticsEnable = 0
 
 let g:LanguageClient_loggingLevel = 'INFO'
+
+call minpac#add('notomo/vim-gh-line')
+let g:gh_line_map_default = 0
+let g:gh_line_blame_map_default = 0
+let g:gh_always_interactive = 1
+if !has('mac') && has('unix') && executable('xclip')
+    let g:gh_open_command = 'fn() { echo "$@" | xclip -d :0 -i -selection c; }; fn '
+elseif has('mac') && executable('lemonade')
+    let g:gh_open_command = 'fn() { echo "$@" | lemonade copy; }; fn '
+elseif has('win32')
+    let g:gh_open_command = 'fn() { echo "$@" | win32yank -i --crlf; }; fn '
+endif
+nnoremap [yank]U :<C-u>GHYank<CR>
+xnoremap [yank]U :GHYank<CR>
+
+function! s:yank_and_echo(line1, line2) abort range
+    if a:line1 == a:line2
+        execute 'GH'
+    else
+        execute a:line1 . ',' . a:line2 . 'GH'
+    endif
+    let value = @+
+    echomsg 'yank '. trim(value)
+endfunction
+
+command! -range GHYank call s:yank_and_echo(<line1>, <line2>)

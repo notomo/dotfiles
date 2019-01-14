@@ -364,6 +364,8 @@ endfor
 " yank"{{{
 nnoremap [yank] <Nop>
 nmap <Space>y [yank]
+xnoremap [yank] <Nop>
+xmap <Space>y [yank]
 
 nnoremap <silent> [yank]d :<C-u>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d'))<CR>
 nnoremap <silent> [yank]D :<C-u>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d %T'))<CR>
