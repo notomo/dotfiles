@@ -23,6 +23,14 @@ snippet test_func
 		${0:TARGET}
 	}
 
+snippet bench_func
+	func Benchmark${1:Name}(b *testing.B) {
+	    // setup code
+	    b.ResetTimer()
+	    // benchmarkFunc(b.N)
+		${0:TARGET}
+	}
+
 snippet var
 abbr var names type
 	var ${1:names} ${0:type}
