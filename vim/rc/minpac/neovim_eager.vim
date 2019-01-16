@@ -82,35 +82,33 @@ let g:deoplete#enable_at_startup = 1
 
 call minpac#add('mhartington/nvim-typescript')
 
-call minpac#add('autozimu/LanguageClient-neovim', {'branch' : 'next', 'do' : '!bash install.sh'})
-
-let g:LanguageClient_serverCommands = {'go': ['golsp', '-mode', 'stdio']}
-
-nnoremap [lc] <Nop>
-nmap <Leader>f [lc]
-nnoremap <silent> [lc]d :<C-u>call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> [lc]D :<C-u>call LanguageClient_textDocument_typeDefinition()<CR>
-nnoremap <silent> [lc]r :<C-u>call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> [lc]k :<C-u>call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> [denite]ld :<C-u>Denite documentSymbol<CR>
-nnoremap <silent> [denite]lw :<C-u>Denite workspaceSymbol<CR>
-nnoremap <silent> [denite]lr :<C-u>Denite references -auto-preview -immediately-1<CR>
-
-let g:LanguageClient_autoStart = 1
-
-let g:LanguageClient_serverCommands = {}
-" let g:LanguageClient_serverCommands['go'] = ['golsp', '-mode', 'stdio']
-" let g:LanguageClient_serverCommands['python'] = ['pyls']
-" let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
-" let g:LanguageClient_serverCommands['lua'] = ['lua-lsp']
-" let g:LanguageClient_serverCommands['rust'] = ['rustup', 'run', 'nightly', 'rls']
-" let g:LanguageClient_serverCommands['haskell'] = ['hie', '--lsp']
-" let g:LanguageClient_serverCommands['vue'] = ['vls']
-
-let g:LanguageClient_signColumnAlwaysOn = 0
-let g:LanguageClient_diagnosticsEnable = 0
-
-let g:LanguageClient_loggingLevel = 'INFO'
+" call minpac#add('autozimu/LanguageClient-neovim', {'branch' : 'next', 'do' : '!bash install.sh'})
+"
+" nnoremap [lc] <Nop>
+" nmap <Leader>f [lc]
+" nnoremap <silent> [lc]d :<C-u>call LanguageClient_textDocument_definition()<CR>
+" nnoremap <silent> [lc]D :<C-u>call LanguageClient_textDocument_typeDefinition()<CR>
+" nnoremap <silent> [lc]r :<C-u>call LanguageClient_textDocument_rename()<CR>
+" nnoremap <silent> [lc]k :<C-u>call LanguageClient_textDocument_hover()<CR>
+" nnoremap <silent> [denite]ld :<C-u>Denite documentSymbol<CR>
+" nnoremap <silent> [denite]lw :<C-u>Denite workspaceSymbol<CR>
+" nnoremap <silent> [denite]lr :<C-u>Denite references -auto-preview -immediately-1<CR>
+"
+" let g:LanguageClient_autoStart = 1
+"
+" let g:LanguageClient_serverCommands = {}
+" " let g:LanguageClient_serverCommands['go'] = ['golsp', '-mode', 'stdio']
+" " let g:LanguageClient_serverCommands['python'] = ['pyls']
+" " let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
+" " let g:LanguageClient_serverCommands['lua'] = ['lua-lsp']
+" " let g:LanguageClient_serverCommands['rust'] = ['rustup', 'run', 'nightly', 'rls']
+" " let g:LanguageClient_serverCommands['haskell'] = ['hie', '--lsp']
+" " let g:LanguageClient_serverCommands['vue'] = ['vls']
+"
+" let g:LanguageClient_signColumnAlwaysOn = 0
+" let g:LanguageClient_diagnosticsEnable = 0
+"
+" let g:LanguageClient_loggingLevel = 'INFO'
 
 call minpac#add('notomo/vim-gh-line')
 let g:gh_line_map_default = 0
@@ -137,3 +135,32 @@ function! s:yank_and_echo(line1, line2) abort range
 endfunction
 
 command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
+
+call minpac#add('prabirshrestha/async.vim')
+call minpac#add('prabirshrestha/vim-lsp')
+call minpac#add('prabirshrestha/asyncomplete.vim')
+call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
+if executable('golsp')
+    augroup LspGo
+        au!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'go-lang',
+            \ 'cmd': {server_info->['golsp', '-mode', 'stdio']},
+            \ 'whitelist': ['go'],
+        \ })
+        autocmd FileType go setlocal omnifunc=lsp#complete
+    augroup END
+endif
+let g:lsp_diagnostics_enabled = 0
+let g:lsp_signs_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 1
+
+nnoremap [lc] <Nop>
+nmap <Leader>f [lc]
+nnoremap <silent> [lc]d :<C-u>LspDefinition<CR>
+nnoremap <silent> [lc]D :<C-u>LspTypeDefinition<CR>
+nnoremap <silent> [lc]r :<C-u>LspRename<CR>
+nnoremap <silent> [lc]k :<C-u>LspHover<CR>
+nnoremap <silent> [lc]ld :<C-u>LspDocumentSymbol<CR>
+nnoremap <silent> [lc]lw :<C-u>LspWorkspaceSymbol<CR>
+nnoremap <silent> [lc]lr :<C-u>LspReferences<CR>
