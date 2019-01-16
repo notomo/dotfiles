@@ -27,3 +27,4 @@ onoremap <buffer> <silent> ic :<C-u>call go#textobj#Comment('i')<CR>
 xnoremap <buffer> <silent> ic :<C-u>call go#textobj#Comment('i')<CR>
 
 nnoremap <buffer> <silent> [yank]I :<C-u>call notomo#vimrc#yank_and_echo(trim(system('go list -f "{{.ImportPath}}" ./')))<CR>
+nnoremap <buffer> <silent> [denite]K :<C-u>call notomo#denite#go_package_dir()<CR>

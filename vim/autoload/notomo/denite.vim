@@ -237,6 +237,15 @@ function! notomo#denite#php_tag_jump() abort
     echomsg cmd
 endfunction
 
+function! notomo#denite#go_package_dir() abort
+    let cword = expand('<cWORD>')
+    let name = '^' . trim(cword, '"') . '$'
+    let input = '-input=' . escape(name, '/')
+    let cmd = 'Denite go/package ' . input . ' -no-empty -immediately-1 -default-action=tabopen'
+    execute cmd
+    echomsg cmd
+endfunction
+
 function! notomo#denite#get(option_name) abort
     if stridx(a:option_name, ';') != -1
         return
