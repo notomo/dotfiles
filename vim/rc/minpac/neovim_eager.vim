@@ -75,6 +75,7 @@ let g:test#runners['Python'] = ['PyTest']
 let g:test#runners['JavaScript'] = ['Jest']
 let g:test#python#pytest#options = '-s'
 let g:test#php#phpunit#options = '--no-coverage'
+let g:test#go#gotest#options = '-v'
 
 call minpac#add('Shougo/deoplete.nvim')
 let g:deoplete#enable_at_startup = 1
@@ -88,6 +89,7 @@ let g:LanguageClient_serverCommands = {'go': ['golsp', '-mode', 'stdio']}
 nnoremap [lc] <Nop>
 nmap <Leader>f [lc]
 nnoremap <silent> [lc]d :<C-u>call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> [lc]D :<C-u>call LanguageClient_textDocument_typeDefinition()<CR>
 nnoremap <silent> [lc]r :<C-u>call LanguageClient_textDocument_rename()<CR>
 nnoremap <silent> [lc]k :<C-u>call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> [denite]ld :<C-u>Denite documentSymbol<CR>
