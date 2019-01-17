@@ -47,8 +47,7 @@ xnoremap [alignta]c :<C-u>'<,'>Alignta :<CR>
 xnoremap [alignta]p :<C-u>'<,'>Alignta )<CR>
 xnoremap [alignta]<Space> :<C-u>'<,'>Alignta <<0 \ <CR>
 
-call s:add('lilydjwg/colorizer', {'cmd' : 'ColorToggle', 'ft' : ['javascript', 'css', 'html', 'vim']})
-nnoremap [exec]C :<C-u>ColorToggle<CR>
+call s:add('lilydjwg/colorizer', {'cmd' : 'ColorHighlight'})
 
 call s:add('AndrewRadev/linediff.vim', {'cmd' : '*Linediff'})
 xnoremap [diff]l :Linediff<CR>
