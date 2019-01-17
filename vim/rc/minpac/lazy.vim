@@ -79,25 +79,7 @@ else
     let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
 endif
 
-call s:add('zchee/deoplete-go', {'ft' : 'go', 'do' : executable('make') ? 'silent! !make' : '' })
-if has('win32')
-    let g:deoplete#sources#go#gocode_binary = $GOPATH . '\bin\gocode.exe'
-else
-    let g:deoplete#sources#go#gocode_binary = $GOPATH . '/bin/gocode'
-endif
-
 call s:add('fszymanski/deoplete-emoji', {'ft' : 'markdown'})
-
-call s:add('fatih/vim-go', {'ft' : 'go', 'do' : 'GoInstallBinaries' })
-let g:go_auto_type_info = 0
-let g:go_auto_sameids = 0
-let g:go_doc_keywordprg_enabled = 0
-let g:go_fmt_autosave = 0
-let g:go_list_type = 'quickfix'
-let g:go_snippet_engine = ''
-let g:go_gocode_unimported_packages = 1
-let g:go_template_autocreate = 0
-let g:go_info_mode = 'guru'
 
 call s:add('carlitux/deoplete-ternjs', {'ft' : 'javascript'})
 let g:deoplete#sources#ternjs#timeout = 1

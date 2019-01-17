@@ -164,3 +164,14 @@ nnoremap <silent> [lc]k :<C-u>LspHover<CR>
 nnoremap <silent> [lc]ld :<C-u>LspDocumentSymbol<CR>
 nnoremap <silent> [lc]lw :<C-u>LspWorkspaceSymbol<CR>
 nnoremap <silent> [lc]lr :<C-u>LspReferences<CR>
+
+call minpac#add('fatih/vim-go')
+let g:go_auto_type_info = 0
+let g:go_auto_sameids = 0
+let g:go_doc_keywordprg_enabled = 0
+let g:go_fmt_autosave = 0
+let g:go_list_type = 'quickfix'
+let g:go_snippet_engine = ''
+let g:go_gocode_unimported_packages = 0
+let g:go_template_autocreate = 0
+let g:go_info_mode = 'guru'
