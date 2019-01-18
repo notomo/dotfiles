@@ -1,4 +1,30 @@
 
+- name: check ansible managed block .bashrc
+  shell: grep "ANSIBLE MANAGED BLOCK" -- {{ home_dir }}/.bashrc
+  register: exists_ansible_managed_block
+  when: is_centos
+  changed_when: False
+  ignore_errors: yes
+
+- name: remove default .bashrc
+  file:
+    path: "{{ home_dir }}/.bashrc"
+    state: absent
+  when: is_centos and exists_ansible_managed_block.rc != 0
+
+- name: check ansible managed block .bash_profile
+  shell: grep "ANSIBLE MANAGED BLOCK" -- {{ home_dir }}/.bash_profile
+  register: exists_ansible_managed_block
+  when: is_centos
+  changed_when: False
+  ignore_errors: yes
+
+- name: remove default .bash_profile
+  file:
+    path: "{{ home_dir }}/.bash_profile"
+    state: absent
+  when: is_centos and exists_ansible_managed_block.rc != 0
+
 - name: create .bashrc
   file:
     path: "{{ home_dir }}/.bashrc"
@@ -41,6 +67,14 @@
       alias anct='cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml --tags'
       alias psa='ps -aux'
   when: is_macos
+
+- name: add .bashrc content on centos
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK bash on centos"
+    dest: "{{ home_dir }}/.bashrc"
+    content: |
+      alias anct='cd ~/dotfiles/ansible;ansible-playbook playbooks/centos7.yml --tags'
+  when: is_centos
 
 - name: add .bash_profile content
   blockinfile:

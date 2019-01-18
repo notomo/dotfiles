@@ -1,3 +1,7 @@
+if [ -f /etc/bashrc ] && [ "${BASH_SOURCE[0]}" != "" ]; then
+    . /etc/bashrc
+fi
+
 alias nv="nvim"
 alias nvu="nvim -u ~/dotfiles/vim/local/test.vim"
 alias nvU="nvim -u ~/dotfiles/vim/local/test.vim --noplugin"

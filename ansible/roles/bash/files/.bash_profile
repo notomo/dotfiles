@@ -1,3 +1,7 @@
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
 export GROOVY_HOME=$HOME/app/groovy/latest
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
 
