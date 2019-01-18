@@ -1,0 +1,90 @@
+
+- name: install zsh with homebrew
+  homebrew:
+    name: zsh
+  when: is_macos
+
+- name: make zsh directory
+  file:
+    path: "{{ app_dir }}/zsh"
+    state: directory
+  when: is_centos
+
+- name: check zsh download
+  stat:
+    path: "{{ app_dir }}/zsh.tar.xz"
+  register: zsh_downloaded
+  when: is_centos
+
+- name: download zsh
+  action: |
+    command \
+      wget \
+      https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz/download -O zsh-5.6.2.tar.xz \
+      -O {{ app_dir }}/zsh.tar.xz
+  when: is_centos and not zsh_downloaded.stat.exists
+
+- name: check zsh binary
+  stat:
+    path: "/usr/local/bin/zsh"
+  register: zsh_binary
+  when: is_centos
+
+- name: unarchive zsh
+  unarchive:
+    src: "{{ app_dir }}/zsh.tar.xz"
+    dest: "{{ app_dir }}/zsh"
+    extra_opts: [--strip-components=1]
+  when: is_centos and not zsh_downloaded.stat.exists
+
+- name: config
+  shell: |
+    ./configure \
+      --enable-multibyte \
+  args:
+    chdir: "{{ app_dir }}/zsh"
+  when: is_centos and not zsh_binary.stat.exists
+
+- name: build
+  make:
+    chdir: "{{ app_dir }}/zsh"
+  when: is_centos and not zsh_binary.stat.exists
+
+- name: install
+  make:
+    target: install
+    chdir: "{{ app_dir }}/zsh"
+  when: is_centos and not zsh_binary.stat.exists
+  become: yes
+
+- name: git clone antigen
+  git:
+    repo: https://github.com/zsh-users/antigen.git
+    dest: "{{ home_dir }}/.local/zsh/antigen"
+
+- name: create .zshrc
+  file:
+    path: "{{ home_dir }}/.zshrc"
+    state: touch
+  register: touch_log
+  changed_when: touch_log.diff.before.state != "file"
+
+- name: add .zshrc content
+  blockinfile:
+    dest: "{{ home_dir }}/.zshrc"
+    content: |
+      {{ lookup('file', '.zshrc') }}
+
+- name: create .zprofile
+  file:
+    path: "{{ home_dir }}/.zprofile"
+    state: touch
+  register: touch_log
+  changed_when: touch_log.diff.before.state != "file"
+
+- name: add .zprofile content
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK zsh role"
+    dest: "{{ home_dir }}/.zprofile"
+    content: |
+      {{ lookup('file', '.zprofile') }}

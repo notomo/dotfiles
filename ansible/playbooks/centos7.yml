@@ -3,6 +3,7 @@
     - { role: 'workspace', tags: 'workspace' }
     - { role: 'git', tags: 'git' }
     - { role: 'bash', tags: 'bash' }
+    - { role: 'zsh', tags: 'zsh' }
     - { role: 'ruby', tags: 'ruby' }
     - { role: 'golang', tags: 'golang' }
     - { role: 'dotfiles', tags: 'dotfiles' }

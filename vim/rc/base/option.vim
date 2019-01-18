@@ -84,6 +84,10 @@ if !has('nvim')
     set swapsync=
 endif
 
+if executable('zsh')
+    set shell=zsh
+endif
+
 if has('win32') && $PATH !~? '\(^\|;\)' . escape($VIM, '\\') . '\(;\|$\)'
   let $PATH = $VIM . ';' . $PATH
 endif
