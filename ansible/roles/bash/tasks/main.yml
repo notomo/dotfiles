@@ -64,6 +64,7 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK bash on mac"
     dest: "{{ home_dir }}/.bashrc"
     content: |
+      alias anc='cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml'
       alias anct='cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml --tags'
       alias psa='ps -aux'
   when: is_macos
@@ -73,6 +74,7 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK bash on centos"
     dest: "{{ home_dir }}/.bashrc"
     content: |
+      alias anc='cd ~/dotfiles/ansible;ansible-playbook playbooks/centos7.yml'
       alias anct='cd ~/dotfiles/ansible;ansible-playbook playbooks/centos7.yml --tags'
   when: is_centos
 
