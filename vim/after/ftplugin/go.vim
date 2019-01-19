@@ -1,9 +1,9 @@
 setlocal completeopt-=preview
 setlocal noexpandtab
-nnoremap <buffer> [keyword]o :<C-u>GoDef<CR>
-nnoremap <buffer> [keyword]v :<C-u>vsplit \| GoDef<CR>
-nnoremap <buffer> [keyword]h :<C-u>split \| GoDef<CR>
-nnoremap <buffer> [keyword]t :<C-u>call notomo#window#duplicate() \| GoDef<CR>
+nnoremap <buffer> [keyword]o :<C-u>LspDefinition<CR>
+nnoremap <buffer> [keyword]v :<C-u>vsplit \| LspDefinition<CR>
+nnoremap <buffer> [keyword]h :<C-u>split \| LspDefinition<CR>
+nnoremap <buffer> [keyword]t :<C-u>call notomo#window#duplicate() \| LspDefinition<CR>
 nmap <buffer> [keyword]k <Plug>(go-info)
 
 nnoremap <buffer> <silent> sgj :<C-u>call go#textobj#FunctionJump('n', 'next')<CR>
