@@ -57,10 +57,27 @@
   when: is_centos and not zsh_binary.stat.exists
   become: yes
 
-- name: git clone antigen
-  git:
-    repo: https://github.com/zsh-users/antigen.git
-    dest: "{{ home_dir }}/.local/zsh/antigen"
+- name: check zplug
+  stat:
+    path: "{{ home_dir }}/.zplug"
+  register: zplug_installed
+
+- name: get zplug
+  shell: curl -sL --proto-redir -all,https \
+    https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+  when: not zplug_installed.stat.exists
+
+- name: check ansible managed block .zshrc
+  shell: grep "ANSIBLE MANAGED BLOCK" -- {{ home_dir }}/.zshrc
+  register: exists_ansible_managed_block
+  changed_when: False
+  ignore_errors: yes
+
+- name: remove default .zshrc
+  file:
+    path: "{{ home_dir }}/.zshrc"
+    state: absent
+  when: is_centos and exists_ansible_managed_block.rc != 0
 
 - name: create .zshrc
   file:
@@ -74,6 +91,18 @@
     dest: "{{ home_dir }}/.zshrc"
     content: |
       {{ lookup('file', '.zshrc') }}
+
+- name: check ansible managed block .zprofile
+  shell: grep "ANSIBLE MANAGED BLOCK" -- {{ home_dir }}/.zprofile
+  register: exists_ansible_managed_block
+  changed_when: False
+  ignore_errors: yes
+
+- name: remove default .zprofile
+  file:
+    path: "{{ home_dir }}/.zprofile"
+    state: absent
+  when: is_centos and exists_ansible_managed_block.rc != 0
 
 - name: create .zprofile
   file:
