@@ -86,3 +86,9 @@
       alias anc="cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml"
       alias anct="cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml --tags"
   when: is_macos
+
+- name: copy refresh_dotfiles_git.sh
+  copy:
+    remote_src: True
+    src: "{{ dotfiles_dir }}/tool/refresh_dotfiles_git.sh"
+    dest: "{{ app_dir }}/refresh_dotfiles_git.sh"
