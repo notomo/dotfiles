@@ -15,6 +15,7 @@
   shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   become: yes
   when: is_centos
+  changed_when: False
 
 - name: install with yum
   yum: name=docker-ce
@@ -58,6 +59,7 @@
     enabled: yes
   become: yes
   when: is_centos
+  changed_when: False
 
 - name: check docker-compose
   stat:

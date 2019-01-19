@@ -13,6 +13,9 @@ export THEMIS_PROFILE_LOG=profile.txt
 # used by firefox
 export DISPLAY=:0
 
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin:$HOME/.local/go/bin
+
 # export NVIM_PYTHON_LOG_FILE=$HOME/log
 # export NVIM_PYTHON_LOG_LEVEL=ERROR
 
@@ -27,6 +30,6 @@ if [ -d "$HOME/dotfiles" ]; then
     cd ~/dotfiles
 fi
 
-if [ -f "$HOME/.local/.bash_profile" ]; then
+if [ ! -z "${IGNORE_LOCAL_FILE}" ] && [ -f "$HOME/.local/.bash_profile" ]; then
     source "$HOME/.local/.bash_profile"
 fi

@@ -28,7 +28,7 @@
   when: is_centos and not golang_installed.stat.exists
 
 - name: check go modules
-  command: "go list {{ item }}"
+  shell: bash -lc "IGNORE_LOCAL_FILE=1 go list {{ item }}"
   register: go_module_exists
   changed_when: False
   failed_when: go_module_exists.rc not in [0, 1]
@@ -53,19 +53,11 @@
     GOPATH: "{{ home_dir }}/go"
 
 - name: go get
-  command: "go get {{ item.item }}"
+  shell: bash -lc "IGNORE_LOCAL_FILE=1 go get {{ item.item }}"
   when: item.stderr or item.rc == 1
   with_items: "{{ go_module_exists.results }}"
   environment:
     GOPATH: "{{ home_dir }}/go"
-
-- name: add go path
-  blockinfile:
-    marker: "# {mark} ANSIBLE MANAGED BLOCK golang role"
-    dest: "{{ home_dir }}/.bash_profile"
-    content: |
-      export GOPATH=$HOME/go
-      export PATH=$PATH:$GOPATH/bin:$HOME/.local/go/bin
 
 - name: copy lemonade.toml
   copy:

@@ -9,7 +9,6 @@
     - { role: 'dotfiles', tags: 'dotfiles' }
     - { role: 'tools', tags: 'tools' }
     - { role: 'python', tags: 'python' }
-    - { role: 'php', tags: 'php' }
     - { role: 'node', tags: 'node' }
     - { role: 'docker', tags: 'docker' }
     - { role: 'neovim', tags: 'neovim' }

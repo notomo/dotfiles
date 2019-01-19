@@ -141,7 +141,7 @@ if [ -d "${RBENV_ROOT}" ]; then
     eval "$(rbenv init -)"
 fi
 
-if [ -f "$HOME/.local/.bashrc" ]; then
+if [ ! -z "${IGNORE_LOCAL_FILE}" ] && [ -f "$HOME/.local/.bashrc" ]; then
     source "$HOME/.local/.bashrc"
 fi
 
