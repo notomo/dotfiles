@@ -20,7 +20,7 @@ else
 endif
 " let g:ale_linters['php'] = ['phpcs', 'phpmd', 'php']
 let g:ale_linters['sh'] = ['shellcheck']
-let g:ale_linters['go'] = ['govet', 'gofmt', 'golint', 'gosimple', 'gometalinter']
+let g:ale_linters['go'] = ['govet', 'gofmt', 'golint']
 let g:ale_linters['sql'] = []
 let g:ale_linters['c'] = ['clang']
 let g:ale_linters['cs'] = ['mcs']

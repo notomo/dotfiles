@@ -36,11 +36,6 @@
     - github.com/stamblerre/gocode
     - golang.org/x/tools/cmd/goimports
     - golang.org/x/lint/golint
-    - github.com/go-task/task/cmd/task
-    - golang.org/x/tools/cmd/gotype
-    - honnef.co/go/tools/cmd/gosimple
-    - honnef.co/go/tools/cmd/staticcheck
-    - github.com/alecthomas/gometalinter
     - honnef.co/go/tools/cmd/unused
     - github.com/mattn/mkup
     - github.com/github/hub
@@ -48,7 +43,7 @@
     - github.com/jackc/sqlfmt/...
     - github.com/notomo/wsxhub/...
     - github.com/kisielk/godepgraph
-    - golang.org/x/tools/cmd/golsp
+    - golang.org/x/tools/cmd/gopls
   environment:
     GOPATH: "{{ home_dir }}/go"
 
