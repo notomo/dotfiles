@@ -2,6 +2,7 @@
   roles:
     - { role: 'unarchive', tags: 'unarchive' }
     - { role: 'bash', tags: 'bash' }
+    - { role: 'zsh', tags: 'zsh' }
     - { role: 'workspace', tags: 'workspace' }
     - { role: 'ruby', tags: 'ruby' }
     - { role: 'golang', tags: 'golang' }
