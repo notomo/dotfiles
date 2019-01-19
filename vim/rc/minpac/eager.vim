@@ -207,7 +207,7 @@ call minpac#add('Shougo/vimfiler.vim')
 call minpac#add('Shougo/neomru.vim')
 let g:neomru#file_mru_limit = 1000
 if !exists('g:neomru#file_mru_ignore_pattern')
-    let g:neomru#file_mru_ignore_pattern = '\%(^\%(gina\)://\)'
+    let g:neomru#file_mru_ignore_pattern = '\%(^\%(gina\|term\)://\)'
 endif
 
 call minpac#add('thinca/vim-qfreplace')
