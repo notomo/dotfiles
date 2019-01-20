@@ -30,6 +30,6 @@ if [ -d "$HOME/dotfiles" ]; then
     cd ~/dotfiles
 fi
 
-if [ ! -z "${IGNORE_LOCAL_FILE}" ] && [ -f "$HOME/.local/.bash_profile" ]; then
+if [ ! -v "${IGNORE_LOCAL_FILE}" ] && [ -f "$HOME/.local/.bash_profile" ]; then
     source "$HOME/.local/.bash_profile"
 fi

@@ -4,6 +4,7 @@ fi
 
 alias nv="nvim"
 alias nvu="nvim -u ~/dotfiles/vim/local/test.vim"
+alias vu="vim -u ~/dotfiles/vim/local/test.vim"
 alias nvU="nvim -u ~/dotfiles/vim/local/test.vim --noplugin"
 alias nvt="~/app/neovim/build/bin/nvim"
 alias vi="vim"
@@ -141,7 +142,7 @@ if [ -d "${RBENV_ROOT}" ]; then
     eval "$(rbenv init -)"
 fi
 
-if [ ! -z "${IGNORE_LOCAL_FILE}" ] && [ -f "$HOME/.local/.bashrc" ]; then
+if [ ! -v "${IGNORE_LOCAL_FILE}" ] && [ -f "$HOME/.local/.bashrc" ]; then
     source "$HOME/.local/.bashrc"
 fi
 
