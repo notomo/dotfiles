@@ -239,8 +239,6 @@ call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project
 
 call denite#custom#action('directory', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})
 
-call denite#custom#action('keymap', 'open', {context ->  denite#do_action(context, 'execute', context['targets'])})
-
 call denite#custom#action('buffer,command,directory,file,openable,word,namespace', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})
 
 call denite#custom#action('namespace', 'use', {context ->  notomo#denite#append_with(context, 'use ', ';')})
