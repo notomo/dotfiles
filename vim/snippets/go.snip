@@ -146,6 +146,16 @@ snippet iferr
 		${0:TARGET}
 	}
 
+snippet ifexprerr
+	if err := ${1:expr}; err != nil {
+		${0:TARGET}
+	}
+
+snippet test_run
+	t.Run("${1:title}", func(t *testing.T) {
+		${0:TARGET}
+	})
+
 snippet if_has_key
 	if ${1:value}, ok := ${2:dict}[${3:key}]; ok {
 		${0:TARGET}
@@ -176,6 +186,14 @@ snippet foreach_no_index
 
 snippet switch
 	switch ${1:variable} {
+	case ${2:expr}:
+		${3:TARGET}
+	default:
+		${0:TARGET}
+	}
+
+snippet switch_type
+	switch ${1:variable}.(type) {
 	case ${2:expr}:
 		${3:TARGET}
 	default:
