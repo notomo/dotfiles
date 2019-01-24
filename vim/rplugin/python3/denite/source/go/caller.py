@@ -9,6 +9,8 @@ from denite.source.base import Base
 class Source(Base):
 
     ROOT_FILES = ['.git']
+    EXCLUDES_KEY = 'denite_go_guru_excludes'
+    INCLUDE_KEY = 'denite_go_guru_include'
 
     def __init__(self, vim):
         super().__init__(vim)
@@ -65,6 +67,9 @@ class Source(Base):
             self.error_message(context, 'output: ' + output)
             return []
 
+        if not result_json:
+            return []
+
         return [create(line) for line in result_json]
 
     def _get_offset(self):
@@ -82,7 +87,21 @@ class Source(Base):
                 p = dir_path[:-1]
             else:
                 p = dir_path
-            return p[len(src_path) + 1:] + '/...'
+
+            if self.INCLUDE_KEY in self.vim.current.buffer.vars:
+                include = self.vim.current.buffer.vars[self.INCLUDE_KEY]
+            else:
+                include = p[len(src_path) + 1:] + '/...'
+
+            if self.EXCLUDES_KEY in self.vim.current.buffer.vars:
+                excludes = self.vim.current.buffer.vars[self.EXCLUDES_KEY]
+            else:
+                excludes = []
+
+            scopes = [include]
+            scopes.extend(excludes)
+
+            return ',-'.join(scopes)
 
         paths = os.path.split(path)[0]
         paths_length = len(paths)
