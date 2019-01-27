@@ -51,3 +51,25 @@ class Source(Base):
         )
 
         return [create(line) for line in exports]
+
+    def highlight(self):
+        self.vim.command('highlight default link myDeclsKeyword Keyword')
+        self.vim.command('highlight default link myDeclsType Type')
+        self.vim.command('highlight default link myDeclsFile Comment')
+
+    def define_syntax(self):
+        super(Source, self).define_syntax()
+        self.vim.command('syntax case match')
+        self.vim.command(
+            'syntax keyword myDeclsKeyword type interface struct func '
+        )
+        self.vim.command(
+            'syntax keyword myDeclsType chan map bool string error '
+            'int int8 int16 int32 int64 rune byte '
+            'uint uint8 uint16 uint32 uint64 uintptr '
+            'float32 float64 complex64 complex128 '
+        )
+        self.vim.command('syntax case ignore')
+        self.vim.command(
+            'syntax match myDeclsFile /^ [^[:space:]]*/ '
+        )
