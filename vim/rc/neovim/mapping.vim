@@ -32,6 +32,7 @@ nnoremap [exec]N :<C-u>call _open_note()<CR>
 nnoremap [test]t :<C-u>call <SID>execute_project_test()<CR>
 nnoremap [exec]bl :<C-u>call <SID>execute_project_build()<CR>
 nnoremap [exec]i :<C-u>call <SID>execute_project_lint()<CR>
+nnoremap S :<C-u>call <SID>execute_project_start()<CR>
 
 function! s:execute_project_test() abort
     let makefile_path = notomo#vimrc#search_parent_recursive('Makefile', './')
@@ -69,6 +70,14 @@ function! s:execute_project_build() abort
     let package_json_path = notomo#vimrc#search_parent_recursive('package.json', './')
     if !empty(package_json_path)
         call s:execute(fnamemodify(package_json_path, ':h'), 'npm run build')
+        return
+    endif
+endfunction
+
+function! s:execute_project_start() abort
+    let makefile_path = notomo#vimrc#search_parent_recursive('Makefile', './')
+    if !empty(makefile_path)
+        call s:execute(fnamemodify(makefile_path, ':h'), 'make start')
         return
     endif
 endfunction
