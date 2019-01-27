@@ -55,7 +55,6 @@ noremap <silent> <LeftRelease> :<C-u>call gesture#finish()<CR>
 
 if executable('python3.6') || executable('python3.7')
     call minpac#add('Shougo/defx.nvim')
-    source ~/.vim/rc/plugins/defx.vim
 endif
 
 call minpac#add('janko-m/vim-test')

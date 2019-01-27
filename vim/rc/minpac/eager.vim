@@ -200,8 +200,6 @@ call minpac#add('kmnk/vim-unite-giti')
 nnoremap <silent> [unite]bb :<C-u>Unite giti/branch<CR>
 nnoremap <silent> [unite]ba :<C-u>Unite giti/branch_all<CR>
 
-call minpac#add('Shougo/vimfiler.vim')
-
 call minpac#add('Shougo/neomru.vim')
 let g:neomru#file_mru_limit = 1000
 if !exists('g:neomru#file_mru_ignore_pattern')

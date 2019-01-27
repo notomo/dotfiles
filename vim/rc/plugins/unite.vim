@@ -26,8 +26,6 @@ function! s:settings()
 
     nnoremap <silent> <buffer> <expr> sh unite#do_action('split')
     nnoremap <silent> <buffer> <expr> sv unite#do_action('vsplit')
-    nnoremap <silent> <buffer> <expr> fl unite#do_action('tabvimfiler')
-    nnoremap <silent> <buffer> <expr> fo unite#do_action('vimfiler')
     nnoremap <silent> <buffer> <expr> ff unite#do_action('file')
 
     nnoremap <silent> <buffer> <expr> t<CR> unite#do_action('checkout_tracking')

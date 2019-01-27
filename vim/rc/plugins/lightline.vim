@@ -29,7 +29,7 @@ function! s:surround(value) abort
 endfunction
 
 function! LightlineGitBranch()
-    if &filetype ==? 'vimfiler'
+    if &filetype ==? 'defx'
         return ''
     endif
     let branch = gina#component#repo#branch()
@@ -40,14 +40,14 @@ function! LightlineGitBranch()
 endfunction
 
 function! LightlineFileInfo()
-    if &filetype =~? 'vimfiler\|denite'
+    if &filetype =~? 'defx\|denite'
         return ''
     endif
     return s:surround(&fileencoding . ':' . &fileformat . ':' . &filetype)
 endfunction
 
 function! LightlinePosition()
-    if &filetype ==? 'vimfiler'
+    if &filetype ==? 'defx'
         return ''
     elseif &filetype ==? 'denite'
         return denite#get_status('linenr')
@@ -81,7 +81,7 @@ function! LightlinePositionMap()
 endfunction
 
 function! LightlineGestureLines()
-    if !has('nvim') || &filetype =~? 'vimfiler\|denite'
+    if !has('nvim') || &filetype =~? 'defx\|denite'
         return ''
     endif
     let directions = map(gesture#get_inputs(), { _, v -> v.value })
@@ -89,14 +89,11 @@ function! LightlineGestureLines()
 endfunction
 
 function! LightlineFilePath()
-    if &filetype ==? 'vimfiler'
-        return vimfiler#get_status_string()
-    endif
     return expand('%:p:~')
 endfunction
 
 function! LightlineMode()
-    if &filetype ==? 'vimfiler'
+    if &filetype ==? 'defx'
         return ''
     elseif &filetype ==? 'denite'
         " '-- NORMAL --' or '-- INSERT --' or ...

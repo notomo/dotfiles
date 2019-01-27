@@ -66,7 +66,7 @@ nnoremap <silent> [denite]go :<C-u>Denite go/src<CR>
 nnoremap <silent> [denite]gp :<C-u>Denite go/package<CR>
 nnoremap <silent> [denite]to :<C-u>Denite todo -immediately -default-action=tabopen<CR>
 nnoremap <expr> <silent> [keyword]gs ":\<C-u>DeniteProjectDir file_rec -input=" . notomo#denite#get_splitted() . " -no-empty\<CR>"
-nnoremap <silent> [denite]ts :<C-u>Denite proto_dir:filetype -default-action=tabvimfiler -immediately-1<CR>
+nnoremap <silent> [denite]ts :<C-u>Denite proto_dir:filetype -default-action=tabfiler -immediately-1<CR>
 nnoremap <silent> [denite]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
@@ -149,8 +149,8 @@ call denite#custom#map('normal', 'o', '<denite:do_action:open>', 'noremap')
 call denite#custom#map('normal', 'uo', '<denite:do_action:outline>', 'noremap')
 call denite#custom#map('normal', 'sv', '<denite:do_action:vsplit>', 'noremap')
 call denite#custom#map('normal', 'sh', '<denite:do_action:split>', 'noremap')
-call denite#custom#map('normal', 'fo', '<denite:do_action:vimfiler>', 'noremap')
-call denite#custom#map('normal', 'fl', '<denite:do_action:tabvimfiler>', 'noremap')
+call denite#custom#map('normal', 'fo', '<denite:do_action:filer>', 'noremap')
+call denite#custom#map('normal', 'fl', '<denite:do_action:tabfiler>', 'noremap')
 call denite#custom#map('normal', '<Leader>rn', '<denite:do_action:exrename>', 'noremap')
 call denite#custom#map('normal', '<Leader>rp', '<denite:do_action:qfreplace>', 'noremap')
 call denite#custom#map('normal', 't<Space>', '<denite:do_action:tabopen>', 'noremap')
@@ -201,15 +201,15 @@ call denite#custom#action('directory,go/package', 'dir_file', {context -> notomo
 call denite#custom#action('file', 'dir_file', {context -> notomo#denite#dir_file_on_file(context)})
 call denite#custom#action('file,directory,go/package', 'parent_dir_file', {context -> notomo#denite#parent_dir_file(context)})
 
-call denite#custom#action('file,directory,go/package', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
-call denite#custom#action('directory,go/package', 'vsplit', {context ->  notomo#denite#open('vsplit', context)})
-call denite#custom#action('directory,go/package', 'split', {context ->  notomo#denite#open('split', context)})
+call denite#custom#action('file', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
+call denite#custom#action('directory,go/package', 'open', {context ->  notomo#denite#directory_open('', context)})
+call denite#custom#action('directory,go/package', 'tabopen', {context ->  notomo#denite#directory_open('tabnew', context)})
 
 call denite#custom#action('file', 'qfreplace', {context ->  notomo#denite#qfreplace(context)})
 call denite#custom#action('file,directory,go/package', 'exrename', {context ->  notomo#denite#exrename(context)})
 
-call denite#custom#action('file,directory,go/package', 'vimfiler', {context ->  notomo#denite#directory_open('', context)})
-call denite#custom#action('file,directory,go/package', 'tabvimfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
+call denite#custom#action('file,directory,go/package', 'filer', {context ->  notomo#denite#directory_open('', context)})
+call denite#custom#action('file,directory,go/package', 'tabfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
 
 call denite#custom#action('file', 'outline', {context ->  notomo#denite#outline(context)})
 

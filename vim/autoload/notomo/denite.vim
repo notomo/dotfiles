@@ -79,11 +79,13 @@ function! notomo#denite#directory_open(open_cmd, context) abort
         return
     endif
     execute a:open_cmd
-    let path = target['action__path']
+    let path = expand(target['action__path'])
     if !isdirectory(path)
         let path = fnamemodify(target['action__path'], ':h')
     endif
-    execute 'edit ' . path
+    execute 'cd ' . path
+    Defx
+    only
 endfunction
 
 function! notomo#denite#outline(context) abort

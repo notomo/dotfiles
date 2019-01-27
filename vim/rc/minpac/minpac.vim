@@ -28,7 +28,6 @@ packloadall
 
 " source post
 source ~/.vim/rc/plugins/unite.vim
-source ~/.vim/rc/plugins/vimfiler.vim
 source ~/.vim/rc/plugins/denite.vim
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
@@ -37,6 +36,9 @@ if has('nvim')
     source ~/.vim/rc/plugins/curstr.vim
     source ~/.vim/rc/plugins/gesture.vim
     source ~/.vim/rc/plugins/ctrlb.vim
+    if executable('python3.6') || executable('python3.7')
+        source ~/.vim/rc/plugins/defx.vim
+    endif
 endif
 IncSearchNoreMap <Tab> <Over>(incsearch-next)
 IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
