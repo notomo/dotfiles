@@ -125,7 +125,6 @@ let g:ft_ignroe_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$'
 
 if has('nvim')
     autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
-    autocmd MyAuGroup FileType php execute 'TemplateLoad /filetype/' . &l:filetype
 endif
 
 autocmd MyAuGroup OptionSet diff setlocal nocursorline
@@ -174,7 +173,6 @@ let g:neosnippet#disable_runtime_snippets = {'_' : 1}
 
 call minpac#add('tpope/vim-repeat')
 call minpac#add('osyo-manga/shabadou.vim')
-call minpac#add('vim-jp/vital.vim')
 
 call minpac#add('kana/vim-smartword')
 nmap w <Plug>(smartword-w)
@@ -373,7 +371,6 @@ xmap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 omap <expr> pl textobj#from_regexp#mapexpr('\v%#[^])}>"'']*')
 omap <expr> pL textobj#from_regexp#mapexpr('\v%#.*\ze[])}>"'']')
 
-call minpac#add('tyru/current-func-info.vim')
 call minpac#add('rhysd/vim-operator-surround')
 nnoremap [surround] <Nop>
 nmap s [surround]
@@ -444,13 +441,6 @@ let g:choosewin_color_overlay_current = {
 let g:choosewin_label = 'ASKLWEZXCPIHFRTYUVNMQGODB'
 let g:choosewin_blink_on_land      = 0
 let g:choosewin_statusline_replace = 0
-
-call minpac#add('kana/vim-textobj-function')
-omap af <Plug>(textobj-function-a)
-omap if <Plug>(textobj-function-i)
-xmap af <Plug>(textobj-function-a)
-xmap if <Plug>(textobj-function-i)
-let g:textobj_function_no_default_key_mappings = 1
 
 call minpac#add('osyo-manga/vim-jplus')
 nmap [edit]j <Plug>(jplus)

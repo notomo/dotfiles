@@ -62,8 +62,6 @@ nnoremap [exec]cs :<C-u>call notomo#vimrc#syntax_report()<CR>
 
 call s:add('rhysd/vim-gfm-syntax', {'ft' : 'markdown'})
 
-call s:add('thinca/vim-textobj-function-javascript', {'ft' : 'javascript'})
-
 call s:add('fuenor/im_control.vim', {'event' : 'InsertEnter'})
 let g:IM_CtrlMode = 4
 
@@ -71,22 +69,7 @@ if !has('nvim')
     finish
 endif
 
-call s:add('zchee/deoplete-jedi', {'ft' : 'python'})
-if has('mac')
-    let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
-else
-    let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
-endif
-
 call s:add('fszymanski/deoplete-emoji', {'ft' : 'markdown'})
-
-call s:add('carlitux/deoplete-ternjs', {'ft' : 'javascript'})
-let g:deoplete#sources#ternjs#timeout = 1
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#depths = 1
-let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#omit_object_prototype = 0
-let g:deoplete#sources#ternjs#include_keywords = 1
 
 call s:add('cocopon/pgmnt.vim', {'cmd' : 'PgmntDevInspect'})
 nnoremap [exec]h :<C-u>PgmntDevInspect<CR>
@@ -95,7 +78,6 @@ call s:add('othree/yajs.vim', {'ft' : 'javascript'})
 call s:add('OrangeT/vim-csharp', {'ft' : 'cs'})
 
 call s:add('octol/vim-cpp-enhanced-highlight', {'ft' : 'cpp'})
-call s:add('thinca/vim-template', {'cmd' : 'TemplateLoad'})
 
 call s:add('mattn/emmet-vim', {'ft' : ['css', 'html']})
 call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})

@@ -10,7 +10,6 @@ call minpac#add('leafgarland/typescript-vim')
 call minpac#add('posva/vim-vue')
 call minpac#add('martinda/Jenkinsfile-vim-syntax')
 call minpac#add('chr4/nginx.vim')
-call minpac#add('jwalton512/vim-blade')
 call minpac#add('vim-scripts/gitignore.vim')
 
 call minpac#add('numirias/semshi')
@@ -138,8 +137,6 @@ command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
 
 call minpac#add('prabirshrestha/async.vim')
 call minpac#add('prabirshrestha/vim-lsp')
-call minpac#add('prabirshrestha/asyncomplete.vim')
-call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
 if executable('golsp')
     augroup LspGo
         au!
@@ -148,7 +145,22 @@ if executable('golsp')
             \ 'cmd': {server_info->['golsp', '-mode', 'stdio']},
             \ 'whitelist': ['go'],
         \ })
-        autocmd FileType go setlocal omnifunc=lsp#complete
+    augroup END
+endif
+if executable('pyls')
+    augroup LspPython
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'pyls',
+            \ 'cmd': {server_info->['pyls']},
+            \ 'whitelist': ['python'],
+            \ 'workspace_config': {
+                \ 'pyls': {
+                    \ 'plugins': {
+                        \ 'jedi_definition': {'follow_imports' : v:true, 'follow_builtin_imports' : v:true}
+                    \ }
+                \ }
+            \ }
+        \})
     augroup END
 endif
 let g:lsp_diagnostics_enabled = 0
@@ -175,3 +187,5 @@ let g:go_snippet_engine = ''
 let g:go_gocode_unimported_packages = 0
 let g:go_template_autocreate = 0
 let g:go_info_mode = 'guru'
+
+call minpac#add('lighttiger2505/deoplete-vim-lsp')

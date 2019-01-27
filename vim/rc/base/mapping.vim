@@ -376,7 +376,6 @@ nnoremap <silent> [yank]P :<C-u>call notomo#vimrc#yank_and_echo(substitute(expan
 nnoremap <silent> [yank]; :<C-u>call notomo#vimrc#yank_and_echo(@:)<CR>
 nnoremap <silent> [yank]/ :<C-u>call notomo#vimrc#yank_and_echo(@/)<CR>
 nnoremap <silent> [yank]i :<C-u>call notomo#vimrc#yank_and_echo(@.)<CR>
-nnoremap <silent> [yank]f :<C-u>call notomo#vimrc#yank_and_echo(cfi#format('%s', ''))<CR>
 nnoremap <silent> [yank]b :<C-u>call notomo#vimrc#yank_and_echo(gina#component#repo#branch())<CR>
 nnoremap <silent> [yank]ud :<C-u>call notomo#vimrc#yank_and_echo(notomo#vimrc#url_decode())<CR>
 nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(notomo#vimrc#url_encode())<CR>
