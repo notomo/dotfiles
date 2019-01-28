@@ -30,9 +30,6 @@ function! notomo#denite#parent_dir_file(context) abort
 endfunction
 
 function! notomo#denite#open(open_cmd, context) abort
-    if !has_key(a:context['targets'][0], 'action__path')
-        return
-    endif
     for target in a:context['targets']
         if has_key(target, 'action__line')
             let line = ' +' . target['action__line'] . ' '
@@ -40,7 +37,11 @@ function! notomo#denite#open(open_cmd, context) abort
             let line = ''
         endif
         execute a:open_cmd
-        execute 'edit ' . line . target['action__path']
+        if has_key(target, 'action__bufnr')
+            execute 'edit ' . line . '#' . target['action__bufnr']
+        else
+            execute 'edit ' . line . target['action__path']
+        endif
     endfor
 endfunction
 
