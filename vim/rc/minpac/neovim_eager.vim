@@ -16,8 +16,6 @@ call minpac#add('numirias/semshi')
 let g:semshi#simplify_markup = v:false
 let g:semshi#tolerate_syntax_errors = v:false
 
-call minpac#add('nikvdp/ejs-syntax')
-
 if has('unix')
     call minpac#add('lambdalisue/suda.vim')
     let g:suda_startup = 1
