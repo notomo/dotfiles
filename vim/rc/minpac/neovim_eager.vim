@@ -136,7 +136,7 @@ call minpac#add('prabirshrestha/async.vim')
 call minpac#add('prabirshrestha/vim-lsp')
 if executable('golsp')
     augroup LspGo
-        au!
+        autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'go-lang',
             \ 'cmd': {server_info->['golsp', '-mode', 'stdio']},
@@ -146,6 +146,7 @@ if executable('golsp')
 endif
 if executable('pyls')
     augroup LspPython
+        autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'pyls',
             \ 'cmd': {server_info->['pyls']},
@@ -158,6 +159,16 @@ if executable('pyls')
                 \ }
             \ }
         \})
+    augroup END
+endif
+if executable('rls')
+    augroup LspRust
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'rls',
+            \ 'cmd': {server_info->['rls']},
+            \ 'whitelist': ['rust'],
+        \ })
     augroup END
 endif
 let g:lsp_diagnostics_enabled = 0
