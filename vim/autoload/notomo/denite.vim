@@ -196,50 +196,6 @@ function! notomo#denite#append_with(context, prefix, suffix) abort
     call append(line('.'), words)
 endfunction
 
-function! notomo#denite#get_php_method_command() abort
-    let [class_path, _] = notomo#php#get_class_path_and_attribute()
-    if class_path =~? '^\\'
-        let class_path = class_path[1:]
-    endif
-    let cmd = ":\<C-u>Denite method:" . substitute(class_path, '\', '/', 'g') . " -no-empty \<CR>"
-    echomsg cmd
-    return cmd
-endfunction
-
-function! notomo#denite#add_php_use_statement() abort
-    let cursor_class_path = notomo#php#get_cursor_class_path()
-    if notomo#php#get_alias(cursor_class_path) !=? ''
-        echomsg cursor_class_path . ' is already used.'
-        return
-    endif
-    if cursor_class_path =~? '^\\'
-        let cursor_class_path = cursor_class_path[1:]
-    endif
-    let last_use_line_number = notomo#php#get_last_use_line_numer()
-
-    execute 'normal! m`'
-    let line_count = line('$')
-    call cursor(last_use_line_number, 1)
-    let cmd = 'Denite namespace -input=(^|\\\\)' . substitute(cursor_class_path, '\', '\\', 'g') . '$ -no-empty -immediately-1 -matchers=matcher_regexp'
-    execute cmd
-    execute 'normal! ``'
-    if line('$') > line_count
-        echomsg getline(last_use_line_number + 1) . ' appended!'
-    else
-        echomsg 'Not found!'
-    endif
-endfunction
-
-function! notomo#denite#php_tag_jump() abort
-    let [class_path, attribute] = notomo#php#get_class_path_and_attribute()
-    if class_path =~? '^\\'
-        let class_path = class_path[1:]
-    endif
-    let cmd = 'Denite php/tag:' . substitute(class_path, '\', '/', 'g') . ':' . attribute . ' -no-empty -immediately-1'
-    execute cmd
-    echomsg cmd
-endfunction
-
 function! notomo#denite#go_package_dir() abort
     let cword = expand('<cWORD>')
     let name = '^' . trim(cword, '"') . '$'

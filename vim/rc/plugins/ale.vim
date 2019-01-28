@@ -11,14 +11,7 @@ let g:ale_virtualtext_prefix = ' '
 let g:ale_linters = {}
 let g:ale_linters['python'] = ['flake8', 'mypy']
 let g:ale_linters['vim'] = ['vint']
-" let g:ale_linters['php'] = ['phpmd', 'php', 'langserver']
 let g:ale_linters['php'] = ['phpmd', 'php']
-if has('mac')
-    let g:ale_php_langserver_executable = expand('~/.composer/vendor/felixfbecker/language-server/bin/php-language-server.php')
-else
-    let g:ale_php_langserver_executable = expand('~/.config/composer/vendor/felixfbecker/language-server/bin/php-language-server.php')
-endif
-" let g:ale_linters['php'] = ['phpcs', 'phpmd', 'php']
 let g:ale_linters['sh'] = ['shellcheck']
 let g:ale_linters['go'] = ['govet', 'gofmt', 'golint']
 let g:ale_linters['sql'] = []
@@ -49,17 +42,13 @@ let g:ale_fixers['scss'] = g:ale_fixers['css']
 let g:ale_fixers['vue'] = ['prettier']
 let g:ale_fixers['json'] = ['fixjson']
 let g:ale_fixers['sql'] = ['sqlfmt']
-" let g:ale_fixers['php'] = ['phpcbf']
 " let g:ale_fixers['help'] = ['align_help_tags']
 
-let g:ale_php_phpcs_standard = '~/dotfiles/lint/php/phpcs/my_psr2.xml'
-" let g:ale_php_phpcbf_standard = g:ale_php_phpcs_standard
 let g:ale_php_phpmd_ruleset = 'unusedcode'
 let g:ale_python_mypy_options = '--ignore-missing-imports'
 let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_options = '-m flake8'
 let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.gometalinter.json')
-" let g:ale_css_stylelint_options = '--config=' . expand('~/dotfiles/lint/css/.stylelintrc') . ' --configBasedir=' . systemlist('npm root -g')[0]
 let g:ale_sql_sqlfmt_options = '-u'
 
 function! s:toggle_fix_on_save() abort

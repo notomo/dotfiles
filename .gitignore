@@ -14,7 +14,6 @@
 
 # snippet
 /vim/snippets/mydiary.snip
-/vim/snippets/php/*
 /vim/snippets/sql/*
 
 # ansible

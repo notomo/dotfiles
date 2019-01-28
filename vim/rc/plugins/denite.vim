@@ -49,8 +49,6 @@ nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite plugin<CR>
 nnoremap <silent> [denite]U :<C-u>Denite namespace<CR>
-nnoremap <silent> [denite]P :<C-u>call notomo#denite#add_php_use_statement()<CR>
-nnoremap <expr> <silent> [denite]M notomo#denite#get_php_method_command()
 nnoremap <silent> [denite]O :<C-u>Denite option<CR>
 nnoremap <silent> [denite]A :<C-u>Denite alias<CR>
 nnoremap <silent> [denite]b :<C-u>Denite url_bookmark<CR>
@@ -60,7 +58,6 @@ nnoremap <expr> <silent> [keyword]so ":\<C-u>DeniteBufferDir outline -no-empty -
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
 nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
-nnoremap <silent> [denite]K :<C-u>call notomo#denite#php_tag_jump()<CR>
 nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
 nnoremap <silent> [denite]go :<C-u>Denite go/src<CR>
 nnoremap <silent> [denite]gp :<C-u>Denite go/package<CR>
