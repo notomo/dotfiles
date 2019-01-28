@@ -18,7 +18,6 @@ let s:sources.vue = ['buffer', 'file', 'around', 'neosnippet']
 let s:sources.css = ['omni', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources.scss = s:sources.css
 let s:sources.html = ['omni', 'buffer', 'file', 'around', 'neosnippet']
-let s:sources.blade = ['buffer', 'neosnippet', 'tag', 'around', 'file']
 
 call deoplete#custom#option('sources', s:sources)
 
@@ -31,4 +30,3 @@ inoremap <expr> j<Space>u deoplete#manual_complete(['look'])
 inoremap j<Space>; <C-x><C-l>
 
 autocmd MyAuGroup FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-autocmd MyAuGroup FileType html,blade setlocal omnifunc=emmet#completeTag
