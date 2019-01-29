@@ -33,6 +33,27 @@ function! s:settings() abort
     nnoremap <silent> <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
     nnoremap <silent> <buffer> <expr> <Space>rl defx#do_action('redraw')
+    nnoremap <silent> <buffer> <expr> <2-LeftMouse> defx#do_action('call', "<SID>smart_open")
+endfunction
+
+function! s:smart_open(context) abort
+    let line_num = line('.')
+    let line = trim(getline(line_num))
+    let path = expand(split(line, ' ')[-1])
+    if line_num == 1
+        let path = fnamemodify(path, ':h:h')
+    endif
+
+    if !isdirectory(path) && !filereadable(path)
+        return
+    endif
+
+    if isdirectory(path)
+        call defx#call_action('cd', [path])
+        return
+    endif
+
+    call defx#call_action('drop')
 endfunction
 
 function! s:vsplit(context) abort
