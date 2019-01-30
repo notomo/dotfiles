@@ -115,11 +115,9 @@ call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 't<S
 call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 'sv', ':call gina#action#call("show:rightest")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 'sh', ':call gina#action#call("show:bottom")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(ls\|blame\|changes\|status\|tag\)', '<CR>', ':call gina#action#call("show:tab")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'o', ':call gina#action#call("edit")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 't<Space>', ':call gina#action#call("edit:tab")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'sv', ':call gina#action#call("edit:right")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'sh', ':call gina#action#call("edit:bottom")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', '<CR>', ':call gina#action#call("edit:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'o', ':call notomo#gina#edit("edit")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 't<Space>', ':call notomo#gina#edit("edit:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', '<CR>', ':call notomo#gina#edit("edit:tab")<CR>', s:noremap_silent)
 
 " yank
 call gina#custom#mapping#nmap('/\%(log\|branch\|blame\)', 'yr', ':call notomo#gina#yank_rev_with_echo()<CR>', s:noremap_silent)

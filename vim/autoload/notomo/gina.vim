@@ -60,3 +60,27 @@ function! notomo#gina#toggle_buffer(command, file_type)
     endif
     execute 'Gina ' . a:command
 endfunction
+
+function! notomo#gina#edit(action)
+    let splitted = split(getline(line('.')), ' ')
+    if len(splitted) == 0
+        return
+    endif
+    let file_part = splitted[-1]
+
+    let git = gina#core#get_or_fail()
+    let abspath = gina#core#repo#abspath(git, '')
+
+    let path = abspath . substitute(file_part, '\v(\t\e[31m|\e\[m)', '', 'g')
+
+    if isdirectory(path)
+        if a:action ==? 'edit:tab'
+            tabnew
+        endif
+        execute 'cd ' . path
+        Defx
+        return
+    endif
+
+    call gina#action#call(a:action)
+endfunction
