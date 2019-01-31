@@ -44,15 +44,15 @@ snippet struct_init
 
 snippet array
 abbr array := [...]type{value, ...}
-	${1:name} := [...]${2:typeName}{${0:value}}
+	[...]${1:typeName}{${0:value}}
 
 snippet slice
 abbr slice := []type{value, ...}
-	${1:name} := []${2:typeName}{${0:value}}
+	[]${1:typeName}{${0:value}}
 
 snippet map
 abbr map := map[keyType]valueType{key: value, ...}
-	${1:name} := map[${2:keyTypeName}]${3:valueTypeName}{${4:key}: ${0:name},}
+	map[${1:keyTypeName}]${2:valueTypeName}{${3:key}: ${0:name},}
 
 snippet const
 abbr const name = value
@@ -71,16 +71,16 @@ snippet sprintf
 	fmt.Sprintf("${1:formatString}", ${0:args})
 
 snippet make
-	${0:value} := make(${1:type,})
+	make(${0:type,})
 
 snippet append
 	$1 = append(${1:slice}, ${0:value,})
 
 snippet delete
-	delete(${1:map}, ${1:key})
+	delete(${1:map}, ${0:key})
 
 snippet cast
-	${1:name} := ${2:type}(${0:value})
+	${1:type}(${0:value})
 
 snippet range
 	range ${0:iterable}
@@ -231,3 +231,6 @@ snippet import
 	import (
 		${0:TARGET}
 	)
+
+snippet pp
+    pp.Println(${0})
