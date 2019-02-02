@@ -17,22 +17,12 @@ nnoremap <silent> [unite]sf :<C-u>Denite file_rec<CR>
 nnoremap <silent> [unite]sg :<C-u>DeniteProjectDir file_rec<CR>
 nnoremap <silent> [denite]f :<C-u>Denite dir_file -no-empty<CR>
 nnoremap <silent> [denite]o :<C-u>Denite outline -auto-preview -no-empty<CR>
-nnoremap <silent> [denite]c :<C-u>Denite change -auto-preview -no-empty<CR>
 nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
-nnoremap <silent> [denite]q :<C-u>Denite command_history<CR>
-nnoremap <silent> [denite]J :<C-u>Denite jump -auto-preview -no-empty<CR>
-nnoremap <silent> [denite]ta :<C-u>Denite tag -no-empty<CR>
-nnoremap <silent> [keyword]O :<C-u>DeniteCursorWord tag -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [keyword]V :<C-u>DeniteCursorWord tag -default-action=vsplit -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [keyword]H :<C-u>DeniteCursorWord tag -default-action=split -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [keyword]T :<C-u>DeniteCursorWord tag -default-action=tabopen -auto-preview -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]k :<C-u>DeniteCursorWord tag -immediately -no-empty<CR>
 nnoremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> [denite]<CR> :<C-u>Denite -resume<CR>
 nnoremap <silent> [denite]gl :<C-u>Denite grep -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]to :<C-u>DeniteCursorWord outline -auto-preview -no-empty -immediately-1<CR>
 
 if has('nvim')
     nnoremap <silent> [denite]h :<C-u>Denite curstr/altr/help -default-action=open<CR>
@@ -40,30 +30,23 @@ else
     nnoremap <silent> [denite]h :<C-u>Denite help<CR>
 endif
 
-nnoremap <silent> [denite]th :<C-u>DeniteCursorWord help -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [unite]d :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file_rec<CR>
-nnoremap <silent> [denite]D :<C-u>Denite grep:~/dotfiles::!<CR>
 nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite plugin<CR>
-nnoremap <silent> [denite]U :<C-u>Denite namespace<CR>
 nnoremap <silent> [denite]O :<C-u>Denite option<CR>
 nnoremap <silent> [denite]A :<C-u>Denite alias<CR>
 nnoremap <silent> [denite]b :<C-u>Denite url_bookmark<CR>
-nnoremap <expr> <silent> [keyword]sg ":\<C-u>DeniteProjectDir file_rec -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
-nnoremap <expr> <silent> [keyword]sf ":\<C-u>DeniteBufferDir file_rec -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
-nnoremap <expr> <silent> [keyword]so ":\<C-u>DeniteBufferDir outline -no-empty -immediately-1 -input=" . expand('<cword>') . "\<CR>"
+nnoremap <silent> [denite]s :<C-u>Denite source<CR>
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
-nnoremap <silent> [denite]s :<C-u>Denite denite_source<CR>
 nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
 nnoremap <silent> [denite]go :<C-u>Denite go/src<CR>
 nnoremap <silent> [denite]gp :<C-u>Denite go/package<CR>
 nnoremap <silent> [denite]gO :<C-u>call notomo#denite#go_project_decls()<CR>
 nnoremap <silent> [denite]to :<C-u>Denite todo -immediately -default-action=tabopen<CR>
-nnoremap <expr> <silent> [keyword]gs ":\<C-u>DeniteProjectDir file_rec -input=" . notomo#denite#get_splitted() . " -no-empty\<CR>"
 nnoremap <silent> [denite]ts :<C-u>Denite proto_dir:filetype -default-action=tabfiler -immediately-1<CR>
 nnoremap <silent> [denite]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
 
@@ -144,7 +127,6 @@ call denite#custom#map('normal', 'yy', '<denite:do_action:yank>', 'noremap')
 call denite#custom#map('normal', 'p', '<denite:paste_from_default_register>', 'noremap')
 call denite#custom#map('normal', 'v', '<denite:do_action:preview>', 'noremap')
 call denite#custom#map('normal', 'o', '<denite:do_action:open>', 'noremap')
-call denite#custom#map('normal', 'uo', '<denite:do_action:outline>', 'noremap')
 call denite#custom#map('normal', 'sv', '<denite:do_action:vsplit>', 'noremap')
 call denite#custom#map('normal', 'sh', '<denite:do_action:split>', 'noremap')
 call denite#custom#map('normal', 'fo', '<denite:do_action:filer>', 'noremap')
@@ -162,27 +144,17 @@ call denite#custom#map('normal', 'tsl', '<denite:change_sorters:sorter_length>',
 call denite#custom#map('normal', 'mh', '<denite:wincmd:h>', 'noremap')
 call denite#custom#map('normal', 'ml', '<denite:wincmd:l>', 'noremap')
 call denite#custom#map('normal', 'M', '<denite:do_action:convert>', 'noremap')
-call denite#custom#map('normal', 'ud', '<denite:do_action:source_directory_mru>', 'noremap')
-call denite#custom#map('normal', 'ur', '<denite:do_action:source_file_mru>', 'noremap')
-call denite#custom#map('normal', 'uf', '<denite:do_action:source_dir_file>', 'noremap')
-call denite#custom#map('normal', 'uv', '<denite:do_action:dotfiles>', 'noremap')
-call denite#custom#map('normal', 'ug', '<denite:do_action:project_dir>', 'noremap')
 call denite#custom#map('normal', '<C-j>', '<denite:scroll_page_forwards>', 'noremap')
 call denite#custom#map('normal', '<C-k>', '<denite:scroll_page_backwards>', 'noremap')
 call denite#custom#map('normal', 'J', '<denite:jump_to_next_source>', 'noremap')
 call denite#custom#map('normal', 'K', '<denite:jump_to_previous_source>', 'noremap')
-call denite#custom#map('normal', 'dll', '<denite:do_action:delete_line>', 'noremap')
-call denite#custom#map('normal', 'dlL', '<denite:do_action:delete_others_line>', 'noremap')
 call denite#custom#map('normal', 'sg', '<denite:do_action:project_dir_file_rec>', 'noremap')
 call denite#custom#map('normal', 'sf', '<denite:do_action:dir_file_rec>', 'noremap')
-call denite#custom#map('normal', 'sr', '<denite:do_action:project_directory_rec>', 'noremap')
-call denite#custom#map('normal', 'sG', '<denite:do_action:project_dir_grep>', 'noremap')
-call denite#custom#map('normal', 'sF', '<denite:do_action:dir_file_grep>', 'noremap')
 call denite#custom#map('normal', '<Space>d', '<denite:do_action:grep_plugin_setting>', 'noremap')
 call denite#custom#map('normal', '<Space>m', '<denite:quick_move>', 'noremap')
-call denite#custom#map('normal', 'un', '<denite:do_action:unmap>', 'noremap')
 call denite#custom#map('normal', '<Space>D', '<denite:do_action:debug_targets>', 'noremap')
 call denite#custom#map('normal', 't<CR>', '<denite:do_action:browser_activate>', 'noremap')
+call denite#custom#map('normal', 'u', '<denite:restore_sources>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=.git', '--ignore=tags', '--hidden'])
@@ -190,9 +162,7 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
-
 call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '--ignore=.git', (has('win32') ? '-g:' : '-g='), ''])
-
 call denite#custom#var('outline', 'ignore_types', ['v'])
 
 call denite#custom#action('directory,go/package', 'dir_file', {context -> notomo#denite#dir_file_on_directory(context)})
@@ -209,39 +179,17 @@ call denite#custom#action('file,directory,go/package', 'exrename', {context ->  
 call denite#custom#action('file,directory,go/package', 'filer', {context ->  notomo#denite#directory_open('', context)})
 call denite#custom#action('file,directory,go/package', 'tabfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
 
-call denite#custom#action('file', 'outline', {context ->  notomo#denite#outline(context)})
-
-call denite#custom#action('file,directory,go/package', 'source_directory_mru', {context ->  notomo#denite#change_source('directory_mru', context)})
-call denite#custom#action('file,directory,go/package', 'source_file_mru', {context ->  notomo#denite#change_source('file_mru', context)})
-call denite#custom#action('file,directory,go/package', 'source_dir_file', {context ->  notomo#denite#change_source('dir_file', context)})
-
-call denite#custom#action('file', 'delete_line', {context ->  notomo#denite#delete_line(context)})
-call denite#custom#action('file', 'delete_others_line', {context ->  notomo#denite#delete_others_line(context)})
-
-call denite#custom#action('file', 'project_directory_rec', {context ->  notomo#denite#project_directory_rec_on_file(context)})
-call denite#custom#action('directory,go/package', 'project_directory_rec', {context ->  notomo#denite#project_directory_rec(context)})
-
 call denite#custom#action('file', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec_on_file(context)})
 call denite#custom#action('directory,go/package', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec(context)})
 
 call denite#custom#action('file', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec_on_file(context)})
 call denite#custom#action('directory,go/package', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
 
-call denite#custom#action('file', 'project_dir_grep', {context ->  notomo#denite#project_dir_grep_on_file(context)})
-call denite#custom#action('directory,go/package', 'project_dir_grep', {context ->  notomo#denite#project_dir_grep(context)})
-
-call denite#custom#action('file', 'dir_file_grep', {context ->  notomo#denite#dir_file_grep_on_file(context)})
-call denite#custom#action('directory,go/package', 'dir_file_grep', {context ->  notomo#denite#dir_file_grep(context)})
-
 call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles', context)})
 
 call denite#custom#action('directory', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})
 
-call denite#custom#action('buffer,command,directory,file,openable,word,namespace', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})
-
-call denite#custom#action('namespace', 'use', {context ->  notomo#denite#append_with(context, 'use ', ';')})
-
-call denite#custom#action('file', 'project_dir', {context ->  notomo#denite#project_dir(context)})
+call denite#custom#action('buffer,command,directory,file,openable,word', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})
 
 call denite#custom#action('url_bookmark', 'convert', {context ->  notomo#denite#convert(context)})
 

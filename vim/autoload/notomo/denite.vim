@@ -1,9 +1,4 @@
 
-function! notomo#denite#execute_unite_action(context, action_name) abort
-    let candidates = map(a:context['targets'], {key, val -> val['source__candidate']})
-    call unite#action#do_candidates(a:action_name, candidates)
-endfunction
-
 function! s:get_target_path(fnamemod_string, context) abort
     let target = a:context['targets'][0]
     if !has_key(target, 'action__path')
@@ -89,10 +84,6 @@ function! notomo#denite#directory_open(open_cmd, context) abort
     only
 endfunction
 
-function! notomo#denite#outline(context) abort
-    execute 'Denite -auto-preview outline:' . s:get_target_path('', a:context)
-endfunction
-
 function! notomo#denite#project_dir_file_rec_on_file(context) abort
     execute 'cd ' . s:get_target_path(':h', a:context)
     execute 'DeniteProjectDir file_rec'
@@ -103,26 +94,6 @@ function! notomo#denite#project_dir_file_rec(context) abort
     execute 'DeniteProjectDir file_rec'
 endfunction
 
-function! notomo#denite#project_directory_rec_on_file(context) abort
-    execute 'cd ' . s:get_target_path(':h', a:context)
-    execute 'DeniteProjectDir directory_rec'
-endfunction
-
-function! notomo#denite#project_directory_rec(context) abort
-    execute 'cd ' . s:get_target_path('', a:context)
-    execute 'DeniteProjectDir directory_rec'
-endfunction
-
-function! notomo#denite#project_dir_grep(context) abort
-    execute 'cd ' . s:get_target_path('', a:context)
-    execute 'DeniteProjectDir grep'
-endfunction
-
-function! notomo#denite#project_dir_grep_on_file(context) abort
-    execute 'cd ' . s:get_target_path(':h', a:context)
-    execute 'DeniteProjectDir grep'
-endfunction
-
 function! notomo#denite#dir_file_rec(context) abort
     execute 'cd ' . s:get_target_path('', a:context)
     execute 'Denite file_rec'
@@ -131,45 +102,6 @@ endfunction
 function! notomo#denite#dir_file_rec_on_file(context) abort
     execute 'cd ' . s:get_target_path(':h', a:context)
     execute 'Denite file_rec'
-endfunction
-
-function! notomo#denite#dir_file_grep_on_file(context) abort
-    execute 'cd ' . s:get_target_path(':h', a:context)
-    execute 'Denite grep'
-endfunction
-
-function! notomo#denite#dir_file_grep(context) abort
-    execute 'cd ' . s:get_target_path('', a:context)
-    execute 'Denite grep'
-endfunction
-
-function! notomo#denite#change_source(source_name, context) abort
-    let input = '-input=' . escape(a:context['input'], ' ')
-    execute join(['Denite', input, a:source_name])
-endfunction
-
-function! notomo#denite#delete_line(context) abort
-    if a:context['sources'][0]['name'] !=? 'line'
-        echomsg 'Invalid source'
-        return
-    endif
-    let line_numbers = map(a:context['targets'], {key, val -> val['action__line']})
-    call sort(line_numbers, {i1, i2 -> i2 - i1})
-    for line in line_numbers
-        execute line . 'delete'
-    endfor
-endfunction
-
-function! notomo#denite#delete_others_line(context) abort
-    if a:context['sources'][0]['name'] !=? 'line'
-        echomsg 'Invalid source'
-        return
-    endif
-    let line_numbers = map(a:context['targets'], {key, val -> val['action__line']})
-    call sort(line_numbers, {i1, i2 -> i1 - i2})
-    let lines = map(line_numbers, {key, val -> getline(val)})
-    1,$delete
-    call setline(1, lines)
 endfunction
 
 function! notomo#denite#project_dir_by_path(dir_path, context) abort
@@ -191,11 +123,6 @@ function! notomo#denite#debug_targets(context) abort
     echomsg string(a:context['targets'])
 endfunction
 
-function! notomo#denite#append_with(context, prefix, suffix) abort
-    let words = map(a:context['targets'], {key, val -> a:prefix . val['word'] . a:suffix})
-    call append(line('.'), words)
-endfunction
-
 function! notomo#denite#go_package_dir() abort
     let cword = expand('<cWORD>')
     let name = '^' . trim(cword, '"') . '$'
@@ -215,34 +142,9 @@ function! notomo#denite#get(option_name) abort
     return value
 endfunction
 
-function! notomo#denite#project_dir(context) abort
-    execute 'DeniteProjectDir file_rec'
-endfunction
-
 function! notomo#denite#convert(context) abort
     let url = escape(a:context['targets'][0]['action__url'], ':')
     execute 'Denite url_substitute_pattern:' . url
-endfunction
-
-function! notomo#denite#get_splitted() abort
-    let default_isfname = &isfname
-    try
-        execute 'setlocal isfname+=' . '\'
-        let path = expand('<cfile>')
-    finally
-        execute 'setlocal isfname=' . default_isfname
-    endtry
-
-    let separators = ['\.', '\', '\/']
-    let splitted = filter(map(separators, {_, v -> split(path, v)}), {_, v -> len(v) > 1})
-
-    let words = []
-    for factors in splitted
-        call extend(words, factors)
-    endfor
-    call add(words, expand('<cword>'))
-
-    return tolower(join(uniq(sort(words)), '\ ')) . '\ '
 endfunction
 
 function! notomo#denite#decls(context) abort

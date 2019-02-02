@@ -15,10 +15,12 @@ class Source(Base):
         '~/.local/share/nvim/rplugin.vim',
         '/tmp/ctrlb.log',
         '/tmp/gesture.log',
+        '/tmp/qaper',
         '~/dotfiles/vim/rc/local/local.vim',
         '~/.local/.bashrc',
         '~/.local/.bash_profile',
         '~/.local/.denite_file_bookmark',
+        '~/.local/.denite_go_package',
     ]
 
     def __init__(self, vim):
