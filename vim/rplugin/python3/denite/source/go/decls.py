@@ -16,10 +16,16 @@ class Source(Base):
         self.sorters = ['sorter_decls']
 
     def gather_candidates(self, context):
-        basename = os.path.basename
+        relpath = os.path.relpath
+
+        path = context['args'][0]
+        if len(context['args']) == 2:
+            result = self._execute_project(path)
+        else:
+            result = self._execute(path)
 
         def create(line):
-            file_name = basename(line['filename'])
+            file_name = relpath(line['filename'], path)
             return {
                 'word': line['ident'],
                 'abbr': '{} {}'.format(file_name, line['full']),
@@ -32,7 +38,15 @@ class Source(Base):
                 )
             }
 
-        path = context['args'][0]
+        exports = filter(
+            lambda x: x['ident'][0].isupper(
+            ) and x['filename'].find('_test.go') == -1,
+            result
+        )
+
+        return [create(line) for line in exports]
+
+    def _execute(self, path):
         command = [
             'motion',
             '-mode', 'decls',
@@ -42,15 +56,36 @@ class Source(Base):
 
         process = subprocess.Popen(command, stdout=subprocess.PIPE)
         output = process.communicate()[0].decode('ascii')
-        result_json = json.loads(output, encoding='utf-8')
+        try:
+            result_json = json.loads(output, encoding='utf-8')
+        except json.JSONDecodeError:
+            return []
 
-        exports = filter(
-            lambda x: x['ident'][0].isupper(
-            ) and x['filename'].find('_test.go') == -1,
-            result_json['decls']
+        if 'decls' not in result_json:
+            return []
+
+        return result_json['decls']
+
+    def _execute_project(self, top_path):
+        join = os.path.join
+        home = os.path.expanduser('~')
+
+        src_path = join(os.getenv('GOPATH', join(home, 'go')), 'src/')
+        package_path = join(top_path, '...')[len(src_path):]
+
+        process = subprocess.Popen(
+            ['go', 'list', '-f', '{{.Dir}}', package_path],
+            stdout=subprocess.PIPE,
         )
+        paths = process.communicate()[0].decode('ascii').split('\n')
 
-        return [create(line) for line in exports]
+        results = []
+        extend = results.extend
+        for path in paths:
+            result = self._execute(path)
+            extend(result)
+
+        return results
 
     def highlight(self):
         self.vim.command('highlight default link myDeclsKeyword Keyword')
