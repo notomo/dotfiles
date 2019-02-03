@@ -1,0 +1,7 @@
+- name: install with yum
+  yum:
+    name:
+      - graphviz
+      - graphviz-gd
+  when: is_centos
+  become: yes

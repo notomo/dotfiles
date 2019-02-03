@@ -21,6 +21,7 @@
     - { role: 'lsync', tags: 'lsync' }
     - { role: 'firefox', tags: 'firefox' }
     - { role: 'rust', tags: 'rust' }
+    - { role: 'graphviz', tags: 'graphviz' }
     - { role: 'gitconfig', tags: 'gitconfig' }
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
