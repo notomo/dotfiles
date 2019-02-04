@@ -25,9 +25,9 @@ snippet test_func
 
 snippet bench_func
 	func Benchmark${1:Name}(b *testing.B) {
-	    // setup code
-	    b.ResetTimer()
-	    // benchmarkFunc(b.N)
+		// setup code
+		b.ResetTimer()
+		// benchmarkFunc(b.N)
 		${0:TARGET}
 	}
 
@@ -89,7 +89,7 @@ snippet chan
 	chan ${0:type}
 
 snippet type
-	type ${0:Name}
+	type ${1:Name} ${0:type}
 
 snippet struct
 	struct {
