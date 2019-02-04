@@ -1,0 +1,57 @@
+snippet mod
+	mod ${1:name} {
+		${0:TARGET}
+	}
+
+snippet let
+	let ${1:name} = ${0:expr};
+
+snippet mut
+	let mut ${1:name} = ${0:expr};
+
+snippet use
+	use ${0:name};
+
+snippet print
+	println!("${0:value}");
+
+snippet extern
+	extern crate ${0:name};
+
+snippet fn
+	fn ${1:name}(${2:args}) ->${3:type} {
+		${0:TARGET}
+	}
+
+snippet main
+	fn main() {
+		${0:TARGET}
+	}
+
+snippet loop
+	loop {
+		${0:TARGET}
+	}
+
+snippet for
+	for ${1:var} in ${2:iterator} {
+		${0:TARGET}
+	}
+
+snippet match
+	match ${1:expr} {
+		${0:TARGET}
+	}
+
+snippet pattern
+    ${1:name} => ${0:result},
+
+snippet struct
+	struct ${1:name} {
+		${0:TARGET}
+	}
+
+snippet impl
+	impl ${1:name} {
+		${0:TARGET}
+	}
