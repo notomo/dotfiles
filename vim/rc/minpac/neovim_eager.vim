@@ -198,3 +198,5 @@ let g:go_template_autocreate = 0
 let g:go_info_mode = 'guru'
 
 call minpac#add('lighttiger2505/deoplete-vim-lsp')
+
+call minpac#add('notomo/vimonga')
