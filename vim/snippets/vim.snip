@@ -1,13 +1,13 @@
 snippet nnoremap
-	nnoremap ${1:lhs} ${2:rhs}
+	nnoremap ${1:lhs} ${0:rhs}
 
 snippet call
 options word
-	call ${1:function}(${2:#:args})
+	call ${1:function}(${0:#:args})
 
 snippet call_sid_func
 options word
-	<SID>${1:function}(${2:#:arg})
+	<SID>${1:function}(${0:#:arg})
 
 snippet mapcommand
 options word
@@ -65,22 +65,22 @@ alias tryf
 	endtry
 
 snippet catch
-	catch ${1:/${2:#:pattern: empty, E484, Vim(cmdname):{errmsg\\}\}/}
+	catch ${1:/${0:#:pattern: empty, E484, Vim(cmdname):{errmsg\\}\}/}
 
 snippet echomsg
 	echomsg ${1:TARGET}
 
 snippet command
-	command! ${1:#:command_name} call ${2:#:func_name}
+	command! ${1:#:command_name} call ${0:#:func_name}
 
 snippet augroup
 	augroup ${1:#:augroup_name}
 		autocmd!
-		autocmd ${2:#:event}
+		autocmd ${0:#:event}
 	augroup END
 
 snippet autocmd
-	autocmd MyAuGroup ${1:event} ${2:pattern} ${3:command}
+	autocmd MyAuGroup ${1:event} ${2:pattern} ${0:command}
 
 snippet autoload
 	function! `substitute(matchstr(neosnippet#util#expand('%:p:r'), '/autoload/\zs.*$'), '/', '#', 'g')`#${1:#:func_name}(${2:#:args}) abort
@@ -98,7 +98,7 @@ alias log
 	call themis#log(${0:message})
 
 snippet assert
-	call s:assert.equals(${1:result}, ${1:expected})
+	call s:assert.equals(${1:result}, ${0:expected})
 
 snippet lambda
 options word
