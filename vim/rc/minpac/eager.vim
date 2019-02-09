@@ -78,7 +78,7 @@ function! s:define_highlight() abort
     highlight YankRoundRegion guifg=#333333 guibg=#fedf81
     highlight def link sqlStatement sqlKeyword
     highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
-    highlight def link uniteExrenameModified Error
+    highlight def link defxExrenameModified Error
 
     highlight clear SpellCap
     highlight def link SpellCap NONE
@@ -191,10 +191,6 @@ let g:spring_night_high_contrast = 0
 
 call minpac#add('Shougo/vimproc.vim', {'do' : executable('make') ? 'silent! !make' : '' })
 let g:vimproc#download_windows_dll = 0
-
-call minpac#add('Shougo/unite.vim')
-call minpac#add('Shougo/unite-outline')
-nnoremap <silent> [unite]o :<C-u>Unite outline<CR>
 
 call minpac#add('Shougo/neomru.vim')
 let g:neomru#file_mru_limit = 1000

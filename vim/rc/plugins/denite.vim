@@ -2,21 +2,21 @@ nnoremap [denite] <Nop>
 nmap <Space>d [denite]
 
 if has('win32')
-    nnoremap <silent> [unite]r :<C-u>Denite file_mru<CR>
-    xnoremap <silent> [unite]r :<C-u>Denite file_mru<CR>
+    nnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
+    xnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
 else
-    nnoremap <silent> [unite]r :<C-u>DeniteProjectDir file_mru file_rec<CR>
-    xnoremap <silent> [unite]r :<C-u>DeniteProjectDir file_mru file_rec<CR>
+    nnoremap <silent> <Space>ur :<C-u>DeniteProjectDir file_mru file_rec<CR>
+    xnoremap <silent> <Space>ur :<C-u>DeniteProjectDir file_mru file_rec<CR>
 endif
 nnoremap <silent> [denite]y :<C-u>Denite file_bookmark<CR>
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec<CR>
 nnoremap <silent> [denite]B :<C-u>Denite buffer:!<CR>
-nnoremap <silent> [unite]sf :<C-u>Denite file_rec<CR>
-nnoremap <silent> [unite]sg :<C-u>DeniteProjectDir file_rec<CR>
+nnoremap <silent> <Space>usf :<C-u>Denite file_rec<CR>
+nnoremap <silent> <Space>usg :<C-u>DeniteProjectDir file_rec<CR>
 nnoremap <silent> [denite]f :<C-u>Denite dir_file -no-empty<CR>
-nnoremap <silent> [denite]o :<C-u>Denite outline -auto-preview -no-empty<CR>
+nnoremap <silent> [denite]o :<C-u>Denite outline -no-empty<CR>
 nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
 nnoremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
@@ -31,7 +31,7 @@ else
 endif
 
 nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
-nnoremap <silent> [unite]d :<C-u>Denite file_mru -immediately<CR>
+nnoremap <silent> <Space>ud :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file_rec<CR>
 nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>

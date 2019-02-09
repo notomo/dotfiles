@@ -90,10 +90,9 @@ endfunction
 function! s:rename(context) abort
     let candidates = []
     for path in a:context['targets']
-        let kind = isdirectory(path) ? 'directory' : 'file'
-        call add(candidates, {'action__path': path, 'kind': kind})
+        call add(candidates, {'action__path': path})
     endfor
     tabnew
-    call unite#exrename#create_buffer(candidates)
+    call defx#exrename#create_buffer(candidates)
     only
 endfunction

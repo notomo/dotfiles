@@ -27,7 +27,6 @@ endif
 packloadall
 
 " source post
-source ~/.vim/rc/plugins/unite.vim
 source ~/.vim/rc/plugins/denite.vim
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim

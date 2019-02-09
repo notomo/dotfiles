@@ -7,7 +7,6 @@ let g:quickrun_config['_'] = {
 \   'runner': 'vimproc',
 \   'hook/output_encode/enable': 1,
 \   'hook/output_encode/encoding': 'cp932',
-\   'hook/close_unite_quickfix/enable_hook_loaded': 1,
 \   'hook/close_quickfix/enable_exit': 1,
 \   'hook/close_buffer/enable_failure': 0,
 \   'hook/close_buffer/enable_empty_data': 1,

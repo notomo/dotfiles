@@ -62,10 +62,9 @@ function! notomo#denite#exrename(context) abort
     let candidates = []
     for target in a:context['targets']
         let action_path = target['action__path']
-        let kind = isdirectory(action_path) ? 'directory' : 'file'
-        call add(candidates, {'action__path': action_path, 'kind': kind})
+        call add(candidates, {'action__path': action_path})
     endfor
-    call unite#exrename#create_buffer(candidates)
+    call defx#exrename#create_buffer(candidates)
     only
 endfunction
 
