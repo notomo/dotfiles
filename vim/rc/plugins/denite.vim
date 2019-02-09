@@ -49,6 +49,7 @@ nnoremap <silent> [denite]gO :<C-u>call notomo#denite#go_project_decls()<CR>
 nnoremap <silent> [denite]to :<C-u>Denite todo -immediately -default-action=tabopen<CR>
 nnoremap <silent> [denite]ts :<C-u>Denite proto_dir:filetype -default-action=tabfiler -immediately-1<CR>
 nnoremap <silent> [denite]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
+nnoremap <silent> [denite]ga :<C-u>Denite gina/branch<CR>
 
 call denite#custom#option('default', 'use_default_mappings', 'false')
 
@@ -153,7 +154,7 @@ call denite#custom#map('normal', 'sf', '<denite:do_action:dir_file_rec>', 'norem
 call denite#custom#map('normal', '<Space>d', '<denite:do_action:grep_plugin_setting>', 'noremap')
 call denite#custom#map('normal', '<Space>m', '<denite:quick_move>', 'noremap')
 call denite#custom#map('normal', '<Space>D', '<denite:do_action:debug_targets>', 'noremap')
-call denite#custom#map('normal', 't<CR>', '<denite:do_action:browser_activate>', 'noremap')
+call denite#custom#map('normal', 't<CR>', '<denite:do_action:activate>', 'noremap')
 call denite#custom#map('normal', 'u', '<denite:restore_sources>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
