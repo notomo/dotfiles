@@ -83,9 +83,6 @@ function! notomo#vimrc#search_parent_recursive(file_name_pattern, start_path) ab
     return ''
 endfunction
 
-function! notomo#vimrc#silent_handler(id, data, event) abort
-endfunction
-
 function! notomo#vimrc#escape_search_pattern(str) abort
     let escaped = escape(a:str, '\/')
     return substitute(escaped, "\n", '\\n', 'g')

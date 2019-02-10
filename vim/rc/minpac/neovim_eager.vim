@@ -1,16 +1,11 @@
-call minpac#add('Shougo/neosnippet-snippets')
 call minpac#add('vim-jp/vimdoc-ja')
 
 call minpac#add('notomo/denite-keymap')
 nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>
 
 call minpac#add('thinca/vim-themis')
-call minpac#add('aklt/plantuml-syntax')
-call minpac#add('leafgarland/typescript-vim')
-call minpac#add('posva/vim-vue')
-call minpac#add('martinda/Jenkinsfile-vim-syntax')
-call minpac#add('chr4/nginx.vim')
-call minpac#add('vim-scripts/gitignore.vim')
+
+call minpac#add('sheerun/vim-polyglot')
 
 call minpac#add('numirias/semshi')
 let g:semshi#simplify_markup = v:false
@@ -25,12 +20,6 @@ endif
 if executable('look')
     call minpac#add('ujihisa/neco-look')
 endif
-
-call minpac#add('fntlnz/atags.vim')
-let g:atags_build_commands_list = ['ctags -R .']
-let g:atags_on_generate_stderr = 'notomo#vimrc#silent_handler'
-let g:atags_on_generate_stdout = 'notomo#vimrc#silent_handler'
-let g:atags_quiet = 1
 
 call minpac#add('w0rp/ale')
 source ~/.vim/rc/plugins/ale.vim

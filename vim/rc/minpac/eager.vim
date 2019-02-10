@@ -212,9 +212,9 @@ call minpac#add('notomo/denite-runtimepath')
 nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
 
 call minpac#add('pocari/vim-denite-emoji')
+call minpac#add('junegunn/vim-emoji')
 nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>
 
-call minpac#add('junegunn/vim-emoji')
 call minpac#add('itchyny/lightline.vim')
 
 call minpac#add('easymotion/vim-easymotion')
@@ -325,24 +325,6 @@ nmap [edit]n *``<Plug>(operator-replace)<Plug>(builtin-gn)
 xmap <expr> [edit]n "\"ry<Plug>(builtin-/)\\V\<C-r>=notomo#vimrc#escape_search_pattern(@r)\<CR>\<CR>" . "``\"+<Plug>(operator-replace)<Plug>(builtin-gn)"
 
 call minpac#add('osyo-manga/vim-textobj-from_regexp')
-omap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+')
-xmap <expr> pd textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+')
-omap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
-xmap <expr> py textobj#from_regexp#mapexpr('\$[a-zA-Z0-9_]\+->')
-
-omap <expr> iz textobj#from_regexp#mapexpr('\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}')
-xmap <expr> iz textobj#from_regexp#mapexpr('\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}')
-
-omap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
-xmap <expr> is textobj#from_regexp#mapexpr('_\zs.\{-}\ze_')
-omap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
-xmap <expr> as textobj#from_regexp#mapexpr('_.\{-1,}\(_\)\@=')
-
-omap <expr> i, textobj#from_regexp#mapexpr(',\zs.\{-}\ze,')
-xmap <expr> i, textobj#from_regexp#mapexpr(',\zs.\{-}\ze,')
-omap <expr> a, textobj#from_regexp#mapexpr(',.\{-1,}\(,\)\@=')
-xmap <expr> a, textobj#from_regexp#mapexpr(',.\{-1,}\(,\)\@=')
-
 omap <expr> i. textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')
 xmap <expr> i. textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')
 omap <expr> a. textobj#from_regexp#mapexpr('\..\{-1,}\(\.\)\@=')
@@ -427,27 +409,6 @@ nmap gK <Plug>(edgemotion-k)
 xmap gK <Plug>(edgemotion-k)
 omap gK <Plug>(edgemotion-k)
 
-call minpac#add('rhysd/clever-f.vim')
-let g:clever_f_across_no_line = 1
-let g:clever_f_mark_char = 0
-let g:clever_f_not_overwrites_standard_mappings = 1
-let g:clever_f_chars_match_any_signs = ';'
-let g:clever_f_ignore_case = 1
-nmap f <Plug>(clever-f-f)
-xmap f <Plug>(clever-f-f)
-omap f <Plug>(clever-f-f)
-nmap F <Plug>(clever-f-F)
-xmap F <Plug>(clever-f-F)
-omap F <Plug>(clever-f-F)
-
-if has('gui') && !has('nvim')
-    call minpac#add('thinca/vim-fontzoom')
-    nmap <C-Up> <Plug>(fontzoom-larger)
-    nmap <C-Down> <Plug>(fontzoom-smaller)
-    nnoremap <M-Up> :<C-u>Fontzoom!<CR>
-    nnoremap <M-Down> :<C-u>Fontzoom!<CR>
-endif
-
 call minpac#add('tyru/open-browser.vim')
 nnoremap [browser] <Nop>
 nmap [exec]b [browser]
@@ -471,8 +432,6 @@ nmap [git]j <Plug>(signify-next-hunk)zz
 nmap [git]k <Plug>(signify-prev-hunk)zz
 nnoremap [git]t :<C-u>SignifyToggle<CR>
 let g:signify_disable_by_default = 0
-
-call minpac#add('cespare/vim-toml')
 
 call minpac#add('lambdalisue/session.vim')
 nnoremap [file]<Space> :<C-u>call notomo#vimrc#save_session()<CR>
