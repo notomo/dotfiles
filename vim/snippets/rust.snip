@@ -55,3 +55,34 @@ snippet impl
 	impl ${1:Name} {
 		${0:TARGET}
 	}
+
+snippet trait
+	trait ${1:Name} {
+		${0:TARGET}
+	}
+
+snippet pub
+	pub ${0:value}
+
+snippet enum
+	enum ${1:Name} {
+		${0:TARGET}
+	}
+
+snippet result
+	Result<${1:Ok}, ${0:Err}>
+
+snippet option
+	Option<${0:Type}>
+
+snippet ok
+	Ok(${0:expr})
+
+snippet err
+	Err(${0:expr})
+
+snippet ok_pattern
+	Ok(${1:value}) => ${0:expr}
+
+snippet err_pattern
+	Err(${1:err}) => ${0:expr}
