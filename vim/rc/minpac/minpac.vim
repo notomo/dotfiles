@@ -49,3 +49,25 @@ IncSearchNoreMap <Space> <CR>
 IncSearchNoreMap <S-Space> <Space>
 IncSearchNoreMap <C-n> <Over>(incsearch-scroll-f)
 IncSearchNoreMap <C-p> <Over>(incsearch-scroll-b)
+
+if !has('nvim')
+    finish
+endif
+
+" HACK for autoload conflict
+let s:polyglot = ''
+let s:vim_go = ''
+let s:rtps = []
+for s:rpt in split(&runtimepath, ',')
+    if s:rpt =~# 'vim-polyglot$'
+        let s:polyglot = s:rpt
+        continue
+    elseif s:rpt =~# 'vim-go$'
+        let s:vim_go = s:rpt
+        call add(s:rtps, s:rpt)
+        call add(s:rtps, s:polyglot)
+        continue
+    endif
+    call add(s:rtps, s:rpt)
+endfor
+let &runtimepath = join(s:rtps, ',')
