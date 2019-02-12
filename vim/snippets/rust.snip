@@ -12,8 +12,11 @@ snippet mut
 snippet use
 	use ${0:name};
 
-snippet print
-	println!("${0:value}");
+snippet println
+	println!("{}", ${0:expr});
+
+snippet format
+	format!("${1:format}", ${0:expr})
 
 snippet extern
 	extern crate ${0:name};
@@ -86,3 +89,12 @@ snippet ok_pattern
 
 snippet err_pattern
 	Err(${1:err}) => ${0:expr}
+
+snippet some_pattern
+	Some(${1:value}) => ${0:expr}
+
+snippet none_pattern
+	None => ${0:expr}
+
+snippet unwrap
+	unwrap()
