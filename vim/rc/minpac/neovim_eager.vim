@@ -190,7 +190,3 @@ let g:go_info_mode = 'guru'
 call minpac#add('lighttiger2505/deoplete-vim-lsp')
 
 call minpac#add('notomo/vimonga')
-autocmd MyAuGroup FileType vimonga-db call s:vimonga_db()
-function! s:vimonga_db() abort
-    nnoremap <buffer> t<Space> :<C-u>call vimonga#database_action('open')<CR>
-endfunction

@@ -35,6 +35,7 @@ if has('nvim')
     source ~/.vim/rc/plugins/curstr.vim
     source ~/.vim/rc/plugins/gesture.vim
     source ~/.vim/rc/plugins/ctrlb.vim
+    source ~/.vim/rc/plugins/vimonga.vim
     if executable('python3.6') || executable('python3.7')
         source ~/.vim/rc/plugins/defx.vim
     endif
