@@ -15,6 +15,11 @@ endfunction
 autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
 function! s:vimonga_document() abort
     nnoremap <buffer> h :<C-u>call vimonga#document_action('open_parent')<CR>
+    nnoremap <buffer> L :<C-u>call vimonga#document_action('open_next')<CR>
+    nnoremap <buffer> H :<C-u>call vimonga#document_action('open_prev')<CR>
 endfunction
 
 call vimonga#config#set('default_port', 27020)
+
+let s:config_path = expand('<sfile>:h') . '/vimonga.toml'
+call vimonga#config#set('config_path', s:config_path)
