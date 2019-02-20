@@ -27,6 +27,7 @@ function! s:settings() abort
     nnoremap <silent> <buffer> <expr> . defx#do_action('toggle_ignored_files')
     nnoremap <silent> <buffer> <expr> h defx#do_action('cd', ['..'])
     nnoremap <silent> <buffer> <expr> <Space>h defx#do_action('cd')
+    nnoremap <silent> <buffer> <expr> <Space>g defx#do_action('cd', [fnamemodify(notomo#vimrc#search_parent_recursive('.git', getcwd()), ':h:h')])
     nnoremap <silent> <buffer> <expr> q defx#do_action('quit')
     nnoremap <silent> <buffer> <expr> sm defx#do_action('toggle_select') . 'j'
     nnoremap <silent> <buffer> <expr> sa defx#do_action('toggle_select_all')
