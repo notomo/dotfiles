@@ -568,8 +568,6 @@ xnoremap [arith]u g<C-a>gv
 nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
 " execute current line
 nnoremap <expr> [exec]l ':' . getline('.') . '<CR>'
-" source current buffer
-nnoremap [exec]s :<C-u>if &filetype ==? 'vim' \| source % \| endif<CR>
 " relode vimrc
 nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
 nnoremap [exec]e :<C-u>smile<CR>
