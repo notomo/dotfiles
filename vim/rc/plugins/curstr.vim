@@ -16,9 +16,6 @@ call curstr#custom#source_option('camel_snake', 'patterns', [['\v_(.)', '\u\1'],
 
 call curstr#custom#source_alias('togglable', ['bool', 'access', 'camel_snake'])
 
-call curstr#custom#source_alias('debug', ['togglable/line/regex'])
-call curstr#custom#source_option('debug', 'patterns', [['\v^\s*([^=[:space:]]*).*$', 'var_dump(\1);']])
-
 call curstr#custom#source_alias('quote', ['togglable/line/regex'])
 call curstr#custom#source_option('quote', 'patterns', [["\\v^([^'\"].*[^'\"])$", "'\\1'"], ["\\v^'(.*)'$", '"\1"'], ['\v"(.*)"', '\1']])
 
