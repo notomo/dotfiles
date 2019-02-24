@@ -9,6 +9,12 @@ snippet mod_inline
 snippet let
 	let ${1:name} = ${0:expr};
 
+snippet lifetime
+	'${0:a}
+
+snippet lifetime_param
+	<'${0:a}>
+
 snippet mut
 	let mut ${1:name} = ${0:expr};
 
@@ -87,15 +93,23 @@ snippet enum
 	}
 
 snippet result
+alias Result
 	Result<${1:Ok}, ${0:Err}>
 
 snippet option
+alias Option
 	Option<${0:Type}>
 
 snippet ok
+alias Ok
 	Ok(${0:expr})
 
+snippet some
+alias Some
+	Some(${0:expr})
+
 snippet err
+alias Err
 	Err(${0:expr})
 
 snippet ok_pattern
