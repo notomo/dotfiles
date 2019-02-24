@@ -61,3 +61,15 @@ function! s:qaper_settings() abort
     \ ])
     nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
 endfunction
+
+autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/start/vimonga/* call s:vimonga_settings()
+function! s:vimonga_settings() abort
+    call curstr#custom#source_alias('interface_impl', ['togglable/file'])
+    call curstr#custom#source_option('interface_impl', 'pattern_groups', [
+        \ [
+            \ '%datastore/%',
+            \ '%domain/repository/%',
+        \ ],
+    \ ])
+    nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
+endfunction
