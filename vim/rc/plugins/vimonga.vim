@@ -1,4 +1,6 @@
 
+nnoremap [exec]v :<C-u>Vimonga database<CR>
+
 autocmd MyAuGroup FileType vimonga-db call s:vimonga_db()
 function! s:vimonga_db() abort
     nnoremap <buffer> l :<C-u>call vimonga#action('database', 'open')<CR>
