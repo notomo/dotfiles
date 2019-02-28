@@ -33,5 +33,12 @@ class Kind(Base):
 
         self.vim.command('Gina! branch --delete {}'.format(' '.join(branches)))
 
+    def action_force_delete(self, context):
+        branches = [t['word'] for t in context['targets']]
+        if not branches:
+            return
+
+        self.vim.command('Gina! branch -D {}'.format(' '.join(branches)))
+
     def action_activate(self, context):
         self.action_track(context)
