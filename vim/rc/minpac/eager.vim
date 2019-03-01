@@ -195,7 +195,7 @@ let g:vimproc#download_windows_dll = 0
 call minpac#add('Shougo/neomru.vim')
 let g:neomru#file_mru_limit = 1000
 if !exists('g:neomru#file_mru_ignore_pattern')
-    let g:neomru#file_mru_ignore_pattern = '\%(^\%(gina\|term\)://\)'
+    let g:neomru#file_mru_ignore_pattern = '\%(^\%(gina\|term\|vimonga\)://\)'
 endif
 
 call minpac#add('thinca/vim-qfreplace')
