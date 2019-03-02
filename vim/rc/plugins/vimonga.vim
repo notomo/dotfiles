@@ -25,6 +25,13 @@ function! s:vimonga_document() abort
     nnoremap <buffer> h :<C-u>call vimonga#action('document', 'open_parent')<CR>
     nnoremap <buffer> <C-n> :<C-u>call vimonga#action('document', 'open_next')<CR>
     nnoremap <buffer> <C-p> :<C-u>call vimonga#action('document', 'open_prev')<CR>
+    nnoremap <buffer> dd :<C-u>call vimonga#action('document', 'projection_hide')<CR>
+    nnoremap <buffer> dr :<C-u>call vimonga#action('document', 'projection_reset_all')<CR>
+    nnoremap <buffer> sa :<C-u>call vimonga#action('document', 'sort_ascending')<CR>
+    nnoremap <buffer> sd :<C-u>call vimonga#action('document', 'sort_descending')<CR>
+    nnoremap <buffer> sr :<C-u>call vimonga#action('document', 'sort_reset')<CR>
+    nnoremap <buffer> ss :<C-u>call vimonga#action('document', 'sort_toggle')<CR>
+    nnoremap <buffer> sR :<C-u>call vimonga#action('document', 'sort_reset_all')<CR>
 endfunction
 
 call vimonga#config#set('default_port', 27020)
