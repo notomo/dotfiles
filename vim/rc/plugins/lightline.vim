@@ -8,7 +8,7 @@ let s:active = {}
 
 " for gesture debug
 " let s:active.left = [['mode'], ['position_map'], ['position'], ['gesture_lines']]
-let s:active.left = [['mode'], ['position_map'], ['position']]
+let s:active.left = [['mode'], ['position_map'], ['position'], ['vimonga']]
 
 let s:active.right = [['gitbranch'], ['fileinfo'], ['filepath']]
 let s:inactive = {}
@@ -21,11 +21,25 @@ let s:component_function.fileinfo = 'LightlineFileInfo'
 let s:component_function.position = 'LightlinePosition'
 let s:component_function.position_map = 'LightlinePositionMap'
 let s:component_function.gesture_lines = 'LightlineGestureLines'
+let s:component_function.vimonga = 'LightlineVimonga'
 let s:component_function.filepath = 'LightlineFilePath'
 let g:lightline = {'enable': s:enable, 'active': s:active, 'inactive': s:inactive, 'component_function': s:component_function, }
 
 function! s:surround(value) abort
     return '[' . a:value . ']'
+endfunction
+
+function! LightlineVimonga()
+    let doc_count = vimonga#status('document', 'count')
+    if empty(doc_count)
+        return ''
+    endif
+
+    let first = vimonga#status('document', 'first_number')
+    let last = vimonga#status('document', 'last_number')
+    let prev = vimonga#status('document', 'is_first') ? '' : '<'
+    let next = vimonga#status('document', 'is_last') ? '' : '>'
+    return printf('%s %d ~ %d / %d %s', prev, first, last, doc_count, next)
 endfunction
 
 function! LightlineGitBranch()
