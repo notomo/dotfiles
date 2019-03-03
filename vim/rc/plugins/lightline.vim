@@ -30,6 +30,10 @@ function! s:surround(value) abort
 endfunction
 
 function! LightlineVimonga()
+    if !exists('*vimonga#status')
+        return ''
+    endif
+
     let doc_count = vimonga#status('document', 'count')
     if empty(doc_count)
         return ''
