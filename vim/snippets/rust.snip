@@ -126,3 +126,21 @@ snippet none_pattern
 
 snippet unwrap
 	unwrap()
+
+snippet iflet
+	if let ${1:pattern} = ${2:expr} {
+		${0:TARGET}
+	}
+
+snippet ifonly
+	if ${1:expr} {
+		${0:TARGET}
+	}
+
+snippet else
+	else {
+		${0:TARGET}
+	}
+
+snippet derive
+    #[derive(${1:Debug})]
