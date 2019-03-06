@@ -25,7 +25,9 @@ autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
 function! s:vimonga_document() abort
     nnoremap <buffer> h :<C-u>call vimonga#action('document', 'open_parent')<CR>
     nnoremap <buffer> <C-n> :<C-u>call vimonga#action('document', 'open_next')<CR>
+    nnoremap <buffer> <C-e> :<C-u>call vimonga#action('document', 'open_last')<CR>
     nnoremap <buffer> <C-p> :<C-u>call vimonga#action('document', 'open_prev')<CR>
+    nnoremap <buffer> <C-a> :<C-u>call vimonga#action('document', 'open_first')<CR>
     nnoremap <buffer> dd :<C-u>call vimonga#action('document', 'projection_hide')<CR>
     nnoremap <buffer> dr :<C-u>call vimonga#action('document', 'projection_reset_all')<CR>
     nnoremap <buffer> sa :<C-u>call vimonga#action('document', 'sort_ascending')<CR>
