@@ -124,12 +124,12 @@ command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
 
 call minpac#add('prabirshrestha/async.vim')
 call minpac#add('prabirshrestha/vim-lsp')
-if executable('gopls')
+if executable('bingo')
     augroup LspGo
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'go-lang',
-            \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+            \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
             \ 'whitelist': ['go'],
         \ })
     augroup END
@@ -174,7 +174,8 @@ nnoremap <silent> [lc]r :<C-u>LspRename<CR>
 nnoremap <silent> [lc]k :<C-u>LspHover<CR>
 nnoremap <silent> [lc]ld :<C-u>LspDocumentSymbol<CR>
 nnoremap <silent> [lc]lw :<C-u>LspWorkspaceSymbol<CR>
-nnoremap <silent> [lc]lr :<C-u>LspReferences<CR>
+nnoremap <silent> [exec]gr :<C-u>LspReferences<CR>
+nnoremap <silent> [exec]gi :<C-u>LspImplementation<CR>
 
 call minpac#add('fatih/vim-go')
 let g:go_auto_type_info = 0

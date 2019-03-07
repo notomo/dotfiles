@@ -13,8 +13,7 @@ xnoremap <buffer> <silent> sgj :<C-u>call go#textobj#FunctionJump('v', 'next')<C
 xnoremap <buffer> <silent> sgk :<C-u>call go#textobj#FunctionJump('v', 'prev')<CR>
 
 nnoremap <buffer> [exec]bL :<C-u>GoBuild<CR>
-nnoremap <buffer> [exec]gr :<C-u>GoReferrers<CR>
-nnoremap <buffer> [exec]gi :<C-u>GoImplements<CR>
+nnoremap <buffer> [exec]gI :<C-u>GoImplements<CR>
 nnoremap <buffer> [test]g :<C-u>GoCoverageToggle<CR>
 nnoremap <buffer> [denite]o :<C-u>Denite decls<CR>
 

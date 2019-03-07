@@ -44,6 +44,7 @@
     - github.com/notomo/wsxhub/...
     - github.com/kisielk/godepgraph
     - golang.org/x/tools/cmd/gopls
+    - github.com/saibing/bingo
   environment:
     GOPATH: "{{ home_dir }}/go"
 
