@@ -6,9 +6,7 @@ let s:enable.tabline = 0
 let s:enable.statusline = 1
 let s:active = {}
 
-" for gesture debug
-" let s:active.left = [['mode'], ['position_map'], ['position'], ['gesture_lines']]
-let s:active.left = [['mode'], ['position_map'], ['position'], ['vimonga']]
+let s:active.left = [['mode'], ['position'], ['vimonga']]
 
 let s:active.right = [['gitbranch'], ['fileinfo'], ['filepath']]
 let s:inactive = {}
@@ -19,8 +17,6 @@ let s:component_function.mode = 'LightlineMode'
 let s:component_function.gitbranch = 'LightlineGitBranch'
 let s:component_function.fileinfo = 'LightlineFileInfo'
 let s:component_function.position = 'LightlinePosition'
-let s:component_function.position_map = 'LightlinePositionMap'
-let s:component_function.gesture_lines = 'LightlineGestureLines'
 let s:component_function.vimonga = 'LightlineVimonga'
 let s:component_function.filepath = 'LightlineFilePath'
 let g:lightline = {'enable': s:enable, 'active': s:active, 'inactive': s:inactive, 'component_function': s:component_function, }
@@ -71,39 +67,6 @@ function! LightlinePosition()
         return denite#get_status('linenr')
     endif
     return s:surround(col('.'))
-endfunction
-
-function! LightlinePositionMap()
-    if &filetype ==? 'denite'
-        return ''
-    endif
-
-    if winwidth(0) < 100
-        return ''
-    endif
-
-    let current = line('.')
-    let line_count = line('$')
-    let length = 20
-
-    let currentPosition = float2nr(round(current * 1.0 / line_count * length))
-
-    let otherMark = '-'
-    let otherLine = repeat(otherMark, length)
-
-    let front = currentPosition == 0 ? '' :  otherLine[:currentPosition - 1]
-    let rear = otherLine[currentPosition :]
-    let line =  front . '+' . rear
-
-    return s:surround(line)
-endfunction
-
-function! LightlineGestureLines()
-    if !has('nvim') || &filetype =~? 'defx\|denite'
-        return ''
-    endif
-    let directions = map(gesture#get_inputs(), { _, v -> v.value })
-    return s:surround(join(directions, ','))
 endfunction
 
 function! LightlineFilePath()
