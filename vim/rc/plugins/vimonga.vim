@@ -22,8 +22,8 @@ function! s:vimonga_indexes() abort
     nnoremap <buffer> h :<C-u>call vimonga#action('indexes', 'open_parent')<CR>
 endfunction
 
-autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
-function! s:vimonga_document() abort
+autocmd MyAuGroup FileType vimonga-docs call s:vimonga_documents()
+function! s:vimonga_documents() abort
     nnoremap <buffer> h :<C-u>call vimonga#action('document', 'open_parent')<CR>
     nnoremap <buffer> <C-n> :<C-u>call vimonga#action('document', 'open_next')<CR>
     nnoremap <buffer> <C-e> :<C-u>call vimonga#action('document', 'open_last')<CR>
@@ -38,6 +38,7 @@ function! s:vimonga_document() abort
     nnoremap <buffer> sR :<C-u>call vimonga#action('document', 'sort_reset_all')<CR>
     nnoremap <buffer> a :<C-u>call vimonga#action('document', 'query_add')<CR>
     nnoremap <buffer> A :<C-u>call vimonga#action('document', 'query_reset_all')<CR>
+    nnoremap <buffer> t<Space> :<C-u>call vimonga#action('document', 'tab_open_one')<CR>
 endfunction
 
 call vimonga#config#set('default_port', 27020)
