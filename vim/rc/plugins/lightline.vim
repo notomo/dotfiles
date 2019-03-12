@@ -30,16 +30,16 @@ function! LightlineVimonga()
         return ''
     endif
 
-    let doc_count = vimonga#status('document', 'count')
-    if empty(doc_count)
+    let status = vimonga#status('documents')
+    if empty(status)
         return ''
     endif
 
-    let first = vimonga#status('document', 'first_number')
-    let last = vimonga#status('document', 'last_number')
-    let prev = vimonga#status('document', 'is_first') ? '' : '<'
-    let next = vimonga#status('document', 'is_last') ? '' : '>'
-    return printf('%s %d ~ %d / %d %s', prev, first, last, doc_count, next)
+    let first = status['first_number']
+    let last = status['last_number']
+    let prev = status['is_first'] ? '' : '<'
+    let next = status['is_last'] ? '' : '>'
+    return printf('%s %d ~ %d / %d %s', prev, first, last, status['count'], next)
 endfunction
 
 function! LightlineGitBranch()
