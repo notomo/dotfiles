@@ -25,8 +25,12 @@ class Source(Base):
                 'abbr': abbr,
             }
 
+        cmd = ['git', 'branch', '--format', '%(refname:short)']
+        if len(context['args']) == 1:
+            cmd.append('--all')
+
         process = subprocess.Popen(
-            ['git', 'branch', '--all', '--format', '%(refname:short)'],
+            cmd,
             stdout=subprocess.PIPE,
             cwd=self.vim.call('getcwd')
         )
