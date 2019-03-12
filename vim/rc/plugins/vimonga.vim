@@ -1,14 +1,14 @@
 
 nnoremap [exec]v :<C-u>Vimonga database<CR>
 
-autocmd MyAuGroup FileType vimonga-db call s:vimonga_db()
+autocmd MyAuGroup FileType vimonga-dbs call s:vimonga_db()
 function! s:vimonga_db() abort
     nnoremap <buffer> l :<C-u>call vimonga#action('database', 'open')<CR>
     nnoremap <buffer> t<Space> :<C-u>call vimonga#action('database', 'tab_open')<CR>
     nnoremap <buffer> dd :<C-u>call vimonga#action('database', 'drop')<CR>
 endfunction
 
-autocmd MyAuGroup FileType vimonga-coll call s:vimonga_collection()
+autocmd MyAuGroup FileType vimonga-colls call s:vimonga_collection()
 function! s:vimonga_collection() abort
     nnoremap <buffer> l :<C-u>call vimonga#action('collection', 'open')<CR>
     nnoremap <buffer> dd :<C-u>call vimonga#action('collection', 'drop')<CR>
