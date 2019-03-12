@@ -76,6 +76,7 @@ function! notomo#mapping#main_input() abort
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'v', s:RHS_KEY : '<C-q>'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'c', s:RHS_KEY : '::'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'fe', s:RHS_KEY : ':='},
+        \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'fq', s:RHS_KEY : '<C-c>'},
         \ {s:LHS_KEY : s:MAIN_INPUT_PFX . 'm', s:RHS_KEY : '<CR>'},
     \ ]
 endfunction
