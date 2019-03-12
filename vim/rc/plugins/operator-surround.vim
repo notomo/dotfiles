@@ -23,5 +23,6 @@ let g:operator#surround#blocks =
 \       { 'block' : ['（', '）'], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['P'] },
 \       { 'block' : ["```\n", "\n\n\<C-u>```"], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['c'] },
 \       { 'block' : ["<pre>\n", "\n\n\<C-u></pre>"], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['apre'] },
+\       { 'block' : ["<details>\n<summary>Details</summary>\n\n", "\n\n\n\<C-u></details>"], 'motionwise' : ['char', 'line', 'block'], 'keys' : ['s'] },
 \   ],
 \ }
