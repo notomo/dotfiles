@@ -58,21 +58,33 @@ function! s:smart_open(context) abort
 endfunction
 
 function! s:vsplit(context) abort
-    quit
+    let tab_count = tabpagenr('$')
+    let win_count = tabpagewinnr(tabpagenr(), '$')
+    if tab_count != 1 || win_count != 1
+        quit
+    endif
     for path in a:context['targets']
         execute 'vsplit ' . path
     endfor
 endfunction
 
 function! s:hsplit(context) abort
-    quit
+    let tab_count = tabpagenr('$')
+    let win_count = tabpagewinnr(tabpagenr(), '$')
+    if tab_count != 1 || win_count != 1
+        quit
+    endif
     for path in a:context['targets']
         execute 'split ' . path
     endfor
 endfunction
 
 function! s:tabopen(context) abort
-    quit
+    let tab_count = tabpagenr('$')
+    let win_count = tabpagewinnr(tabpagenr(), '$')
+    if tab_count != 1 || win_count != 1
+        quit
+    endif
     for path in a:context['targets']
         if isdirectory(expand(path))
             call s:defx_open('tabnew', path)
