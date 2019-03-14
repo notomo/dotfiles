@@ -48,6 +48,3 @@ function! s:vimonga_document() abort
 endfunction
 
 call vimonga#config#set('default_port', 27020)
-
-let s:config_path = expand('<sfile>:h') . '/vimonga.toml'
-call vimonga#config#set('config_path', s:config_path)
