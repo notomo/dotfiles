@@ -1,20 +1,27 @@
 
 nnoremap [exec]v :<C-u>Vimonga database<CR>
 
-autocmd MyAuGroup FileType vimonga-dbs call s:vimonga_db()
-function! s:vimonga_db() abort
+autocmd MyAuGroup FileType vimonga-dbs call s:vimonga_dbs()
+function! s:vimonga_dbs() abort
     nnoremap <buffer> l :<C-u>call vimonga#action('database', 'open')<CR>
     nnoremap <buffer> t<Space> :<C-u>call vimonga#action('database', 'tab_open')<CR>
     nnoremap <buffer> dd :<C-u>call vimonga#action('database', 'drop')<CR>
+    nnoremap <buffer> u :<C-u>call vimonga#action('users', 'open')<CR>
 endfunction
 
-autocmd MyAuGroup FileType vimonga-colls call s:vimonga_collection()
-function! s:vimonga_collection() abort
+autocmd MyAuGroup FileType vimonga-users call s:vimonga_users()
+function! s:vimonga_users() abort
+    nnoremap <buffer> h :<C-u>call vimonga#action('collection', 'open_parent')<CR>
+endfunction
+
+autocmd MyAuGroup FileType vimonga-colls call s:vimonga_collections()
+function! s:vimonga_collections() abort
     nnoremap <buffer> l :<C-u>call vimonga#action('collection', 'open')<CR>
     nnoremap <buffer> dd :<C-u>call vimonga#action('collection', 'drop')<CR>
     nnoremap <buffer> h :<C-u>call vimonga#action('collection', 'open_parent')<CR>
     nnoremap <buffer> t<Space> :<C-u>call vimonga#action('collection', 'tab_open')<CR>
     nnoremap <buffer> i :<C-u>call vimonga#action('collection', 'open_indexes')<CR>
+    nnoremap <buffer> I :<C-u>call vimonga#action('collection', 'create')<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-indexes call s:vimonga_indexes()
@@ -46,6 +53,7 @@ endfunction
 autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
 function! s:vimonga_document() abort
     nnoremap <buffer> h :<C-u>call vimonga#action('collection', 'open')<CR>
+    nnoremap <buffer> X :<C-u>call vimonga#action('document', 'delete_one')<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-doc-new call s:vimonga_document_new()
