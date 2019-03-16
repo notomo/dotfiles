@@ -1,5 +1,5 @@
 
-from .base import Kind as Base
+from denite.base.kind import Kind as Base
 
 
 class Kind(Base):

@@ -2,7 +2,7 @@
 
 import urllib.parse
 
-from .file import Kind as File
+from denite.kind.file import Kind as File
 
 
 class Kind(File):
