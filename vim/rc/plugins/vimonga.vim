@@ -40,11 +40,17 @@ function! s:vimonga_documents() abort
     nnoremap <buffer> A :<C-u>call vimonga#action('document', 'query_reset_all')<CR>
     nnoremap <buffer> t<Space> :<C-u>call vimonga#action('document', 'tab_open_one')<CR>
     nnoremap <buffer> o :<C-u>call vimonga#action('document', 'open_one')<CR>
+    nnoremap <buffer> I :<C-u>call vimonga#action('document', 'tab_new')<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
 function! s:vimonga_document() abort
     nnoremap <buffer> h :<C-u>call vimonga#action('collection', 'open')<CR>
+endfunction
+
+autocmd MyAuGroup FileType vimonga-doc-new call s:vimonga_document_new()
+function! s:vimonga_document_new() abort
+    nnoremap <buffer> [file]w :<C-u>call vimonga#action('document', 'insert')<CR>
 endfunction
 
 call vimonga#config#set('default_port', 27020)
