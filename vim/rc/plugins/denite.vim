@@ -5,16 +5,16 @@ if has('win32')
     nnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
     xnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
 else
-    nnoremap <silent> <Space>ur :<C-u>DeniteProjectDir file_mru file_rec<CR>
-    xnoremap <silent> <Space>ur :<C-u>DeniteProjectDir file_mru file_rec<CR>
+    nnoremap <silent> <Space>ur :<C-u>DeniteProjectDir file_mru file/rec<CR>
+    xnoremap <silent> <Space>ur :<C-u>DeniteProjectDir file_mru file/rec<CR>
 endif
 nnoremap <silent> [denite]y :<C-u>Denite file_bookmark<CR>
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec<CR>
 nnoremap <silent> [denite]B :<C-u>Denite buffer:!<CR>
-nnoremap <silent> <Space>usf :<C-u>Denite file_rec<CR>
-nnoremap <silent> <Space>usg :<C-u>DeniteProjectDir file_rec<CR>
+nnoremap <silent> <Space>usf :<C-u>Denite file/rec<CR>
+nnoremap <silent> <Space>usg :<C-u>DeniteProjectDir file/rec<CR>
 nnoremap <silent> [denite]f :<C-u>Denite dir_file -no-empty<CR>
 nnoremap <silent> [denite]o :<C-u>Denite outline -no-empty<CR>
 nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
@@ -32,7 +32,7 @@ endif
 
 nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> <Space>ud :<C-u>Denite file_mru -immediately<CR>
-nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file_rec<CR>
+nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file/rec<CR>
 nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [denite]p :<C-u>Denite plugin<CR>
@@ -69,7 +69,7 @@ call denite#custom#source('ctrlb/history/search', 'matchers', [])
 call denite#custom#source('directory_mru', 'sorters', ['sorter_length'])
 call denite#custom#source('decls', 'sorters', ['sorter_line_number', 'sorter_file_path'])
 call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', ['.git', '.mypy_cache/', '__pycache__/*', '__pycache__', '.mypy_cache', '.pytest_cache/', '.pytest_cache', '.DS_Store'])
-call denite#custom#source('file_rec', 'matchers', ['matcher/regexp', 'matcher/ignore_globs'])
+call denite#custom#source('file/rec', 'matchers', ['matcher/regexp', 'matcher/ignore_globs'])
 call denite#custom#source('directory_rec', 'matchers', ['matcher/regexp', 'matcher/ignore_globs'])
 call denite#custom#source('grep', 'matchers', ['matcher/regexp', 'matcher/ignore_globs'])
 
@@ -164,7 +164,7 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
-call denite#custom#var('file_rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '--ignore=.git', (has('win32') ? '-g:' : '-g='), ''])
+call denite#custom#var('file/rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '--ignore=.git', (has('win32') ? '-g:' : '-g='), ''])
 call denite#custom#var('outline', 'ignore_types', ['v'])
 
 call denite#custom#action('directory,go/package', 'dir_file', {context -> notomo#denite#dir_file_on_directory(context)})
