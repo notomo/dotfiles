@@ -1,5 +1,5 @@
 
-nnoremap [exec]v :<C-u>Vimonga database<CR>
+nnoremap [exec]v :<C-u>Vimonga database.list<CR>
 
 autocmd MyAuGroup FileType vimonga-dbs call s:vimonga_dbs()
 function! s:vimonga_dbs() abort
