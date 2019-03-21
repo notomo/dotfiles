@@ -1,64 +1,64 @@
 
-nnoremap [exec]v :<C-u>Vimonga database.list<CR>
+nnoremap [exec]v :<C-u>Vimonga database.list -open=tabedit<CR>
 
 autocmd MyAuGroup FileType vimonga-dbs call s:vimonga_dbs()
 function! s:vimonga_dbs() abort
-    nnoremap <buffer> l :<C-u>call vimonga#action('database', 'open')<CR>
-    nnoremap <buffer> t<Space> :<C-u>call vimonga#action('database', 'tab_open')<CR>
-    nnoremap <buffer> dd :<C-u>call vimonga#action('database', 'drop')<CR>
-    nnoremap <buffer> u :<C-u>call vimonga#action('users', 'open')<CR>
+    nnoremap <buffer> l <Cmd>Vimonga collection.list<CR>
+    nnoremap <buffer> t<Space> <Cmd>Vimonga collection.list -open=tabedit<CR>
+    nnoremap <buffer> dd <Cmd>Vimonga database.drop<CR>
+    nnoremap <buffer> u <Cmd>Vimonga user.list<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-users call s:vimonga_users()
 function! s:vimonga_users() abort
-    nnoremap <buffer> h :<C-u>call vimonga#action('collection', 'open_parent')<CR>
+    nnoremap <buffer> h <Cmd>Vimonga database.list<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-colls call s:vimonga_collections()
 function! s:vimonga_collections() abort
-    nnoremap <buffer> l :<C-u>call vimonga#action('collection', 'open')<CR>
-    nnoremap <buffer> dd :<C-u>call vimonga#action('collection', 'drop')<CR>
-    nnoremap <buffer> h :<C-u>call vimonga#action('collection', 'open_parent')<CR>
-    nnoremap <buffer> t<Space> :<C-u>call vimonga#action('collection', 'tab_open')<CR>
-    nnoremap <buffer> i :<C-u>call vimonga#action('collection', 'open_indexes')<CR>
-    nnoremap <buffer> I :<C-u>call vimonga#action('collection', 'create')<CR>
+    nnoremap <buffer> l <Cmd>Vimonga document.find<CR>
+    nnoremap <buffer> dd <Cmd>Vimonga collection.drop<CR>
+    nnoremap <buffer> h <Cmd>Vimonga database.list<CR>
+    nnoremap <buffer> t<Space> <Cmd>Vimonga document.find -open=tabedit<CR>
+    nnoremap <buffer> i <Cmd>Vimonga index.list<CR>
+    nnoremap <buffer> I <Cmd>Vimonga collection.create<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-indexes call s:vimonga_indexes()
 function! s:vimonga_indexes() abort
-    nnoremap <buffer> h :<C-u>call vimonga#action('indexes', 'open_parent')<CR>
+    nnoremap <buffer> h <Cmd>Vimonga collection.list<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-docs call s:vimonga_documents()
 function! s:vimonga_documents() abort
-    nnoremap <buffer> h :<C-u>call vimonga#action('document', 'open_parent')<CR>
-    nnoremap <buffer> <C-n> :<C-u>call vimonga#action('document', 'open_next')<CR>
-    nnoremap <buffer> <C-e> :<C-u>call vimonga#action('document', 'open_last')<CR>
-    nnoremap <buffer> <C-p> :<C-u>call vimonga#action('document', 'open_prev')<CR>
-    nnoremap <buffer> <C-a> :<C-u>call vimonga#action('document', 'open_first')<CR>
-    nnoremap <buffer> dd :<C-u>call vimonga#action('document', 'projection_hide')<CR>
-    nnoremap <buffer> dr :<C-u>call vimonga#action('document', 'projection_reset_all')<CR>
-    nnoremap <buffer> sa :<C-u>call vimonga#action('document', 'sort_ascending')<CR>
-    nnoremap <buffer> sd :<C-u>call vimonga#action('document', 'sort_descending')<CR>
-    nnoremap <buffer> sr :<C-u>call vimonga#action('document', 'sort_reset')<CR>
-    nnoremap <buffer> ss :<C-u>call vimonga#action('document', 'sort_toggle')<CR>
-    nnoremap <buffer> sR :<C-u>call vimonga#action('document', 'sort_reset_all')<CR>
-    nnoremap <buffer> a :<C-u>call vimonga#action('document', 'query_add')<CR>
-    nnoremap <buffer> A :<C-u>call vimonga#action('document', 'query_reset_all')<CR>
-    nnoremap <buffer> t<Space> :<C-u>call vimonga#action('document', 'tab_open_one')<CR>
-    nnoremap <buffer> o :<C-u>call vimonga#action('document', 'open_one')<CR>
-    nnoremap <buffer> I :<C-u>call vimonga#action('document', 'tab_new')<CR>
+    nnoremap <buffer> h <Cmd>Vimonga collection.list<CR>
+    nnoremap <buffer> <C-n> <Cmd>Vimonga document.page.next<CR>
+    nnoremap <buffer> <C-e> <Cmd>Vimonga document.page.last<CR>
+    nnoremap <buffer> <C-p> <Cmd>Vimonga document.page.prev<CR>
+    nnoremap <buffer> <C-a> <Cmd>Vimonga document.page.first<CR>
+    nnoremap <buffer> dd <Cmd>Vimonga document.projection.hide<CR>
+    nnoremap <buffer> dr <Cmd>Vimonga document.projection.reset_all<CR>
+    nnoremap <buffer> sa <Cmd>Vimonga document.sort.ascending<CR>
+    nnoremap <buffer> sd <Cmd>Vimonga document.sort.descending<CR>
+    nnoremap <buffer> sr <Cmd>Vimonga document.sort.reset<CR>
+    nnoremap <buffer> ss <Cmd>Vimonga document.sort.toggle<CR>
+    nnoremap <buffer> sR <Cmd>Vimonga document.sort.reset_all<CR>
+    nnoremap <buffer> a <Cmd>Vimonga document.query.add<CR>
+    nnoremap <buffer> A <Cmd>Vimonga document.query.reset_all<CR>
+    nnoremap <buffer> t<Space> <Cmd>Vimonga document.one -open=tabedit<CR>
+    nnoremap <buffer> o <Cmd>Vimonga document.one<CR>
+    nnoremap <buffer> I <Cmd>Vimonga document.new -open=tabedit<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
 function! s:vimonga_document() abort
-    nnoremap <buffer> h :<C-u>call vimonga#action('collection', 'open')<CR>
-    nnoremap <buffer> X :<C-u>call vimonga#action('document', 'delete_one')<CR>
+    nnoremap <buffer> h <Cmd>Vimonga document.find<CR>
+    nnoremap <buffer> X <Cmd>Vimonga document.one.delete<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-doc-new call s:vimonga_document_new()
 function! s:vimonga_document_new() abort
-    nnoremap <buffer> [file]w :<C-u>call vimonga#action('document', 'insert')<CR>
+    nnoremap <buffer> [file]w <Cmd>Vimonga document.one.insert<CR>
 endfunction
 
 call vimonga#config#set('default_port', 27020)
