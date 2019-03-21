@@ -87,3 +87,15 @@ function! s:execute(dir, command) abort
     tabedit
     execute 'terminal ' . join(commands, ';')
 endfunction
+
+let s:prompt_pattern = '\v^\$ '
+let s:cmd_start_col = 2
+let s:cmd_length_limit = 20
+function! s:set_term_title() abort
+    let prompt_lnum  = search(s:prompt_pattern, 'nbczW')
+    let cmd = escape(getline(prompt_lnum)[s:cmd_start_col : s:cmd_length_limit], '|')
+    let title = printf('%s:%s: %s', b:terminal_job_pid, &shell,  cmd)
+    execute 'file ' . title
+endfunction
+
+tnoremap <CR> <Cmd>call <SID>set_term_title()<CR><CR>

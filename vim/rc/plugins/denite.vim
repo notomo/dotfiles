@@ -12,7 +12,7 @@ nnoremap <silent> [denite]y :<C-u>Denite file_bookmark<CR>
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
 nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec<CR>
-nnoremap <silent> [denite]B :<C-u>Denite buffer:!<CR>
+nnoremap <silent> [denite]B :<C-u>Denite buffer<CR>
 nnoremap <silent> <Space>usf :<C-u>Denite file/rec<CR>
 nnoremap <silent> <Space>usg :<C-u>DeniteProjectDir file/rec<CR>
 nnoremap <silent> [denite]f :<C-u>Denite dir_file -no-empty<CR>
