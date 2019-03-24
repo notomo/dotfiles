@@ -95,6 +95,7 @@ function! s:set_term_title() abort
     let prompt_lnum  = search(s:prompt_pattern, 'nbczW')
     let cmd = escape(getline(prompt_lnum)[s:cmd_start_col : s:cmd_length_limit], '|$"`')
     let cmd = substitute(cmd, '/', '\\\\', 'g')
+    let cmd = substitute(cmd, '\v\+|\%', '_', 'g')
     let title = printf('%s:%s: %s', jobpid(b:terminal_job_id), &shell, cmd)
     execute 'file ' . title
 endfunction
