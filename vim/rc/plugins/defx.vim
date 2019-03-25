@@ -42,18 +42,20 @@ endfunction
 function! s:smart_open(context) abort
     let line_num = line('.')
     let line = trim(getline(line_num))
-    let path = expand(split(line, ' ')[-1])
+    echomsg line_num
     if line_num == 1
-        let path = fnamemodify(path, ':h:h')
+        let path = fnamemodify(expand(getcwd()), ':h')
+        echomsg path
+        call defx#call_action('cd', [path]) | return
     endif
+    let path = expand(split(line, ' ')[-1])
 
     if !isdirectory(path) && !filereadable(path)
         return
     endif
 
     if isdirectory(path)
-        call defx#call_action('cd', [path])
-        return
+        call defx#call_action('cd', [path]) | return
     endif
 
     call defx#call_action('drop')
