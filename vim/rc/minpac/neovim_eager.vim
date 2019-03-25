@@ -1,3 +1,15 @@
+call minpac#add('Shougo/denite.nvim')
+
+call minpac#add('notomo/denite-autocmd')
+nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>
+
+call minpac#add('notomo/denite-runtimepath')
+nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
+
+call minpac#add('pocari/vim-denite-emoji')
+call minpac#add('junegunn/vim-emoji')
+nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>
+
 call minpac#add('vim-jp/vimdoc-ja')
 
 call minpac#add('notomo/denite-keymap')

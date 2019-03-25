@@ -27,10 +27,10 @@ endif
 packloadall
 
 " source post
-source ~/.vim/rc/plugins/denite.vim
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
 if has('nvim')
+    source ~/.vim/rc/plugins/denite.vim
     source ~/.vim/rc/plugins/deoplete.vim
     source ~/.vim/rc/plugins/curstr.vim
     source ~/.vim/rc/plugins/gesture.vim

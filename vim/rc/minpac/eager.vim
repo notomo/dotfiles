@@ -203,18 +203,6 @@ nnoremap [exec]Q :<C-u>Qfreplace<CR>
 
 call minpac#add('lambdalisue/gina.vim')
 
-call minpac#add('Shougo/denite.nvim')
-
-call minpac#add('notomo/denite-autocmd')
-nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>
-
-call minpac#add('notomo/denite-runtimepath')
-nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
-
-call minpac#add('pocari/vim-denite-emoji')
-call minpac#add('junegunn/vim-emoji')
-nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>
-
 call minpac#add('itchyny/lightline.vim')
 
 call minpac#add('easymotion/vim-easymotion')
