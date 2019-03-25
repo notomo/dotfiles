@@ -1,8 +1,9 @@
 nnoremap <silent> [exec]f :<C-u>Defx `expand('%:p:h')` -toggle -search=`expand('%:p')` -split=vertical -winwidth=38<CR>
 
 call defx#custom#option('_', {
-    \ 'show_ignored_files' : v:true,
+    \ 'show_ignored_files' : v:false,
     \ 'auto_cd' : v:true,
+    \ 'ignored_files' : '__pycache__',
 \ })
 
 autocmd MyAuGroup FileType defx call s:settings()
@@ -12,6 +13,7 @@ function! s:settings() abort
     nnoremap <silent> <buffer> <expr> <CR> defx#do_action('open')
     nnoremap <silent> <buffer> <expr> t<Space> defx#do_action('call', "<SID>tabopen")
     nnoremap <silent> <buffer> <expr> o defx#do_action('open_or_close_tree')
+    nnoremap <silent> <buffer> <expr> O defx#do_action('open_tree_recursive')
     nnoremap <silent> <buffer> <expr> yf defx#do_action('copy')
     nnoremap <silent> <buffer> <expr> xf defx#do_action('move')
     nnoremap <silent> <buffer> <expr> p defx#do_action('paste')
