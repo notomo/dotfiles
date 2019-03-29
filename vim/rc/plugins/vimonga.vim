@@ -12,6 +12,13 @@ endfunction
 autocmd MyAuGroup FileType vimonga-users call s:vimonga_users()
 function! s:vimonga_users() abort
     nnoremap <buffer> h <Cmd>Vimonga database.list<CR>
+    nnoremap <buffer> I <Cmd>Vimonga user.new<CR>
+    nnoremap <buffer> X :<C-u>Vimonga user.drop -user=
+endfunction
+
+autocmd MyAuGroup FileType vimonga-user-new call s:vimonga_user_new()
+function! s:vimonga_user_new() abort
+    nnoremap <buffer> [file]w <Cmd>Vimonga user.create<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-colls call s:vimonga_collections()
