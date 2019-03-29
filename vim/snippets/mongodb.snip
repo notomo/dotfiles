@@ -1,0 +1,29 @@
+
+snippet find
+	db.${1:dbName}.find({
+		"${2:field}": ${0:value}
+	})
+
+snippet find_by_id
+	db.${1:dbName}.find({
+		_id: ObjectId("${0:id}")
+	})
+
+snippet object_id
+	ObjectId("${0:id}")
+
+snippet get_db
+	db
+		.getMongo()
+		.getDB(${1:dbName})
+
+snippet insert
+	db.${1:dbName}.insert([
+		{$0}
+	])
+
+snippet limit
+	limit(${0:10})
+
+snippet projection
+	projection({"${1:shown}": 1, "${0:hidden}": 0})
