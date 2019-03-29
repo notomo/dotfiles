@@ -85,28 +85,28 @@ endfunction
 
 function! notomo#denite#project_dir_file_rec_on_file(context) abort
     execute 'cd ' . s:get_target_path(':h', a:context)
-    execute 'DeniteProjectDir file_rec'
+    execute 'DeniteProjectDir file/rec'
 endfunction
 
 function! notomo#denite#project_dir_file_rec(context) abort
     execute 'cd ' . s:get_target_path('', a:context)
-    execute 'DeniteProjectDir file_rec'
+    execute 'DeniteProjectDir file/rec'
 endfunction
 
 function! notomo#denite#dir_file_rec(context) abort
     execute 'cd ' . s:get_target_path('', a:context)
-    execute 'Denite file_rec'
+    execute 'Denite file/rec'
 endfunction
 
 function! notomo#denite#dir_file_rec_on_file(context) abort
     execute 'cd ' . s:get_target_path(':h', a:context)
-    execute 'Denite file_rec'
+    execute 'Denite file/rec'
 endfunction
 
 function! notomo#denite#project_dir_by_path(dir_path, context) abort
     execute 'cd ' . a:dir_path
     let input = '-input=' . escape(a:context['input'], ' ')
-    execute join(['DeniteProjectDir', input, 'file_rec'])
+    execute join(['DeniteProjectDir', input, 'file/rec'])
 endfunction
 
 function! notomo#denite#grep_plugin_setting(context) abort
