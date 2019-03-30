@@ -35,6 +35,7 @@ autocmd MyAuGroup FileType vimonga-indexes call s:vimonga_indexes()
 function! s:vimonga_indexes() abort
     nnoremap <buffer> h <Cmd>Vimonga collection.list<CR>
     nnoremap <buffer> I <Cmd>Vimonga index.new<CR>
+    nnoremap <buffer> X :<C-u>Vimonga index.drop -index=
 endfunction
 
 autocmd MyAuGroup FileType vimonga-index-new call s:vimonga_index_new()
