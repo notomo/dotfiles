@@ -144,3 +144,30 @@ snippet else
 
 snippet derive
     #[derive(${1:Debug})]
+
+snippet vec
+	vec![${0:values}]
+
+snippet to_string
+	to_string()$0
+
+snippet tests
+	#[cfg(test)]
+	mod tests {
+		${0:TARGET}
+	}
+
+snippet test
+    #[test]
+	fn ${1:name}() {
+		${0:TARGET}
+	}
+
+snippet assert_eq
+	assert_eq!(${1:want}, ${0:got});
+
+snippet Vec
+	Vec<${0:type}>
+
+snippet closure
+	|${1:x}| ${0}
