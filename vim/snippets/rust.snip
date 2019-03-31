@@ -21,6 +21,9 @@ snippet mut
 snippet use
 	use ${0:name};
 
+snippet eprintln
+	eprintln!("{}", ${0:expr});
+
 snippet println
 	println!("{}", ${0:expr});
 
@@ -171,3 +174,9 @@ snippet Vec
 
 snippet closure
 	|${1:x}| ${0}
+
+snippet const
+	const ${1:name}: ${2:type} = ${0:value}
+
+snippet type_hint
+	::<${0:type}>
