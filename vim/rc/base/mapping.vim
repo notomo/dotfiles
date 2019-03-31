@@ -457,6 +457,7 @@ inoremap j<Space>z <C-a>
 
 " for wildmenu
 cnoremap j<Space>o <C-z>
+cnoremap <C-y> <Space><BS><C-z>
 cnoremap <Tab> <C-n>
 cnoremap <S-Tab> <C-p>
 
