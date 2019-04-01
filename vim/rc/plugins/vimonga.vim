@@ -62,6 +62,7 @@ function! s:vimonga_documents() abort
     nnoremap <buffer> t<Space> <Cmd>Vimonga document.one -open=tabedit<CR>
     nnoremap <buffer> o <Cmd>Vimonga document.one<CR>
     nnoremap <buffer> I <Cmd>Vimonga document.new -open=tabedit<CR>
+    nnoremap <buffer> F <Cmd>Vimonga document.query.find_by_oid -open=tabedit<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
