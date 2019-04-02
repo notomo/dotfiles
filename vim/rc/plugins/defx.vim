@@ -4,6 +4,7 @@ call defx#custom#option('_', {
     \ 'show_ignored_files' : v:false,
     \ 'auto_cd' : v:true,
     \ 'ignored_files' : '__pycache__',
+    \ 'new' : v:true,
 \ })
 
 autocmd MyAuGroup FileType defx call s:settings()
@@ -21,8 +22,8 @@ function! s:settings() abort
     nnoremap <silent> <buffer> <expr> sh defx#do_action('call', "<SID>hsplit")
     nnoremap <silent> <buffer> <expr> sv defx#do_action('call', "<SID>vsplit")
     nnoremap <silent> <buffer> <expr> P defx#do_action('open', 'pedit')
-    nnoremap <silent> <buffer> <expr> nd defx#do_action('new_directory')
-    nnoremap <silent> <buffer> <expr> nf defx#do_action('new_file')
+    nnoremap <silent> <buffer> <expr> Nd defx#do_action('new_directory')
+    nnoremap <silent> <buffer> <expr> Nf defx#do_action('new_file')
     nnoremap <silent> <buffer> <expr> df defx#do_action('remove')
     nnoremap <silent> <buffer> <expr> rn defx#do_action('call', "<SID>rename")
     nnoremap <silent> <buffer> <expr> X defx#do_action('execute_system')
