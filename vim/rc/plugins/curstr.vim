@@ -46,5 +46,13 @@ call curstr#custom#source_alias('altr_next_new', ['altr_next'])
 call curstr#custom#source_option('altr_next_new', 'create', v:true)
 nnoremap [file]t :<C-u>Curstr altr_next_new<CR>
 
+call curstr#custom#source_alias('print_vim', ['togglable/line/regex'])
+call curstr#custom#source_option('print_vim', 'patterns', [['\v^\s*let\s+([^=[:space:]]*).*$', 'echomsg string(\1)']])
+call curstr#custom#source_option('print_vim', 'filetypes', ['vim'])
+call curstr#custom#source_alias('print_go', ['togglable/line/regex'])
+call curstr#custom#source_option('print_go', 'patterns', [['\v^\s*([^=[:space:],]*).*$', 'fmt.Println(\1)']])
+call curstr#custom#source_option('print_go', 'filetypes', ['go'])
+call curstr#custom#source_alias('print', ['print_vim', 'print_go'])
+nnoremap [replace]j :<C-u>Curstr print -action=append<CR>
 
 call curstr#custom#execute_option('use-cache', v:false)
