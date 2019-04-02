@@ -70,6 +70,12 @@ snippet catch
 snippet echomsg
 	echomsg ${1:TARGET}
 
+snippet echomsg_str
+	echomsg string(${0:value})
+
+snippet printf
+	printf('${1:format}', ${0:values, ...})
+
 snippet command
 	command! ${1:#:command_name} call ${0:#:func_name}
 
