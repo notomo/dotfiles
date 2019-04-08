@@ -1,9 +1,15 @@
 
 nnoremap [exec]v :<C-u>Vimonga database.list -open=tabedit<CR>
 
+autocmd MyAuGroup FileType vimonga-conns call s:vimonga_conns()
+function! s:vimonga_conns() abort
+    nnoremap <buffer> l <Cmd>Vimonga database.list<CR>
+endfunction
+
 autocmd MyAuGroup FileType vimonga-dbs call s:vimonga_dbs()
 function! s:vimonga_dbs() abort
     nnoremap <buffer> l <Cmd>Vimonga collection.list<CR>
+    nnoremap <buffer> h <Cmd>Vimonga connection.list<CR>
     nnoremap <buffer> t<Space> <Cmd>Vimonga collection.list -open=tabedit<CR>
     nnoremap <buffer> dd <Cmd>Vimonga database.drop<CR>
     nnoremap <buffer> u <Cmd>Vimonga user.list<CR>
@@ -76,3 +82,4 @@ function! s:vimonga_document_new() abort
 endfunction
 
 call vimonga#config#set('default_port', 27020)
+call vimonga#config#set('connection_config', '~/.vim/minpac/pack/minpac/start/vimonga/example/connection.json')
