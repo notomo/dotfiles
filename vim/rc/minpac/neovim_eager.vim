@@ -174,6 +174,24 @@ if executable('rls')
         \ })
     augroup END
 endif
+
+if executable('vls')
+    augroup LspVue
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'vls',
+            \ 'cmd': {server_info->['vls']},
+            \ 'whitelist': ['vue'],
+            \ 'initialization_options': {
+                \ 'config': {
+                    \ 'html': {},
+                    \ 'vetur': {'validation': {}},
+                \ }
+            \ }
+        \ })
+    augroup END
+endif
+
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_signs_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 0
