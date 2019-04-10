@@ -73,3 +73,13 @@ function! s:vimonga_settings() abort
     \ ])
     nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
 endfunction
+
+autocmd MyAuGroup BufRead,BufEnter ~/workspace/mapemo/* call s:mapemo_settings()
+let s:mapemo_index = ''
+function! s:mapemo_settings() abort
+    if empty(s:mapemo_index)
+        let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
+        let s:mapemo_index = fnamemodify(root, ':p:h')
+    endif
+    let g:local#var#document_root = s:mapemo_index
+endfunction
