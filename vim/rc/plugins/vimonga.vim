@@ -1,6 +1,12 @@
 
 nnoremap [exec]v :<C-u>Vimonga database.list -open=tabedit<CR>
 
+autocmd MyAuGroup FileType vimonga-conns,vimonga-dbs,vimonga-colls call s:vimonga_cursor()
+function! s:vimonga_cursor() abort
+    nnoremap <silent> <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
+    nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
+endfunction
+
 autocmd MyAuGroup FileType vimonga-conns call s:vimonga_conns()
 function! s:vimonga_conns() abort
     nnoremap <buffer> l <Cmd>Vimonga database.list<CR>
