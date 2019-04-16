@@ -572,6 +572,7 @@ nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \
 nnoremap [exec]e :<C-u>smile<CR>
 nnoremap [exec]cC :<C-u>messages clear<CR>
 nnoremap [exec]t :<C-u>tabe ~/workspace/notomo-life/todo/README.md<CR>
+nnoremap [exec]do :<C-u>tab drop ~/.local/.mytodo<CR>
 "}}}
 
 " quickfix and locationlist"{{{
