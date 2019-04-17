@@ -46,7 +46,6 @@ nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . esca
 nnoremap <silent> [denite]go :<C-u>Denite go/src<CR>
 nnoremap <silent> [denite]gp :<C-u>Denite go/package<CR>
 nnoremap <silent> [denite]gO :<C-u>call notomo#denite#go_project_decls()<CR>
-nnoremap <silent> [denite]to :<C-u>Denite todo -immediately -default-action=tabopen<CR>
 nnoremap <silent> [denite]ts :<C-u>Denite proto_dir:filetype -default-action=tabfiler -immediately-1<CR>
 nnoremap <silent> [denite]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
 nnoremap <silent> [denite]ga :<C-u>Denite git/branch<CR>
