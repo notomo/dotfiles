@@ -18,7 +18,7 @@ nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>
 call minpac#add('thinca/vim-themis')
 
 call minpac#add('sheerun/vim-polyglot')
-let g:polyglot_disabled = ['markdown']
+let g:polyglot_disabled = ['markdown', 'jsx']
 
 call minpac#add('numirias/semshi')
 let g:semshi#simplify_markup = v:false
