@@ -4,3 +4,21 @@ include html.snip
 snippet variable
 options word
 	{{ ${0:expr} }}
+
+snippet event
+	@${1:name}="${0:expr}"
+
+snippet bind
+	:${1:name}="${0:expr}"
+
+snippet for
+	<div v-for="${0:value} in ${1:iter}"></div>
+
+snippet for_key
+	<div v-for="(${1:key}, ${0:value}) in ${2:iter}"></div>
+
+snippet model
+	v-model="${0:name}"
+
+snippet bind_class
+	:class="{ ${1:name}: ${0:expr} }"
