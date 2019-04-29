@@ -87,5 +87,5 @@ function! s:vimonga_document_new() abort
     nnoremap <buffer> [file]w <Cmd>Vimonga document.one.insert<CR>
 endfunction
 
-call vimonga#config#set('default_port', 27020)
+call vimonga#config#set('default_host', 'localhost:27020')
 call vimonga#config#set('connection_config', '~/.vim/minpac/pack/minpac/start/vimonga/example/connection.json')
