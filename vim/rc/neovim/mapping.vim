@@ -80,6 +80,12 @@ function! s:execute_project_start() abort
         call s:execute(fnamemodify(makefile_path, ':h'), 'make start')
         return
     endif
+
+    let package_json_path = notomo#vimrc#search_parent_recursive('package.json', './')
+    if !empty(package_json_path)
+        call s:execute(fnamemodify(package_json_path, ':h'), 'npm start')
+        return
+    endif
 endfunction
 
 function! s:execute(dir, command) abort
