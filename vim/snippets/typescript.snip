@@ -121,6 +121,10 @@ snippet protected_readonly
 options word
 	protected readonly ${0} 
 
+snippet private_readonly
+options word
+	private readonly ${0} 
+
 snippet public_method
 	public ${1:async} ${2:name}(${3:args}) {
 		${0:TARGET}
@@ -223,3 +227,6 @@ snippet promise_type
 snippet info
 options word
 	this.logger.info(${0})
+
+snippet decorator
+	@${0:Name}
