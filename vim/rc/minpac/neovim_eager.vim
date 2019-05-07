@@ -108,7 +108,7 @@ call minpac#add('mhartington/nvim-typescript')
 "
 " let g:LanguageClient_loggingLevel = 'INFO'
 
-call minpac#add('notomo/vim-gh-line')
+call minpac#add('ruanyl/vim-gh-line')
 let g:gh_line_map_default = 0
 let g:gh_line_blame_map_default = 0
 let g:gh_always_interactive = 1
