@@ -3,7 +3,7 @@ if [ -f /etc/bashrc ] && [ "${BASH_SOURCE[0]}" != "" ]; then
 fi
 
 alias nv="nvim"
-alias nvu="nvim -u ~/dotfiles/vim/local/test.vim"
+alias nvu="NVIM_RPLUGIN_MANIFEST=$(HOME)/rplugin.vim nvim -u ~/dotfiles/vim/local/test.vim"
 alias vu="vim -u ~/dotfiles/vim/local/test.vim"
 alias nvU="nvim -u ~/dotfiles/vim/local/test.vim --noplugin"
 alias nvt="~/app/neovim/build/bin/nvim"
