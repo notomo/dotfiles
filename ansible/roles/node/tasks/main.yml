@@ -11,7 +11,7 @@
 
 - name: download installer
   get_url:
-    url: https://rpm.nodesource.com/setup_9.x
+    url: https://rpm.nodesource.com/setup_10.x
     dest: "{{ app_dir }}/node_installer"
   when: is_centos and not node_installer_downloaded.stat.exists
 

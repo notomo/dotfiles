@@ -7,7 +7,7 @@ elseif has('unix')
     let g:python_host_prog = '/usr/bin/python'
     let g:python3_host_prog = '/usr/bin/python3'
     let g:ruby_host_prog = '~/.rbenv/shims/neovim-ruby-host'
-    let g:node_host_prog = '/usr/bin/neovim-node-host'
+    let g:node_host_prog = '/usr/lib/node_modules/neovim/bin/cli.js'
 elseif has('win32')
     let g:python_host_prog = 'C:/Python27/python.exe'
     let g:python3_host_prog = 'C:/Python35/python.exe'
