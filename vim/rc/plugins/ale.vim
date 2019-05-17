@@ -38,6 +38,7 @@ let g:ale_fixers['rust'] = ['rustfmt']
 let g:ale_fixers['javascript'] = ['prettier']
 let g:ale_fixers['typescript'] = ['prettier']
 let g:ale_fixers['css'] = ['prettier']
+let g:ale_fixers['html'] = ['prettier']
 let g:ale_fixers['scss'] = g:ale_fixers['css']
 let g:ale_fixers['vue'] = ['prettier']
 let g:ale_fixers['json'] = ['fixjson']
@@ -51,6 +52,8 @@ let g:ale_python_flake8_options = '-m flake8'
 let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.gometalinter.json')
 let g:ale_sql_sqlfmt_options = '-u'
 let g:ale_rust_rls_toolchain = 'nightly-2019-01-15'
+autocmd MyAuGroup FileType vue let g:ale_javascript_prettier_options = '--parser vue'
+autocmd MyAuGroup FileType javascript,typescript,css,html,scss let g:ale_javascript_prettier_options = ''
 
 function! s:toggle_fix_on_save() abort
     let current_value = get(g:, 'ale_fix_on_save', 0)
