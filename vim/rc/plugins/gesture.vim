@@ -29,3 +29,5 @@ call gesture#register().right().text('KEY_A').map('[exec]t', {'nowait' : v:true}
 
 " left hand keyboard gesture
 nnoremap <expr> a notomo#gesture#key('a', 'KEY_A')
+
+call gesture#custom#set('enabled_input_view', v:true)
