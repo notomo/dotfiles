@@ -57,6 +57,7 @@
       - vim-vint
       - neovim-remote
       - httpie
+      - pprint
 
 - pip:
     name: "{{ python2_packages }}"
