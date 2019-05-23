@@ -18,6 +18,7 @@ nnoremap [git]ma :<C-u>Gina! merge --abort
 nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
 nnoremap [git]ra :<C-u>Gina! rebase --abort
 nnoremap [git]R :<C-u>Gina! rebase<Space>
+nnoremap <expr> [git]A ":<C-u>Gina! apply " . fnamemodify(bufname('%'), ':p')
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()
