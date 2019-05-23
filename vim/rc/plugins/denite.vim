@@ -42,6 +42,7 @@ nnoremap <silent> [denite]b :<C-u>Denite url_bookmark<CR>
 nnoremap <silent> [denite]s :<C-u>Denite source<CR>
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
+nnoremap <expr> <silent> [keyword]gi ":\<C-u>DeniteProjectDir ignorecase_grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
 nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
 nnoremap <silent> [denite]go :<C-u>Denite go/src<CR>
 nnoremap <silent> [denite]gp :<C-u>Denite go/package<CR>
@@ -163,6 +164,15 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
+
+call denite#custom#alias('source', 'ignorecase_grep', 'grep')
+call denite#custom#var('ignorecase_grep', 'command', ['pt'])
+call denite#custom#var('ignorecase_grep', 'default_opts', ['--nogroup', '--nocolor', '--ignore-case', '--ignore=.git', '--ignore=tags', '--hidden'])
+call denite#custom#var('ignorecase_grep', 'recursive_opts', [])
+call denite#custom#var('ignorecase_grep', 'pattern_opt', [])
+call denite#custom#var('ignorecase_grep', 'separator', ['--'])
+call denite#custom#var('ignorecase_grep', 'final_opts', [])
+
 call denite#custom#var('file/rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '--ignore=.git', (has('win32') ? '-g:' : '-g='), ''])
 call denite#custom#var('outline', 'ignore_types', ['v'])
 
