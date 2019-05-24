@@ -35,4 +35,11 @@ endfunction
 nnoremap <silent> [term]v :<C-u>call <SID>open_terminal('vertical')<CR>
 nnoremap <silent> [term]h :<C-u>call <SID>open_terminal('')<CR>
 nnoremap <silent> [term]t :<C-u>call <SID>open_terminal('tab')<CR>
+nnoremap <silent> [term]g :<C-u>call <SID>open_terminal_on_project_root()<CR>
+
+function! s:open_terminal_on_project_root() abort
+    let project_path = fnamemodify(notomo#vimrc#search_parent_recursive('.git', './'), ':h:h')
+    tabedit
+    call termopen(&shell, {'cwd': project_path})
+endfunction
 
