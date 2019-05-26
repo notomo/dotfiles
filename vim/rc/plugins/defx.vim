@@ -51,12 +51,12 @@ function! s:smart_open(context) abort
     endif
     let path = expand(split(line, ' ')[-1])
 
-    if !isdirectory(path) && !filereadable(path)
+    if !isdirectory(path[1:]) && !filereadable(path)
         return
     endif
 
-    if isdirectory(path)
-        call defx#call_action('cd', [path]) | return
+    if isdirectory(path[1:])
+        call defx#call_action('cd', [path[1:]]) | return
     endif
 
     call defx#call_action('drop')
