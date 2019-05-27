@@ -53,6 +53,7 @@ let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.go
 let g:ale_sql_sqlfmt_options = '-u'
 let g:ale_rust_rls_toolchain = 'nightly-2019-01-15'
 autocmd MyAuGroup FileType vue let g:ale_javascript_prettier_options = '--parser vue'
+autocmd MyAuGroup WinEnter,WinLeave *.vue let g:ale_javascript_prettier_options = ''
 autocmd MyAuGroup FileType javascript,typescript,css,html,scss let g:ale_javascript_prettier_options = ''
 
 function! s:toggle_fix_on_save() abort
