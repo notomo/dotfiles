@@ -49,6 +49,7 @@
       - mypy
       - autopep8
       - isort
+      - black
       - yapf
       - lxml
       - python-language-server
