@@ -10,8 +10,8 @@
 
 - name: download golang
   get_url:
-    url: https://storage.googleapis.com/golang/go1.11.1.linux-amd64.tar.gz
-    dest: "{{ app_dir }}/go1.11.1.linux-amd64.tar.gz"
+    url: https://storage.googleapis.com/golang/go1.12.5.linux-amd64.tar.gz
+    dest: "{{ app_dir }}/go1.12.5.linux-amd64.tar.gz"
   when: is_centos and not golang_installed.stat.exists
 
 - name: mkdir go
@@ -22,7 +22,7 @@
 
 - name: unarchive golang
   unarchive:
-    src: "{{ app_dir }}/go1.11.1.linux-amd64.tar.gz"
+    src: "{{ app_dir }}/go1.12.5.linux-amd64.tar.gz"
     dest: "{{ home_dir }}/.local/go"
     extra_opts: [--strip-components=1]
   when: is_centos and not golang_installed.stat.exists
@@ -33,7 +33,6 @@
   changed_when: False
   failed_when: go_module_exists.rc not in [0, 1]
   with_items:
-    - github.com/stamblerre/gocode
     - golang.org/x/tools/cmd/goimports
     - golang.org/x/lint/golint
     - honnef.co/go/tools/cmd/unused
@@ -44,7 +43,6 @@
     - github.com/notomo/wsxhub/...
     - github.com/kisielk/godepgraph
     - golang.org/x/tools/cmd/gopls
-    - github.com/saibing/bingo
   environment:
     GOPATH: "{{ home_dir }}/go"
 

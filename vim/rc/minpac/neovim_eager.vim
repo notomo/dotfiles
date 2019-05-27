@@ -137,12 +137,12 @@ command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
 
 call minpac#add('prabirshrestha/async.vim')
 call minpac#add('prabirshrestha/vim-lsp')
-if executable('bingo')
+if executable('gopls')
     augroup LspGo
         autocmd!
         autocmd User lsp_setup call lsp#register_server({
             \ 'name': 'go-lang',
-            \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
+            \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
             \ 'whitelist': ['go'],
         \ })
     augroup END
