@@ -43,6 +43,7 @@
     - github.com/notomo/wsxhub/...
     - github.com/kisielk/godepgraph
     - golang.org/x/tools/cmd/gopls
+    - github.com/k0kubun/pp
   environment:
     GOPATH: "{{ home_dir }}/go"
 
