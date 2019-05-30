@@ -1,9 +1,9 @@
 call minpac#add('Shougo/denite.nvim')
 
-call minpac#add('notomo/denite-autocmd')
+call minpac#add('notomo/denite-autocmd', {'depth': 0})
 nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>
 
-call minpac#add('notomo/denite-runtimepath')
+call minpac#add('notomo/denite-runtimepath', {'depth': 0})
 nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
 
 call minpac#add('pocari/vim-denite-emoji')
@@ -12,7 +12,7 @@ nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>
 
 call minpac#add('vim-jp/vimdoc-ja')
 
-call minpac#add('notomo/denite-keymap')
+call minpac#add('notomo/denite-keymap', {'depth': 0})
 nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>
 
 call minpac#add('thinca/vim-themis')
@@ -38,19 +38,19 @@ endif
 call minpac#add('w0rp/ale')
 source ~/.vim/rc/plugins/ale.vim
 
-call minpac#add('notomo/curstr.nvim')
+call minpac#add('notomo/curstr.nvim', {'depth': 0})
 nnoremap <silent> [keyword]fo :<C-u>Curstr openable -action=open<CR>
 nnoremap <silent> [keyword]ft :<C-u>Curstr openable -action=tab_open<CR>
 nnoremap <silent> [keyword]fv :<C-u>Curstr openable -action=vertical_open<CR>
 nnoremap <silent> [keyword]fh :<C-u>Curstr openable -action=horizontal_open<CR>
 nnoremap <silent> [edit]s :<C-u>Curstr togglable<CR>
 
-call minpac#add('notomo/ctrlb.nvim', {'do' : '!npm run setup'})
+call minpac#add('notomo/ctrlb.nvim', {'do' : '!npm run setup', 'depth': 0})
 nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpenLayout ~/dotfiles/vim/rc/plugins/ctrlb_layout.json\<CR>"
 nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
 nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
 
-call minpac#add('notomo/gesture.nvim', {'do' : '!npm run setup'})
+call minpac#add('notomo/gesture.nvim', {'do' : '!npm run setup', 'depth': 0})
 noremap <silent> <LeftDrag> :<C-u>call gesture#draw()<CR>
 noremap <silent> <LeftRelease> :<C-u>call gesture#finish()<CR>
 
@@ -221,4 +221,4 @@ let g:go_info_mode = 'guru'
 
 call minpac#add('lighttiger2505/deoplete-vim-lsp')
 
-call minpac#add('notomo/vimonga')
+call minpac#add('notomo/vimonga', {'depth': 0})
