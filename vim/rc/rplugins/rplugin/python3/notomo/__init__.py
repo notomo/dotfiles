@@ -101,4 +101,4 @@ class Notomo(object):
         if not os.path.isfile(file_path):
             open(file_path, 'a').close()
 
-        self._vim.command('tabe {}'.format(file_path))
+        self._vim.command('tab drop {}'.format(file_path))
