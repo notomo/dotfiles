@@ -63,8 +63,10 @@ endfunction
 function! LightlinePosition()
     if &filetype ==? 'defx'
         return ''
+    elseif &filetype ==? 'denite-filter'
+        return denite#get_status('line_total')
     elseif &filetype ==? 'denite'
-        return denite#get_status('linenr')
+        return line('.') . '/' . line('$')
     endif
     return s:surround(col('.'))
 endfunction
@@ -76,11 +78,6 @@ endfunction
 function! LightlineMode()
     if &filetype ==? 'defx'
         return ''
-    elseif &filetype ==? 'denite'
-        " '-- NORMAL --' or '-- INSERT --' or ...
-        let mode = substitute(denite#get_status('mode'), '-\| ', '', 'g')
-        call lightline#link(tolower(mode[0]))
-        return mode
     endif
     return lightline#mode()
 endfunction

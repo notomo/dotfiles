@@ -1,6 +1,54 @@
 nnoremap [denite] <Nop>
 nmap <Space>d [denite]
 
+autocmd MyAuGroup FileType denite call s:denite_settings()
+function! s:denite_settings() abort
+    nnoremap <silent> <buffer> <expr> <CR> denite#do_map('do_action', 'default')
+    nnoremap <silent> <buffer> <expr> q denite#do_map('quit')
+    nnoremap <silent> <buffer> <expr> i denite#do_map('open_filter_buffer')
+    nnoremap <silent> <buffer> <expr> I denite#do_map('open_filter_buffer') . '<Home>'
+    nnoremap <silent> <buffer> <expr> a denite#do_map('open_filter_buffer') . '<Left>'
+    nnoremap <silent> <buffer> <expr> A denite#do_map('open_filter_buffer') . '<End>'
+    nnoremap <silent> <buffer> <expr> p denite#do_map('do_action', 'preview')
+    nnoremap <silent> <buffer> <expr> o denite#do_map('do_action', 'open')
+    nnoremap <silent> <buffer> <expr> t<Space> denite#do_map('do_action', 'tabopen')
+    nnoremap <silent> <buffer> <expr> t<CR> denite#do_map('do_action', 'activate')
+    nnoremap <silent> <buffer> <expr> sm denite#do_map('toggle_select') . 'j'
+    nnoremap <silent> <buffer> <expr> sa denite#do_map('toggle_select_all')
+    nnoremap <silent> <buffer> <expr> sf denite#do_map('do_action', 'dir_file_rec')
+    nnoremap <silent> <buffer> <expr> sg denite#do_map('do_action', 'project_dir_file_rec')
+    nnoremap <silent> <buffer> <expr> D denite#do_map('do_action', 'grep_plugin_setting')
+    nnoremap <silent> <buffer> <expr> sv denite#do_map('do_action', 'vsplit')
+    nnoremap <silent> <buffer> <expr> sh denite#do_map('do_action', 'split')
+    nnoremap <silent> <buffer> <expr> fo denite#do_map('do_action', 'filer')
+    nnoremap <silent> <buffer> <expr> fl denite#do_map('do_action', 'tabfiler')
+    nnoremap <silent> <buffer> <expr> yy denite#do_map('do_action', 'yank')
+    nnoremap <silent> <buffer> <expr> <Leader>rn denite#do_map('do_action', 'exrename')
+    nnoremap <silent> <buffer> <expr> <Leader>rp denite#do_map('do_action', 'qfreplace')
+    nnoremap <silent> <buffer> <expr> ff denite#do_map('do_action', 'dir_file')
+    nnoremap <silent> <buffer> <expr> fa denite#do_map('do_action', 'parent_dir_file')
+    nnoremap <silent> <buffer> <expr> M denite#do_map('do_action', 'convert')
+    nnoremap <silent> <buffer> <expr> <Space>D denite#do_map('do_action', 'debug_targets')
+    nnoremap <silent> <buffer> <expr> tmp denite#do_map('toggle_matchers', 'matcher_path')
+    nnoremap <silent> <buffer> <expr> tmip denite#do_map('toggle_matchers', 'matcher_ignore_path')
+    nnoremap <silent> <buffer> <expr> tsl denite#do_map('change_sorters', 'sorter_length')
+    nnoremap <silent> <buffer> <expr> rr denite#do_map('restart')
+    nnoremap <silent> <buffer> <expr> <Tab> denite#do_map('choose_action')
+endfunction
+
+autocmd MyAuGroup FileType denite-filter call s:denite_filter_settings()
+function! s:denite_filter_settings() abort
+    nnoremap <silent> <buffer> j <Nop>
+    nnoremap <silent> <buffer> k <Nop>
+    nnoremap <silent> <buffer> dd :<C-u>silent %delete _<CR>
+    nnoremap <silent> <buffer> <expr> <CR> denite#do_map('do_action', 'default')
+    nnoremap <silent> <buffer> <expr> t<Space> denite#do_map('do_action', 'tabopen')
+    nnoremap <silent> <buffer> <expr> t<CR> denite#do_map('do_action', 'activate')
+    nnoremap <silent> <buffer> <expr> o denite#do_map('do_action', 'open')
+    inoremap <silent> <buffer> <expr> jq '<ESC>' . denite#do_map('quit')
+    inoremap <silent> <buffer> <expr> <CR> '<ESC>' . denite#do_map('do_action', 'default')
+endfunction
+
 if has('win32')
     nnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
     xnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
@@ -10,8 +58,8 @@ else
 endif
 nnoremap <silent> [denite]y :<C-u>Denite file_bookmark<CR>
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
-nnoremap <silent> [denite]d :<C-u>Denite directory_mru<CR>
-nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec<CR>
+nnoremap <silent> [denite]d :<C-u>Denite directory_mru -default-action=tabfiler<CR>
+nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec -default-action=tabfiler<CR>
 nnoremap <silent> [denite]B :<C-u>Denite buffer<CR>
 nnoremap <silent> <Space>usf :<C-u>Denite file/rec<CR>
 nnoremap <silent> <Space>usg :<C-u>DeniteProjectDir file/rec<CR>
@@ -20,7 +68,7 @@ nnoremap <silent> [denite]o :<C-u>Denite outline -no-empty<CR>
 nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
 nnoremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
-nnoremap <silent> [denite]<CR> :<C-u>Denite -resume<CR>
+nnoremap <silent> [denite]<CR> :<C-u>Denite -resume -no-start-filter<CR>
 nnoremap <silent> [denite]gl :<C-u>Denite grep -no-empty -immediately-1<CR>
 nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -no-empty -immediately-1<CR>
 
@@ -35,7 +83,7 @@ nnoremap <silent> <Space>ud :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file/rec<CR>
 nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
-nnoremap <silent> [denite]p :<C-u>Denite plugin<CR>
+nnoremap <silent> [denite]p :<C-u>Denite plugin -default-action=tabfiler<CR>
 nnoremap <silent> [denite]O :<C-u>Denite option<CR>
 nnoremap <silent> [denite]A :<C-u>Denite alias<CR>
 nnoremap <silent> [denite]b :<C-u>Denite url_bookmark<CR>
@@ -52,11 +100,9 @@ nnoremap <silent> [denite]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
 nnoremap <silent> [denite]ga :<C-u>Denite git/branch<CR>
 nnoremap <silent> [denite]gA :<C-u>Denite git/branch:all<CR>
 
-call denite#custom#option('default', 'use_default_mappings', 'false')
-
+call denite#custom#option('default', 'filter_split_direction', 'botright')
+call denite#custom#option('default', 'start_filter', 'true')
 call denite#custom#option('default', 'highlight_matched_char', 'myDeniteMatchText')
-call denite#custom#option('default', 'highlight_mode_insert', 'myDeniteInsert')
-call denite#custom#option('default', 'highlight_mode_normal', 'myDeniteNormal')
 call denite#custom#option('default', 'highlight_matched_range', 'myDeniteMatchText')
 call denite#custom#option('default', 'split', 'tab')
 call denite#custom#option('default', 'no_empty', v:true)
@@ -72,91 +118,6 @@ call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', ['.git', '.myp
 call denite#custom#source('file/rec', 'matchers', ['matcher/regexp', 'matcher/ignore_globs'])
 call denite#custom#source('directory_rec', 'matchers', ['matcher/regexp', 'matcher/ignore_globs'])
 call denite#custom#source('grep', 'matchers', ['matcher/regexp', 'matcher/ignore_globs'])
-
-call denite#custom#map('_', '<CR>', '<denite:do_action:default>', 'noremap')
-call denite#custom#map('_', '<Tab>', '<denite:choose_action>', 'noremap')
-
-let s:LHS_KEY = notomo#mapping#get_lhs_key()
-let s:RHS_KEY = notomo#mapping#get_rhs_key()
-for s:info in notomo#mapping#main_input()
-    let s:rhs = substitute(s:info[s:RHS_KEY], '\v(..)\<Left\>', '<denite:multiple_mappings:denite:insert_word:\1,denite:move_caret_to_left>', '')
-    call denite#custom#map('insert', s:info[s:LHS_KEY], s:rhs, 'noremap')
-endfor
-for s:info in notomo#mapping#sub_input()
-    call denite#custom#map('insert', s:info[s:LHS_KEY], s:info[s:RHS_KEY], 'noremap')
-endfor
-
-call denite#custom#map('insert', '<BS>', '<denite:delete_char_before_caret>', 'noremap')
-call denite#custom#map('insert', '<C-h>', '<denite:delete_char_before_caret>', 'noremap')
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('insert', '<C-f>', '<denite:move_caret_to_right>', 'noremap')
-call denite#custom#map('insert', '<C-b>', '<denite:move_caret_to_left>', 'noremap')
-call denite#custom#map('insert', '<C-d>', '<denite:delete_char_after_caret>', 'noremap')
-call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>', 'noremap')
-call denite#custom#map('insert', 'jq', '<denite:quit>', 'noremap')
-call denite#custom#map('insert', '<C-u>', '<denite:delete_text_before_caret>', 'noremap')
-call denite#custom#map('insert', '<C-n>', '<denite:assign_next_matched_text>', 'noremap')
-call denite#custom#map('insert', '<C-p>', '<denite:assign_previous_matched_text>', 'noremap')
-call denite#custom#map('insert', 'j<Space>h', '<denite:paste_from_default_register>', 'noremap')
-call denite#custom#map('insert', 'j<Space>v', '<denite:insert_special>', 'noremap')
-call denite#custom#map('insert', '<C-a>', '<denite:move_caret_to_head>', 'noremap')
-call denite#custom#map('insert', '<C-e>', '<denite:move_caret_to_tail>', 'noremap')
-
-call denite#custom#map('normal', 'q', '<denite:quit>', 'noremap')
-call denite#custom#map('normal', 'gg', '<denite:move_to_first_line>', 'noremap')
-call denite#custom#map('normal', 'G', '<denite:move_to_last_line>', 'noremap')
-call denite#custom#map('normal', 'i', '<denite:enter_mode:insert>', 'noremap')
-call denite#custom#map('normal', 'I', '<denite:insert_to_head>', 'noremap')
-call denite#custom#map('normal', 'a', '<denite:append>', 'noremap')
-call denite#custom#map('normal', 'A', '<denite:append_to_line>', 'noremap')
-call denite#custom#map('normal', 'h', '<denite:move_caret_to_left>', 'noremap')
-call denite#custom#map('normal', 'j', '<denite:move_to_next_line>', 'noremap')
-call denite#custom#map('normal', 'k', '<denite:move_to_previous_line>', 'noremap')
-call denite#custom#map('normal', 'l', '<denite:move_caret_to_right>', 'noremap')
-call denite#custom#map('normal', 'b', '<denite:move_caret_to_one_word_left>', 'noremap')
-call denite#custom#map('normal', 'w', '<denite:move_caret_to_next_word>', 'noremap')
-call denite#custom#map('normal', 'e', '<denite:move_caret_to_end_of_word>', 'noremap')
-call denite#custom#map('normal', 'ga', '<denite:move_caret_to_head>', 'noremap')
-call denite#custom#map('normal', 'ge', '<denite:move_caret_to_tail>', 'noremap')
-call denite#custom#map('normal', 'cc', '<denite:change_line>', 'noremap')
-call denite#custom#map('normal', 'dd', '<denite:delete_entire_text>', 'noremap')
-call denite#custom#map('normal', 'D', '<denite:delete_text_after_caret>', 'noremap')
-call denite#custom#map('normal', 'x', '<denite:delete_char_under_caret>', 'noremap')
-call denite#custom#map('normal', 'sm', '<denite:toggle_select_down>', 'noremap')
-call denite#custom#map('normal', 'sa', '<denite:toggle_select_all>', 'noremap')
-call denite#custom#map('normal', 'yy', '<denite:do_action:yank>', 'noremap')
-call denite#custom#map('normal', 'p', '<denite:paste_from_default_register>', 'noremap')
-call denite#custom#map('normal', 'v', '<denite:do_action:preview>', 'noremap')
-call denite#custom#map('normal', 'o', '<denite:do_action:open>', 'noremap')
-call denite#custom#map('normal', 'sv', '<denite:do_action:vsplit>', 'noremap')
-call denite#custom#map('normal', 'sh', '<denite:do_action:split>', 'noremap')
-call denite#custom#map('normal', 'fo', '<denite:do_action:filer>', 'noremap')
-call denite#custom#map('normal', 'fl', '<denite:do_action:tabfiler>', 'noremap')
-call denite#custom#map('normal', '<Leader>rn', '<denite:do_action:exrename>', 'noremap')
-call denite#custom#map('normal', '<Leader>rp', '<denite:do_action:qfreplace>', 'noremap')
-call denite#custom#map('normal', 't<Space>', '<denite:do_action:tabopen>', 'noremap')
-call denite#custom#map('normal', '<C-l>', '<denite:redraw>', 'noremap')
-call denite#custom#map('normal', 'rr', '<denite:restart>', 'noremap')
-call denite#custom#map('normal', 'ff', '<denite:do_action:dir_file>', 'noremap')
-call denite#custom#map('normal', 'fa', '<denite:do_action:parent_dir_file>', 'noremap')
-call denite#custom#map('normal', 'tmp', '<denite:toggle_matchers:matcher_path>', 'noremap')
-call denite#custom#map('normal', 'tmip', '<denite:toggle_matchers:matcher_ignore_path>', 'noremap')
-call denite#custom#map('normal', 'tsl', '<denite:change_sorters:sorter_length>', 'noremap')
-call denite#custom#map('normal', 'mh', '<denite:wincmd:h>', 'noremap')
-call denite#custom#map('normal', 'ml', '<denite:wincmd:l>', 'noremap')
-call denite#custom#map('normal', 'M', '<denite:do_action:convert>', 'noremap')
-call denite#custom#map('normal', '<C-j>', '<denite:scroll_page_forwards>', 'noremap')
-call denite#custom#map('normal', '<C-k>', '<denite:scroll_page_backwards>', 'noremap')
-call denite#custom#map('normal', 'J', '<denite:jump_to_next_source>', 'noremap')
-call denite#custom#map('normal', 'K', '<denite:jump_to_previous_source>', 'noremap')
-call denite#custom#map('normal', 'sg', '<denite:do_action:project_dir_file_rec>', 'noremap')
-call denite#custom#map('normal', 'sf', '<denite:do_action:dir_file_rec>', 'noremap')
-call denite#custom#map('normal', '<Space>d', '<denite:do_action:grep_plugin_setting>', 'noremap')
-call denite#custom#map('normal', '<Space>m', '<denite:quick_move>', 'noremap')
-call denite#custom#map('normal', '<Space>D', '<denite:do_action:debug_targets>', 'noremap')
-call denite#custom#map('normal', 't<CR>', '<denite:do_action:activate>', 'noremap')
-call denite#custom#map('normal', 'u', '<denite:restore_sources>', 'noremap')
 
 call denite#custom#var('grep', 'command', ['pt'])
 call denite#custom#var('grep', 'default_opts', ['--nogroup', '--nocolor', '--smart-case', '--ignore=.git', '--ignore=tags', '--hidden'])

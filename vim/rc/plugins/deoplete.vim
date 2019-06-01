@@ -18,6 +18,7 @@ let s:sources.vue = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources.css = ['omni', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources.scss = s:sources.css
 let s:sources.html = ['omni', 'buffer', 'file', 'around', 'neosnippet']
+let s:sources['denite-filter'] = ['denite', 'buffer', 'file', 'around', 'neosnippet']
 
 call deoplete#custom#option('sources', s:sources)
 
