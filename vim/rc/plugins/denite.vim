@@ -83,7 +83,7 @@ nnoremap <silent> <Space>ud :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file/rec<CR>
 nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
-nnoremap <silent> [denite]p :<C-u>Denite plugin -default-action=tabfiler<CR>
+nnoremap <silent> [denite]p :<C-u>Denite plugin file_bookmark -default-action=tabfiler<CR>
 nnoremap <silent> [denite]O :<C-u>Denite option<CR>
 nnoremap <silent> [denite]A :<C-u>Denite alias<CR>
 nnoremap <silent> [denite]b :<C-u>Denite url_bookmark<CR>
