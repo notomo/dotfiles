@@ -27,7 +27,6 @@ let g:semshi#tolerate_syntax_errors = v:false
 if has('unix')
     call minpac#add('lambdalisue/suda.vim')
     let g:suda_startup = 1
-    let g:suda_smart_edit = 1
     nnoremap [file]W :<C-u>write suda://%<CR>
 endif
 

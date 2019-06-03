@@ -83,3 +83,15 @@ function! s:mapemo_settings() abort
     endif
     let g:local#var#document_root = s:mapemo_index
 endfunction
+
+autocmd MyAuGroup BufRead,BufEnter $GOPATH/src/github.com/notomo/wsxhub/* call s:wsxhub_settings()
+function! s:wsxhub_settings() abort
+    call curstr#custom#source_alias('interface_impl', ['togglable/file'])
+    call curstr#custom#source_option('interface_impl', 'pattern_groups', [
+        \ [
+            \ '%internal/domain/%',
+            \ '%internal/impl/%',
+        \ ],
+    \ ])
+    nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
+endfunction
