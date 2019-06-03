@@ -48,6 +48,7 @@ function! s:denite_filter_settings() abort
     nnoremap <silent> <buffer> <expr> o denite#do_map('do_action', 'open')
     inoremap <silent> <buffer> <expr> jq '<ESC>' . denite#do_map('quit')
     inoremap <silent> <buffer> <expr> <CR> '<ESC>' . denite#do_map('do_action', 'default')
+    nnoremap <silent> <buffer> <expr> yy denite#do_map('do_action', 'yank')
 endfunction
 
 if has('win32')
