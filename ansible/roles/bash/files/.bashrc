@@ -37,6 +37,7 @@ alias gra=git_remote_add_from_github
 alias themis='NVIM_RPLUGIN_MANIFEST=$HOME/rplugin.vim themis'
 alias npmd=npm_install_dev
 alias create_patch='git diff --cached'
+alias create_empty_commit='git commit --allow-empty -m'
 alias apply_patch='git apply'
 alias df='df -h'
 alias gco='git checkout -t'          # {remote}/{branch_name}
