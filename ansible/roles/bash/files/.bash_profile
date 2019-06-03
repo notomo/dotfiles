@@ -10,6 +10,9 @@ export THEMIS_VIM=nvim
 export THEMIS_ARGS="-e -s --headless"
 export THEMIS_PROFILE_LOG=profile.txt
 
+export EDITOR="nvr --remote-wait-silent"
+export GIT_EDITOR="nvr --remote-wait-silent"
+
 # used by firefox
 export DISPLAY=:0
 
