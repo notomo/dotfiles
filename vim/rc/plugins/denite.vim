@@ -4,6 +4,8 @@ nmap <Space>d [denite]
 autocmd MyAuGroup FileType denite call s:denite_settings()
 function! s:denite_settings() abort
     nnoremap <silent> <buffer> <expr> <CR> denite#do_map('do_action', 'default')
+    nnoremap <silent> <buffer> <expr> <2-LeftMouse> denite#do_map('do_action', 'default')
+    inoremap <silent> <buffer> <LeftMouse> <ESC>
     nnoremap <silent> <buffer> <expr> q denite#do_map('quit')
     nnoremap <silent> <buffer> <expr> i denite#do_map('open_filter_buffer')
     nnoremap <silent> <buffer> <expr> I denite#do_map('open_filter_buffer') . '<Home>'
@@ -49,6 +51,7 @@ function! s:denite_filter_settings() abort
     inoremap <silent> <buffer> <expr> jq '<ESC>' . denite#do_map('quit')
     inoremap <silent> <buffer> <expr> <CR> '<ESC>' . denite#do_map('do_action', 'default')
     nnoremap <silent> <buffer> <expr> yy denite#do_map('do_action', 'yank')
+    inoremap <silent> <buffer> <LeftMouse> <ESC>
 endfunction
 
 if has('win32')
