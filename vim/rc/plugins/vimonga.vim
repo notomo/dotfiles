@@ -80,6 +80,7 @@ endfunction
 autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
 function! s:vimonga_document() abort
     nnoremap <buffer> X <Cmd>Vimonga document.one.delete<CR>
+    nnoremap <buffer> H <Cmd>Vimonga document.find<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-doc-new call s:vimonga_document_new()
