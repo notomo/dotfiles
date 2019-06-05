@@ -24,6 +24,9 @@ let s:MAIN_INPUT_PFX = notomo#mapping#get_main_input_key()
 execute join(['tnoremap', s:MAIN_INPUT_PFX . 'o', '<Tab>'])
 execute join(['tnoremap', s:MAIN_INPUT_PFX . 'h', '<C-w>"+'])
 
+tnoremap <C-p> <Up>
+tnoremap <C-n> <Down>
+
 nnoremap [term] <Nop>
 nmap <Space>t [term]
 
