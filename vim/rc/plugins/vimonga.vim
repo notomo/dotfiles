@@ -80,6 +80,8 @@ function! s:vimonga_documents() abort
     nnoremap <buffer> I <Cmd>Vimonga document.new -open=tabedit<CR>
     nnoremap <buffer> F <Cmd>Vimonga document.query.find_by_oid -open=tabedit<CR>
     nnoremap <buffer> [exec]f <Cmd>Vimonga collection.list -open=vsplit<CR>
+    nnoremap <buffer> J <Cmd>Vimonga document.next_wrap<CR>
+    nnoremap <buffer> K <Cmd>Vimonga document.prev_wrap<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
