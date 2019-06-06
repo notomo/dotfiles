@@ -19,6 +19,7 @@ function! s:vimonga_dbs() abort
     nnoremap <buffer> t<Space> <Cmd>Vimonga collection.list -open=tabedit<CR>
     nnoremap <buffer> dd <Cmd>Vimonga database.drop<CR>
     nnoremap <buffer> u <Cmd>Vimonga user.list<CR>
+    nnoremap <buffer> [exec]f <Cmd>Vimonga connection.list -open=vsplit<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-users call s:vimonga_users()
@@ -26,6 +27,7 @@ function! s:vimonga_users() abort
     nnoremap <buffer> h <Cmd>Vimonga database.list<CR>
     nnoremap <buffer> I <Cmd>Vimonga user.new<CR>
     nnoremap <buffer> X :<C-u>Vimonga user.drop -user=
+    nnoremap <buffer> [exec]f <Cmd>Vimonga database.list -open=vsplit<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-user-new call s:vimonga_user_new()
@@ -41,6 +43,7 @@ function! s:vimonga_collections() abort
     nnoremap <buffer> t<Space> <Cmd>Vimonga document.find -open=tabedit<CR>
     nnoremap <buffer> i <Cmd>Vimonga index.list<CR>
     nnoremap <buffer> I <Cmd>Vimonga collection.create<CR>
+    nnoremap <buffer> [exec]f <Cmd>Vimonga database.list -open=vsplit<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-indexes call s:vimonga_indexes()
@@ -48,6 +51,7 @@ function! s:vimonga_indexes() abort
     nnoremap <buffer> h <Cmd>Vimonga collection.list<CR>
     nnoremap <buffer> I <Cmd>Vimonga index.new<CR>
     nnoremap <buffer> X :<C-u>Vimonga index.drop -index=
+    nnoremap <buffer> [exec]f <Cmd>Vimonga collection.list -open=vsplit<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-index-new call s:vimonga_index_new()
@@ -75,12 +79,14 @@ function! s:vimonga_documents() abort
     nnoremap <buffer> o <Cmd>Vimonga document.one<CR>
     nnoremap <buffer> I <Cmd>Vimonga document.new -open=tabedit<CR>
     nnoremap <buffer> F <Cmd>Vimonga document.query.find_by_oid -open=tabedit<CR>
+    nnoremap <buffer> [exec]f <Cmd>Vimonga collection.list -open=vsplit<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-doc call s:vimonga_document()
 function! s:vimonga_document() abort
     nnoremap <buffer> X <Cmd>Vimonga document.one.delete<CR>
     nnoremap <buffer> H <Cmd>Vimonga document.find<CR>
+    nnoremap <buffer> [exec]f <Cmd>Vimonga document.find -open=vsplit<CR>
 endfunction
 
 autocmd MyAuGroup FileType vimonga-doc-new call s:vimonga_document_new()
