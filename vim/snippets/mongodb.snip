@@ -1,11 +1,11 @@
 
 snippet find
-	db.${1:dbName}.find({
+	db.${1:collName}.find({
 		"${2:field}": ${0:value}
 	})
 
 snippet find_by_id
-	db.${1:dbName}.find({
+	db.${1:collName}.find({
 		_id: ObjectId("${0:id}")
 	})
 
@@ -18,9 +18,20 @@ snippet get_db
 		.getDB(${1:dbName})
 
 snippet insert
-	db.${1:dbName}.insert([
+	db.${1:collName}.insert([
 		{$0}
 	])
+
+snippet update_one
+	db.${1:collName}.updateOne(
+		{ ${2:filter} },
+		{ $set: { ${0:update} }}
+	)
+
+snippet delete_one
+	db.${1:collName}.deleteOne(
+		{ ${0:filter} }
+	)
 
 snippet limit
 	limit(${0:10})
