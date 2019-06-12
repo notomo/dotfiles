@@ -101,4 +101,11 @@ class Notomo(object):
         if not os.path.isfile(file_path):
             open(file_path, 'a').close()
 
+        before_tab_num = self._vim.current.tabpage.number
         self._vim.command('tab drop {}'.format(file_path))
+        note_tab_num = self._vim.current.tabpage.number
+        offset = before_tab_num - note_tab_num
+        if offset > 0:
+            self._vim.command('tabmove +{}'.format(offset))
+        elif offset < -1:
+            self._vim.command('tabmove {}'.format(offset + 1))
