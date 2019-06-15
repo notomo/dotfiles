@@ -41,22 +41,14 @@ function! s:settings() abort
 endfunction
 
 function! s:smart_open(context) abort
-    let line_num = line('.')
-    let line = trim(getline(line_num))
-    echomsg line_num
-    if line_num == 1
-        let path = fnamemodify(expand(getcwd()), ':h')
-        echomsg path
+    let candidate = defx#get_candidate()
+    let path = candidate['action__path']
+    if line('.') == 1
+        let path = fnamemodify(path, ':h')
+    endif
+
+    if candidate['is_directory']
         call defx#call_action('cd', [path]) | return
-    endif
-    let path = expand(split(line, ' ')[-1])
-
-    if !isdirectory(path[1:]) && !filereadable(path)
-        return
-    endif
-
-    if isdirectory(path[1:])
-        call defx#call_action('cd', [path[1:]]) | return
     endif
 
     call defx#call_action('drop')
