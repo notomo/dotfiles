@@ -35,6 +35,11 @@ snippet var
 abbr var names type
 	var ${1:names} ${0:type}
 
+snippet vars
+	var (
+		${1:name} = ${0:value}
+	)
+
 snippet var_default
 abbr var names default_value
 	var ${1:names} = ${0:value}
@@ -240,3 +245,6 @@ snippet spread_param
 
 snippet spread_var
     ${0:var}...
+
+snippet continue
+    continue
