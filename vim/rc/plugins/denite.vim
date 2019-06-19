@@ -36,6 +36,7 @@ function! s:denite_settings() abort
     nnoremap <silent> <buffer> <expr> tsl denite#do_map('change_sorters', 'sorter_length')
     nnoremap <silent> <buffer> <expr> rr denite#do_map('restart')
     nnoremap <silent> <buffer> <expr> <Tab> denite#do_map('choose_action')
+    nnoremap <silent> <buffer> <expr> dd denite#do_map('open_filter_buffer') . '<ESC>:<C-u>silent %delete _<CR>'
 endfunction
 
 autocmd MyAuGroup FileType denite-filter call s:denite_filter_settings()
