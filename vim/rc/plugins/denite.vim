@@ -55,13 +55,8 @@ function! s:denite_filter_settings() abort
     inoremap <silent> <buffer> <LeftMouse> <ESC>
 endfunction
 
-if has('win32')
-    nnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
-    xnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
-else
-    nnoremap <silent> <Space>ur :<C-u>DeniteProjectDir file_mru file/rec<CR>
-    xnoremap <silent> <Space>ur :<C-u>DeniteProjectDir file_mru file/rec<CR>
-endif
+nnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
+xnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
 nnoremap <silent> [denite]y :<C-u>Denite file_bookmark<CR>
 nnoremap <silent> [denite]l :<C-u>Denite line<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru -default-action=tabfiler<CR>
