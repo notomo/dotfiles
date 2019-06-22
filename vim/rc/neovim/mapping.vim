@@ -38,11 +38,13 @@ function! s:execute_project_test() abort
     let makefile_path = notomo#vimrc#search_parent_recursive('Makefile', './')
     if !empty(makefile_path)
         call s:execute(fnamemodify(makefile_path, ':h'), 'make test')
+        normal! G
         return
     endif
     let package_json_path = notomo#vimrc#search_parent_recursive('package.json', './')
     if !empty(package_json_path)
         call s:execute(fnamemodify(package_json_path, ':h'), 'npm test')
+        normal! G
         return
     endif
 endfunction
@@ -51,11 +53,13 @@ function! s:execute_project_lint() abort
     let makefile_path = notomo#vimrc#search_parent_recursive('Makefile', './')
     if !empty(makefile_path)
         call s:execute(fnamemodify(makefile_path, ':h'), 'make lint')
+        normal! G
         return
     endif
     let package_json_path = notomo#vimrc#search_parent_recursive('package.json', './')
     if !empty(package_json_path)
         call s:execute(fnamemodify(package_json_path, ':h'), 'npm run lint')
+        normal! G
         return
     endif
 endfunction
@@ -64,12 +68,14 @@ function! s:execute_project_build() abort
     let makefile_path = notomo#vimrc#search_parent_recursive('Makefile', './')
     if !empty(makefile_path)
         call s:execute(fnamemodify(makefile_path, ':h'), 'make build')
+        normal! G
         return
     endif
 
     let package_json_path = notomo#vimrc#search_parent_recursive('package.json', './')
     if !empty(package_json_path)
         call s:execute(fnamemodify(package_json_path, ':h'), 'npm run build')
+        normal! G
         return
     endif
 endfunction
@@ -78,12 +84,14 @@ function! s:execute_project_start() abort
     let makefile_path = notomo#vimrc#search_parent_recursive('Makefile', './')
     if !empty(makefile_path)
         call s:execute(fnamemodify(makefile_path, ':h'), 'make start')
+        normal! G
         return
     endif
 
     let package_json_path = notomo#vimrc#search_parent_recursive('package.json', './')
     if !empty(package_json_path)
         call s:execute(fnamemodify(package_json_path, ':h'), 'npm start')
+        normal! G
         return
     endif
 endfunction
