@@ -19,6 +19,9 @@
       - telnet
       - xdg-utils
       - xclip
+      - psmisc
+      - sysstat
+      - vnstat
     enablerepo: epel
   when: is_centos
   become: yes
