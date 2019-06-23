@@ -84,6 +84,7 @@ function! s:mapemo_settings() abort
     let g:local#var#document_root = s:mapemo_index
 endfunction
 
+let s:wsxhub_coverage = ''
 autocmd MyAuGroup BufRead,BufEnter $GOPATH/src/github.com/notomo/wsxhub/* call s:wsxhub_settings()
 function! s:wsxhub_settings() abort
     call curstr#custom#source_alias('interface_impl', ['togglable/file'])
@@ -94,4 +95,9 @@ function! s:wsxhub_settings() abort
         \ ],
     \ ])
     nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
+    if empty(s:wsxhub_coverage)
+        let root = notomo#vimrc#search_parent_recursive('Makefile', expand('%:p:h'))
+        let s:wsxhub_coverage = fnamemodify(root, ':p:h:s?$??')
+    endif
+    let g:local#var#document_root = s:wsxhub_coverage
 endfunction
