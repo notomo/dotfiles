@@ -22,6 +22,7 @@
       - psmisc
       - sysstat
       - vnstat
+      - lsof
     enablerepo: epel
   when: is_centos
   become: yes
