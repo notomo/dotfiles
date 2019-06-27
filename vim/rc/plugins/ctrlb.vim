@@ -17,6 +17,11 @@ nnoremap [exec]da :<C-u>Ctrlb tab/closeLeft<CR>
 call ctrlb#config#set('timeout', 1)
 call ctrlb#config#set('server_port', 8003)
 call ctrlb#config#set('port', 8004)
+if len($VAGRANT_PRIVATE_NETWORK_IP) > 0
+    call ctrlb#config#set('server_allow', $VAGRANT_PRIVATE_NETWORK_IP . ':8003')
+else
+    call ctrlb#config#set('server_allow', '127.0.0.1:8003')
+endif
 
 autocmd MyAuGroup FileType ctrlb-ctrl call s:ctrl_settings()
 function! s:ctrl_settings()
