@@ -248,3 +248,9 @@ snippet spread_var
 
 snippet continue
     continue
+
+snippet got_want
+alias want_got
+	if got != want {
+		t.Errorf("want %v, but %v:", want, got)
+	}
