@@ -140,8 +140,6 @@ call minpac#add('kana/vim-operator-user')
 call minpac#add('itchyny/vim-parenmatch')
 let g:loaded_matchparen = 1
 
-call minpac#add('itchyny/vim-cursorword')
-
 call minpac#add('kana/vim-submode')
 let g:submode_keep_leaving_key = 1
 let g:submode_timeout = 0
