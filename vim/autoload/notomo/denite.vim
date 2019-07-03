@@ -155,3 +155,9 @@ function! notomo#denite#go_project_decls() abort
     let path = escape(project_path, '/')
     execute 'Denite go/decls:' . path . ':1'
 endfunction
+
+function! notomo#denite#yank_emoji(context) abort
+    for target in a:context['targets']
+        call notomo#vimrc#yank_and_echo(target['action__text'])
+    endfor
+endfunction

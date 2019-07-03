@@ -8,7 +8,7 @@ nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
 
 call minpac#add('pocari/vim-denite-emoji')
 call minpac#add('junegunn/vim-emoji')
-nnoremap <silent> [denite]e :<C-u>Denite emoji<CR>
+nnoremap <silent> [denite]e :<C-u>Denite emoji -default-action=yank_emoji<CR>
 
 call minpac#add('vim-jp/vimdoc-ja')
 

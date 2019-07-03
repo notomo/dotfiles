@@ -167,3 +167,5 @@ call denite#custom#action('buffer,command,directory,file,openable,word', 'debug_
 call denite#custom#action('url_bookmark', 'convert', {context ->  notomo#denite#convert(context)})
 
 call denite#custom#action('go/package', 'decls', {context ->  notomo#denite#decls(context)})
+
+call denite#custom#action('word', 'yank_emoji', {context ->  notomo#denite#yank_emoji(context)})
