@@ -9,7 +9,7 @@ endfunction
 
 function! s:go_to_function(next_prev, offset) abort
     let path = expand('%:p')
-    let offset = s:get_offset(a:offset)
+    let offset = s:get_line_offset(a:offset)
     let result = systemlist(['motion', '-mode', a:next_prev, '-offset', offset, '-file', path])
     let info = json_decode(join(result, ''))
     if has_key(info, 'err')
@@ -20,8 +20,7 @@ function! s:go_to_function(next_prev, offset) abort
     execute 'normal! ' . pos['line'] . 'gg'
 endfunction
 
-function! s:get_offset(offset) abort
+function! s:get_line_offset(offset) abort
     let line = line('.') + a:offset
-    let column = col('.')
-    return line2byte(line) + column - 1
+    return line2byte(line) - 1
 endfunction
