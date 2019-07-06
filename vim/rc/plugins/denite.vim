@@ -100,6 +100,7 @@ nnoremap <silent> [denite]ts :<C-u>Denite proto_dir:filetype -default-action=tab
 nnoremap <silent> [denite]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
 nnoremap <silent> [denite]ga :<C-u>Denite git/branch<CR>
 nnoremap <silent> [denite]gA :<C-u>Denite git/branch:all<CR>
+nnoremap <silent> [denite]P :<C-u>Denite proc<CR>
 
 call denite#custom#option('default', 'filter_split_direction', 'botright')
 call denite#custom#option('default', 'start_filter', 'true')
