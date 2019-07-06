@@ -1,5 +1,4 @@
 
-# import codecs
 import subprocess
 
 from .base import Base
@@ -11,16 +10,19 @@ class Source(Base):
         super().__init__(vim)
 
         self.name = 'proc'
-        self.kind = 'word'
+        self.kind = 'proc'
 
     def gather_candidates(self, context):
 
         def create(line):
+            factors = line.split()
             return {
                 'word': line,
+                'action__user': factors[0],
+                'action__pid': factors[1],
             }
 
-        cmd = 'ps aux'
+        cmd = 'ps axo user,pid,command'
 
         process = subprocess.Popen(
             cmd.split(' '),
@@ -31,5 +33,6 @@ class Source(Base):
         return [
             create(line)
             for line
-            in raw_values.decode('utf-8').split('\n')
+            # remove ps command header
+            in raw_values.decode('utf-8').strip().split('\n')[1:]
         ]
