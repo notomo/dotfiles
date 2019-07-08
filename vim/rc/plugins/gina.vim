@@ -19,6 +19,8 @@ nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
 nnoremap [git]ra :<C-u>Gina! rebase --abort
 nnoremap [git]R :<C-u>Gina! rebase<Space>
 nnoremap <expr> [git]A ":<C-u>Gina! apply " . fnamemodify(bufname('%'), ':p')
+nnoremap [git]dl :<C-u>Gina log --diff-filter=D --summary<CR> " deleted file log
+nnoremap [git]G :<C-u>Gina log -S""<Left>
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()
