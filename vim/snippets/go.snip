@@ -23,6 +23,23 @@ snippet test_func
 		${0:TARGET}
 	}
 
+snippet test_table
+	tests := []struct {
+		name string
+		want ${1:wantType}
+	}{
+		{
+			name: "${2:testCaseName}",
+			want: ${3:wantValue}
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			${0:TARGET}
+		})
+	}
+
 snippet bench_func
 	func Benchmark${1:Name}(b *testing.B) {
 		// setup code
@@ -196,6 +213,10 @@ snippet switch
 	default:
 		${0:TARGET}
 	}
+
+snippet default
+	default:
+		${0:TARGET}
 
 snippet switch_type
 	switch ${1:variable}.(type) {
