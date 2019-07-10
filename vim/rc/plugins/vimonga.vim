@@ -18,8 +18,10 @@ function! s:vimonga_dbs() abort
     nnoremap <buffer> h <Cmd>Vimonga connection.list<CR>
     nnoremap <buffer> t<Space> <Cmd>Vimonga collection.list -open=tab<CR>
     nnoremap <buffer> dd <Cmd>Vimonga database.drop<CR>
+    xnoremap <buffer> D :Vimonga database.drop<CR>
     nnoremap <buffer> u <Cmd>Vimonga user.list<CR>
     nnoremap <buffer> [exec]f <Cmd>Vimonga connection.list -open=vertical -width=45<CR>
+    nnoremap <buffer> I :<C-u>Vimonga collection.create -coll=test -db=
 endfunction
 
 autocmd MyAuGroup FileType vimonga-users call s:vimonga_users()
