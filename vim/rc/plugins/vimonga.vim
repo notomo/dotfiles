@@ -41,6 +41,7 @@ autocmd MyAuGroup FileType vimonga-colls call s:vimonga_collections()
 function! s:vimonga_collections() abort
     nnoremap <buffer> l <Cmd>Vimonga document.find<CR>
     nnoremap <buffer> dd <Cmd>Vimonga collection.drop<CR>
+    xnoremap <buffer> D :Vimonga collection.drop<CR>
     nnoremap <buffer> h <Cmd>Vimonga database.list<CR>
     nnoremap <buffer> t<Space> <Cmd>Vimonga document.find -open=tab<CR>
     nnoremap <buffer> i <Cmd>Vimonga index.list<CR>
