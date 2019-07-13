@@ -381,12 +381,6 @@ omap y <Plug>(operator-flashy)
 nmap Y <Plug>(operator-flashy)$
 let g:operator#flashy#flash_time = 100
 
-call minpac#add('osyo-manga/vim-jplus')
-nmap [edit]j <Plug>(jplus)
-xmap [edit]j <Plug>(jplus)
-nmap [edit]J <Plug>(jplus-input)
-xmap [edit]J <Plug>(jplus-input)
-
 call minpac#add('haya14busa/vim-edgemotion')
 nmap gJ <Plug>(edgemotion-j)
 xmap gJ <Plug>(edgemotion-j)

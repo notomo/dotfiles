@@ -68,3 +68,6 @@ call curstr#custom#source_alias('print', ['print_vim', 'print_go', 'print_python
 nnoremap [replace]j :<C-u>Curstr print -action=append<CR>
 
 call curstr#custom#execute_option('use-cache', v:false)
+
+nnoremap [edit]J :<C-u>Curstr range -action=join<CR>
+xnoremap [edit]J :Curstr range -action=join<CR>

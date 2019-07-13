@@ -38,6 +38,8 @@ nnoremap [edit]t viwo<ESC>g~l
 xnoremap [edit]h gU
 xnoremap [edit]l gu
 nnoremap [edit]m i<C-@>
+nnoremap [edit]j :<C-u>join<CR>
+xnoremap [edit]j :join<CR>
 
 nnoremap [edit]d *``"_cgn
 nnoremap [edit]a *``cgn<C-r>"
