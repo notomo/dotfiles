@@ -110,8 +110,11 @@ function! s:set_term_title() abort
     let cmd = escape(getline(prompt_lnum)[s:cmd_start_col : s:cmd_length_limit], '|$"`')
     let cmd = substitute(cmd, '/', '\\\\', 'g')
     let cmd = substitute(cmd, '\v\+|\%', '_', 'g')
-    let title = printf('%s:%s: %s', jobpid(b:terminal_job_id), &shell, cmd)
-    execute 'file ' . title
+    try
+        let title = printf('%s:%s: %s', jobpid(b:terminal_job_id), &shell, cmd)
+        execute 'file ' . title
+	catch /^Vim\%((\a\+)\)\=:E900:/
+    endtry
 endfunction
 
 tnoremap <CR> <Cmd>call <SID>set_term_title()<CR><CR>
