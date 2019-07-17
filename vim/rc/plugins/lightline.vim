@@ -6,12 +6,12 @@ let s:enable.tabline = 0
 let s:enable.statusline = 1
 let s:active = {}
 
-let s:active.left = [['mode'], ['position'], ['vimonga']]
+let s:active.left = [['filepath'], ['gitbranch']]
 
-let s:active.right = [['gitbranch'], ['fileinfo'], ['filepath']]
+let s:active.right = [['mode'], ['fileinfo'], ['vimonga'], ['position']]
 let s:inactive = {}
-let s:inactive.left = [[]]
-let s:inactive.right = s:active.right
+let s:inactive.right = [[]]
+let s:inactive.left = s:active.left
 let s:component_function = {}
 let s:component_function.mode = 'LightlineMode'
 let s:component_function.gitbranch = 'LightlineGitBranch'
@@ -94,18 +94,18 @@ let s:fore = '#fffeeb'
 let s:normal_base = [s:fore, '#536273']
 
 let s:p.normal.middle = [s:normal_base]
-let s:p.normal.left = [[s:fore, '#798fab'], s:normal_base, s:normal_base]
-let s:p.normal.right = [s:normal_base, s:normal_base, s:normal_base]
+let s:p.normal.right = [[s:fore, '#798fab'], s:normal_base, s:normal_base]
+let s:p.normal.left = [s:normal_base, s:normal_base, s:normal_base]
 
 let s:p.insert.middle = s:p.normal.middle
-let s:p.insert.left = [[s:fore, '#6a9681'], s:normal_base, s:normal_base]
-let s:p.insert.right = s:p.normal.right
+let s:p.insert.right = [[s:fore, '#6a9681'], s:normal_base, s:normal_base]
+let s:p.insert.left = s:p.normal.left
 
 let s:p.select = s:p.insert
 
 let s:p.visual.middle = s:p.normal.middle
-let s:p.visual.left = [[s:fore, '#b0817c'], s:normal_base, s:normal_base]
-let s:p.visual.right = s:p.normal.right
+let s:p.visual.right = [[s:fore, '#b0817c'], s:normal_base, s:normal_base]
+let s:p.visual.left = s:p.normal.left
 
 let g:lightline#colorscheme#spring_night#palette = lightline#colorscheme#fill(s:p)
 
