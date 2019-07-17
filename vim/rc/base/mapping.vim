@@ -34,9 +34,9 @@ nnoremap [edit]r r
 xnoremap [edit]r r
 nnoremap [edit]h gU
 nnoremap [edit]l gu
-nnoremap [edit]t viwo<ESC>g~l
 xnoremap [edit]h gU
 xnoremap [edit]l gu
+nnoremap [edit]t viwo<ESC>g~l
 nnoremap [edit]m i<C-@>
 nnoremap [edit]j :<C-u>join<CR>
 xnoremap [edit]j :join<CR>
@@ -232,17 +232,8 @@ noremap <4-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
 "}}}
 
-" others"{{{
-function! s:open_diary() abort
-    let diary_folder_path = expand('~/workspace/diary')
-    if !isdirectory(diary_folder_path)
-        call mkdir(diary_folder_path, 'p')
-    endif
-    let diary_path =  diary_folder_path . '/' . strftime('%Y%m%d.txt')
-    execute 'tab drop ' . diary_path
-    execute 'set filetype=mydiary'
-endfunction
-nnoremap <Space>ew :<C-u>call <SID>open_diary()<CR>
+" diary"{{{
+nnoremap [edit]w :<C-u>call notomo#diary#open()<CR>
 "}}}
 
 " substitute"{{{
@@ -461,11 +452,7 @@ cnoremap j<Space>o <Space><BS><C-z>
 cnoremap <Tab> <C-n>
 cnoremap <S-Tab> <C-p>
 
-if v:version >= 800
-    let s:JOIN_UNDO = "\<C-g>U"
-else
-    let s:JOIN_UNDO = ''
-endif
+let s:JOIN_UNDO = "\<C-g>U"
 function! s:cinoremap_with_prefix(lhs, rhs) abort
     silent execute join(['inoremap', a:lhs, substitute(a:rhs, '\ze<Left>$', s:JOIN_UNDO, '')])
     silent execute join(['cnoremap', a:lhs, a:rhs])
@@ -498,18 +485,6 @@ function! s:complete_pair() abort
     return "\<Right>"
 endfunction
 inoremap <expr> j<Space>k <SID>complete_pair()
-
-function! s:complete() abort
-    if neosnippet#expandable()
-        return "\<Plug>(neosnippet_expand)"
-    endif
-    if exists('v:completed_item') && !empty(v:completed_item)
-        return "\<C-y>\<Plug>(neosnippet_expand)"
-    endif
-    return "\<C-n>\<C-y>\<Plug>(neosnippet_expand)"
-endfunction
-imap <expr> j<Space>o <SID>complete()
-
 "}}}
 
 " macro"{{{
