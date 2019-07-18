@@ -191,7 +191,6 @@ nnoremap [option]fd :<C-u>set fileformat=dos<CR>
 nnoremap [option]fm :<C-u>set fileformat=mac<CR>
 nnoremap [option]fu :<C-u>set fileformat=unix<CR>
 nnoremap [option]s :<C-u>setlocal spell!<CR>
-nnoremap [option]d :<C-u>diffoff!<CR>
 nnoremap [option]w :<C-u>setlocal wrap!<CR>
 "}}}
 
@@ -308,9 +307,9 @@ function! s:nxnoremap_replace(lhs, pattern, str) abort
     let pattern = substitute(a:pattern, '\', '\\\\', 'g')
     let str = substitute(a:str, '\', '\\\\', 'g')
     let substitute_str = 's/\\v' . pattern . '/' . str . '/ge\\|noh'
-    let v_substitute_str = "'<,'>" . 's/\\v%V' . pattern . '%V/' . str . '/g'
+    let v_substitute_str = "'<,'>" . 's/\\v%V' . pattern . '%V/' . str . '/g\\|noh'
     silent execute join(['nnoremap', '<silent>', '[replace]' . a:lhs, 'q::s@^@' . substitute_str . '@g<CR><CR>'])
-    silent execute join(['xnoremap', '<silent>', '[replace]' . a:lhs, 'q::s@^.*$@' . v_substitute_str . '@g<CR><CR>'])
+    silent execute join(['xnoremap', '<silent>', '[replace]' . a:lhs, '<ESC>q::s@^.*$@' . v_substitute_str . '@g<CR><CR>'])
 endfunction
 
 let s:PATTERN_KEY = 'p'
