@@ -427,3 +427,7 @@ call minpac#add('lambdalisue/session.vim')
 nnoremap [file]<Space> :<C-u>call notomo#vimrc#save_session()<CR>
 nnoremap [file]<CR> :<C-u>SessionOpen<CR>
 nnoremap [denite]S :<C-u>Denite session<CR>
+
+call minpac#add('notomo/vimited')
+xnoremap <Space><S-v> :VimitedSet<CR>
+nnoremap <Space><C-v> :<C-u>VimitedClear<CR>
