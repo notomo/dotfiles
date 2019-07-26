@@ -91,3 +91,6 @@ snippet alias
 
 snippet export
 	export ${1:NAME}=${0:value}
+
+snippet vim_stdout
+	vim -es -c "call append(0, ${1:string})" -c "%print" -c q!
