@@ -23,6 +23,7 @@
       - sysstat
       - vnstat
       - lsof
+      - patch
     enablerepo: epel
   when: is_centos
   become: yes
