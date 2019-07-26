@@ -24,6 +24,7 @@
       - vnstat
       - lsof
       - patch
+      - cscope
     enablerepo: epel
   when: is_centos
   become: yes
