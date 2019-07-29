@@ -79,6 +79,8 @@ call minpac#add('Shougo/deoplete.nvim')
 let g:deoplete#enable_at_startup = 1
 
 call minpac#add('mhartington/nvim-typescript')
+let g:nvim_typescript#signature_complete = 1
+let g:nvim_typescript#diagnostics_enable = 0
 
 " call minpac#add('autozimu/LanguageClient-neovim', {'branch' : 'next', 'do' : '!bash install.sh'})
 "
