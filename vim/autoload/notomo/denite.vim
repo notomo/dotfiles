@@ -156,8 +156,9 @@ function! notomo#denite#go_project_decls() abort
     execute 'Denite go/decls:' . path . ':1'
 endfunction
 
-function! notomo#denite#yank_emoji(context) abort
+function! notomo#denite#append_emoji(context) abort
     for target in a:context['targets']
-        call notomo#vimrc#yank_and_echo(target['action__text'])
+        let target['word'] = target['action__text']
+        call denite#do_action(a:context, 'append', [target])
     endfor
 endfunction
