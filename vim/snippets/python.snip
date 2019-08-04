@@ -184,3 +184,15 @@ options word
 
 snippet pp
 	pprint.pprint(${0:value})
+
+snippet spread
+options word
+	*${0:args}
+
+snippet spread_dict
+options word
+	**${0:kwargs}
+
+snippet keyword_only_arg_func
+	def ${1:name}(*, ${0:arg}):
+		pass
