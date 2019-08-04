@@ -45,6 +45,7 @@ alias gd='git push --delete origin ' # {tag_name} or {branch_name}
 alias dsl="docker_compose logs -f --tail=100"
 alias gob="go test -bench . -benchmem"
 alias port=port
+alias lns='ln -s' # {from} {to}
 
 function port() {
     lsof -i:$1
