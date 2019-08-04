@@ -162,3 +162,13 @@ function! notomo#denite#append_emoji(context) abort
         call denite#do_action(a:context, 'append', [target])
     endfor
 endfunction
+
+function! notomo#denite#redir(cmd) abort
+    let [tmp_verbose, tmp_verbosefile] = [&verbose, &verbosefile]
+    set verbose=0 verbosefile=
+    redir => result
+    silent! execute a:cmd
+    redir END
+    let [&verbose, &verbosefile] = [tmp_verbose, tmp_verbosefile]
+    return result
+endfunction
