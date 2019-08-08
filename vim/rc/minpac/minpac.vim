@@ -25,28 +25,3 @@ if s:initialized
 endif
 
 packloadall
-
-" source post
-source ~/.vim/rc/plugins/gina.vim
-source ~/.vim/rc/plugins/lightline.vim
-if has('nvim')
-    source ~/.vim/rc/plugins/denite.vim
-    source ~/.vim/rc/plugins/deoplete.vim
-    source ~/.vim/rc/plugins/curstr.vim
-    source ~/.vim/rc/plugins/gesture.vim
-    source ~/.vim/rc/plugins/ctrlb.vim
-    source ~/.vim/rc/plugins/vimonga.vim
-    if executable('python3.6') || executable('python3.7')
-        source ~/.vim/rc/plugins/defx.vim
-    endif
-endif
-IncSearchNoreMap <Tab> <Over>(incsearch-next)
-IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
-IncSearchNoreMap <C-Space> <Tab>
-IncSearchNoreMap <C-j> <Down>
-IncSearchNoreMap <C-k> <Up>
-IncSearchNoreMap <C-l> <Right>
-IncSearchNoreMap <Space> <CR>
-IncSearchNoreMap <S-Space> <Space>
-IncSearchNoreMap <C-n> <Over>(incsearch-scroll-f)
-IncSearchNoreMap <C-p> <Over>(incsearch-scroll-b)
