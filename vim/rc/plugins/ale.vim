@@ -14,7 +14,7 @@ let g:ale_linters['python'] = ['flake8', 'mypy']
 let g:ale_linters['vim'] = ['vint']
 let g:ale_linters['php'] = ['phpmd', 'php']
 let g:ale_linters['sh'] = ['shellcheck']
-let g:ale_linters['go'] = ['govet', 'gofmt', 'golint']
+let g:ale_linters['go'] = ['govet', 'gofmt', 'golint', 'staticcheck']
 let g:ale_linters['sql'] = []
 let g:ale_linters['c'] = ['clang']
 let g:ale_linters['cs'] = ['mcs']
@@ -51,6 +51,7 @@ let g:ale_python_mypy_options = '--ignore-missing-imports'
 let g:ale_python_flake8_executable = 'python3'
 let g:ale_python_flake8_options = '-m flake8'
 let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.gometalinter.json')
+let g:ale_go_staticcheck_lint_package = 1
 let g:ale_sql_sqlfmt_options = '-u'
 let g:ale_rust_rls_toolchain = 'nightly-2019-01-15'
 autocmd MyAuGroup FileType vue let g:ale_javascript_prettier_options = '--parser vue'

@@ -36,6 +36,7 @@
     - golang.org/x/tools/cmd/goimports
     - golang.org/x/lint/golint
     - honnef.co/go/tools/cmd/unused
+    - honnef.co/go/tools/cmd/staticcheck
     - github.com/mattn/mkup
     - github.com/github/hub
     - github.com/pocke/lemonade
