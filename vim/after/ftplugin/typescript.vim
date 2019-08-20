@@ -10,4 +10,3 @@ nnoremap <buffer> [keyword]o :<C-u>TSDef<CR>
 nnoremap <buffer> [keyword]v :<C-u>vsplit \| TSDef<CR>
 nnoremap <buffer> [keyword]h :<C-u>split \| TSDef<CR>
 nnoremap <buffer> [keyword]t :<C-u>call notomo#window#duplicate() \| TSDef<CR>
-TSStart
