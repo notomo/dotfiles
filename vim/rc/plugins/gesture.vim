@@ -24,10 +24,6 @@ call gesture#register({'name': 'go forward'}).left().right().map('gi')
 call gesture#register({'name': 'close the other windows'}).down().left().down().map('[win]o')
 call gesture#register({'name': 'close the other tabs'}).down().left().down().left().map('[tab]o')
 
-call gesture#register({'name': 'open the recent file'}).up().right().map('[denite]ud')
-call gesture#register({'name': 'open todo'}).right().text('KEY_A').map('[exec]t', {'nowait' : v:true})
-
-" left hand keyboard gesture
-nnoremap <expr> a notomo#gesture#key('a', 'KEY_A')
+call gesture#register({'name': 'open the recent files'}).up().right().noremap(":\<C-u>Denite file_mru\<CR>")
 
 call gesture#custom#set('enabled_input_view', v:true)
