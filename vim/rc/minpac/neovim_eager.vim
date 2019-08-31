@@ -64,34 +64,6 @@ call minpac#add('mhartington/nvim-typescript')
 let g:nvim_typescript#signature_complete = 1
 let g:nvim_typescript#diagnostics_enable = 0
 
-" call minpac#add('autozimu/LanguageClient-neovim', {'branch' : 'next', 'do' : '!bash install.sh'})
-"
-" nnoremap [lc] <Nop>
-" nmap <Leader>f [lc]
-" nnoremap <silent> [lc]d :<C-u>call LanguageClient_textDocument_definition()<CR>
-" nnoremap <silent> [lc]D :<C-u>call LanguageClient_textDocument_typeDefinition()<CR>
-" nnoremap <silent> [lc]r :<C-u>call LanguageClient_textDocument_rename()<CR>
-" nnoremap <silent> [lc]k :<C-u>call LanguageClient_textDocument_hover()<CR>
-" nnoremap <silent> [denite]ld :<C-u>Denite documentSymbol<CR>
-" nnoremap <silent> [denite]lw :<C-u>Denite workspaceSymbol<CR>
-" nnoremap <silent> [denite]lr :<C-u>Denite references -auto-preview -immediately-1<CR>
-"
-" let g:LanguageClient_autoStart = 1
-"
-" let g:LanguageClient_serverCommands = {}
-" " let g:LanguageClient_serverCommands['go'] = ['golsp', '-mode', 'stdio']
-" " let g:LanguageClient_serverCommands['python'] = ['pyls']
-" " let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
-" " let g:LanguageClient_serverCommands['lua'] = ['lua-lsp']
-" " let g:LanguageClient_serverCommands['rust'] = ['rustup', 'run', 'nightly', 'rls']
-" " let g:LanguageClient_serverCommands['haskell'] = ['hie', '--lsp']
-" " let g:LanguageClient_serverCommands['vue'] = ['vls']
-"
-" let g:LanguageClient_signColumnAlwaysOn = 0
-" let g:LanguageClient_diagnosticsEnable = 0
-"
-" let g:LanguageClient_loggingLevel = 'INFO'
-
 call minpac#add('ruanyl/vim-gh-line')
 let g:gh_line_map_default = 0
 let g:gh_line_blame_map_default = 0
@@ -120,77 +92,6 @@ command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
 
 call minpac#add('prabirshrestha/async.vim')
 call minpac#add('prabirshrestha/vim-lsp')
-if executable('gopls')
-    augroup LspGo
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'go-lang',
-            \ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
-            \ 'whitelist': ['go'],
-        \ })
-    augroup END
-endif
-if executable('pyls')
-    augroup LspPython
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'pyls',
-            \ 'cmd': {server_info->['pyls']},
-            \ 'whitelist': ['python'],
-            \ 'workspace_config': {
-                \ 'pyls': {
-                    \ 'plugins': {
-                        \ 'jedi_definition': {'follow_imports' : v:true, 'follow_builtin_imports' : v:true}
-                    \ }
-                \ }
-            \ }
-        \})
-    augroup END
-endif
-if executable('rls')
-    augroup LspRust
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'rls',
-            \ 'cmd': {server_info->['rls']},
-            \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'Cargo.toml'))},
-            \ 'whitelist': ['rust'],
-        \ })
-    augroup END
-endif
-
-if executable('vls')
-    augroup LspVue
-        autocmd!
-        autocmd User lsp_setup call lsp#register_server({
-            \ 'name': 'vls',
-            \ 'cmd': {server_info->['vls']},
-            \ 'whitelist': ['vue'],
-            \ 'initialization_options': {
-                \ 'config': {
-                    \ 'html': {},
-                    \ 'vetur': {'validation': {}},
-                \ }
-            \ }
-        \ })
-    augroup END
-endif
-
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_signs_enabled = 0
-let g:lsp_diagnostics_echo_cursor = 0
-
-nnoremap [lc] <Nop>
-nmap <Leader>f [lc]
-nnoremap <silent> [lc]d :<C-u>LspDefinition<CR>
-nnoremap <silent> [lc]D :<C-u>LspTypeDefinition<CR>
-nnoremap <silent> [lc]r :<C-u>LspRename<CR>
-nnoremap <silent> [lc]k :<C-u>LspHover<CR>
-nnoremap <silent> [lc]ld :<C-u>LspDocumentSymbol<CR>
-nnoremap <silent> [lc]lw :<C-u>LspWorkspaceSymbol<CR>
-nnoremap <silent> [exec]gr :<C-u>LspReferences<CR>
-nnoremap <silent> [exec]gi :<C-u>LspImplementation<CR>
-
 call minpac#add('lighttiger2505/deoplete-vim-lsp')
 
 call minpac#add('notomo/vimonga', {'depth': 0})
