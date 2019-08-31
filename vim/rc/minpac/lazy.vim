@@ -1,18 +1,12 @@
 
-function! s:packadd_once(name, group) abort
-    execute 'packadd ' . a:name
-    execute 'autocmd! ' a:group
-endfunction
-
 function! s:define_lazy_load(name, group, event, pattern) abort
-    let args = join([a:name, a:group], "','")
-    execute 'autocmd ' a:group . ' ' . a:event . ' ' . a:pattern . " call s:packadd_once('" . args . "')"
+    execute 'autocmd' a:group a:event a:pattern '++once packadd' a:name
 endfunction
 
 function! s:add(name, options) abort
     let name = join(split(a:name, '/')[1:], '')
     let group = 'MyLazyLoad' . name
-    execute 'augroup ' . group . ' | autocmd! | augroup END'
+    execute 'augroup' group '| autocmd! | augroup END'
 
     if has_key(a:options, 'ft')
         let ft = a:options['ft']
