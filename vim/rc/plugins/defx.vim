@@ -3,7 +3,7 @@ nnoremap <silent> [exec]f :<C-u>Defx `expand('%:p:h')` -toggle -search=`expand('
 call defx#custom#option('_', {
     \ 'show_ignored_files' : v:false,
     \ 'auto_cd' : v:true,
-    \ 'ignored_files' : '__pycache__',
+    \ 'ignored_files' : '__pycache__,.pytest_cache',
     \ 'new' : v:true,
 \ })
 
