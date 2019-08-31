@@ -57,24 +57,6 @@ if executable('python3.6') || executable('python3.7')
     call minpac#add('Shougo/defx.nvim')
 endif
 
-call minpac#add('janko-m/vim-test')
-nnoremap [test]n :<C-u>TestNearest<CR>
-nnoremap [test]f :<C-u>TestFile<CR>
-nnoremap [test]s :<C-u>TestSuite<CR>
-nnoremap [test]l :<C-u>TestLast<CR>
-nnoremap [test]v :<C-u>TestVisit<CR>
-nnoremap [test]C :<C-u>call notomo#vim_test#toggle_coverage()<CR>
-source ~/.vim/rc/plugins/vim_test.vim
-if !exists('g:test#runners')
-    let g:test#runners = {}
-endif
-let g:test#runners['PHP'] = ['PHPUnit']
-let g:test#runners['Python'] = ['PyTest']
-let g:test#runners['JavaScript'] = ['Jest']
-let g:test#python#pytest#options = '-s'
-let g:test#php#phpunit#options = '--no-coverage'
-let g:test#go#gotest#options = '-v'
-
 call minpac#add('Shougo/deoplete.nvim')
 let g:deoplete#enable_at_startup = 1
 

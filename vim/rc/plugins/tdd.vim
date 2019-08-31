@@ -1,4 +1,7 @@
 nnoremap [test]t :<C-u>TDDTest make npm<CR>
+nnoremap [test]f :<C-u>TDDTest -layout=horizontal -target=file<CR>
+nnoremap [test]l :<C-u>TDDTest -last<CR>
+nnoremap [test]n :<C-u>TDDTest -layout=horizontal -target=near<CR>
 
 call tdd#command#alias('make_lint', 'make')
 call tdd#command#args('make_lint', ['lint'])
