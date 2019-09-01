@@ -10,6 +10,10 @@ export THEMIS_VIM=nvim
 export THEMIS_ARGS="-e -s --headless"
 export THEMIS_PROFILE_LOG=profile.txt
 
+export PATH=$PATH:$HOME/.vim/minpac/pack/minpac/start/gevdoc/bin
+export GEVDOC_VIM=nvim
+export GEVDOC_ARGS="-e -s --headless"
+
 export EDITOR="nvr --remote-wait-silent"
 export GIT_EDITOR="nvr --remote-wait-silent"
 
