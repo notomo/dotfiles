@@ -14,4 +14,4 @@ sudo apt --yes install ansible
 git clone https://github.com/notomo/dotfiles.git ~/dotfiles
 
 cd ~/dotfiles/ansible
-ANSIBLE_CONFIG=$(pwd) ansible-playbook playbooks/ubuntu.yml
+ANSIBLE_CONFIG=$(pwd) ansible-playbook playbooks/ubuntu.yml --ask-become-pass
