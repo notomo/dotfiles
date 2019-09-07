@@ -6,26 +6,26 @@
   stat:
     path: "{{ home_dir }}/.local/go"
   register: golang_installed
-  when: is_centos
+  when: is_linux
 
 - name: download golang
   get_url:
-    url: https://storage.googleapis.com/golang/go1.12.5.linux-amd64.tar.gz
-    dest: "{{ app_dir }}/go1.12.5.linux-amd64.tar.gz"
-  when: is_centos and not golang_installed.stat.exists
+    url: https://storage.googleapis.com/golang/go1.13.linux-amd64.tar.gz
+    dest: "{{ app_dir }}/go.tar.gz"
+  when: is_linux and not golang_installed.stat.exists
 
 - name: mkdir go
   file:
     path: "{{ home_dir }}/.local/go"
     state: directory
-  when: is_centos and not golang_installed.stat.exists
+  when: is_linux and not golang_installed.stat.exists
 
 - name: unarchive golang
   unarchive:
-    src: "{{ app_dir }}/go1.12.5.linux-amd64.tar.gz"
+    src: "{{ app_dir }}/go.tar.gz"
     dest: "{{ home_dir }}/.local/go"
     extra_opts: [--strip-components=1]
-  when: is_centos and not golang_installed.stat.exists
+  when: is_linux and not golang_installed.stat.exists
 
 - name: check go modules
   shell: bash -lc "IGNORE_LOCAL_FILE=1 go list {{ item }}"
@@ -35,7 +35,6 @@
   with_items:
     - golang.org/x/tools/cmd/goimports
     - golang.org/x/lint/golint
-    - honnef.co/go/tools/cmd/unused
     - honnef.co/go/tools/cmd/staticcheck
     - github.com/mattn/mkup
     - github.com/github/hub
