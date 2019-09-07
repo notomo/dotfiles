@@ -5,7 +5,6 @@
     link_dict:
       vim/rc/.vimrc: .vimrc
       vim/rc: .vim/rc
-      vim/dict: .vim/dict
       vim/autoload: .vim/autoload
       vim/snippets: .vim/snippets
       vim/after: .vim/after
@@ -15,7 +14,6 @@
       vim/rplugin: .vim/rplugin
       vim/plugin: .vim/plugin
       vim/ftdetect: .vim/ftdetect
-      vim/template: .vim/template
       vim/rc/init.vim: .config/nvim/init.vim
       lint/vim/.vintrc.yaml: .vintrc.yaml
       lint/python/setup.cfg: setup.cfg
