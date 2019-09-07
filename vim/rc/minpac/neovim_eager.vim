@@ -37,32 +37,35 @@ endif
 call minpac#add('w0rp/ale')
 source ~/.vim/rc/plugins/ale.vim
 
-call minpac#add('notomo/curstr.nvim', {'depth': 0})
-nnoremap <silent> [keyword]fo :<C-u>Curstr openable -action=open<CR>
-nnoremap <silent> [keyword]ft :<C-u>Curstr openable -action=tab_open<CR>
-nnoremap <silent> [keyword]fv :<C-u>Curstr openable -action=vertical_open<CR>
-nnoremap <silent> [keyword]fh :<C-u>Curstr openable -action=horizontal_open<CR>
-nnoremap <silent> [edit]s :<C-u>Curstr togglable<CR>
 
-call minpac#add('notomo/ctrlb.nvim', {'do' : '!npm run setup', 'depth': 0})
-nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpenLayout ~/dotfiles/vim/rc/plugins/ctrlb_layout.json\<CR>"
-nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
-nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
+if executable('node')
+    call minpac#add('notomo/ctrlb.nvim', {'do' : '!npm run setup', 'depth': 0})
+    nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpenLayout ~/dotfiles/vim/rc/plugins/ctrlb_layout.json\<CR>"
+    nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
+    nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
 
-call minpac#add('notomo/gesture.nvim', {'do' : '!npm run setup', 'depth': 0})
-noremap <silent> <LeftDrag> :<C-u>call gesture#draw()<CR>
-noremap <silent> <LeftRelease> :<C-u>call gesture#finish()<CR>
+    call minpac#add('notomo/gesture.nvim', {'do' : '!npm run setup', 'depth': 0})
+    noremap <silent> <LeftDrag> :<C-u>call gesture#draw()<CR>
+    noremap <silent> <LeftRelease> :<C-u>call gesture#finish()<CR>
 
-if executable('python3.6') || executable('python3.7')
-    call minpac#add('Shougo/defx.nvim')
+    call minpac#add('mhartington/nvim-typescript')
+    let g:nvim_typescript#signature_complete = 1
+    let g:nvim_typescript#diagnostics_enable = 0
 endif
 
-call minpac#add('Shougo/deoplete.nvim')
-let g:deoplete#enable_at_startup = 1
+if executable('python3.6') || executable('python3.7')
+    call minpac#add('notomo/curstr.nvim', {'depth': 0})
+    nnoremap <silent> [keyword]fo :<C-u>Curstr openable -action=open<CR>
+    nnoremap <silent> [keyword]ft :<C-u>Curstr openable -action=tab_open<CR>
+    nnoremap <silent> [keyword]fv :<C-u>Curstr openable -action=vertical_open<CR>
+    nnoremap <silent> [keyword]fh :<C-u>Curstr openable -action=horizontal_open<CR>
+    nnoremap <silent> [edit]s :<C-u>Curstr togglable<CR>
 
-call minpac#add('mhartington/nvim-typescript')
-let g:nvim_typescript#signature_complete = 1
-let g:nvim_typescript#diagnostics_enable = 0
+    call minpac#add('Shougo/defx.nvim')
+
+    call minpac#add('Shougo/deoplete.nvim')
+    let g:deoplete#enable_at_startup = 1
+endif
 
 call minpac#add('ruanyl/vim-gh-line')
 let g:gh_line_map_default = 0

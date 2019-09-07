@@ -32,15 +32,17 @@ runtime! rc/minpac/minpac.vim
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
 if has('nvim')
-    source ~/.vim/rc/plugins/denite.vim
-    source ~/.vim/rc/plugins/deoplete.vim
-    source ~/.vim/rc/plugins/curstr.vim
-    source ~/.vim/rc/plugins/gesture.vim
-    source ~/.vim/rc/plugins/ctrlb.vim
     source ~/.vim/rc/plugins/vimonga.vim
     source ~/.vim/rc/plugins/tdd.vim
     source ~/.vim/rc/plugins/lsp.vim
+    if executable('node')
+        source ~/.vim/rc/plugins/gesture.vim
+        source ~/.vim/rc/plugins/ctrlb.vim
+    endif
     if executable('python3.6') || executable('python3.7')
+        source ~/.vim/rc/plugins/curstr.vim
+        source ~/.vim/rc/plugins/denite.vim
+        source ~/.vim/rc/plugins/deoplete.vim
         source ~/.vim/rc/plugins/defx.vim
     endif
 endif
