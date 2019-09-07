@@ -8,21 +8,12 @@
   shell: curl https://sh.rustup.rs -sSf | sh -s -- -y
   when: not rust_installed.stat.exists
 
-- name: check rls
-  stat:
-    path: "{{ home_dir }}/.cargo/bin/rls"
-  register: rls_installed
-
 - name: rustup toolchain
-  shell: rustup install nightly-2019-01-15
-  when: not rls_installed.stat.exists
-
-- name: rustup default
-  shell: rustup default nightly-2019-01-15
-  when: not rls_installed.stat.exists
+  shell: rustup default nightly-2019-09-04
+  when: not rust_installed.stat.exists
 
 - name: install rls
-  shell: rustup component add rls-preview rust-analysis rust-src
+  shell: rustup component add rls rust-analysis rust-src
   when: not rls_installed.stat.exists
 
 - name: install rustfmt
