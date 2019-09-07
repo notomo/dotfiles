@@ -7,7 +7,7 @@
   stat:
     path: "{{ app_dir }}/node_installer"
   register: node_installer_downloaded
-  when: is_centos
+  when: is_linux
 
 - name: download installer
   get_url:
@@ -15,24 +15,36 @@
     dest: "{{ app_dir }}/node_installer"
   when: is_centos and not node_installer_downloaded.stat.exists
 
+- name: download installer on ubuntu
+  get_url:
+    url: https://deb.nodesource.com/setup_10.x
+    dest: "{{ app_dir }}/node_installer"
+  when: is_ubuntu and not node_installer_downloaded.stat.exists
+
 - name: check node install
   command: "node -v"
   register: node_installed
   changed_when: False
   failed_when: False
-  when: is_centos
+  when: is_linux
 
 - name: install node
   shell:
     chdir: "{{ app_dir }}"
     cmd: "bash node_installer"
   become: yes
-  when: is_centos and node_installed.rc != 0
+  when: is_linux and node_installed.rc != 0
 
 - name: install nodejs with yum
   yum: name=nodejs
   become: yes
   when: is_centos
+
+- name: install nodejs with apt
+  apt:
+    name: nodejs
+  become: yes
+  when: is_ubuntu
 
 - name: set variables
   set_fact:
@@ -44,7 +56,6 @@
       - javascript-typescript-langserver
       - eslint
       - prettier
-      - tslint
       - wscat
       - vue-language-server
 
@@ -61,4 +72,4 @@
     global: yes
   with_items: "{{ node_packages }}"
   become: yes
-  when: is_centos
+  when: is_linux
