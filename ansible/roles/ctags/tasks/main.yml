@@ -8,46 +8,54 @@
 - name: set variables
   set_fact:
     ctags_dir: "{{ app_dir }}/ctags"
-  when: is_centos
+  when: is_linux
+
+- name: apt get dependencies
+  apt:
+    name:
+      - autoconf
+      - pkg-config
+  when: is_ubuntu
+  become: yes
 
 - name: check ctags install
   stat:
     path: "{{ home_dir }}/.local/bin/ctags"
   register: ctags_installed
-  when: is_centos
+  when: is_linux
 
 - name: check ctags download
   stat:
     path: "{{ ctags_dir }}"
   register: ctags_downloaded
-  when: is_centos
+  when: is_linux
 
 - name: git clone ctags
   git:
     repo: https://github.com/universal-ctags/ctags.git
     dest: "{{ ctags_dir }}"
     version: master
-  when: is_centos and not ctags_downloaded.stat.exists
+  when: is_linux and not ctags_downloaded.stat.exists
 
 - name: autogen ctags
   shell: ./autogen.sh
   args:
     chdir: "{{ ctags_dir }}"
-  when: is_centos and not ctags_installed.stat.exists
+  when: is_linux and not ctags_installed.stat.exists
 
 - name: configure ctags
   shell: ./configure --prefix={{ home_dir }}/.local
   args:
     chdir: "{{ ctags_dir }}"
-  when: is_centos and not ctags_installed.stat.exists
+  when: is_linux and not ctags_installed.stat.exists
 
 - name: ctags make
   make:
     chdir: "{{ ctags_dir }}"
-  when: is_centos and not ctags_installed.stat.exists
+  when: is_linux and not ctags_installed.stat.exists
 
 - name: ctags make install
   make:
     target: install
     chdir: "{{ ctags_dir }}"
-  when: is_centos and not ctags_installed.stat.exists
+  when: is_linux and not ctags_installed.stat.exists

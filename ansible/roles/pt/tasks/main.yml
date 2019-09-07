@@ -7,42 +7,42 @@
   stat:
     path: "{{ app_dir }}/pt_linux_amd64.tar.gz"
   register: pt_downloaded
-  when: is_centos
+  when: is_linux
 
 - name: check pt install
   stat:
     path: "{{ home_dir }}/.local/bin/pt"
   register: pt_installed
-  when: is_centos
+  when: is_linux
 
 - name: download pt
   get_url:
     url: https://github.com/monochromegane/the_platinum_searcher/releases/download/v2.1.6/pt_linux_amd64.tar.gz
     dest: "{{ app_dir }}/pt_linux_amd64.tar.gz"
-  when: is_centos and not pt_downloaded.stat.exists
+  when: is_linux and not pt_downloaded.stat.exists
 
 - name: check pt unarchive
   stat:
     path: "{{ app_dir }}/pt"
   register: pt_unarchived
-  when: is_centos
+  when: is_linux
 
 - name: mkdir for pt
   file:
     path: "{{ app_dir }}/pt"
     state: directory
-  when: is_centos
+  when: is_linux
 
 - name: unarchive pt
   unarchive:
     src: "{{ app_dir }}/pt_linux_amd64.tar.gz"
     dest: "{{ app_dir }}/pt"
     extra_opts: [--strip-components=1]
-  when: is_centos and not pt_unarchived.stat.exists
+  when: is_linux and not pt_unarchived.stat.exists
 
 - name: copy pt
   copy:
     src: "{{ app_dir }}/pt/pt"
     dest: "{{ home_dir }}/.local/bin/pt"
     mode: 0755
-  when: is_centos and not pt_installed.stat.exists
+  when: is_linux and not pt_installed.stat.exists
