@@ -8,13 +8,13 @@
   file:
     path: "{{ app_dir }}/zsh"
     state: directory
-  when: is_centos
+  when: is_linux
 
 - name: check zsh download
   stat:
     path: "{{ app_dir }}/zsh.tar.xz"
   register: zsh_downloaded
-  when: is_centos
+  when: is_linux
 
 - name: download zsh
   action: |
@@ -22,20 +22,20 @@
       wget \
       https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz/download -O zsh-5.6.2.tar.xz \
       -O {{ app_dir }}/zsh.tar.xz
-  when: is_centos and not zsh_downloaded.stat.exists
+  when: is_linux and not zsh_downloaded.stat.exists
 
 - name: check zsh binary
   stat:
     path: "/usr/local/bin/zsh"
   register: zsh_binary
-  when: is_centos
+  when: is_linux
 
 - name: unarchive zsh
   unarchive:
     src: "{{ app_dir }}/zsh.tar.xz"
     dest: "{{ app_dir }}/zsh"
     extra_opts: [--strip-components=1]
-  when: is_centos and not zsh_downloaded.stat.exists
+  when: is_linux and not zsh_downloaded.stat.exists
 
 - name: config
   shell: |
@@ -43,18 +43,18 @@
       --enable-multibyte \
   args:
     chdir: "{{ app_dir }}/zsh"
-  when: is_centos and not zsh_binary.stat.exists
+  when: is_linux and not zsh_binary.stat.exists
 
 - name: build
   make:
     chdir: "{{ app_dir }}/zsh"
-  when: is_centos and not zsh_binary.stat.exists
+  when: is_linux and not zsh_binary.stat.exists
 
 - name: install
   make:
     target: install
     chdir: "{{ app_dir }}/zsh"
-  when: is_centos and not zsh_binary.stat.exists
+  when: is_linux and not zsh_binary.stat.exists
   become: yes
 
 - name: check zplug
@@ -77,7 +77,7 @@
   file:
     path: "{{ home_dir }}/.zshrc"
     state: absent
-  when: is_centos and exists_ansible_managed_block.rc != 0
+  when: is_linux and exists_ansible_managed_block.rc != 0
 
 - name: create .zshrc
   file:
@@ -102,7 +102,7 @@
   file:
     path: "{{ home_dir }}/.zprofile"
     state: absent
-  when: is_centos and exists_ansible_managed_block.rc != 0
+  when: is_linux and exists_ansible_managed_block.rc != 0
 
 - name: create .zprofile
   file:

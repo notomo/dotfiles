@@ -13,7 +13,7 @@
     state: directory
   with_items:
     - lsync
-  when: is_centos
+  when: is_linux
 
 - name: make .local/bin directory
   file:
