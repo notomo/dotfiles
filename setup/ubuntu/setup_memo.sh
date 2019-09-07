@@ -7,7 +7,7 @@ cd ~
 sudo apt --yes update
 sudo apt --yes upgrade
 
-sudo apt install software-properties-common
+sudo apt --yes install software-properties-common
 sudo apt-add-repository --yes --update ppa:ansible/ansible
 sudo apt --yes install ansible
 

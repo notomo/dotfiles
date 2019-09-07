@@ -37,8 +37,9 @@
   apt:
     name:
       - python3.7
-      - python3-pip
       - python3.7-dev
+      - python3-pip
+      - python3-dev
   when: is_ubuntu
   become: yes
 
@@ -50,13 +51,13 @@
   when: is_centos
   become: yes
 
-- name: create symbolic link for python3
-  file:
-    src: "/usr/bin/python3.7"
-    dest: "/usr/bin/python3"
-    state: link
-  when: is_ubuntu
-  become: yes
+# - name: create symbolic link for python3
+#   file:
+#     src: "/usr/bin/python3.7"
+#     dest: "/usr/bin/python3"
+#     state: link
+#   when: is_ubuntu
+#   become: yes
 
 - name: install python2 with yum
   yum:
