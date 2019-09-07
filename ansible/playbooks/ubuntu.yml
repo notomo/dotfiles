@@ -4,6 +4,7 @@
     - { role: 'bash', tags: 'bash' }
     # - { role: 'zsh', tags: 'zsh' }
     - { role: 'dotfiles', tags: 'dotfiles' }
+    - { role: 'tools', tags: 'tools' }
     - { role: 'ctags', tags: 'ctags' }
     - { role: 'pt', tags: 'pt' }
     - { role: 'timezone', tags: 'timezone' }
