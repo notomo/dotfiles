@@ -2,7 +2,7 @@
   roles:
     - { role: 'workspace', tags: 'workspace' }
     - { role: 'bash', tags: 'bash' }
-    # - { role: 'zsh', tags: 'zsh' }
+    - { role: 'zsh', tags: 'zsh' }
     - { role: 'golang', tags: 'golang' }
     - { role: 'dotfiles', tags: 'dotfiles' }
     - { role: 'tools', tags: 'tools' }

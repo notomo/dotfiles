@@ -4,3 +4,10 @@
       - ncurses-devel
   when: is_centos
   become: yes
+
+- name: install dependencies with apt
+  apt:
+    name:
+      - libncurses-dev
+  when: is_ubuntu
+  become: yes

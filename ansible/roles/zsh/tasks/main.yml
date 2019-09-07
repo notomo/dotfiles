@@ -17,11 +17,9 @@
   when: is_linux
 
 - name: download zsh
-  action: |
-    command \
-      wget \
-      https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz/download -O zsh-5.6.2.tar.xz \
-      -O {{ app_dir }}/zsh.tar.xz
+  get_url:
+    url: https://sourceforge.net/projects/zsh/files/zsh/5.6.2/zsh-5.6.2.tar.xz/download
+    dest: "{{ app_dir }}/zsh.tar.xz"
   when: is_linux and not zsh_downloaded.stat.exists
 
 - name: check zsh binary
@@ -63,9 +61,16 @@
   register: zplug_installed
 
 - name: get zplug
-  shell: curl -sL --proto-redir -all,https \
-    https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+  git:
+    repo: https://github.com/zplug/zplug.git
+    dest: "{{ home_dir }}/.zplug"
   when: not zplug_installed.stat.exists
+
+- name: .zplug chmod 755
+  file:
+    dest: "{{ home_dir }}/.zplug"
+    mode: 0755
+    recurse: True
 
 - name: check ansible managed block .zshrc
   shell: grep "ANSIBLE MANAGED BLOCK" -- {{ home_dir }}/.zshrc
