@@ -33,7 +33,7 @@ let g:ale_pattern_options = {'\.vue$': {'ale_enabled': 0}, '\.sql$': {'ale_fix_o
 
 let g:ale_fixers = {}
 let g:ale_fixers['sh'] = ['shfmt']
-let g:ale_fixers['python'] = ['autopep8', 'isort']
+let g:ale_fixers['python'] = ['black', 'isort']
 let g:ale_fixers['go'] = ['goimports']
 let g:ale_fixers['rust'] = ['rustfmt']
 let g:ale_fixers['javascript'] = ['prettier']
