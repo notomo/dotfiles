@@ -11,7 +11,7 @@
   become: yes
   when: is_centos
 
-- name: add repository for docker
+- name: add yum repository for docker
   shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
   become: yes
   when: is_centos
@@ -22,12 +22,40 @@
   become: yes
   when: is_centos
 
+- name: Add docker apt gpg key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+  become: yes
+  when: is_ubuntu
+
+- name: add apt repository for docker
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+  become: yes
+  when: is_ubuntu
+
+- name: install docker with apt
+  apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+  become: yes
+  when: is_ubuntu
+
+- name: mkdir /etc/docker
+  file:
+    path: "/etc/docker"
+    state: directory
+  become: yes
+  when: is_linux
+
 - name: copy daemon.json
   copy:
     src: daemon.json
     dest: "/etc/docker/daemon.json"
   become: yes
-  when: is_centos
+  when: is_linux
 
 - name: enable docker service
   systemd:
@@ -36,18 +64,29 @@
   become: yes
   when: is_centos
 
+- name: add user to docker group
+  user:
+    name: "{{ ansible_env.USER }}"
+    groups: docker
+    append: yes
+  become: yes
+  when: is_linux
+
+- name: cgroupfs mount
+  shell: cgroupfs-mount
+  become: yes
+  when: is_ubuntu
+
+- name: start docker service
+  shell: service docker start
+  become: yes
+  when: is_ubuntu
+  changed_when: False
+
 - name: start docker service
   systemd:
     name: docker
     state: started
-  become: yes
-  when: is_centos
-
-- name: add user to docker group
-  user:
-    name: vagrant
-    groups: docker
-    append: yes
   become: yes
   when: is_centos
 
@@ -65,21 +104,11 @@
   stat:
     path: "{{ home_dir }}/.local/bin/docker-compose"
   register: docker_compose_installed
-  when: is_centos
-
-- name: get uname -s
-  shell: uname -s
-  register: uname_s
-  when: is_centos and not docker_compose_installed.stat.exists
-
-- name: get uname -m
-  shell: uname -m
-  register: uname_m
-  when: is_centos and not docker_compose_installed.stat.exists
+  when: is_linux
 
 - name: download docker-compose
   get_url:
-    url: https://github.com/docker/compose/releases/download/1.22.0/docker-compose-{{ uname_s.stdout }}-{{ uname_m.stdout }}
+    url: https://github.com/docker/compose/releases/download/1.24.1/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
     dest: "{{ home_dir }}/.local/bin/docker-compose"
     mode: u+x
-  when: is_centos and not docker_compose_installed.stat.exists
+  when: is_linux and not docker_compose_installed.stat.exists
