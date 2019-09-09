@@ -53,7 +53,7 @@ let g:ale_python_flake8_options = '-m flake8'
 let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.gometalinter.json')
 let g:ale_go_staticcheck_lint_package = 1
 let g:ale_sql_sqlfmt_options = '-u'
-let g:ale_rust_rls_toolchain = 'nightly-2019-01-15'
+let g:ale_rust_rls_toolchain = 'nightly-2019-09-04'
 autocmd MyAuGroup FileType vue let g:ale_javascript_prettier_options = '--parser vue'
 autocmd MyAuGroup WinEnter,WinLeave *.vue let g:ale_javascript_prettier_options = ''
 autocmd MyAuGroup FileType javascript,typescript,css,html,scss let g:ale_javascript_prettier_options = ''
