@@ -1,4 +1,3 @@
-
 import yaml
 from yaml.composer import Composer
 
@@ -6,18 +5,17 @@ from .base import Base
 
 
 class Source(Base):
-
     def __init__(self, vim):
         super().__init__(vim)
 
-        self.name = 'yaml_outline'
-        self.kind = 'file'
-        self.sorters = ['sorter_line_number']
+        self.name = "yaml_outline"
+        self.kind = "file"
+        self.sorters = ["sorter_line_number"]
 
     def gather_candidates(self, context):
-        path = self.vim.call('expand', '%:p')
+        path = self.vim.call("expand", "%:p")
 
-        with open(path, 'r') as f:
+        with open(path, "r") as f:
             loader = yaml.Loader(f)
 
             candidates = []
@@ -40,9 +38,9 @@ class Source(Base):
 
             def create(node):
                 return {
-                    'word': node[0].value,
-                    'action__path': path,
-                    'action__line': node[0].__line__,
+                    "word": node[0].value,
+                    "action__path": path,
+                    "action__line": node[0].__line__,
                 }
 
             loader.get_data()
