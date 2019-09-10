@@ -87,6 +87,7 @@
       - neovim-remote
       - httpie
       - pprint
+      - pytest
 
 - pip:
     name: "{{ python2_packages }}"
