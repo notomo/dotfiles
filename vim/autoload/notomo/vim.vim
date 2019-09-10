@@ -28,3 +28,20 @@ function! notomo#vim#get_indent()
 
     return -1
 endfunction
+
+function! notomo#vim#next() abort
+    call s:go_to_function('next', 0)
+endfunction
+
+function! notomo#vim#prev() abort
+    call s:go_to_function('prev', -1)
+endfunction
+
+function! s:go_to_function(next_prev, offset) abort
+    if a:next_prev ==# 'next'
+        let flags = ''
+    else
+        let flags = 'b'
+    endif
+    call search('\v^\s*\zsfu(nction)?(!)?', flags)
+endfunction
