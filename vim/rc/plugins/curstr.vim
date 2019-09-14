@@ -32,6 +32,7 @@ let s:pattern_groups = [
     \ ['%/test/rplugin/%/test_%.py', '%/rplugin/%/%.py'],
     \ ['%/test/autoload/%.vim', '%/autoload/%.vim'],
     \ ['%/test/plugin/%.vim', '%/plugin/%.vim'],
+    \ ['%/test/plugin/%.vim', '%/autoload/%.vim'],
 \ ]
 call curstr#custom#source_alias('altr_next', ['togglable/file'])
 call curstr#custom#source_option('altr_next', 'pattern_groups', s:pattern_groups)
