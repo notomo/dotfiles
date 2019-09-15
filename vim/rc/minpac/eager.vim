@@ -435,3 +435,5 @@ nnoremap <Space><C-v> :<C-u>VimitedClear<CR>
 call minpac#add('notomo/tdd.vim', {'depth': 0})
 
 call minpac#add('notomo/gevdoc', {'depth': 0})
+
+call minpac#add('notomo/kiview', {'depth': 0})
