@@ -34,6 +34,7 @@ source ~/.vim/rc/plugins/lightline.vim
 if has('nvim')
     source ~/.vim/rc/plugins/vimonga.vim
     source ~/.vim/rc/plugins/tdd.vim
+    source ~/.vim/rc/plugins/kiview.vim
     source ~/.vim/rc/plugins/lsp.vim
     if executable('node')
         source ~/.vim/rc/plugins/gesture.vim
