@@ -180,3 +180,13 @@ snippet const
 
 snippet type_hint
 	::<${0:type}>
+
+snippet method
+	fn ${1:name}(&self) ->${3:type} {
+		${0:TARGET}
+	}
+
+snippet new
+	pub fn new(${1:args}) -> Self {
+		${0:TARGET}
+	}
