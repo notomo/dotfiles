@@ -64,4 +64,4 @@ function! s:toggle_fix_on_save() abort
 endfunction
 
 nnoremap [exec]T :<C-u>call <SID>toggle_fix_on_save()<CR>
-nnoremap [exec]F :<C-u>ALEFix<CR>
+nnoremap [exec]<C-f> :<C-u>ALEFix<CR>
