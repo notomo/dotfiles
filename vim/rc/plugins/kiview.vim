@@ -16,6 +16,7 @@ function! s:settings() abort
     nnoremap <buffer> yf <Cmd>Kiview copy<CR>
     nnoremap <buffer> xf <Cmd>Kiview cut<CR>
     nnoremap <buffer> p <Cmd>Kiview paste<CR>
+    nnoremap <buffer> rn <Cmd>Kiview rename<CR>
 
     nnoremap <buffer> t<Space> <Cmd>Kiview child -layout=tab -quit<CR>
     xnoremap <buffer> t<Space> :Kiview child -layout=tab -quit<CR>
