@@ -123,3 +123,30 @@ snippet throw
 
 snippet highlight_link
 	highlight ${1:#:default }link ${2:Name} ${1:ToGroupName}
+
+snippet new
+	function! `substitute(matchstr(neosnippet#util#expand('%:p:r'), '/autoload/\zs.*$'), '/', '#', 'g')`#new(${1:args}) abort
+		let `neosnippet#util#expand('%:r')` = {
+			\ '': '',
+		\ }
+
+		function! `neosnippet#util#expand('%:r')`.${2:name}() abort
+		endfunction
+
+		return `neosnippet#util#expand('%:r')`
+	endfunction
+
+snippet method
+	function! `neosnippet#util#expand('%:r')`.${1:name}() abort
+		${0:TARGET}
+	endfunction
+
+snippet dict
+	let ${1:name} = {
+		\ '${2:key}': ${0:value},
+	\ }
+
+snippet if_has_key
+	if has_key(${1:dict}, ${2:key})
+		${0:TARGET}
+	endif
