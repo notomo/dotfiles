@@ -36,6 +36,12 @@ if [ -d "$HOME/.cargo" ]; then
     export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 fi
 
+export RBENV_ROOT="${HOME}/.rbenv"
+if [ -d "${RBENV_ROOT}" ]; then
+    export PATH="${RBENV_ROOT}/bin:${PATH}"
+    eval "$(rbenv init -)"
+fi
+
 if [ -d "$HOME/dotfiles" ]; then
     cd ~/dotfiles
 fi

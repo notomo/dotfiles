@@ -7,9 +7,6 @@ PROMPT="
 autoload -Uz colors
 colors
 
-autoload -U compinit
-compinit
-
 setopt prompt_subst
 setopt inc_append_history
 setopt no_beep
@@ -27,10 +24,4 @@ zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "plugins/docker", from:oh-my-zsh
 
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
 zplug load
