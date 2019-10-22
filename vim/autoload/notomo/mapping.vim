@@ -105,29 +105,3 @@ function! notomo#mapping#sub_input() abort
         \ {s:LHS_KEY : s:SUB_INPUT_PFX . 'v', s:RHS_KEY : '<%=  %><Left><Left><Left>'},
     \ ]
 endfunction
-
-function! notomo#mapping#indent_normal_mode() abort
-    return [
-        \ {s:LHS_KEY : 'f', s:RHS_KEY : '>>', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 'l', s:RHS_KEY : '>>', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 'a', s:RHS_KEY : '<<', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 'h', s:RHS_KEY : '<<', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 's', s:RHS_KEY : '==', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 'r', s:RHS_KEY : ':<C-u>left<CR>', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 't', s:RHS_KEY : '<Plug>(convert_indent_to_tab)', s:REMAP_KEY : 1},
-        \ {s:LHS_KEY : '<Space>', s:RHS_KEY : '<Plug>(convert_indent_to_space)', s:REMAP_KEY : 1},
-    \ ]
-endfunction
-
-function! notomo#mapping#indent_visual_mode() abort
-    return [
-        \ {s:LHS_KEY : 'f', s:RHS_KEY : '>gv', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 'l', s:RHS_KEY : '>gv', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 'a', s:RHS_KEY : '<gv', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 'h', s:RHS_KEY : '<gv', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 's', s:RHS_KEY : '=gv', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 'r', s:RHS_KEY : ':left<CR>gv', s:REMAP_KEY : 0},
-        \ {s:LHS_KEY : 't', s:RHS_KEY : '<Plug>(convert_indent_to_tab)', s:REMAP_KEY : 1},
-        \ {s:LHS_KEY : '<Space>', s:RHS_KEY : '<Plug>(convert_indent_to_space)', s:REMAP_KEY : 1},
-    \ ]
-endfunction

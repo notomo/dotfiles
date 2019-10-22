@@ -50,25 +50,19 @@ nnoremap [edit]T :<C-u>call notomo#vimrc#add_closed_tag()<CR>
 " kana"{{{
 nnoremap い i
 nnoremap あ a
-nnoremap <silent> ｊ :<C-u>set iminsert=0<CR>
 "}}}
 
 " file"{{{
 nnoremap [file]w :<C-u>write<CR>
-nnoremap [file]o :<C-u>edit<Space>
 nnoremap [file]rn :<C-u>file<Space>
 nnoremap [file]rl :<C-u>edit!<CR>
 nnoremap [file]v :<C-u>edit $MYVIMRC<CR>
-nnoremap [file]Eu :<C-u>edit! ++enc=utf-8<CR>
-nnoremap [file]Ee :<C-u>edit! ++enc=euc-jp<CR>
 "}}}
 
 " buffer"{{{
 nnoremap [buf] <Nop>
 nmap <Space>b [buf]
 nnoremap [buf]a <C-^>
-nnoremap <silent> [buf]n :<C-u>enew \| setlocal buftype=nofile noswapfile fileformat=unix<CR>
-nnoremap [buf]Q :<C-u>qa<CR>
 "}}}
 
 " swap :;"{{{
@@ -87,7 +81,6 @@ xnoremap <Space>h <C-v>
 xnoremap <Space>l <S-v>
 xnoremap <Space>v v
 xnoremap v <ESC>
-nmap <Space>L V%
 
 " depends yankround
 function! s:select_paste_region() abort
@@ -118,13 +111,31 @@ nmap <Space>i [indent]
 xnoremap [indent] <Nop>
 xmap <Space>i [indent]
 
-for s:info in notomo#mapping#indent_normal_mode()
-    silent execute join(['nnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call notomo#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 0)<CR>"])
-endfor
-for s:info in notomo#mapping#indent_visual_mode()
-    silent execute join(['xnoremap', '[indent]' . s:info[s:LHS_KEY], ":<C-u>call notomo#indent#setup_submode('" . s:info[s:LHS_KEY] . "', 1)<CR>"])
-endfor
+function! s:convert_indent_style(to_hard, is_visual) abort
+    let tmp_expandtab = &expandtab
+    let expandtab_cmd = a:to_hard == 1 ? 'noexpandtab' : 'expandtab'
+    execute 'setlocal ' . expandtab_cmd
+    let range_str = a:is_visual == 1 ? "'<,'>" : '.'
+    execute range_str . 'retab!'
+    let &expandtab = tmp_expandtab
+endfunction
 
+nnoremap [indent]f >>
+xnoremap [indent]f >gv
+nnoremap [indent]l >>
+xnoremap [indent]l >gv
+nnoremap [indent]a <<
+xnoremap [indent]a <gv
+nnoremap [indent]h <<
+xnoremap [indent]h <gv
+nnoremap [indent]s ==
+xnoremap [indent]s =gv
+nnoremap [indent]r :<C-u>left<CR>
+xnoremap [indent]r :left<CR>gv
+nnoremap <silent> [indent]t :<C-u>call <SID>convert_indent_style(1, 0)<CR>
+xnoremap <silent> [indent]t :<C-u>call <SID>convert_indent_style(1, 1)<CR>
+nnoremap <silent> [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 0)<CR>
+xnoremap <silent> [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 1)<CR>
 "}}}
 
 " move"{{{
@@ -175,23 +186,6 @@ nnoremap [newline] <Nop>
 nmap o [newline]
 nnoremap <silent> [newline]o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 nnoremap <silent> [newline]j :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal! j' \| endfor<CR>
-nnoremap <silent> [newline]k :<C-u>for i in range(v:count1) \| call append(line('.') - 1, '') \| endfor<CR>
-nnoremap [newline]d o
-nnoremap [newline]u O
-"}}}
-
-" option"{{{
-nnoremap [option] <Nop>
-nmap <Space>o [option]
-
-nnoremap [option]u :<C-u>set fileencoding=utf8<CR>
-nnoremap [option]e :<C-u>set fileencoding=euc-jp<CR>
-nnoremap [option]s :<C-u>set fileencoding=shift_jis<CR>
-nnoremap [option]fd :<C-u>set fileformat=dos<CR>
-nnoremap [option]fm :<C-u>set fileformat=mac<CR>
-nnoremap [option]fu :<C-u>set fileformat=unix<CR>
-nnoremap [option]s :<C-u>setlocal spell!<CR>
-nnoremap [option]w :<C-u>setlocal wrap!<CR>
 "}}}
 
 " keyword"{{{
@@ -206,6 +200,8 @@ nnoremap <F1> <Nop>
 xnoremap q <Nop>
 xnoremap ZQ <Nop>
 xnoremap ZZ <Nop>
+
+nnoremap zD <Nop>
 
 nnoremap <Ins> <Nop>
 inoremap <Ins> <Nop>
@@ -297,61 +293,6 @@ nnoremap <expr> [substitute]aw ':%' . notomo#case#substitute_pattern(expand('<cw
 nnoremap <expr> [substitute]ay ':%' . notomo#case#substitute_pattern(@+)
 "}}}
 
-" replace"{{{
-nnoremap [replace] <Nop>
-nmap <Space>r [replace]
-xnoremap [replace] <Nop>
-xmap <Space>r [replace]
-
-function! s:nxnoremap_replace(lhs, pattern, str) abort
-    let pattern = substitute(a:pattern, '\', '\\\\', 'g')
-    let str = substitute(a:str, '\', '\\\\', 'g')
-    let substitute_str = 's/\\v' . pattern . '/' . str . '/ge\\|noh'
-    let v_substitute_str = "'<,'>" . 's/\\v%V' . pattern . '%V/' . str . '/g\\|noh'
-    silent execute join(['nnoremap', '<silent>', '[replace]' . a:lhs, 'q::s@^@' . substitute_str . '@g<CR><CR>'])
-    silent execute join(['xnoremap', '<silent>', '[replace]' . a:lhs, '<ESC>q::s@^.*$@' . v_substitute_str . '@g<CR><CR>'])
-endfunction
-
-let s:PATTERN_KEY = 'p'
-let s:STR_KEY = 's'
-let s:replace_map_info = [
-\   {s:LHS_KEY : 'co', s:PATTERN_KEY : '\S{-1,}\zs,\ze\S{-1,}', s:STR_KEY : ', '},
-\   {s:LHS_KEY : 'e', s:PATTERN_KEY : '\S{-1,}\zs(\=\| \=\|\= )\ze\S{-1,}', s:STR_KEY : ' = '},
-\   {s:LHS_KEY : 'd', s:PATTERN_KEY : '\S{-1,}\zs(\.\| \.\|\. )\ze\S{-1,}', s:STR_KEY : ' . '},
-\   {s:LHS_KEY : 'l', s:PATTERN_KEY : '\S{-1,}\zs(:\| :\|: )\ze\S{-1,}', s:STR_KEY : ' : '},
-\   {s:LHS_KEY : 'n', s:PATTERN_KEY : '^\n', s:STR_KEY : ''},
-\   {s:LHS_KEY : 'y', s:PATTERN_KEY : '\\', s:STR_KEY : '\/'},
-\   {s:LHS_KEY : 'Y', s:PATTERN_KEY : '\/', s:STR_KEY : '\\'},
-\   {s:LHS_KEY : '<Space>e', s:PATTERN_KEY : ' +$', s:STR_KEY : ''},
-\   {s:LHS_KEY : 'mc', s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \",\")"},
-\   {s:LHS_KEY : 'mt', s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \"\\t\")"},
-\   {s:LHS_KEY : 'mr', s:PATTERN_KEY : '\_.*\ze\n', s:STR_KEY : "\\=join(split(submatch(0), \"\\n\"), \"\\\\\\\\|\")"},
-\   {s:LHS_KEY : '<Space>b', s:PATTERN_KEY : '\S{-1,}\zs(\t\| {2,})\ze\S{-1,}', s:STR_KEY : ' '},
-\   {s:LHS_KEY : 'cm', s:PATTERN_KEY : ',', s:STR_KEY : '\r'},
-\   {s:LHS_KEY : 'tm', s:PATTERN_KEY : '\t', s:STR_KEY : '\r'},
-\   {s:LHS_KEY : '<Space>m', s:PATTERN_KEY : '\s+', s:STR_KEY : '\r'},
-\   {s:LHS_KEY : 'qw', s:PATTERN_KEY : "'", s:STR_KEY : '"'},
-\   {s:LHS_KEY : 'wq', s:PATTERN_KEY : '"', s:STR_KEY : "'"},
-\   {s:LHS_KEY : 'ww', s:PATTERN_KEY : '^\s*\zs(.*)\ze\s*$', s:STR_KEY : '"\1"'},
-\   {s:LHS_KEY : 'cc', s:PATTERN_KEY : '_(.)', s:STR_KEY : '\u\1'},
-\   {s:LHS_KEY : 'ch', s:PATTERN_KEY : '([A-Z])', s:STR_KEY : '_\l\1'},
-\   {s:LHS_KEY : 'ct', s:PATTERN_KEY : ',', s:STR_KEY : '\t'},
-\   {s:LHS_KEY : 'tc', s:PATTERN_KEY : '\t', s:STR_KEY : ','},
-\   {s:LHS_KEY : '<Space>a', s:PATTERN_KEY : '^\s+', s:STR_KEY : ''},
-\   {s:LHS_KEY : 'x', s:PATTERN_KEY : '%#(\_.)(\_.)', s:STR_KEY : '\2\1'},
-\   {s:LHS_KEY : 'p', s:PATTERN_KEY : '(.*)\zs', s:STR_KEY : '\r\1'},
-\]
-
-if exists('g:replace_map_info')
-    let s:replace_map_info += g:replace_map_info
-    unlet g:replace_map_info
-endif
-
-for s:info in s:replace_map_info
-    call s:nxnoremap_replace(s:info[s:LHS_KEY], s:info[s:PATTERN_KEY], s:info[s:STR_KEY])
-endfor
-"}}}
-
 " yank"{{{
 nnoremap [yank] <Nop>
 nmap <Space>y [yank]
@@ -397,24 +338,6 @@ call s:ia_vonoremap('w', '"')
 call s:ia_vonoremap('q', "'")
 call s:ia_vonoremap('d', '}')
 call s:ia_vonoremap('b', '`')
-"}}}
-
-" fold"{{{
-nnoremap [fold] <Nop>
-nmap <Leader>z [fold]
-nnoremap [fold]j zj
-nnoremap [fold]k zk
-nnoremap [fold]n ]z
-nnoremap [fold]p [z
-nnoremap [fold]h zc
-nnoremap [fold]l zo
-nnoremap [fold]a za
-nnoremap [fold]m zM
-nnoremap [fold]i zMzv
-nnoremap [fold]r zR
-nnoremap [fold]f zf
-nnoremap [fold]d zd
-nnoremap zD <Nop>
 "}}}
 
 " command and insert"{{{
@@ -531,8 +454,6 @@ xmap <Space>a [arith]
 
 nnoremap <expr> [arith]j notomo#arithmatic#inc_dec('dec')
 nnoremap <expr> [arith]k notomo#arithmatic#inc_dec('inc')
-nnoremap [arith]J v<C-x><ESC>
-nnoremap [arith]K v<C-a><ESC>
 xnoremap [arith]j <C-x>gv
 xnoremap [arith]k <C-a>gv
 xnoremap [arith]d g<C-x>gv
@@ -601,16 +522,12 @@ nnoremap [win]j :<C-u>call notomo#window#vonly()<CR>
 nnoremap [win]; :<C-u>call notomo#window#ronly()<CR>
 " close left windows
 nnoremap [win]a :<C-u>call notomo#window#lonly()<CR>
-" close preview
-nnoremap [win]p <C-w>z
 " close
 nnoremap [win]q :<C-u>q<CR>
 " open left tab's buffers vertically
 nnoremap [win]H :<C-u>call notomo#window#vs_from_left()<CR>
 " open right tab's buffers vertically
 nnoremap [win]L :<C-u>call notomo#window#vs_from_right()<CR>
-" reopen windows vertically
-nnoremap [win]V :<C-u>call notomo#window#h_to_vsplit()<CR>
 " close window and open tab
 nnoremap [win]l :<C-u>call notomo#window#extract_tabopen()<CR>
 " open the alternative buffer with vertical splitting
@@ -620,13 +537,8 @@ nnoremap [win]w :<C-u>call notomo#window#duplicate()<CR>
 "}}}
 
 " winsize"{{{
-let s:winsize_enter = 'i'
-silent execute join(['nnoremap', '[win]' . s:winsize_enter, ":<C-u>call notomo#window#setup_submode('" . s:winsize_enter . "')<CR>"])
-
 " equalize
 nnoremap [win]e <C-w>=
-" maximize
-nnoremap [win]m :<C-u>SM 4<CR>
 "}}}
 "}}}
 
@@ -687,4 +599,3 @@ for s:info in notomo#mapping#tab()
 endfor
 
 "}}}
-

@@ -8,6 +8,7 @@ function! s:add(name, options) abort
     let group = 'MyLazyLoad' . name
     execute 'augroup' group '| autocmd! | augroup END'
 
+    let options = {'type': 'opt'}
     if has_key(a:options, 'ft')
         let ft = a:options['ft']
         let filetypes = type(ft) == v:t_list ? join(ft, ',') : ft
@@ -21,8 +22,11 @@ function! s:add(name, options) abort
         let event = a:options['event']
         call s:define_lazy_load(name, group, event, '*')
     endif
+    if has_key(a:options, 'depth')
+        let options['depth'] = a:options['depth']
+    endif
 
-    call minpac#add(a:name, {'type': 'opt'})
+    call minpac#add(a:name, options)
 endfunction
 
 if has('gui') && !has('nvim')
@@ -70,3 +74,7 @@ nnoremap [exec]h :<C-u>PgmntDevInspect<CR>
 
 call s:add('mattn/emmet-vim', {'ft' : ['css', 'html']})
 call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
+
+call s:add('notomo/vimited', {'cmd' : 'Vimited*', 'depth': 0})
+xnoremap <Space><S-v> :VimitedSet<CR>
+nnoremap <Space><C-v> :<C-u>VimitedClear<CR>

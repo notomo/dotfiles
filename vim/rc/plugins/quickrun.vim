@@ -13,9 +13,6 @@ let g:quickrun_config['_'] = {
 \   'outputter': 'multi:buffer:quickfix',
 \   'outputter/buffer/split': ':botright 8sp',
 \   'runner/vimproc/updatetime': 60,
-\   'hook/neco/enable': 1,
-\   'hook/neco/redraw': 1,
-\   'hook/neco/wait': 2,
 \}
 
 let g:quickrun_config['cpp'] = {'type': 'cpp/clang-cl'}
@@ -78,5 +75,5 @@ let g:quickrun_config['haskell/stack'] = {
 \   'command' : 'stack',
 \   'exec' : '%c %o %s %a',
 \   'cmdopt' : 'runghc',
-\   'hook/output_encode/encoding': 'utf-9',
+\   'hook/output_encode/encoding': 'utf-8',
 \ }

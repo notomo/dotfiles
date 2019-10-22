@@ -26,24 +26,24 @@ xmap <Leader>g [git]
 nnoremap [test] <Nop>
 nmap <Leader>t [test]
 
-let g:plugin_dicwin_disable    = 1
-let g:loaded_gzip              = 1
-let g:loaded_tar               = 1
-let g:loaded_tarPlugin         = 1
-let g:loaded_zip               = 1
-let g:loaded_zipPlugin         = 1
-let g:loaded_rrhelper          = 1
-let g:loaded_2html_plugin      = 1
-let g:loaded_vimball           = 1
-let g:loaded_vimballPlugin     = 1
-let g:loaded_getscript         = 1
-let g:loaded_getscriptPlugin   = 1
-let g:loaded_netrw             = 1
-let g:loaded_netrwPlugin       = 1
-let g:loaded_netrwSettings     = 1
+let g:plugin_dicwin_disable = 1
+let g:loaded_gzip = 1
+let g:loaded_tar = 1
+let g:loaded_tarPlugin = 1
+let g:loaded_zip = 1
+let g:loaded_zipPlugin = 1
+let g:loaded_rrhelper = 1
+let g:loaded_2html_plugin = 1
+let g:loaded_vimball = 1
+let g:loaded_vimballPlugin = 1
+let g:loaded_getscript = 1
+let g:loaded_getscriptPlugin = 1
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+let g:loaded_netrwSettings = 1
 let g:loaded_netrwFileHandlers = 1
-let g:loaded_spellfile_plugin  = 1
-let g:loaded_logiPat           = 1
+let g:loaded_spellfile_plugin = 1
+let g:loaded_logiPat = 1
 
 augroup MyAuGroup
     autocmd!
@@ -111,14 +111,6 @@ autocmd MyAuGroup BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 set guioptions+=M
 set guioptions+=c
 
-if has('win32')
-    let g:python3_host_prog = 'C:/Python35/python.exe'
-elseif has('mac')
-    let g:python3_host_prog = '/usr/local/bin/python3'
-else
-    let g:python3_host_prog = '/usr/bin/python3'
-endif
-
 let g:python_highlight_all = 1
 let g:markdown_fenced_languages = ['vim']
 let g:ft_ignroe_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$'
@@ -180,7 +172,6 @@ endfunction
 imap <expr> j<Space>o <SID>complete()
 
 call minpac#add('tpope/vim-repeat')
-call minpac#add('osyo-manga/shabadou.vim')
 
 call minpac#add('kana/vim-smartword')
 nmap w <Plug>(smartword-w)
@@ -278,10 +269,8 @@ nmap s<Space>/ <Plug>(incsearch-easymotion-/)<C-r>"
 nmap s<Space>k <Plug>(incsearch-easymotion-?)<C-r>"
 nmap s<Space>j <Plug>(incsearch-easymotion-stay)<C-r>"
 
-nmap n <Plug>(incsearch-nohl-n)
 xmap n <Plug>(incsearch-nohl-n)
 omap n <Plug>(incsearch-nohl-n)
-nmap N <Plug>(incsearch-nohl-N)
 xmap N <Plug>(incsearch-nohl-N)
 omap N <Plug>(incsearch-nohl-N)
 nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
@@ -335,9 +324,6 @@ omap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
 xmap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
 omap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 xmap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
-
-omap <expr> pl textobj#from_regexp#mapexpr('\v%#[^])}>"'']*')
-omap <expr> pL textobj#from_regexp#mapexpr('\v%#.*\ze[])}>"'']')
 
 call minpac#add('rhysd/vim-operator-surround')
 nnoremap [surround] <Nop>
@@ -427,10 +413,6 @@ call minpac#add('lambdalisue/session.vim')
 nnoremap [file]<Space> :<C-u>call notomo#vimrc#save_session()<CR>
 nnoremap [file]<CR> :<C-u>SessionOpen<CR>
 nnoremap [denite]S :<C-u>Denite session<CR>
-
-call minpac#add('notomo/vimited', {'depth': 0})
-xnoremap <Space><S-v> :VimitedSet<CR>
-nnoremap <Space><C-v> :<C-u>VimitedClear<CR>
 
 call minpac#add('notomo/tdd.vim', {'depth': 0})
 

@@ -69,15 +69,10 @@ set shiftround
 set linebreak
 set copyindent
 set preserveindent
+set nofixendofline
+set tagcase=match
 if has('termguicolors')
     set termguicolors
-endif
-
-if exists('+fixendofline')
-    set nofixendofline
-endif
-if exists('+tagcase')
-    set tagcase=match
 endif
 
 if !has('nvim')
@@ -87,14 +82,6 @@ endif
 
 if executable('zsh')
     set shell=zsh
-endif
-
-if has('win32') && $PATH !~? '\(^\|;\)' . escape($VIM, '\\') . '\(;\|$\)'
-  let $PATH = $VIM . ';' . $PATH
-endif
-
-if has('mac')
-  set iskeyword=@,48-57,_,128-167,224-235
 endif
 
 if !has('gui')

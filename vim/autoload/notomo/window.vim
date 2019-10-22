@@ -1,18 +1,3 @@
-let s:WINSIZE_MODE_NM = 'winsize'
-
-function! s:winsize_map(lhs, rhs) abort
-    call submode#map(s:WINSIZE_MODE_NM, 'n', '', a:lhs, a:rhs)
-endfunction
-
-function! notomo#window#setup_submode(enter_key) abort
-    call submode#enter_with(s:WINSIZE_MODE_NM, 'n', '', '[win]' . a:enter_key, '<Nop>') " overwrite the key mapping calling this function
-    call submode#leave_with(s:WINSIZE_MODE_NM, 'n', '', 'j')
-    call s:winsize_map('a', '<C-w>>') " increace width
-    call s:winsize_map('z', '<C-w><') " decreace width
-    call s:winsize_map('h', '<C-w>+') " increace height
-    call s:winsize_map('l', '<C-w>-') " decreace height
-    call feedkeys('[win]' . a:enter_key) " enter submode
-endfunction
 
 function! notomo#window#xonly(directions_str) abort
     let curwin_id = win_getid()
@@ -63,20 +48,6 @@ function! notomo#window#vs_from_left() abort
 endfunction
 function! notomo#window#vs_from_right() abort
     call notomo#window#vsplit_from_tab(tabpagenr() + 1)
-endfunction
-
-function! notomo#window#h_to_vsplit() abort
-    let curbuf = bufnr('%')
-    let tab_bufs = uniq(tabpagebuflist())
-    only
-    for b in tab_bufs
-        if b != curbuf
-            execute 'buffer ' . b
-            vsplit
-        endif
-    endfor
-    execute 'buffer ' . curbuf
-    execute 'normal! <C-w>='
 endfunction
 
 function! notomo#window#extract_tabopen() abort
