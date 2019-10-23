@@ -1,18 +1,4 @@
 
-let g:loaded_python_provider = 1
-let g:loaded_ruby_provider = 1
-if has('mac')
-    let g:python3_host_prog = '/usr/local/bin/python3'
-    let g:node_host_prog = '/usr/local/bin/neovim-node-host'
-elseif has('unix')
-    let g:python3_host_prog = '/usr/bin/python3'
-    let g:ruby_host_prog = '~/.rbenv/shims/neovim-ruby-host'
-    let g:node_host_prog = '/usr/lib/node_modules/neovim/bin/cli.js'
-elseif has('win32')
-    let g:python3_host_prog = 'C:/Python35/python.exe'
-    let g:ruby_host_prog = 'C:\tools\ruby24\bin\ruby.exe'
-endif
-
 set runtimepath+=~/dotfiles/vim/rc/rplugins
 
 set clipboard+=unnamedplus
