@@ -188,6 +188,8 @@ nnoremap <silent> [newline]o :<C-u>for i in range(v:count1) \| call append(line(
 nnoremap <silent> [newline]j :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal! j' \| endfor<CR>
 "}}}
 
+nnoremap <Space>os :<C-u>setlocal spell!<CR>
+
 " keyword"{{{
 nnoremap [keyword]v :<C-u>vertical stjump <C-r>=expand('<cword>')<CR><CR>
 nnoremap [keyword]t :<C-u>tab stjump <C-r>=expand('<cword>')<CR><CR>
