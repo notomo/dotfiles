@@ -275,3 +275,11 @@ alias want_got
 	if got != want {
 		t.Errorf("want %v, but %v:", want, got)
 	}
+
+snippet goroutine
+    go func() {
+        ${0:TARGET}
+    }()
+
+snippet sleep
+    time.Sleep(${1:1} * time.${0:Second})
