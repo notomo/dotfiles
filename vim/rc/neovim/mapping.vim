@@ -45,3 +45,5 @@ function! s:set_term_title() abort
 endfunction
 
 tnoremap <CR> <Cmd>call <SID>set_term_title()<CR><CR>
+
+cnoremap j<Space>o <Space><BS><C-z><Cmd>Helpeek<CR>

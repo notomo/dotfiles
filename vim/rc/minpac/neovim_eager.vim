@@ -100,3 +100,6 @@ call minpac#add('lighttiger2505/deoplete-vim-lsp')
 call minpac#add('notomo/vimonga', {'depth': 0})
 
 call minpac#add('notomo/valtair', {'depth': 0})
+
+call minpac#add('notomo/helpeek.vim', {'depth': 0})
+nnoremap [keyword]; <Cmd>Helpeek<CR>

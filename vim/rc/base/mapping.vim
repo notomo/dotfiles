@@ -505,6 +505,8 @@ nnoremap [winmv]w <C-w>k
 nnoremap [winmv]l <C-w>l
 " swap
 nnoremap [winmv]s <C-w>r
+" next
+nnoremap [winmv]; <C-w>w
 "}}}
 
 " split"{{{
