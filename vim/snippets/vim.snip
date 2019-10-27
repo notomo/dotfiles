@@ -89,6 +89,7 @@ snippet autocmd
 	autocmd MyAuGroup ${1:event} ${2:pattern} ${0:command}
 
 snippet autoload
+alias afun
 	function! `substitute(matchstr(neosnippet#util#expand('%:p:r'), '/autoload/\zs.*$'), '/', '#', 'g')`#${1:#:func_name}(${2:#:args}) abort
 		${0}
 	endfunction
@@ -150,3 +151,6 @@ snippet if_has_key
 	if has_key(${1:dict}, ${2:key})
 		${0:TARGET}
 	endif
+
+snippet doautocmd
+	doautocmd ${1:User} ${0:pattern}
