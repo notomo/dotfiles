@@ -10,6 +10,7 @@
     - { role: 'node', tags: 'node' }
     - { role: 'docker', tags: 'docker' }
     - { role: 'neovim', tags: 'neovim' }
+    - { role: 'vim', tags: 'vim' }
     - { role: 'ctags', tags: 'ctags' }
     - { role: 'pt', tags: 'pt' }
     - { role: 'rust', tags: 'rust' }
