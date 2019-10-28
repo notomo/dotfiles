@@ -433,3 +433,6 @@ call minpac#add('notomo/tdd.vim', {'depth': 0})
 call minpac#add('notomo/gevdoc', {'depth': 0})
 
 call minpac#add('notomo/kiview', {'depth': 0})
+
+call minpac#add('notomo/helpeek.vim', {'depth': 0})
+nnoremap [keyword]; :<C-u>Helpeek<CR>
