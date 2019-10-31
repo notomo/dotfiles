@@ -25,3 +25,4 @@ alias create_empty_commit='git commit --allow-empty -m'
 alias nvU="nvim -u ~/dotfiles/vim/local/test.vim --noplugin"
 alias vu="vim -u ~/dotfiles/vim/local/test.vim"
 alias rfl='sh ~/app/refresh_dotfiles_git.sh'
+alias nvimtags="ctags --languages=C,C++,Lua -R -I EXTERN -I INIT --exclude=.git src build/include build/src/nvim/auto .deps/build/src"
