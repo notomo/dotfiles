@@ -68,7 +68,7 @@ call curstr#custom#source_option('print_rust', 'filetypes', ['rust'])
 call curstr#custom#source_alias('print', ['print_vim', 'print_go', 'print_python', 'print_js', 'print_ts', 'print_rust'])
 nnoremap <Space>rj :<C-u>Curstr print -action=append<CR>
 
-call curstr#custom#execute_option('use-cache', v:false)
+call curstr#custom#execute_option('use-cache', v:true)
 
 nnoremap [edit]J :<C-u>Curstr range -action=join<CR>
 xnoremap [edit]J :Curstr range -action=join<CR>
