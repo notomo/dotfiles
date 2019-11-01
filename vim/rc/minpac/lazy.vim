@@ -81,3 +81,6 @@ nnoremap <Space><C-v> :<C-u>VimitedClear<CR>
 
 call s:add('notomo/tdd.vim', {'cmd' : 'TDD*', 'depth': 0})
 source ~/.vim/rc/plugins/tdd.vim
+
+call s:add('notomo/vimonga', {'cmd': 'Vimonga*', 'depth': 0})
+source ~/.vim/rc/plugins/vimonga.vim
