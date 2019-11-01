@@ -428,8 +428,6 @@ nnoremap [file]<Space> :<C-u>call notomo#vimrc#save_session()<CR>
 nnoremap [file]<CR> :<C-u>SessionOpen<CR>
 nnoremap [denite]S :<C-u>Denite session<CR>
 
-call minpac#add('notomo/tdd.vim', {'depth': 0})
-
 call minpac#add('notomo/gevdoc', {'depth': 0})
 
 call minpac#add('notomo/kiview', {'depth': 0})

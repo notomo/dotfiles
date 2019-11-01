@@ -33,7 +33,6 @@ source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
 if has('nvim')
     source ~/.vim/rc/plugins/vimonga.vim
-    source ~/.vim/rc/plugins/tdd.vim
     source ~/.vim/rc/plugins/kiview.vim
     source ~/.vim/rc/plugins/valtair.vim
     source ~/.vim/rc/plugins/lsp.vim

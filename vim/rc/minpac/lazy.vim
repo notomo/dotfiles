@@ -78,3 +78,6 @@ call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
 call s:add('notomo/vimited', {'cmd' : 'Vimited*', 'depth': 0})
 xnoremap <Space><S-v> :VimitedSet<CR>
 nnoremap <Space><C-v> :<C-u>VimitedClear<CR>
+
+call s:add('notomo/tdd.vim', {'cmd' : 'TDD*', 'depth': 0})
+source ~/.vim/rc/plugins/tdd.vim
