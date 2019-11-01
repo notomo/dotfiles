@@ -54,7 +54,7 @@ function! notomo#denite#qfreplace(context) abort
         return
     endif
     call setqflist(qflist)
-    call qfreplace#start('')
+    Qfreplace
     only
 endfunction
 

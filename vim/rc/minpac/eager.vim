@@ -211,9 +211,6 @@ if !exists('g:neomru#file_mru_ignore_pattern')
     let g:neomru#file_mru_ignore_pattern = '\%(^\%(gina\|term\|vimonga\)://\)'
 endif
 
-call minpac#add('thinca/vim-qfreplace')
-nnoremap [exec]Q :<C-u>Qfreplace<CR>
-
 call minpac#add('lambdalisue/gina.vim')
 
 call minpac#add('itchyny/lightline.vim')
@@ -352,11 +349,6 @@ nmap <silent>[surround]r v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-r
 xmap <silent>[surround]r <Plug>(operator-surround-replace)
 source ~/.vim/rc/plugins/operator-surround.vim
 
-call minpac#add('thinca/vim-quickrun')
-nnoremap <silent> <Leader>Q :<C-u>call notomo#quickrun#execute()<CR>
-xnoremap <silent> <Leader>Q :QuickRun -mode v<CR>
-source ~/.vim/rc/plugins/quickrun.vim
-
 call minpac#add('tyru/caw.vim')
 nmap <Space>c <Plug>(caw:hatpos:toggle:operator)_
 xmap <Space>c <Plug>(caw:hatpos:toggle:operator)
@@ -399,24 +391,6 @@ nmap gK <Plug>(edgemotion-k)
 xmap gK <Plug>(edgemotion-k)
 omap gK <Plug>(edgemotion-k)
 
-call minpac#add('tyru/open-browser.vim')
-nnoremap [browser] <Nop>
-nmap [exec]b [browser]
-xnoremap [browser] <Nop>
-xmap [exec]b [browser]
-
-nmap [browser]s <Plug>(openbrowser-search)
-xmap [browser]s <Plug>(openbrowser-search)
-nnoremap [browser]o :<C-u>call _open_browser(expand('<cWORD>'))<CR>
-nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
-
-if executable('lemonade') && has('mac') && !empty($SSH_CLIENT)
-    let g:openbrowser_browser_commands = [
-    \ {'name': 'lemonade',
-    \  'args': 'lemonade open {uri}'}
-    \ ]
-endif
-
 call minpac#add('mhinz/vim-signify')
 nmap [git]j <Plug>(signify-next-hunk)zz
 nmap [git]k <Plug>(signify-prev-hunk)zz
@@ -429,8 +403,3 @@ nnoremap [file]<CR> :<C-u>SessionOpen<CR>
 nnoremap [denite]S :<C-u>Denite session<CR>
 
 call minpac#add('notomo/gevdoc', {'depth': 0})
-
-call minpac#add('notomo/kiview', {'depth': 0})
-
-call minpac#add('notomo/helpeek.vim', {'depth': 0})
-nnoremap [keyword]; :<C-u>Helpeek<CR>

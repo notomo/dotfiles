@@ -63,6 +63,36 @@ call s:add('rhysd/vim-gfm-syntax', {'ft' : 'markdown'})
 call s:add('fuenor/im_control.vim', {'event' : 'InsertEnter'})
 let g:IM_CtrlMode = 4
 
+call s:add('notomo/helpeek.vim', {'cmd': 'Helpeek*', 'depth': 0})
+nnoremap [keyword]; :<C-u>Helpeek<CR>
+
+call s:add('notomo/kiview', {'cmd': 'Kiview*', 'depth': 0})
+
+call s:add('thinca/vim-qfreplace', {'cmd': 'Qfreplace'})
+nnoremap [exec]Q :<C-u>Qfreplace<CR>
+
+call s:add('thinca/vim-quickrun', {'cmd': 'QuickRun'})
+nnoremap <silent> <Leader>Q :<C-u>call notomo#quickrun#execute()<CR>
+xnoremap <silent> <Leader>Q :QuickRun -mode v<CR>
+source ~/.vim/rc/plugins/quickrun.vim
+
+call s:add('tyru/open-browser.vim', {'cmd': 'OpenBrowser*'})
+nnoremap [browser] <Nop>
+nmap [exec]b [browser]
+xnoremap [browser] <Nop>
+xmap [exec]b [browser]
+
+nnoremap <expr> [browser]s ":\<C-u>OpenBrowserSearch " . expand('<cword>') . "\<CR>"
+nnoremap [browser]o :<C-u>call _open_browser(expand('<cWORD>'))<CR>
+nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
+
+if executable('lemonade') && has('mac') && !empty($SSH_CLIENT)
+    let g:openbrowser_browser_commands = [
+    \ {'name': 'lemonade',
+    \  'args': 'lemonade open {uri}'}
+    \ ]
+endif
+
 if !has('nvim')
     finish
 endif
@@ -84,3 +114,31 @@ source ~/.vim/rc/plugins/tdd.vim
 
 call s:add('notomo/vimonga', {'cmd': 'Vimonga*', 'depth': 0})
 source ~/.vim/rc/plugins/vimonga.vim
+
+call s:add('ruanyl/vim-gh-line', {'cmd': 'GHYank'})
+let g:gh_line_map_default = 0
+let g:gh_line_blame_map_default = 0
+let g:gh_always_interactive = 1
+if !has('mac') && has('unix') && executable('xclip')
+    let g:gh_open_command = 'fn() { echo "$@" | xclip -d :0 -i -selection c; }; fn '
+elseif has('mac') && executable('lemonade')
+    let g:gh_open_command = 'fn() { echo "$@" | lemonade copy; }; fn '
+elseif has('win32')
+    let g:gh_open_command = 'fn() { echo "$@" | win32yank -i --crlf; }; fn '
+endif
+nnoremap [yank]U :<C-u>GHYank<CR>
+xnoremap [yank]U :GHYank<CR>
+
+function! s:yank_and_echo(line1, line2) abort range
+    if a:line1 == a:line2
+        execute 'GH'
+    else
+        execute a:line1 . ',' . a:line2 . 'GH'
+    endif
+    let value = @+
+    echomsg 'yank '. trim(value)
+endfunction
+
+command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
+
+call s:add('notomo/valtair', {'cmd': 'Valtair*', 'depth': 0})

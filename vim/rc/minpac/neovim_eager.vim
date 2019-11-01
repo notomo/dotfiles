@@ -6,14 +6,14 @@ nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>
 call minpac#add('notomo/denite-runtimepath', {'depth': 0})
 nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
 
+call minpac#add('notomo/denite-keymap', {'depth': 0})
+nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>
+
 call minpac#add('pocari/vim-denite-emoji')
 call minpac#add('junegunn/vim-emoji')
 nnoremap <silent> [denite]e :<C-u>Denite emoji -default-action=append_emoji<CR>
 
 call minpac#add('vim-jp/vimdoc-ja')
-
-call minpac#add('notomo/denite-keymap', {'depth': 0})
-nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>
 
 call minpac#add('thinca/vim-themis')
 
@@ -67,34 +67,6 @@ if executable('python3.6') || executable('python3.7')
     let g:deoplete#enable_at_startup = 1
 endif
 
-call minpac#add('ruanyl/vim-gh-line')
-let g:gh_line_map_default = 0
-let g:gh_line_blame_map_default = 0
-let g:gh_always_interactive = 1
-if !has('mac') && has('unix') && executable('xclip')
-    let g:gh_open_command = 'fn() { echo "$@" | xclip -d :0 -i -selection c; }; fn '
-elseif has('mac') && executable('lemonade')
-    let g:gh_open_command = 'fn() { echo "$@" | lemonade copy; }; fn '
-elseif has('win32')
-    let g:gh_open_command = 'fn() { echo "$@" | win32yank -i --crlf; }; fn '
-endif
-nnoremap [yank]U :<C-u>GHYank<CR>
-xnoremap [yank]U :GHYank<CR>
-
-function! s:yank_and_echo(line1, line2) abort range
-    if a:line1 == a:line2
-        execute 'GH'
-    else
-        execute a:line1 . ',' . a:line2 . 'GH'
-    endif
-    let value = @+
-    echomsg 'yank '. trim(value)
-endfunction
-
-command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
-
 call minpac#add('prabirshrestha/async.vim')
 call minpac#add('prabirshrestha/vim-lsp')
 call minpac#add('lighttiger2505/deoplete-vim-lsp')
-
-call minpac#add('notomo/valtair', {'depth': 0})

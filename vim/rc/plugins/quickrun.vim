@@ -9,8 +9,6 @@ let g:quickrun_config['_'] = {
 \   'hook/output_encode/encoding': 'cp932',
 \   'hook/close_quickfix/enable_exit': 1,
 \   'hook/close_buffer/enable_failure': 0,
-\   'hook/close_buffer/enable_empty_data': 1,
-\   'outputter': 'multi:buffer:quickfix',
 \   'outputter/buffer/split': ':botright 8sp',
 \   'runner/vimproc/updatetime': 60,
 \}
