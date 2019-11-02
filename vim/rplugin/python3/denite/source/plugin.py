@@ -6,7 +6,7 @@ class Source(Base):
         super().__init__(vim)
 
         self.name = "plugin"
-        self.kind = "directory"
+        self.kind = "plugin"
         self.matchers = ["matcher_substring"]
         self.sorters = []
 
