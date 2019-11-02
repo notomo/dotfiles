@@ -154,6 +154,12 @@ if executable('node')
     noremap <silent> <LeftRelease> :<C-u>GestureFinish<CR>
     source ~/.vim/rc/plugins/gesture.vim
 
+    call s:add('notomo/ctrlb.nvim', {'do' : '!npm run setup', 'cmd': 'Ctrlb*', 'depth': 0})
+    nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpenLayout ~/dotfiles/vim/rc/plugins/ctrlb_layout.json\<CR>"
+    nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
+    nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
+    source ~/.vim/rc/plugins/ctrlb.vim
+
     call s:add('mhartington/nvim-typescript', {'do': '!./install.sh', 'ft': 'typescript'})
     let g:nvim_typescript#signature_complete = 1
     let g:nvim_typescript#diagnostics_enable = 0
