@@ -20,7 +20,7 @@ nnoremap <silent> [term]h :<C-u>call <SID>open_terminal('split')<CR>
 nnoremap <silent> [term]t :<C-u>call <SID>open_terminal('tabedit')<CR>
 
 nnoremap [exec]C :<C-u>checkhealth<CR>
-nnoremap [exec]u :<C-u>UpdateRemotePlugins<CR>
+nnoremap [exec]u :<C-u>call notomo#vimrc#update_remote_plugin()<CR>
 
 nnoremap [exec]m :<C-u>call _run_http_server_and_open(v:false)<CR>
 nnoremap [exec]M :<C-u>call _run_http_server_and_open(v:true)<CR>

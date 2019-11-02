@@ -11,3 +11,8 @@ class Kind(Directory):
         for target in context["targets"]:
             name = target["word"].split("/")[-1]
             self.vim.call("minpac#update", name)
+
+    def action_packadd(self, context):
+        for target in context["targets"]:
+            name = target["word"]
+            self.vim.command(f"packadd {name}")

@@ -138,3 +138,23 @@ function! notomo#vimrc#save_session() abort
         echomsg 'canceled'
     endif
 endfunction
+
+function! notomo#vimrc#update_rplugin_runtimepath() abort
+    if !has('nvim')
+        return
+    endif
+
+    let runtimepaths = split(&runtimepath, ',')
+    let pack_path = split(&packpath, ',')[0]
+    let rplugin_paths = globpath(pack_path, 'pack/*/opt/*/rplugin', v:true, v:true)
+    let paths = map(rplugin_paths, { _, path -> fnamemodify(path, ':h') })
+    call filter(paths, { _, path -> count(runtimepaths, path) == 0 })
+    call extend(runtimepaths, paths)
+
+    let &runtimepath = join(runtimepaths, ',') 
+endfunction
+
+function! notomo#vimrc#update_remote_plugin() abort
+    call notomo#vimrc#update_rplugin_runtimepath()
+    UpdateRemotePlugins
+endfunction
