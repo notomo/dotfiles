@@ -10,7 +10,11 @@ class Kind(Directory):
     def action_update(self, context):
         for target in context["targets"]:
             name = target["word"].split("/")[-1]
-            self.vim.call("minpac#update", name)
+            self.vim.call(
+                "minpac#update",
+                name,
+                {"do": "call notomo#vimrc#update_rplugin_runtimepath()"},
+            )
 
     def action_packadd(self, context):
         for target in context["targets"]:

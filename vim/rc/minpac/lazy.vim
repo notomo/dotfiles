@@ -70,6 +70,7 @@ call s:add('notomo/helpeek.vim', {'cmd': 'Helpeek*', 'depth': 0})
 nnoremap [keyword]; :<C-u>Helpeek<CR>
 
 call s:add('notomo/kiview', {'cmd': 'Kiview*', 'depth': 0})
+source ~/.vim/rc/plugins/kiview.vim
 
 call s:add('thinca/vim-qfreplace', {'cmd': 'Qfreplace'})
 nnoremap [exec]Q :<C-u>Qfreplace<CR>
@@ -145,12 +146,17 @@ endfunction
 command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
 
 call s:add('notomo/valtair', {'cmd': 'Valtair*', 'depth': 0})
+source ~/.vim/rc/plugins/valtair.vim
 
 if executable('node')
     call s:add('notomo/gesture.nvim', {'do' : '!npm run setup', 'cmd': 'Gesture*', 'depth': 0})
     noremap <silent> <LeftDrag> :<C-u>GestureDraw<CR>
     noremap <silent> <LeftRelease> :<C-u>GestureFinish<CR>
     source ~/.vim/rc/plugins/gesture.vim
+
+    call s:add('mhartington/nvim-typescript', {'do': '!./install.sh', 'ft': 'typescript'})
+    let g:nvim_typescript#signature_complete = 1
+    let g:nvim_typescript#diagnostics_enable = 0
 endif
 
 if executable('python3.6') || executable('python3.7')

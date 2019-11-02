@@ -37,16 +37,11 @@ endif
 call minpac#add('w0rp/ale')
 source ~/.vim/rc/plugins/ale.vim
 
-
 if executable('node')
     call minpac#add('notomo/ctrlb.nvim', {'do' : '!npm run setup', 'depth': 0})
     nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpenLayout ~/dotfiles/vim/rc/plugins/ctrlb_layout.json\<CR>"
     nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
     nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
-
-    call minpac#add('mhartington/nvim-typescript')
-    let g:nvim_typescript#signature_complete = 1
-    let g:nvim_typescript#diagnostics_enable = 0
 endif
 
 if executable('python3.6') || executable('python3.7')
