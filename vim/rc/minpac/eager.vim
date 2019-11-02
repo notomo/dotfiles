@@ -129,10 +129,6 @@ let g:python_highlight_all = 1
 let g:markdown_fenced_languages = ['vim']
 let g:ft_ignroe_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$'
 
-if has('nvim')
-    autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
-endif
-
 autocmd MyAuGroup OptionSet diff setlocal nocursorline
 autocmd MyAuGroup WinEnter,InsertLeave * if &diff == 1 | setlocal nocursorline | endif
 

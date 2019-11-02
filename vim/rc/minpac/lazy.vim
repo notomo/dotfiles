@@ -167,4 +167,9 @@ if executable('python3.6') || executable('python3.7')
     nnoremap <silent> [keyword]fh :<C-u>Curstr openable -action=horizontal_open<CR>
     nnoremap <silent> [edit]s :<C-u>Curstr togglable<CR>
     source ~/.vim/rc/plugins/curstr.vim
+
+    call s:add('numirias/semshi', {'ft': 'python'})
+    let g:semshi#simplify_markup = v:false
+    let g:semshi#tolerate_syntax_errors = v:false
+    autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
 endif

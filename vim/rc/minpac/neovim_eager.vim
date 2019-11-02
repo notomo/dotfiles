@@ -20,10 +20,6 @@ call minpac#add('thinca/vim-themis')
 call minpac#add('sheerun/vim-polyglot')
 let g:polyglot_disabled = ['markdown', 'jsx']
 
-call minpac#add('numirias/semshi')
-let g:semshi#simplify_markup = v:false
-let g:semshi#tolerate_syntax_errors = v:false
-
 if has('unix')
     call minpac#add('lambdalisue/suda.vim')
     let g:suda_startup = 1
