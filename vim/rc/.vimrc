@@ -36,7 +36,6 @@ if has('nvim')
     source ~/.vim/rc/plugins/valtair.vim
     source ~/.vim/rc/plugins/lsp.vim
     if executable('node')
-        source ~/.vim/rc/plugins/gesture.vim
         source ~/.vim/rc/plugins/ctrlb.vim
     endif
     if executable('python3.6') || executable('python3.7')

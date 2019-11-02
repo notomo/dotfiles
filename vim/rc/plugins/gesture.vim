@@ -1,29 +1,33 @@
-call gesture#clear()
 
-let s:x_long_gesture_length = 40
+autocmd MyAuGroup User GestureSourceLoad ++once call s:settings()
+function! s:settings() abort
 
-call gesture#register({'name': 'scroll to bottom'}).up().down().noremap('G')
-call gesture#register({'name': 'scroll to top'}).down().up().noremap('gg')
-call gesture#register({'name': 'open filer'}).down().right().map('[exec]f')
-call gesture#register({'name': 'paste'}).right().down().left().map('p')
+    let s:x_long_gesture_length = 40
 
-call gesture#register({'name': 'split window vertically'}).down().right().up().map('[win]v')
+    call gesture#register({'name': 'scroll to bottom'}).up().down().noremap('G')
+    call gesture#register({'name': 'scroll to top'}).down().up().noremap('gg')
+    call gesture#register({'name': 'open filer'}).down().right().map('[exec]f')
+    call gesture#register({'name': 'paste'}).right().down().left().map('p')
 
-call gesture#register({'name': 'new tab'}).up().map('[tab]t')
-call gesture#register({'name': 'new tab'}).down().map('[tab]t')
+    call gesture#register({'name': 'split window vertically'}).down().right().up().map('[win]v')
 
-call gesture#register({'name': 'next tab'}).right({'max_length' : s:x_long_gesture_length}).map('[tab]l')
-call gesture#register({'name': 'last tab'}).right({'min_length' : s:x_long_gesture_length}).map('[tab]e')
+    call gesture#register({'name': 'new tab'}).up().map('[tab]t')
+    call gesture#register({'name': 'new tab'}).down().map('[tab]t')
 
-call gesture#register({'name': 'previous tab'}).left({'max_length' : s:x_long_gesture_length}).map('[tab]a')
-call gesture#register({'name': 'first tab'}).left({'min_length' : s:x_long_gesture_length}).map('[tab]s')
+    call gesture#register({'name': 'next tab'}).right({'max_length' : s:x_long_gesture_length}).map('[tab]l')
+    call gesture#register({'name': 'last tab'}).right({'min_length' : s:x_long_gesture_length}).map('[tab]e')
 
-call gesture#register({'name': 'close tab'}).down().left().map('[tab]q')
-call gesture#register({'name': 'go back'}).right().left().map('go')
-call gesture#register({'name': 'go forward'}).left().right().map('gi')
-call gesture#register({'name': 'close the other windows'}).down().left().down().map('[win]o')
-call gesture#register({'name': 'close the other tabs'}).down().left().down().left().map('[tab]o')
+    call gesture#register({'name': 'previous tab'}).left({'max_length' : s:x_long_gesture_length}).map('[tab]a')
+    call gesture#register({'name': 'first tab'}).left({'min_length' : s:x_long_gesture_length}).map('[tab]s')
 
-call gesture#register({'name': 'open the recent files'}).up().right().noremap(":\<C-u>Denite file_mru\<CR>")
+    call gesture#register({'name': 'close tab'}).down().left().map('[tab]q')
+    call gesture#register({'name': 'go back'}).right().left().map('go')
+    call gesture#register({'name': 'go forward'}).left().right().map('gi')
+    call gesture#register({'name': 'close the other windows'}).down().left().down().map('[win]o')
+    call gesture#register({'name': 'close the other tabs'}).down().left().down().left().map('[tab]o')
 
-call gesture#custom#set('enabled_input_view', v:true)
+    call gesture#register({'name': 'open the recent files'}).up().right().noremap(":\<C-u>Denite file_mru\<CR>")
+
+    call gesture#custom#set('enabled_input_view', v:true)
+
+endfunction

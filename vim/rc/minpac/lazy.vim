@@ -25,6 +25,9 @@ function! s:add(name, options) abort
     if has_key(a:options, 'depth')
         let options['depth'] = a:options['depth']
     endif
+    if has_key(a:options, 'do')
+        let options['do'] = a:options['do']
+    endif
 
     call minpac#add(a:name, options)
 endfunction
@@ -142,3 +145,10 @@ endfunction
 command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
 
 call s:add('notomo/valtair', {'cmd': 'Valtair*', 'depth': 0})
+
+if executable('node')
+    call s:add('notomo/gesture.nvim', {'do' : '!npm run setup', 'cmd': 'Gesture*', 'depth': 0})
+    noremap <silent> <LeftDrag> :<C-u>GestureDraw<CR>
+    noremap <silent> <LeftRelease> :<C-u>GestureFinish<CR>
+    source ~/.vim/rc/plugins/gesture.vim
+endif

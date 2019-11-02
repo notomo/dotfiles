@@ -44,10 +44,6 @@ if executable('node')
     nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
     nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
 
-    call minpac#add('notomo/gesture.nvim', {'do' : '!npm run setup', 'depth': 0})
-    noremap <silent> <LeftDrag> :<C-u>call gesture#draw()<CR>
-    noremap <silent> <LeftRelease> :<C-u>call gesture#finish()<CR>
-
     call minpac#add('mhartington/nvim-typescript')
     let g:nvim_typescript#signature_complete = 1
     let g:nvim_typescript#diagnostics_enable = 0
