@@ -39,7 +39,6 @@ if has('nvim')
         source ~/.vim/rc/plugins/ctrlb.vim
     endif
     if executable('python3.6') || executable('python3.7')
-        source ~/.vim/rc/plugins/curstr.vim
         source ~/.vim/rc/plugins/denite.vim
         source ~/.vim/rc/plugins/deoplete.vim
         source ~/.vim/rc/plugins/defx.vim

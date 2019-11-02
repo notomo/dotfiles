@@ -50,13 +50,6 @@ if executable('node')
 endif
 
 if executable('python3.6') || executable('python3.7')
-    call minpac#add('notomo/curstr.nvim', {'depth': 0})
-    nnoremap <silent> [keyword]fo :<C-u>Curstr openable -action=open<CR>
-    nnoremap <silent> [keyword]ft :<C-u>Curstr openable -action=tab_open<CR>
-    nnoremap <silent> [keyword]fv :<C-u>Curstr openable -action=vertical_open<CR>
-    nnoremap <silent> [keyword]fh :<C-u>Curstr openable -action=horizontal_open<CR>
-    nnoremap <silent> [edit]s :<C-u>Curstr togglable<CR>
-
     call minpac#add('Shougo/defx.nvim')
 
     call minpac#add('Shougo/deoplete.nvim')
