@@ -1,11 +1,11 @@
 
-autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/start/curstr.nvim/* call s:curstr_settings()
+autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/opt/curstr.nvim/* call s:curstr_settings()
 function! s:curstr_settings() abort
-    let g:local#var#document_root = '~/.vim/minpac/pack/minpac/start/curstr.nvim/test/report/html/'
+    let g:local#var#document_root = '~/.vim/minpac/pack/minpac/opt/curstr.nvim/test/report/html/'
 endfunction
 
 let s:ctrlb_nvim_coverage = ''
-autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/start/ctrlb.nvim/* call s:ctrlb_nvim_settings()
+autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/opt/ctrlb.nvim/* call s:ctrlb_nvim_settings()
 function! s:ctrlb_nvim_settings() abort
     if empty(s:ctrlb_nvim_coverage)
         let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
@@ -26,13 +26,16 @@ endfunction
 
 autocmd MyAuGroup BufRead,BufEnter ~/workspace/nodejs/sinchock-web/* call s:sinchock_web_settings()
 function! s:sinchock_web_settings() abort
-    call curstr#custom#source_alias('interface_impl', ['togglable/file'])
-    call curstr#custom#source_option('interface_impl', 'pattern_groups', [['%impls/models/%', '%domain/models/%'], ['%impls/repositories/mock/%', '%domain/repositories/%']])
+    autocmd MyAuGroup User CurstrSourceLoad ++once call s:sinchock_web_curstr_settings()
+    function! s:sinchock_web_curstr_settings() abort
+        call curstr#custom#source_alias('interface_impl', ['togglable/file'])
+        call curstr#custom#source_option('interface_impl', 'pattern_groups', [['%impls/models/%', '%domain/models/%'], ['%impls/repositories/mock/%', '%domain/repositories/%']])
+    endfunction
     nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
 endfunction
 
 let s:gesture_nvim_coverage = ''
-autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/start/gesture.nvim/* call s:gesture_nvim_settings()
+autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/opt/gesture.nvim/* call s:gesture_nvim_settings()
 function! s:gesture_nvim_settings() abort
     if empty(s:gesture_nvim_coverage)
         let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
@@ -43,34 +46,44 @@ endfunction
 
 autocmd MyAuGroup BufRead,BufEnter $GOPATH/src/github.com/notomo/qaper/* call s:qaper_settings()
 function! s:qaper_settings() abort
-    call curstr#custom#source_alias('interface_impl', ['togglable/file'])
-    call curstr#custom#source_option('interface_impl', 'pattern_groups', [
-        \ [
-            \ '%internal/client/datastore/%',
-            \ '%internal/client/repository/%',
-            \ '%internal/server/repository/%',
-            \ '%internal/server/datastore/%',
-            \ '%domain/repository/%'
-        \ ],
-        \ [
-            \ '%internal/datastore/%',
-            \ '%domain/model/%',
-            \ '%internal/client/model/%',
-            \ '%internal/server/model/%',
-        \ ],
-    \ ])
+
+    autocmd MyAuGroup User CurstrSourceLoad ++once call s:qaper_curstr_settings()
+    function! s:qaper_curstr_settings() abort
+        call curstr#custom#source_alias('interface_impl', ['togglable/file'])
+        call curstr#custom#source_option('interface_impl', 'pattern_groups', [
+            \ [
+                \ '%internal/client/datastore/%',
+                \ '%internal/client/repository/%',
+                \ '%internal/server/repository/%',
+                \ '%internal/server/datastore/%',
+                \ '%domain/repository/%'
+            \ ],
+            \ [
+                \ '%internal/datastore/%',
+                \ '%domain/model/%',
+                \ '%internal/client/model/%',
+                \ '%internal/server/model/%',
+            \ ],
+        \ ])
+    endfunction
+
     nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
 endfunction
 
-autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/start/vimonga/* call s:vimonga_settings()
+autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/opt/vimonga/* call s:vimonga_settings()
 function! s:vimonga_settings() abort
-    call curstr#custom#source_alias('interface_impl', ['togglable/file'])
-    call curstr#custom#source_option('interface_impl', 'pattern_groups', [
-        \ [
-            \ '%datastore/%',
-            \ '%domain/repository/%',
-        \ ],
-    \ ])
+
+    autocmd MyAuGroup User CurstrSourceLoad ++once call s:vimonga_curstr_settings()
+    function! s:vimonga_curstr_settings() abort
+        call curstr#custom#source_alias('interface_impl', ['togglable/file'])
+        call curstr#custom#source_option('interface_impl', 'pattern_groups', [
+            \ [
+                \ '%datastore/%',
+                \ '%domain/repository/%',
+            \ ],
+        \ ])
+    endfunction
+
     nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
 endfunction
 
@@ -87,17 +100,22 @@ endfunction
 let s:wsxhub_coverage = ''
 autocmd MyAuGroup BufRead,BufEnter $GOPATH/src/github.com/notomo/wsxhub/* call s:wsxhub_settings()
 function! s:wsxhub_settings() abort
-    call curstr#custom#source_alias('interface_impl', ['togglable/file'])
-    call curstr#custom#source_option('interface_impl', 'pattern_groups', [
-        \ [
-            \ '%internal/domain/%',
-            \ '%internal/impl/%',
-        \ ],
-    \ ])
+
+    autocmd MyAuGroup User CurstrSourceLoad ++once call s:wsxhub_curstr_settings()
+    function! s:wsxhub_curstr_settings() abort
+        call curstr#custom#source_alias('interface_impl', ['togglable/file'])
+        call curstr#custom#source_option('interface_impl', 'pattern_groups', [
+            \ [
+                \ '%internal/domain/%',
+                \ '%internal/impl/%',
+            \ ],
+        \ ])
+    endfunction
     nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
     if empty(s:wsxhub_coverage)
         let root = notomo#vimrc#search_parent_recursive('Makefile', expand('%:p:h'))
         let s:wsxhub_coverage = fnamemodify(root, ':p:h:s?$??')
     endif
     let g:local#var#document_root = s:wsxhub_coverage
+
 endfunction
