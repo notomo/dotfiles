@@ -1,3 +1,5 @@
+let g:mapleader = ','
+let g:maplocalleader = '<Leader>l'
 
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]
