@@ -10,7 +10,7 @@ function! s:settings() abort
     call curstr#custom#source_option('swagger', 'search_pattern', '\3:')
 
     call curstr#custom#source_alias('openable', ['vim/function', 'swagger', 'file', 'directory', 'vim/runtime'])
-
+    call curstr#custom#source_option('vim/autoload_function', 'include_packpath', v:true)
 
     call curstr#custom#source_alias('bool', ['togglable/word/simple'])
     call curstr#custom#source_option('bool', 'words', ['true', 'false'])
