@@ -103,8 +103,8 @@ endif
 
 call s:add('fszymanski/deoplete-emoji', {'ft' : 'markdown'})
 
-call s:add('cocopon/pgmnt.vim', {'cmd' : 'PgmntDevInspect'})
-nnoremap [exec]h :<C-u>PgmntDevInspect<CR>
+call s:add('cocopon/inspecthi.vim', {'cmd' : 'Inspecthi'})
+nnoremap [exec]h :<C-u>Inspecthi<CR>
 
 call s:add('mattn/emmet-vim', {'ft' : ['css', 'html']})
 call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
