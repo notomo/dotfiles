@@ -57,3 +57,21 @@
     dest: "{{ home_dir }}/.local/bin/nvim"
     state: link
   when: is_ubuntu and not nvim_installed.stat.exists and not nvim_installed.stat.exists
+
+- name: apt get for development
+  apt:
+    name:
+      - libcurl4
+      - ninja-build
+      - gettext
+      - libtool
+      - libtool-bin
+      - autoconf
+      - automake
+      - cmake
+      - g++
+      - pkg-config
+      - unzip
+      - lua-check
+  when: is_ubuntu
+  become: yes
