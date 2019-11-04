@@ -149,9 +149,10 @@ function! notomo#vimrc#update_rplugin_runtimepath() abort
     let rplugin_paths = globpath(pack_path, 'pack/*/opt/*/rplugin', v:true, v:true)
     let paths = map(rplugin_paths, { _, path -> fnamemodify(path, ':h') })
     call filter(paths, { _, path -> count(runtimepaths, path) == 0 })
-    call extend(runtimepaths, paths)
-
-    let &runtimepath = join(runtimepaths, ',') 
+    let names = map(paths, { _, path -> fnamemodify(path, ':t') })
+    for name in names
+        execute 'packadd' name
+    endfor
 endfunction
 
 function! notomo#vimrc#update_remote_plugin() abort
