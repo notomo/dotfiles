@@ -1,3 +1,15 @@
+nnoremap [file]f :<C-u>Curstr altr_next<CR>
+nnoremap [file]b :<C-u>Curstr altr_previous<CR>
+nnoremap [file]l :<C-u>Curstr altr_next -action=tab_open<CR>
+nnoremap [file]h :<C-u>Curstr altr_next -action=vertical_open<CR>
+
+nnoremap [file]t :<C-u>Curstr altr_next_new<CR>
+
+nnoremap <Space>rj :<C-u>Curstr print -action=append<CR>
+
+nnoremap [edit]J :<C-u>Curstr range -action=join<CR>
+xnoremap [edit]J :Curstr range -action=join<CR>
+
 
 autocmd MyAuGroup User CurstrSourceLoad ++once call s:settings()
 function! s:settings() abort
@@ -41,14 +53,9 @@ function! s:settings() abort
     call curstr#custom#source_option('altr_next', 'pattern_groups', s:pattern_groups)
     call curstr#custom#source_alias('altr_previous', ['altr_next'])
     call curstr#custom#source_option('altr_previous', 'offset', -1)
-    nnoremap [file]f :<C-u>Curstr altr_next<CR>
-    nnoremap [file]b :<C-u>Curstr altr_previous<CR>
-    nnoremap [file]l :<C-u>Curstr altr_next -action=tab_open<CR>
-    nnoremap [file]h :<C-u>Curstr altr_next -action=vertical_open<CR>
 
     call curstr#custom#source_alias('altr_next_new', ['altr_next'])
     call curstr#custom#source_option('altr_next_new', 'create', v:true)
-    nnoremap [file]t :<C-u>Curstr altr_next_new<CR>
 
     call curstr#custom#source_alias('print_vim', ['togglable/line/regex'])
     call curstr#custom#source_option('print_vim', 'patterns', [['\v^(\s*)let\s+([^=[:space:]]*).*$', '\1echomsg string(\2)']])
@@ -69,11 +76,7 @@ function! s:settings() abort
     call curstr#custom#source_option('print_rust', 'patterns', [['\v^(\s*)let\s+(mut\s+)?([^=[:space:],:]*).*$', '\1println!("{:?}", \3);']])
     call curstr#custom#source_option('print_rust', 'filetypes', ['rust'])
     call curstr#custom#source_alias('print', ['print_vim', 'print_go', 'print_python', 'print_js', 'print_ts', 'print_rust'])
-    nnoremap <Space>rj :<C-u>Curstr print -action=append<CR>
 
     call curstr#custom#execute_option('use-cache', v:true)
-
-    nnoremap [edit]J :<C-u>Curstr range -action=join<CR>
-    xnoremap [edit]J :Curstr range -action=join<CR>
 
 endfunction

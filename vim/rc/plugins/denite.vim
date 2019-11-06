@@ -155,10 +155,10 @@ call denite#custom#action('file,directory,go/package,plugin', 'filer', {context 
 call denite#custom#action('file,directory,go/package,plugin', 'tabfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
 
 call denite#custom#action('file', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec_on_file(context)})
-call denite#custom#action('directory,go/package', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec(context)})
+call denite#custom#action('directory,go/package,plugin', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec(context)})
 
 call denite#custom#action('file', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec_on_file(context)})
-call denite#custom#action('directory,go/package', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
+call denite#custom#action('directory,go/package,plugin', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
 
 call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles', context)})
 
