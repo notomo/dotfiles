@@ -119,7 +119,7 @@ source ~/.vim/rc/plugins/tdd.vim
 call s:add('notomo/vimonga', {'cmd': 'Vimonga*', 'depth': 0})
 source ~/.vim/rc/plugins/vimonga.vim
 
-call s:add('ruanyl/vim-gh-line', {'cmd': 'GHYank'})
+call s:add('ruanyl/vim-gh-line', {'cmd': 'GH'})
 let g:gh_line_map_default = 0
 let g:gh_line_blame_map_default = 0
 let g:gh_always_interactive = 1
@@ -130,8 +130,8 @@ elseif has('mac') && executable('lemonade')
 elseif has('win32')
     let g:gh_open_command = 'fn() { echo "$@" | win32yank -i --crlf; }; fn '
 endif
-nnoremap [yank]U :<C-u>GHYank<CR>
-xnoremap [yank]U :GHYank<CR>
+nnoremap [yank]U :<C-u>YankGH<CR>
+xnoremap [yank]U :YankGH<CR>
 
 function! s:yank_and_echo(line1, line2) abort range
     if a:line1 == a:line2
@@ -143,7 +143,7 @@ function! s:yank_and_echo(line1, line2) abort range
     echomsg 'yank '. trim(value)
 endfunction
 
-command! -range GHYank call s:yank_and_echo(<line1>, <line2>)
+command! -range YankGH call s:yank_and_echo(<line1>, <line2>)
 
 call s:add('notomo/valtair', {'cmd': 'Valtair*', 'depth': 0})
 source ~/.vim/rc/plugins/valtair.vim
