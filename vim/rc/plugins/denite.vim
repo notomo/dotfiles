@@ -162,7 +162,7 @@ call denite#custom#action('directory,go/package,plugin', 'dir_file_rec', {contex
 
 call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles', context)})
 
-call denite#custom#action('directory', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})
+call denite#custom#action('directory,plugin', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})
 
 call denite#custom#action('buffer,command,directory,file,openable,word', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})
 
