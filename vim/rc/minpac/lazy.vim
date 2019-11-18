@@ -101,8 +101,6 @@ if !has('nvim')
     finish
 endif
 
-call s:add('fszymanski/deoplete-emoji', {'ft' : 'markdown'})
-
 call s:add('cocopon/inspecthi.vim', {'cmd' : 'Inspecthi'})
 nnoremap [exec]h :<C-u>Inspecthi<CR>
 

@@ -13,8 +13,6 @@ call minpac#add('pocari/vim-denite-emoji')
 call minpac#add('junegunn/vim-emoji')
 nnoremap <silent> [denite]e :<C-u>Denite emoji -default-action=append_emoji<CR>
 
-call minpac#add('vim-jp/vimdoc-ja')
-
 call minpac#add('thinca/vim-themis')
 
 call minpac#add('sheerun/vim-polyglot')
