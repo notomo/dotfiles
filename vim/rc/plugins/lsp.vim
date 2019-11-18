@@ -8,6 +8,7 @@ nnoremap <silent> [denite]ld :<C-u>Denite documentSymbol<CR>
 nnoremap <silent> [denite]lw :<C-u>Denite workspaceSymbol<CR>
 nnoremap <silent> [denite]lr :<C-u>Denite references -auto-preview -immediately-1<CR>
 
+let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_serverCommands['go'] = ['gopls', '-mode', 'stdio']
 let g:LanguageClient_serverCommands['python'] = ['pyls']
 let g:LanguageClient_serverCommands['rust'] = ['rls']
