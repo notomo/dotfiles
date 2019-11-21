@@ -159,3 +159,8 @@ function! notomo#vimrc#update_remote_plugin() abort
     call notomo#vimrc#update_rplugin_runtimepath()
     UpdateRemotePlugins
 endfunction
+
+function! notomo#vimrc#clean() abort
+    call minpac#clean()
+    call notomo#vimrc#update_rplugin_runtimepath()
+endfunction

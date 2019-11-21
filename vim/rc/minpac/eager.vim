@@ -136,7 +136,7 @@ autocmd MyAuGroup WinEnter,InsertLeave * if &diff == 1 | setlocal nocursorline |
 
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 nnoremap [exec]U :<C-u>call minpac#update('', {'do': 'call notomo#vimrc#update_rplugin_runtimepath()'})<CR>
-nnoremap [exec]R :<C-u>call minpac#clean()<CR>
+nnoremap [exec]R :<C-u>call notomo#vimrc#clean()<CR>
 
 call minpac#add('kana/vim-textobj-user')
 call minpac#add('kana/vim-operator-user')
