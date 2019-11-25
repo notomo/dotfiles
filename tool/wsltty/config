@@ -1,0 +1,6 @@
+Font=MeiryoKe_Gothic
+FontHeight=14
+Term=xterm-256color
+Emojis=noto
+EmojiPlacement=middle
+RightClickAction=paste
