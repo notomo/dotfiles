@@ -6,12 +6,6 @@ from .base import Base
 class Source(Base):
 
     PATHS = [
-        "~/.vim/minpac/pack/minpac/start/gesture.nvim",
-        "~/.vim/minpac/pack/minpac/start/ctrlb.nvim",
-        "~/.vim/minpac/pack/minpac/start/curstr.nvim",
-        "~/.vim/minpac/pack/minpac/start/vimonga",
-        "~/workspace/lsync/ctrlb",
-        "~/workspace/mapemo",
         "~/go/src/github.com/notomo/wsxhub/",
         "~/.local/share/nvim/rplugin.vim",
         "/tmp/ctrlb.log",
@@ -52,6 +46,9 @@ class Source(Base):
         path_file = open(file_path, "r")
         paths.extend([path.rstrip() for path in path_file])
         path_file.close()
+
+        workspace = os.path.expanduser("~/workspace")
+        paths.extend([os.path.join(workspace, x) for x in os.listdir(workspace)])
 
         isdir = os.path.isdir
         join = os.path.join
