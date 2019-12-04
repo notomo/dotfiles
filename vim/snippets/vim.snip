@@ -154,3 +154,33 @@ snippet if_has_key
 
 snippet doautocmd
 	doautocmd ${1:User} ${0:pattern}
+
+snippet test
+	let s:suite = themis#suite(${1:name})
+	let s:assert = themis#helper('assert')
+
+	function! s:suite.before_each()
+	endfunction
+
+	function! s:suite.after_each()
+	endfunction
+
+	function! s:suite.${2:name}()
+		${0:TARGET}
+	endfunction
+
+snippet nested_test
+	function! s:suite.__${1:name}__() abort
+		let suite = themis#suite('${2:name}')
+
+		function! suite.before_each()
+		endfunction
+
+		function! suite.after_each()
+		endfunction
+
+		function! suite.${3:name}()
+			${0:TARGET}
+		endfunction
+
+	endfunction
