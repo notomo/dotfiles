@@ -45,6 +45,9 @@ nnoremap [edit]d *``"_cgn
 nnoremap [edit]a *``cgn<C-r>"
 xnoremap <expr> [edit]d "y/\\V\<C-r>=notomo#vimrc#escape_search_pattern(@\")\<CR>\<CR>" . '``cgn'
 nnoremap [edit]T :<C-u>call notomo#vimrc#add_closed_tag()<CR>
+
+nnoremap [edit]p [p
+nnoremap [edit]P [P
 "}}}
 
 " kana"{{{
