@@ -165,6 +165,12 @@ xnoremap gp ])h
 onoremap gd ]}
 xnoremap gd ]}h
 
+onoremap gl t]
+onoremap gs t"
+onoremap gb t`
+onoremap gq t'
+onoremap gx t*
+
 nnoremap go <C-o>
 nnoremap gi <C-i>
 
