@@ -160,6 +160,11 @@ nnoremap gz G
 xnoremap gz G
 onoremap gz G
 
+onoremap gp ])
+xnoremap gp ])h
+onoremap gd ]}
+xnoremap gd ]}h
+
 nnoremap go <C-o>
 nnoremap gi <C-i>
 
