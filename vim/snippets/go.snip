@@ -12,7 +12,7 @@ abbr func name() (returnVar type) {}
 		${0:TARGET}
 	}
 
-snippet lambda
+snippet closure
 abbr func() (returnVar type) {}
 	func (${1:args}) ${2:type }{
 		${0:TARGET}
@@ -262,9 +262,11 @@ snippet pp
     pp.Println(${0})
 
 snippet spread_param
+options word
     ${1:name} ...${0:type}
 
 snippet spread_var
+options word
     ${0:var}...
 
 snippet continue

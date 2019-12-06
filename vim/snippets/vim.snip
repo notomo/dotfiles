@@ -184,3 +184,25 @@ snippet nested_test
 		endfunction
 
 	endfunction
+
+snippet jobstart
+	function! s:handle_stderr(job_id, data, event) abort dict
+		echomsg '[stderr] ' . string(a:data)
+	endfunction
+
+	function! s:handle_stdout(job_id, data, event) abort dict
+		echomsg '[stdout] ' . string(a:data)
+	endfunction
+
+	function! s:handle_exit(job_id, exit_code, event) abort dict
+		echomsg '[exit_code] ' . string(a:exit_code)
+	endfunction
+
+	let s:options = {
+		\ 'on_exit': function('s:handle_exit'),
+		\ 'on_stdout': function('s:handle_stdout'),
+		\ 'on_stderr': function('s:handle_stderr'),
+	\ }
+	let s:cmd = ['${0:TARGET}']
+	let s:id = jobstart(s:cmd, s:options)
+	echomsg '[id] ' . string(s:id)
