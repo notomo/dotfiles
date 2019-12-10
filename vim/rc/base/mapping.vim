@@ -329,6 +329,7 @@ nnoremap <silent> [yank]ud :<C-u>call notomo#vimrc#yank_and_echo(notomo#vimrc#ur
 nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(notomo#vimrc#url_encode())<CR>
 nnoremap <silent> [yank]l :<C-u>call notomo#vimrc#yank_and_echo(line('.'))<CR>
 nnoremap <silent> [yank]c :<C-u>call notomo#vimrc#yank_and_echo(col('.'))<CR>
+nnoremap <silent> [yank]w :<C-u>call notomo#vimrc#yank_and_echo(expand('%:p:h:t'))<CR>
 "}}}
 
 " inner and around vomapping"{{{
