@@ -80,8 +80,6 @@ else
     nnoremap <silent> [denite]h :<C-u>Denite help<CR>
 endif
 
-nnoremap <silent> [denite]u :<C-u>Denite file_mru -immediately<CR>
-nnoremap <silent> <Space>ud :<C-u>Denite file_mru -immediately<CR>
 nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file/rec<CR>
 nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
 nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>

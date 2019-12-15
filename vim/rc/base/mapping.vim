@@ -48,6 +48,8 @@ nnoremap [edit]T :<C-u>call notomo#vimrc#add_closed_tag()<CR>
 
 nnoremap [edit]p [p
 nnoremap [edit]P [P
+
+nnoremap <Space>ud :<C-u>call notomo#vimrc#open_latest()<CR>
 "}}}
 
 " kana"{{{
