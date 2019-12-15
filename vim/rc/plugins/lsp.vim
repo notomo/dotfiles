@@ -18,3 +18,14 @@ let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_loggingLevel = 'INFO'
 let g:LanguageClient_autoStart = 1
+
+" lua require'nvim_lsp'.rls.setup{}
+" lua require'nvim_lsp'.gopls.setup{}
+" lua require'nvim_lsp'.pyls.setup{}
+"
+" lua vim.lsp.set_log_level('error')
+"
+" nnoremap <silent> [lc]d <Cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> [lc]k  <Cmd>lua vim.lsp.buf.hover()<CR>
+" nnoremap <silent> [lc]D <Cmd>lua vim.lsp.buf.type_definition()<CR>
+" nnoremap <silent> [lc]K  <cmd>lua vim.lsp.buf.signature_help()<CR>

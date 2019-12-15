@@ -39,3 +39,6 @@ if executable('python3.6') || executable('python3.7')
 endif
 
 call minpac#add('autozimu/LanguageClient-neovim', {'branch': 'next', 'do': '!./install.sh'})
+
+call minpac#add('neovim/nvim-lsp')
+call minpac#add('Shougo/deoplete-lsp')
