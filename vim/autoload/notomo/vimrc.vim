@@ -171,3 +171,12 @@ function! notomo#vimrc#open_latest() abort
     endif
     execute 'edit' v:oldfiles[0]
 endfunction
+
+function! notomo#vimrc#jq() abort
+    let tmp = @+
+    normal! ]}v%y
+    tabedit | setlocal buftype=nofile noswapfile fileformat=unix
+    put | %join!
+    let @+ = tmp
+    %!jq '.'
+endfunction

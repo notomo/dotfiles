@@ -489,6 +489,7 @@ nnoremap [exec]e :<C-u>smile<CR>
 nnoremap [exec]cC :<C-u>messages clear<CR>
 nnoremap [exec]t :<C-u>tabe ~/workspace/notomo-life/todo/README.md<CR>
 nnoremap [exec]do :<C-u>tab drop ~/.local/.mytodo<CR>
+nnoremap [exec]q :<C-u>call notomo#vimrc#jq()<CR>
 "}}}
 
 " quickfix and locationlist"{{{
@@ -596,7 +597,7 @@ nnoremap <silent> <Plug>(tabclose_c) :<C-u>call <SID>tabclose_c()<CR>
 
 " open new tab"{{{
 function! s:new_tab() abort
-    tabe | setlocal buftype=nofile noswapfile fileformat=unix
+    tabedit | setlocal buftype=nofile noswapfile fileformat=unix
 endfunction
 nnoremap <silent> <Plug>(new_tab) :<C-u>call <SID>new_tab()<CR>
 nnoremap [tab]t :<C-u>call <SID>new_tab()<CR>
