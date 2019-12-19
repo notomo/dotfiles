@@ -6,6 +6,7 @@
       - tree
       - wget
       - nkf
+      - jq
   when: is_macos
 
 - name: install dependencies with yum
@@ -38,5 +39,6 @@
       - wamerican # words dict
       - cscope
       - supervisor
+      - jq
   when: is_ubuntu
   become: yes
