@@ -10,7 +10,7 @@
   when: is_macos
 
 - name: check vim version
-  shell: 'vim --version | head -n 1 | grep "VIM - Vi IMproved 8.1"'
+  shell: 'vim --version | head -n 1 | grep "VIM - Vi IMproved 8.2"'
   register: vim8_exists
   ignore_errors: yes
   changed_when: False
