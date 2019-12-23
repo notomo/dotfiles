@@ -13,6 +13,7 @@
     - { role: 'vim', tags: 'vim' }
     - { role: 'ctags', tags: 'ctags' }
     - { role: 'pt', tags: 'pt' }
+    - { role: 'xvfb', tags: 'xvfb' }
     - { role: 'rust', tags: 'rust' }
     - { role: 'timezone', tags: 'timezone' }
     - { role: 'gitconfig', tags: 'gitconfig' }

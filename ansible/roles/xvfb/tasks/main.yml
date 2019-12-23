@@ -6,6 +6,14 @@
   when: is_centos
   become: yes
 
+- name: install Xvfb with apt
+  apt:
+    name:
+      - xvfb
+      - "libxrandr2:i386"
+  become: yes
+  when: is_ubuntu
+
 - name: add .bashrc content for clipboard
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK clipboard"
@@ -16,4 +24,3 @@
           sleep 0.5
           DISPLAY=:0 VBoxClient --clipboard
       fi
-  when: is_centos

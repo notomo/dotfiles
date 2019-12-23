@@ -14,9 +14,18 @@
   when: is_centos
   become: yes
 
+- name: install gdb with apt
+  apt:
+    name:
+      - systemd-coredump
+      - gdb
+  when: is_ubuntu
+  become: yes
+
 - name: add gdb path
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK gdb role"
     dest: "{{ home_dir }}/.bash_profile"
     content: |
       export PATH=$PATH:/opt/rh/devtoolset-7/root/usr/bin
+  when: is_centos
