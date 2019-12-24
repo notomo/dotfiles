@@ -12,6 +12,7 @@ function! s:settings() abort
 
     nnoremap <buffer> sm <Cmd>Kiview toggle_selection<CR>j
     xnoremap <buffer> sm :Kiview toggle_selection<CR>
+    nnoremap <buffer> sa <Cmd>Kiview toggle_all_selection<CR>
 
     nnoremap <buffer> q <Cmd>Kiview quit<CR>
 

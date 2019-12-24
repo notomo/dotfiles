@@ -42,8 +42,8 @@ endfunction
 autocmd MyAuGroup FileType denite-filter call s:denite_filter_settings()
 function! s:denite_filter_settings() abort
     " HACK: _move_to_parent
-    nnoremap <silent> <buffer> j :<C-u>call denite#filter#_move_to_parent(v:false)<CR>j
-    nnoremap <silent> <buffer> k :<C-u>call denite#filter#_move_to_parent(v:false)<CR>k
+    nnoremap <silent> <buffer> j :<C-u>call denite#filter#_move_to_parent(v:false)<CR>
+    nnoremap <silent> <buffer> k :<C-u>call denite#filter#_move_to_parent(v:false)<CR>
     nnoremap <silent> <buffer> dd :<C-u>silent %delete _<CR>
     nnoremap <silent> <buffer> <expr> <CR> denite#do_map('do_action', 'default')
     nnoremap <silent> <buffer> <expr> t<Space> denite#do_map('do_action', 'tabopen')
