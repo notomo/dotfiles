@@ -8,6 +8,7 @@ function! s:settings() abort
     nnoremap <buffer> o <Cmd>Kiview toggle_tree<CR>
     nnoremap <buffer> <expr> <Space>h ":<C-u>Kiview go -path=" . $HOME  . "\<CR>"
     nnoremap <buffer> <expr> <Space>g ":<C-u>Kiview go -path=" . fnamemodify(notomo#vimrc#search_parent_recursive('.git', getcwd()), ':h:h') . "\<CR>"
+    nnoremap <nowait> <buffer> <Space>r :<C-u>Kiview go -path=/<CR>
     nnoremap <buffer> <2-LeftMouse> <Cmd>Kiview child<CR>
 
     nnoremap <buffer> sm <Cmd>Kiview toggle_selection<CR>j

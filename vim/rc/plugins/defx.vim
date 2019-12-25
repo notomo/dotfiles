@@ -30,13 +30,13 @@ function! s:settings() abort
     nnoremap <silent> <buffer> <expr> h defx#do_action('cd', ['..'])
     nnoremap <silent> <buffer> <expr> <Space>h defx#do_action('cd')
     nnoremap <silent> <buffer> <expr> <Space>g defx#do_action('cd', [fnamemodify(notomo#vimrc#search_parent_recursive('.git', getcwd()), ':h:h')])
+    nnoremap <nowait> <silent> <buffer> <expr> <Space>r defx#do_action('cd', ['/'])
     nnoremap <silent> <buffer> <expr> q defx#do_action('quit')
     nnoremap <silent> <buffer> <expr> sm defx#do_action('toggle_select') . 'j'
     xnoremap <silent> <buffer> <expr> sm defx#do_action('toggle_select_visual')
     nnoremap <silent> <buffer> <expr> sa defx#do_action('toggle_select_all')
     nnoremap <silent> <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
-    nnoremap <silent> <buffer> <expr> <Space>rl defx#do_action('redraw')
     nnoremap <silent> <buffer> <expr> <2-LeftMouse> defx#do_action('call', "<SID>smart_open")
 endfunction
 
