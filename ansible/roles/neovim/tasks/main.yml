@@ -73,5 +73,15 @@
       - pkg-config
       - unzip
       - lua-check
+      - clang-tools-8
+  when: is_ubuntu
+  become: yes
+
+- name: update-alternatives
+  alternatives:
+    name: clangd
+    link: /usr/bin/clangd
+    path: /usr/bin/clangd-8
+    priority: 100
   when: is_ubuntu
   become: yes
