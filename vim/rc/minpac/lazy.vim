@@ -99,6 +99,7 @@ endif
 
 " for kiview error debug
 call s:add('notomo/minfiler.vim', {'cmd': 'Minfiler', 'depth': 0})
+nnoremap [exec]F :<C-u>tabedit<CR>:Minfiler<CR>
 
 if !has('nvim')
     finish

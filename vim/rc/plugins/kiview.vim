@@ -1,5 +1,5 @@
 
-nnoremap [exec]F :<C-u>Kiview<CR>
+nnoremap [exec]f :<C-u>Kiview<CR>
 
 autocmd MyAuGroup FileType kiview call s:settings()
 function! s:settings() abort

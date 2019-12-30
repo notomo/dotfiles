@@ -25,7 +25,6 @@ function! s:denite_settings() abort
     nnoremap <silent> <buffer> <expr> fo denite#do_map('do_action', 'filer')
     nnoremap <silent> <buffer> <expr> fl denite#do_map('do_action', 'tabfiler')
     nnoremap <silent> <buffer> <expr> yy denite#do_map('do_action', 'yank')
-    nnoremap <silent> <buffer> <expr> <Leader>rn denite#do_map('do_action', 'exrename')
     nnoremap <silent> <buffer> <expr> <Leader>rp denite#do_map('do_action', 'qfreplace')
     nnoremap <silent> <buffer> <expr> ff denite#do_map('do_action', 'dir_file')
     nnoremap <silent> <buffer> <expr> fa denite#do_map('do_action', 'parent_dir_file')
@@ -147,7 +146,6 @@ call denite#custom#action('directory,go/package,plugin', 'open', {context ->  no
 call denite#custom#action('directory,go/package,plugin', 'tabopen', {context ->  notomo#denite#directory_open('tabnew', context)})
 
 call denite#custom#action('file', 'qfreplace', {context ->  notomo#denite#qfreplace(context)})
-call denite#custom#action('file,directory,go/package', 'exrename', {context ->  notomo#denite#exrename(context)})
 
 call denite#custom#action('file,directory,go/package,plugin', 'filer', {context ->  notomo#denite#directory_open('', context)})
 call denite#custom#action('file,directory,go/package,plugin', 'tabfiler', {context ->  notomo#denite#directory_open('tabnew', context)})

@@ -58,16 +58,6 @@ function! notomo#denite#qfreplace(context) abort
     only
 endfunction
 
-function! notomo#denite#exrename(context) abort
-    let candidates = []
-    for target in a:context['targets']
-        let action_path = target['action__path']
-        call add(candidates, {'action__path': action_path})
-    endfor
-    call defx#exrename#create_buffer(candidates)
-    only
-endfunction
-
 function! notomo#denite#directory_open(open_cmd, context) abort
     let target = a:context['targets'][0]
     if !has_key(target, 'action__path')
@@ -79,7 +69,7 @@ function! notomo#denite#directory_open(open_cmd, context) abort
         let path = fnamemodify(target['action__path'], ':h')
     endif
     execute 'cd ' . path
-    Defx
+    Kiview -create
     only
 endfunction
 

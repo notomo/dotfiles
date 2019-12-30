@@ -78,7 +78,7 @@ function! notomo#gina#edit(action)
             tabnew
         endif
         execute 'cd ' . path
-        Defx
+        Kiview -create
         return
     endif
 

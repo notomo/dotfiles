@@ -80,7 +80,6 @@ function! s:define_highlight() abort
     highlight YankRoundRegion guifg=#333333 guibg=#fedf81
     highlight def link sqlStatement sqlKeyword
     highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
-    highlight def link defxExrenameModified Error
 
     highlight clear SpellCap
     highlight def link SpellCap NONE

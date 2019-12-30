@@ -43,9 +43,6 @@ function! LightlineVimonga()
 endfunction
 
 function! LightlineGitBranch()
-    if &filetype ==? 'defx'
-        return ''
-    endif
     let branch = gina#component#repo#branch()
     if empty(branch)
         return ''
@@ -54,16 +51,14 @@ function! LightlineGitBranch()
 endfunction
 
 function! LightlineFileInfo()
-    if &filetype =~? 'defx\|denite'
+    if &filetype =~? 'denite'
         return ''
     endif
     return s:surround(&fileencoding . ':' . &fileformat . ':' . &filetype)
 endfunction
 
 function! LightlinePosition()
-    if &filetype ==? 'defx'
-        return ''
-    elseif &filetype ==? 'denite-filter'
+    if &filetype ==? 'denite-filter'
         return denite#get_status('line_total')
     elseif &filetype ==? 'denite'
         return line('.') . '/' . line('$')
@@ -76,9 +71,6 @@ function! LightlineFilePath()
 endfunction
 
 function! LightlineMode()
-    if &filetype ==? 'defx'
-        return ''
-    endif
     return lightline#mode()
 endfunction
 
