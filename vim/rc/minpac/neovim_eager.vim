@@ -40,5 +40,4 @@ endif
 
 call minpac#add('autozimu/LanguageClient-neovim', {'branch': 'next', 'do': '!./install.sh'})
 
-call minpac#add('neovim/nvim-lsp')
 call minpac#add('Shougo/deoplete-lsp')

@@ -97,6 +97,9 @@ if executable('lemonade') && has('mac') && !empty($SSH_CLIENT)
     \ ]
 endif
 
+" for kiview error debug
+call s:add('notomo/minfiler.vim', {'cmd': 'Minfiler', 'depth': 0})
+
 if !has('nvim')
     finish
 endif
@@ -146,9 +149,6 @@ command! -range YankGH call s:yank_and_echo(<line1>, <line2>)
 call s:add('notomo/valtair', {'cmd': 'Valtair*', 'depth': 0})
 source ~/.vim/rc/plugins/valtair.vim
 
-" for kiview error debug
-call s:add('notomo/minfiler.vim', {'cmd': 'Minfiler', 'depth': 0})
-
 if executable('node')
     call s:add('notomo/gesture.nvim', {'do' : '!npm run setup', 'cmd': 'Gesture*', 'depth': 0})
     noremap <silent> <LeftDrag> :<C-u>GestureDraw<CR>
@@ -180,3 +180,5 @@ if executable('python3.6') || executable('python3.7')
     let g:semshi#tolerate_syntax_errors = v:false
     autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
 endif
+
+call s:add('neovim/nvim-lsp', {'ft' : ['rust', 'go', 'python']})
