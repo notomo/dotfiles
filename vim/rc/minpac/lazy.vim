@@ -146,6 +146,9 @@ command! -range YankGH call s:yank_and_echo(<line1>, <line2>)
 call s:add('notomo/valtair', {'cmd': 'Valtair*', 'depth': 0})
 source ~/.vim/rc/plugins/valtair.vim
 
+" for kiview error debug
+call s:add('notomo/minfiler.vim', {'cmd': 'Minfiler', 'depth': 0})
+
 if executable('node')
     call s:add('notomo/gesture.nvim', {'do' : '!npm run setup', 'cmd': 'Gesture*', 'depth': 0})
     noremap <silent> <LeftDrag> :<C-u>GestureDraw<CR>

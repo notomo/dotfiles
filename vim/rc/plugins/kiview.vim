@@ -22,7 +22,8 @@ function! s:settings() abort
     nnoremap <buffer> yf <Cmd>Kiview copy<CR>
     nnoremap <buffer> xf <Cmd>Kiview cut<CR>
     nnoremap <buffer> p <Cmd>Kiview paste<CR>
-    nnoremap <buffer> rn <Cmd>Kiview rename<CR>
+    nnoremap <buffer> rn <Cmd>Kiview multiple_rename<CR>
+    xnoremap <buffer> rn :Kiview multiple_rename<CR>
 
     nnoremap <silent> yr :<C-u>call notomo#vimrc#yank_and_echo(kiview#get().path)<CR>
 
