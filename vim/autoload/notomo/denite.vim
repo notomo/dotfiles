@@ -69,8 +69,7 @@ function! notomo#denite#directory_open(open_cmd, context) abort
         let path = fnamemodify(target['action__path'], ':h')
     endif
     execute 'cd ' . path
-    Kiview -create
-    only
+    Kiview -create -split=no
 endfunction
 
 function! notomo#denite#project_dir_file_rec_on_file(context) abort
