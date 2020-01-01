@@ -23,6 +23,7 @@ let g:LanguageClient_autoStart = 1
 " lua require'nvim_lsp'.gopls.setup{}
 " lua require'nvim_lsp'.pyls.setup{}
 " lua require'nvim_lsp'.clangd.setup{}
+" lua require'nvim_lsp'.sumneko_lua.setup{}
 "
 " lua vim.lsp.set_log_level('error')
 "

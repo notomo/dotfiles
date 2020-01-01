@@ -1,0 +1,71 @@
+
+snippet local
+	local ${1:name} = ${0:value}
+
+snippet require
+	require '${1:name}'
+
+snippet return
+	return ${1:expr}
+
+snippet function
+	function ${1:name}(${2:args})
+		${0:TARGET}
+	end
+
+snippet closure
+	function(${1:args})
+		${0:TARGET}
+	end
+
+snippet ifonly
+	if ${1:condition} then
+		${0:TARGET}
+	end
+
+snippet do
+alias block
+	do
+		${0:TARGET}
+	end
+
+snippet elseif
+	elseif ${1:condition} then
+		${0:TARGET}
+
+snippet else
+	else
+		${0:TARGET}
+
+snippet print
+	print(${1:expr})
+
+snippet for
+	for i = ${1:initial}, ${2:end}, ${3:increment} do
+		${0:TARGET}
+	end
+
+snippet foreach
+	for ${1:key}, ${2:value} in ${3:expr} do
+		${0:TARGET}
+	end
+
+snippet list
+options word
+	{${0:value, }}
+
+snippet dict
+options word
+	{${1:key}=${0:value}}
+
+snippet max_index
+options word
+	#${1:table}
+
+snippet not
+	not ${1:expr}
+
+snippet method
+	function ${1:class}:${2:method_name}()
+		${0:TARGET}
+	end
