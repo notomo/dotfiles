@@ -183,3 +183,5 @@ if executable('python3.6') || executable('python3.7')
 endif
 
 call s:add('neovim/nvim-lsp', {'ft' : ['rust', 'go', 'python']})
+
+call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*'})
