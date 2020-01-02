@@ -213,7 +213,21 @@ call minpac#add('lambdalisue/gina.vim')
 call minpac#add('itchyny/lightline.vim')
 
 call minpac#add('easymotion/vim-easymotion')
-source ~/.vim/rc/plugins/easymotion.vim
+nmap gj <Plug>(easymotion-j)
+xmap gj <Plug>(easymotion-j)
+omap gj <Plug>(easymotion-j)
+nmap gk <Plug>(easymotion-k)
+xmap gk <Plug>(easymotion-k)
+omap gk <Plug>(easymotion-k)
+nmap gn <Plug>(easymotion-lineanywhere)
+xmap gn <Plug>(easymotion-lineanywhere)
+omap gn <Plug>(easymotion-lineanywhere)
+nmap gw <Plug>(easymotion-bd-w)
+xmap gw <Plug>(easymotion-bd-w)
+omap gw <Plug>(easymotion-bd-w)
+nmap g<Enter> <Plug>(easymotion-bd-n)
+xmap g<Enter> <Plug>(easymotion-bd-n)
+omap g<Enter> <Plug>(easymotion-bd-n)
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_enter_jump_first = 1
 let g:EasyMotion_move_highlight = 1
