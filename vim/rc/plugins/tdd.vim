@@ -6,6 +6,7 @@ nnoremap [test]n :<C-u>TDDTest -layout=horizontal -target=near<CR>
 nnoremap [exec]i :<C-u>TDDTest make_lint npm_lint<CR>
 nnoremap [exec]bl :<C-u>TDDTest make_build npm_build<CR>
 nnoremap S :<C-u>TDDTest make_start npm_start<CR>
+nnoremap [exec]dd :<C-u>TDDTest make_doc<CR>
 
 autocmd MyAuGroup User TDDSourceLoad ++once call s:settings()
 function! s:settings() abort
@@ -23,4 +24,7 @@ function! s:settings() abort
     call tdd#command#args('make_start', ['start'])
     call tdd#command#alias('npm_start', 'npm')
     call tdd#command#args('npm_start', ['start'])
+
+    call tdd#command#alias('make_doc', 'make')
+    call tdd#command#args('make_doc', ['doc'])
 endfunction
