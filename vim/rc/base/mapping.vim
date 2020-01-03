@@ -537,7 +537,7 @@ nnoremap [win]h :<C-u>split<CR>
 " split vertically
 nnoremap [win]v :<C-u>vsplit<CR>
 " close others
-nnoremap [win]o :<C-u>only<CR>
+nnoremap [win]o :<C-u>silent only<CR>
 " close others vertically
 nnoremap [win]j :<C-u>call notomo#window#vonly()<CR>
 " close right vertically
@@ -573,8 +573,8 @@ xnoremap [tab] <Nop>
 xmap t [tab]
 
 " close others
-nnoremap <silent> [tab]o :<C-u>tabonly<CR>
-xnoremap <silent> [tab]o :<C-u>tabonly<CR>
+nnoremap <silent> [tab]o :<C-u>silent tabonly<CR>
+xnoremap <silent> [tab]o :<C-u>silent tabonly<CR>
 
 " close all
 nnoremap <silent> [tab]O :<C-u>qall<CR>
