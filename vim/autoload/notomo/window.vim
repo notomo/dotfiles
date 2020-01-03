@@ -57,10 +57,10 @@ function! notomo#window#extract_tabopen() abort
     endif
     let curbuf_num = bufnr('%')
     tabnew
+    execute 'buffer ' . curbuf_num
     noautocmd tabprevious
     noautocmd q
     noautocmd tabnext
-    execute 'buffer ' . curbuf_num
 endfunction
 
 function! notomo#window#vsplit_altopen() abort
