@@ -55,12 +55,6 @@ xnoremap [diff]l :Linediff<CR>
 
 call s:add('tmhedberg/matchit', {'ft' : ['html', 'smarty', 'vim', 'sql', 'php']})
 
-call s:add('tyru/capture.vim', {'cmd' : 'Capture'})
-nnoremap [exec]ci :<C-u>Capture<Space>
-nnoremap [exec]cm :<C-u>Capture messages<CR>
-nnoremap [exec]cv :<C-u>Capture version<CR>
-nnoremap [exec]cs :<C-u>call notomo#vimrc#syntax_report()<CR>
-
 call s:add('rhysd/vim-gfm-syntax', {'ft' : 'markdown'})
 
 call s:add('fuenor/im_control.vim', {'event' : 'InsertEnter'})

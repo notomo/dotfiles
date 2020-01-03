@@ -18,13 +18,6 @@ function! notomo#vimrc#cd_current() abort
     cd %:p:h
 endfunction
 
-function! notomo#vimrc#syntax_report() abort
-    syntime on
-    redraw!
-    syntime off
-    Capture syntime report
-endfunction
-
 function! notomo#vimrc#to_next_syntax(syntax_pattern, column, offset) abort
     call s:to_syntax(a:syntax_pattern, line('.'), a:column, a:offset, v:false, v:true)
 endfunction
