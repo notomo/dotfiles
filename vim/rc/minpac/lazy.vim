@@ -75,11 +75,6 @@ source ~/.vim/rc/plugins/kiview.vim
 call s:add('thinca/vim-qfreplace', {'cmd': 'Qfreplace'})
 nnoremap [exec]Q :<C-u>Qfreplace<CR>
 
-call s:add('thinca/vim-quickrun', {'cmd': 'QuickRun'})
-nnoremap <silent> <Leader>Q :<C-u>call notomo#quickrun#execute()<CR>
-xnoremap <silent> <Leader>Q :QuickRun -mode v<CR>
-source ~/.vim/rc/plugins/quickrun.vim
-
 call s:add('tyru/open-browser.vim', {'cmd': 'OpenBrowser*'})
 nnoremap [browser] <Nop>
 nmap [exec]b [browser]

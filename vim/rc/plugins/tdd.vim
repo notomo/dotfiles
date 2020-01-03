@@ -8,6 +8,8 @@ nnoremap [exec]bl :<C-u>TDDTest make_build npm_build<CR>
 nnoremap S :<C-u>TDDTest make_start npm_start<CR>
 nnoremap [exec]dd :<C-u>TDDTest make_doc<CR>
 
+nnoremap <Leader>Q :<C-u>TDDTest -type=run -layout=horizontal -target=file<CR>
+
 autocmd MyAuGroup User TDDSourceLoad ++once call s:settings()
 function! s:settings() abort
     call tdd#command#alias('make_lint', 'make')
