@@ -38,4 +38,9 @@ function! s:settings() abort
 
     call tdd#command#alias('vim/version', 'vim/execute')
     call tdd#command#args('vim/version', ['version'])
+
+    autocmd MyAuGroup FileType tdd-result call s:tdd_result()
+    function! s:tdd_result() abort
+        nnoremap <buffer> [yank]y :<C-u>call notomo#vimrc#yank_and_echo(join(get(b:, 'last_job_cmd', []), ' '))<CR>
+    endfunction
 endfunction

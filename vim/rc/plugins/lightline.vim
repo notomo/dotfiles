@@ -8,7 +8,7 @@ let s:active = {}
 
 let s:active.left = [['filepath'], ['gitbranch']]
 
-let s:active.right = [['mode'], ['fileinfo'], ['vimonga'], ['position']]
+let s:active.right = [['mode'], ['fileinfo'], ['vimonga'], ['tdd'], ['position']]
 let s:inactive = {}
 let s:inactive.right = [[]]
 let s:inactive.left = s:active.left
@@ -18,6 +18,7 @@ let s:component_function.gitbranch = 'LightlineGitBranch'
 let s:component_function.fileinfo = 'LightlineFileInfo'
 let s:component_function.position = 'LightlinePosition'
 let s:component_function.vimonga = 'LightlineVimonga'
+let s:component_function.tdd = 'LightlineTDD'
 let s:component_function.filepath = 'LightlineFilePath'
 let g:lightline = {'enable': s:enable, 'active': s:active, 'inactive': s:inactive, 'component_function': s:component_function, }
 
@@ -40,6 +41,13 @@ function! LightlineVimonga()
     let prev = status['is_first'] ? '' : '<'
     let next = status['is_last'] ? '' : '>'
     return printf('%s %d ~ %d / %d %s', prev, first, last, status['count'], next)
+endfunction
+
+function! LightlineTDD()
+    if &filetype !=? 'tdd-result'
+        return ''
+    endif
+    return join(get(b:, 'last_job_cmd', []), ' ')
 endfunction
 
 function! LightlineGitBranch()
