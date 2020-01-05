@@ -172,6 +172,8 @@ onoremap gs t"
 onoremap gb t`
 onoremap gq t'
 onoremap gx t*
+onoremap gt t>
+onoremap g; t;
 
 nnoremap go <C-o>
 nnoremap gi <C-i>
