@@ -31,6 +31,8 @@ function! s:settings() abort
     nnoremap <buffer> sv <Cmd>Kiview child -layout=vertical -quit<CR>
     nnoremap <buffer> sh <Cmd>Kiview child -layout=horizontal -quit<CR>
 
+    nnoremap <buffer> B <Cmd>Kiview back<CR>
+
     nnoremap <silent> <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
 endfunction
