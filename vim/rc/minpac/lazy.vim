@@ -63,7 +63,7 @@ let g:IM_CtrlMode = 4
 call s:add('notomo/helpeek.vim', {'cmd': 'Helpeek*', 'depth': 0})
 nnoremap [keyword]; :<C-u>Helpeek<CR>
 
-call s:add('notomo/kiview', {'cmd': 'Kiview*', 'depth': 0})
+call s:add('notomo/kiview', {'cmd': 'Kiview*', 'depth': 0, 'do': '!make build'})
 source ~/.vim/rc/plugins/kiview.vim
 
 call s:add('thinca/vim-qfreplace', {'cmd': 'Qfreplace'})
