@@ -56,8 +56,10 @@ function! notomo#window#extract_tabopen() abort
         return
     endif
     let curbuf_num = bufnr('%')
+    let pos = getpos('.')
     tabnew
     execute 'buffer ' . curbuf_num
+    call setpos('.', pos)
     noautocmd tabprevious
     noautocmd q
     noautocmd tabnext
