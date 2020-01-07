@@ -7,10 +7,14 @@ try:
             super().__init__(vim)
 
             self.name = "curstr/altr/help"
-            self.default_action = "tabopen"
+            self.default_action = "open"
 
         def action_open(self, context):
-            self._curstr(context, "open")
+            # HACK
+            for target in context["targets"]:
+                word = target["word"]
+                self.vim.command(f"Helpeek {word}")
+                return
 
         def action_tabopen(self, context):
             self._curstr(context, "tab_open")
