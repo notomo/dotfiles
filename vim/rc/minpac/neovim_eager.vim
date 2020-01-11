@@ -16,7 +16,9 @@ nnoremap <silent> [denite]e :<C-u>Denite emoji -default-action=append_emoji<CR>
 call minpac#add('thinca/vim-themis')
 
 call minpac#add('sheerun/vim-polyglot')
-let g:polyglot_disabled = ['markdown', 'jsx']
+let g:polyglot_disabled = ['markdown', 'jsx', 'tsx']
+
+autocmd MyAuGroup FileType typescriptreact set filetype=typescript.tsx
 
 if has('unix')
     call minpac#add('lambdalisue/suda.vim')

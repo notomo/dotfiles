@@ -150,10 +150,6 @@ if executable('node')
     nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
     nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
     source ~/.vim/rc/plugins/ctrlb.vim
-
-    call s:add('mhartington/nvim-typescript', {'do': '!./install.sh', 'ft': 'typescript'})
-    let g:nvim_typescript#signature_complete = 1
-    let g:nvim_typescript#diagnostics_enable = 0
 endif
 
 if executable('python3.6') || executable('python3.7')

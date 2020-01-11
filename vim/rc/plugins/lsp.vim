@@ -12,11 +12,13 @@ let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_serverCommands['go'] = ['gopls', '-mode', 'stdio']
 let g:LanguageClient_serverCommands['python'] = ['pyls']
 let g:LanguageClient_serverCommands['rust'] = ['rls']
+let g:LanguageClient_serverCommands['typescript'] = ['javascript-typescript-stdio']
+let g:LanguageClient_serverCommands['typescript.tsx'] = g:LanguageClient_serverCommands['typescript']
 let g:LanguageClient_serverCommands['vue'] = ['vls']
 
-let g:LanguageClient_signColumnAlwaysOn = 0
 let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_loggingLevel = 'INFO'
+let g:LanguageClient_windowLogMessageLevel = 'Error'
+let g:LanguageClient_loggingLevel = 'ERROR'
 let g:LanguageClient_autoStart = 1
 
 " lua require'nvim_lsp'.rls.setup{}
