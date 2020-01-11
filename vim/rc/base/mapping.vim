@@ -332,8 +332,6 @@ nnoremap <silent> [yank]; :<C-u>call notomo#vimrc#yank_and_echo(@:)<CR>
 nnoremap <silent> [yank]/ :<C-u>call notomo#vimrc#yank_and_echo(@/)<CR>
 nnoremap <silent> [yank]i :<C-u>call notomo#vimrc#yank_and_echo(@.)<CR>
 nnoremap <silent> [yank]b :<C-u>call notomo#vimrc#yank_and_echo(gina#component#repo#branch())<CR>
-nnoremap <silent> [yank]ud :<C-u>call notomo#vimrc#yank_and_echo(notomo#vimrc#url_decode())<CR>
-nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(notomo#vimrc#url_encode())<CR>
 nnoremap <silent> [yank]l :<C-u>call notomo#vimrc#yank_and_echo(line('.'))<CR>
 nnoremap <silent> [yank]c :<C-u>call notomo#vimrc#yank_and_echo(col('.'))<CR>
 nnoremap <silent> [yank]w :<C-u>call notomo#vimrc#yank_and_echo(expand('%:p:h:t'))<CR>
@@ -495,6 +493,7 @@ nnoremap [exec]cC :<C-u>messages clear<CR>
 nnoremap [exec]t :<C-u>tabe ~/workspace/notomo-life/todo/README.md<CR>
 nnoremap [exec]do :<C-u>tab drop ~/.local/.mytodo<CR>
 nnoremap [exec]q :<C-u>call notomo#vimrc#jq()<CR>
+nnoremap [exec]N :<C-u>call notomo#vimrc#open_note()<CR>
 "}}}
 
 " quickfix and locationlist"{{{

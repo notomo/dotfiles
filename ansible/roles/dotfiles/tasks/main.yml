@@ -6,6 +6,7 @@
       vim/rc/.vimrc: .vimrc
       vim/rc: .vim/rc
       vim/autoload: .vim/autoload
+      vim/lua: .vim/lua
       vim/snippets: .vim/snippets
       vim/after: .vim/after
       vim/ftplugin: .vim/ftplugin

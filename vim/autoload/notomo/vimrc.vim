@@ -53,16 +53,6 @@ function! s:to_syntax(syntax_pattern, start_line_num, column, offset, go_backwor
     call s:to_syntax(a:syntax_pattern, wrap_line_num, a:column, a:offset, a:go_backword, v:false)
 endfunction
 
-function! notomo#vimrc#url_decode() abort
-    let url = expand('<cWORD>')
-    return _url_decode(url)
-endfunction
-
-function! notomo#vimrc#url_encode() abort
-    let url = expand('<cWORD>')
-    return _url_encode(url)
-endfunction
-
 function! notomo#vimrc#search_parent_recursive(file_name_pattern, start_path) abort
     let path = fnamemodify(a:start_path, ':p')
     while path !=? '//'
@@ -172,4 +162,61 @@ function! notomo#vimrc#jq() abort
     put | %join!
     let @+ = tmp
     %!jq '.'
+endfunction
+
+function! notomo#vimrc#open_note() abort
+    let dir_path = expand('~/workspace/memo')
+    if !isdirectory(dir_path)
+        call mkdir(dir_path, 'p')
+    endif
+
+    let file_path = dir_path . '/' . 'note.md'
+    if !filereadable(file_path)
+        call system(['touch', file_path])
+    endif
+
+    let before_tab_num = tabpagenr()
+    execute 'tab drop' file_path
+
+    let note_tab_num = tabpagenr()
+    let offset = before_tab_num - note_tab_num
+    if offset > 0
+        execute 'tabmove +' . offset
+    elseif offset < -1
+        execute 'tabmove ' . (offset + 1)
+    endif
+endfunction
+
+function! notomo#vimrc#mkup(open_current) abort
+    if !executable('mkup')
+        echomsg 'not found executable' | return
+    endif
+
+    let port = get(g:, 'local#var#port', 49152)
+    if exists('local#var#document_root') && !a:open_current
+        let document_root = expand(g:local#var#document_root)
+        let path = ''
+    else
+        let document_root = getcwd()
+        let path = filereadable(expand('%:p')) ? expand('%') : ''
+    endif
+
+    if !isdirectory(document_root)
+        echomsg document_root . 'is not directory' | return
+    endif
+
+    let cd_cmd = printf('cd %s;', document_root)
+    let server_cmd = printf('mkup -http :%s', port)
+
+    tabedit
+    terminal
+    let cmds = printf("%s\n%s\n", cd_cmd, server_cmd)
+    call jobsend(b:terminal_job_id, cmds)
+
+    let host = get(g:, 'local#var#host', 'localhost')
+    let url = printf('http://%s:%s/%s', host, port, path)
+    execute 'OpenBrowser' url
+
+    tabprevious
+    +tabclose
 endfunction

@@ -76,7 +76,7 @@ xnoremap [browser] <Nop>
 xmap [exec]b [browser]
 
 nnoremap <expr> [browser]s ":\<C-u>OpenBrowserSearch " . expand('<cword>') . "\<CR>"
-nnoremap [browser]o :<C-u>call _open_browser(expand('<cWORD>'))<CR>
+nnoremap <expr> [browser]o ":\<C-u>OpenBrowser " . expand('<cWORD>') . "\<CR>"
 nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 
 if executable('lemonade') && has('mac') && !empty($SSH_CLIENT)

@@ -22,12 +22,10 @@ nnoremap <silent> [term]t :<C-u>call <SID>open_terminal('tabedit')<CR>
 nnoremap [exec]C :<C-u>checkhealth<CR>
 nnoremap [exec]u :<C-u>call notomo#vimrc#update_remote_plugin()<CR>
 
-nnoremap [exec]m :<C-u>call _run_http_server_and_open(v:false)<CR>
-nnoremap [exec]M :<C-u>call _run_http_server_and_open(v:true)<CR>
+nnoremap [exec]m :<C-u>call notomo#vimrc#mkup(v:false)<CR>
+nnoremap [exec]M :<C-u>call notomo#vimrc#mkup(v:true)<CR>
 
 nnoremap [exec]o :<C-u>call jobstart("hub browse")<CR>
-
-nnoremap [exec]N :<C-u>call _open_note()<CR>
 
 let s:prompt_pattern = '\v^\$ '
 let s:cmd_start_col = 2
@@ -47,3 +45,6 @@ endfunction
 tnoremap <CR> <Cmd>call <SID>set_term_title()<CR><CR>
 
 cnoremap j<Space>o <Space><BS><C-z><Cmd>Helpeek<CR>
+
+nnoremap <silent> [yank]ud :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_decode()"))<CR>
+nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_encode()"))<CR>
