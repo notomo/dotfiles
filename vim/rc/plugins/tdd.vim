@@ -6,6 +6,7 @@ nnoremap [test]n :<C-u>TDDTest -layout=horizontal -target=near<CR>
 nnoremap [exec]i :<C-u>TDDTest make_lint npm_lint<CR>
 nnoremap [exec]bl :<C-u>TDDTest make_build npm_build<CR>
 nnoremap S :<C-u>TDDTest make_start npm_start<CR>
+nnoremap [exec]D :<C-u>TDDTest npm_dev<CR>
 nnoremap [exec]dd :<C-u>TDDTest make_doc<CR>
 
 nnoremap [exec]cm :<C-u>TDDTest vim/messages -type=run -layout=horizontal -silent<CR>
@@ -29,6 +30,9 @@ function! s:settings() abort
     call tdd#command#args('make_start', ['start'])
     call tdd#command#alias('npm_start', 'npm')
     call tdd#command#args('npm_start', ['start'])
+
+    call tdd#command#alias('npm_dev', 'npm')
+    call tdd#command#args('npm_dev', ['run', 'dev'])
 
     call tdd#command#alias('make_doc', 'make')
     call tdd#command#args('make_doc', ['doc'])
