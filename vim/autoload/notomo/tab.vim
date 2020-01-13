@@ -71,3 +71,20 @@ function! notomo#tab#setup_submode(enter_key) abort
     call feedkeys(s:TAB_KEY . a:enter_key) " enter submode
 endfunction
 
+function! notomo#tab#lock() abort
+    let bufnr = bufnr('%')
+    let bufname = bufname('%')
+    execute printf('autocmd MyAuGroup TabClosed <buffer=%s> call s:reopen(%s, "%s")', bufnr, bufnr, bufname)
+endfunction
+
+function! notomo#tab#unlock() abort
+    execute printf('autocmd! MyAuGroup TabClosed <buffer=%s>', bufnr('%'))
+endfunction
+
+function! s:reopen(bufnr, _bufname) abort
+    if !bufexists(a:bufnr)
+        return notomo#tab#unlock()
+    endif
+
+    tabedit | execute 'buffer' a:bufnr
+endfunction

@@ -624,4 +624,7 @@ for s:info in notomo#mapping#tab()
     silent execute join(['nnoremap', '[tab]' . s:info[s:LHS_KEY], ":<C-u>call notomo#tab#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
 endfor
 
+nnoremap [tab]<Space>l :<C-u>call notomo#tab#lock()<CR>
+nnoremap [tab]<Space>u :<C-u>call notomo#tab#unlock()<CR>
+
 "}}}
