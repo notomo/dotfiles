@@ -69,8 +69,8 @@ nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
 nnoremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> [denite]<CR> :<C-u>Denite -resume -no-start-filter<CR>
-nnoremap <silent> [denite]gl :<C-u>Denite grep -no-empty -immediately-1<CR>
-nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -no-empty -immediately-1<CR>
+nnoremap <silent> [denite]gl :<C-u>Denite grep -no-empty<CR>
+nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -no-empty<CR>
 nnoremap <silent> [denite]H :<C-u>Denite highlight<CR>
 
 if has('nvim')
@@ -87,9 +87,9 @@ nnoremap <silent> [denite]O :<C-u>Denite option<CR>
 nnoremap <silent> [denite]A :<C-u>Denite alias<CR>
 nnoremap <silent> [denite]b :<C-u>Denite url_bookmark<CR>
 nnoremap <silent> [denite]s :<C-u>Denite source<CR>
-nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
-nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
-nnoremap <expr> <silent> [keyword]gi ":\<C-u>DeniteProjectDir ignorecase_grep:::" . expand('<cword>') . " -no-empty -immediately-1 \<CR>"
+nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
+nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
+nnoremap <expr> <silent> [keyword]gi ":\<C-u>DeniteProjectDir ignorecase_grep:::" . expand('<cword>') . " -no-empty\<CR>"
 nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
 nnoremap <silent> [denite]go :<C-u>Denite go/src<CR>
 nnoremap <silent> [denite]gp :<C-u>Denite go/package<CR>

@@ -4,9 +4,10 @@ nnoremap <silent> [lc]d :<C-u>call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> [lc]D :<C-u>call LanguageClient_textDocument_typeDefinition()<CR>
 nnoremap <silent> [lc]r :<C-u>call LanguageClient_textDocument_rename()<CR>
 nnoremap <silent> [lc]k :<C-u>call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> [lc]R :<C-u>call LanguageClient#textDocument_references()<CR>
 nnoremap <silent> [denite]ld :<C-u>Denite documentSymbol<CR>
 nnoremap <silent> [denite]lw :<C-u>Denite workspaceSymbol<CR>
-nnoremap <silent> [denite]lr :<C-u>Denite references -auto-preview -immediately-1<CR>
+nnoremap <silent> [denite]lr :<C-u>Denite references -auto-preview<CR>
 
 let g:LanguageClient_serverCommands = {}
 let g:LanguageClient_serverCommands['go'] = ['gopls', '-mode', 'stdio']
