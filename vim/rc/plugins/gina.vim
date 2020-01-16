@@ -74,6 +74,7 @@ let g:gina#command#tag#use_default_aliases = 0
 
 " status
 let g:gina#command#status#use_default_mappings = 0
+let g:gina#action#index#discard_directories = 1
 call gina#custom#mapping#nmap('status', 'cc', ':<C-u>Gina commit<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'ca', ':<C-u>Gina commit --amend<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'cs', ':call gina#action#call(''chaperon:tab'')<CR>', s:noremap_silent)
