@@ -17,7 +17,7 @@ function! s:settings() abort
 
     nnoremap <buffer> q <Cmd>Kiview quit<CR>
 
-    nnoremap <buffer> i <Cmd>Kiview new<CR>
+    nnoremap <buffer> i <Cmd>Kiview new -open=tab<CR>
     nnoremap <buffer> df <Cmd>Kiview remove<CR>
     nnoremap <buffer> yf <Cmd>Kiview copy<CR>
     nnoremap <buffer> xf <Cmd>Kiview cut<CR>

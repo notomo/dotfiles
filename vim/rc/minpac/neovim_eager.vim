@@ -38,7 +38,9 @@ if executable('python3.6') || executable('python3.7')
     let g:deoplete#enable_at_startup = 1
 endif
 
-call minpac#add('autozimu/LanguageClient-neovim', {'branch': 'next', 'do': '!./install.sh'})
+call minpac#add('prabirshrestha/async.vim')
+call minpac#add('prabirshrestha/vim-lsp')
+call minpac#add('lighttiger2505/deoplete-vim-lsp')
 
 call minpac#add('Shougo/deoplete-lsp')
 

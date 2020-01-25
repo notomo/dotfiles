@@ -53,7 +53,7 @@
       - neovim
       - htmlhint
       - fixjson
-      - javascript-typescript-langserver
+      - typescript-language-server
       - eslint
       - prettier
       - wscat
