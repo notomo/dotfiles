@@ -17,7 +17,7 @@ function! s:settings() abort
 
     nnoremap <buffer> q <Cmd>Kiview quit<CR>
 
-    nnoremap <buffer> i <Cmd>Kiview new -open=tab<CR>
+    nnoremap <buffer> i <Cmd>Kiview new -split=open<CR>
     nnoremap <buffer> df <Cmd>Kiview remove<CR>
     nnoremap <buffer> yf <Cmd>Kiview copy<CR>
     nnoremap <buffer> xf <Cmd>Kiview cut<CR>
@@ -27,9 +27,9 @@ function! s:settings() abort
 
     nnoremap <silent> yr :<C-u>call notomo#vimrc#yank_and_echo(kiview#get().path)<CR>
 
-    nnoremap <buffer> t<Space> <Cmd>Kiview child -layout=tab -quit<CR>
-    nnoremap <buffer> sv <Cmd>Kiview child -layout=vertical -quit<CR>
-    nnoremap <buffer> sh <Cmd>Kiview child -layout=horizontal -quit<CR>
+    nnoremap <buffer> t<Space> <Cmd>Kiview child -split=tab -quit<CR>
+    nnoremap <buffer> sv <Cmd>Kiview child -split=vertical -quit<CR>
+    nnoremap <buffer> sh <Cmd>Kiview child -split=horizontal -quit<CR>
 
     nnoremap <buffer> B <Cmd>Kiview back<CR>
 
