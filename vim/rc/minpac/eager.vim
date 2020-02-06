@@ -344,6 +344,11 @@ xmap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
 omap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 xmap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 
+omap <expr> ir textobj#from_regexp#mapexpr('\|\zs.\{-1,}\(\|\)\@=')
+xmap <expr> ir textobj#from_regexp#mapexpr('\|\zs.\{-1,}\(\|\)\@=')
+omap <expr> ar textobj#from_regexp#mapexpr('\|.\{-1,}\(\|\)\@=')
+xmap <expr> ar textobj#from_regexp#mapexpr('\|.\{-1,}\(\|\)\@=')
+
 call minpac#add('rhysd/vim-operator-surround')
 nnoremap [surround] <Nop>
 nmap s [surround]
