@@ -51,6 +51,17 @@ if executable('typescript-language-server')
     augroup END
 endif
 
+if executable('lua-lsp')
+    augroup LspLua
+        autocmd!
+        autocmd User lsp_setup call lsp#register_server({
+            \ 'name': 'lua-lsp',
+            \ 'cmd': {server_info->[&shell, &shellcmdflag, 'lua-lsp']},
+            \ 'whitelist': ['lua'],
+        \ })
+    augroup END
+endif
+
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_signs_enabled = 0
 let g:lsp_diagnostics_echo_cursor = 0
@@ -65,6 +76,7 @@ nnoremap <silent> [lc]ld :<C-u>LspDocumentSymbol<CR>
 nnoremap <silent> [lc]lw :<C-u>LspWorkspaceSymbol<CR>
 nnoremap <silent> [exec]gr :<C-u>LspReferences<CR>
 nnoremap <silent> [exec]gi :<C-u>LspImplementation<CR>
+nnoremap <silent> [exec]df :<C-u>LspDocumentFormat<CR>
 
 " lua require'nvim_lsp'.rls.setup{}
 " lua require'nvim_lsp'.gopls.setup{}

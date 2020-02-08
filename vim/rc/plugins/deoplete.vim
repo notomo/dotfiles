@@ -14,6 +14,7 @@ let s:sources.c = ['file', 'buffer', 'around', 'neosnippet']
 let s:sources.cs = ['file', 'buffer', 'around', 'neosnippet']
 let s:sources['gina-commit'] = ['look', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources['rust'] = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
+let s:sources['lua'] = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
 " let s:sources['rust'] = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources.javascript = ['file', 'buffer', 'around', 'neosnippet']
 let s:sources.typescript = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
@@ -28,6 +29,7 @@ call deoplete#custom#option('sources', s:sources)
 
 call deoplete#custom#source('neosnippet', 'rank', 10000)
 call deoplete#custom#source('vim', 'converters', ['converter_remove_paren', 'converter_remove_overlap', 'converter_truncate_abbr', 'converter_truncate_menu'])
+call deoplete#custom#source('lsp', 'converters', ['converter_lua_lsp', 'converter_remove_overlap', 'converter_truncate_abbr', 'converter_truncate_kind', 'converter_truncate_info', 'converter_truncate_menu'])
 
 inoremap <expr> j<Space>u deoplete#manual_complete(['look'])
 inoremap j<Space>; <C-x><C-l>

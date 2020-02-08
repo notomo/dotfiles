@@ -77,6 +77,10 @@
   when: is_ubuntu
   become: yes
 
+# TODO
+# sudo luarocks install --server=https://luarocks.org/dev luaformatter
+# sudo luarocks install Formatter
+
 - name: update-alternatives
   alternatives:
     name: clangd
