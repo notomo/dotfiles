@@ -1,4 +1,5 @@
 setlocal completeopt-=preview
+setlocal nomodeline
 call notomo#lsp#mapping()
 
 nnoremap <buffer> <silent> sgj :<C-u>call notomo#rust#next()<CR>
