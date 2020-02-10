@@ -4,6 +4,8 @@ PROMPT="
 [%n@%m %~]
 \\$ "
 
+bindkey -e
+
 autoload -Uz colors
 colors
 
