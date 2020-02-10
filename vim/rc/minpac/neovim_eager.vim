@@ -7,7 +7,7 @@ call minpac#add('notomo/denite-runtimepath', {'depth': 0})
 nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
 
 call minpac#add('notomo/denite-keymap', {'depth': 0})
-nnoremap <silent> [denite]m :<C-u>Denite keymap:n<CR>
+nnoremap <silent> [denite]m :<C-u>Denite keymap<CR>
 
 call minpac#add('pocari/vim-denite-emoji')
 call minpac#add('junegunn/vim-emoji')

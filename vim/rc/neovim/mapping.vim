@@ -4,7 +4,7 @@ if has('win32')
 endif
 
 let s:MAIN_INPUT_PFX = notomo#mapping#get_main_input_key()
-execute join(['tnoremap', s:MAIN_INPUT_PFX . 'h', '<C-\><C-N>pi'])
+execute join(['tnoremap', s:MAIN_INPUT_PFX . 'h', '<Cmd>put +<CR>'])
 
 nnoremap [term] <Nop>
 nmap <Space>t [term]
