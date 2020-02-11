@@ -13,5 +13,3 @@ function! s:settings() abort
     nnoremap <buffer> <CR> <Cmd>ValtairDo open<CR>
     nnoremap <buffer> t<Space> <Cmd>ValtairDo tabopen<CR>
 endfunction
-
-nnoremap F <Cmd>Valtair<CR>

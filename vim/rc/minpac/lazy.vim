@@ -170,3 +170,6 @@ endif
 call s:add('neovim/nvim-lsp', {'ft' : ['rust', 'go', 'python']})
 
 call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*'})
+
+call s:add('notomo/flompt.nvim', {'cmd' : 'Flompt'})
+source ~/.vim/rc/plugins/flompt.vim
