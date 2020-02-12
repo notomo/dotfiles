@@ -77,6 +77,7 @@ nnoremap <silent> [lc]lw :<C-u>LspWorkspaceSymbol<CR>
 nnoremap <silent> [exec]gr :<C-u>LspReferences<CR>
 nnoremap <silent> [exec]gi :<C-u>LspImplementation<CR>
 nnoremap <silent> [exec]df :<C-u>LspDocumentFormat<CR>
+nnoremap <silent> [lc]s :<C-u>LspStopServer<CR>
 
 " lua require'nvim_lsp'.rls.setup{}
 " lua require'nvim_lsp'.gopls.setup{}

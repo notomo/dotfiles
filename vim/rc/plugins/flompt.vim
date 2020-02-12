@@ -1,4 +1,3 @@
-packadd flompt.nvim
 
 nnoremap F <Cmd>Flompt<CR>
 
