@@ -1,5 +1,5 @@
 
-nnoremap F <Cmd>Flompt<CR>
+nnoremap F <Cmd>Flompt start_sync<CR>
 
 autocmd MyAuGroup FileType flompt call s:flompt_settings()
 function! s:flompt_settings() abort
