@@ -152,7 +152,7 @@ if executable('node')
     source ~/.vim/rc/plugins/ctrlb.vim
 endif
 
-if executable('python3.6') || executable('python3.7')
+if executable('python3')
     call s:add('notomo/curstr.nvim', {'cmd': 'Curstr*', 'depth': 0})
     nnoremap <silent> [keyword]fo :<C-u>Curstr openable -action=open<CR>
     nnoremap <silent> [keyword]ft :<C-u>Curstr openable -action=tab_open<CR>
