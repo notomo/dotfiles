@@ -33,7 +33,7 @@ endif
 call minpac#add('w0rp/ale')
 source ~/.vim/rc/plugins/ale.vim
 
-if executable('python3.6') || executable('python3.7')
+if executable('python3')
     call minpac#add('Shougo/deoplete.nvim')
     let g:deoplete#enable_at_startup = 1
 endif

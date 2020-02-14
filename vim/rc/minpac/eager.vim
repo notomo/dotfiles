@@ -122,7 +122,7 @@ elseif has('unix')
     let g:ruby_host_prog = '~/.rbenv/shims/neovim-ruby-host'
     let g:node_host_prog = '/usr/lib/node_modules/neovim/bin/cli.js'
 elseif has('win32')
-    let g:python3_host_prog = 'C:/Python35/python.exe'
+    let g:python3_host_prog = 'python3.exe'
     let g:ruby_host_prog = 'C:\tools\ruby24\bin\ruby.exe'
 endif
 
