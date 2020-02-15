@@ -78,3 +78,12 @@ function! notomo#window#duplicate() abort
     vsplit
     call notomo#window#extract_tabopen()
 endfunction
+
+function! notomo#window#close_all_floating() abort
+    let ids = nvim_tabpage_list_wins(0)
+    let windows = map(ids, { _, id -> {'id': id, 'config': nvim_win_get_config(id)} })
+    let windows = filter(windows, { _, window -> !empty(window.config.relative) })
+    for window in windows
+        call nvim_win_close(window.id, v:false)
+    endfor
+endfunction

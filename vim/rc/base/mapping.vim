@@ -543,6 +543,7 @@ nnoremap [win]h :<C-u>split<CR>
 nnoremap [win]v :<C-u>vsplit<CR>
 " close others
 nnoremap [win]o :<C-u>silent only<CR>
+nnoremap [win]O :<C-u>call notomo#window#close_all_floating()<CR>
 " close others vertically
 nnoremap [win]j :<C-u>call notomo#window#vonly()<CR>
 " close right vertically
