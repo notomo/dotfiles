@@ -84,6 +84,18 @@ if executable('lemonade') && has('mac') && !empty($SSH_CLIENT)
     \ {'name': 'lemonade',
     \  'args': 'lemonade open {uri}'}
     \ ]
+elseif executable('wslpath')
+    " HACk: for shell=zsh in wsl
+    let g:openbrowser_browser_commands = [
+        \ {
+            \ 'name': 'xdg-open',
+            \ 'args': ['{browser}', '{uri}']
+        \ },
+        \ {
+            \ 'name': 'rundll32',
+            \ 'args': ['rundll32', 'url.dll,FileProtocolHandler', '{uri}']
+        \ },
+    \ ]
 endif
 
 " for kiview error debug
