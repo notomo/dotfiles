@@ -220,3 +220,33 @@ function! notomo#vimrc#mkup(open_current) abort
     tabprevious
     +tabclose
 endfunction
+
+function! notomo#vimrc#job(cmd) abort
+    call jobstart(a:cmd, {
+        \ 'on_exit': function('s:handle_exit'),
+        \ 'on_stdout': function('s:handle_stdout'),
+        \ 'on_stderr': function('s:handle_stderr'),
+        \ 'stderr_buffered': v:true,
+        \ 'stdout_buffered': v:true,
+        \ 'cmd_name': join(a:cmd, ' '),
+    \ })
+endfunction
+
+function! s:handle_stderr(job_id, data, event) abort dict
+    echohl WarningMsg
+    let data = filter(a:data, { _, v -> !empty(v) })
+    for message in data
+        echomsg printf('[%s]: %s', self.cmd_name, message)
+    endfor
+    echohl None
+endfunction
+
+function! s:handle_stdout(job_id, data, event) abort dict
+    let data = filter(a:data, { _, v -> !empty(v) })
+    for message in data
+        echomsg printf('[%s]: %s', self.cmd_name, message)
+    endfor
+endfunction
+
+function! s:handle_exit(job_id, exit_code, event) abort dict
+endfunction
