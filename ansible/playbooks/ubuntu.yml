@@ -15,6 +15,7 @@
     - { role: 'pt', tags: 'pt' }
     - { role: 'xvfb', tags: 'xvfb' }
     - { role: 'rust', tags: 'rust' }
+    - { role: 'gh', tags: 'gh' }
     - { role: 'timezone', tags: 'timezone' }
     - { role: 'gitconfig', tags: 'gitconfig' }
   vars_files:

@@ -1,0 +1,41 @@
+
+- name: install gh with homebrew
+  homebrew:
+    name: github/gh/gh
+  when: is_macos
+
+- name: set variables
+  set_fact:
+    gh_dir: "{{ app_dir }}/gh"
+  when: is_linux
+
+- name: check gh install
+  stat:
+    path: "{{ home_dir }}/.local/bin/gh"
+  register: gh_installed
+  when: is_linux
+
+- name: check gh download
+  stat:
+    path: "{{ gh_dir }}"
+  register: gh_downloaded
+  when: is_linux
+
+- name: git clone gh
+  git:
+    repo: https://github.com/cli/cli.git
+    dest: "{{ gh_dir }}"
+    version: master
+  when: is_linux and not gh_downloaded.stat.exists
+
+- name: gh make
+  make:
+    chdir: "{{ gh_dir }}"
+  when: is_linux and not gh_installed.stat.exists
+
+- name: create gh symbolic link
+  file:
+    src: "{{ gh_dir }}/bin/gh"
+    dest: "{{ home_dir }}/.local/bin/gh"
+    state: link
+  when: is_linux and not gh_installed.stat.exists

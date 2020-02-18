@@ -1,0 +1,4 @@
+
+dependencies:
+  - role: workspace
+  - role: git

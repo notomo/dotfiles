@@ -24,6 +24,7 @@
     - { role: 'ctags', tags: 'ctags' }
     - { role: 'pt', tags: 'pt' }
     - { role: 'rust', tags: 'rust' }
+    - { role: 'gh', tags: 'gh' }
     - { role: 'gitconfig', tags: 'gitconfig' }
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
