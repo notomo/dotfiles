@@ -37,6 +37,9 @@ function! notomo#denite#open(open_cmd, context) abort
         else
             execute 'edit ' . line . target['action__path']
         endif
+        if has_key(target, 'action__pattern')
+            call search(target['action__pattern'])
+        endif
     endfor
 endfunction
 
