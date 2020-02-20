@@ -9,6 +9,7 @@ bindkey -e
 autoload -Uz colors
 colors
 
+setopt nonomatch
 setopt prompt_subst
 setopt inc_append_history
 setopt no_beep
