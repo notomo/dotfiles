@@ -8,3 +8,13 @@ function! notomo#github#view_issue(target) abort
     endif
     call notomo#vimrc#job(cmd)
 endfunction
+
+function! notomo#github#view_pr() abort
+    let target = expand('<cword>')
+    let id = substitute(target, '[^[:digit:]]', '', 'g')
+    let cmd = ['gh', 'pr', 'view']
+    if !empty(id)
+        call add(cmd, id)
+    endif
+    call notomo#vimrc#job(cmd)
+endfunction

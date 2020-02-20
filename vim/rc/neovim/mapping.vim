@@ -26,7 +26,7 @@ nnoremap [exec]m :<C-u>call notomo#vimrc#mkup(v:false)<CR>
 nnoremap [exec]M :<C-u>call notomo#vimrc#mkup(v:true)<CR>
 
 nnoremap [exec]o :<C-u>call notomo#vimrc#job(['hub', 'browse'])<CR>
-nnoremap [exec]P :<C-u>call notomo#vimrc#job(['gh', 'pr', 'view'])<CR>
+nnoremap [exec]P :<C-u>call notomo#github#view_pr()<CR>
 nnoremap [exec]I :<C-u>call notomo#github#view_issue(expand('<cword>'))<CR>
 
 let s:prompt_pattern = '\v^\$ '
