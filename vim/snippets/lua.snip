@@ -5,6 +5,9 @@ snippet local
 snippet require
 	require '${1:name}'
 
+snippet dofile
+	dofile(${1:file_path})
+
 snippet return
 	return ${1:expr}
 
@@ -45,8 +48,13 @@ snippet for
 		${0:TARGET}
 	end
 
-snippet foreach
-	for ${1:key}, ${2:value} in ${3:expr} do
+snippet foreach_array
+	for ${1:key}, ${2:value} in ipairs(${3:expr}) do
+		${0:TARGET}
+	end
+
+snippet foreach_dict
+	for ${1:key}, ${2:value} in pairs(${3:expr}) do
 		${0:TARGET}
 	end
 
@@ -72,3 +80,6 @@ snippet method
 
 snippet member
 	M.${1:name} = ${0:value}
+
+snippet length
+	#${1:expr}
