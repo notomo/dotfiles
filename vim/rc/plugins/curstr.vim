@@ -76,7 +76,10 @@ function! s:settings() abort
     call curstr#custom#source_alias('print_rust', ['togglable/line/regex'])
     call curstr#custom#source_option('print_rust', 'patterns', [['\v^(\s*)let\s+(mut\s+)?([^=[:space:],:]*).*$', '\1println!("{:?}", \3);']])
     call curstr#custom#source_option('print_rust', 'filetypes', ['rust'])
-    call curstr#custom#source_alias('print', ['print_vim', 'print_go', 'print_python', 'print_js', 'print_ts', 'print_rust'])
+    call curstr#custom#source_option('print_lua', 'patterns', [['\v^(\s*)(local\s+)?([^=[:space:],]*).*$', '\1print(\3)']])
+    call curstr#custom#source_option('print_lua', 'filetypes', ['lua'])
+    call curstr#custom#source_alias('print_lua', ['togglable/line/regex'])
+    call curstr#custom#source_alias('print', ['print_vim', 'print_go', 'print_python', 'print_js', 'print_ts', 'print_rust', 'print_lua'])
 
     call curstr#custom#execute_option('use-cache', v:true)
 
