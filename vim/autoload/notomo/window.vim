@@ -80,6 +80,9 @@ function! notomo#window#duplicate() abort
 endfunction
 
 function! notomo#window#close_all_floating() abort
+    if !has('nvim')
+        return popup_clear()
+    endif
     let ids = nvim_tabpage_list_wins(0)
     let windows = map(ids, { _, id -> {'id': id, 'config': nvim_win_get_config(id)} })
     let windows = filter(windows, { _, window -> !empty(window.config.relative) })
