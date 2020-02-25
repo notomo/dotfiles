@@ -49,6 +49,7 @@ function! s:settings() abort
         \ ['%/test/autoload/%.vim', '%/autoload/%.vim'],
         \ ['%/test/plugin/%.vim', '%/plugin/%.vim'],
         \ ['%/test/plugin/%.vim', '%/autoload/%.vim'],
+        \ ['%/grammar.js', '%/example.vim'],
     \ ]
     call curstr#custom#source_alias('altr_next', ['togglable/file'])
     call curstr#custom#source_option('altr_next', 'pattern_groups', s:pattern_groups)
