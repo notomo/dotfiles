@@ -46,8 +46,7 @@ call minpac#add('Shougo/deoplete-lsp')
 
 call minpac#add('voldikss/vim-translator')
 nnoremap [keyword]T :<C-u>Translate<CR>
-" HACK
-xnoremap T :call translator#translate('', '', 'echo', v:true)<CR>
+xmap T <Plug>TranslateV
 let g:translator_target_lang = 'ja'
 let g:translator_default_engines = ['google']
 let g:translator_history_enable = 1
