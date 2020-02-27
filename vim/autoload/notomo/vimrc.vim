@@ -187,6 +187,23 @@ function! notomo#vimrc#open_note() abort
     endif
 endfunction
 
+function! notomo#vimrc#open_proto() abort
+    let type = empty(&filetype) ? 'nofiletype' : &filetype
+    let dir_path = expand('~/workspace/proto/' . type)
+    if !isdirectory(dir_path)
+        call mkdir(dir_path, 'p')
+    endif
+    let pattern = dir_path . '/proto\.*'
+    let paths = glob(pattern, v:true, v:true)
+    call sort(paths, { a, b -> strlen(a) - strlen(b) })
+    if !empty(paths)
+        let file_path = paths[0]
+    else
+        let file_path = dir_path . '/proto.' . type
+    endif
+    execute 'tab drop' file_path
+endfunction
+
 function! notomo#vimrc#mkup(open_current) abort
     if !executable('mkup')
         echomsg 'not found executable' | return

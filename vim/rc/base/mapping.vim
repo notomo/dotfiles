@@ -495,6 +495,7 @@ nnoremap [exec]t :<C-u>tabe ~/workspace/notomo-life/todo/README.md<CR>
 nnoremap [exec]do :<C-u>tab drop ~/.local/.mytodo<CR>
 nnoremap [exec]q :<C-u>call notomo#vimrc#jq()<CR>
 nnoremap [exec]N :<C-u>call notomo#vimrc#open_note()<CR>
+nnoremap [exec]; :<C-u>call notomo#vimrc#open_proto()<CR>
 "}}}
 
 " quickfix and locationlist"{{{
