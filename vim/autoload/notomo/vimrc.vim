@@ -210,7 +210,7 @@ function! notomo#vimrc#mkup(open_current) abort
     endif
 
     let port = get(g:, 'local#var#port', 49152)
-    if exists('local#var#document_root') && !a:open_current
+    if exists('g:local#var#document_root') && !a:open_current
         let document_root = expand(g:local#var#document_root)
         let path = ''
     else
@@ -219,7 +219,7 @@ function! notomo#vimrc#mkup(open_current) abort
     endif
 
     if !isdirectory(document_root)
-        echomsg document_root . 'is not directory' | return
+        echomsg document_root . ' is not directory' | return
     endif
 
     let cd_cmd = printf('cd %s;', document_root)
