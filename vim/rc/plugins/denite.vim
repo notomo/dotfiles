@@ -74,7 +74,7 @@ nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -no-empty<CR>
 nnoremap <silent> [denite]H :<C-u>Denite highlight<CR>
 
 if has('nvim')
-    nnoremap <silent> [denite]h :<C-u>Denite curstr/altr/help -default-action=open<CR>
+    nnoremap <silent> [denite]h :<C-u>Denite curstr/altr/help<CR>
 else
     nnoremap <silent> [denite]h :<C-u>Denite help<CR>
 endif

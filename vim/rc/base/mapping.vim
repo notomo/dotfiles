@@ -349,9 +349,8 @@ function! s:ia_vonoremap(lhs, rhs) abort
     silent execute join(['xnoremap', around_lhs, around_rhs])
     silent execute join(['onoremap', around_lhs, around_rhs])
 endfunction
-call s:ia_vonoremap(';', 'B')
 call s:ia_vonoremap('o', 'p')
-call s:ia_vonoremap('i', 'w')
+call s:ia_vonoremap(';', 'w')
 call s:ia_vonoremap('<Space>', 'W')
 call s:ia_vonoremap('t', '>')
 call s:ia_vonoremap('T', 't')
@@ -362,6 +361,8 @@ call s:ia_vonoremap('q', "'")
 call s:ia_vonoremap('d', '}')
 call s:ia_vonoremap('b', '`')
 "}}}
+
+onoremap ; iw
 
 " command and insert"{{{
 
