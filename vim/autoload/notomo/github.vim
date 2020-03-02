@@ -18,3 +18,12 @@ function! notomo#github#view_pr() abort
     endif
     call notomo#vimrc#job(cmd)
 endfunction
+
+function! notomo#github#create_pr() abort
+    let title = input('pr title: ')
+    if empty(title)
+        echomsg 'Canceled' | return
+    endif
+    let cmd = ['gh', 'pr', 'create', '--web', '--title', title]
+    call notomo#vimrc#job(cmd)
+endfunction
