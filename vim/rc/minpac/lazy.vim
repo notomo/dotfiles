@@ -159,3 +159,6 @@ call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*'})
 
 call s:add('notomo/flompt.nvim', {'cmd' : 'Flompt'})
 source ~/.vim/rc/plugins/flompt.vim
+
+call s:add('notomo/kitche.nvim', {'cmd' : 'Kitche*'})
+source ~/.vim/rc/plugins/kitche.vim
