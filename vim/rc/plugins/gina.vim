@@ -83,9 +83,6 @@ call gina#custom#mapping#nmap('status', 'cs', ':call gina#action#call(''chaperon
 call gina#custom#mapping#nmap('status', 'pp', ':call gina#action#call("patch:tab")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'S', ':call notomo#gina#stash_file()<CR>', s:noremap_silent)
 
-" commit
-call gina#custom#command#option('commit', '-v|--verbose')
-
 " stash
 call gina#custom#mapping#nmap('stash', 'AP', '<Plug>(gina-stash-apply)', s:silent)
 call gina#custom#mapping#nmap('stash', 'pop', '<Plug>(gina-stash-pop)', s:silent)
