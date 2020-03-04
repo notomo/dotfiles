@@ -122,6 +122,12 @@ snippet if_exists
 snippet throw
 	throw '${0:message}'
 
+snippet regex_match
+	${1:expr} =~? ${0:pattern}
+
+snippet regex_not_match
+	${1:expr} !~? ${0:pattern}
+
 snippet highlight_link
 	highlight ${1:#:default }link ${2:Name} ${1:ToGroupName}
 
