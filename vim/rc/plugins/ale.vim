@@ -47,7 +47,7 @@ let g:ale_fixers['json'] = ['fixjson']
 let g:ale_fixers['sql'] = ['sqlfmt']
 " let g:ale_fixers['help'] = ['align_help_tags']
 
-let g:ale_lua_luacheck_options = '-d'
+let g:ale_lua_luacheck_options = '-d --globals vim --no-max-code-line-length'
 let g:ale_php_phpmd_ruleset = 'unusedcode'
 let g:ale_python_mypy_options = '--ignore-missing-imports'
 let g:ale_python_flake8_executable = 'python3'
