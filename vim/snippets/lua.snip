@@ -2,6 +2,11 @@
 snippet local
 	local ${1:name} = ${0:value}
 
+snippet local_func
+	local function ${1:name}(${2:args})
+		${0:TARGET}
+	end
+
 snippet require
 	require '${1:name}'
 
@@ -44,7 +49,7 @@ snippet print
 	print(${1:expr})
 
 snippet for
-	for i = ${1:initial}, ${2:end}, ${3:increment} do
+	for i = ${1:initial}, ${2:end}${3:, increment} do
 		${0:TARGET}
 	end
 
@@ -55,6 +60,11 @@ snippet foreach_array
 
 snippet foreach_dict
 	for ${1:key}, ${2:value} in pairs(${3:expr}) do
+		${0:TARGET}
+	end
+
+snippet while
+	while ${1:condition} do
 		${0:TARGET}
 	end
 
@@ -92,3 +102,6 @@ snippet tostring
 
 snippet format
 	string.format('${1:format}', ${0:str})
+
+snippet unpack
+	unpack(${0:expr})
