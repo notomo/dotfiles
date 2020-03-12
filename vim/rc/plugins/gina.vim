@@ -17,6 +17,7 @@ nnoremap <expr> [git]F ':<C-u>Gina! fetch ' . notomo#gina#get_remote_name() . ' 
 nnoremap [git]ma :<C-u>Gina! merge --abort
 nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
 nnoremap [git]ra :<C-u>Gina! rebase --abort
+nnoremap [git]rc :<C-u>Gina! rebase --continue
 nnoremap [git]R :<C-u>Gina! rebase<Space>
 nnoremap <expr> [git]A ":<C-u>Gina! apply " . fnamemodify(bufname('%'), ':p')
 nnoremap [git]dl :<C-u>Gina log --diff-filter=D --summary<CR> " deleted file log
