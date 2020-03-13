@@ -11,6 +11,7 @@ nnoremap [exec]dd :<C-u>TDDTest make_doc<CR>
 
 nnoremap [exec]cm :<C-u>TDDTest vim/messages -type=run -layout=horizontal -silent<CR>
 nnoremap [exec]cv :<C-u>TDDTest vim/version -type=run -layout=horizontal -silent<CR>
+nnoremap [exec]ch :<C-u>TDDTest vim/execute -type=run -layout=horizontal -args=
 
 nnoremap <Leader>Q :<C-u>TDDTest -type=run -layout=horizontal -target=file<CR>
 
