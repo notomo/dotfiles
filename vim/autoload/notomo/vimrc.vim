@@ -204,12 +204,14 @@ function! notomo#vimrc#open_proto() abort
     execute 'tab drop' file_path
 endfunction
 
+let s:port = 49152
 function! notomo#vimrc#mkup(open_current) abort
     if !executable('mkup')
         echomsg 'not found executable' | return
     endif
 
-    let port = get(g:, 'local#var#port', 49152)
+    let s:port += 1
+    let port = get(g:, 'local#var#port', s:port)
     if exists('g:local#var#document_root') && !a:open_current
         let document_root = expand(g:local#var#document_root)
         let path = ''
