@@ -20,8 +20,9 @@ function! s:settings() abort
     call curstr#custom#source_option('swagger', 'source_pattern', '\v^([^#]*)#(\/[^/]*)*(\w+)$')
     call curstr#custom#source_option('swagger', 'result_pattern', '\1')
     call curstr#custom#source_option('swagger', 'search_pattern', '\3:')
+    call curstr#custom#source_option('swagger', 'filetypes', ['yaml'])
 
-    call curstr#custom#source_alias('openable', ['vim/function', 'swagger', 'file', 'directory', 'vim/runtime'])
+    call curstr#custom#source_alias('openable', ['vim/function', 'file', 'directory', 'swagger', 'vim/runtime'])
     call curstr#custom#source_option('vim/autoload_function', 'include_packpath', v:true)
 
     call curstr#custom#source_alias('bool', ['togglable/word/simple'])
