@@ -22,7 +22,12 @@ function! s:settings() abort
     call curstr#custom#source_option('swagger', 'search_pattern', '\3:')
     call curstr#custom#source_option('swagger', 'filetypes', ['yaml'])
 
-    call curstr#custom#source_alias('openable', ['vim/function', 'file', 'directory', 'swagger', 'vim/runtime'])
+    call curstr#custom#source_alias('rule', ['position/pattern'])
+    call curstr#custom#source_option('rule', 'source_pattern', '\v(.*)')
+    call curstr#custom#source_option('rule', 'search_pattern', '\\v^\\s+\\zs\1: \\$ \\=\\>')
+    call curstr#custom#source_option('rule', 'filetypes', ['javascript'])
+
+    call curstr#custom#source_alias('openable', ['rule', 'vim/function', 'file', 'directory', 'swagger', 'vim/runtime'])
     call curstr#custom#source_option('vim/autoload_function', 'include_packpath', v:true)
 
     call curstr#custom#source_alias('bool', ['togglable/word/simple'])
