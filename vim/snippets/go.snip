@@ -165,8 +165,16 @@ snippet ifonly
 
 snippet iferr
 	if err != nil {
-		${0:TARGET}
+		return err
 	}
+
+snippet ifcause
+	if errors.Cause(err) == ${1:Err} {
+		<`0:TARGET`>
+	}
+
+snippet wrap
+	errors.Wrap(err, ${0:msg})
 
 snippet ifexprerr
 	if err := ${1:expr}; err != nil {
