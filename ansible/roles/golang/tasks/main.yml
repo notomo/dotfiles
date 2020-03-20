@@ -10,7 +10,7 @@
 
 - name: download golang
   get_url:
-    url: https://storage.googleapis.com/golang/go1.13.linux-amd64.tar.gz
+    url: https://storage.googleapis.com/golang/go1.14.1.linux-amd64.tar.gz
     dest: "{{ app_dir }}/go.tar.gz"
   when: is_linux and not golang_installed.stat.exists
 
@@ -42,7 +42,7 @@
     - github.com/jackc/sqlfmt/...
     - github.com/notomo/wsxhub
     - github.com/kisielk/godepgraph
-    - golang.org/x/tools/cmd/gopls
+    - golang.org/x/tools/gopls
     - github.com/k0kubun/pp
     - github.com/fatih/motion
   environment:
