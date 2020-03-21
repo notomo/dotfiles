@@ -1,6 +1,8 @@
 
 snippet main
 abbr func main() {}
+	package main
+	
 	func main() {
 		${0}
 	}
@@ -81,7 +83,7 @@ abbr const name = value
 	const ${1:name} = ${0:value}
 
 snippet return
-	return ${0}
+	return ${0:nil}
 
 snippet package
 	package ${1:main}
@@ -170,7 +172,7 @@ snippet iferr
 
 snippet ifcause
 	if errors.Cause(err) == ${1:Err} {
-		<`0:TARGET`>
+		${0:TARGET}
 	}
 
 snippet wrap
