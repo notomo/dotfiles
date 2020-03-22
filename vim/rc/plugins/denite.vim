@@ -57,7 +57,7 @@ endfunction
 nnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
 xnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
 nnoremap <silent> [denite]y :<C-u>Denite file_bookmark<CR>
-nnoremap <silent> [denite]l :<C-u>Denite line<CR>
+nnoremap <silent> [denite]l :<C-u>Denite line/external<CR>
 nnoremap <silent> [denite]d :<C-u>Denite directory_mru -default-action=tabfiler<CR>
 nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec -default-action=tabfiler<CR>
 nnoremap <silent> [denite]B :<C-u>Denite buffer<CR>
