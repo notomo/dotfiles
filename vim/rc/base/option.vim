@@ -71,6 +71,7 @@ set copyindent
 set preserveindent
 set nofixendofline
 set tagcase=match
+set completeopt-=preview
 if has('termguicolors')
     set termguicolors
 endif
