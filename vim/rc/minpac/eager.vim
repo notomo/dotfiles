@@ -72,7 +72,7 @@ function! s:get_buf_byte()
 endfunction
 
 function! s:define_highlight() abort
-    highlight Search cterm=NONE guifg=#333333 guibg=#a9dd9d
+    highlight Search cterm=NONE guifg=#000000 guibg=#aaccaa
     highlight incSearchOnCursor cterm=NONE guifg=#fffeeb guibg=#fb8965
     highlight Flashy term=bold ctermbg=0 guifg=#333333 guibg=#a8d2eb
     highlight ParenMatch term=underline cterm=underline guibg=#5f8770
