@@ -301,3 +301,11 @@ snippet ctx
 
 snippet log
     log.Println(${0:val})
+
+snippet functional_option
+	// With$1 :
+	func With${1:Name}(${2:arg} ${3:argType}) func(*${4:Option}) {
+		return func (op *$4) {
+			op.$1 = $2
+		}
+	}
