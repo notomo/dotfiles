@@ -10,6 +10,9 @@ function! s:update_package_json(path) abort
     for line in lines
         let latest = {}
         let splitted = split(line, '\v\s+')
+        if empty(splitted)
+            continue
+        endif
         let latest.name = splitted[0]
         let latest.version = splitted[3]
         call add(latests, latest)
