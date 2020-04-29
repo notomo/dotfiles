@@ -177,6 +177,7 @@ function! notomo#vimrc#open_note() abort
 
     let before_tab_num = tabpagenr()
     execute 'tab drop' file_path
+    execute 'lcd' dir_path
 
     let note_tab_num = tabpagenr()
     let offset = before_tab_num - note_tab_num
