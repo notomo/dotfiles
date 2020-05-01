@@ -1,7 +1,7 @@
 
-nnoremap [exec], <Cmd>KitcheOpen makefile<CR>
+nnoremap [exec], <Cmd>KitcheOpen makefile packagejson<CR>
 
-autocmd MyAuGroup FileType kitche-makefile call s:settings()
+autocmd MyAuGroup FileType kitche-* call s:settings()
 function! s:settings() abort
     nnoremap <buffer> <CR> <Cmd>KitcheServe<CR>
     inoremap <buffer> <CR> <Cmd>KitcheServe<CR>
