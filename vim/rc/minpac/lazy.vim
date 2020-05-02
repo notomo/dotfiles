@@ -153,8 +153,6 @@ if executable('python3')
     autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
 endif
 
-call s:add('neovim/nvim-lsp', {'ft' : ['rust', 'go', 'python']})
-
 call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*'})
 
 call s:add('notomo/flompt.nvim', {'cmd' : 'Flompt'})

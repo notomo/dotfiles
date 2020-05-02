@@ -41,10 +41,7 @@ endif
 call minpac#add('ncm2/float-preview.nvim')
 let g:float_preview#docked = 0
 
-call minpac#add('prabirshrestha/async.vim')
-call minpac#add('prabirshrestha/vim-lsp')
-call minpac#add('lighttiger2505/deoplete-vim-lsp')
-
+call minpac#add('neovim/nvim-lsp')
 call minpac#add('Shougo/deoplete-lsp')
 
 call minpac#add('voldikss/vim-translator')
