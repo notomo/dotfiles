@@ -12,11 +12,9 @@ let g:ale_lint_on_insert_leave = 0
 let g:ale_linters = {}
 let g:ale_linters['python'] = ['flake8', 'mypy']
 let g:ale_linters['vim'] = ['vint']
-let g:ale_linters['php'] = ['phpmd', 'php']
 let g:ale_linters['sh'] = ['shellcheck']
 let g:ale_linters['go'] = ['govet', 'gofmt', 'golint', 'staticcheck']
 let g:ale_linters['sql'] = []
-let g:ale_linters['c'] = ['clang']
 let g:ale_linters['cs'] = ['mcs']
 let g:ale_linters['xml'] = []
 let g:ale_linters['ruby'] = ['rubocop']
@@ -56,10 +54,6 @@ let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.go
 let g:ale_go_staticcheck_lint_package = 1
 let g:ale_sql_sqlfmt_options = '-u'
 let g:ale_rust_rls_toolchain = 'nightly-2020-02-06'
-autocmd MyAuGroup FileType vue let g:ale_javascript_prettier_options = '--parser vue'
-autocmd MyAuGroup WinEnter,WinLeave *.vue let g:ale_javascript_prettier_options = ''
-autocmd MyAuGroup FileType javascript,typescript,css,html,scss let g:ale_javascript_prettier_options = ''
-
 function! s:toggle_fix_on_save() abort
     let current_value = get(g:, 'ale_fix_on_save', 0)
     let g:ale_fix_on_save = !current_value
