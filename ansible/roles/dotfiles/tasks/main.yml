@@ -18,6 +18,7 @@
       vim/rc/init.vim: .config/nvim/init.vim
       lint/vim/.vintrc.yaml: .vintrc.yaml
       lint/python/setup.cfg: setup.cfg
+      lint/efm/config.yaml: .config/efm-langserver/config.yaml
       git/.gitignore_global: .gitignore_global
 
 - name: mkdir
@@ -31,6 +32,7 @@
     - .vim/tmp/swap
     - .vim/reference
     - .config
+    - .config/efm-langserver
 
 - name: mkdir for karabiner
   file:

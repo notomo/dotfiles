@@ -37,6 +37,7 @@
     - golang.org/x/lint/golint
     - honnef.co/go/tools/cmd/staticcheck
     - github.com/mattn/mkup
+    - github.com/mattn/efm-langserver
     - github.com/github/hub
     - github.com/pocke/lemonade
     - github.com/jackc/sqlfmt/...
