@@ -83,7 +83,7 @@
       - isort
       - black
       - python-language-server
-      - vim-vint
+      - "git+https://github.com/vimjas/vintim-vint"
       - neovim-remote
       - httpie
       - pprint
