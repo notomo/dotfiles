@@ -7,4 +7,4 @@ nnoremap <silent> [lc]K  <Cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> [lc]s :<Cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>
 
 highlight! link LspDiagnosticsError SpellBad
-highlight! link LspDiagnosticsWarning SpellCap
+highlight! link LspDiagnosticsWarning Tag
