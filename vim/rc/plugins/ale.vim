@@ -2,7 +2,7 @@
 let g:ale_open_list = 0
 let g:ale_lint_on_filetype_changed = 0
 let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 1
+let g:ale_lint_on_save = 0
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_virtualtext_cursor = 1
@@ -10,25 +10,6 @@ let g:ale_virtualtext_prefix = ' '
 let g:ale_lint_on_insert_leave = 0
 
 let g:ale_linters = {}
-let g:ale_linters['python'] = ['flake8', 'mypy']
-let g:ale_linters['vim'] = ['vint']
-let g:ale_linters['sh'] = ['shellcheck']
-let g:ale_linters['go'] = ['govet', 'gofmt', 'golint', 'staticcheck']
-let g:ale_linters['sql'] = []
-let g:ale_linters['cs'] = ['mcs']
-let g:ale_linters['xml'] = []
-let g:ale_linters['ruby'] = ['rubocop']
-let g:ale_linters['lua'] = ['luacheck']
-let g:ale_linters['rust'] = ['rls', 'cargo']
-let g:ale_linters['dockerfile'] = ['hadolint']
-let g:ale_linters['html'] = ['htmlhint']
-let g:ale_linters['javascript'] = ['eslint']
-let g:ale_linters['typescript'] = ['tsserver']
-let g:ale_linters['css'] = []
-let g:ale_linters['scss'] = g:ale_linters['css']
-let g:ale_linters['vue'] = []
-let g:ale_linters['c'] = ['clangd']
-let g:ale_pattern_options = {'\.vue$': {'ale_enabled': 0}, '\.sql$': {'ale_fix_on_save': 0}}
 
 let g:ale_fixers = {}
 let g:ale_fixers['sh'] = ['shfmt']
@@ -45,13 +26,6 @@ let g:ale_fixers['json'] = ['fixjson']
 let g:ale_fixers['sql'] = ['sqlfmt']
 " let g:ale_fixers['help'] = ['align_help_tags']
 
-let g:ale_lua_luacheck_options = '-d --globals vim --no-max-code-line-length'
-let g:ale_php_phpmd_ruleset = 'unusedcode'
-let g:ale_python_mypy_options = '--ignore-missing-imports'
-let g:ale_python_flake8_executable = 'python3'
-let g:ale_python_flake8_options = '-m flake8'
-let g:ale_go_gometalinter_options = '--config=' . expand('~/dotfiles/lint/go/.gometalinter.json')
-let g:ale_go_staticcheck_lint_package = 1
 let g:ale_sql_sqlfmt_options = '-u'
 let g:ale_rust_rls_toolchain = 'nightly-2020-02-06'
 function! s:toggle_fix_on_save() abort

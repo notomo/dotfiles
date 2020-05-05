@@ -15,7 +15,7 @@ tools:
       - '%f:%l:%c: %m'
 
   python-mypy: &python-mypy
-    lint-command: 'mypy --show-column-numbers'
+    lint-command: 'mypy --show-column-numbers --ignore-missing-imports'
     lint-formats:
       - '%f:%l:%c: %trror: %m'
       - '%f:%l:%c: %tarning: %m'
@@ -27,6 +27,19 @@ tools:
     lint-formats:
       - '%f:%l:%c:%m'
 
+  shellcheck: &shellcheck
+    lint-command: 'shellcheck -f gcc -x'
+    lint-formats:
+      - '%f:%l:%c: %trror: %m'
+      - '%f:%l:%c: %tarning: %m'
+      - '%f:%l:%c: %tote: %m'
+
+  luacheck: &luacheck
+    lint-command: 'luacheck -d --globals vim --no-max-code-line-length --formatter plain --codes -'
+    lint-stdin: true
+    lint-formats:
+      - '%f:%l:%c: (%t%m'
+
 languages:
   vim:
     - <<: *vim-vint
@@ -37,3 +50,9 @@ languages:
 
   go:
     - <<: *golint
+
+  sh:
+    - <<: *shellcheck
+
+  lua:
+    - <<: *luacheck
