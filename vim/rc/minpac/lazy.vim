@@ -160,3 +160,5 @@ source ~/.vim/rc/plugins/flompt.vim
 
 call s:add('notomo/kitche.nvim', {'cmd' : 'Kitche*'})
 source ~/.vim/rc/plugins/kitche.vim
+
+call s:add('notomo/counteria.nvim', {'cmd' : 'Counteria*'})
