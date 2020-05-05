@@ -203,6 +203,7 @@ function! notomo#vimrc#open_proto() abort
         let file_path = dir_path . '/proto.' . type
     endif
     execute 'tab drop' file_path
+    execute 'lcd' dir_path
 endfunction
 
 let s:port = 49152
