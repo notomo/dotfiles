@@ -1,7 +1,6 @@
 
 local nvimlsp = require'nvim_lsp'
 
-nvimlsp.tsserver.setup{}
 nvimlsp.rls.setup{}
 nvimlsp.gopls.setup{}
 nvimlsp.pyls.setup{}
