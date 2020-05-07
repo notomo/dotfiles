@@ -40,6 +40,7 @@ local clear_diagnostics = function(bufnr, ns)
   local buf = bufnr == 0 and vim.api.nvim_get_current_buf() or bufnr
   vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
   vim.fn.setqflist({}, 'f')
+  vim.fn.sign_unplace('vim_lsp_signs', {buffer=bufnr})
 end
 
 local set_vritualtext = function(bufnr, diagnostics, ns)
@@ -138,4 +139,5 @@ vim.lsp.callbacks['textDocument/publishDiagnostics'] = function(_, _, result, cl
 
   set_vritualtext(bufnr, all_diagnostics, ns)
   set_qflist(bufnr, uri, all_diagnostics)
+  vim.lsp.util.buf_diagnostics_signs(bufnr, all_diagnostics)
 end
