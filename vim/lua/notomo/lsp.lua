@@ -2,7 +2,13 @@
 local nvimlsp = require'nvim_lsp'
 
 nvimlsp.rls.setup{}
-nvimlsp.gopls.setup{}
+nvimlsp.gopls.setup{
+    init_options = {
+      staticcheck=true,
+      -- https://staticcheck.io/docs/checks
+      analyses={ST1000=false},
+    };
+}
 nvimlsp.pyls.setup{}
 nvimlsp.clangd.setup{}
 nvimlsp.tsserver.setup{}
