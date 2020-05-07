@@ -10,7 +10,7 @@ nvimlsp.tsserver.setup{}
 local util = require 'nvim_lsp/util'
 nvimlsp.efm.setup{
   cmd = {"efm-langserver", "-logfile=/tmp/efm.log"};
-  filetypes = {"vim", "go", "python", "lua", "sh"};
+  filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};
   root_dir = function(fname)
     return util.root_pattern(".git")(fname) or vim.loop.cwd()
   end;

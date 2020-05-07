@@ -40,6 +40,11 @@ tools:
     lint-formats:
       - '%f:%l:%c: (%t%m'
 
+  eslint: &eslint
+    lint-command: 'eslint -f unix --stdin'
+    lint-ignore-exit-code: true
+    lint-stdin: true
+
 languages:
   vim:
     - <<: *vim-vint
@@ -56,3 +61,9 @@ languages:
 
   lua:
     - <<: *luacheck
+
+  typescript.tsx:
+    - <<: *eslint
+
+  typescript:
+    - <<: *eslint
