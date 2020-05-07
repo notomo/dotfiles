@@ -27,7 +27,6 @@ let g:ale_fixers['sql'] = ['sqlfmt']
 " let g:ale_fixers['help'] = ['align_help_tags']
 
 let g:ale_sql_sqlfmt_options = '-u'
-let g:ale_rust_rls_toolchain = 'nightly-2020-02-06'
 function! s:toggle_fix_on_save() abort
     let current_value = get(g:, 'ale_fix_on_save', 0)
     let g:ale_fix_on_save = !current_value
