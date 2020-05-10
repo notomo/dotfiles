@@ -17,7 +17,7 @@ class Source(Base):
 
         return [
             {
-                "word": arg["path"],
+                "word": arg["word"] if "word" in arg else arg["path"],
                 "action__path": arg["path"],
                 "action__line": arg["line"],
                 "action__col": arg["col"],

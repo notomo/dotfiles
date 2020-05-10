@@ -59,7 +59,7 @@ local set_qflist = function(bufnr, uri, diagnostics)
   for _, v in ipairs(diagnostics) do
     local pos = v.range.start
 
-    local severity = ''
+    local severity
     if v.severity == vim.lsp.protocol.DiagnosticSeverity.Error then
       severity = 'E'
     elseif v.severity == vim.lsp.protocol.DiagnosticSeverity.Warning then
@@ -149,11 +149,54 @@ vim.lsp.callbacks['textDocument/references'] = function(_, _, result)
 
   local args = {}
   for _, v in ipairs(result) do
-      table.insert(args, {
-        path = vim.uri_to_fname(v.uri),
-        line = v.range.start.line + 1,
-        col = v.range.start.character + 1,
-      })
+    table.insert(args, {
+      path = vim.uri_to_fname(v.uri),
+      line = v.range.start.line + 1,
+      col = v.range.start.character + 1,
+    })
+  end
+
+  local source = {name="position", args=args}
+  local sources = {source}
+  vim.fn.call('denite#start', {sources, {auto_action="preview", vertical_preview=false}})
+end
+
+vim.lsp.callbacks['workspace/symbol'] = function(_, _, result)
+  if not result then
+    return
+  end
+
+  local args = {}
+  for _, v in ipairs(result) do
+    local kind = vim.lsp.protocol.SymbolKind[v.kind]
+    table.insert(args, {
+      path = vim.uri_to_fname(v.location.uri),
+      line = v.location.range.start.line + 1,
+      col = v.location.range.start.character + 1,
+      word = string.format('[%s] %s', kind, v.name),
+    })
+  end
+
+  local source = {name="position", args=args}
+  local sources = {source}
+  vim.fn.call('denite#start', {sources, {auto_action="preview", vertical_preview=false}})
+end
+
+vim.lsp.callbacks['textDocument/documentSymbol'] = function(_, _, result)
+  if not result then
+    return
+  end
+
+  local args = {}
+  local path = vim.fn.expand("%:p")
+  for _, v in ipairs(result) do
+    local kind = vim.lsp.protocol.SymbolKind[v.kind]
+    table.insert(args, {
+      path = path,
+      line = v.selectionRange.start.line + 1,
+      col = v.selectionRange.start.character + 1,
+      word = string.format('[%s] %s %s', kind, v.name, v.detail),
+    })
   end
 
   local source = {name="position", args=args}
