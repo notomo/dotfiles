@@ -141,3 +141,22 @@ vim.lsp.callbacks['textDocument/publishDiagnostics'] = function(_, _, result, cl
   set_qflist(bufnr, uri, all_diagnostics)
   vim.lsp.util.buf_diagnostics_signs(bufnr, all_diagnostics)
 end
+
+vim.lsp.callbacks['textDocument/references'] = function(_, _, result)
+  if not result then
+    return
+  end
+
+  local args = {}
+  for _, v in ipairs(result) do
+      table.insert(args, {
+        path = vim.uri_to_fname(v.uri),
+        line = v.range.start.line + 1,
+        col = v.range.start.character + 1,
+      })
+  end
+
+  local source = {name="position", args=args}
+  local sources = {source}
+  vim.fn.call('denite#start', {sources, {auto_action="preview", vertical_preview=false}})
+end
