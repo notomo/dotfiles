@@ -47,7 +47,7 @@ function! s:settings() abort
 
     let s:pattern_groups = [
         \ ['%_test.go', '%.go'],
-        \ ['%.test.ts', '%.ts'],
+        \ ['%.test.ts%', '%.ts%'],
         \ ['%lazy.toml', '%eager.toml'],
         \ ['%/lua/%.lua', '%/test/lua/%.vim'],
         \ ['%/autoload/notomo/%.vim', '%/rc/plugins/%.vim'],
