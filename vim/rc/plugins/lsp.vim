@@ -1,5 +1,8 @@
 lua require 'notomo/lsp'
 
+nnoremap [lc] <Nop>
+nmap <Leader>f [lc]
+
 nnoremap <silent> [lc]d <Cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> [lc]k  <Cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> [lc]D <Cmd>lua vim.lsp.buf.type_definition()<CR>
