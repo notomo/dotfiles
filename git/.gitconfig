@@ -11,3 +11,8 @@
 [url "git@github.com:"]
     pushInsteadOf = git://github.com/
     pushInsteadOf = https://github.com/
+
+[alias]
+    pushfff = push --force-with-lease
+    rc = rebase --continue
+    rs = rebase --skip
