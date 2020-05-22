@@ -35,7 +35,7 @@ tools:
       - '%f:%l:%c: %tote: %m'
 
   luacheck: &luacheck
-    lint-command: 'luacheck -d --globals vim --no-max-code-line-length --formatter plain --codes -'
+    lint-command: 'luacheck -d --std _G+busted --globals vim --no-max-code-line-length --formatter plain --codes -'
     lint-stdin: true
     lint-formats:
       - '%f:%l:%c: (%t%m'

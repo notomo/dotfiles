@@ -111,3 +111,33 @@ snippet inspect
 
 snippet insert
 	table.insert(${1:table}, ${0:added})
+
+snippet describe
+	describe('${1:name}', function ()
+		${0:TARGET}
+	end)
+
+snippet it
+	it('${1:name}', function ()
+		${0:TARGET}
+	end)
+
+snippet before_each
+	before_each(function ()
+		${0:TARGET}
+	end)
+
+snippet setup
+	setup(function ()
+		${0:TARGET}
+	end)
+
+snippet after_each
+	after_each(function ()
+		${0:TARGET}
+	end)
+
+snippet teardown
+	teardown(function ()
+		${0:TARGET}
+	end)
