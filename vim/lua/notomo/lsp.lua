@@ -1,55 +1,53 @@
+local nvimlsp = require "nvim_lsp"
 
-local nvimlsp = require'nvim_lsp'
-
-nvimlsp.rls.setup{}
-nvimlsp.gopls.setup{
-    init_options = {
-      staticcheck=true,
-      -- https://staticcheck.io/docs/checks
-      analyses={ST1000=false},
-    };
+nvimlsp.rls.setup {}
+nvimlsp.gopls.setup {
+  init_options = {
+    staticcheck = true,
+    -- https://staticcheck.io/docs/checks
+    analyses = {ST1000 = false}
+  }
 }
-nvimlsp.pyls.setup{}
-nvimlsp.clangd.setup{}
-nvimlsp.tsserver.setup{}
+nvimlsp.pyls.setup {}
+nvimlsp.clangd.setup {}
+nvimlsp.tsserver.setup {}
 
-local util = require 'nvim_lsp/util'
-nvimlsp.efm.setup{
-  cmd = {"efm-langserver", "-logfile=/tmp/efm.log"};
-  filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};
+local util = require "nvim_lsp/util"
+nvimlsp.efm.setup {
+  cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
+  -- filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};
+  filetypes = {"vim", "go", "python", "lua", "sh"},
   root_dir = function(fname)
     return util.root_pattern(".git")(fname) or vim.loop.cwd()
-  end;
+  end,
   on_attach = function(client)
     client.resolved_capabilities.text_document_save = true
     client.resolved_capabilities.text_document_save_include_text = true
-  end;
+  end
 }
 
-vim.lsp.set_log_level('error')
+vim.lsp.set_log_level("error")
 
-vim.lsp.callbacks['textDocument/formatting'] = function(_, _, _, _)
+vim.lsp.callbacks["window/showMessage"] = function(_, _, _, _)
 end
-vim.lsp.callbacks['window/showMessage'] = function(_, _, _, _)
-end
-vim.lsp.callbacks['window/logMessage'] = function(_, _, _, _)
+vim.lsp.callbacks["window/logMessage"] = function(_, _, _, _)
 end
 
 local clear_diagnostics = function(bufnr, ns)
-  vim.validate { bufnr = {bufnr, 'n', true} }
+  vim.validate {bufnr = {bufnr, "n", true}}
   local buf = bufnr == 0 and vim.api.nvim_get_current_buf() or bufnr
   vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
-  vim.fn.setqflist({}, 'f')
-  vim.fn.sign_unplace('vim_lsp_signs', {buffer=bufnr})
+  vim.fn.setqflist({}, "f")
+  vim.fn.sign_unplace("vim_lsp_signs", {buffer = bufnr})
 end
 
 local set_vritualtext = function(bufnr, diagnostics, ns)
   for _, v in ipairs(diagnostics) do
     local severity_name = vim.lsp.protocol.DiagnosticSeverity[v.severity]
-    local highlight = "LspDiagnostics"..severity_name
+    local highlight = "LspDiagnostics" .. severity_name
 
     local pos = v.range.start
-    local chunks = {{" "..v.message:gsub("\r", ""):gsub("\n", "  "), highlight}}
+    local chunks = {{" " .. v.message:gsub("\r", ""):gsub("\n", "  "), highlight}}
     vim.api.nvim_buf_set_virtual_text(bufnr, ns, pos.line, chunks, {})
   end
 end
@@ -61,11 +59,11 @@ local set_qflist = function(bufnr, uri, diagnostics)
 
     local severity
     if v.severity == vim.lsp.protocol.DiagnosticSeverity.Error then
-      severity = 'E'
+      severity = "E"
     elseif v.severity == vim.lsp.protocol.DiagnosticSeverity.Warning then
-      severity = 'W'
+      severity = "W"
     else
-      severity = 'I'
+      severity = "I"
     end
 
     local item = {
@@ -74,20 +72,24 @@ local set_qflist = function(bufnr, uri, diagnostics)
       lnum = pos.line + 1,
       col = pos.character + 1,
       text = v.message,
-      type = severity,
+      type = severity
     }
     table.insert(items, item)
   end
-  vim.fn.setqflist({}, 'r', {
-    title = 'lsp';
-    items = items;
-  })
+  vim.fn.setqflist(
+    {},
+    "r",
+    {
+      title = "lsp",
+      items = items
+    }
+  )
 end
 
 local states = {}
 local ns = vim.api.nvim_create_namespace("notomo_lsp_diagnostics")
 
-vim.lsp.callbacks['textDocument/publishDiagnostics'] = function(_, _, result, client_id)
+vim.lsp.callbacks["textDocument/publishDiagnostics"] = function(_, _, result, client_id)
   if not result then
     return
   end
@@ -108,7 +110,7 @@ vim.lsp.callbacks['textDocument/publishDiagnostics'] = function(_, _, result, cl
   if not state then
     state = {
       diagnostics = {},
-      version = 0,
+      version = 0
     }
     states[bufnr] = state
   end
@@ -142,26 +144,29 @@ vim.lsp.callbacks['textDocument/publishDiagnostics'] = function(_, _, result, cl
   vim.lsp.util.buf_diagnostics_signs(bufnr, all_diagnostics)
 end
 
-vim.lsp.callbacks['textDocument/references'] = function(_, _, result)
+vim.lsp.callbacks["textDocument/references"] = function(_, _, result)
   if not result then
     return
   end
 
   local args = {}
   for _, v in ipairs(result) do
-    table.insert(args, {
-      path = vim.uri_to_fname(v.uri),
-      line = v.range.start.line + 1,
-      col = v.range.start.character + 1,
-    })
+    table.insert(
+      args,
+      {
+        path = vim.uri_to_fname(v.uri),
+        line = v.range.start.line + 1,
+        col = v.range.start.character + 1
+      }
+    )
   end
 
-  local source = {name="position", args=args}
+  local source = {name = "position", args = args}
   local sources = {source}
-  vim.fn.call('denite#start', {sources, {auto_action="preview", vertical_preview=false}})
+  vim.fn.call("denite#start", {sources, {auto_action = "preview", vertical_preview = false}})
 end
 
-vim.lsp.callbacks['workspace/symbol'] = function(_, _, result)
+vim.lsp.callbacks["workspace/symbol"] = function(_, _, result)
   if not result then
     return
   end
@@ -169,20 +174,23 @@ vim.lsp.callbacks['workspace/symbol'] = function(_, _, result)
   local args = {}
   for _, v in ipairs(result) do
     local kind = vim.lsp.protocol.SymbolKind[v.kind]
-    table.insert(args, {
-      path = vim.uri_to_fname(v.location.uri),
-      line = v.location.range.start.line + 1,
-      col = v.location.range.start.character + 1,
-      word = string.format('[%s] %s', kind, v.name),
-    })
+    table.insert(
+      args,
+      {
+        path = vim.uri_to_fname(v.location.uri),
+        line = v.location.range.start.line + 1,
+        col = v.location.range.start.character + 1,
+        word = string.format("[%s] %s", kind, v.name)
+      }
+    )
   end
 
-  local source = {name="position", args=args}
+  local source = {name = "position", args = args}
   local sources = {source}
-  vim.fn.call('denite#start', {sources, {auto_action="preview", vertical_preview=false}})
+  vim.fn.call("denite#start", {sources, {auto_action = "preview", vertical_preview = false}})
 end
 
-vim.lsp.callbacks['textDocument/documentSymbol'] = function(_, _, result)
+vim.lsp.callbacks["textDocument/documentSymbol"] = function(_, _, result)
   if not result then
     return
   end
@@ -191,15 +199,18 @@ vim.lsp.callbacks['textDocument/documentSymbol'] = function(_, _, result)
   local path = vim.fn.expand("%:p")
   for _, v in ipairs(result) do
     local kind = vim.lsp.protocol.SymbolKind[v.kind]
-    table.insert(args, {
-      path = path,
-      line = v.selectionRange.start.line + 1,
-      col = v.selectionRange.start.character + 1,
-      word = string.format('[%s] %s %s', kind, v.name, v.detail),
-    })
+    table.insert(
+      args,
+      {
+        path = path,
+        line = v.selectionRange.start.line + 1,
+        col = v.selectionRange.start.character + 1,
+        word = string.format("[%s] %s %s", kind, v.name, v.detail)
+      }
+    )
   end
 
-  local source = {name="position", args=args}
+  local source = {name = "position", args = args}
   local sources = {source}
-  vim.fn.call('denite#start', {sources, {auto_action="preview", vertical_preview=false}})
+  vim.fn.call("denite#start", {sources, {auto_action = "preview", vertical_preview = false}})
 end

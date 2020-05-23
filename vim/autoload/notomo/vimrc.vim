@@ -271,3 +271,34 @@ endfunction
 
 function! s:handle_exit(job_id, exit_code, event) abort dict
 endfunction
+
+function! notomo#vimrc#fmt(cmd) abort
+    let id = jobstart(a:cmd, {
+        \ 'on_exit': function('s:handle_fmt_exit'),
+        \ 'on_stdout': function('s:handle_fmt_stdout'),
+        \ 'on_stderr': function('s:handle_stderr'),
+        \ 'stderr_buffered': v:true,
+        \ 'stdout_buffered': v:true,
+        \ 'cmd_name': join(a:cmd, ' '),
+        \ 'lines': [],
+        \ 'changedtick': b:changedtick,
+    \ })
+endfunction
+
+function! s:handle_fmt_stdout(job_id, data, event) abort dict
+    call extend(self.lines, a:data)
+endfunction
+
+function! s:handle_fmt_exit(job_id, exit_code, event) abort dict
+    if a:exit_code != 0
+        return
+    endif
+    if self.changedtick != b:changedtick
+        return
+    endif
+    if self.lines[-1] == ''
+        let self.lines = self.lines[:-2]
+    endif
+    call nvim_buf_set_lines(0, 0, -1, v:false, self.lines)
+    write
+endfunction

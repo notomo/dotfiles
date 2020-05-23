@@ -12,8 +12,8 @@ M.url_encode = function(url)
 end
 
 M.cursor_url_encode = function()
-    local target = vim.api.nvim_call_function('expand', {'<cWORD>'})
-    return M.url_encode(target)
+  local target = vim.api.nvim_call_function("expand", {"<cWORD>"})
+  return M.url_encode(target)
 end
 
 local hex_to_char = function(x)
@@ -27,8 +27,9 @@ M.url_decode = function(url)
 end
 
 M.cursor_url_decode = function()
-    local target = vim.api.nvim_call_function('expand', {'<cWORD>'})
-    return M.url_decode(target)
+  local target = vim.api.nvim_call_function("expand", {"<cWORD>"})
+  return M.url_decode(target)
 end
 
 return M
+
