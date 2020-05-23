@@ -273,6 +273,7 @@ function! s:handle_exit(job_id, exit_code, event) abort dict
 endfunction
 
 function! notomo#vimrc#fmt(cmd) abort
+    let bufnr = bufnr('%')
     let id = jobstart(a:cmd, {
         \ 'on_exit': function('s:handle_fmt_exit'),
         \ 'on_stdout': function('s:handle_fmt_stdout'),
@@ -282,7 +283,11 @@ function! notomo#vimrc#fmt(cmd) abort
         \ 'cmd_name': join(a:cmd, ' '),
         \ 'lines': [],
         \ 'changedtick': b:changedtick,
+        \ 'bufnr': bufnr,
     \ })
+    let lines = nvim_buf_get_lines(bufnr, 0, -1, v:false) + ['']
+    call chansend(id, lines)
+    call chanclose(id, 'stdin')
 endfunction
 
 function! s:handle_fmt_stdout(job_id, data, event) abort dict
@@ -299,6 +304,6 @@ function! s:handle_fmt_exit(job_id, exit_code, event) abort dict
     if self.lines[-1] == ''
         let self.lines = self.lines[:-2]
     endif
-    call nvim_buf_set_lines(0, 0, -1, v:false, self.lines)
+    call nvim_buf_set_lines(self.bufnr, 0, -1, v:false, self.lines)
     write
 endfunction
