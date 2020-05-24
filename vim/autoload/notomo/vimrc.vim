@@ -298,7 +298,7 @@ function! s:handle_fmt_exit(job_id, exit_code, event) abort dict
     if a:exit_code != 0
         return
     endif
-    if self.changedtick != b:changedtick
+    if self.changedtick != nvim_buf_get_changedtick(self.bufnr)
         return
     endif
     if self.lines[-1] == ''

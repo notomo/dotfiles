@@ -12,7 +12,7 @@ M.url_encode = function(url)
 end
 
 M.cursor_url_encode = function()
-  local target = vim.api.nvim_call_function("expand", {"<cWORD>"})
+  local target = vim.fn.expand("<cWORD>")
   return M.url_encode(target)
 end
 
@@ -27,9 +27,8 @@ M.url_decode = function(url)
 end
 
 M.cursor_url_decode = function()
-  local target = vim.api.nvim_call_function("expand", {"<cWORD>"})
+  local target = vim.fn.expand("<cWORD>")
   return M.url_decode(target)
 end
 
 return M
-

@@ -14,6 +14,7 @@ call minpac#add('junegunn/vim-emoji')
 nnoremap <silent> [denite]e :<C-u>Denite emoji -default-action=append_emoji<CR>
 
 call minpac#add('thinca/vim-themis')
+call minpac#add('notomo/vusted')
 
 call minpac#add('sheerun/vim-polyglot')
 let g:polyglot_disabled = ['markdown', 'jsx', 'tsx', 'ansible']
