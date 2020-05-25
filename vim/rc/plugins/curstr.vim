@@ -27,7 +27,7 @@ function! s:settings() abort
     call curstr#custom#source_option('rule', 'search_pattern', '\\v^\\s+\\zs\1: \\$ \\=\\>')
     call curstr#custom#source_option('rule', 'filetypes', ['javascript'])
 
-    call curstr#custom#source_alias('openable', ['rule', 'vim/function', 'file', 'directory', 'swagger', 'vim/runtime'])
+    call curstr#custom#source_alias('openable', ['rule', 'vim/function', 'vim/lua', 'file', 'directory', 'swagger', 'vim/runtime'])
     call curstr#custom#source_option('vim/autoload_function', 'include_packpath', v:true)
 
     call curstr#custom#source_alias('bool', ['togglable/word/simple'])
