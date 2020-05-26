@@ -305,5 +305,8 @@ function! s:handle_fmt_exit(job_id, exit_code, event) abort dict
         let self.lines = self.lines[:-2]
     endif
     call nvim_buf_set_lines(self.bufnr, 0, -1, v:false, self.lines)
+    let bufnr = bufnr('%')
+    execute 'buffer' self.bufnr
     write
+    execute 'buffer' bufnr
 endfunction
