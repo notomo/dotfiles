@@ -5,6 +5,7 @@ if !has('kaoriya')
 endif
 set nowrap
 set showtabline=2
+set signcolumn=yes
 set guioptions-=e
 set ignorecase
 set smartcase

@@ -41,6 +41,15 @@ local clear_diagnostics = function(bufnr, ns)
   vim.fn.sign_unplace("vim_lsp_signs", {buffer = bufnr})
 end
 
+local timer = nil
+local debounce = function(ms, f)
+  if timer == nil then
+    timer = vim.loop.new_timer()
+  end
+  timer:stop()
+  timer:start(ms, 0, vim.schedule_wrap(f))
+end
+
 local set_vritualtext = function(bufnr, diagnostics, ns)
   for _, v in ipairs(diagnostics) do
     local severity_name = vim.lsp.protocol.DiagnosticSeverity[v.severity]
@@ -139,9 +148,14 @@ vim.lsp.callbacks["textDocument/publishDiagnostics"] = function(_, _, result, cl
   end
   state.diagnostics = running
 
-  set_vritualtext(bufnr, all_diagnostics, ns)
-  set_qflist(bufnr, uri, all_diagnostics)
-  vim.lsp.util.buf_diagnostics_signs(bufnr, all_diagnostics)
+  debounce(
+    100,
+    function()
+      set_vritualtext(bufnr, all_diagnostics, ns)
+      set_qflist(bufnr, uri, all_diagnostics)
+      vim.lsp.util.buf_diagnostics_signs(bufnr, all_diagnostics)
+    end
+  )
 end
 
 vim.lsp.callbacks["textDocument/references"] = function(_, _, result)
