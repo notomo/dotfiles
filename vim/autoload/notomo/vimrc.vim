@@ -308,5 +308,7 @@ function! s:handle_fmt_exit(job_id, exit_code, event) abort dict
     let bufnr = bufnr('%')
     execute 'buffer' self.bufnr
     write
-    execute 'buffer' bufnr
+    if buflisted(bufnr)
+        execute 'buffer' bufnr
+    endif
 endfunction
