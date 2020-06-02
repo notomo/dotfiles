@@ -68,6 +68,11 @@ snippet while
 		${0:TARGET}
 	end
 
+snippet repeat
+	repeat
+		${0:TARGET}
+	until ${1:condition}
+
 snippet list
 options word
 	{${0:value, }}
@@ -75,10 +80,6 @@ options word
 snippet dict
 options word
 	{${1:key}=${0:value}}
-
-snippet max_index
-options word
-	#${1:table}
 
 snippet not
 	not ${1:expr}
@@ -92,6 +93,7 @@ snippet member
 	M.${1:name} = ${0:value}
 
 snippet length
+options word
 	#${1:expr}
 
 snippet tonumber
@@ -101,7 +103,7 @@ snippet tostring
 	tostring(${0:expr})
 
 snippet format
-	string.format('${1:format}', ${0:str})
+	("${1:format}"):format(${0:str})
 
 snippet unpack
 	unpack(${0:expr})
