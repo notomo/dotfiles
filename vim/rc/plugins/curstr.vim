@@ -49,7 +49,7 @@ function! s:settings() abort
         \ ['%_test.go', '%.go'],
         \ ['%.test.ts%', '%.ts%'],
         \ ['%lazy.toml', '%eager.toml'],
-        \ ['%/lua/%.lua', '%/test/lua/%.vim'],
+        \ ['%/test/lua/%_spec.lua', '%/lua/%.lua'],
         \ ['%/autoload/notomo/%.vim', '%/rc/plugins/%.vim'],
         \ ['%/test/rplugin/%/test_%.py', '%/rplugin/%/%.py'],
         \ ['%/test/autoload/%.vim', '%/autoload/%.vim'],
