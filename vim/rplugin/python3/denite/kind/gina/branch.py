@@ -40,3 +40,27 @@ class Kind(Base):
 
     def action_activate(self, context):
         self.action_track(context)
+
+    def action_open(self, context):
+        targets = context["targets"]
+        if not targets:
+            return
+
+        target = targets[0]
+        self.vim.command(f'Gina show {target["word"]}:%:p')
+
+    def action_tabopen(self, context):
+        targets = context["targets"]
+        if not targets:
+            return
+
+        target = targets[0]
+        self.vim.command(f'Gina show {target["word"]}:%:p --opener=tabedit')
+
+    def action_compare(self, context):
+        targets = context["targets"]
+        if not targets:
+            return
+
+        target = targets[0]
+        self.vim.command(f'Gina compare {target["word"]}:')
