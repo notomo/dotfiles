@@ -65,7 +65,7 @@ nnoremap <silent> <Space>usf :<C-u>Denite file/rec<CR>
 nnoremap <silent> <Space>usg :<C-u>DeniteProjectDir file/rec<CR>
 nnoremap <silent> [denite]f :<C-u>Denite dir_file -no-empty<CR>
 nnoremap <silent> [denite]o :<C-u>Denite outline -no-empty<CR>
-nnoremap <silent> [denite]; :<C-u>Denite command -no-empty<CR>
+nnoremap <silent> [denite]; :<C-u>Denite filetype -default-action=open_proto<CR>
 nnoremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> [denite]<CR> :<C-u>Denite -resume -no-start-filter<CR>
@@ -166,3 +166,5 @@ call denite#custom#action('url_bookmark', 'convert', {context ->  notomo#denite#
 call denite#custom#action('go/package', 'decls', {context ->  notomo#denite#decls(context)})
 
 call denite#custom#action('word', 'append_emoji', {context ->  notomo#denite#append_emoji(context)})
+
+call denite#custom#action('command', 'open_proto', {context ->  notomo#vimrc#open_proto(context['targets'][0]['word'])})

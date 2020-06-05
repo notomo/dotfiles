@@ -188,8 +188,8 @@ function! notomo#vimrc#open_note() abort
     endif
 endfunction
 
-function! notomo#vimrc#open_proto() abort
-    let type = empty(&filetype) ? 'nofiletype' : &filetype
+function! notomo#vimrc#open_proto(filetype) abort
+    let type = empty(a:filetype) ? 'nofiletype' : a:filetype
     let dir_path = expand('~/workspace/proto/' . type)
     if !isdirectory(dir_path)
         call mkdir(dir_path, 'p')
