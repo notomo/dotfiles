@@ -258,18 +258,10 @@ omap / <Plug>(incsearch-easymotion-/)\v
 nmap <Space>/k <Plug>(incsearch-easymotion-?)
 xmap <Space>/k <Plug>(incsearch-easymotion-?)
 omap <Space>/k <Plug>(incsearch-easymotion-?)
-nmap <Space>/j <Plug>(incsearch-easymotion-stay)
-xmap <Space>/j <Plug>(incsearch-easymotion-stay)
-omap <Space>/j <Plug>(incsearch-easymotion-stay)
 
 nmap s/ <Plug>(incsearch-easymotion-/)<C-r><C-w>
 nmap sk <Plug>(incsearch-easymotion-?)<C-r><C-w>
 nmap sj <Plug>(incsearch-easymotion-stay)<C-r><C-w>
-nnoremap <expr> s. incsearch#go({'pattern': histget('/', -1)})
-xnoremap <expr> s. incsearch#go({'pattern': histget('/', -1)})
-onoremap <expr> s. incsearch#go({'pattern': histget('/', -1)})
-
-nmap s<Space>/ <Plug>(incsearch-easymotion-/)<C-r>"
 nmap s<Space>k <Plug>(incsearch-easymotion-?)<C-r>"
 nmap s<Space>j <Plug>(incsearch-easymotion-stay)<C-r>"
 
@@ -279,9 +271,6 @@ xmap N <Plug>(incsearch-nohl-N)
 omap N <Plug>(incsearch-nohl-N)
 nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
 nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
-
-omap <silent> ra <Plug>(incsearch-forward)\v[[({<"']\zs[^[({<"']{-}%#<CR>
-omap <silent> rA <Plug>(incsearch-forward)\v[[({<"']\zs.{-}%#<CR>
 let g:incsearch#auto_nohlsearch = 1
 
 call minpac#add('osyo-manga/vim-anzu')
@@ -329,11 +318,6 @@ xmap <expr> i/ textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')
 omap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 xmap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 
-omap <expr> ir textobj#from_regexp#mapexpr('\|\zs.\{-1,}\(\|\)\@=')
-xmap <expr> ir textobj#from_regexp#mapexpr('\|\zs.\{-1,}\(\|\)\@=')
-omap <expr> ar textobj#from_regexp#mapexpr('\|.\{-1,}\(\|\)\@=')
-xmap <expr> ar textobj#from_regexp#mapexpr('\|.\{-1,}\(\|\)\@=')
-
 call minpac#add('rhysd/vim-operator-surround')
 nnoremap [surround] <Nop>
 nmap s [surround]
@@ -356,21 +340,8 @@ let g:caw_no_default_keymappings = 1
 
 call minpac#add('thinca/vim-ref')
 nmap [keyword]r <Plug>(ref-keyword)
-nnoremap <expr> [keyword]R ":<C-u>Ref webdict " . expand("<cword>") . "<CR>"
-nnoremap <expr> [keyword]<C-r> ":<C-u>Ref webdict english " . expand("<cword>") . "<CR>"
 let g:ref_open = 'vsplit'
-let g:ref_use_vimproc = 1
-let g:ref_phpmanual_path = expand('~/.vim/reference/phpmanual')
 let g:ref_pydoc_cmd = 'python3 -m pydoc'
-let g:ref_source_webdict_sites = {
-    \ 'english': {
-        \ 'url': 'http://dictionary.infoseek.ne.jp/jeword/%s',
-    \ },
-    \ 'japanese': {
-        \ 'url': 'http://dictionary.infoseek.ne.jp/ejword/%s',
-    \ },
-\ }
-let g:ref_source_webdict_sites.default = 'japanese'
 
 call minpac#add('Shougo/neoinclude.vim')
 
