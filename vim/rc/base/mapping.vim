@@ -384,9 +384,6 @@ inoremap <S-TAB> <C-d>
 " calculator
 silent execute join(['noremap!', notomo#mapping#get_calculator_key(), '<C-r>=notomo#number#setup_submode()<CR><C-r>='])
 
-" 数字入力モード
-silent execute join(['noremap!', notomo#mapping#get_number_mode_key(), '<C-r>=notomo#number#setup_submode()<CR>'])
-
 " カーソル位置の単語を大文字に変換
 inoremap j<Space><Space> <ESC>gUiwea
 

@@ -5,7 +5,6 @@ let s:MAP_ONLY_KEY = 'o'
 let s:REMAP_KEY = 'rm'
 let s:MAIN_INPUT_PFX = 'j<Space>'
 let s:SUB_INPUT_PFX = 'jk'
-let s:NUMBER_MODE_KEY = s:MAIN_INPUT_PFX . 'n'
 let s:CALCULATOR_KEY = s:SUB_INPUT_PFX . '<CR>'
 
 function! notomo#mapping#get_lhs_key() abort
@@ -30,10 +29,6 @@ endfunction
 
 function! notomo#mapping#get_sub_input_key() abort
     return s:SUB_INPUT_PFX
-endfunction
-
-function! notomo#mapping#get_number_mode_key() abort
-    return s:NUMBER_MODE_KEY
 endfunction
 
 function! notomo#mapping#get_calculator_key() abort

@@ -53,7 +53,7 @@ call s:add('lilydjwg/colorizer', {'cmd' : 'ColorHighlight'})
 call s:add('AndrewRadev/linediff.vim', {'cmd' : '*Linediff'})
 xnoremap [diff]l :Linediff<CR>
 
-call s:add('tmhedberg/matchit', {'ft' : ['html', 'vim', 'sql', 'php']})
+call s:add('tmhedberg/matchit', {'ft' : ['html', 'vim', 'sql']})
 
 call s:add('rhysd/vim-gfm-syntax', {'ft' : 'markdown'})
 
