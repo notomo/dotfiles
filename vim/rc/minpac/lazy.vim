@@ -53,7 +53,7 @@ call s:add('lilydjwg/colorizer', {'cmd' : 'ColorHighlight'})
 call s:add('AndrewRadev/linediff.vim', {'cmd' : '*Linediff'})
 xnoremap [diff]l :Linediff<CR>
 
-call s:add('tmhedberg/matchit', {'ft' : ['html', 'smarty', 'vim', 'sql', 'php']})
+call s:add('tmhedberg/matchit', {'ft' : ['html', 'vim', 'sql', 'php']})
 
 call s:add('rhysd/vim-gfm-syntax', {'ft' : 'markdown'})
 
@@ -146,11 +146,6 @@ if executable('python3')
     nnoremap <silent> [keyword]fh :<C-u>Curstr openable -action=horizontal_open<CR>
     nnoremap <silent> [edit]s :<C-u>Curstr togglable<CR>
     source ~/.vim/rc/plugins/curstr.vim
-
-    call s:add('numirias/semshi', {'ft': 'python'})
-    let g:semshi#simplify_markup = v:false
-    let g:semshi#tolerate_syntax_errors = v:false
-    autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
 endif
 
 call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*', 'depth': 0})
