@@ -8,13 +8,13 @@ if (!has('nvim') || has('win32')) && has('vim_starting')
     set runtimepath+=~/.vim/after
     if has('kaoriya')
         let s:rtps = []
-        for s:rpt in split(&runtimepath, ',')
-            if s:rpt =~# 'vimfiles$'
+        for s:rtp in split(&runtimepath, ',')
+            if s:rtp =~# 'vimfiles$'
                 continue
-            elseif s:rpt =~# 'vimfiles/after$'
+            elseif s:rtp =~# 'vimfiles/after$'
                 continue
             endif
-            call add(s:rtps, s:rpt)
+            call add(s:rtps, s:rtp)
         endfor
         let &runtimepath = join(s:rtps, ',')
         set runtimepath+=$VIM/plugins/kaoriya
