@@ -153,12 +153,18 @@ if executable('python3')
     autocmd MyAuGroup FileType python call notomo#python#semshi_highlight()
 endif
 
-call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*'})
+call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*', 'depth': 0})
 
-call s:add('notomo/flompt.nvim', {'cmd' : 'Flompt'})
+call s:add('notomo/flompt.nvim', {'cmd' : 'Flompt', 'depth': 0})
 source ~/.vim/rc/plugins/flompt.vim
 
-call s:add('notomo/kitche.nvim', {'cmd' : 'Kitche*'})
+call s:add('notomo/kitche.nvim', {'cmd' : 'Kitche*', 'depth': 0})
 source ~/.vim/rc/plugins/kitche.vim
 
-call s:add('notomo/counteria.nvim', {'cmd' : 'Counteria*'})
+call s:add('notomo/counteria.nvim', {'cmd' : 'Counteria*', 'depth': 0})
+
+call s:add('notomo/hita.nvim', {'cmd' : 'Hita*', 'depth': 0})
+nnoremap gj :<C-u>Hita downside_line<CR>
+nnoremap gk :<C-u>Hita upside_line<CR>
+nnoremap gn :<C-u>Hita line<CR>
+nnoremap gw :<C-u>Hita window_word<CR>
