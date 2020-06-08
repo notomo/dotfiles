@@ -313,8 +313,8 @@ xnoremap <expr> [substitute]de <SID>generate_cmd(':v/{cursor}/d', 0)
 nnoremap <expr> [substitute]di <SID>generate_cmd(':g/{cursor}/d', 0)
 xnoremap <expr> [substitute]di <SID>generate_cmd(':g/{cursor}/d', 0)
 
-nnoremap <expr> [substitute]aw ':%' . notomo#case#substitute_pattern(expand('<cword>'))
-nnoremap <expr> [substitute]ay ':%' . notomo#case#substitute_pattern(@+)
+nnoremap <expr> [substitute]aw ':%' . suball#input(expand('<cword>'), "")
+nnoremap <expr> [substitute]ay ':%' . suball#input(@+, "")
 "}}}
 
 " yank"{{{
