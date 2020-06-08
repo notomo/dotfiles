@@ -381,8 +381,7 @@ inoremap <C-o> <C-o>o
 " インデント
 inoremap <S-TAB> <C-d>
 
-" calculator
-silent execute join(['noremap!', notomo#mapping#get_calculator_key(), '<C-r>=notomo#number#setup_submode()<CR><C-r>='])
+silent execute 'noremap!' notomo#mapping#get_calculator_key() '<C-r>='
 
 " カーソル位置の単語を大文字に変換
 inoremap j<Space><Space> <ESC>gUiwea
