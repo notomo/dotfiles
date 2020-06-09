@@ -27,6 +27,10 @@ xnoremap [git] <Nop>
 xmap <Leader>g [git]
 nnoremap [test] <Nop>
 nmap <Leader>t [test]
+nnoremap [substitute] <Nop>
+nmap <Space>s [substitute]
+xnoremap [substitute] <Nop>
+xmap <Space>s [substitute]
 
 let g:plugin_dicwin_disable = 1
 let g:loaded_gzip = 1

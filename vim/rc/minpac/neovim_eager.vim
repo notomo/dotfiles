@@ -53,3 +53,5 @@ let g:translator_default_engines = ['google']
 let g:translator_history_enable = 1
 
 call minpac#add('notomo/suball.vim', {'depth': 0})
+nnoremap <expr> [substitute]aw ':%' . suball#input(expand('<cword>'), "")
+nnoremap <expr> [substitute]ay ':%' . suball#input(@+, "")

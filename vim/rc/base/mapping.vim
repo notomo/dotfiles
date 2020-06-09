@@ -256,11 +256,6 @@ nnoremap [edit]w :<C-u>call notomo#diary#open()<CR>
 "}}}
 
 " substitute"{{{
-nnoremap [substitute] <Nop>
-nmap <Space>s [substitute]
-xnoremap [substitute] <Nop>
-xmap <Space>s [substitute]
-
 let s:CURSOR_KEY = '{cursor}'
 let s:REGISTER_KEY = '{register}'
 let s:WORD_KEY = '{word}'
@@ -312,9 +307,6 @@ xnoremap <expr> [substitute]de <SID>generate_cmd(':v/{cursor}/d', 0)
 
 nnoremap <expr> [substitute]di <SID>generate_cmd(':g/{cursor}/d', 0)
 xnoremap <expr> [substitute]di <SID>generate_cmd(':g/{cursor}/d', 0)
-
-nnoremap <expr> [substitute]aw ':%' . suball#input(expand('<cword>'), "")
-nnoremap <expr> [substitute]ay ':%' . suball#input(@+, "")
 "}}}
 
 " yank"{{{
