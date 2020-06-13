@@ -24,6 +24,7 @@ let g:ale_fixers['scss'] = g:ale_fixers['css']
 let g:ale_fixers['vue'] = ['prettier']
 let g:ale_fixers['json'] = ['fixjson']
 let g:ale_fixers['sql'] = ['sqlfmt']
+let g:ale_fixers['terraform'] = ['terraform']
 " let g:ale_fixers['help'] = ['align_help_tags']
 
 let g:ale_sql_sqlfmt_options = '-u'
