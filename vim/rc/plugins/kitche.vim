@@ -1,5 +1,7 @@
 
 nnoremap [exec], <Cmd>Kitche open makefile packagejson<CR>
+nnoremap ss <Cmd>Kitche open substitute<CR>
+xnoremap ss :Kitche open substitute<CR>
 
 autocmd MyAuGroup FileType kitche-* call s:settings()
 function! s:settings() abort
