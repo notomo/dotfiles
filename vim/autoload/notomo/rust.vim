@@ -29,28 +29,16 @@ function! notomo#rust#selected_doc() abort
     call notomo#rust#doc(target)
 endfunction
 
-function! s:open(open_way) abort
-    let path = expand('<cWORD>')
-    let path = substitute(path, '^file:\/\/\(localhost\)\?', '', '')
-    let path = substitute(path, '#\S\+$', '', '')
-    call s:_open(path, a:open_way)
-endfunction
-
 function! s:_open(path, open_way) abort
-    if !filereadable(a:path)
-        echomsg a:path | return
+    call notomo#doc#open(a:path, a:open_way)
+    if &filetype !=? 'notomodoc'
+        return
     endif
 
-    let content = systemlist(['lynx', '-dump', '-nonumbers', a:path])
-    execute a:open_way
-    setlocal buftype=nofile
-    call setbufline(bufnr('%'), 1, content)
-    setlocal nomodifiable
-
-    nnoremap <buffer> [keyword]r :<C-u>call <SID>open('enew')<CR>
-    nnoremap <buffer> [keyword]o :<C-u>call <SID>open('enew')<CR>
-    nnoremap <buffer> [keyword]t :<C-u>call <SID>open('tabedit')<CR>
-    nnoremap <buffer> [keyword]v :<C-u>call <SID>open('vsplit')<CR>
+    nnoremap <buffer> [keyword]r :<C-u>call <SID>_open(notomo#doc#path(), 'enew')<CR>
+    nnoremap <buffer> [keyword]o :<C-u>call <SID>_open(notomo#doc#path(), 'enew')<CR>
+    nnoremap <buffer> [keyword]t :<C-u>call <SID>_open(notomo#doc#path(), 'tabedit')<CR>
+    nnoremap <buffer> [keyword]v :<C-u>call <SID>_open(notomo#doc#path(), 'vsplit')<CR>
 
     " HACK
     syntax clear

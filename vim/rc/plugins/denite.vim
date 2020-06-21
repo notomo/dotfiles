@@ -169,3 +169,6 @@ call denite#custom#action('go/package', 'decls', {context ->  notomo#denite#decl
 call denite#custom#action('word', 'append_emoji', {context ->  notomo#denite#append_emoji(context)})
 
 call denite#custom#action('command', 'open_proto', {context ->  notomo#vimrc#open_proto(context['targets'][0]['word'])})
+
+call denite#custom#action('reference', 'open', {context -> notomo#doc#open(context['targets'][0]['word'], 'tabedit')})
+call denite#custom#action('reference', 'tabopen', {context -> notomo#doc#open(context['targets'][0]['word'], 'tabedit')})
