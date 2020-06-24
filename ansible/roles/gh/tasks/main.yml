@@ -25,7 +25,7 @@
   git:
     repo: https://github.com/cli/cli.git
     dest: "{{ gh_dir }}"
-    version: master
+    version: trunk
   when: is_linux and not gh_downloaded.stat.exists
 
 - name: gh make
