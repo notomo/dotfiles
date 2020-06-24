@@ -25,9 +25,9 @@ nnoremap [exec]u :<C-u>call notomo#vimrc#update_remote_plugin()<CR>
 nnoremap [exec]m :<C-u>call notomo#vimrc#mkup(v:false)<CR>
 nnoremap [exec]M :<C-u>call notomo#vimrc#mkup(v:true)<CR>
 
-nnoremap [exec]o :<C-u>call notomo#vimrc#job(['hub', 'browse'])<CR>
+nnoremap [exec]o :<C-u>call notomo#vimrc#job(['gh', 'repo', 'view', '--web'])<CR>
 nnoremap [exec]P :<C-u>call notomo#github#view_pr()<CR>
-nnoremap [exec]O :<C-u>call notomo#github#create_pr()<CR>
+nnoremap [exec]O :<C-u>call notomo#github#view_repo(expand('<cWORD>'))<CR>
 nnoremap [exec]I :<C-u>call notomo#github#view_issue(expand('<cword>'))<CR>
 
 let s:prompt_pattern = '\v^\$ '

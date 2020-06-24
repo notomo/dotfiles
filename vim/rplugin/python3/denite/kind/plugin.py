@@ -20,3 +20,7 @@ class Kind(Directory):
         for target in context["targets"]:
             name = target["word"]
             self.vim.command(f"packadd {name}")
+
+    def action_activate(self, context):
+        for target in context["targets"]:
+            self.vim.call("notomo#github#view_repo", target["word"])

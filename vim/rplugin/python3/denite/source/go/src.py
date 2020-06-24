@@ -9,7 +9,7 @@ class Source(Base):
         super().__init__(vim)
 
         self.name = "go/src"
-        self.kind = "directory"
+        self.kind = "go/src"
 
     def gather_candidates(self, context):
 

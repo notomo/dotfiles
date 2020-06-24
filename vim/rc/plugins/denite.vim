@@ -137,24 +137,24 @@ call denite#custom#var('ignorecase_grep', 'final_opts', [])
 call denite#custom#var('file/rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '--ignore=.git', (has('win32') ? '-g:' : '-g='), ''])
 call denite#custom#var('outline', 'ignore_types', ['v'])
 
-call denite#custom#action('directory,go/package,plugin', 'dir_file', {context -> notomo#denite#dir_file_on_directory(context)})
+call denite#custom#action('directory,go/package,go/src,plugin', 'dir_file', {context -> notomo#denite#dir_file_on_directory(context)})
 call denite#custom#action('file', 'dir_file', {context -> notomo#denite#dir_file_on_file(context)})
-call denite#custom#action('file,directory,go/package,plugin', 'parent_dir_file', {context -> notomo#denite#parent_dir_file(context)})
+call denite#custom#action('file,directory,go/package,go/src,plugin', 'parent_dir_file', {context -> notomo#denite#parent_dir_file(context)})
 
 call denite#custom#action('file', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
-call denite#custom#action('directory,go/package,plugin', 'open', {context ->  notomo#denite#directory_open('', context)})
-call denite#custom#action('directory,go/package,plugin', 'tabopen', {context ->  notomo#denite#directory_open('tabnew', context)})
+call denite#custom#action('directory,go/package,go/src,plugin', 'open', {context ->  notomo#denite#directory_open('', context)})
+call denite#custom#action('directory,go/package,go/src,plugin', 'tabopen', {context ->  notomo#denite#directory_open('tabnew', context)})
 
 call denite#custom#action('file', 'qfreplace', {context ->  notomo#denite#qfreplace(context)})
 
-call denite#custom#action('file,directory,go/package,plugin', 'filer', {context ->  notomo#denite#directory_open('', context)})
-call denite#custom#action('file,directory,go/package,plugin', 'tabfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
+call denite#custom#action('file,directory,go/package,go/src,plugin', 'filer', {context ->  notomo#denite#directory_open('', context)})
+call denite#custom#action('file,directory,go/package,go/src,plugin', 'tabfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
 
 call denite#custom#action('file', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec_on_file(context)})
-call denite#custom#action('directory,go/package,plugin', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec(context)})
+call denite#custom#action('directory,go/package,go/src,plugin', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec(context)})
 
 call denite#custom#action('file', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec_on_file(context)})
-call denite#custom#action('directory,go/package,plugin', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
+call denite#custom#action('directory,go/package,go/src,plugin', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
 
 call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles', context)})
 
