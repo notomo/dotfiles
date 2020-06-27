@@ -77,7 +77,7 @@ endfunction
 
 function! s:define_highlight() abort
     highlight Search cterm=NONE guifg=#000000 guibg=#aaccaa
-    highlight incSearchOnCursor cterm=NONE guifg=#fffeeb guibg=#fb8965
+    highlight incSearch cterm=NONE guifg=#fffeeb guibg=#fb8965
     highlight Flashy term=bold ctermbg=0 guifg=#333333 guibg=#a8d2eb
     highlight ParenMatch term=underline cterm=underline guibg=#5f8770
     highlight TabLine guifg=#fff5ee guibg=#536273 gui=none
@@ -213,14 +213,6 @@ call minpac#add('lambdalisue/gina.vim')
 
 call minpac#add('itchyny/lightline.vim')
 
-call minpac#add('easymotion/vim-easymotion')
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_enter_jump_first = 1
-let g:EasyMotion_move_highlight = 1
-let g:EasyMotion_landing_highlight = 0
-let g:EasyMotion_inc_highlight = 1
-let g:EasyMotion_keys = 'asdghklqwertyuopzxcvbnmf;,./0'
-
 call minpac#add('kana/vim-textobj-entire')
 omap ae <Plug>(textobj-entire-a)
 omap ie <Plug>(textobj-entire-i)
@@ -255,36 +247,10 @@ xmap ig <Plug>(textobj-line-i)
 omap ag <Plug>(textobj-line-a)
 omap ig <Plug>(textobj-line-i)
 
-call minpac#add('haya14busa/incsearch.vim')
-nmap / <Plug>(incsearch-easymotion-/)\v
-xmap / <Plug>(incsearch-easymotion-/)\v
-omap / <Plug>(incsearch-easymotion-/)\v
-nmap <Space>/k <Plug>(incsearch-easymotion-?)
-xmap <Space>/k <Plug>(incsearch-easymotion-?)
-omap <Space>/k <Plug>(incsearch-easymotion-?)
-
-nmap s/ <Plug>(incsearch-easymotion-/)<C-r><C-w>
-nmap sk <Plug>(incsearch-easymotion-?)<C-r><C-w>
-nmap sj <Plug>(incsearch-easymotion-stay)<C-r><C-w>
-nmap s<Space>k <Plug>(incsearch-easymotion-?)<C-r>"
-nmap s<Space>j <Plug>(incsearch-easymotion-stay)<C-r>"
-
-xmap n <Plug>(incsearch-nohl-n)
-omap n <Plug>(incsearch-nohl-n)
-xmap N <Plug>(incsearch-nohl-N)
-omap N <Plug>(incsearch-nohl-N)
-nmap n <Plug>(incsearch-nohl)<Plug>(anzu-n-with-echo)
-nmap N <Plug>(incsearch-nohl)<Plug>(anzu-N-with-echo)
-let g:incsearch#auto_nohlsearch = 1
-
-call minpac#add('osyo-manga/vim-anzu')
-
 if has('python3')
     call minpac#add('sgur/vim-py3diff')
     set diffexpr=py3diff#diffexpr()
 endif
-
-call minpac#add('haya14busa/incsearch-easymotion.vim')
 
 call minpac#add('bkad/CamelCaseMotion')
 nmap <Leader>w <Plug>CamelCaseMotion_w

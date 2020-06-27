@@ -43,6 +43,7 @@ set foldmethod=manual
 set noshowmode
 set conceallevel=0
 set shortmess+=I
+set shortmess-=S
 set visualbell t_vb=
 set diffopt+=vertical
 set diffopt+=iwhite

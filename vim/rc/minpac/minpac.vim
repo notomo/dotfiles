@@ -36,13 +36,3 @@ if has('nvim')
         source ~/.vim/rc/plugins/deoplete.vim
     endif
 endif
-
-IncSearchNoreMap <Tab> <Over>(incsearch-next)
-IncSearchNoreMap <S-Tab> <Over>(incsearch-prev)
-IncSearchNoreMap <C-Space> <Tab>
-IncSearchNoreMap <C-j> <Down>
-IncSearchNoreMap <C-k> <Up>
-IncSearchNoreMap <C-l> <Right>
-IncSearchNoreMap <Space> <CR>
-IncSearchNoreMap <C-n> <Over>(incsearch-scroll-f)
-IncSearchNoreMap <C-p> <Over>(incsearch-scroll-b)

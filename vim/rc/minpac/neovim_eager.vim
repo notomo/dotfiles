@@ -55,3 +55,41 @@ let g:translator_history_enable = 1
 call minpac#add('notomo/suball.vim', {'depth': 0})
 nnoremap <expr> [substitute]aw ':%' . suball#input(expand('<cword>'), "")
 nnoremap <expr> [substitute]ay ':%' . suball#input(@+, "")
+
+call minpac#add('notomo/searcho.nvim', {'depth': 0})
+nnoremap <expr> / searcho#do('forward') .. '\v'
+nnoremap <expr> sj searcho#do('forward') .. '\v' .. expand('<cword>') .. "\<C-t>\<C-g>"
+nnoremap <expr> sk searcho#do('backward') .. '\v' .. expand('<cword>') .. "\<C-t>\<C-g>"
+nnoremap <expr> s<Space>j searcho#do('forward') .. '\v' .. @"
+nnoremap <expr> s<Space>k searcho#do('backward') .. '\v' .. @"
+autocmd MyAuGroup User SearchoSourceLoad call s:searcho_settings()
+function! s:searcho_settings() abort
+    lua << EOF
+local keymaps = require('searcho/search').keymaps
+table.insert(keymaps, {
+    lhs = "<Space>",
+    rhs = "<CR>",
+    noremap = true,
+})
+table.insert(keymaps, {
+    lhs = "<CR>",
+    rhs = "<CR><Cmd>Hita search<CR>",
+    noremap = true,
+})
+table.insert(keymaps, {
+    lhs = "<Tab>",
+    rhs = "<C-g>",
+    noremap = true,
+})
+table.insert(keymaps, {
+    lhs = "<S-Tab>",
+    rhs = "<C-t>",
+    noremap = true,
+})
+table.insert(keymaps, {
+    lhs = "<C-Space>",
+    rhs = "<Space>",
+    noremap = true,
+})
+EOF
+endfunction

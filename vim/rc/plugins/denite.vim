@@ -160,7 +160,7 @@ call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project
 
 call denite#custom#action('directory,plugin', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})
 
-call denite#custom#action('buffer,command,directory,file,openable,word', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})
+call denite#custom#action('buffer,command,directory,file,openable,word,autocmd', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})
 
 call denite#custom#action('url_bookmark', 'convert', {context ->  notomo#denite#convert(context)})
 
