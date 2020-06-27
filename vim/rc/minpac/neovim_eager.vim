@@ -62,6 +62,8 @@ nnoremap <expr> sj searcho#do('forward') .. '\v' .. expand('<cword>') .. "\<C-t>
 nnoremap <expr> sk searcho#do('backward') .. '\v' .. expand('<cword>') .. "\<C-t>\<C-g>"
 nnoremap <expr> s<Space>j searcho#do('forward') .. '\v' .. @"
 nnoremap <expr> s<Space>k searcho#do('backward') .. '\v' .. @"
+nnoremap <expr> n searcho#do('next')
+nnoremap <expr> N searcho#do('prev')
 autocmd MyAuGroup User SearchoSourceLoad call s:searcho_settings()
 function! s:searcho_settings() abort
     lua << EOF
