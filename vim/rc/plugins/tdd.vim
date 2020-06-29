@@ -47,5 +47,6 @@ function! s:settings() abort
     autocmd MyAuGroup FileType tdd-result call s:tdd_result()
     function! s:tdd_result() abort
         nnoremap <buffer> [yank]y :<C-u>call notomo#vimrc#yank_and_echo(join(get(b:, 'last_job_cmd', []), ' '))<CR>
+        nnoremap <buffer> [file]rl :<C-u>TDDTest -last -layout=nosplit<CR>
     endfunction
 endfunction
