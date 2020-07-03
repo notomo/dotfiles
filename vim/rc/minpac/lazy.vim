@@ -126,11 +126,6 @@ call s:add('notomo/valtair', {'cmd': 'Valtair*', 'depth': 0})
 source ~/.vim/rc/plugins/valtair.vim
 
 if executable('node')
-    call s:add('notomo/gesture.nvim', {'do' : '!npm run setup', 'cmd': 'Gesture*', 'depth': 0})
-    noremap <silent> <LeftDrag> :<C-u>GestureDraw<CR>
-    noremap <silent> <LeftRelease> :<C-u>GestureFinish<CR>
-    source ~/.vim/rc/plugins/gesture.vim
-
     call s:add('notomo/ctrlb.nvim', {'do' : '!npm run setup', 'cmd': 'Ctrlb*', 'depth': 0})
     nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpenLayout ~/dotfiles/vim/rc/plugins/ctrlb_layout.json\<CR>"
     nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
@@ -149,6 +144,9 @@ if executable('python3')
 endif
 
 call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*', 'depth': 0})
+
+call s:add('notomo/gesture.nvim', {'cmd': 'Gesture*', 'depth': 0})
+source ~/.vim/rc/plugins/gesture.vim
 
 call s:add('notomo/flompt.nvim', {'cmd' : 'Flompt', 'depth': 0})
 source ~/.vim/rc/plugins/flompt.vim

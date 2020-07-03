@@ -1,33 +1,95 @@
 
-autocmd MyAuGroup User GestureSourceLoad ++once call s:settings()
-function! s:settings() abort
-
-    let s:x_long_gesture_length = 40
-
-    call gesture#register({'name': 'scroll to bottom'}).up().down().noremap('G')
-    call gesture#register({'name': 'scroll to top'}).down().up().noremap('gg')
-    call gesture#register({'name': 'open filer'}).down().right().map('[exec]f')
-    call gesture#register({'name': 'paste'}).right().down().left().map('p')
-
-    call gesture#register({'name': 'split window vertically'}).down().right().up().map('[win]v')
-
-    call gesture#register({'name': 'new tab'}).up().map('[tab]t')
-    call gesture#register({'name': 'new tab'}).down().map('[tab]t')
-
-    call gesture#register({'name': 'next tab'}).right({'max_length' : s:x_long_gesture_length}).map('[tab]l')
-    call gesture#register({'name': 'last tab'}).right({'min_length' : s:x_long_gesture_length}).map('[tab]e')
-
-    call gesture#register({'name': 'previous tab'}).left({'max_length' : s:x_long_gesture_length}).map('[tab]a')
-    call gesture#register({'name': 'first tab'}).left({'min_length' : s:x_long_gesture_length}).map('[tab]s')
-
-    call gesture#register({'name': 'close tab'}).down().left().map('[tab]q')
-    call gesture#register({'name': 'go back'}).right().left().map('go')
-    call gesture#register({'name': 'go forward'}).left().right().map('gi')
-    call gesture#register({'name': 'close the other windows'}).down().left().down().map('[win]o')
-    call gesture#register({'name': 'close the other tabs'}).down().left().down().left().map('[tab]o')
-
-    call gesture#register({'name': 'open the recent files'}).up().right().noremap(":\<C-u>Denite file_mru\<CR>")
-
-    call gesture#custom#set('enabled_input_view', v:true)
-
+nnoremap <silent> <LeftDrag> :<C-u>Gesture draw<CR>
+nnoremap <silent> <LeftRelease> :<C-u>Gesture finish<CR>
+autocmd MyAuGroup User GestureSourceLoad call s:gesture_settings()
+function! s:gesture_settings() abort
+    lua << EOF
+local gesture = require('gesture')
+gesture.clear()
+gesture.register({
+    name = "scroll to bottom",
+    inputs = { gesture.up(), gesture.down() },
+    action = "normal! G"
+})
+gesture.register({
+    name = "scroll to top",
+    inputs = { gesture.down(), gesture.up() },
+    action = "normal! gg"
+})
+gesture.register({
+    name = "open filer",
+    inputs = { gesture.down(), gesture.right() },
+    action = "normal [exec]f"
+})
+gesture.register({
+    name = "paste",
+    inputs = { gesture.right(), gesture.down(), gesture.left() },
+    action = "normal p"
+})
+gesture.register({
+    name = "split window vertically",
+    inputs = { gesture.down(), gesture.right(), gesture.up() },
+    action = "normal [win]v"
+})
+gesture.register({
+    name = "new tab",
+    inputs = { gesture.up() },
+    action = "normal [tab]t"
+})
+gesture.register({
+    name = "new tab",
+    inputs = { gesture.down() },
+    action = "normal [tab]t"
+})
+gesture.register({
+    name = "next tab",
+    inputs = { gesture.right({ max_length=40 }) },
+    action = "normal [tab]l"
+})
+gesture.register({
+    name = "last tab",
+    inputs = { gesture.right({ min_length=40 }) },
+    action = "normal [tab]e"
+})
+gesture.register({
+    name = "previous tab",
+    inputs = { gesture.left({ max_length=40 }) },
+    action = "normal [tab]a"
+})
+gesture.register({
+    name = "first tab",
+    inputs = { gesture.left({ min_length=40 }) },
+    action = "normal [tab]s"
+})
+gesture.register({
+    name = "close tab",
+    inputs = { gesture.down(), gesture.left() },
+    action = "normal [tab]q"
+})
+gesture.register({
+    name = "go back",
+    inputs = { gesture.right(), gesture.left() },
+    action = "normal go"
+})
+gesture.register({
+    name = "go forward",
+    inputs = { gesture.left(), gesture.right() },
+    action = "normal gi"
+})
+gesture.register({
+    name = "close the other windows",
+    inputs = { gesture.down(), gesture.left(), gesture.down() },
+    action = "normal [win]o"
+})
+gesture.register({
+    name = "close the other tabs",
+    inputs = { gesture.down(), gesture.left(), gesture.down(), gesture.left() },
+    action = "normal [tab]o"
+})
+gesture.register({
+    name = "open the recent files",
+    inputs = { gesture.up(), gesture.right() },
+    action = "normal! Denite file_mru"
+})
+EOF
 endfunction
