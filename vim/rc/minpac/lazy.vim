@@ -79,7 +79,7 @@ nnoremap <expr> [browser]s ":\<C-u>OpenBrowserSearch " . expand('<cword>') . "\<
 nnoremap <expr> [browser]o ":\<C-u>OpenBrowser " . expand('<cWORD>') . "\<CR>"
 nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 
-if executable('lemonade') && has('mac') && !empty($SSH_CLIENT)
+if !empty($SSH_CLIENT) && executable('lemonade') && has('mac')
     let g:openbrowser_browser_commands = [
     \ {'name': 'lemonade',
     \  'args': 'lemonade open {uri}'}
@@ -112,18 +112,11 @@ nnoremap [exec]h :<C-u>Inspecthi<CR>
 call s:add('mattn/emmet-vim', {'ft' : ['css', 'html']})
 call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
 
-call s:add('notomo/vimited', {'cmd' : 'Vimited*', 'depth': 0})
-xnoremap <Space><S-v> :VimitedSet<CR>
-nnoremap <Space><C-v> :<C-u>VimitedClear<CR>
-
 call s:add('notomo/tdd.vim', {'cmd' : 'TDD*', 'depth': 0})
 source ~/.vim/rc/plugins/tdd.vim
 
 call s:add('notomo/vimonga', {'cmd': 'Vimonga*', 'depth': 0})
 source ~/.vim/rc/plugins/vimonga.vim
-
-call s:add('notomo/valtair', {'cmd': 'Valtair*', 'depth': 0})
-source ~/.vim/rc/plugins/valtair.vim
 
 if executable('node')
     call s:add('notomo/ctrlb.nvim', {'do' : '!npm run setup', 'cmd': 'Ctrlb*', 'depth': 0})
