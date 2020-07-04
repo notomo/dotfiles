@@ -12,6 +12,7 @@ nnoremap <silent> [exec]gr <Cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> [exec]gn <Cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> [exec]gd <Cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> [exec]gw <Cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> [keyword]c <Cmd>lua vim.lsp.buf.code_action()<CR>
 
 highlight! link LspDiagnosticsError SpellBad
 highlight! link LspDiagnosticsWarning Tag
