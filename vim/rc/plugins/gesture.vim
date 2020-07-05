@@ -89,7 +89,7 @@ gesture.register({
 gesture.register({
     name = "open the recent files",
     inputs = { gesture.up(), gesture.right() },
-    action = "normal! Denite file_mru"
+    action = "Denite file_mru -no-start-filter"
 })
 EOF
 endfunction
