@@ -147,6 +147,9 @@ source ~/.vim/rc/plugins/flompt.vim
 call s:add('notomo/kitche.nvim', {'cmd' : 'Kitche*', 'depth': 0})
 source ~/.vim/rc/plugins/kitche.vim
 
+call s:add('notomo/thetto.nvim', {'cmd' : 'Thetto*', 'depth': 0})
+source ~/.vim/rc/plugins/thetto.vim
+
 call s:add('notomo/counteria.nvim', {'cmd' : 'Counteria*', 'depth': 0})
 
 call s:add('notomo/hita.nvim', {'cmd' : 'Hita*', 'depth': 0})
