@@ -149,3 +149,21 @@ snippet teardown
 	teardown(function ()
 		${0:TARGET}
 	end)
+
+snippet goto
+	goto ${1:label}
+
+snippet continue
+	goto continue
+
+snippet label
+	::${1:continue}::
+
+snippet pcall
+	local ok, result = pcall(${1:func}, ${0:arg})
+
+snippet xpcall
+	local ok, result = xpcall(${1:func}, ${0:handler})
+
+snippet trace
+	debug.traceback

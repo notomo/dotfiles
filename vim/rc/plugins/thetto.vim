@@ -4,6 +4,7 @@ function! s:thetto() abort
 require('thetto/kind/directory').after = function(path)
 vim.api.nvim_command("Kiview -create -split=no")
 end
+require('thetto/source/file/mru').ignore_pattern = "\\v^(gina|thetto|term)://"
 EOF
 endfunction
 
