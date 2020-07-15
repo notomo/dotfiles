@@ -17,6 +17,7 @@
     - { role: 'rust', tags: 'rust' }
     - { role: 'gh', tags: 'gh' }
     - { role: 'sqlite3', tags: 'sqlite3' }
+    - { role: 'lua', tags: 'lua' }
     - { role: 'timezone', tags: 'timezone' }
     - { role: 'gitconfig', tags: 'gitconfig' }
   vars_files:

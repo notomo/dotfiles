@@ -1,0 +1,96 @@
+- name: check lua bin
+  stat:
+    path: "{{ home_dir }}/.local/bin/lua"
+  register: lua_installed
+
+- name: check lua src download
+  stat:
+    path: "{{ app_dir }}/lua"
+  register: lua_downloaded
+  when: is_ubuntu
+
+- name: make lua directory
+  file:
+    path: "{{ app_dir }}/lua"
+    state: directory
+  when: is_ubuntu and not lua_installed.stat.exists
+
+- name: download lua on ubuntu
+  get_url:
+    url: http://www.lua.org/ftp/lua-5.3.5.tar.gz
+    dest: "{{ app_dir }}/lua.tar.gz"
+  when: is_ubuntu and not lua_installed.stat.exists and not lua_downloaded.stat.exists
+
+- name: unarchive lua
+  unarchive:
+    src: "{{ app_dir }}/lua.tar.gz"
+    dest: "{{ app_dir }}/lua"
+    extra_opts: [--strip-components=1]
+  when: is_ubuntu and not lua_installed.stat.exists
+
+- name: lua make
+  make:
+    target: linux
+    chdir: "{{ app_dir }}/lua"
+  when: is_ubuntu and not lua_installed.stat.exists
+
+- name: lua make test
+  make:
+    target: test
+    chdir: "{{ app_dir }}/lua"
+  when: is_ubuntu and not lua_installed.stat.exists
+
+- name: lua make install
+  make:
+    target: install
+    chdir: "{{ app_dir }}/lua"
+    params:
+      INSTALL_TOP: "{{ home_dir }}/.local"
+  when: is_ubuntu and not lua_installed.stat.exists
+
+- name: check luarocks bin
+  stat:
+    path: "{{ home_dir }}/.local/bin/luarocks"
+  register: luarocks_installed
+
+- name: check luarocks src download
+  stat:
+    path: "{{ app_dir }}/luarocks"
+  register: luarocks_downloaded
+  when: is_ubuntu
+
+- name: make luarocks directory
+  file:
+    path: "{{ app_dir }}/luarocks"
+    state: directory
+  when: is_ubuntu and not luarocks_installed.stat.exists
+
+- name: download luarocks on ubuntu
+  get_url:
+    url: https://luarocks.org/releases/luarocks-3.3.1.tar.gz
+    dest: "{{ app_dir }}/luarocks.tar.gz"
+  when: is_ubuntu and not luarocks_installed.stat.exists and not luarocks_downloaded.stat.exists
+
+- name: unarchive luarocks
+  unarchive:
+    src: "{{ app_dir }}/luarocks.tar.gz"
+    dest: "{{ app_dir }}/luarocks"
+    extra_opts: [--strip-components=1]
+  when: is_ubuntu and not luarocks_installed.stat.exists
+
+- name: configure luarocks
+  shell: ./configure --prefix={{ home_dir }}/.local --with-lua-bin={{ home_dir }}/.local/bin
+  args:
+    chdir: "{{ app_dir }}/luarocks"
+  when: is_ubuntu and not luarocks_installed.stat.exists
+
+- name: luarocks make
+  make:
+    chdir: "{{ app_dir }}/luarocks"
+  when: is_ubuntu and not luarocks_installed.stat.exists
+
+- name: luarocks make install
+  make:
+    target: install
+    chdir: "{{ app_dir }}/luarocks"
+  when: is_ubuntu and not luarocks_installed.stat.exists
