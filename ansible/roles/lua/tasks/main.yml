@@ -17,7 +17,7 @@
 
 - name: download lua on ubuntu
   get_url:
-    url: http://www.lua.org/ftp/lua-5.3.5.tar.gz
+    url: http://www.lua.org/ftp/lua-5.1.5.tar.gz
     dest: "{{ app_dir }}/lua.tar.gz"
   when: is_ubuntu and not lua_installed.stat.exists and not lua_downloaded.stat.exists
 

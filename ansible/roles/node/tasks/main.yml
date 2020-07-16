@@ -58,7 +58,6 @@
       - prettier
       - wscat
       - vue-language-server
-      - lua-fmt
 
 - name: install node.js package globally
   npm:

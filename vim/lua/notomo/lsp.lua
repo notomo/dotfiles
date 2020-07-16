@@ -5,10 +5,8 @@ nvimlsp.gopls.setup {
   init_options = {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks
-    analyses = {
-      ST1000 = false
-    }
-  }
+    analyses = {ST1000 = false},
+  },
 }
 nvimlsp.pyls.setup {}
 nvimlsp.clangd.setup {}
@@ -25,7 +23,7 @@ nvimlsp.efm.setup {
   on_attach = function(client)
     client.resolved_capabilities.text_document_save = true
     client.resolved_capabilities.text_document_save_include_text = true
-  end
+  end,
 }
 
 vim.lsp.set_log_level("error")
@@ -83,18 +81,11 @@ local set_qflist = function(bufnr, uri, diagnostics)
       lnum = pos.line + 1,
       col = pos.character + 1,
       text = v.message,
-      type = severity
+      type = severity,
     }
     table.insert(items, item)
   end
-  vim.fn.setqflist(
-    {},
-    "r",
-    {
-      title = "lsp",
-      items = items
-    }
-  )
+  vim.fn.setqflist({}, "r", {title = "lsp", items = items})
 end
 
 local states = {}
@@ -119,10 +110,7 @@ vim.lsp.callbacks["textDocument/publishDiagnostics"] = function(_, _, result, cl
 
   local state = states[bufnr]
   if not state then
-    state = {
-      diagnostics = {},
-      version = 0
-    }
+    state = {diagnostics = {}, version = 0}
     states[bufnr] = state
   end
 
@@ -150,14 +138,11 @@ vim.lsp.callbacks["textDocument/publishDiagnostics"] = function(_, _, result, cl
   end
   state.diagnostics = running
 
-  debounce(
-    100,
-    function()
-      set_vritualtext(bufnr, all_diagnostics, ns)
-      set_qflist(bufnr, uri, all_diagnostics)
-      vim.lsp.util.buf_diagnostics_signs(bufnr, all_diagnostics)
-    end
-  )
+  debounce(100, function()
+    set_vritualtext(bufnr, all_diagnostics, ns)
+    set_qflist(bufnr, uri, all_diagnostics)
+    vim.lsp.util.buf_diagnostics_signs(bufnr, all_diagnostics)
+  end)
 end
 
 vim.lsp.callbacks["textDocument/references"] = function(_, _, result)
@@ -167,14 +152,11 @@ vim.lsp.callbacks["textDocument/references"] = function(_, _, result)
 
   local args = {}
   for _, v in ipairs(result) do
-    table.insert(
-      args,
-      {
-        path = vim.uri_to_fname(v.uri),
-        line = v.range.start.line + 1,
-        col = v.range.start.character + 1
-      }
-    )
+    table.insert(args, {
+      path = vim.uri_to_fname(v.uri),
+      line = v.range.start.line + 1,
+      col = v.range.start.character + 1,
+    })
   end
 
   local source = {name = "position", args = args}
@@ -190,15 +172,12 @@ vim.lsp.callbacks["workspace/symbol"] = function(_, _, result)
   local args = {}
   for _, v in ipairs(result) do
     local kind = vim.lsp.protocol.SymbolKind[v.kind]
-    table.insert(
-      args,
-      {
-        path = vim.uri_to_fname(v.location.uri),
-        line = v.location.range.start.line + 1,
-        col = v.location.range.start.character + 1,
-        word = string.format("[%s] %s", kind, v.name)
-      }
-    )
+    table.insert(args, {
+      path = vim.uri_to_fname(v.location.uri),
+      line = v.location.range.start.line + 1,
+      col = v.location.range.start.character + 1,
+      word = string.format("[%s] %s", kind, v.name),
+    })
   end
 
   local source = {name = "position", args = args}
@@ -215,15 +194,12 @@ vim.lsp.callbacks["textDocument/documentSymbol"] = function(_, _, result)
   local path = vim.fn.expand("%:p")
   for _, v in ipairs(result) do
     local kind = vim.lsp.protocol.SymbolKind[v.kind]
-    table.insert(
-      args,
-      {
-        path = path,
-        line = v.selectionRange.start.line + 1,
-        col = v.selectionRange.start.character + 1,
-        word = string.format("[%s] %s %s", kind, v.name, v.detail)
-      }
-    )
+    table.insert(args, {
+      path = path,
+      line = v.selectionRange.start.line + 1,
+      col = v.selectionRange.start.character + 1,
+      word = string.format("[%s] %s %s", kind, v.name, v.detail),
+    })
   end
 
   local source = {name = "position", args = args}
