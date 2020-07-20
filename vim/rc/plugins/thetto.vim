@@ -2,9 +2,17 @@ autocmd MyAuGroup User ThettoSourceLoad call s:thetto()
 function! s:thetto() abort
     lua << EOF
 require('thetto/kind/directory').after = function(path)
-vim.api.nvim_command("Kiview -create -split=no")
+  vim.api.nvim_command("Kiview -create -split=no")
 end
-require('thetto/source/file/mru').ignore_pattern = "\\v^(gina|thetto|term)://"
+
+require('thetto/source/file/mru').ignore_pattern = "\\v(^(gina|thetto|term|kiview)://|denite-filter$|\\[denite\\]-default$)"
+
+local grep = require('thetto/source/grep')
+grep.command = "pt"
+grep.opts = {"--nogroup", "--nocolor", "--smart-case", "--ignore=.git", "--ignore=tags", "--hidden"}
+grep.pattern_opt = ""
+grep.recursive_opt = ""
+grep.separator = "--"
 EOF
 endfunction
 
@@ -17,7 +25,10 @@ function! s:thetto_settings() abort
     nnoremap <buffer> I :<C-u>ThettoDo move_to_input<CR><Home>
     nnoremap <buffer> a :<C-u>ThettoDo move_to_input<CR>
     nnoremap <buffer> A :<C-u>ThettoDo move_to_input<CR><End>
-    nnoremap <buffer> q :<C-u>quit<CR>
+    nnoremap <buffer> q :<C-u>ThettoDo quit<CR>
+    nnoremap <buffer> o :<C-u>ThettoDo open<CR>
+    nnoremap <buffer> sv :<C-u>ThettoDo vsplit_open<CR>
+    nnoremap <buffer> t<Space> :<C-u>ThettoDo tab_open<CR>
     nnoremap <silent> <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
 endfunction
@@ -27,9 +38,9 @@ function! s:thetto_input_settings() abort
     nnoremap <buffer> <CR> :<C-u>ThettoDo<CR>
     inoremap <buffer> <CR> <Esc>:ThettoDo<CR>
     nnoremap <silent> <buffer> dd :<C-u>silent %delete _<CR>
-    inoremap <silent> <buffer> jq <Esc>:quit<CR>
+    inoremap <silent> <buffer> jq <Esc>:ThettoDo quit<CR>
     nnoremap <buffer> j :<C-u>ThettoDo move_to_list<CR>
     nnoremap <buffer> k :<C-u>ThettoDo move_to_list<CR>
-    nnoremap <buffer> q :<C-u>quit<CR>
+    nnoremap <buffer> q :<C-u>ThettoDo quit<CR>
     inoremap <buffer> <C-u> <Cmd>lua require('notomo/insert').delete_prev()<CR>
 endfunction

@@ -8,7 +8,7 @@ snippet local_func
 	end
 
 snippet require
-	require '${1:name}'
+	require("${1:name}")
 
 snippet dofile
 	dofile(${1:file_path})
@@ -167,3 +167,6 @@ snippet xpcall
 
 snippet trace
 	debug.traceback
+
+snippet env
+	os.getenv(${0:name})
