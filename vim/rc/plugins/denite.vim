@@ -63,7 +63,6 @@ nnoremap <silent> [finder]gg :<C-u>DeniteProjectDir grep -no-empty<CR>
 nnoremap <silent> [finder]H :<C-u>Denite highlight<CR>
 
 nnoremap <silent> [finder]p :<C-u>Denite plugin file_bookmark -default-action=tabfiler<CR>
-nnoremap <silent> [finder]O :<C-u>Denite option<CR>
 nnoremap <silent> [finder]b :<C-u>Denite url_bookmark<CR>
 nnoremap <silent> [finder]s :<C-u>Denite source<CR>
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"

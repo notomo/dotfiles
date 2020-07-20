@@ -58,3 +58,4 @@ nnoremap [finder]h :<C-u>Thetto vim/help<CR>
 nnoremap [finder]l :<C-u>Thetto line<CR>
 nnoremap [finder]r :<C-u>Thetto directory/recursive --target=project<CR>
 nnoremap [finder]v :<C-u>Thetto file/recursive --cwd=~/dotfiles<CR>
+nnoremap [finder]O :<C-u>Thetto vim/option<CR>
