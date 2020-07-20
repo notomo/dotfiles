@@ -1,6 +1,3 @@
-nnoremap [denite] <Nop>
-nmap <Space>d [denite]
-
 autocmd MyAuGroup FileType denite call s:denite_settings()
 function! s:denite_settings() abort
     nnoremap <silent> <buffer> <expr> <CR> denite#do_map('do_action', 'default')
@@ -55,50 +52,35 @@ function! s:denite_filter_settings() abort
     inoremap <silent> <buffer> <LeftMouse> <ESC>
 endfunction
 
-nnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
-xnoremap <silent> <Space>ur :<C-u>Denite file_mru<CR>
-nnoremap <silent> [denite]y :<C-u>Denite file_bookmark<CR>
-nnoremap <silent> [denite]l :<C-u>Denite line/external<CR>
-nnoremap <silent> [denite]d :<C-u>Denite directory_mru -default-action=tabfiler<CR>
-nnoremap <silent> [denite]r :<C-u>DeniteProjectDir directory_rec -default-action=tabfiler<CR>
-nnoremap <silent> [denite]B :<C-u>Denite buffer<CR>
-nnoremap <silent> <Space>usf :<C-u>Denite file/rec<CR>
-nnoremap <silent> <Space>usg :<C-u>DeniteProjectDir file/rec<CR>
-nnoremap <silent> [denite]f :<C-u>Denite dir_file -no-empty<CR>
-nnoremap <silent> [denite]o :<C-u>Denite outline -no-empty<CR>
-nnoremap <silent> [denite]; :<C-u>Denite filetype -default-action=open_proto<CR>
-nnoremap <silent> [denite]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
-nnoremap <silent> [denite]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
-nnoremap <silent> [denite]<CR> :<C-u>Denite -resume -no-start-filter<CR>
-nnoremap <silent> [denite]gl :<C-u>Denite grep -no-empty<CR>
-nnoremap <silent> [denite]gg :<C-u>DeniteProjectDir grep -no-empty<CR>
-nnoremap <silent> [denite]H :<C-u>Denite highlight<CR>
+nnoremap <silent> [finder]y :<C-u>Denite file_bookmark<CR>
+nnoremap <silent> [finder]B :<C-u>Denite buffer<CR>
+nnoremap <silent> [finder]o :<C-u>Denite outline -no-empty<CR>
+nnoremap <silent> [finder]; :<C-u>Denite filetype -default-action=open_proto<CR>
+nnoremap <silent> [finder]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
+nnoremap <silent> [finder]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
+nnoremap <silent> [finder]<CR> :<C-u>Denite -resume -no-start-filter<CR>
+nnoremap <silent> [finder]gl :<C-u>Denite grep -no-empty<CR>
+nnoremap <silent> [finder]gg :<C-u>DeniteProjectDir grep -no-empty<CR>
+nnoremap <silent> [finder]H :<C-u>Denite highlight<CR>
 
-if has('nvim')
-    nnoremap <silent> [denite]h :<C-u>Denite curstr/altr/help<CR>
-else
-    nnoremap <silent> [denite]h :<C-u>Denite help<CR>
-endif
-
-nnoremap <silent> [denite]v :<C-u>cd ~/dotfiles<CR>:<C-u>DeniteProjectDir file/rec<CR>
-nnoremap <silent> [denite]F :<C-u>Denite grep:::!<CR>
-nnoremap <silent> [denite]G :<C-u>DeniteProjectDir grep:::!<CR>
-nnoremap <silent> [denite]p :<C-u>Denite plugin file_bookmark -default-action=tabfiler<CR>
-nnoremap <silent> [denite]O :<C-u>Denite option<CR>
-nnoremap <silent> [denite]A :<C-u>Denite alias<CR>
-nnoremap <silent> [denite]b :<C-u>Denite url_bookmark<CR>
-nnoremap <silent> [denite]s :<C-u>Denite source<CR>
+nnoremap <silent> [finder]F :<C-u>Denite grep:::!<CR>
+nnoremap <silent> [finder]G :<C-u>DeniteProjectDir grep:::!<CR>
+nnoremap <silent> [finder]p :<C-u>Denite plugin file_bookmark -default-action=tabfiler<CR>
+nnoremap <silent> [finder]O :<C-u>Denite option<CR>
+nnoremap <silent> [finder]A :<C-u>Denite alias<CR>
+nnoremap <silent> [finder]b :<C-u>Denite url_bookmark<CR>
+nnoremap <silent> [finder]s :<C-u>Denite source<CR>
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
 nnoremap <expr> <silent> [keyword]gi ":\<C-u>DeniteProjectDir ignorecase_grep:::" . expand('<cword>') . " -no-empty\<CR>"
-nnoremap <expr> <silent> [denite]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
-nnoremap <silent> [denite]go :<C-u>Denite go/src<CR>
-nnoremap <silent> [denite]gp :<C-u>Denite go/package<CR>
-nnoremap <silent> [denite]gO :<C-u>call notomo#denite#go_project_decls()<CR>
-nnoremap <silent> [denite]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
-nnoremap <silent> [denite]ga :<C-u>Denite git/branch<CR>
-nnoremap <silent> [denite]gA :<C-u>Denite git/branch:all<CR>
-nnoremap <silent> [denite]P :<C-u>Denite proc<CR>
+nnoremap <expr> <silent> [finder]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
+nnoremap <silent> [finder]go :<C-u>Denite go/src<CR>
+nnoremap <silent> [finder]gp :<C-u>Denite go/package<CR>
+nnoremap <silent> [finder]gO :<C-u>call notomo#denite#go_project_decls()<CR>
+nnoremap <silent> [finder]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
+nnoremap <silent> [finder]ga :<C-u>Denite git/branch<CR>
+nnoremap <silent> [finder]gA :<C-u>Denite git/branch:all<CR>
+nnoremap <silent> [finder]P :<C-u>Denite proc<CR>
 
 call denite#custom#option('default', 'filter_split_direction', 'botright')
 call denite#custom#option('default', 'start_filter', 'true')
@@ -112,7 +94,6 @@ call denite#custom#option('default', 'smartcase', v:true)
 call denite#custom#option('default', 'statusline', v:false)
 call denite#custom#source('_', 'matchers', ['matcher/regexp'])
 call denite#custom#source('ctrlb/history/search', 'matchers', [])
-call denite#custom#source('directory_mru', 'sorters', ['sorter_length'])
 call denite#custom#source('decls', 'sorters', ['sorter_line_number', 'sorter_file_path'])
 call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', ['.git', '.mypy_cache/', '__pycache__/*', '__pycache__', '.mypy_cache', '.pytest_cache/', '.pytest_cache', '.DS_Store'])
 call denite#custom#source('file/rec', 'matchers', ['matcher/regexp', 'matcher/ignore_globs'])

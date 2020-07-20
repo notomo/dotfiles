@@ -31,6 +31,8 @@ nnoremap [substitute] <Nop>
 nmap <Space>s [substitute]
 xnoremap [substitute] <Nop>
 xmap <Space>s [substitute]
+nnoremap [finder] <Nop>
+nmap <Space>d [finder]
 
 let g:plugin_dicwin_disable = 1
 let g:loaded_gzip = 1
@@ -203,12 +205,6 @@ call minpac#add('rhysd/vim-color-spring-night')
 let g:spring_night_kill_italic = 1
 let g:spring_night_high_contrast = 0
 
-call minpac#add('Shougo/neomru.vim')
-let g:neomru#file_mru_limit = 200
-if !exists('g:neomru#file_mru_ignore_pattern')
-    let g:neomru#file_mru_ignore_pattern = '\%(^\%(gina\|term\|vimonga\)://\)'
-endif
-
 call minpac#add('lambdalisue/gina.vim')
 
 call minpac#add('itchyny/lightline.vim')
@@ -339,6 +335,6 @@ let g:signify_disable_by_default = 0
 call minpac#add('lambdalisue/session.vim')
 nnoremap [file]<Space> :<C-u>call notomo#vimrc#save_session()<CR>
 nnoremap [file]<CR> :<C-u>SessionOpen<CR>
-nnoremap [denite]S :<C-u>Denite session<CR>
+nnoremap [finder]S :<C-u>Denite session<CR>
 
 call minpac#add('notomo/gevdoc', {'depth': 0})

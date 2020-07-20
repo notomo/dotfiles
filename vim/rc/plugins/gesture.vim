@@ -89,7 +89,7 @@ gesture.register({
 gesture.register({
     name = "open the recent files",
     inputs = { gesture.up(), gesture.right() },
-    action = "Denite file_mru -no-start-filter"
+    action = "Thetto file/mru --no-insert"
 })
 EOF
 endfunction

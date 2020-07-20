@@ -1,1 +1,1 @@
-nnoremap <buffer> <silent> [denite]o :<C-u>Denite yaml_outline<CR>
+nnoremap <buffer> <silent> [finder]o :<C-u>Denite yaml_outline<CR>

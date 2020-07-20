@@ -31,6 +31,7 @@ function! s:thetto_settings() abort
     nnoremap <buffer> t<Space> :<C-u>ThettoDo tab_open<CR>
     nnoremap <silent> <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
+    nnoremap <silent> <buffer> <2-LeftMouse> :<C-u>ThettoDo<CR>
 endfunction
 
 autocmd MyAuGroup FileType thetto-input call s:thetto_input_settings()
@@ -44,3 +45,14 @@ function! s:thetto_input_settings() abort
     nnoremap <buffer> q :<C-u>ThettoDo quit<CR>
     inoremap <buffer> <C-u> <Cmd>lua require('notomo/insert').delete_prev()<CR>
 endfunction
+
+nnoremap [finder]R :<C-u>Thetto vim/runtimepath<CR>
+nnoremap <Space>ur :<C-u>Thetto file/mru<CR>
+nnoremap <Space>u<CR> :<C-u>Thetto --resume<CR>
+nnoremap <Space>usf :<C-u>Thetto file/recursive<CR>
+nnoremap <Space>usg :<C-u>Thetto file/recursive --target=project<CR>
+nnoremap [finder]f :<C-u>Thetto file/in_dir<CR>
+nnoremap [finder]h :<C-u>Thetto vim/help<CR>
+nnoremap [finder]l :<C-u>Thetto line<CR>
+nnoremap [finder]r :<C-u>Thetto directory/recursive --target=project<CR>
+nnoremap [finder]v :<C-u>Thetto file/recursive --cwd=~/dotfiles<CR>

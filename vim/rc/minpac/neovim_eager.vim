@@ -1,17 +1,14 @@
 call minpac#add('Shougo/denite.nvim')
 
 call minpac#add('notomo/denite-autocmd', {'depth': 0})
-nnoremap <silent> [denite]a :<C-u>Denite autocmd<CR>
-
-call minpac#add('notomo/denite-runtimepath', {'depth': 0})
-nnoremap <silent> [denite]R :<C-u>Denite runtimepath<CR>
+nnoremap <silent> [finder]a :<C-u>Denite autocmd<CR>
 
 call minpac#add('notomo/denite-keymap', {'depth': 0})
-nnoremap <silent> [denite]m :<C-u>Denite keymap<CR>
+nnoremap <silent> [finder]m :<C-u>Denite keymap<CR>
 
 call minpac#add('pocari/vim-denite-emoji')
 call minpac#add('junegunn/vim-emoji')
-nnoremap <silent> [denite]e :<C-u>Denite emoji -default-action=append_emoji<CR>
+nnoremap <silent> [finder]e :<C-u>Denite emoji -default-action=append_emoji<CR>
 
 call minpac#add('thinca/vim-themis')
 call minpac#add('notomo/vusted')
