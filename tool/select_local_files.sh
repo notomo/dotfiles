@@ -5,7 +5,6 @@ cp -f ~/.local/.bash_profile ~/local_files/.local/.bash_profile
 cp -f ~/.local/.bashrc ~/local_files/.local/.bashrc
 cp -f ~/.local/.denite_todo ~/local_files/.local/.denite_todo
 cp -f ~/.local/.denite_url_bookmark ~/local_files/.local/.denite_url_bookmark
-cp -f ~/.local/.denite_url_substitute_pattern ~/local_files/.local/.denite_url_substitute_pattern
 cp -f ~/.local/.denite_file_bookmark ~/local_files/.local/.denite_file_bookmark
 
 mkdir -p ~/local_files/dotfiles/vim/rc/local/after

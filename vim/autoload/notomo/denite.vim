@@ -133,19 +133,8 @@ function! notomo#denite#get(option_name) abort
     return value
 endfunction
 
-function! notomo#denite#convert(context) abort
-    let url = escape(a:context['targets'][0]['action__url'], ':')
-    execute 'Denite url_substitute_pattern:' . url
-endfunction
-
 function! notomo#denite#decls(context) abort
     execute 'Denite go/decls:' . a:context['targets'][0]['action__path']
-endfunction
-
-function! notomo#denite#go_project_decls() abort
-    let project_path = fnamemodify(notomo#vimrc#search_parent_recursive('.git', './'), ':h:h')
-    let path = escape(project_path, '/')
-    execute 'Denite go/decls:' . path . ':1'
 endfunction
 
 function! notomo#denite#append_emoji(context) abort

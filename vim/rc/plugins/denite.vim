@@ -25,7 +25,6 @@ function! s:denite_settings() abort
     nnoremap <silent> <buffer> <expr> <Leader>rp denite#do_map('do_action', 'qfreplace')
     nnoremap <silent> <buffer> <expr> ff denite#do_map('do_action', 'dir_file')
     nnoremap <silent> <buffer> <expr> fa denite#do_map('do_action', 'parent_dir_file')
-    nnoremap <silent> <buffer> <expr> M denite#do_map('do_action', 'convert')
     nnoremap <silent> <buffer> <expr> <Space>D denite#do_map('do_action', 'debug_targets')
     nnoremap <silent> <buffer> <expr> tmp denite#do_map('toggle_matchers', 'matcher_path')
     nnoremap <silent> <buffer> <expr> tmip denite#do_map('toggle_matchers', 'matcher_ignore_path')
@@ -63,21 +62,14 @@ nnoremap <silent> [finder]gl :<C-u>Denite grep -no-empty<CR>
 nnoremap <silent> [finder]gg :<C-u>DeniteProjectDir grep -no-empty<CR>
 nnoremap <silent> [finder]H :<C-u>Denite highlight<CR>
 
-nnoremap <silent> [finder]F :<C-u>Denite grep:::!<CR>
-nnoremap <silent> [finder]G :<C-u>DeniteProjectDir grep:::!<CR>
 nnoremap <silent> [finder]p :<C-u>Denite plugin file_bookmark -default-action=tabfiler<CR>
 nnoremap <silent> [finder]O :<C-u>Denite option<CR>
-nnoremap <silent> [finder]A :<C-u>Denite alias<CR>
 nnoremap <silent> [finder]b :<C-u>Denite url_bookmark<CR>
 nnoremap <silent> [finder]s :<C-u>Denite source<CR>
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
-nnoremap <expr> <silent> [keyword]gi ":\<C-u>DeniteProjectDir ignorecase_grep:::" . expand('<cword>') . " -no-empty\<CR>"
-nnoremap <expr> <silent> [finder]M ':<C-u>Denite url_substitute_pattern:' . escape(expand('<cWORD>'), ':') . ' -no-empty <CR>'
 nnoremap <silent> [finder]go :<C-u>Denite go/src<CR>
 nnoremap <silent> [finder]gp :<C-u>Denite go/package<CR>
-nnoremap <silent> [finder]gO :<C-u>call notomo#denite#go_project_decls()<CR>
-nnoremap <silent> [finder]tm :<C-u>Denite file/rec:~/workspace/memo<CR>
 nnoremap <silent> [finder]ga :<C-u>Denite git/branch<CR>
 nnoremap <silent> [finder]gA :<C-u>Denite git/branch:all<CR>
 nnoremap <silent> [finder]P :<C-u>Denite proc<CR>
@@ -107,14 +99,6 @@ call denite#custom#var('grep', 'pattern_opt', [])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
-call denite#custom#alias('source', 'ignorecase_grep', 'grep')
-call denite#custom#var('ignorecase_grep', 'command', ['pt'])
-call denite#custom#var('ignorecase_grep', 'default_opts', ['--nogroup', '--nocolor', '--ignore-case', '--ignore=.git', '--ignore=tags', '--hidden'])
-call denite#custom#var('ignorecase_grep', 'recursive_opts', [])
-call denite#custom#var('ignorecase_grep', 'pattern_opt', [])
-call denite#custom#var('ignorecase_grep', 'separator', ['--'])
-call denite#custom#var('ignorecase_grep', 'final_opts', [])
-
 call denite#custom#var('file/rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '--ignore=.git', (has('win32') ? '-g:' : '-g='), ''])
 call denite#custom#var('outline', 'ignore_types', ['v'])
 
@@ -142,8 +126,6 @@ call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project
 call denite#custom#action('directory,plugin', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})
 
 call denite#custom#action('buffer,command,directory,file,openable,word,autocmd', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})
-
-call denite#custom#action('url_bookmark', 'convert', {context ->  notomo#denite#convert(context)})
 
 call denite#custom#action('go/package', 'decls', {context ->  notomo#denite#decls(context)})
 

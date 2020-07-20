@@ -43,6 +43,8 @@ function! s:thetto_input_settings() abort
     nnoremap <buffer> j :<C-u>ThettoDo move_to_list<CR>
     nnoremap <buffer> k :<C-u>ThettoDo move_to_list<CR>
     nnoremap <buffer> q :<C-u>ThettoDo quit<CR>
+    nnoremap <buffer> o :<C-u>ThettoDo open<CR>
+    nnoremap <buffer> t<Space> :<C-u>ThettoDo tab_open<CR>
     inoremap <buffer> <C-u> <Cmd>lua require('notomo/insert').delete_prev()<CR>
 endfunction
 
