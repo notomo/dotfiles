@@ -52,7 +52,6 @@ function! s:denite_filter_settings() abort
 endfunction
 
 nnoremap <silent> [finder]y :<C-u>Denite file_bookmark<CR>
-nnoremap <silent> [finder]B :<C-u>Denite buffer<CR>
 nnoremap <silent> [finder]o :<C-u>Denite outline -no-empty<CR>
 nnoremap <silent> [finder]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [finder]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
@@ -60,7 +59,6 @@ nnoremap <silent> [finder]<CR> :<C-u>Denite -resume -no-start-filter<CR>
 nnoremap <silent> [finder]gl :<C-u>Denite grep -no-empty<CR>
 nnoremap <silent> [finder]gg :<C-u>DeniteProjectDir grep -no-empty<CR>
 
-nnoremap <silent> [finder]p :<C-u>Denite plugin file_bookmark -default-action=tabfiler<CR>
 nnoremap <silent> [finder]b :<C-u>Denite url_bookmark<CR>
 nnoremap <silent> [finder]s :<C-u>Denite source<CR>
 nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"

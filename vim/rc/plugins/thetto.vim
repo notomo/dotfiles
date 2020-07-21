@@ -45,3 +45,5 @@ nnoremap [finder]v :<C-u>Thetto file/recursive --cwd=~/dotfiles<CR>
 nnoremap [finder]O :<C-u>Thetto vim/option<CR>
 nnoremap [finder]; :<C-u>Thetto vim/filetype --action=open_proto<CR>
 nnoremap [finder]H :<C-u>Thetto vim/highlight_group<CR>
+nnoremap [finder]B :<C-u>Thetto vim/buffer<CR>
+nnoremap [finder]p :<C-u>Thetto plugin<CR>
