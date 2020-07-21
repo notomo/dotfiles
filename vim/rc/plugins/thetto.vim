@@ -47,3 +47,4 @@ nnoremap [finder]; :<C-u>Thetto vim/filetype --action=open_proto<CR>
 nnoremap [finder]H :<C-u>Thetto vim/highlight_group<CR>
 nnoremap [finder]B :<C-u>Thetto vim/buffer<CR>
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
+nnoremap [finder]y :<C-u>Thetto file/bookmark<CR>

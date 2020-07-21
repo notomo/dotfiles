@@ -11,6 +11,17 @@ grep.pattern_opt = ""
 grep.recursive_opt = ""
 grep.separator = "--"
 
+local file_bookmark = require("thetto/source/file/bookmark")
+file_bookmark.paths = {
+  "~/.local/share/nvim/rplugin.vim",
+  "~/dotfiles/vim/rc/local/local.vim",
+  "~/.local/.bashrc",
+  "~/.bashrc",
+  "~/.local/.bash_profile",
+  "~/.bash_profile",
+  file_bookmark.file_path,
+}
+
 local source_actions = require("thetto/kind").source_user_actions
 source_actions["vim/filetype"] = {
   open_proto = function(items)

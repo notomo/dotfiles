@@ -51,7 +51,6 @@ function! s:denite_filter_settings() abort
     inoremap <silent> <buffer> <LeftMouse> <ESC>
 endfunction
 
-nnoremap <silent> [finder]y :<C-u>Denite file_bookmark<CR>
 nnoremap <silent> [finder]o :<C-u>Denite outline -no-empty<CR>
 nnoremap <silent> [finder]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [finder]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
