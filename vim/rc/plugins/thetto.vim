@@ -1,20 +1,4 @@
-autocmd MyAuGroup User ThettoSourceLoad call s:thetto()
-function! s:thetto() abort
-    lua << EOF
-require('thetto/kind/directory').after = function(path)
-  vim.api.nvim_command("Kiview -create -split=no")
-end
-
-require('thetto/source/file/mru').ignore_pattern = "\\v(^(gina|thetto|term|kiview)://|denite-filter$|\\[denite\\]-default$)"
-
-local grep = require('thetto/source/grep')
-grep.command = "pt"
-grep.opts = {"--nogroup", "--nocolor", "--smart-case", "--ignore=.git", "--ignore=tags", "--hidden"}
-grep.pattern_opt = ""
-grep.recursive_opt = ""
-grep.separator = "--"
-EOF
-endfunction
+autocmd MyAuGroup User ThettoSourceLoad lua dofile(vim.fn.expand('~/dotfiles/vim/lua/notomo/thetto.lua'))
 
 autocmd MyAuGroup FileType thetto call s:thetto_settings()
 function! s:thetto_settings() abort
@@ -59,3 +43,4 @@ nnoremap [finder]l :<C-u>Thetto line<CR>
 nnoremap [finder]r :<C-u>Thetto directory/recursive --target=project<CR>
 nnoremap [finder]v :<C-u>Thetto file/recursive --cwd=~/dotfiles<CR>
 nnoremap [finder]O :<C-u>Thetto vim/option<CR>
+nnoremap [finder]; :<C-u>Thetto vim/filetype --action=open_proto<CR>

@@ -54,7 +54,6 @@ endfunction
 nnoremap <silent> [finder]y :<C-u>Denite file_bookmark<CR>
 nnoremap <silent> [finder]B :<C-u>Denite buffer<CR>
 nnoremap <silent> [finder]o :<C-u>Denite outline -no-empty<CR>
-nnoremap <silent> [finder]; :<C-u>Denite filetype -default-action=open_proto<CR>
 nnoremap <silent> [finder]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [finder]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> [finder]<CR> :<C-u>Denite -resume -no-start-filter<CR>
