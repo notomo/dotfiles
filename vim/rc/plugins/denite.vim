@@ -59,7 +59,6 @@ nnoremap <silent> [finder]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> [finder]<CR> :<C-u>Denite -resume -no-start-filter<CR>
 nnoremap <silent> [finder]gl :<C-u>Denite grep -no-empty<CR>
 nnoremap <silent> [finder]gg :<C-u>DeniteProjectDir grep -no-empty<CR>
-nnoremap <silent> [finder]H :<C-u>Denite highlight<CR>
 
 nnoremap <silent> [finder]p :<C-u>Denite plugin file_bookmark -default-action=tabfiler<CR>
 nnoremap <silent> [finder]b :<C-u>Denite url_bookmark<CR>
@@ -128,8 +127,6 @@ call denite#custom#action('buffer,command,directory,file,openable,word,autocmd',
 call denite#custom#action('go/package', 'decls', {context ->  notomo#denite#decls(context)})
 
 call denite#custom#action('word', 'append_emoji', {context ->  notomo#denite#append_emoji(context)})
-
-call denite#custom#action('command', 'open_proto', {context ->  notomo#vimrc#open_proto(context['targets'][0]['word'])})
 
 call denite#custom#action('reference', 'open', {context -> notomo#doc#open(context['targets'][0]['word'], 'tabedit')})
 call denite#custom#action('reference', 'tabopen', {context -> notomo#doc#open(context['targets'][0]['word'], 'tabedit')})
