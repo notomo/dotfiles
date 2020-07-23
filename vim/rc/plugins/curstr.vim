@@ -29,6 +29,7 @@ function! s:settings() abort
 
     call curstr#custom#source_alias('openable', ['rule', 'vim/function', 'vim/lua', 'file', 'directory', 'swagger', 'vim/runtime'])
     call curstr#custom#source_option('vim/autoload_function', 'include_packpath', v:true)
+    call curstr#custom#source_option('vim/autoload_function', 'filetypes', ['vim', 'python', 'lua'])
 
     call curstr#custom#source_alias('bool', ['togglable/word/simple'])
     call curstr#custom#source_option('bool', 'words', ['true', 'false'])

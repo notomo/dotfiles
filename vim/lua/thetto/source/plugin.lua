@@ -1,6 +1,6 @@
 local M = {}
 
-M.make = function()
+M.collect = function()
   local items = {}
   local plugins = vim.tbl_values(vim.fn["minpac#getpluglist"]())
   for _, plugin in ipairs(plugins) do

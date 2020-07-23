@@ -32,3 +32,21 @@ source_actions["vim/filetype"] = {
     vim.fn["notomo#vimrc#open_proto"](item.value)
   end,
 }
+
+local kind_actions = require("thetto/kind").user_actions
+kind_actions["git/branch"] = {
+  action_tab_open = function(_, items)
+    for _, item in ipairs(items) do
+      local cmd = ("Gina show %s:%%:p --opener=tabedit"):format(item.value)
+      vim.api.nvim_command(cmd)
+    end
+  end,
+  action_compare = function(_, items)
+    local item = items[1]
+    if item == nil then
+      return
+    end
+    local cmd = ("Gina compare %s:"):format(item.value)
+    vim.api.nvim_command(cmd)
+  end,
+}
