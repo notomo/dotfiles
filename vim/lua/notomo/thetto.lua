@@ -24,7 +24,7 @@ file_bookmark.paths = {
 
 local source_actions = require("thetto/kind").source_user_actions
 source_actions["vim/filetype"] = {
-  open_proto = function(items)
+  action_open_proto = function(_, items)
     local item = items[1]
     if item == nil then
       return

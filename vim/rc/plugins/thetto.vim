@@ -12,10 +12,12 @@ function! s:thetto_settings() abort
     nnoremap <buffer> q :<C-u>ThettoDo quit<CR>
     nnoremap <buffer> o :<C-u>ThettoDo open<CR>
     nnoremap <buffer> sv :<C-u>ThettoDo vsplit_open<CR>
+    nnoremap <buffer> D :<C-u>ThettoDo debug_print<CR>
     nnoremap <buffer> t<Space> :<C-u>ThettoDo tab_open<CR>
     nnoremap <silent> <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
     nnoremap <silent> <buffer> <2-LeftMouse> :<C-u>ThettoDo<CR>
+    nnoremap <buffer> <Tab> :<C-u>ThettoDo<Space>
 endfunction
 
 autocmd MyAuGroup FileType thetto-input call s:thetto_input_settings()
@@ -48,3 +50,5 @@ nnoremap [finder]H :<C-u>Thetto vim/highlight_group<CR>
 nnoremap [finder]B :<C-u>Thetto vim/buffer<CR>
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
 nnoremap [finder]y :<C-u>Thetto file/bookmark<CR>
+nnoremap [finder]ga :<C-u>Thetto git/branch<CR>
+nnoremap [finder]gA :<C-u>Thetto git/branch --x-all<CR>

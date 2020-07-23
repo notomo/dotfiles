@@ -64,8 +64,6 @@ nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand(
 nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
 nnoremap <silent> [finder]go :<C-u>Denite go/src<CR>
 nnoremap <silent> [finder]gp :<C-u>Denite go/package<CR>
-nnoremap <silent> [finder]ga :<C-u>Denite git/branch<CR>
-nnoremap <silent> [finder]gA :<C-u>Denite git/branch:all<CR>
 nnoremap <silent> [finder]P :<C-u>Denite proc<CR>
 
 call denite#custom#option('default', 'filter_split_direction', 'botright')
