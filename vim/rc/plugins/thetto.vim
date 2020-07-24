@@ -18,6 +18,10 @@ function! s:thetto_settings() abort
     nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
     nnoremap <silent> <buffer> <2-LeftMouse> :<C-u>ThettoDo<CR>
     nnoremap <buffer> <Tab> :<C-u>ThettoDo<Space>
+    nnoremap <buffer> sm :<C-u>ThettoDo toggle_selection<CR><Down>
+    nnoremap <buffer> fo :<C-u>ThettoDo directory_open<CR>
+    nnoremap <buffer> fl :<C-u>ThettoDo directory_tab_open<CR>
+    nnoremap <buffer> ff :<C-u>ThettoDo directory_enter<CR>
 endfunction
 
 autocmd MyAuGroup FileType thetto-input call s:thetto_input_settings()
@@ -52,3 +56,7 @@ nnoremap [finder]p :<C-u>Thetto plugin<CR>
 nnoremap [finder]y :<C-u>Thetto file/bookmark<CR>
 nnoremap [finder]ga :<C-u>Thetto git/branch<CR>
 nnoremap [finder]gA :<C-u>Thetto git/branch --x-all<CR>
+nnoremap [finder]go :<C-u>Thetto directory/recursive --cwd=$GOPATH/src --x-min-depth=3 --x-max-depth=3<CR>
+nnoremap [keyword]gg :<C-u>Thetto grep --target=project --pattern-type=word<CR>
+nnoremap [finder]gl :<C-u>Thetto grep<CR>
+nnoremap [finder]gg :<C-u>Thetto grep --target=project<CR>

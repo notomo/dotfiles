@@ -55,14 +55,12 @@ nnoremap <silent> [finder]o :<C-u>Denite outline -no-empty<CR>
 nnoremap <silent> [finder]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
 nnoremap <silent> [finder]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> [finder]<CR> :<C-u>Denite -resume -no-start-filter<CR>
-nnoremap <silent> [finder]gl :<C-u>Denite grep -no-empty<CR>
-nnoremap <silent> [finder]gg :<C-u>DeniteProjectDir grep -no-empty<CR>
+nnoremap <silent> [finder]Gl :<C-u>Denite grep -no-empty<CR>
+nnoremap <silent> [finder]Gg :<C-u>DeniteProjectDir grep -no-empty<CR>
 
 nnoremap <silent> [finder]b :<C-u>Denite url_bookmark<CR>
 nnoremap <silent> [finder]s :<C-u>Denite source<CR>
-nnoremap <expr> <silent> [keyword]gg ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
-nnoremap <expr> <silent> [keyword]gl ":\<C-u>DeniteBufferDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
-nnoremap <silent> [finder]go :<C-u>Denite go/src<CR>
+nnoremap <expr> <silent> [keyword]G ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
 nnoremap <silent> [finder]gp :<C-u>Denite go/package<CR>
 nnoremap <silent> [finder]P :<C-u>Denite proc<CR>
 

@@ -1,5 +1,5 @@
-require("thetto/kind/directory").after = function(_)
-  vim.api.nvim_command("Kiview -create -split=no")
+require("thetto/kind/directory").after = function(path)
+  vim.api.nvim_command("Kiview -create -split=no -path=" .. path)
 end
 
 require("thetto/source/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kiview)://|denite-filter$|\\[denite\\]-default$)"
@@ -48,5 +48,25 @@ kind_actions["git/branch"] = {
     end
     local cmd = ("Gina compare %s:"):format(item.value)
     vim.api.nvim_command(cmd)
+  end,
+}
+
+kind_actions["file"] = {
+  action_qfreplace = function(_, items)
+    local qflist = {}
+    for _, item in ipairs(items) do
+      if item.row == nil or item.path == nil then
+        goto continue
+      end
+      table.insert(qflist, {filename = item.path, lnum = item.row, text = item.value})
+      ::continue::
+    end
+    if #qflist == 0 then
+      return
+    end
+    vim.api.nvim_command("tabnew")
+    vim.fn.setqflist(qflist)
+    vim.api.nvim_command("Qfreplace")
+    vim.api.nvim_command("only")
   end,
 }

@@ -87,6 +87,10 @@ function! s:define_highlight() abort
     highlight def link sqlStatement sqlKeyword
     highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
 
+    " for gina status
+    highlight AnsiColor1 ctermfg=1 guifg=#ffaaaa
+    highlight AnsiColor2 ctermfg=2 guifg=#aaddaa
+
     highlight clear SpellCap
     highlight def link SpellCap NONE
     highlight clear SpellBad
