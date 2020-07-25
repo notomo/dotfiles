@@ -58,7 +58,6 @@ nnoremap <silent> [finder]<CR> :<C-u>Denite -resume -no-start-filter<CR>
 nnoremap <silent> [finder]Gl :<C-u>Denite grep -no-empty<CR>
 nnoremap <silent> [finder]Gg :<C-u>DeniteProjectDir grep -no-empty<CR>
 
-nnoremap <silent> [finder]b :<C-u>Denite url_bookmark<CR>
 nnoremap <silent> [finder]s :<C-u>Denite source<CR>
 nnoremap <expr> <silent> [keyword]G ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
 nnoremap <silent> [finder]gp :<C-u>Denite go/package<CR>

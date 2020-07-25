@@ -19,6 +19,7 @@ function! s:thetto_settings() abort
     nnoremap <silent> <buffer> <2-LeftMouse> :<C-u>ThettoDo<CR>
     nnoremap <buffer> <Tab> :<C-u>ThettoDo<Space>
     nnoremap <buffer> sm :<C-u>ThettoDo toggle_selection<CR><Down>
+    nnoremap <buffer> sa :<C-u>ThettoDo toggle_all_selection<CR><Down>
     nnoremap <buffer> fo :<C-u>ThettoDo directory_open<CR>
     nnoremap <buffer> fl :<C-u>ThettoDo directory_tab_open<CR>
     nnoremap <buffer> ff :<C-u>ThettoDo directory_enter<CR>
@@ -60,3 +61,4 @@ nnoremap [finder]go :<C-u>Thetto directory/recursive --cwd=$GOPATH/src --x-min-d
 nnoremap [keyword]gg :<C-u>Thetto grep --target=project --pattern-type=word<CR>
 nnoremap [finder]gl :<C-u>Thetto grep<CR>
 nnoremap [finder]gg :<C-u>Thetto grep --target=project<CR>
+nnoremap [finder]b :<C-u>Thetto url/bookmark --action=browser_open<CR>

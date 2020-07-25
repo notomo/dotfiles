@@ -32,6 +32,15 @@ source_actions["vim/filetype"] = {
     vim.fn["notomo#vimrc#open_proto"](item.value)
   end,
 }
+source_actions["url/bookmark"] = {
+  action_browser_open = function(_, items)
+    for _, item in ipairs(items) do
+      if item.url ~= nil then
+        vim.api.nvim_command("OpenBrowser " .. item.url)
+      end
+    end
+  end,
+}
 
 local kind_actions = require("thetto/kind").user_actions
 kind_actions["git/branch"] = {

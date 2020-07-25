@@ -6,7 +6,7 @@ end
 
 M.url_encode = function(url)
   url = url:gsub("\n", "\r\n")
-  url = url:gsub("([^%w ])", char_to_hex)
+  url = url:gsub("([^%w %/:.])", char_to_hex)
   url = url:gsub(" ", "+")
   return url
 end

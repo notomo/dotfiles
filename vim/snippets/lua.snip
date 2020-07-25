@@ -171,3 +171,13 @@ snippet trace
 
 snippet env
 	os.getenv(${0:name})
+
+snippet modulle
+	local M = {}
+	
+	${0}
+	
+	return M
+
+snippet M
+	M.${1:name} = ${0:expr}
