@@ -1,8 +1,5 @@
 call minpac#add('Shougo/denite.nvim')
 
-call minpac#add('notomo/denite-keymap', {'depth': 0})
-nnoremap <silent> [finder]m :<C-u>Denite keymap<CR>
-
 call minpac#add('pocari/vim-denite-emoji')
 call minpac#add('junegunn/vim-emoji')
 nnoremap <silent> [finder]e :<C-u>Denite emoji -default-action=append_emoji<CR>

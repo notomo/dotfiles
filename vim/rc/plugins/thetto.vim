@@ -67,3 +67,4 @@ nnoremap [finder]a :<C-u>Thetto vim/autocmd<CR>
 nnoremap [finder]s :<C-u>Thetto source<CR>
 nnoremap [finder]n :<C-u>ThettoDo --resume --offset=1<CR>
 nnoremap [finder]N :<C-u>ThettoDo --resume --offset=-1<CR>
+nnoremap [finder]m :<C-u>Thetto vim/keymap<CR>
