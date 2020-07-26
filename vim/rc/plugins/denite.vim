@@ -52,16 +52,14 @@ function! s:denite_filter_settings() abort
 endfunction
 
 nnoremap <silent> [finder]o :<C-u>Denite outline -no-empty<CR>
-nnoremap <silent> [finder]n :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
-nnoremap <silent> [finder]N :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
-nnoremap <silent> [finder]<CR> :<C-u>Denite -resume -no-start-filter<CR>
+nnoremap <silent> [finder]Gn :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
+nnoremap <silent> [finder]GN :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
+nnoremap <silent> [finder]G<CR> :<C-u>Denite -resume -no-start-filter<CR>
 nnoremap <silent> [finder]Gl :<C-u>Denite grep -no-empty<CR>
 nnoremap <silent> [finder]Gg :<C-u>DeniteProjectDir grep -no-empty<CR>
 
-nnoremap <silent> [finder]s :<C-u>Denite source<CR>
 nnoremap <expr> <silent> [keyword]G ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
 nnoremap <silent> [finder]gp :<C-u>Denite go/package<CR>
-nnoremap <silent> [finder]P :<C-u>Denite proc<CR>
 
 call denite#custom#option('default', 'filter_split_direction', 'botright')
 call denite#custom#option('default', 'start_filter', 'true')

@@ -6,7 +6,15 @@ require("thetto/source/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kivie
 
 local grep = require("thetto/source/grep")
 grep.command = "pt"
-grep.opts = {"--nogroup", "--nocolor", "--smart-case", "--ignore=.git", "--ignore=tags", "--hidden"}
+grep.opts = {
+  "--nogroup",
+  "--nocolor",
+  "--smart-case",
+  "--ignore=.git",
+  "--ignore=.mypy_cache",
+  "--ignore=tags",
+  "--hidden",
+}
 grep.pattern_opt = ""
 grep.recursive_opt = ""
 grep.separator = "--"

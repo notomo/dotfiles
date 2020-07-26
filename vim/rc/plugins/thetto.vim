@@ -41,7 +41,7 @@ endfunction
 
 nnoremap [finder]R :<C-u>Thetto vim/runtimepath<CR>
 nnoremap <Space>ur :<C-u>Thetto file/mru<CR>
-nnoremap <Space>u<CR> :<C-u>Thetto --resume<CR>
+nnoremap [finder]<CR> :<C-u>Thetto --resume<CR>
 nnoremap <Space>usf :<C-u>Thetto file/recursive<CR>
 nnoremap <Space>usg :<C-u>Thetto file/recursive --target=project<CR>
 nnoremap [finder]f :<C-u>Thetto file/in_dir<CR>
@@ -62,4 +62,8 @@ nnoremap [keyword]gg :<C-u>Thetto grep --target=project --pattern-type=word<CR>
 nnoremap [finder]gl :<C-u>Thetto grep<CR>
 nnoremap [finder]gg :<C-u>Thetto grep --target=project<CR>
 nnoremap [finder]b :<C-u>Thetto url/bookmark --action=browser_open<CR>
+nnoremap [finder]P :<C-u>Thetto process<CR>
 nnoremap [finder]a :<C-u>Thetto vim/autocmd<CR>
+nnoremap [finder]s :<C-u>Thetto source<CR>
+nnoremap [finder]n :<C-u>ThettoDo --resume --offset=1<CR>
+nnoremap [finder]N :<C-u>ThettoDo --resume --offset=-1<CR>

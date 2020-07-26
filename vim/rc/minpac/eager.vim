@@ -339,6 +339,5 @@ let g:signify_disable_by_default = 0
 call minpac#add('lambdalisue/session.vim')
 nnoremap [file]<Space> :<C-u>call notomo#vimrc#save_session()<CR>
 nnoremap [file]<CR> :<C-u>SessionOpen<CR>
-nnoremap [finder]S :<C-u>Denite session<CR>
 
 call minpac#add('notomo/gevdoc', {'depth': 0})
