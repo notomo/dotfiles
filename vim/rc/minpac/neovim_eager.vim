@@ -1,8 +1,5 @@
 call minpac#add('Shougo/denite.nvim')
 
-call minpac#add('notomo/denite-autocmd', {'depth': 0})
-nnoremap <silent> [finder]a :<C-u>Denite autocmd<CR>
-
 call minpac#add('notomo/denite-keymap', {'depth': 0})
 nnoremap <silent> [finder]m :<C-u>Denite keymap<CR>
 

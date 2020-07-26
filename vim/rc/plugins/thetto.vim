@@ -62,3 +62,4 @@ nnoremap [keyword]gg :<C-u>Thetto grep --target=project --pattern-type=word<CR>
 nnoremap [finder]gl :<C-u>Thetto grep<CR>
 nnoremap [finder]gg :<C-u>Thetto grep --target=project<CR>
 nnoremap [finder]b :<C-u>Thetto url/bookmark --action=browser_open<CR>
+nnoremap [finder]a :<C-u>Thetto vim/autocmd<CR>
