@@ -12,18 +12,6 @@ function! s:get_target_path(fnamemod_string, context) abort
     return path
 endfunction
 
-function! notomo#denite#dir_file_on_directory(context) abort
-    execute 'Denite dir_file:' . s:get_target_path('', a:context)
-endfunction
-
-function! notomo#denite#dir_file_on_file(context) abort
-    execute 'Denite dir_file:' . s:get_target_path(':h', a:context)
-endfunction
-
-function! notomo#denite#parent_dir_file(context) abort
-    execute 'Denite dir_file:' . s:get_target_path(':h:h', a:context)
-endfunction
-
 function! notomo#denite#open(open_cmd, context) abort
     for target in a:context['targets']
         if has_key(target, 'action__line')

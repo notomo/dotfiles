@@ -100,10 +100,6 @@ function! s:define_highlight() abort
     highlight clear SpellLocal
     highlight SpellLocal guifg=#ff5555
 
-    highlight myDeniteMatchText cterm=NONE guifg=#f6a3a3 guibg=NONE
-    highlight myDeniteInsert cterm=NONE guifg=NONE guibg=#3d5066
-    highlight myDeniteNormal cterm=NONE guifg=White guibg=#7b6980
-
     if has('mac')
         highlight Cursor guibg=#bbbbba
     endif

@@ -43,10 +43,6 @@ function! s:settings() abort
         nnoremap <buffer> tml :<C-u>Ctrlb tab/moveRight<CR>
         nnoremap <buffer> tms :<C-u>Ctrlb tab/moveFirst<CR>
         nnoremap <buffer> tme :<C-u>Ctrlb tab/moveLast<CR>
-        nnoremap <buffer> [finder]b :<C-u>Denite ctrlb/bookmark/recent<CR>
-        nnoremap <buffer> [finder]s :<C-u>Denite ctrlb/bookmark/search<CR>
-        nnoremap <buffer> [finder]h :<C-u>Denite ctrlb/history/search<CR>
-        nnoremap <buffer> [finder]ta :<C-u>Denite ctrlb/tab<CR>
         nnoremap <buffer> gg :<C-u>Ctrlb tab/scroll/toTop<CR>
         nnoremap <buffer> G :<C-u>Ctrlb tab/scroll/toBottom<CR>
         nnoremap <buffer> k :<C-u>Ctrlb tab/scroll/up<CR>

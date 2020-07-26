@@ -63,8 +63,6 @@ nnoremap <silent> [finder]gp :<C-u>Denite go/package<CR>
 
 call denite#custom#option('default', 'filter_split_direction', 'botright')
 call denite#custom#option('default', 'start_filter', 'true')
-call denite#custom#option('default', 'highlight_matched_char', 'myDeniteMatchText')
-call denite#custom#option('default', 'highlight_matched_range', 'myDeniteMatchText')
 call denite#custom#option('default', 'split', 'tab')
 call denite#custom#option('default', 'no_empty', v:true)
 call denite#custom#option('default', 'vertical_preview', v:true)
@@ -88,10 +86,6 @@ call denite#custom#var('grep', 'final_opts', [])
 
 call denite#custom#var('file/rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '--ignore=.git', (has('win32') ? '-g:' : '-g='), ''])
 call denite#custom#var('outline', 'ignore_types', ['v'])
-
-call denite#custom#action('directory,go/package,go/src,plugin', 'dir_file', {context -> notomo#denite#dir_file_on_directory(context)})
-call denite#custom#action('file', 'dir_file', {context -> notomo#denite#dir_file_on_file(context)})
-call denite#custom#action('file,directory,go/package,go/src,plugin', 'parent_dir_file', {context -> notomo#denite#parent_dir_file(context)})
 
 call denite#custom#action('file', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
 call denite#custom#action('directory,go/package,go/src,plugin', 'open', {context ->  notomo#denite#directory_open('', context)})
