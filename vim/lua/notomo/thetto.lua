@@ -3,6 +3,23 @@ require("thetto/kind/directory").after = function(path)
 end
 
 require("thetto/source/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kiview)://|denite-filter$|\\[denite\\]-default$)"
+require("thetto/source/file/recursive").get_command = function(path, max_depth)
+  return {
+    "pt",
+    "--follow",
+    "--nocolor",
+    "--nogroup",
+    "--hidden",
+    "--ignore=.git",
+    "--ignore=.mypy_cache",
+    "--ignore=node_modules",
+    "--ignore=__pycache__",
+    "--ignore=.DS_Store",
+    "--depth=" .. max_depth,
+    "-g=",
+    path,
+  }
+end
 
 local grep = require("thetto/source/grep")
 grep.command = "pt"
