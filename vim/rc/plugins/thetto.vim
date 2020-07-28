@@ -58,7 +58,7 @@ nnoremap [finder]p :<C-u>Thetto plugin<CR>
 nnoremap [finder]y :<C-u>Thetto file/bookmark<CR>
 nnoremap [finder]ga :<C-u>Thetto git/branch<CR>
 nnoremap [finder]gA :<C-u>Thetto git/branch --x-all<CR>
-nnoremap [finder]go :<C-u>Thetto directory/recursive --cwd=$GOPATH/src --x-min-depth=3 --x-max-depth=3<CR>
+nnoremap [finder]go :<C-u>Thetto directory/recursive --cwd=$GOPATH/src --x-max-depth=3<CR>
 nnoremap [keyword]gg :<C-u>Thetto grep --target=project --pattern-type=word<CR>
 nnoremap <silent> [finder]gl :<C-u>Thetto grep<CR>
 nnoremap <silent> [finder]gg :<C-u>Thetto grep --target=project<CR>

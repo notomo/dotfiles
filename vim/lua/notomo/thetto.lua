@@ -21,6 +21,18 @@ require("thetto/source/file/recursive").get_command = function(path, max_depth)
   }
 end
 
+local ignore_dirs = {".git", "node_modules", ".mypy_cache"}
+local extended_cmd = {}
+for _, name in ipairs(ignore_dirs) do
+  vim.list_extend(extended_cmd, {"-type", "d", "-name", name, "-prune", "-o"})
+end
+vim.list_extend(extended_cmd, {"-type", "d", "-print"})
+require("thetto/source/directory/recursive").get_command = function(path, max_depth)
+  local cmd = {"find", "-L", path, "-maxdepth", max_depth}
+  vim.list_extend(cmd, extended_cmd)
+  return cmd
+end
+
 local grep = require("thetto/source/grep")
 grep.command = "pt"
 grep.opts = {

@@ -49,15 +49,6 @@ function! notomo#denite#debug_targets(context) abort
     echomsg string(a:context['targets'])
 endfunction
 
-function! notomo#denite#go_package_dir() abort
-    let cword = expand('<cWORD>')
-    let name = '^' . trim(cword, '"') . '$'
-    let input = '-input=' . escape(name, '/')
-    let cmd = 'Denite go/package ' . input . ' -no-empty -immediately-1 -default-action=tabopen'
-    execute cmd
-    echomsg cmd
-endfunction
-
 function! notomo#denite#decls(context) abort
     execute 'Denite go/decls:' . a:context['targets'][0]['action__path']
 endfunction
