@@ -1,8 +1,6 @@
 call minpac#add('Shougo/denite.nvim')
 
-call minpac#add('pocari/vim-denite-emoji')
 call minpac#add('junegunn/vim-emoji')
-nnoremap <silent> [finder]e :<C-u>Denite emoji -default-action=append_emoji<CR>
 
 call minpac#add('thinca/vim-themis')
 call minpac#add('notomo/vusted')

@@ -14,9 +14,6 @@ function! s:denite_settings() abort
     nnoremap <silent> <buffer> <expr> t<CR> denite#do_map('do_action', 'activate')
     nnoremap <silent> <buffer> <expr> sm denite#do_map('toggle_select') . 'j'
     nnoremap <silent> <buffer> <expr> sa denite#do_map('toggle_select_all')
-    nnoremap <silent> <buffer> <expr> sf denite#do_map('do_action', 'dir_file_rec')
-    nnoremap <silent> <buffer> <expr> sg denite#do_map('do_action', 'project_dir_file_rec')
-    nnoremap <silent> <buffer> <expr> D denite#do_map('do_action', 'grep_plugin_setting')
     nnoremap <silent> <buffer> <expr> sv denite#do_map('do_action', 'vsplit')
     nnoremap <silent> <buffer> <expr> sh denite#do_map('do_action', 'split')
     nnoremap <silent> <buffer> <expr> fo denite#do_map('do_action', 'filer')
@@ -52,13 +49,7 @@ function! s:denite_filter_settings() abort
 endfunction
 
 nnoremap <silent> [finder]o :<C-u>Denite outline -no-empty<CR>
-nnoremap <silent> [finder]Gn :<C-u>Denite -resume -cursor-pos=+1 -immediately<CR>
-nnoremap <silent> [finder]GN :<C-u>Denite -resume -cursor-pos=-1 -immediately<CR>
 nnoremap <silent> [finder]G<CR> :<C-u>Denite -resume -no-start-filter<CR>
-nnoremap <silent> [finder]Gl :<C-u>Denite grep -no-empty<CR>
-nnoremap <silent> [finder]Gg :<C-u>DeniteProjectDir grep -no-empty<CR>
-
-nnoremap <expr> <silent> [keyword]G ":\<C-u>DeniteProjectDir grep:::" . expand('<cword>') . " -no-empty\<CR>"
 nnoremap <silent> [finder]gp :<C-u>Denite go/package<CR>
 
 call denite#custom#option('default', 'filter_split_direction', 'botright')
@@ -70,7 +61,6 @@ call denite#custom#option('default', 'highlight_preview_line', 'Search')
 call denite#custom#option('default', 'smartcase', v:true)
 call denite#custom#option('default', 'statusline', v:false)
 call denite#custom#source('_', 'matchers', ['matcher/regexp'])
-call denite#custom#source('ctrlb/history/search', 'matchers', [])
 call denite#custom#source('decls', 'sorters', ['sorter_line_number', 'sorter_file_path'])
 call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', ['.git', '.mypy_cache/', '__pycache__/*', '__pycache__', '.mypy_cache', '.pytest_cache/', '.pytest_cache', '.DS_Store'])
 call denite#custom#source('file/rec', 'matchers', ['matcher/regexp', 'matcher/ignore_globs'])
@@ -91,26 +81,9 @@ call denite#custom#action('file', 'tabopen', {context ->  notomo#denite#open('ta
 call denite#custom#action('directory,go/package,go/src,plugin', 'open', {context ->  notomo#denite#directory_open('', context)})
 call denite#custom#action('directory,go/package,go/src,plugin', 'tabopen', {context ->  notomo#denite#directory_open('tabnew', context)})
 
-call denite#custom#action('file', 'qfreplace', {context ->  notomo#denite#qfreplace(context)})
-
-call denite#custom#action('file,directory,go/package,go/src,plugin', 'filer', {context ->  notomo#denite#directory_open('', context)})
-call denite#custom#action('file,directory,go/package,go/src,plugin', 'tabfiler', {context ->  notomo#denite#directory_open('tabnew', context)})
-
-call denite#custom#action('file', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec_on_file(context)})
-call denite#custom#action('directory,go/package,go/src,plugin', 'project_dir_file_rec', {context ->  notomo#denite#project_dir_file_rec(context)})
-
-call denite#custom#action('file', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec_on_file(context)})
-call denite#custom#action('directory,go/package,go/src,plugin', 'dir_file_rec', {context ->  notomo#denite#dir_file_rec(context)})
-
-call denite#custom#action('file', 'dotfiles', {context ->  notomo#denite#project_dir_by_path('~/dotfiles', context)})
-
-call denite#custom#action('directory,plugin', 'grep_plugin_setting', {context ->  notomo#denite#grep_plugin_setting(context)})
-
 call denite#custom#action('buffer,command,directory,file,openable,word,autocmd', 'debug_targets', {context ->  notomo#denite#debug_targets(context)})
 
 call denite#custom#action('go/package', 'decls', {context ->  notomo#denite#decls(context)})
-
-call denite#custom#action('word', 'append_emoji', {context ->  notomo#denite#append_emoji(context)})
 
 call denite#custom#action('reference', 'open', {context -> notomo#doc#open(context['targets'][0]['word'], 'tabedit')})
 call denite#custom#action('reference', 'tabopen', {context -> notomo#doc#open(context['targets'][0]['word'], 'tabedit')})

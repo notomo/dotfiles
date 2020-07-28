@@ -23,6 +23,7 @@ function! s:thetto_settings() abort
     nnoremap <buffer> fo :<C-u>ThettoDo directory_open<CR>
     nnoremap <buffer> fl :<C-u>ThettoDo directory_tab_open<CR>
     nnoremap <buffer> ff :<C-u>ThettoDo directory_enter<CR>
+    nnoremap <buffer> <Leader>rp :<C-u>ThettoDo qfreplace<CR>
 endfunction
 
 autocmd MyAuGroup FileType thetto-input call s:thetto_input_settings()
@@ -59,8 +60,8 @@ nnoremap [finder]ga :<C-u>Thetto git/branch<CR>
 nnoremap [finder]gA :<C-u>Thetto git/branch --x-all<CR>
 nnoremap [finder]go :<C-u>Thetto directory/recursive --cwd=$GOPATH/src --x-min-depth=3 --x-max-depth=3<CR>
 nnoremap [keyword]gg :<C-u>Thetto grep --target=project --pattern-type=word<CR>
-nnoremap [finder]gl :<C-u>Thetto grep<CR>
-nnoremap [finder]gg :<C-u>Thetto grep --target=project<CR>
+nnoremap <silent> [finder]gl :<C-u>Thetto grep<CR>
+nnoremap <silent> [finder]gg :<C-u>Thetto grep --target=project<CR>
 nnoremap [finder]b :<C-u>Thetto url/bookmark --action=browser_open<CR>
 nnoremap [finder]P :<C-u>Thetto process<CR>
 nnoremap [finder]a :<C-u>Thetto vim/autocmd<CR>
@@ -68,3 +69,4 @@ nnoremap [finder]s :<C-u>Thetto source<CR>
 nnoremap [finder]n :<C-u>ThettoDo --resume --offset=1<CR>
 nnoremap [finder]N :<C-u>ThettoDo --resume --offset=-1<CR>
 nnoremap [finder]m :<C-u>Thetto vim/keymap<CR>
+nnoremap [finder]e :<C-u>Thetto emoji --action=append<CR>

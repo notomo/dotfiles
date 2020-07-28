@@ -31,24 +31,6 @@ function! notomo#denite#open(open_cmd, context) abort
     endfor
 endfunction
 
-function! notomo#denite#qfreplace(context) abort
-    tabnew
-    let qflist = []
-    for target in a:context['targets']
-        if !has_key(target, 'action__line') || !has_key(target, 'action__text')
-            continue
-        endif
-        let dict = {'filename': target['action__path'], 'lnum': target['action__line'], 'text': target['action__text']}
-        call add(qflist, dict)
-    endfor
-    if len(qflist) == 0
-        return
-    endif
-    call setqflist(qflist)
-    Qfreplace
-    only
-endfunction
-
 function! notomo#denite#directory_open(open_cmd, context) abort
     let target = a:context['targets'][0]
     if !has_key(target, 'action__path')
@@ -61,41 +43,6 @@ function! notomo#denite#directory_open(open_cmd, context) abort
     endif
     execute 'cd ' . path
     Kiview -create -split=no
-endfunction
-
-function! notomo#denite#project_dir_file_rec_on_file(context) abort
-    execute 'cd ' . s:get_target_path(':h', a:context)
-    execute 'DeniteProjectDir file/rec'
-endfunction
-
-function! notomo#denite#project_dir_file_rec(context) abort
-    execute 'cd ' . s:get_target_path('', a:context)
-    execute 'DeniteProjectDir file/rec'
-endfunction
-
-function! notomo#denite#dir_file_rec(context) abort
-    execute 'cd ' . s:get_target_path('', a:context)
-    execute 'Denite file/rec'
-endfunction
-
-function! notomo#denite#dir_file_rec_on_file(context) abort
-    execute 'cd ' . s:get_target_path(':h', a:context)
-    execute 'Denite file/rec'
-endfunction
-
-function! notomo#denite#project_dir_by_path(dir_path, context) abort
-    execute 'cd ' . a:dir_path
-    let input = '-input=' . escape(a:context['input'], ' ')
-    execute join(['DeniteProjectDir', input, 'file/rec'])
-endfunction
-
-function! notomo#denite#grep_plugin_setting(context) abort
-    let target = a:context['targets'][0]
-    if !has_key(target, 'word')
-        return
-    endif
-    let plugin = target['word']
-    execute join(['Denite', 'grep:~/dotfiles/vim/rc/minpac::' . plugin, '-no-empty', '-immediately-1'])
 endfunction
 
 function! notomo#denite#debug_targets(context) abort
@@ -111,33 +58,6 @@ function! notomo#denite#go_package_dir() abort
     echomsg cmd
 endfunction
 
-function! notomo#denite#get(option_name) abort
-    if stridx(a:option_name, ';') != -1
-        return
-    endif
-    execute 'let g:notomo_tmp = &' . a:option_name
-    let value = g:notomo_tmp
-    unlet g:notomo_tmp
-    return value
-endfunction
-
 function! notomo#denite#decls(context) abort
     execute 'Denite go/decls:' . a:context['targets'][0]['action__path']
-endfunction
-
-function! notomo#denite#append_emoji(context) abort
-    for target in a:context['targets']
-        let target['word'] = target['action__text']
-        call denite#do_action(a:context, 'append', [target])
-    endfor
-endfunction
-
-function! notomo#denite#redir(cmd) abort
-    let [tmp_verbose, tmp_verbosefile] = [&verbose, &verbosefile]
-    set verbose=0 verbosefile=
-    redir => result
-    silent! execute a:cmd
-    redir END
-    let [&verbose, &verbosefile] = [tmp_verbose, tmp_verbosefile]
-    return result
 endfunction
