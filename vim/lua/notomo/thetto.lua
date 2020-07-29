@@ -77,6 +77,7 @@ source_actions["url/bookmark"] = {
       end
     end
   end,
+  opts = {yank = {key = "url"}},
 }
 source_actions["emoji"] = {
   action_append = function(_, items)
