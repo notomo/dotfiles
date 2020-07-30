@@ -60,9 +60,9 @@ nnoremap [finder]y :<C-u>Thetto file/bookmark<CR>
 nnoremap [finder]ga :<C-u>Thetto git/branch<CR>
 nnoremap [finder]gA :<C-u>Thetto git/branch --x-all<CR>
 nnoremap [finder]go :<C-u>Thetto directory/recursive --cwd=$GOPATH/src --x-max-depth=3<CR>
-nnoremap [keyword]gg :<C-u>Thetto grep --target=project --pattern-type=word<CR>
-nnoremap <silent> [finder]gl :<C-u>Thetto grep<CR>
-nnoremap <silent> [finder]gg :<C-u>Thetto grep --target=project<CR>
+nnoremap [keyword]gg :<C-u>Thetto file/grep --target=project --pattern-type=word<CR>
+nnoremap <silent> [finder]gl :<C-u>Thetto file/grep<CR>
+nnoremap <silent> [finder]gg :<C-u>Thetto file/grep --target=project<CR>
 nnoremap [finder]b :<C-u>Thetto url/bookmark --action=browser_open<CR>
 nnoremap [finder]P :<C-u>Thetto process<CR>
 nnoremap [finder]a :<C-u>Thetto vim/autocmd<CR>

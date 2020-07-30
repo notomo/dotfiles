@@ -33,7 +33,7 @@ require("thetto/source/directory/recursive").get_command = function(path, max_de
   return cmd
 end
 
-local grep = require("thetto/source/grep")
+local grep = require("thetto/source/file/grep")
 grep.command = "pt"
 grep.command_opts = {
   "--nogroup",
@@ -59,7 +59,7 @@ file_bookmark.paths = {
   file_bookmark.file_path,
 }
 
-local source_actions = require("thetto/kind").source_user_actions
+local source_actions = require("thetto/base_kind").source_user_actions
 source_actions["vim/filetype"] = {
   action_open_proto = function(_, items)
     local item = items[1]
@@ -87,7 +87,7 @@ source_actions["emoji"] = {
   end,
 }
 
-local kind_actions = require("thetto/kind").user_actions
+local kind_actions = require("thetto/base_kind").user_actions
 kind_actions["git/branch"] = {
   action_tab_open = function(_, items)
     for _, item in ipairs(items) do
@@ -132,17 +132,17 @@ vim.api.nvim_command("highlight! ThettoColorLabelPythonBlue guibg=#3333dd")
 vim.api.nvim_command("highlight! ThettoColorLabelPythonYellow guibg=#fedf81")
 vim.api.nvim_command("highlight! ThettoColorLabelDir guibg=#a9dd9d")
 local colors = {
-  {pattern = ".lua$", chunks = {{"  ", "ThettoColorLabelLua"}}},
-  {pattern = ".go$", chunks = {{"  ", "ThettoColorLabelGo"}}},
-  {pattern = ".vim$", chunks = {{"  ", "ThettoColorLabelVim"}}},
+  {pattern = ".lua$", chunks = {{" ", "ThettoColorLabelLua"}}},
+  {pattern = ".go$", chunks = {{" ", "ThettoColorLabelGo"}}},
+  {pattern = ".vim$", chunks = {{" ", "ThettoColorLabelVim"}}},
   {
     pattern = ".py$",
     chunks = {{" ", "ThettoColorLabelPythonYellow"}, {" ", "ThettoColorLabelPythonBlue"}},
   },
-  {pattern = "/$", chunks = {{"  ", "ThettoColorLabelDir"}}},
-  {pattern = "", chunks = {{"  ", "ThettoColorLabelOthers"}}},
+  {pattern = "/$", chunks = {{" ", "ThettoColorLabelDir"}}},
+  {always = true, pattern = "", chunks = {{" ", "ThettoColorLabelOthers"}}},
 }
 require("thetto/source/file/in_dir").colors = colors
 require("thetto/source/file/mru").colors = colors
 require("thetto/source/file/recursive").colors = colors
-require("thetto/source/grep").colors = colors
+require("thetto/source/file/grep").colors = colors
