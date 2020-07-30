@@ -35,7 +35,7 @@ end
 
 local grep = require("thetto/source/grep")
 grep.command = "pt"
-grep.opts = {
+grep.command_opts = {
   "--nogroup",
   "--nocolor",
   "--smart-case",
@@ -124,3 +124,25 @@ kind_actions["file"] = {
     vim.api.nvim_command("only")
   end,
 }
+
+vim.api.nvim_command("highlight! ThettoColorLabelLua guibg=#7098e6")
+vim.api.nvim_command("highlight! ThettoColorLabelVim guibg=#33aa77")
+vim.api.nvim_command("highlight! ThettoColorLabelGo guibg=#70ffe6")
+vim.api.nvim_command("highlight! ThettoColorLabelPythonBlue guibg=#3333dd")
+vim.api.nvim_command("highlight! ThettoColorLabelPythonYellow guibg=#fedf81")
+vim.api.nvim_command("highlight! ThettoColorLabelDir guibg=#a9dd9d")
+local colors = {
+  {pattern = ".lua$", chunks = {{"  ", "ThettoColorLabelLua"}}},
+  {pattern = ".go$", chunks = {{"  ", "ThettoColorLabelGo"}}},
+  {pattern = ".vim$", chunks = {{"  ", "ThettoColorLabelVim"}}},
+  {
+    pattern = ".py$",
+    chunks = {{" ", "ThettoColorLabelPythonYellow"}, {" ", "ThettoColorLabelPythonBlue"}},
+  },
+  {pattern = "/$", chunks = {{"  ", "ThettoColorLabelDir"}}},
+  {pattern = "", chunks = {{"  ", "ThettoColorLabelOthers"}}},
+}
+require("thetto/source/file/in_dir").colors = colors
+require("thetto/source/file/mru").colors = colors
+require("thetto/source/file/recursive").colors = colors
+require("thetto/source/grep").colors = colors
