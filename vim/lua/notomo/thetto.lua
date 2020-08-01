@@ -79,13 +79,6 @@ source_actions["url/bookmark"] = {
   end,
   opts = {yank = {key = "url"}},
 }
-source_actions["emoji"] = {
-  action_append = function(_, items)
-    for _, item in ipairs(items) do
-      vim.api.nvim_put({item.emoji}, "c", true, true)
-    end
-  end,
-}
 
 local kind_actions = require("thetto/base_kind").user_actions
 kind_actions["git/branch"] = {

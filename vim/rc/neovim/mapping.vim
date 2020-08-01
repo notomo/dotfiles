@@ -47,7 +47,5 @@ endfunction
 
 tnoremap <CR> <Cmd>call <SID>set_term_title()<CR><CR>
 
-cnoremap j<Space>o <Space><BS><C-z><Cmd>Helpeek<CR>
-
 nnoremap <silent> [yank]ud :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_decode()"))<CR>
 nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_encode()"))<CR>
