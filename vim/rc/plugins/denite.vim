@@ -48,7 +48,6 @@ function! s:denite_filter_settings() abort
     inoremap <silent> <buffer> <LeftMouse> <ESC>
 endfunction
 
-nnoremap <silent> [finder]o :<C-u>Denite outline -no-empty<CR>
 nnoremap <silent> [finder]G<CR> :<C-u>Denite -resume -no-start-filter<CR>
 nnoremap <silent> [finder]gp :<C-u>Denite go/package<CR>
 
@@ -75,7 +74,6 @@ call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
 
 call denite#custom#var('file/rec', 'command', ['pt', '--follow', '--nocolor', '--nogroup', '--hidden', '--ignore=.git', (has('win32') ? '-g:' : '-g='), ''])
-call denite#custom#var('outline', 'ignore_types', ['v'])
 
 call denite#custom#action('file', 'tabopen', {context ->  notomo#denite#open('tabnew', context)})
 call denite#custom#action('directory,go/package,go/src,plugin', 'open', {context ->  notomo#denite#directory_open('', context)})

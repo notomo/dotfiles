@@ -72,6 +72,7 @@ nnoremap [finder]s :<C-u>Thetto source<CR>
 nnoremap [finder]n :<C-u>ThettoDo --resume --offset=1<CR>
 nnoremap [finder]N :<C-u>ThettoDo --resume --offset=-1<CR>
 nnoremap [finder]m :<C-u>Thetto vim/keymap<CR>
+nnoremap [finder]o :<C-u>Thetto outline<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
