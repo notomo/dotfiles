@@ -161,7 +161,6 @@ vim.lsp.callbacks["textDocument/references"] = function(_, _, result)
 
   local source = {name = "position", args = args}
   local sources = {source}
-  vim.fn.call("denite#start", {sources, {auto_action = "preview", vertical_preview = false}})
 end
 
 vim.lsp.callbacks["workspace/symbol"] = function(_, _, result)
@@ -182,7 +181,6 @@ vim.lsp.callbacks["workspace/symbol"] = function(_, _, result)
 
   local source = {name = "position", args = args}
   local sources = {source}
-  vim.fn.call("denite#start", {sources, {auto_action = "preview", vertical_preview = false}})
 end
 
 vim.lsp.callbacks["textDocument/documentSymbol"] = function(_, _, result)
@@ -204,5 +202,4 @@ vim.lsp.callbacks["textDocument/documentSymbol"] = function(_, _, result)
 
   local source = {name = "position", args = args}
   local sources = {source}
-  vim.fn.call("denite#start", {sources, {auto_action = "preview", vertical_preview = false}})
 end

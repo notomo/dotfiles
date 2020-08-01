@@ -59,18 +59,10 @@ function! LightlineGitBranch()
 endfunction
 
 function! LightlineFileInfo()
-    if &filetype =~? 'denite'
-        return ''
-    endif
     return s:surround(&fileencoding . ':' . &fileformat . ':' . &filetype)
 endfunction
 
 function! LightlinePosition()
-    if &filetype ==? 'denite-filter'
-        return denite#get_status('line_total')
-    elseif &filetype ==? 'denite'
-        return line('.') . '/' . line('$')
-    endif
     return s:surround(col('.'))
 endfunction
 

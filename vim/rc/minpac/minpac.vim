@@ -32,7 +32,6 @@ source ~/.vim/rc/plugins/lightline.vim
 if has('nvim')
     source ~/.vim/rc/plugins/lsp.vim
     if executable('python3')
-        source ~/.vim/rc/plugins/denite.vim
         source ~/.vim/rc/plugins/deoplete.vim
     endif
 endif

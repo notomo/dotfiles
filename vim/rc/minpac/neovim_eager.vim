@@ -1,5 +1,3 @@
-call minpac#add('Shougo/denite.nvim')
-
 call minpac#add('junegunn/vim-emoji')
 
 call minpac#add('thinca/vim-themis')
