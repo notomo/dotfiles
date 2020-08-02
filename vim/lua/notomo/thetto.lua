@@ -49,17 +49,16 @@ grep.recursive_opt = ""
 grep.separator = "--"
 
 local file_bookmark = require("thetto/source/file/bookmark")
-file_bookmark.paths = {
+file_bookmark.default_paths = {
   "~/.local/share/nvim/rplugin.vim",
   "~/dotfiles/vim/rc/local/local.vim",
   "~/.local/.bashrc",
   "~/.bashrc",
   "~/.local/.bash_profile",
   "~/.bash_profile",
-  file_bookmark.file_path,
 }
 
-local source_actions = require("thetto/base_kind").source_user_actions
+local source_actions = require("thetto/custom").source_actions
 source_actions["vim/filetype"] = {
   action_open_proto = function(_, items)
     local item = items[1]
@@ -80,7 +79,7 @@ source_actions["url/bookmark"] = {
   opts = {yank = {key = "url"}},
 }
 
-local kind_actions = require("thetto/base_kind").user_actions
+local kind_actions = require("thetto/custom").kind_actions
 kind_actions["git/branch"] = {
   action_tab_open = function(_, items)
     for _, item in ipairs(items) do
