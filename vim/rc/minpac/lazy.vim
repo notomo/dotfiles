@@ -118,14 +118,6 @@ source ~/.vim/rc/plugins/tdd.vim
 call s:add('notomo/vimonga', {'cmd': 'Vimonga*', 'depth': 0})
 source ~/.vim/rc/plugins/vimonga.vim
 
-if executable('node')
-    call s:add('notomo/ctrlb.nvim', {'do' : '!npm run setup', 'cmd': 'Ctrlb*', 'depth': 0})
-    nnoremap <expr> [exec]cb ":\<C-u>CtrlbOpenLayout ~/dotfiles/vim/rc/plugins/ctrlb_layout.json\<CR>"
-    nnoremap [exec]c<CR> :<C-u>CtrlbClearAll<CR>
-    nnoremap [exec]cc :<C-u>CtrlbOpen ctrl<CR>
-    source ~/.vim/rc/plugins/ctrlb.vim
-endif
-
 if executable('python3')
     call s:add('notomo/curstr.nvim', {'cmd': 'Curstr*', 'depth': 0})
     nnoremap <silent> [keyword]fo :<C-u>Curstr openable -action=open<CR>

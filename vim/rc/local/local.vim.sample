@@ -4,46 +4,6 @@ function! s:curstr_settings() abort
     let g:local#var#document_root = '~/.vim/minpac/pack/minpac/opt/curstr.nvim/test/report/html/'
 endfunction
 
-let s:ctrlb_nvim_coverage = ''
-autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/opt/ctrlb.nvim/* call s:ctrlb_nvim_settings()
-function! s:ctrlb_nvim_settings() abort
-    if empty(s:ctrlb_nvim_coverage)
-        let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
-        let s:ctrlb_nvim_coverage = fnamemodify(root, ':p:h:s?$?/coverage/lcov-report?')
-    endif
-    let g:local#var#document_root = s:ctrlb_nvim_coverage
-endfunction
-
-autocmd MyAuGroup BufRead,BufEnter ~/workspace/*/ctrlb/* call s:ctrlb_settings()
-let s:ctrlb_coverage = ''
-function! s:ctrlb_settings() abort
-    if empty(s:ctrlb_coverage)
-        let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
-        let s:ctrlb_coverage = fnamemodify(root, ':p:h:s?$?/coverage/lcov-report?')
-    endif
-    let g:local#var#document_root = s:ctrlb_coverage
-endfunction
-
-autocmd MyAuGroup BufRead,BufEnter ~/workspace/nodejs/sinchock-web/* call s:sinchock_web_settings()
-function! s:sinchock_web_settings() abort
-    autocmd MyAuGroup User CurstrSourceLoad ++once call s:sinchock_web_curstr_settings()
-    function! s:sinchock_web_curstr_settings() abort
-        call curstr#custom#source_alias('interface_impl', ['togglable/file'])
-        call curstr#custom#source_option('interface_impl', 'pattern_groups', [['%impls/models/%', '%domain/models/%'], ['%impls/repositories/mock/%', '%domain/repositories/%']])
-    endfunction
-    nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
-endfunction
-
-let s:gesture_nvim_coverage = ''
-autocmd MyAuGroup BufRead,BufEnter ~/.vim/minpac/pack/minpac/opt/gesture.nvim/* call s:gesture_nvim_settings()
-function! s:gesture_nvim_settings() abort
-    if empty(s:gesture_nvim_coverage)
-        let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
-        let s:gesture_nvim_coverage = fnamemodify(root, ':p:h:s?$?/coverage/lcov-report?')
-    endif
-    let g:local#var#document_root = s:gesture_nvim_coverage
-endfunction
-
 autocmd MyAuGroup BufRead,BufEnter $GOPATH/src/github.com/notomo/qaper/* call s:qaper_settings()
 function! s:qaper_settings() abort
 
@@ -85,16 +45,6 @@ function! s:vimonga_settings() abort
     endfunction
 
     nnoremap <buffer> [file]i :<C-u>Curstr interface_impl<CR>
-endfunction
-
-autocmd MyAuGroup BufRead,BufEnter ~/workspace/mapemo/* call s:mapemo_settings()
-let s:mapemo_index = ''
-function! s:mapemo_settings() abort
-    if empty(s:mapemo_index)
-        let root = notomo#vimrc#search_parent_recursive('package.json', expand('%:p:h'))
-        let s:mapemo_index = fnamemodify(root, ':p:h:s?$?/dist?')
-    endif
-    let g:local#var#document_root = s:mapemo_index
 endfunction
 
 let s:wsxhub_coverage = ''
