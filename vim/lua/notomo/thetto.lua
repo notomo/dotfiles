@@ -138,3 +138,7 @@ require("thetto/source/file/in_dir").colors = colors
 require("thetto/source/file/mru").colors = colors
 require("thetto/source/file/recursive").colors = colors
 require("thetto/source/file/grep").colors = colors
+require("thetto/source/file/grep").filters = {"substring", "substring:path:relative"}
+
+require("thetto/source/git/branch").sorters = {"length"}
+require("thetto/custom").opts = {width = 120}
