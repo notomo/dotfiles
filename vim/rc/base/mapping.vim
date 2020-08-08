@@ -358,6 +358,8 @@ onoremap ; iw
 
 " command and insert"{{{
 
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
 noremap! <C-b> <Left>
 noremap! <C-f> <Right>
 inoremap <C-k> <C-o>C

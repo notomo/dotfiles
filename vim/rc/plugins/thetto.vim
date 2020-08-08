@@ -3,8 +3,8 @@ autocmd MyAuGroup User ThettoSourceLoad lua dofile(vim.fn.expand('~/dotfiles/vim
 autocmd MyAuGroup FileType thetto call s:thetto_settings()
 function! s:thetto_settings() abort
     nnoremap <buffer> <CR> :<C-u>ThettoDo<CR>
-    nnoremap <buffer> dd :<C-u>ThettoDo move_to_input<CR><Esc>:<C-u>silent %delete _<CR>
-    nnoremap <buffer> cc :<C-u>ThettoDo move_to_input<CR><Esc>:<C-u>silent %delete _<CR>:<C-u>ThettoDo move_to_input<CR>
+    nnoremap <buffer> dd :<C-u>ThettoDo move_to_input<CR><Esc>:<C-u>silent delete _<CR>
+    nnoremap <buffer> cc :<C-u>ThettoDo move_to_input<CR><Esc>:<C-u>silent delete _<CR>:<C-u>ThettoDo move_to_input<CR>
     nnoremap <buffer> i :<C-u>ThettoDo move_to_input<CR><Right>
     nnoremap <buffer> I :<C-u>ThettoDo move_to_input<CR><Home>
     nnoremap <buffer> a :<C-u>ThettoDo move_to_input<CR>
@@ -33,7 +33,6 @@ autocmd MyAuGroup FileType thetto-input call s:thetto_input_settings()
 function! s:thetto_input_settings() abort
     nnoremap <buffer> <CR> :<C-u>ThettoDo<CR>
     inoremap <buffer> <CR> <Esc>:ThettoDo<CR>
-    nnoremap <silent> <buffer> dd :<C-u>silent %delete _<CR>
     inoremap <silent> <buffer> jq <Esc>:ThettoDo quit<CR>
     nnoremap <buffer> j :<C-u>ThettoDo move_to_list<CR>
     nnoremap <buffer> k :<C-u>ThettoDo move_to_list<CR>
@@ -41,6 +40,7 @@ function! s:thetto_input_settings() abort
     nnoremap <buffer> o :<C-u>ThettoDo open<CR>
     nnoremap <buffer> sv :<C-u>ThettoDo vsplit_open<CR>
     nnoremap <buffer> t<Space> :<C-u>ThettoDo tab_open<CR>
+    nnoremap <buffer> fan :<C-u>ThettoDo add_filter --x-name=-substring<CR>Gi
 
     " custom
     inoremap <buffer> <C-u> <Cmd>lua require('notomo/insert').delete_prev()<CR>
