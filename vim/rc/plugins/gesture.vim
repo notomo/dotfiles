@@ -91,5 +91,10 @@ gesture.register({
     inputs = { gesture.up(), gesture.right() },
     action = "Thetto file/mru --no-insert"
 })
+gesture.register({
+    name = "open todo files",
+    inputs = { gesture.left(), gesture.down(), gesture.right() },
+    action = "normal [exec]do"
+})
 EOF
 endfunction
