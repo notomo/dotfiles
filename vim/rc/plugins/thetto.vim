@@ -19,6 +19,7 @@ function! s:thetto_settings() abort
     nnoremap <silent> <buffer> <2-LeftMouse> :<C-u>ThettoDo<CR>
     nnoremap <buffer> <Tab> :<C-u>ThettoDo<Space>
     nnoremap <buffer> sm :<C-u>ThettoDo toggle_selection<CR><Down>
+    xnoremap <buffer> sm :ThettoDo toggle_selection<CR>
     nnoremap <buffer> sa :<C-u>ThettoDo toggle_all_selection<CR><Down>
     nnoremap <buffer> fo :<C-u>ThettoDo directory_open<CR>
     nnoremap <buffer> fl :<C-u>ThettoDo directory_tab_open<CR>
