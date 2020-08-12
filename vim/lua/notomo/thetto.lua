@@ -140,7 +140,9 @@ require("thetto/source/file/recursive").colors = colors
 require("thetto/source/file/grep").colors = colors
 require("thetto/source/file/grep").filters = {"substring", "substring:path:relative"}
 
-require("thetto/source/outline").opts = {ignore = {"member", "package"}}
+require("thetto/source/outline").opts = {
+  ignore = {"member", "package", "packageName", "anonMember"},
+}
 
 require("thetto/source/git/branch").sorters = {"length"}
 require("thetto/custom").opts = {width = 120}
