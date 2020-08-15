@@ -176,7 +176,7 @@ snippet ifcause
 	}
 
 snippet wrap
-	errors.Wrap(err, ${0:msg})
+	fmt.Errorf("${1:msg}: %w", err)
 
 snippet ifexprerr
 	if err := ${1:expr}; err != nil {

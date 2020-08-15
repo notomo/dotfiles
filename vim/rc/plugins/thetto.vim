@@ -5,7 +5,7 @@ function! s:thetto_settings() abort
     nnoremap <buffer> <CR> :<C-u>ThettoDo<CR>
     nnoremap <buffer> dd :<C-u>ThettoDo move_to_input<CR><Esc>:<C-u>silent delete _<CR>
     nnoremap <buffer> cc :<C-u>ThettoDo move_to_input<CR><Esc>:<C-u>silent delete _<CR>:<C-u>ThettoDo move_to_input<CR>
-    nnoremap <buffer> i :<C-u>ThettoDo move_to_input<CR>
+    nnoremap <buffer> i :<C-u>ThettoDo move_to_input --x-behavior=a<CR>
     nnoremap <buffer> I :<C-u>ThettoDo move_to_input<CR><Home>
     nnoremap <buffer> a :<C-u>ThettoDo move_to_input --x-behavior=a<CR>
     nnoremap <buffer> A :<C-u>ThettoDo move_to_input<CR><End>
