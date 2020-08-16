@@ -45,8 +45,8 @@ nnoremap <expr> [substitute]ay ':%' . suball#input(@+, "")
 
 call minpac#add('notomo/searcho.nvim', {'depth': 0})
 nnoremap <expr> / searcho#do('forward') .. '\v'
-nnoremap <expr> sj searcho#do('stay_forward') .. '\v' .. expand('<cword>')
-nnoremap <expr> sk searcho#do('stay_backward') .. '\v' .. expand('<cword>')
+nnoremap <expr> sj searcho#do('stay_forward') .. '\v(^\|[^[:alnum:]])\zs' .. expand('<cword>') .. '\ze([^[:alnum:]]\|$)'
+nnoremap <expr> sk searcho#do('stay_backward') .. '\v(^\|[^[:alnum:]])\zs' .. expand('<cword>') .. '\ze([^[:alnum:]]\|$)'
 nnoremap <expr> s<Space>j searcho#do('forward') .. '\v' .. @"
 nnoremap <expr> s<Space>k searcho#do('backward') .. '\v' .. @"
 nnoremap <expr> n searcho#do('next')
