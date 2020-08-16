@@ -1,3 +1,5 @@
+local jobs = require("notomo/job")
+
 local M = {}
 
 M.fmt = function(cmd)
@@ -9,27 +11,16 @@ M.fmt = function(cmd)
   local origin_window = vim.api.nvim_get_current_win()
   local changedtick = vim.api.nvim_buf_get_changedtick(bufnr)
 
-  local lines = {}
-  local id = vim.fn.jobstart(cmd, {
-    stdout_buffered = true,
-    on_stdout = function(_, data, _)
-      vim.list_extend(lines, data)
-    end,
-    stderr_buffered = true,
-    on_stderr = function(_, data, _)
-      local cmd_name = table.concat(cmd, " ")
-      for _, d in ipairs(data) do
-        local msg = ("[%s]: %s"):format(cmd_name, d)
-        vim.api.nvim_err_write(msg)
-      end
-    end,
-    on_exit = function(_, exit_code, _)
+  local job = jobs.new(cmd, {
+    on_stderr = jobs.print_stderr,
+    on_exit = function(self, exit_code, _)
       if exit_code ~= 0 then
         return
       end
       if changedtick ~= vim.api.nvim_buf_get_changedtick(bufnr) then
         return
       end
+      local lines = self:get_stdout()
       if lines[#lines] == "" then
         table.remove(lines, #lines)
       end
@@ -62,9 +53,9 @@ M.fmt = function(cmd)
   })
 
   local before_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-  table.insert(before_lines, "")
-  vim.fn.chansend(id, before_lines)
-  vim.fn.chanclose(id, "stdin")
+  job:start()
+  job.stdin:write(table.concat(before_lines, "\n"))
+  job.stdin:close()
 end
 
 return M
