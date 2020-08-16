@@ -60,9 +60,6 @@ call s:add('rhysd/vim-gfm-syntax', {'ft' : 'markdown'})
 call s:add('fuenor/im_control.vim', {'event' : 'InsertEnter'})
 let g:IM_CtrlMode = 4
 
-call s:add('notomo/helpeek.vim', {'cmd': 'Helpeek*', 'depth': 0})
-nnoremap [keyword]; :<C-u>Helpeek<CR>
-
 call s:add('notomo/kiview', {'cmd': 'Kiview*', 'depth': 0, 'do': '!make build'})
 source ~/.vim/rc/plugins/kiview.vim
 
