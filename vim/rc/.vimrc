@@ -1,6 +1,7 @@
 
 set encoding=utf-8
 scriptencoding utf-8
+let $LANG = 'en_US.UTF-8'
 
 if (!has('nvim') || has('win32')) && has('vim_starting')
     set runtimepath^=~/.vim/
