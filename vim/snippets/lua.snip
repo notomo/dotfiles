@@ -32,6 +32,11 @@ snippet ifonly
 		${0:TARGET}
 	end
 
+snippet iferr
+	if err ~= nil then
+		return ${0:err}
+	end
+
 snippet do
 alias block
 	do

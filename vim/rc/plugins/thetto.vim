@@ -84,6 +84,7 @@ nnoremap [finder]o :<C-u>Thetto outline<CR>
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
 nnoremap [finder]b :<C-u>Thetto url/bookmark --action=browser_open<CR>
 nnoremap [finder]e :<C-u>Thetto emoji --action=append --xx-key=emoji<CR>
+nnoremap [finder]gp :<C-u>Thetto go/package<CR>
 
 " custom action
 nnoremap [finder]; :<C-u>Thetto vim/filetype --action=open_proto<CR>
