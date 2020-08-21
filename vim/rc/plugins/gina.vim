@@ -122,6 +122,7 @@ call gina#custom#mapping#nmap('/\%(ls\|blame\|changes\|status\|tag\)', '<CR>', '
 call gina#custom#mapping#nmap('status', 'o', ':call notomo#gina#edit("edit")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 't<Space>', ':call notomo#gina#edit("edit:tab")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', '<CR>', ':call notomo#gina#edit("edit:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(status\|stash\|branch\)', 'q', ':quit<CR>', s:noremap_silent)
 
 " yank
 call gina#custom#mapping#nmap('/\%(log\|branch\|blame\)', 'yr', ':call notomo#gina#yank_rev_with_echo()<CR>', s:noremap_silent)

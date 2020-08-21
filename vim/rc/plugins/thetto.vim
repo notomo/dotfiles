@@ -25,6 +25,7 @@ function! s:thetto_settings() abort
     nnoremap <buffer> fl :<C-u>ThettoDo directory_tab_open<CR>
     nnoremap <buffer> ff :<C-u>ThettoDo directory_enter<CR>
     nnoremap <buffer> yy :<C-u>ThettoDo yank<CR>
+    nnoremap <buffer> v :<C-u>ThettoDo preview<CR>
 
     " custom
     nnoremap <buffer> <Leader>rp :<C-u>ThettoDo qfreplace<CR>
