@@ -17,6 +17,7 @@ function! s:thetto_settings() abort
     nnoremap <silent> <buffer> <expr> j line('.') == line('$') ? 'gg' : 'j'
     nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
     nnoremap <silent> <buffer> <2-LeftMouse> :<C-u>ThettoDo<CR>
+    inoremap <silent> <buffer> <2-LeftMouse> <Cmd>ThettoDo<CR><ESC>
     nnoremap <buffer> <Tab> :<C-u>ThettoDo<Space>
     nnoremap <buffer> sm :<C-u>ThettoDo toggle_selection<CR><Down>
     xnoremap <buffer> sm :ThettoDo toggle_selection<CR>
