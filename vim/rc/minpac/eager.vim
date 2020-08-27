@@ -121,6 +121,7 @@ set guioptions+=c
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
 if has('mac')
     let g:python3_host_prog = '/usr/local/bin/python3'
 elseif has('unix')

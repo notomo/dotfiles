@@ -146,5 +146,4 @@ require("thetto/source/outline").opts = {
 }
 
 require("thetto/source/git/branch").sorters = {"length"}
-require("thetto/custom").opts = {width = 120}
 require("thetto/custom").default_filters = {"substring", "-substring"}
