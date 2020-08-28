@@ -48,6 +48,7 @@ set visualbell t_vb=
 set diffopt+=vertical
 set diffopt+=iwhite
 set diffopt+=hiddenoff
+set diffopt+=algorithm:histogram
 set mouse=a
 set grepprg=git\ grep\ -n\ $*
 set wrapscan

@@ -241,11 +241,6 @@ xmap ig <Plug>(textobj-line-i)
 omap ag <Plug>(textobj-line-a)
 omap ig <Plug>(textobj-line-i)
 
-if has('python3')
-    call minpac#add('sgur/vim-py3diff')
-    set diffexpr=py3diff#diffexpr()
-endif
-
 call minpac#add('bkad/CamelCaseMotion')
 nmap <Leader>w <Plug>CamelCaseMotion_w
 xmap <Leader>w <Plug>CamelCaseMotion_w
