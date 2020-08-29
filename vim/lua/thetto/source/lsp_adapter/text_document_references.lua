@@ -1,3 +1,5 @@
+local util = require("notomo/thetto_util")
+
 local M = {}
 
 M._to_item = function(self, opts)
@@ -10,7 +12,7 @@ M._to_item = function(self, opts)
       value = ("%s:%d"):format(relative_path, row),
       path = path,
       row = row,
-      column = v.range.start.character + 1,
+      range = util.range(v.range),
     }
   end
 end

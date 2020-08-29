@@ -1,3 +1,5 @@
+local util = require("notomo/thetto_util")
+
 local M = {}
 
 M._to_item = function(self, opts)
@@ -16,6 +18,7 @@ M._to_item = function(self, opts)
       desc = desc,
       value = v.name,
       column_offsets = {value = #path_row + 1, kind = #desc - #kind - 2},
+      range = util.range(v.location.range),
     }
   end
 end
@@ -32,10 +35,10 @@ M.collect = function(self, opts)
 end
 
 M.highlight = function(self, bufnr, items)
-  local ns = self.highlights.reset(bufnr)
+  local highlighter = self.highlights:reset(bufnr)
   for i, item in ipairs(items) do
-    vim.api.nvim_buf_add_highlight(bufnr, ns, "Comment", i - 1, 0, item.column_offsets.value - 1)
-    vim.api.nvim_buf_add_highlight(bufnr, ns, "Statement", i - 1, item.column_offsets.kind, -1)
+    highlighter:add("Comment", i - 1, 0, item.column_offsets.value - 1)
+    highlighter:add("Statement", i - 1, item.column_offsets.kind, -1)
   end
 end
 
