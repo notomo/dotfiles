@@ -55,32 +55,32 @@ function! s:thetto_input_settings() abort
 endfunction
 
 nnoremap [finder]R :<C-u>Thetto vim/runtimepath<CR>
-nnoremap <Space>ur :<C-u>Thetto file/mru<CR>
+nnoremap <Space>ur :<C-u>Thetto file/mru --auto=preview<CR>
 nnoremap [finder]<CR> :<C-u>Thetto --resume<CR>
-nnoremap <Space>usf :<C-u>Thetto file/recursive<CR>
-nnoremap <Space>usg :<C-u>Thetto file/recursive --target=project<CR>
+nnoremap <Space>usf :<C-u>Thetto file/recursive --auto=preview<CR>
+nnoremap <Space>usg :<C-u>Thetto file/recursive --target=project --auto=preview<CR>
 nnoremap [finder]f :<C-u>Thetto file/in_dir<CR>
 nnoremap [finder]h :<C-u>Thetto vim/help<CR>
-nnoremap [finder]l :<C-u>Thetto line<CR>
+nnoremap [finder]l :<C-u>Thetto line --auto=preview<CR>
 nnoremap [finder]r :<C-u>Thetto directory/recursive --target=project --sorters=length<CR>
-nnoremap [finder]v :<C-u>Thetto file/recursive --cwd=~/dotfiles<CR>
+nnoremap [finder]v :<C-u>Thetto file/recursive --cwd=~/dotfiles --auto=preview<CR>
 nnoremap [finder]O :<C-u>Thetto vim/option<CR>
 nnoremap [finder]H :<C-u>Thetto vim/highlight_group<CR>
-nnoremap [finder]B :<C-u>Thetto vim/buffer<CR>
+nnoremap [finder]B :<C-u>Thetto vim/buffer --auto=preview<CR>
 nnoremap [finder]y :<C-u>Thetto file/bookmark<CR>
 nnoremap [finder]ga :<C-u>Thetto git/branch<CR>
 nnoremap [finder]gA :<C-u>Thetto git/branch --x-all --xx-track<CR>
 nnoremap [finder]go :<C-u>Thetto directory/recursive --cwd=$GOPATH/src --x-max-depth=3<CR>
-nnoremap [keyword]gg :<C-u>Thetto file/grep --target=project --pattern-type=word<CR>
-nnoremap <silent> [finder]gl :<C-u>Thetto file/grep<CR>
-nnoremap <silent> [finder]gg :<C-u>Thetto file/grep --target=project<CR>
+nnoremap [keyword]gg :<C-u>Thetto file/grep --target=project --pattern-type=word --auto=preview<CR>
+nnoremap <silent> [finder]gl :<C-u>Thetto file/grep --auto=preview<CR>
+nnoremap <silent> [finder]gg :<C-u>Thetto file/grep --target=project --auto=preview<CR>
 nnoremap [finder]P :<C-u>Thetto process<CR>
 nnoremap [finder]a :<C-u>Thetto vim/autocmd<CR>
 nnoremap [finder]s :<C-u>Thetto source<CR>
 nnoremap [finder]n :<C-u>ThettoDo --resume --offset=1<CR>
 nnoremap [finder]N :<C-u>ThettoDo --resume --offset=-1<CR>
 nnoremap [finder]m :<C-u>Thetto vim/keymap<CR>
-nnoremap [finder]o :<C-u>Thetto outline<CR>
+nnoremap [finder]o :<C-u>Thetto outline --auto=preview<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
