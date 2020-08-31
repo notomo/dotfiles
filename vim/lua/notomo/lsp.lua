@@ -151,7 +151,8 @@ vim.lsp.callbacks["textDocument/references"] = function(_, _, result)
   end
   -- NOTICE: need to be added to runtimepath
   local thetto = require("thetto/entrypoint/command")
-  thetto.start("lsp_adapter/text_document_references", {
+  thetto.start({
+    source_name = "lsp_adapter/text_document_references",
     opts = {target = "project"},
     source_opts = {result = result},
   })
@@ -162,7 +163,8 @@ vim.lsp.callbacks["workspace/symbol"] = function(_, _, result)
     return
   end
   local thetto = require("thetto/entrypoint/command")
-  thetto.start("lsp_adapter/workspace_symbol", {
+  thetto.start({
+    source_name = "lsp_adapter/workspace_symbol",
     opts = {target = "project"},
     source_opts = {result = result},
   })
@@ -173,5 +175,8 @@ vim.lsp.callbacks["textDocument/documentSymbol"] = function(_, _, result)
     return
   end
   local thetto = require("thetto/entrypoint/command")
-  thetto.start("lsp_adapter/text_document_document_symbol", {source_opts = {result = result}})
+  thetto.start({
+    source_name = "lsp_adapter/text_document_document_symbol",
+    source_opts = {result = result},
+  })
 end
