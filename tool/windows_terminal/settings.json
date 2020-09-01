@@ -1,5 +1,6 @@
 {
     "alwaysShowTabs": true,
+    "launchMode": "maximized",
     "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
     "initialCols": 120,
     "initialRows": 30,
