@@ -33,6 +33,8 @@ xnoremap [substitute] <Nop>
 xmap <Space>s [substitute]
 nnoremap [finder] <Nop>
 nmap <Space>d [finder]
+xnoremap [finder] <Nop>
+xmap <Space>d [finder]
 
 let g:plugin_dicwin_disable = 1
 let g:loaded_gzip = 1
@@ -86,6 +88,7 @@ function! s:define_highlight() abort
     highlight YankRoundRegion guifg=#333333 guibg=#fedf81
     highlight def link sqlStatement sqlKeyword
     highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
+    highlight NormalFloat guibg=#213243
 
     " for gina status
     highlight AnsiColor1 ctermfg=1 guifg=#ffaaaa

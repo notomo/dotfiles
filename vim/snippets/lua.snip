@@ -200,3 +200,9 @@ snippet conditional
 
 snippet setmetatable
 	setmetatable(${1:value}, ${0:metatable})
+
+snippet api
+	vim.api.nvim_${0:name}
+
+snippet index
+	${1:M}.__index = $1

@@ -81,6 +81,9 @@ nnoremap [finder]n :<C-u>ThettoDo --resume --offset=1<CR>
 nnoremap [finder]N :<C-u>ThettoDo --resume --offset=-1<CR>
 nnoremap [finder]m :<C-u>Thetto vim/keymap<CR>
 nnoremap [finder]o :<C-u>Thetto outline --auto=preview<CR>
+nnoremap [finder], :<C-u>Thetto make/target --target=project --auto=preview<CR>
+nnoremap [finder]S :<C-u>Thetto vim/substitute --auto=preview<CR>
+xnoremap [finder]s :Thetto vim/substitute --auto=preview<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>

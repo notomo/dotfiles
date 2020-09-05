@@ -133,9 +133,6 @@ source ~/.vim/rc/plugins/gesture.vim
 call s:add('notomo/flompt.nvim', {'cmd' : 'Flompt', 'depth': 0})
 source ~/.vim/rc/plugins/flompt.vim
 
-call s:add('notomo/kitche.nvim', {'cmd' : 'Kitche*', 'depth': 0})
-source ~/.vim/rc/plugins/kitche.vim
-
 call s:add('notomo/thetto.nvim', {'cmd' : 'Thetto*', 'depth': 0})
 source ~/.vim/rc/plugins/thetto.vim
 
