@@ -77,22 +77,9 @@ nnoremap <expr> [browser]o ":\<C-u>OpenBrowser " . expand('<cWORD>') . "\<CR>"
 nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 
 if !empty($SSH_CLIENT) && executable('lemonade') && has('mac')
-    let g:openbrowser_browser_commands = [
-    \ {'name': 'lemonade',
-    \  'args': 'lemonade open {uri}'}
-    \ ]
-elseif executable('wslpath')
-    " HACk: for shell=zsh in wsl
-    let g:openbrowser_browser_commands = [
-        \ {
-            \ 'name': 'xdg-open',
-            \ 'args': ['{browser}', '{uri}']
-        \ },
-        \ {
-            \ 'name': 'rundll32',
-            \ 'args': ['rundll32', 'url.dll,FileProtocolHandler', '{uri}']
-        \ },
-    \ ]
+    let g:openbrowser_browser_commands = [{'name': 'lemonade', 'args': 'lemonade open {uri}'}]
+elseif executable('wslview')
+    let g:openbrowser_browser_commands = [{'name': 'wslview', 'args': 'wslview {uri}'}]
 endif
 
 " for kiview error debug
