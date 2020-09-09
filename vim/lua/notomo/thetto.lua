@@ -95,6 +95,14 @@ kind_actions["git/branch"] = {
     local cmd = ("Gina compare %s:"):format(item.value)
     vim.api.nvim_command(cmd)
   end,
+  action_diff = function(_, items)
+    local item = items[1]
+    if item == nil then
+      return
+    end
+    local cmd = ("Gina diff %s:"):format(item.value)
+    vim.api.nvim_command(cmd)
+  end,
 }
 
 kind_actions["file"] = {

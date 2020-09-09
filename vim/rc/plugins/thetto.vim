@@ -1,5 +1,7 @@
 autocmd MyAuGroup User ThettoSourceLoad lua dofile(vim.fn.expand('~/dotfiles/vim/lua/notomo/thetto.lua'))
 
+ThettoSetup file/mru
+
 autocmd MyAuGroup FileType thetto call s:thetto_settings()
 function! s:thetto_settings() abort
     nnoremap <buffer> <CR> :<C-u>ThettoDo<CR>
