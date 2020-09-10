@@ -87,6 +87,7 @@ nnoremap [finder], :<C-u>Thetto make/target --target=project --auto=preview<CR>
 nnoremap [exec], :<C-u>Thetto make/target --target=upward --target-patterns=Makefile --auto=preview<CR>
 nnoremap [finder]S :<C-u>Thetto vim/substitute --auto=preview<CR>
 xnoremap [finder]s :Thetto vim/substitute --auto=preview<CR>
+nnoremap [finder]gd :<C-u>Thetto git/diff --auto=preview --target=project<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
