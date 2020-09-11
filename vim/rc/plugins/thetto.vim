@@ -1,5 +1,7 @@
 autocmd MyAuGroup User ThettoSourceLoad lua dofile(vim.fn.expand('~/dotfiles/vim/lua/notomo/thetto.lua'))
 
+let g:thetto_debug = 1
+
 ThettoSetup file/mru
 
 autocmd MyAuGroup FileType thetto call s:thetto_settings()
@@ -88,6 +90,7 @@ nnoremap [exec], :<C-u>Thetto make/target --target=upward --target-patterns=Make
 nnoremap [finder]S :<C-u>Thetto vim/substitute --auto=preview<CR>
 xnoremap [finder]s :Thetto vim/substitute --auto=preview<CR>
 nnoremap [finder]gd :<C-u>Thetto git/diff --auto=preview --target=project<CR>
+nnoremap [finder]gr :<C-u>Thetto git/diff --auto=preview --target=project --x-expr=%:p<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
