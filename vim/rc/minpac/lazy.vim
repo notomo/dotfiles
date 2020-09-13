@@ -131,3 +131,5 @@ nnoremap gk :<C-u>Hita upside_line<CR>
 nnoremap gn :<C-u>Hita line<CR>
 nnoremap gw :<C-u>Hita window_word<CR>
 nnoremap g<CR> :<C-u>Hita search<CR>
+
+call s:add('neovim/nvim-lsp', {})

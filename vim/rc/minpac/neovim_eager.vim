@@ -26,10 +26,6 @@ if executable('python3')
     let g:deoplete#enable_at_startup = 1
 endif
 
-call minpac#add('ncm2/float-preview.nvim')
-let g:float_preview#docked = 0
-
-call minpac#add('neovim/nvim-lsp')
 call minpac#add('Shougo/deoplete-lsp')
 
 call minpac#add('voldikss/vim-translator')
