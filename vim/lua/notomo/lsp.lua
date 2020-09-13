@@ -1,3 +1,20 @@
+vim.api.nvim_command("nnoremap [lc] <Nop>")
+vim.api.nvim_command("nmap <Leader>f [lc]")
+
+vim.api.nvim_command("nnoremap <silent> [lc]d <Cmd>lua vim.lsp.buf.definition()<CR>")
+vim.api.nvim_command("nnoremap <silent> [lc]k  <Cmd>lua vim.lsp.buf.hover()<CR>")
+vim.api.nvim_command("nnoremap <silent> [lc]D <Cmd>lua vim.lsp.buf.type_definition()<CR>")
+vim.api.nvim_command("nnoremap <silent> [lc]K  <Cmd>lua vim.lsp.buf.signature_help()<CR>")
+vim.api.nvim_command("nnoremap <silent> [lc]s <Cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>")
+vim.api.nvim_command("nnoremap <silent> [exec]gr <Cmd>lua vim.lsp.buf.references()<CR>")
+vim.api.nvim_command("nnoremap <silent> [exec]gn <Cmd>lua vim.lsp.buf.rename()<CR>")
+vim.api.nvim_command("nnoremap <silent> [exec]gd <Cmd>lua vim.lsp.buf.document_symbol()<CR>")
+vim.api.nvim_command("nnoremap <silent> [exec]gw <Cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+vim.api.nvim_command("nnoremap <silent> [keyword]c <Cmd>lua vim.lsp.buf.code_action()<CR>")
+
+vim.api.nvim_command("highlight! link LspDiagnosticsError SpellBad")
+vim.api.nvim_command("highlight! link LspDiagnosticsWarning Tag")
+
 local nvimlsp = require "nvim_lsp"
 
 nvimlsp.rls.setup {}

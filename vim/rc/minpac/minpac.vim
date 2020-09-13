@@ -30,7 +30,7 @@ packloadall
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
 if has('nvim')
-    source ~/.vim/rc/plugins/lsp.vim
+    lua require('notomo/lsp')
     if executable('python3')
         source ~/.vim/rc/plugins/deoplete.vim
     endif
