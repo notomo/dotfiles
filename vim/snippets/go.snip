@@ -314,3 +314,21 @@ snippet init
 	func init() {
 		${0}
 	}
+
+snippet waitgroup
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		${1:task}
+		wg.Done()
+	}()
+	wg.Wait()
+
+snippet errgroup
+	var eg errgroup.Group
+	eg.Go(func() error {
+		${1:task}
+	})
+	if err := eg.Wait(); err != nil {
+		return err
+	}

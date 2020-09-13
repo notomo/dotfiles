@@ -202,8 +202,22 @@ snippet conditional
 snippet setmetatable
 	setmetatable(${1:value}, ${0:metatable})
 
+snippet index
+	${1:M}.__index = $1
+
 snippet api
 	vim.api.nvim_${0:name}
 
-snippet index
-	${1:M}.__index = $1
+snippet open_win
+	local bufnr = vim.api.nvim_create_buf(false, true)
+	vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {${1:line}})
+	vim.api.nvim_open_win(bufnr, true, {
+		width = 50,
+		height = 10,
+		relative = "editor",
+		row = 10,
+		col = 10,
+		focusable = true,
+		external = false,
+		style = "minimal",
+	})

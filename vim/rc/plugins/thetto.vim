@@ -91,6 +91,7 @@ nnoremap [finder]S :<C-u>Thetto vim/substitute --auto=preview<CR>
 xnoremap [finder]s :Thetto vim/substitute --auto=preview<CR>
 nnoremap [finder]gd :<C-u>Thetto git/diff --auto=preview --target=project<CR>
 nnoremap [finder]gr :<C-u>Thetto git/diff --auto=preview --target=project --x-expr=%:p<CR>
+nnoremap [finder]G :<C-u>Thetto file/grep --auto=preview --target=project --filters=interactive --filters=substring<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
