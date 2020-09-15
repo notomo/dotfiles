@@ -86,7 +86,7 @@ nnoremap [finder]N :<C-u>ThettoDo --resume --offset=-1<CR>
 nnoremap [finder]m :<C-u>Thetto vim/keymap<CR>
 nnoremap [finder]o :<C-u>Thetto outline --auto=preview<CR>
 nnoremap [finder], :<C-u>Thetto make/target --target=project --auto=preview<CR>
-nnoremap [exec], :<C-u>Thetto make/target --target=upward --target-patterns=Makefile --auto=preview<CR>
+nnoremap [exec], :<C-u>Thetto make/target --target=upward --target-patterns=Makefile --auto=preview --no-insert<CR>
 nnoremap [finder]S :<C-u>Thetto vim/substitute --auto=preview<CR>
 xnoremap [finder]s :Thetto vim/substitute --auto=preview<CR>
 nnoremap [finder]gd :<C-u>Thetto git/diff --auto=preview --target=project<CR>

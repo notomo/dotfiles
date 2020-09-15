@@ -2,7 +2,7 @@ require("thetto/kind/directory").after = function(path)
   vim.api.nvim_command("Kiview -create -split=no -path=" .. path)
 end
 
-require("thetto/source/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kiview)://)"
+require("thetto/setup/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kiview)://)"
 require("thetto/source/file/recursive").get_command = function(path, max_depth)
   return {
     "pt",
