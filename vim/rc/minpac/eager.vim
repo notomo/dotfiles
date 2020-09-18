@@ -54,6 +54,7 @@ let g:loaded_netrwSettings = 1
 let g:loaded_netrwFileHandlers = 1
 let g:loaded_spellfile_plugin = 1
 let g:loaded_logiPat = 1
+let g:loaded_matchparen = 1
 
 augroup MyAuGroup
     autocmd!
@@ -146,9 +147,6 @@ nnoremap [exec]R :<C-u>call notomo#vimrc#clean()<CR>
 
 call minpac#add('kana/vim-textobj-user')
 call minpac#add('kana/vim-operator-user')
-
-call minpac#add('itchyny/vim-parenmatch')
-let g:loaded_matchparen = 1
 
 call minpac#add('kana/vim-submode')
 let g:submode_keep_leaving_key = 1
