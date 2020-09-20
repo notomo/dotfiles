@@ -155,3 +155,8 @@ require("thetto/source/outline").opts = {
 
 require("thetto/source/git/branch").sorters = {"length"}
 require("thetto/custom").default_filters = {"substring", "-substring"}
+
+require("thetto/source/file/alter").opts.pattern_groups = {
+  {"%_test.go", "%.go"},
+  {"%/test/lua/%_spec.lua", "%/lua/%.lua"},
+}
