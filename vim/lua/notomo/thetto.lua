@@ -150,7 +150,7 @@ require("thetto/source/file/grep").filters = {"substring", "substring:path:relat
 require("thetto/source/line").filters = {"regex", "-regex"}
 
 require("thetto/source/outline").opts = {
-  ignore = {"member", "package", "packageName", "anonMember"},
+  ignore = {"member", "package", "packageName", "anonMember", "constant"},
 }
 
 require("thetto/source/git/branch").sorters = {"length"}

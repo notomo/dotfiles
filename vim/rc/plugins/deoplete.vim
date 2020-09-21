@@ -4,7 +4,10 @@ let s:sources = {}
 let s:sources._ = ['buffer', 'file', 'around', 'neosnippet']
 let s:sources.haskell = ['buffer', 'neosnippet', 'around', 'file']
 let s:sources.php = ['buffer', 'neosnippet', 'around', 'file']
-let s:sources.markdown = ['buffer', 'neosnippet', 'file', 'around', 'emoji', 'look']
+let s:sources.markdown = ['buffer', 'neosnippet', 'file', 'around', 'emoji']
+if !has('win32')
+  call add(s:sources.markdown, 'look')
+endif
 let s:sources.vim = ['vim', 'file', 'buffer', 'around', 'neosnippet']
 let s:sources.python = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
 let s:sources.go = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
