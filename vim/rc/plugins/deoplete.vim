@@ -4,6 +4,7 @@ let s:sources = {}
 let s:sources._ = ['buffer', 'file', 'around', 'neosnippet']
 let s:sources.haskell = ['buffer', 'neosnippet', 'around', 'file']
 let s:sources.php = ['buffer', 'neosnippet', 'around', 'file']
+let s:sources.markdown = ['buffer', 'neosnippet', 'file', 'around', 'emoji']
 let s:sources['gina-commit'] = ['buffer', 'file', 'around', 'neosnippet']
 if !has('win32')
   call add(s:sources.markdown, 'look')
