@@ -3,34 +3,36 @@ require("thetto/kind/directory").after = function(path)
 end
 
 require("thetto/setup/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kiview)://)"
-require("thetto/source/file/recursive").get_command = function(path, max_depth)
-  return {
-    "pt",
-    "--follow",
-    "--nocolor",
-    "--nogroup",
-    "--hidden",
-    "--ignore=.git",
-    "--ignore=.mypy_cache",
-    "--ignore=node_modules",
-    "--ignore=__pycache__",
-    "--ignore=.DS_Store",
-    "--depth=" .. max_depth,
-    "-g=",
-    path,
-  }
-end
+if vim.fn.has("win32") == 0 then
+  require("thetto/source/file/recursive").get_command = function(path, max_depth)
+    return {
+      "pt",
+      "--follow",
+      "--nocolor",
+      "--nogroup",
+      "--hidden",
+      "--ignore=.git",
+      "--ignore=.mypy_cache",
+      "--ignore=node_modules",
+      "--ignore=__pycache__",
+      "--ignore=.DS_Store",
+      "--depth=" .. max_depth,
+      "-g=",
+      path,
+    }
+  end
 
-local ignore_dirs = {".git", "node_modules", ".mypy_cache"}
-local extended_cmd = {}
-for _, name in ipairs(ignore_dirs) do
-  vim.list_extend(extended_cmd, {"-type", "d", "-name", name, "-prune", "-o"})
-end
-vim.list_extend(extended_cmd, {"-type", "d", "-print"})
-require("thetto/source/directory/recursive").get_command = function(path, max_depth)
-  local cmd = {"find", "-L", path, "-maxdepth", max_depth}
-  vim.list_extend(cmd, extended_cmd)
-  return cmd
+  local ignore_dirs = {".git", "node_modules", ".mypy_cache"}
+  local extended_cmd = {}
+  for _, name in ipairs(ignore_dirs) do
+    vim.list_extend(extended_cmd, {"-type", "d", "-name", name, "-prune", "-o"})
+  end
+  vim.list_extend(extended_cmd, {"-type", "d", "-print"})
+  require("thetto/source/directory/recursive").get_command = function(path, max_depth)
+    local cmd = {"find", "-L", path, "-maxdepth", max_depth}
+    vim.list_extend(cmd, extended_cmd)
+    return cmd
+  end
 end
 
 local grep = require("thetto/source/file/grep")
