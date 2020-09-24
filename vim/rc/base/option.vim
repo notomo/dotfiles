@@ -78,6 +78,9 @@ set completeopt-=preview
 if has('termguicolors')
     set termguicolors
 endif
+if exists('+spelloptions')
+    set spelloptions=camel
+endif
 
 if !has('nvim')
     set viminfo+=n~/.vim/tmp/viminfo.txt
