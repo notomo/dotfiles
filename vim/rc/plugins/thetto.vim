@@ -93,8 +93,9 @@ nnoremap [finder]gd :<C-u>Thetto git/diff --auto=preview --target=project<CR>
 nnoremap [finder]gr :<C-u>Thetto git/diff --auto=preview --target=project --x-expr=%:p<CR>
 nnoremap [finder]G :<C-u>Thetto file/grep --auto=preview --target=project --filters=interactive --filters=substring --debounce-ms=100<CR>
 nnoremap [file]f :<C-u>Thetto file/alter --auto=preview --immediately --no-insert<CR>
-nnoremap [file]l :<C-u>Thetto file/alter --auto=preview --x-allow-new  --immediately --no-insert --action=tab_open<CR>
+nnoremap [file]l :<C-u>Thetto file/alter --auto=preview --immediately --no-insert --action=tab_open<CR>
 nnoremap [file]t :<C-u>Thetto file/alter --auto=preview --x-allow-new  --immediately --no-insert<CR>
+nnoremap [finder]T :<C-u>Thetto vim/buffer --x-buftype=terminal --auto=preview<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
