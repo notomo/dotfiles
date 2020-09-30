@@ -148,7 +148,12 @@ require("thetto/source/file/in_dir").colors = colors
 require("thetto/source/file/mru").colors = colors
 require("thetto/source/file/recursive").colors = colors
 require("thetto/source/file/grep").colors = colors
-require("thetto/source/file/grep").filters = {"substring", "substring:path:relative"}
+require("thetto/source/file/grep").filters = {
+  "substring",
+  "-substring",
+  "substring:path:relative",
+  "-substring:path:relative",
+}
 require("thetto/source/line").filters = {"regex", "-regex"}
 
 require("thetto/source/outline").opts = {
