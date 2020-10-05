@@ -1,7 +1,7 @@
 
 function! notomo#github#view_issue(target) abort
     let id = substitute(a:target, '[^[:digit:]]', '', 'g')
-    let cmd = ['gh', 'issue', 'view', id]
+    let cmd = ['gh', 'issue', 'view', id, '--web']
     let repo = getbufvar('%', 'notomo_gh_repo', '')
     if !empty(repo)
         call add(cmd, '--repo=' . repo)
