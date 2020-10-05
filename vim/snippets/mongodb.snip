@@ -10,6 +10,7 @@ snippet find_by_id
 	})
 
 snippet object_id
+options word
 	ObjectId("${0:id}")
 
 snippet get_db
@@ -34,7 +35,13 @@ snippet delete_one
 	)
 
 snippet limit
+options word
 	limit(${0:10})
 
 snippet projection
+options word
 	projection({"${1:shown}": 1, "${0:hidden}": 0})
+
+snippet sort
+options word
+	sort({"${1:field}": -1})

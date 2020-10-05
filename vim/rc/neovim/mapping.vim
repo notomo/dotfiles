@@ -52,3 +52,5 @@ nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(luaeval("requir
 
 xnoremap <silent> <C-j> :<C-u>lua require('notomo/insert').replace_down()<CR>gv
 xnoremap <silent> <C-k> :<C-u>lua require('notomo/insert').replace_up()<CR>gv
+
+nnoremap <silent> [yank]M :<C-u>call notomo#vimrc#yank_and_echo(trim(system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>
