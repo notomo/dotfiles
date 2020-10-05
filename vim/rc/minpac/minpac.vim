@@ -29,6 +29,9 @@ packloadall
 " post source eager load plugins
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
+augroup filetypedetect
+    runtime! ftdetect/*.vim " for polyglot
+augroup END
 if has('nvim')
     lua require('notomo/lsp')
     if executable('python3')
