@@ -206,6 +206,7 @@ snippet index
 	${1:M}.__index = $1
 
 snippet api
+options word
 	vim.api.nvim_${0:name}
 
 snippet open_win
@@ -224,3 +225,14 @@ snippet open_win
 
 snippet command
 	vim.api.nvim_command("${1:excmd}")
+
+snippet bench
+	do
+		local count = 1000
+		local s = vim.fn.reltimefloat(vim.fn.reltime())
+		for _ = 1, count do
+			${0:TARGET}
+		end
+		local e = vim.fn.reltimefloat(vim.fn.reltime())
+		print(vim.inspect(e - s))
+	end
