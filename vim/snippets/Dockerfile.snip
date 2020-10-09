@@ -1,0 +1,31 @@
+snippet from
+alias FROM
+	FROM ${0:image}
+
+snippet run
+alias RUN
+	RUN ${0:command}
+
+snippet env
+alias ENV
+	ENV ${1:name}=${0:value}${0:#: more_key=value}
+
+snippet workdir
+alias WORKDIR
+	WORKDIR ${0:path}
+
+snippet copy
+alias COPY
+	COPY ${1:from} ${0:to}
+
+snippet cmd
+alias CMD
+	CMD ["${1:executable}", "${0:arg}"]
+
+snippet entrypoint
+alias ENTRYPOINT
+	ENTRYPOINT ["${1:executable}", "${0:arg}"]
+
+snippet user
+alias USER
+	USER ${0:name}

@@ -32,3 +32,4 @@ alias symbolic_link="ln -s" # ln -s {origin} {link_name}
 alias docker_build="docker build -t image_name ." # image_name=notomo/name:1.0
 alias docker_run_bash="docker run --rm -it image_name bash"
 alias create_repo="gh repo create --public" # arg=name
+alias for_coredump="ulimit -c unlimited"
