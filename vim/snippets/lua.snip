@@ -236,3 +236,18 @@ snippet bench
 		local e = vim.fn.reltimefloat(vim.fn.reltime())
 		print(vim.inspect(e - s))
 	end
+
+snippet filter
+	vim.tbl_filter(function (${1:e})
+		return ${2:expr}
+	end, ${0:table})
+
+snippet map
+	vim.tbl_map(function (${1:e})
+		return ${2:expr}
+	end, ${0:table})
+
+snippet sort_desc
+	table.sort(${1:table}, function(a, b)
+	  return ${2:a} > ${0:b}
+	end)
