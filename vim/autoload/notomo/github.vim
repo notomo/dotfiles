@@ -12,7 +12,7 @@ endfunction
 function! notomo#github#view_pr() abort
     let target = expand('<cword>')
     let id = substitute(target, '[^[:digit:]]', '', 'g')
-    let cmd = ['gh', 'pr', 'view']
+    let cmd = ['gh', 'pr', 'view', '--web']
     if !empty(id)
         call add(cmd, id)
     endif
