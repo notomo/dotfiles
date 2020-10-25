@@ -134,3 +134,6 @@ nnoremap gw :<C-u>Hita window_word<CR>
 nnoremap g<CR> :<C-u>Hita search<CR>
 
 call s:add('neovim/nvim-lsp', {})
+
+call s:add('notomo/kivi.nvim', {'cmd': 'Kivi*', 'depth': 0})
+source ~/.vim/rc/plugins/kivi.vim

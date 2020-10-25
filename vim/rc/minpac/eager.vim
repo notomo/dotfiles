@@ -302,6 +302,7 @@ call minpac#add('thinca/vim-ref')
 nmap [keyword]r <Plug>(ref-keyword)
 let g:ref_open = 'vsplit'
 let g:ref_pydoc_cmd = 'python3 -m pydoc'
+let g:ref_no_default_key_mappings = 1
 
 call minpac#add('Shougo/neoinclude.vim')
 

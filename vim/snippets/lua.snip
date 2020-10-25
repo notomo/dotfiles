@@ -278,3 +278,14 @@ snippet resume
 # dead
 snippet status
 	coroutine.status(${0:co})
+
+snippet validate
+	vim.validate({${1:name} = {$1, "${1:string}"}})
+
+snippet and
+options word
+	and ${0:expr}
+
+snippet or
+options word
+	or ${0:expr}
