@@ -34,7 +34,7 @@ let s:prompt_pattern = '\v^\$ '
 let s:cmd_start_col = 2
 let s:cmd_length_limit = 20
 function! s:set_term_title() abort
-    let prompt_lnum  = search(s:prompt_pattern, 'nbczW')
+    let prompt_lnum  = search(s:prompt_pattern, 'nbcW')
     let cmd = escape(getline(prompt_lnum)[s:cmd_start_col : s:cmd_length_limit], '|$"`')
     let cmd = substitute(cmd, '/', '\\\\', 'g')
     let cmd = substitute(cmd, '\v[+%{}]', '_', 'g')
