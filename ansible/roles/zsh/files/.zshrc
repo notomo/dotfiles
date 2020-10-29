@@ -6,6 +6,8 @@ PROMPT="
 
 bindkey -e
 
+source ~/.zinit/bin/zinit.zsh
+
 autoload -Uz colors
 colors
 
@@ -21,10 +23,4 @@ export SAVEHIST=100000
 export HISTFILE=${HOME}/.zsh_history
 setopt EXTENDED_HISTORY
 
-source ~/.zplug/init.zsh
-
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "plugins/docker", from:oh-my-zsh
-
-zplug load
+zinit light zsh-users/zsh-completions
