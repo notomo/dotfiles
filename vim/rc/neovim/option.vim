@@ -16,3 +16,6 @@ endif
 if len($VAGRANT_PRIVATE_NETWORK_IP) > 0
     let local#var#host = $VAGRANT_PRIVATE_NETWORK_IP
 endif
+
+" for embed lua
+let g:vimsyn_embed = 'lPr'

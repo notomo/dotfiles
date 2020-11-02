@@ -93,6 +93,10 @@ snippet not
 options word
 	not ${1:expr}
 
+snippet class
+	local ${1:name} = {}
+	$1.__index = $1
+
 snippet method
 	function ${1:class}.${2:method_name}(self)
 		${0:TARGET}
@@ -205,6 +209,9 @@ snippet setmetatable
 snippet index
 	${1:M}.__index = $1
 
+snippet meta
+	${1:Name}.__${2:method} = ${0:expr}
+
 snippet api
 options word
 	vim.api.nvim_${0:name}
@@ -289,3 +296,9 @@ options word
 snippet or
 options word
 	or ${0:expr}
+
+snippet new
+	function ${1:Class}.new(${2:args})
+		local tbl = {${0:TARGET}}
+		return setmetatable(tbl, $1)
+	end

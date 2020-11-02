@@ -1,9 +1,11 @@
-" set runtimepath+=~/.vim/minpac/pack/minpac/opt/capture.vim
+" set runtimepath+=~/.vim/minpac/pack/minpac/opt/gesture.nvim
 
-" nnoremap <Space>q :<C-u>qa!<CR>
-" nnoremap <Space>xcm :<C-u>Capture message<CR>
-" nnoremap <Space>wq :<C-u>q<CR>
-" nnoremap <Space>xu :<C-U>UpdateRemotePlugins<CR>
+" colorscheme darkblue
+" set background=dark
+" set termguicolors
+
+nnoremap <Space>q :<C-u>qa!<CR>
+nnoremap <Space>wq :<C-u>q<CR>
 
 " augroup MyAuGroup
 "     autocmd!
@@ -11,4 +13,4 @@
 
 " filetype plugin indent on
 
-" e ~/dotfiles/LICENSE
+e ~/dotfiles/LICENSE
