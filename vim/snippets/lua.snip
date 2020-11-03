@@ -1,5 +1,6 @@
 
 snippet local
+alias l
 	local ${1:name} = ${0:value}
 
 snippet local_func
@@ -96,6 +97,7 @@ options word
 snippet class
 	local ${1:name} = {}
 	$1.__index = $1
+	M.$1 = $1
 
 snippet method
 	function ${1:class}.${2:method_name}(self)
@@ -135,6 +137,7 @@ snippet remove
 	table.remove(${1:table}, ${0:index})
 
 snippet join
+alias concat
 options word
 	table.concat(${1:table}, ${0:sep})
 

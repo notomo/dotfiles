@@ -15,7 +15,7 @@ vim.api.nvim_command("nnoremap <silent> [keyword]c <Cmd>lua vim.lsp.buf.code_act
 vim.api.nvim_command("highlight! link LspDiagnosticsError SpellBad")
 vim.api.nvim_command("highlight! link LspDiagnosticsWarning Tag")
 
-vim.api.nvim_command("packadd nvim-lsp")
+vim.api.nvim_command("packadd nvim-lspconfig")
 local nvimlsp = require "nvim_lsp"
 
 nvimlsp.rls.setup {}
