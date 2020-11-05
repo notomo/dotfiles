@@ -46,6 +46,12 @@ if [ -d "${RBENV_ROOT}" ]; then
     eval "$(rbenv init -)"
 fi
 
+if [ -d "$HOME/.pyenv" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+fi
+
 if [ -d "$HOME/dotfiles" ]; then
     cd ~/dotfiles
 fi

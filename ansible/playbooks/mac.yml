@@ -4,7 +4,6 @@
     - { role: 'bash', tags: 'bash' }
     - { role: 'zsh', tags: 'zsh' }
     - { role: 'workspace', tags: 'workspace' }
-    - { role: 'ruby', tags: 'ruby' }
     - { role: 'golang', tags: 'golang' }
     - { role: 'mac', tags: 'mac' }
     - { role: 'dotfiles', tags: 'dotfiles' }
@@ -14,11 +13,7 @@
     - { role: 'docker', tags: 'docker' }
     - { role: 'neovim', tags: 'neovim' }
     - { role: 'web_browser', tags: 'web_browser' }
-    - { role: 'firefox', tags: 'firefox' }
     - { role: 'terminal', tags: 'terminal' }
-    - { role: 'tmux', tags: 'tmux' }
-    - { role: 'vim', tags: 'vim' }
-    - { role: 'mysql', tags: 'mysql' }
     - { role: 'font', tags: 'font' }
     - { role: 'git', tags: 'git' }
     - { role: 'ctags', tags: 'ctags' }

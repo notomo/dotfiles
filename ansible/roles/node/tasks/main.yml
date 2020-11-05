@@ -50,14 +50,10 @@
   set_fact:
     node_packages:
       - typescript
-      - neovim
-      - htmlhint
       - fixjson
       - typescript-language-server
       - eslint
       - prettier
-      - wscat
-      - vue-language-server
 
 - name: install node.js package globally
   npm:

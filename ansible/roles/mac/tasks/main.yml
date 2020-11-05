@@ -58,15 +58,11 @@
   homebrew_cask: name={{ item }}
   with_items:
     - Karabiner-Elements
-    - vagrant
-    - virtualbox
     - alfred
     - google-japanese-ime
-    - filezilla
     - logitech-unifying
     # - logitech-options
     - keepassx
-    - skitch
   ignore_errors: yes
 
 - name: disable .DS_Store creation

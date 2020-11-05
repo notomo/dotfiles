@@ -1,7 +1,6 @@
 
 - homebrew:
     name:
-      - python2
       - python3
   when: is_macos
 
@@ -60,20 +59,8 @@
 #   when: is_ubuntu
 #   become: yes
 
-- name: install python2 with yum
-  yum:
-    name:
-      - python-devel
-      - python-pip
-    enablerepo: epel
-  when: is_centos
-  become: yes
-
 - name: set variables
   set_fact:
-    python2_packages:
-      - pynvim
-      - ansible-lint
     python3_packages:
       - pynvim
       - flake8
@@ -88,17 +75,6 @@
       - httpie
       - pprint
       - pytest
-
-- pip:
-    name: "{{ python2_packages }}"
-    executable: pip2
-  when: is_macos
-
-- pip:
-    name: "{{ python2_packages }}"
-    executable: pip2
-  when: is_centos
-  become: yes
 
 - pip:
     name: "{{ python3_packages }}"

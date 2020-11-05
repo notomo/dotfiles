@@ -55,20 +55,25 @@
   when: is_linux and not zsh_binary.stat.exists
   become: yes
 
-- name: check zplug
+- name: check zinit
   stat:
-    path: "{{ home_dir }}/.zplug"
-  register: zplug_installed
+    path: "{{ home_dir }}/.zinit/bin"
+  register: zinit_installed
 
-- name: get zplug
-  git:
-    repo: https://github.com/zplug/zplug.git
-    dest: "{{ home_dir }}/.zplug"
-  when: not zplug_installed.stat.exists
-
-- name: .zplug chmod 755
+- name: make zinit directory
   file:
-    dest: "{{ home_dir }}/.zplug"
+    path: "{{ app_dir }}/.zinit"
+    state: directory
+
+- name: get zinit
+  git:
+    repo: https://github.com/zdharma/zinit.git
+    dest: "{{ home_dir }}/.zinit/bin"
+  when: not zinit_installed.stat.exists
+
+- name: .zinit chmod 755
+  file:
+    dest: "{{ home_dir }}/.zinit"
     mode: 0755
     recurse: True
 
