@@ -4,23 +4,38 @@ NVIM := ${NVIM_DIR}/build/bin/nvim
 unexport LUA_PATH
 unexport LUA_CPATH
 build:
-	unset LUA_PATH
-	unset LUA_CPATH
-	cd ${NVIM_DIR}; make distclean
-	cd ${NVIM_DIR}; make
+	@# cd ${NVIM_DIR}; CC=clang make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
+	cd ${NVIM_DIR}; CC=clang make
 .PHONY: build
+
+all:
+	cd ${NVIM_DIR}; make distclean
+	${MAKE} build
+.PHONY: all
+
+# NOTE: for print_stacktrace
+# sudo ln -s /usr/bin/llvm-symbolizer-8.0 /usr/bin/llvm-symbolizer
+TEST_ENV := CC=clang ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1 UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/lua/buffer_updates_spec.lua
+test:
+	cd ${NVIM_DIR}; ${TEST_ENV} make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON" functionaltest
+.PHONY: test
+
+lint:
+	cd ${NVIM_DIR}; make clint-full
+.PHONY: lint
 
 run:
 	ulimit -c unlimited
 	touch minimal.lua
 	rm -f core
 	rm -f backtrace.txt
-	${MAKE} run_raw || echo
+	${MAKE} _run || echo
 	gdb ${NVIM} core --eval-command "thread apply all bt full" --batch 2>&1 | tee backtrace.txt
 .PHONY: run
 
-run_raw:
+_run:
 	${NVIM} -u NORC +"luafile ./minimal.lua"
+.PHONY: _run
 
 ISSUE := issue.md
 issue:
