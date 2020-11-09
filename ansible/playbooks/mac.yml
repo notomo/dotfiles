@@ -4,20 +4,20 @@
     - { role: 'bash', tags: 'bash' }
     - { role: 'zsh', tags: 'zsh' }
     - { role: 'workspace', tags: 'workspace' }
-    - { role: 'golang', tags: 'golang' }
-    - { role: 'mac', tags: 'mac' }
     - { role: 'dotfiles', tags: 'dotfiles' }
+    - { role: 'neovim', tags: 'neovim' }
+    - { role: 'pt', tags: 'pt' }
+    - { role: 'mac', tags: 'mac' }
     - { role: 'tools', tags: 'tools' }
     - { role: 'python', tags: 'python' }
     - { role: 'node', tags: 'node' }
     - { role: 'docker', tags: 'docker' }
-    - { role: 'neovim', tags: 'neovim' }
     - { role: 'web_browser', tags: 'web_browser' }
     - { role: 'terminal', tags: 'terminal' }
     - { role: 'font', tags: 'font' }
     - { role: 'git', tags: 'git' }
     - { role: 'ctags', tags: 'ctags' }
-    - { role: 'pt', tags: 'pt' }
+    - { role: 'golang', tags: 'golang' }
     - { role: 'rust', tags: 'rust' }
     - { role: 'gh', tags: 'gh' }
     - { role: 'gitconfig', tags: 'gitconfig' }

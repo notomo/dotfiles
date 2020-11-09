@@ -39,7 +39,6 @@
     - github.com/mattn/mkup
     - github.com/mattn/efm-langserver
     - github.com/pocke/lemonade
-    - github.com/notomo/wsxhub
     - github.com/kisielk/godepgraph
     - golang.org/x/tools/gopls
     - github.com/k0kubun/pp
