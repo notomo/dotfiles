@@ -4,17 +4,18 @@ NVIM := ${NVIM_DIR}/build/bin/nvim
 unexport LUA_PATH
 unexport LUA_CPATH
 build:
-	@# cd ${NVIM_DIR}; CC=clang make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
-	cd ${NVIM_DIR}; CC=clang make
+	cd ${NVIM_DIR}; CC=clang make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
+	# cd ${NVIM_DIR}; CC=clang make
 .PHONY: build
 
 all:
 	cd ${NVIM_DIR}; make distclean
+	# cd ${NVIM_DIR}; make clean
 	${MAKE} build
 .PHONY: all
 
 # NOTE: for print_stacktrace
-# sudo ln -s /usr/bin/llvm-symbolizer-8.0 /usr/bin/llvm-symbolizer
+# sudo ln -s /usr/bin/llvm-symbolizer-6.0 /usr/bin/llvm-symbolizer
 TEST_ENV := CC=clang ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1 UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/lua/buffer_updates_spec.lua
 test:
 	cd ${NVIM_DIR}; ${TEST_ENV} make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON" functionaltest
