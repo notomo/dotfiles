@@ -10,6 +10,7 @@ function! s:kivi() abort
     nnoremap <nowait> <buffer> <Space>r :<C-u>Kivi --path=/tmp<CR>
     nnoremap <buffer> sm <Cmd>KiviDo toggle_selection<CR>j
     xnoremap <buffer> sm :KiviDo toggle_selection<CR>
+    nnoremap <buffer> rn <Cmd>KiviDo rename<CR>
 endfunction
 
 autocmd MyAuGroup FileType kivi-file call s:kivi_file()
@@ -17,4 +18,7 @@ function! s:kivi_file() abort
     nnoremap <buffer> <Space>h <Cmd>Kivi --path=~<CR>
     nnoremap <nowait> <buffer> <Space>r :<C-u>Kivi --path=/tmp<CR>
     nnoremap <buffer> df <Cmd>KiviDo delete<CR>
+    nnoremap <buffer> xf <Cmd>KiviDo cut<CR>
+    nnoremap <buffer> yf <Cmd>KiviDo copy<CR>
+    nnoremap <buffer> p <Cmd>KiviDo paste<CR>
 endfunction
