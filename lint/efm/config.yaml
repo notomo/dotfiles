@@ -1,4 +1,5 @@
 version: 2
+# log-level: 1
 
 tools:
   vim-vint: &vim-vint
@@ -67,3 +68,5 @@ languages:
 
   typescript:
     - <<: *eslint
+
+lint-debounce: 300ms
