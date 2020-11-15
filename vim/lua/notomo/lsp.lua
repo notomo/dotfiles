@@ -16,7 +16,7 @@ vim.api.nvim_command("highlight! link LspDiagnosticsError SpellBad")
 vim.api.nvim_command("highlight! link LspDiagnosticsWarning Tag")
 
 vim.api.nvim_command("packadd nvim-lspconfig")
-local nvimlsp = require "nvim_lsp"
+local nvimlsp = require("lspconfig")
 
 nvimlsp.rls.setup {}
 nvimlsp.gopls.setup {
@@ -30,7 +30,7 @@ nvimlsp.pyls.setup {}
 nvimlsp.clangd.setup {}
 nvimlsp.tsserver.setup {}
 
-local util = require "nvim_lsp/util"
+local util = require "lspconfig/util"
 nvimlsp.efm.setup {
   cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
   -- filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};
@@ -45,11 +45,6 @@ nvimlsp.efm.setup {
 }
 
 vim.lsp.set_log_level("error")
-
-vim.lsp.callbacks["window/showMessage"] = function(_, _, _, _)
-end
-vim.lsp.callbacks["window/logMessage"] = function(_, _, _, _)
-end
 
 local clear_diagnostics = function(bufnr, ns)
   vim.validate {bufnr = {bufnr, "n", true}}

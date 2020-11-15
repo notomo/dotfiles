@@ -21,4 +21,5 @@ function! s:kivi_file() abort
     nnoremap <buffer> xf <Cmd>KiviDo cut<CR>
     nnoremap <buffer> yf <Cmd>KiviDo copy<CR>
     nnoremap <buffer> p <Cmd>KiviDo paste<CR>
+    nnoremap <buffer> i <Cmd>KiviDo create<CR>
 endfunction
