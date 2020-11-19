@@ -27,7 +27,7 @@ snippet test_func
 	}
 
 snippet test_table
-	tests := []struct {
+	cases := []struct {
 		name string
 		want ${1:wantType}
 	}{
@@ -37,8 +37,8 @@ snippet test_table
 		},
 	}
 
-	for _, test := range tests {
-		t.Run(test.name, func(t *testing.T) {
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
 			${0:TARGET}
 		})
 	}
@@ -82,6 +82,11 @@ abbr map := map[keyType]valueType{key: value, ...}
 snippet const
 abbr const name = value
 	const ${1:name} = ${0:value}
+
+snippet consts
+	const (
+		${1:name} = ${0:value}
+	)
 
 snippet return
 	return ${0:nil}

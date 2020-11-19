@@ -194,3 +194,7 @@ vim.lsp.callbacks["textDocument/documentSymbol"] = function(_, _, result)
     source_opts = {result = result},
   })
 end
+
+vim.lsp.callbacks["workspace/configuration"] = function(_, _, _)
+  return {}
+end
