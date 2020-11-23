@@ -219,6 +219,9 @@ snippet api
 options word
 	vim.api.nvim_${0:name}
 
+snippet create_buffer
+	vim.api.nvim_create_buf(false, true)
+
 snippet open_win
 	local bufnr = vim.api.nvim_create_buf(false, true)
 	vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, {${1:line}})

@@ -1,8 +1,11 @@
+
+nnoremap [exec]f <Cmd>Kivi --layout=vertical<CR>
+
 autocmd MyAuGroup FileType kivi-* call s:kivi()
 function! s:kivi() abort
     nnoremap <buffer> o <Cmd>KiviDo open<CR>
     nnoremap <buffer> t<Space> <Cmd>KiviDo tab_open<CR>
-    nnoremap <buffer> sv <Cmd>KiviDo vsplit_open<CR>
+    nnoremap <buffer> sv <Cmd>KiviDo vsplit_open --quit<CR>
     nnoremap <buffer> D <Cmd>KiviDo debug_print<CR>
     nnoremap <buffer> yr <Cmd>KiviDo yank<CR>
     nnoremap <buffer> <Space>h <Cmd>Kivi --path=~<CR>
@@ -11,6 +14,8 @@ function! s:kivi() abort
     nnoremap <buffer> sm <Cmd>KiviDo toggle_selection<CR>j
     xnoremap <buffer> sm :KiviDo toggle_selection<CR>
     nnoremap <buffer> rn <Cmd>KiviDo rename<CR>
+    nnoremap <buffer> o <Cmd>KiviDo toggle_tree<CR>
+    nnoremap <buffer> <2-LeftMouse> <Cmd>KiviDo tab_open<CR>
 endfunction
 
 autocmd MyAuGroup FileType kivi-file call s:kivi_file()
@@ -22,4 +27,10 @@ function! s:kivi_file() abort
     nnoremap <buffer> yf <Cmd>KiviDo copy<CR>
     nnoremap <buffer> p <Cmd>KiviDo paste<CR>
     nnoremap <buffer> i <Cmd>KiviDo create<CR>
+endfunction
+
+autocmd MyAuGroup BufRead */kivi-renamer,*/kivi-creator call s:kivi_input()
+function! s:kivi_input() abort
+    nnoremap <buffer> q <Cmd>quit!<CR>
+    inoremap <buffer> jq <ESC><Cmd>quit!<CR>
 endfunction

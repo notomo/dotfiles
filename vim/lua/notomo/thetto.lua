@@ -1,5 +1,5 @@
 require("thetto/kind/directory").after = function(path)
-  vim.api.nvim_command("Kiview -create -split=no -path=" .. path)
+  vim.api.nvim_command("Kivi --layout=no --path=" .. path)
 end
 
 require("thetto/setup/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kiview)://)"
@@ -165,5 +165,6 @@ require("thetto/custom").default_filters = {"substring", "-substring"}
 
 require("thetto/source/file/alter").opts.pattern_groups = {
   {"%_test.go", "%.go"},
+  {"%/spec/lua/%_spec.lua", "%/lua/%.lua"},
   {"%/test/lua/%_spec.lua", "%/lua/%.lua"},
 }
