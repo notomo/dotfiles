@@ -9,6 +9,7 @@ function! s:kivi() abort
     nnoremap <buffer> D <Cmd>KiviDo debug_print<CR>
     nnoremap <buffer> yr <Cmd>KiviDo yank<CR>
     nnoremap <buffer> <Space>h <Cmd>Kivi --path=~<CR>
+    nnoremap <buffer> <Space>g <Cmd>Kivi --target=project<CR>
     nnoremap <buffer> B <Cmd>KiviDo back<CR>
     nnoremap <nowait> <buffer> <Space>r :<C-u>Kivi --path=/tmp<CR>
     nnoremap <buffer> sm <Cmd>KiviDo toggle_selection<CR>j
