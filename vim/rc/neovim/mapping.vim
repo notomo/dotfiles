@@ -30,22 +30,21 @@ nnoremap [exec]P :<C-u>call notomo#github#view_pr()<CR>
 nnoremap [exec]O :<C-u>call notomo#github#view_repo(expand('<cWORD>'))<CR>
 nnoremap [exec]I :<C-u>call notomo#github#view_issue(expand('<cword>'))<CR>
 
-let s:prompt_pattern = '\v^\$ '
-let s:cmd_start_col = 2
-let s:cmd_length_limit = 20
-function! s:set_term_title() abort
-    let prompt_lnum  = search(s:prompt_pattern, 'nbcW')
-    let cmd = escape(getline(prompt_lnum)[s:cmd_start_col : s:cmd_length_limit], '|$"`')
-    let cmd = substitute(cmd, '/', '\\\\', 'g')
-    let cmd = substitute(cmd, '\v[+%{}]', '_', 'g')
-    try
-        let title = printf('%s:%s: %s', jobpid(b:terminal_job_id), &shell, cmd)
-        execute 'file ' . title
-    catch /^Vim\%((\a\+)\)\=:E900:/
-    endtry
+function! s:set_title(prompt_pattern, max_length) abort
+    let path = nvim_buf_get_name(0)
+    let shell = split(fnamemodify(path, ':t'), ':')[0]
+    let term_path = printf('%s/%s', fnamemodify(path, ':h'), shell)
+
+    let prompt_line = getline(search(a:prompt_pattern, 'nbcW'))
+    let prompt = matchstr(prompt_line, a:prompt_pattern)
+    let cmd = prompt_line[strlen(prompt) : a:max_length]
+    let cmd = substitute(cmd, '/', '\\', 'g')
+
+    call nvim_buf_set_name(0, printf('%s:%s', term_path, cmd))
+    redrawtabline
 endfunction
 
-tnoremap <CR> <Cmd>call <SID>set_term_title()<CR><CR>
+tnoremap <CR> <Cmd>call <SID>set_title('^\$ ', 24)<CR><CR>
 
 nnoremap <silent> [yank]ud :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_decode()"))<CR>
 nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_encode()"))<CR>
