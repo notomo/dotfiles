@@ -4,21 +4,28 @@ NVIM := ${NVIM_DIR}/build/bin/nvim
 unexport LUA_PATH
 unexport LUA_CPATH
 build:
-	cd ${NVIM_DIR}; CC=clang make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
+	cd ${NVIM_DIR}; CC=clang-11 make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
 	# cd ${NVIM_DIR}; CC=clang make
+	# cd ${NVIM_DIR}; make
 .PHONY: build
 
 all:
-	cd ${NVIM_DIR}; make distclean
+	# cd ${NVIM_DIR}; make distclean
 	# cd ${NVIM_DIR}; make clean
 	${MAKE} build
 .PHONY: all
 
 # NOTE: for print_stacktrace
 # sudo ln -s /usr/bin/llvm-symbolizer-6.0 /usr/bin/llvm-symbolizer
-TEST_ENV := CC=clang ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1 UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/lua/buffer_updates_spec.lua
+LOG_DIR := ${HOME}/logs
+# TEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/eval/api_functions_spec.lua
+TEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/api/window_spec.lua
 test:
-	cd ${NVIM_DIR}; ${TEST_ENV} make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON" functionaltest
+	rm -rf ${LOG_DIR}
+	mkdir -p ${LOG_DIR}
+	cd ${NVIM_DIR}; ${TEST_ENV} make functionaltest
+	# cd ${NVIM_DIR}; make functionaltest
+	# cat ${LOG_DIR}/asan.*
 .PHONY: test
 
 lint:
@@ -35,7 +42,7 @@ run:
 .PHONY: run
 
 _run:
-	${NVIM} -u NORC +"luafile ./minimal.lua"
+	${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
 .PHONY: _run
 
 ISSUE := issue.md
@@ -81,3 +88,21 @@ issue:
 	echo>> ${ISSUE}
 	echo "</details>" >> ${ISSUE}
 .PHONY: issue
+
+# doxygen:
+# 	sudo apt-get install flex
+# 	sudo apt-get install bison
+# 	wget https://github.com/doxygen/doxygen/archive/Release_1_8_20.tar.gz -o doxygen.tar.gz
+# 	tar -zxvf doxygen.tar.gz
+# 	cd doxygen
+# 	mkdir build
+# 	cd build
+# 	cmake -G "Unix Makefiles" ..
+# 	make
+# 	sudo make install
+
+# clang:
+# 	# https://apt.llvm.org/
+# 	wget https://apt.llvm.org/llvm.sh
+# 	chmod +x llvm.sh
+# 	sudo ./llvm.sh 11

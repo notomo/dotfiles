@@ -137,3 +137,5 @@ call s:add('neovim/nvim-lspconfig', {})
 
 call s:add('notomo/kivi.nvim', {'cmd': 'Kivi*', 'depth': 0})
 source ~/.vim/rc/plugins/kivi.vim
+
+call s:add('notomo/reacher.nvim', {'cmd': 'Reacher*', 'depth': 0})
