@@ -74,6 +74,8 @@ nnoremap [finder]B :<C-u>Thetto vim/buffer --auto=preview<CR>
 nnoremap [finder]y :<C-u>Thetto file/bookmark<CR>
 nnoremap [finder]ga :<C-u>Thetto git/branch<CR>
 nnoremap [finder]gA :<C-u>Thetto git/branch --x-all --xx-track<CR>
+nnoremap [finder]gt :<C-u>Thetto git/tag<CR>
+nnoremap [finder]gT :<C-u>Thetto git/tag --x-merged<CR>
 nnoremap [finder]go :<C-u>Thetto directory/recursive --cwd=$GOPATH/src --x-max-depth=3<CR>
 nnoremap [keyword]gg :<C-u>Thetto file/grep --target=project --pattern-type=word --auto=preview<CR>
 nnoremap <silent> [finder]gl :<C-u>Thetto file/grep --auto=preview<CR>
