@@ -40,10 +40,8 @@ nnoremap [edit]t viwo<ESC>g~l
 nnoremap [edit]m i<C-@>
 nnoremap [edit]j :<C-u>join<CR>
 xnoremap [edit]j :join<CR>
-
-nnoremap [edit]d *``"_cgn
+nnoremap [edit]d *N"_cgn
 nnoremap [edit]a *``cgn<C-r>"
-xnoremap <expr> [edit]d "y/\\V\<C-r>=notomo#vimrc#escape_search_pattern(@\")\<CR>\<CR>" . '``cgn'
 nnoremap [edit]T :<C-u>call notomo#vimrc#add_closed_tag()<CR>
 
 nnoremap [edit]p [p
