@@ -64,7 +64,7 @@ nnoremap [finder]<CR> :<C-u>Thetto --resume<CR>
 nnoremap <Space>usf :<C-u>Thetto file/recursive --auto=preview<CR>
 nnoremap <Space>usg :<C-u>Thetto file/recursive --target=project --auto=preview<CR>
 nnoremap [finder]f :<C-u>Thetto file/in_dir<CR>
-nnoremap [finder]h :<C-u>Thetto vim/help<CR>
+nnoremap [finder]h :<C-u>Thetto vim/help --sorters=length<CR>
 nnoremap [finder]l :<C-u>Thetto line --auto=preview<CR>
 nnoremap [finder]r :<C-u>Thetto directory/recursive --target=project --sorters=length<CR>
 nnoremap [finder]v :<C-u>Thetto file/recursive --cwd=~/dotfiles --auto=preview<CR>
