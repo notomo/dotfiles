@@ -1,5 +1,5 @@
 
-nnoremap [exec]f <Cmd>Kivi --layout=vertical<CR>
+nnoremap [exec]f <Cmd>Kivi --layout=vertical --new<CR>
 
 autocmd MyAuGroup FileType kivi-* call s:kivi()
 function! s:kivi() abort
