@@ -12,6 +12,9 @@ snippet require
 options word
 	require("${1:name}")
 
+snippet import
+	local ${1:Name} = require("${2:path}").$1
+
 snippet dofile
 	dofile(${1:file_path})
 
