@@ -1,11 +1,10 @@
 
-nnoremap <silent> <LeftDrag> :<C-u>Gesture draw<CR>
-nnoremap <silent> <LeftRelease> :<C-u>Gesture finish<CR>
+nnoremap <silent> <LeftDrag> <Cmd>Gesture draw<CR>
+nnoremap <silent> <LeftRelease> <Cmd>Gesture finish<CR>
 autocmd MyAuGroup User GestureSourceLoad call s:gesture_settings()
 function! s:gesture_settings() abort
     lua << EOF
 local gesture = require('gesture')
-gesture.clear()
 gesture.register({
     name = "scroll to bottom",
     inputs = { gesture.up(), gesture.down() },

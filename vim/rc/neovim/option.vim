@@ -19,3 +19,8 @@ endif
 
 " for embed lua
 let g:vimsyn_embed = 'lPr'
+
+augroup mydev
+    autocmd!
+    execute 'autocmd BufWritePost' expand('<sfile>:p:h:h:h') .. '/lua/*' 'luafile' expand('~/dotfiles/vim/lua/notomo/cleanup.lua')
+augroup END

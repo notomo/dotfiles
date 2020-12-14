@@ -5,5 +5,6 @@ local cleanup = function(name)
       package.loaded[key] = nil
     end
   end
+  print("cleanup")
 end
-cleanup("notomo")
+cleanup()
