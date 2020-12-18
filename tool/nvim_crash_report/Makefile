@@ -1,11 +1,12 @@
 NVIM_DIR := ${HOME}/workspace/neovim
 NVIM := ${NVIM_DIR}/build/bin/nvim
+# NVIM := nvim
 
 unexport LUA_PATH
 unexport LUA_CPATH
 build:
 	cd ${NVIM_DIR}; CC=clang-11 make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
-	# cd ${NVIM_DIR}; CC=clang make
+	# cd ${NVIM_DIR}; CC=clang-11 make
 	# cd ${NVIM_DIR}; make
 .PHONY: build
 
@@ -42,7 +43,10 @@ run:
 .PHONY: run
 
 _run:
-	${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
+	# ${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
+	# ${NVIM} -u NORC +"source ./minimal.vim" +"quitall!"
+	${NVIM} --headless -u NORC +"source ./minimal.vim"
+	# ${NVIM} -u NORC +"source ./minimal.vim"
 .PHONY: _run
 
 ISSUE := issue.md
