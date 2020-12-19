@@ -78,7 +78,7 @@ function! notomo#gina#edit(action)
             tabnew
         endif
         execute 'cd ' . path
-        Kiview -create -split=no
+        Kivi --layout=no --new
         return
     endif
 

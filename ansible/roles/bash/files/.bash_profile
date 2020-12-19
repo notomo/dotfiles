@@ -19,7 +19,6 @@ export GEVDOC_ARGS="-e -s --headless"
 export PATH=$PATH:$HOME/.vim/minpac/pack/minpac/start/vusted/bin
 
 export PATH=$PATH:$HOME/.vim/minpac/pack/minpac/opt/vimonga/target/debug/
-export PATH=$PATH:$HOME/.vim/minpac/pack/minpac/opt/kiview/src/target/debug/
 
 export EDITOR="nvr --remote-wait-silent"
 export GIT_EDITOR="nvr --remote-wait-silent"

@@ -29,7 +29,7 @@ function! notomo#window#vsplit_from_tab(tab_num) abort
     endif
     let cur_tab = tabpagenr()
     execute 'noautocmd tabnext ' . a:tab_num
-    let buf_num = &filetype ==? 'kiview' ? bufnr('#') : bufnr('%')
+    let buf_num = &filetype ==? 'kivi' ? bufnr('#') : bufnr('%')
     let curpos = getpos('.')
     execute 'noautocmd tabnext ' . cur_tab
     if buf_num == -1

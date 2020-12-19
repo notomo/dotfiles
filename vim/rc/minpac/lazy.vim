@@ -60,9 +60,6 @@ call s:add('rhysd/vim-gfm-syntax', {'ft' : 'markdown'})
 call s:add('fuenor/im_control.vim', {'event' : 'InsertEnter'})
 let g:IM_CtrlMode = 4
 
-call s:add('notomo/kiview', {'cmd': 'Kiview*', 'depth': 0, 'do': '!make build'})
-source ~/.vim/rc/plugins/kiview.vim
-
 call s:add('thinca/vim-qfreplace', {'cmd': 'Qfreplace'})
 nnoremap [exec]Q :<C-u>Qfreplace<CR>
 
@@ -82,7 +79,6 @@ elseif executable('wslview')
     let g:openbrowser_browser_commands = [{'name': 'wslview', 'args': 'wslview {uri}'}]
 endif
 
-" for kiview error debug
 call s:add('notomo/minfiler.vim', {'cmd': 'Minfiler', 'depth': 0})
 nnoremap [exec]F :<C-u>tabedit<CR>:Minfiler<CR>
 
