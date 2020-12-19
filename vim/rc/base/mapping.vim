@@ -313,6 +313,7 @@ nmap <Space>y [yank]
 xnoremap [yank] <Nop>
 xmap <Space>y [yank]
 
+nnoremap Y y$
 nnoremap <silent> [yank]d :<C-u>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d'))<CR>
 nnoremap <silent> [yank]D :<C-u>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d %T'))<CR>
 nnoremap <silent> [yank]n :<C-u>call notomo#vimrc#yank_and_echo(fnamemodify(expand('%'), ':r'))<CR>
@@ -464,8 +465,21 @@ xnoremap [arith] <Nop>
 nmap <Space>a [arith]
 xmap <Space>a [arith]
 
-nnoremap <expr> [arith]j notomo#arithmatic#inc_dec('dec')
-nnoremap <expr> [arith]k notomo#arithmatic#inc_dec('inc')
+function! s:inc_or_dec(is_inc) abort
+    let key = a:is_inc ? "\<C-a>" : "\<C-x>"
+    let line = getline('.')
+    let col = col('.')
+    let pattern = '\v\d+\ze[^[:digit:]]*$'
+    if matchend(line[col - 1:], pattern) == -1
+        let idx = matchend(line[:col - 1], pattern)
+        if idx != -1
+            return printf('%dh%s', col - idx, key)
+        endif
+    endif
+    return key
+endfunction
+nnoremap <expr> [arith]j <SID>inc_dec(v:false)
+nnoremap <expr> [arith]k <SID>inc_dec(v:true)
 xnoremap [arith]j <C-x>gv
 xnoremap [arith]k <C-a>gv
 xnoremap [arith]d g<C-x>gv
