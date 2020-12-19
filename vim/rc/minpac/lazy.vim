@@ -130,7 +130,6 @@ call s:add('notomo/hita.nvim', {'cmd' : 'Hita*', 'depth': 0})
 nnoremap gj :<C-u>Hita downside_line<CR>
 nnoremap gk :<C-u>Hita upside_line<CR>
 nnoremap gn :<C-u>Hita line<CR>
-nnoremap gw :<C-u>Hita window_word<CR>
 nnoremap g<CR> :<C-u>Hita search<CR>
 
 call s:add('neovim/nvim-lspconfig', {})
@@ -139,3 +138,4 @@ call s:add('notomo/kivi.nvim', {'cmd': 'Kivi*', 'depth': 0})
 source ~/.vim/rc/plugins/kivi.vim
 
 call s:add('notomo/reacher.nvim', {'cmd': 'Reacher*', 'depth': 0})
+source ~/.vim/rc/plugins/reacher.vim
