@@ -1,7 +1,8 @@
 call minpac#add('junegunn/vim-emoji')
 
 call minpac#add('thinca/vim-themis')
-call minpac#add('notomo/vusted')
+call minpac#add('notomo/vusted', {'depth': 0})
+call minpac#add('notomo/virtes.nvim', {'depth': 0})
 
 call minpac#add('sheerun/vim-polyglot')
 let g:polyglot_disabled = ['markdown', 'jsx', 'tsx', 'ansible']

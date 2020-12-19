@@ -24,3 +24,5 @@ augroup mydev
     autocmd!
     execute 'autocmd BufWritePost' expand('<sfile>:p:h:h:h') .. '/lua/*' 'luafile' expand('~/dotfiles/vim/lua/notomo/cleanup.lua')
 augroup END
+
+autocmd MyAuGroup TextYankPost * silent! lua vim.highlight.on_yank({higroup = "Flashy", timeout = 250, on_macro = true, on_visual = false})

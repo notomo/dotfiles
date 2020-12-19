@@ -32,12 +32,6 @@ function! s:add(name, options) abort
     call minpac#add(a:name, options)
 endfunction
 
-if has('gui') && !has('nvim')
-    call s:add('tyru/restart.vim', {'cmd' : 'Restart'})
-    nnoremap [exec]R :<C-u>Restart<CR>
-    let g:restart_sessionoptions = 'curdir,help,tabpages'
-endif
-
 call s:add('h1mesuke/vim-alignta', {'cmd' : 'Alignta'})
 xnoremap [alignta] <Nop>
 xmap <Leader>a [alignta]
@@ -89,7 +83,6 @@ endif
 call s:add('cocopon/inspecthi.vim', {'cmd' : 'Inspecthi'})
 nnoremap [exec]h :<C-u>Inspecthi<CR>
 
-call s:add('mattn/emmet-vim', {'ft' : ['css', 'html']})
 call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
 
 call s:add('notomo/tdd.vim', {'cmd' : 'TDD*', 'depth': 0})

@@ -5,4 +5,5 @@ function! s:flompt_settings() abort
     inoremap <buffer> <CR> <Cmd>Flompt send<CR>
     nnoremap <buffer> <CR> <Cmd>Flompt send<CR>
     nnoremap <buffer> q <Cmd>Flompt close<CR>
+    inoremap <buffer> jq <Cmd>Flompt close<CR>
 endfunction

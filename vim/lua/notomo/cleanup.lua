@@ -7,4 +7,4 @@ local cleanup = function(name)
   end
   print("cleanup")
 end
-cleanup()
+cleanup("notomo")

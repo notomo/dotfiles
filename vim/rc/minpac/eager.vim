@@ -163,12 +163,6 @@ nmap P <Plug>(yankround-P)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
 
-call minpac#add('Shougo/neco-vim')
-if !exists('g:necovim#complete_functions')
-    let g:necovim#complete_functions = {}
-endif
-let g:necovim#complete_functions.Ref = 'ref#complete'
-
 call minpac#add('Shougo/neosnippet.vim')
 xmap <Space>S <Plug>(neosnippet_expand_target)
 nnoremap [file]s :<C-u>NeoSnippetEdit<CR>
@@ -306,21 +300,6 @@ nmap <Space><Space>c <Plug>(caw:wrap:toggle:operator)_
 xmap <Space><Space>c <Plug>(caw:wrap:toggle:operator)
 let g:caw_no_default_keymappings = 1
 
-call minpac#add('thinca/vim-ref')
-nmap [keyword]r <Plug>(ref-keyword)
-let g:ref_open = 'vsplit'
-let g:ref_pydoc_cmd = 'python3 -m pydoc'
-let g:ref_no_default_key_mappings = 1
-
-call minpac#add('Shougo/neoinclude.vim')
-
-call minpac#add('haya14busa/vim-operator-flashy')
-nmap y <Plug>(operator-flashy)
-xmap y <Plug>(operator-flashy)
-omap y <Plug>(operator-flashy)
-nmap Y <Plug>(operator-flashy)$
-let g:operator#flashy#flash_time = 100
-
 call minpac#add('haya14busa/vim-edgemotion')
 nmap gJ <Plug>(edgemotion-j)
 xmap gJ <Plug>(edgemotion-j)
@@ -334,9 +313,5 @@ nmap [git]j <Plug>(signify-next-hunk)zz
 nmap [git]k <Plug>(signify-prev-hunk)zz
 nnoremap [git]t :<C-u>SignifyToggle<CR>
 let g:signify_disable_by_default = 0
-
-call minpac#add('lambdalisue/session.vim')
-nnoremap [file]<Space> :<C-u>call notomo#vimrc#save_session()<CR>
-nnoremap [file]<CR> :<C-u>SessionOpen<CR>
 
 call minpac#add('notomo/gevdoc', {'depth': 0})

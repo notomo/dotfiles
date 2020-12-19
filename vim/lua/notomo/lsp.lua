@@ -18,31 +18,38 @@ vim.api.nvim_command("highlight! link LspDiagnosticsWarning Tag")
 vim.api.nvim_command("packadd nvim-lspconfig")
 local nvimlsp = require("lspconfig")
 
-nvimlsp.rls.setup {}
-nvimlsp.gopls.setup {
+local try = function(f, ...)
+  local ok, result = pcall(f, unpack({...}))
+  if not ok then
+    vim.api.nvim_err_write("[notomo.lsp]" .. result .. "\n")
+  end
+end
+
+try(nvimlsp.rls.setup, {})
+try(nvimlsp.gopls.setup, {
   init_options = {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks
     analyses = {ST1000 = false},
   },
-}
-nvimlsp.pyls.setup {}
-nvimlsp.clangd.setup {}
-nvimlsp.tsserver.setup {}
-
-local util = require "lspconfig/util"
-nvimlsp.efm.setup {
+})
+try(nvimlsp.pyls.setup, {})
+try(nvimlsp.clangd.setup, {})
+try(nvimlsp.tsserver.setup, {})
+try(nvimlsp.vimls.setup, {})
+try(nvimlsp.cssls.setup, {})
+try(nvimlsp.efm.setup, {
   cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
   -- filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};
   filetypes = {"vim", "go", "python", "lua", "sh"},
   root_dir = function(fname)
-    return util.root_pattern(".git")(fname) or vim.loop.cwd()
+    return require("lspconfig/util").root_pattern(".git")(fname) or vim.loop.cwd()
   end,
   on_attach = function(client)
     client.resolved_capabilities.text_document_save = true
     client.resolved_capabilities.text_document_save_include_text = true
   end,
-}
+})
 
 vim.lsp.set_log_level("error")
 

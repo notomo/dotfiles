@@ -10,21 +10,18 @@ if !has('win32')
   call add(s:sources.markdown, 'look')
   call add(s:sources['gina-commit'], 'look')
 endif
-let s:sources.vim = ['vim', 'file', 'buffer', 'around', 'neosnippet']
+let s:sources.vim = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
 let s:sources.python = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
 let s:sources.go = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
-" let s:sources.python = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
-" let s:sources.go = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
 let s:sources.c = ['file', 'buffer', 'around', 'neosnippet']
 let s:sources.cs = ['file', 'buffer', 'around', 'neosnippet']
 let s:sources['rust'] = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources['lua'] = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
-" let s:sources['rust'] = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources.javascript = ['file', 'buffer', 'around', 'neosnippet']
 let s:sources.typescript = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
 let s:sources['typescript.tsx'] = s:sources.typescript
 let s:sources.vue = ['buffer', 'file', 'around', 'neosnippet']
-let s:sources.css = ['omni', 'buffer', 'file', 'around', 'neosnippet']
+let s:sources.css = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources.scss = s:sources.css
 let s:sources.html = ['omni', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources['thetto-input'] = []
@@ -38,5 +35,3 @@ call deoplete#custom#option('ignore_sources', {'thetto-input': ['around', 'file'
 
 inoremap <expr> j<Space>u deoplete#manual_complete(['look'])
 inoremap j<Space>; <C-x><C-l>
-
-autocmd MyAuGroup FileType css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
