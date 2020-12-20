@@ -80,9 +80,6 @@ if !has('nvim')
     finish
 endif
 
-call s:add('cocopon/inspecthi.vim', {'cmd' : 'Inspecthi'})
-nnoremap [exec]h :<C-u>Inspecthi<CR>
-
 call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
 
 call s:add('notomo/tdd.vim', {'cmd' : 'TDD*', 'depth': 0})

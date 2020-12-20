@@ -478,8 +478,8 @@ function! s:inc_or_dec(is_inc) abort
     endif
     return key
 endfunction
-nnoremap <expr> [arith]j <SID>inc_dec(v:false)
-nnoremap <expr> [arith]k <SID>inc_dec(v:true)
+nnoremap <expr> [arith]j <SID>inc_or_dec(v:false)
+nnoremap <expr> [arith]k <SID>inc_or_dec(v:true)
 xnoremap [arith]j <C-x>gv
 xnoremap [arith]k <C-a>gv
 xnoremap [arith]d g<C-x>gv
