@@ -8,3 +8,4 @@ call notomo#lsp#mapping()
 if has('nvim') && executable('lua-format')
     nnoremap <buffer> [file]w :<C-u>lua require("notomo/vimrc").fmt({'lua-format', '-c', vim.fn.expand('~/dotfiles/tool/.lua-format')})<CR>
 endif
+inoreabbrev != ~=

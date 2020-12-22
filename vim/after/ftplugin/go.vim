@@ -9,3 +9,5 @@ nnoremap <buffer> <expr> [exec]bL ":\<C-u>TDDTest go/go -layout=horizontal -args
 
 syntax keyword goKeywords nil iota true false
 highlight link goKeywords Boolean
+
+inoreabbrev ~= !=
