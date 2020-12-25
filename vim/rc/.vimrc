@@ -6,20 +6,6 @@ let $LANG = 'en_US.UTF-8'
 if (!has('nvim') || has('win32')) && has('vim_starting')
     set runtimepath^=~/.vim/
     set runtimepath+=~/.vim/after
-    if has('kaoriya')
-        let s:rtps = []
-        for s:rtp in split(&runtimepath, ',')
-            if s:rtp =~# 'vimfiles$'
-                continue
-            elseif s:rtp =~# 'vimfiles/after$'
-                continue
-            endif
-            call add(s:rtps, s:rtp)
-        endfor
-        let &runtimepath = join(s:rtps, ',')
-        set runtimepath+=$VIM/plugins/kaoriya
-        source $VIM/plugins/kaoriya/encode_japan.vim
-    endif
 endif
 
 filetype off

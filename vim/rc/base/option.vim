@@ -1,8 +1,5 @@
 ﻿scriptencoding utf-8
 
-if !has('kaoriya')
-    set fileencodings=utf-8,euc-jp,sjis
-endif
 set nowrap
 set showtabline=2
 set signcolumn=yes

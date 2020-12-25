@@ -15,9 +15,6 @@ colorscheme spring-night
 if has('win32')
     set guifont=MeiryoKe_Gothic:h14:cSHIFTJIS
     set linespace=1
-    if has('kaoriya')
-        set ambiwidth=auto
-    endif
 elseif has('mac')
     set guifont=RictyDiminished-Regular:h18
 endif

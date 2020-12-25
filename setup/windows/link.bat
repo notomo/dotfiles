@@ -2,8 +2,6 @@
 cd %HOMEPATH%
 mklink ".vimrc" %HOMEPATH%"\dotfiles\vim\rc\.vimrc"
 mklink ".gvimrc" %HOMEPATH%"\dotfiles\vim\rc\.gvimrc"
-mklink ".vimrc_first.vim" %HOMEPATH%"\dotfiles\vim\rc\kaoriya\.vimrc_first.vim"
-mklink ".gvimrc_first.vim" %HOMEPATH%"\dotfiles\vim\rc\kaoriya\.gvimrc_first.vim"
 
 mkdir %HOMEPATH%"\.vim" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
