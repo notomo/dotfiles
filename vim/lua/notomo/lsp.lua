@@ -18,32 +18,40 @@ vim.api.nvim_command("highlight! link LspDiagnosticsWarning Tag")
 vim.api.nvim_command("packadd nvim-lspconfig")
 local nvimlsp = require("lspconfig")
 
-local try = function(f, ...)
-  local ok, result = pcall(f, unpack({...}))
+local try = function(ls, ...)
+  local ok, result = pcall(ls.setup, unpack({...}))
   if not ok then
     vim.api.nvim_err_write("[notomo.lsp]" .. result .. "\n")
   end
 end
 
-try(nvimlsp.rls.setup, {})
-try(nvimlsp.gopls.setup, {
+try(nvimlsp.rls, {})
+try(nvimlsp.gopls, {
   init_options = {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks
     analyses = {ST1000 = false},
   },
 })
-try(nvimlsp.pyls.setup, {})
-try(nvimlsp.clangd.setup, {})
-try(nvimlsp.tsserver.setup, {})
-try(nvimlsp.vimls.setup, {})
-try(nvimlsp.cssls.setup, {})
-try(nvimlsp.efm.setup, {
+try(nvimlsp.sumneko_lua, {
+  cmd = {
+    vim.env.HOME .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
+    "-E",
+    vim.env.HOME .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua",
+  },
+  settings = {Lua = {diagnostics = {enable = false}}},
+})
+try(nvimlsp.pyls, {})
+try(nvimlsp.clangd, {})
+try(nvimlsp.tsserver, {})
+try(nvimlsp.vimls, {})
+try(nvimlsp.cssls, {})
+try(nvimlsp.efm, {
   cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
   -- filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};
   filetypes = {"vim", "go", "python", "lua", "sh"},
   root_dir = function(fname)
-    return require("lspconfig/util").root_pattern(".git")(fname) or vim.loop.cwd()
+    return require("lspconfig/util").find_git_ancestor(fname) or vim.loop.cwd()
   end,
   on_attach = function(client)
     client.resolved_capabilities.text_document_save = true
@@ -53,119 +61,12 @@ try(nvimlsp.efm.setup, {
 
 vim.lsp.set_log_level("error")
 
-local clear_diagnostics = function(bufnr, ns)
-  vim.validate {bufnr = {bufnr, "n", true}}
-  local buf = bufnr == 0 and vim.api.nvim_get_current_buf() or bufnr
-  vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
-  vim.fn.setqflist({}, "f")
-  vim.fn.sign_unplace("vim_lsp_signs", {buffer = bufnr})
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, method, result, client_id, bufnr, config)
+  vim.lsp.diagnostic.on_publish_diagnostics(err, method, result, client_id, bufnr, config)
+  vim.lsp.diagnostic.set_loclist({open_loclist = false, client_id = client_id})
 end
 
-local timer = nil
-local debounce = function(ms, f)
-  if timer == nil then
-    timer = vim.loop.new_timer()
-  end
-  timer:stop()
-  timer:start(ms, 0, vim.schedule_wrap(f))
-end
-
-local set_vritualtext = function(bufnr, diagnostics, ns)
-  for _, v in ipairs(diagnostics) do
-    local severity_name = vim.lsp.protocol.DiagnosticSeverity[v.severity]
-    local highlight = "LspDiagnostics" .. severity_name
-
-    local pos = v.range.start
-    local chunks = {{" " .. v.message:gsub("\r", ""):gsub("\n", "  "), highlight}}
-    vim.api.nvim_buf_set_virtual_text(bufnr, ns, pos.line, chunks, {})
-  end
-end
-
-local set_qflist = function(bufnr, uri, diagnostics)
-  local items = {}
-  for _, v in ipairs(diagnostics) do
-    local pos = v.range.start
-
-    local severity
-    if v.severity == vim.lsp.protocol.DiagnosticSeverity.Error then
-      severity = "E"
-    elseif v.severity == vim.lsp.protocol.DiagnosticSeverity.Warning then
-      severity = "W"
-    else
-      severity = "I"
-    end
-
-    local item = {
-      bufnr = bufnr,
-      filename = vim.uri_to_fname(v.uri or uri),
-      lnum = pos.line + 1,
-      col = pos.character + 1,
-      text = v.message,
-      type = severity,
-    }
-    table.insert(items, item)
-  end
-  vim.fn.setqflist({}, "r", {title = "lsp", items = items})
-end
-
-local states = {}
-local ns = vim.api.nvim_create_namespace("notomo_lsp_diagnostics")
-
-vim.lsp.callbacks["textDocument/publishDiagnostics"] = function(_, _, result, client_id)
-  if not result then
-    return
-  end
-
-  local uri = result.uri
-  local bufnr = vim.uri_to_bufnr(uri)
-  if not bufnr then
-    return
-  end
-
-  clear_diagnostics(bufnr, ns)
-  local diagnostics = result.diagnostics
-  if not diagnostics then
-    return
-  end
-
-  local state = states[bufnr]
-  if not state then
-    state = {diagnostics = {}, version = 0}
-    states[bufnr] = state
-  end
-
-  local version = result.version
-  if not version then
-    version = state.version + 1
-  end
-
-  if state.version <= version then
-    state.diagnostics[client_id] = diagnostics
-    state.version = version
-  else
-    return
-  end
-
-  local running = {}
-  local all_diagnostics = {}
-  for id, ds in pairs(state.diagnostics) do
-    if not vim.lsp.client_is_stopped(id) then
-      running[id] = ds
-      for _, d in ipairs(ds) do
-        table.insert(all_diagnostics, d)
-      end
-    end
-  end
-  state.diagnostics = running
-
-  debounce(100, function()
-    set_vritualtext(bufnr, all_diagnostics, ns)
-    set_qflist(bufnr, uri, all_diagnostics)
-    vim.lsp.util.buf_diagnostics_signs(bufnr, all_diagnostics)
-  end)
-end
-
-vim.lsp.callbacks["textDocument/references"] = function(_, _, result)
+vim.lsp.handlers["textDocument/references"] = function(_, _, result)
   if not result or result == {} then
     return
   end
@@ -178,7 +79,7 @@ vim.lsp.callbacks["textDocument/references"] = function(_, _, result)
   })
 end
 
-vim.lsp.callbacks["workspace/symbol"] = function(_, _, result)
+vim.lsp.handlers["workspace/symbol"] = function(_, _, result)
   if not result or result == {} then
     return
   end
@@ -190,7 +91,7 @@ vim.lsp.callbacks["workspace/symbol"] = function(_, _, result)
   })
 end
 
-vim.lsp.callbacks["textDocument/documentSymbol"] = function(_, _, result)
+vim.lsp.handlers["textDocument/documentSymbol"] = function(_, _, result)
   if not result or result == {} then
     return
   end
@@ -202,6 +103,22 @@ vim.lsp.callbacks["textDocument/documentSymbol"] = function(_, _, result)
   })
 end
 
-vim.lsp.callbacks["workspace/configuration"] = function(_, _, _)
+vim.lsp.handlers["workspace/configuration"] = function(_, _, _)
   return {}
+end
+
+vim.lsp.handlers["textDocument/definition"] = function(_, _, result)
+  if result == nil or vim.tbl_isempty(result) then
+    return nil
+  end
+
+  local util = vim.lsp.util
+  if vim.tbl_islist(result) then
+    util.jump_to_location(result[1])
+    if #result > 1 then
+      util.set_loclist(util.locations_to_items(result))
+    end
+  else
+    util.jump_to_location(result)
+  end
 end
