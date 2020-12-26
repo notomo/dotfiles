@@ -9,12 +9,6 @@
   register: node_installer_downloaded
   when: is_linux
 
-- name: download installer
-  get_url:
-    url: https://rpm.nodesource.com/setup_10.x
-    dest: "{{ app_dir }}/node_installer"
-  when: is_centos and not node_installer_downloaded.stat.exists
-
 - name: download installer on ubuntu
   get_url:
     url: https://deb.nodesource.com/setup_10.x
@@ -34,11 +28,6 @@
     cmd: "bash node_installer"
   become: yes
   when: is_linux and node_installed.rc != 0
-
-- name: install nodejs with yum
-  yum: name=nodejs
-  become: yes
-  when: is_centos
 
 - name: install nodejs with apt
   apt:

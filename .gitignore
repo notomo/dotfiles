@@ -18,8 +18,6 @@
 
 # ansible
 /ansible/**/*.retry
-/ansible/.vagrant
-/ansible/vagrant_*.log*
 
 !.gitkeep
 

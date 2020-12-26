@@ -1,5 +1,5 @@
 version: 2
-# log-level: 1
+log-level: 1
 
 tools:
   vim-vint: &vim-vint
@@ -46,6 +46,13 @@ tools:
     lint-ignore-exit-code: true
     lint-stdin: true
 
+  json-fixjson: &json-fixjson
+    format-command: 'fixjson'
+
+  # lua-lua-format: &lua-lua-format
+  #   format-command: 'lua-format -i -c ~/dotfiles/tool/.lua-format'
+  #   format-stdin: true
+
 languages:
   vim:
     - <<: *vim-vint
@@ -62,11 +69,15 @@ languages:
 
   lua:
     - <<: *luacheck
+    # - <<: *lua-lua-format
 
   typescript.tsx:
     - <<: *eslint
 
   typescript:
     - <<: *eslint
+
+  json:
+    - <<: *json-fixjson
 
 lint-debounce: 300ms

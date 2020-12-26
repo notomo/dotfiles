@@ -6,22 +6,6 @@
   when: is_macos
   notify: start docker
 
-- name: install yum-utils
-  yum: name=yum-utils
-  become: yes
-  when: is_centos
-
-- name: add yum repository for docker
-  shell: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-  become: yes
-  when: is_centos
-  changed_when: False
-
-- name: install with yum
-  yum: name=docker-ce
-  become: yes
-  when: is_centos
-
 - name: Add docker apt gpg key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
@@ -57,13 +41,6 @@
   become: yes
   when: is_linux
 
-- name: enable docker service
-  systemd:
-    name: docker
-    enabled: yes
-  become: yes
-  when: is_centos
-
 - name: add user to docker group
   user:
     name: "{{ ansible_env.USER }}"
@@ -81,23 +58,6 @@
   shell: service docker start
   become: yes
   when: is_ubuntu
-  changed_when: False
-
-- name: start docker service
-  systemd:
-    name: docker
-    state: started
-  become: yes
-  when: is_centos
-
-- name: restart docker service
-  systemd:
-    name: docker
-    state: restarted
-    daemon_reload: yes
-    enabled: yes
-  become: yes
-  when: is_centos
   changed_when: False
 
 - name: check docker-compose

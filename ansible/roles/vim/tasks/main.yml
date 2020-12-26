@@ -64,16 +64,6 @@
       --with-python3-config-dir=/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu
   args:
     chdir: "{{ vim_dir }}/src"
-  when: is_centos and not vim8_exists.stdout
-
-- name: config
-  shell: |
-    ./configure \
-      --with-features=huge \
-      --enable-python3interp=dynamic \
-      --with-python3-config-dir=/usr/lib64/python3.6/config-3.6m-x86_64-linux-gnu
-  args:
-    chdir: "{{ vim_dir }}/src"
   when: is_ubuntu and not vim8_exists.stdout
 
 - name: build

@@ -52,39 +52,3 @@
   with_items: "{{ go_module_exists.results }}"
   environment:
     GOPATH: "{{ home_dir }}/go"
-
-- name: copy lemonade.toml
-  copy:
-    src: lemonade.toml
-    dest: "{{ home_dir }}/.config/lemonade.toml"
-  when: is_centos
-
-- name: check xdg-open stat
-  stat:
-    path: /usr/bin/xdg-open
-  register: open_stat
-  when: is_centos
-
-- name: copy xdg-open
-  copy:
-    remote_src: True
-    src: /usr/bin/xdg-open
-    dest: /usr/bin/xdg-open.tmp
-  when: is_centos and open_stat.stat.islnk is defined and not open_stat.stat.islnk
-  become: yes
-
-- name: remove xdg-open
-  file:
-    path: /usr/bin/xdg-open
-    state: absent
-  when: is_centos and open_stat.stat.islnk is defined and not open_stat.stat.islnk
-  become: yes
-  ignore_errors: yes
-
-- name: create symbolic link for lemonade
-  file:
-    src: "{{ home_dir }}/go/bin/lemonade"
-    dest: "/usr/bin/xdg-open"
-    state: link
-  when: is_centos
-  become: yes

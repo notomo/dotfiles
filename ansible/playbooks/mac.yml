@@ -18,7 +18,6 @@
     - { role: 'git', tags: 'git' }
     - { role: 'ctags', tags: 'ctags' }
     - { role: 'golang', tags: 'golang' }
-    - { role: 'rust', tags: 'rust' }
     - { role: 'gh', tags: 'gh' }
     - { role: 'gitconfig', tags: 'gitconfig' }
   vars_files:

@@ -16,9 +16,6 @@ cp -fr ~/.ssh/* ~/local_files/.ssh
 if [ -f ~/local_files/.ssh/authorized_keys ]; then
     rm ~/local_files/.ssh/authorized_keys
 fi
-if [ -f ~/local_files/.ssh/vagrant_key.pub ]; then
-    rm ~/local_files/.ssh/vagrant_key.pub
-fi
 if [ -f ~/local_files/.ssh/known_hosts ]; then
     rm ~/local_files/.ssh/known_hosts
 fi

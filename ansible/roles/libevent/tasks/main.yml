@@ -1,6 +1,0 @@
-- name: install dependencies with yum
-  yum:
-    name:
-      - libevent-devel
-  when: is_centos
-  become: yes

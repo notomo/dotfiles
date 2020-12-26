@@ -1,11 +1,3 @@
-- name: install Xvfb
-  yum:
-    name:
-      - libXrandr
-      - xorg-x11-server-Xvfb
-  when: is_centos
-  become: yes
-
 - name: install Xvfb with apt
   apt:
     name:

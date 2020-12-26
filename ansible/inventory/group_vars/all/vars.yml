@@ -1,4 +1,3 @@
 is_macos: '{{ ansible_os_family == "Darwin" }}'
-is_centos: '{{ ansible_os_family == "RedHat" }}'
 is_ubuntu: '{{ ansible_os_family == "Debian" }}'
-is_linux: '{{ is_centos or is_ubuntu }}'
+is_linux: '{{ is_ubuntu }}'

@@ -69,18 +69,9 @@
       alias psa='ps -aux'
   when: is_macos
 
-- name: add .bashrc content on centos
-  blockinfile:
-    marker: "# {mark} ANSIBLE MANAGED BLOCK bash on centos"
-    dest: "{{ home_dir }}/.bashrc"
-    content: |
-      alias anc='cd ~/dotfiles/ansible;ansible-playbook playbooks/centos7.yml'
-      alias anct='cd ~/dotfiles/ansible;ansible-playbook playbooks/centos7.yml --tags'
-  when: is_centos
-
 - name: add .bashrc content on ubuntu
   blockinfile:
-    marker: "# {mark} ANSIBLE MANAGED BLOCK bash on centos"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK bash on ubuntu"
     dest: "{{ home_dir }}/.bashrc"
     content: |
       alias anc='cd ~/dotfiles/ansible;ansible-playbook playbooks/ubuntu.yml'

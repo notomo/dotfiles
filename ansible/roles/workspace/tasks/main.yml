@@ -7,7 +7,7 @@
     - proto
     - memo
 
-- name: make workspace directory for centos
+- name: make workspace directory
   file:
     path: "{{ home_dir }}/workspace/{{ item }}"
     state: directory

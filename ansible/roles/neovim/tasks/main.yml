@@ -1,8 +1,3 @@
-- name: install for appimage
-  yum: name=fuse-sshfs enablerepo=epel
-  when: is_centos
-  become: yes
-
 - name: check nvim
   stat:
     path: "{{ home_dir }}/.local/bin/nvim"
@@ -19,14 +14,6 @@
     path: "{{ app_dir }}/nvim"
     state: directory
   when: (is_macos or is_ubuntu) and not nvim_installed.stat.exists
-
-# NOTE: wsl1 can't use fuse
-- name: download nvim
-  get_url:
-    url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-    dest: "{{ home_dir }}/.local/bin/nvim"
-    mode: u+x
-  when: is_centos and not nvim_installed.stat.exists
 
 - name: download nvim on ubuntu
   get_url:
