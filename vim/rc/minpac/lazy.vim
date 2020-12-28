@@ -49,8 +49,6 @@ xnoremap [diff]l :Linediff<CR>
 
 call s:add('tmhedberg/matchit', {'ft' : ['html', 'vim', 'sql']})
 
-call s:add('rhysd/vim-gfm-syntax', {'ft' : 'markdown'})
-
 call s:add('fuenor/im_control.vim', {'event' : 'InsertEnter'})
 let g:IM_CtrlMode = 4
 

@@ -3,6 +3,7 @@ call minpac#add('junegunn/vim-emoji')
 call minpac#add('thinca/vim-themis')
 call minpac#add('notomo/vusted', {'depth': 0})
 call minpac#add('notomo/virtes.nvim', {'depth': 0})
+call minpac#add('notomo/genvdoc', {'depth': 0})
 
 call minpac#add('sheerun/vim-polyglot')
 let g:polyglot_disabled = ['markdown', 'jsx', 'tsx', 'ansible']
@@ -81,3 +82,6 @@ table.insert(keymaps, {
 })
 EOF
 endfunction
+
+let g:wintablib_debug = 1
+call minpac#add('notomo/wintablib.nvim', {'depth': 0})

@@ -27,10 +27,6 @@ function! notomo#mapping#get_main_input_key() abort
     return s:MAIN_INPUT_PFX
 endfunction
 
-function! notomo#mapping#get_sub_input_key() abort
-    return s:SUB_INPUT_PFX
-endfunction
-
 function! notomo#mapping#get_calculator_key() abort
     return s:CALCULATOR_KEY
 endfunction

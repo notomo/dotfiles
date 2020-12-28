@@ -106,17 +106,6 @@ function! notomo#vimrc#yank_and_echo(value) abort
     echomsg 'yank '. a:value
 endfunction
 
-function! notomo#vimrc#save_session() abort
-    let y_or_n = input('Enter/n: ')
-    redraw
-    if y_or_n !=? 'n'
-        SessionSave!
-        echomsg 'save!'
-    else
-        echomsg 'canceled'
-    endif
-endfunction
-
 function! notomo#vimrc#update_rplugin_runtimepath() abort
     if !has('nvim')
         return

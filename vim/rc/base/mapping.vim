@@ -547,7 +547,6 @@ nnoremap [win]h :<C-u>split<CR>
 nnoremap [win]v :<C-u>vsplit<CR>
 " close others
 nnoremap [win]o :<C-u>silent only<CR>
-nnoremap [win]O :<C-u>call notomo#window#close_all_floating()<CR>
 " close others vertically
 nnoremap [win]j :<C-u>call notomo#window#vonly()<CR>
 " close right vertically
@@ -556,16 +555,6 @@ nnoremap [win]; :<C-u>call notomo#window#ronly()<CR>
 nnoremap [win]a :<C-u>call notomo#window#lonly()<CR>
 " close
 nnoremap [win]q :<C-u>q<CR>
-" open left tab's buffers vertically
-nnoremap [win]H :<C-u>call notomo#window#vs_from_left()<CR>
-" open right tab's buffers vertically
-nnoremap [win]L :<C-u>call notomo#window#vs_from_right()<CR>
-" close window and open tab
-nnoremap [win]l :<C-u>call notomo#window#extract_tabopen()<CR>
-" open the alternative buffer with vertical splitting
-nnoremap [win]b :<C-u>call notomo#window#vsplit_altopen()<CR>
-" duplicate window
-nnoremap [win]w :<C-u>call notomo#window#duplicate()<CR>
 "}}}
 
 " winsize"{{{
@@ -576,34 +565,15 @@ nnoremap [win]e <C-w>=
 
 
 " tab"{{{
-
 nnoremap [tab] <Nop>
 nmap t [tab]
 xnoremap [tab] <Nop>
 xmap t [tab]
 
-" close others
 nnoremap <silent> [tab]o :<C-u>silent tabonly<CR>
 xnoremap <silent> [tab]o :<C-u>silent tabonly<CR>
-
-" close all
 nnoremap <silent> [tab]O :<C-u>qall<CR>
-
-" close tab"{{{
-function! s:tabclose_c() abort
-    if tabpagenr('$') == 1
-        qa
-    endif
-    if tabpagenr() <= 1
-        tabclose
-    else
-        " close current tab and open left tab
-        tabprevious
-        +tabclose
-    endif
-endfunction
-nnoremap <silent> <Plug>(tabclose_c) :<C-u>call <SID>tabclose_c()<CR>
-"}}}
+nnoremap <silent> <Plug>(tabclose_c) :<C-u>tabclose<CR>
 
 " open new tab"{{{
 function! s:new_tab() abort
@@ -620,17 +590,13 @@ inoremap <C-Tab> <Esc>gt
 inoremap <C-S-Tab> <Esc>gT
 vnoremap <C-Tab> <Esc>gt
 vnoremap <C-S-Tab> <Esc>gT
-nnoremap <silent> <C-w> :<C-u>call <SID>tabclose_c()<CR>
-inoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
-vnoremap <silent> <C-w> <ESC>:<C-u>call <SID>tabclose_c()<CR>
+nmap <silent> <C-w> <Plug>(tabclose_c)
+imap <silent> <C-w> <ESC>:<C-u>call <Plug>(tabclose_c)
+vmap <silent> <C-w> <ESC><Plug>(tabclose_c)
 nmap <silent> <C-t> <Plug>(new_tab)
 "}}}
 
 for s:info in notomo#mapping#tab()
     silent execute join(['nnoremap', '[tab]' . s:info[s:LHS_KEY], ":<C-u>call notomo#tab#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
 endfor
-
-nnoremap [tab]<Space>l :<C-u>call notomo#tab#lock()<CR>
-nnoremap [tab]<Space>u :<C-u>call notomo#tab#unlock()<CR>
-
 "}}}

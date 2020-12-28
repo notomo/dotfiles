@@ -53,3 +53,13 @@ xnoremap <silent> <C-j> :<C-u>lua require('notomo/insert').replace_down()<CR>gv
 xnoremap <silent> <C-k> :<C-u>lua require('notomo/insert').replace_up()<CR>gv
 
 nnoremap <silent> [yank]M :<C-u>call notomo#vimrc#yank_and_echo(trim(system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>
+
+nnoremap [win]O <Cmd>lua require("wintablib.window").close_floating()<CR>
+nnoremap [win]H <Cmd>lua require("wintablib.window").from_left_tab()<CR>
+nnoremap [win]L <Cmd>lua require("wintablib.window").from_right_tab()<CR>
+nnoremap [win]l <Cmd>lua require("wintablib.window").to_right_tab()<CR>
+nnoremap [win]w <Cmd>lua require("wintablib.window").duplicate_as_right_tab()<CR>
+nnoremap [win]b <Cmd>lua require("wintablib.window").from_alt()<CR>
+nnoremap <silent> <Plug>(tabclose_r) <Cmd>lua require("wintablib.tab").close_right()<CR>
+nnoremap <silent> <Plug>(tabclose_l) <Cmd>lua require("wintablib.tab").close_left()<CR>
+nnoremap <silent> <Plug>(tabclose_c) <Cmd>lua require("wintablib.tab").close()<CR>

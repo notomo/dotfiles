@@ -204,7 +204,9 @@ snippet module
 	return M
 
 snippet M
-	M.${1:name} = ${0:expr}
+	function M.${1:name}()
+        ${0:TARGET}
+	end
 
 snippet conditional
 	${1:condition} and ${1:expr1} or ${1:expr2}
@@ -241,7 +243,7 @@ snippet open_win
 
 snippet command
 options word
-	vim.api.nvim_command("${1:excmd}")
+	vim.cmd("${1:excmd}")
 
 snippet bench
 	do
