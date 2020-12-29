@@ -536,8 +536,6 @@ nnoremap [winmv]s <C-w>r
 nnoremap [winmv]; <C-w>w
 "}}}
 
-" split"{{{
-
 nnoremap [win] <Nop>
 nmap <Space>w [win]
 
@@ -547,20 +545,10 @@ nnoremap [win]h :<C-u>split<CR>
 nnoremap [win]v :<C-u>vsplit<CR>
 " close others
 nnoremap [win]o :<C-u>silent only<CR>
-" close others vertically
-nnoremap [win]j :<C-u>call notomo#window#vonly()<CR>
-" close right vertically
-nnoremap [win]; :<C-u>call notomo#window#ronly()<CR>
-" close left windows
-nnoremap [win]a :<C-u>call notomo#window#lonly()<CR>
 " close
 nnoremap [win]q :<C-u>q<CR>
-"}}}
-
-" winsize"{{{
 " equalize
 nnoremap [win]e <C-w>=
-"}}}
 "}}}
 
 
@@ -574,14 +562,8 @@ nnoremap <silent> [tab]o :<C-u>silent tabonly<CR>
 xnoremap <silent> [tab]o :<C-u>silent tabonly<CR>
 nnoremap <silent> [tab]O :<C-u>qall<CR>
 nnoremap <silent> <Plug>(tabclose_c) :<C-u>tabclose<CR>
-
-" open new tab"{{{
-function! s:new_tab() abort
-    tabedit | setlocal buftype=nofile noswapfile fileformat=unix
-endfunction
-nnoremap <silent> <Plug>(new_tab) :<C-u>call <SID>new_tab()<CR>
-nnoremap [tab]t :<C-u>call <SID>new_tab()<CR>
-"}}}
+nnoremap <silent> <Plug>(new_tab) :<C-u>tabedit<CR>:setlocal buftype=nofile noswapfile<CR>
+nmap [tab]t <Plug>(new_tab)
 
 " for mouse"{{{
 nnoremap <C-Tab> gt
