@@ -65,7 +65,7 @@ nnoremap <Space>usf :<C-u>Thetto file/recursive --auto=preview<CR>
 nnoremap <Space>usg :<C-u>Thetto file/recursive --target=project --auto=preview<CR>
 nnoremap [finder]f :<C-u>Thetto file/in_dir<CR>
 nnoremap [finder]h :<C-u>Thetto vim/help --sorters=length<CR>
-nnoremap [finder]l :<C-u>Thetto line --auto=preview<CR>
+nnoremap [finder]l :<C-u>Thetto line --auto=preview --filters=regex --filters=-regex --filters=substring --filters=-substring<CR>
 nnoremap [finder]r :<C-u>Thetto directory/recursive --target=project --sorters=length<CR>
 nnoremap [finder]v :<C-u>Thetto file/recursive --cwd=~/dotfiles --auto=preview<CR>
 nnoremap [finder]O :<C-u>Thetto vim/option<CR>
@@ -86,7 +86,7 @@ nnoremap [finder]s :<C-u>Thetto source<CR>
 nnoremap [finder]n :<C-u>ThettoDo --resume --offset=1<CR>
 nnoremap [finder]N :<C-u>ThettoDo --resume --offset=-1<CR>
 nnoremap [finder]m :<C-u>Thetto vim/keymap<CR>
-nnoremap [finder]o :<C-u>Thetto outline --auto=preview<CR>
+nnoremap [finder]o :<C-u>Thetto outline --filters=regex --filters=-regex --auto=preview<CR>
 nnoremap [finder], :<C-u>Thetto make/target --target=project --auto=preview<CR>
 nnoremap [exec], :<C-u>Thetto make/target --target=upward --target-patterns=Makefile --auto=preview --no-insert<CR>
 nnoremap [finder]S :<C-u>Thetto vim/substitute --auto=preview<CR>

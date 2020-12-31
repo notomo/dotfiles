@@ -5,9 +5,6 @@ call minpac#add('notomo/vusted', {'depth': 0})
 call minpac#add('notomo/virtes.nvim', {'depth': 0})
 call minpac#add('notomo/genvdoc', {'depth': 0})
 
-call minpac#add('sheerun/vim-polyglot')
-let g:polyglot_disabled = ['markdown', 'jsx', 'tsx', 'ansible']
-
 autocmd MyAuGroup FileType typescriptreact set filetype=typescript.tsx
 
 if has('unix')
@@ -85,3 +82,5 @@ endfunction
 
 let g:wintablib_debug = 1
 call minpac#add('notomo/wintablib.nvim', {'depth': 0})
+
+call minpac#add('tbastos/vim-lua')

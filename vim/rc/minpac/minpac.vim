@@ -29,9 +29,12 @@ packloadall
 " post source eager load plugins
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
-augroup filetypedetect
-    runtime! ftdetect/*.vim " for polyglot
-augroup END
+
+" NOTE: to load before default lua syntax.
+let s:lua_syntax = s:pack_dir .. '/pack/minpac/start/vim-lua'
+execute 'set runtimepath-=' .. s:lua_syntax
+execute 'set runtimepath^=' .. s:lua_syntax
+
 if has('nvim')
     lua require('notomo/lsp')
     if executable('python3')
