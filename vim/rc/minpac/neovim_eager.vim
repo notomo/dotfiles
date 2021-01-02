@@ -13,7 +13,7 @@ if has('unix')
     nnoremap [file]W :<C-u>write suda://%<CR>
 endif
 
-if has('win32')
+if !has('win32')
     call minpac#add('ujihisa/neco-look')
 endif
 

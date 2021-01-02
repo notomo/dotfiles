@@ -18,43 +18,45 @@ vim.api.nvim_command("highlight! link LspDiagnosticsWarning Tag")
 vim.api.nvim_command("packadd nvim-lspconfig")
 local nvimlsp = require("lspconfig")
 
-local try = function(ls, ...)
-  local ok, result = pcall(ls.setup, unpack({...}))
-  if not ok then
-    vim.api.nvim_err_write("[notomo.lsp]" .. result .. "\n")
+local setup_ls = function(ls, config, ...)
+  for _, disabled_feature in ipairs({...}) do
+    if vim.fn.has(disabled_feature) == 1 then
+      return
+    end
   end
+  ls.setup(config or {})
 end
 
-try(nvimlsp.rls, {})
-try(nvimlsp.gopls, {
+setup_ls(nvimlsp.rls, {})
+setup_ls(nvimlsp.gopls, {
   init_options = {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks
     analyses = {ST1000 = false},
   },
 })
-try(nvimlsp.sumneko_lua, {
+setup_ls(nvimlsp.sumneko_lua, {
   cmd = {
     vim.env.HOME .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
     "-E",
     vim.env.HOME .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua",
   },
   settings = {Lua = {diagnostics = {enable = false}}},
-})
-try(nvimlsp.pyls, {})
-try(nvimlsp.clangd, {})
-try(nvimlsp.tsserver, {})
-try(nvimlsp.vimls, {})
-try(nvimlsp.cssls, {})
-try(nvimlsp.dartls, {
+}, "mac", "win32")
+setup_ls(nvimlsp.pyls, {})
+setup_ls(nvimlsp.clangd, {})
+setup_ls(nvimlsp.tsserver, {})
+setup_ls(nvimlsp.vimls, {}, "mac", "win32")
+setup_ls(nvimlsp.cssls, {}, "mac", "win32")
+setup_ls(nvimlsp.dartls, {
   root_dir = require("lspconfig/util").root_pattern("pubspec.yaml", ".git"),
   cmd = {
     "dart",
     vim.fn.expand("~/app/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot"),
     "--lsp",
   },
-})
-try(nvimlsp.efm, {
+}, "mac", "win32")
+setup_ls(nvimlsp.efm, {
   cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
   -- filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};
   filetypes = {"vim", "go", "python", "lua", "sh"},
