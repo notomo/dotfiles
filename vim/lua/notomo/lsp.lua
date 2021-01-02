@@ -46,6 +46,14 @@ try(nvimlsp.clangd, {})
 try(nvimlsp.tsserver, {})
 try(nvimlsp.vimls, {})
 try(nvimlsp.cssls, {})
+try(nvimlsp.dartls, {
+  root_dir = require("lspconfig/util").root_pattern("pubspec.yaml", ".git"),
+  cmd = {
+    "dart",
+    vim.fn.expand("~/app/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot"),
+    "--lsp",
+  },
+})
 try(nvimlsp.efm, {
   cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
   -- filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};

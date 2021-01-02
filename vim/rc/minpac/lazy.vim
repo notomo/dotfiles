@@ -123,3 +123,5 @@ source ~/.vim/rc/plugins/kivi.vim
 
 call s:add('notomo/reacher.nvim', {'cmd': 'Reacher*', 'depth': 0})
 source ~/.vim/rc/plugins/reacher.vim
+
+call s:add('dart-lang/dart-vim-plugin', {'ft' : 'dart'})
