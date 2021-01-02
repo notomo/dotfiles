@@ -102,6 +102,11 @@ snippet class
 	$1.__index = $1
 	M.$1 = $1
 
+	function $1.new()
+		local tbl = {}
+		return setmetatable(tbl, $1)
+	end
+
 snippet method
 	function ${1:class}.${2:method_name}(self)
 		${0:TARGET}
