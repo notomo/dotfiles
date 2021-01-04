@@ -125,3 +125,4 @@ call s:add('notomo/reacher.nvim', {'cmd': 'Reacher*', 'depth': 0})
 source ~/.vim/rc/plugins/reacher.vim
 
 call s:add('dart-lang/dart-vim-plugin', {'ft' : 'dart'})
+call s:add('thosakwe/vim-flutter', {'ft' : 'dart'})

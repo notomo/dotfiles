@@ -54,6 +54,12 @@ if [ -d "$HOME/.pyenv" ]; then
     eval "$(pyenv init -)"
 fi
 
+if [[ "$(< /proc/sys/kernel/osrelease)" == *microsoft* ]]; then 
+    export LIBGL_ALWAYS_INDIRECT=1
+    export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
+    export DISPLAY=$WSL_HOST:0
+fi
+
 if [ -d "$HOME/dotfiles" ]; then
     cd ~/dotfiles
 fi
