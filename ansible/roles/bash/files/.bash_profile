@@ -29,8 +29,8 @@ export DISPLAY=:0
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin:$HOME/.local/go/bin
 
-export PATH=$PATH:${HOME}/app/flutter/bin
-export PATH=$PATH:${HOME}/app/flutter/bin/cache/dart-sdk/bin
+export PATH=${HOME}/app/flutter/bin:$PATH
+export PATH=${HOME}/app/flutter/bin/cache/dart-sdk/bin:$PATH
 
 # export NVIM_PYTHON_LOG_FILE=$HOME/log
 # export NVIM_PYTHON_LOG_LEVEL=ERROR
