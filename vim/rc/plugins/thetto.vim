@@ -107,4 +107,4 @@ nnoremap [finder]e :<C-u>Thetto emoji --action=append --xx-key=emoji<CR>
 nnoremap [finder]gp :<C-u>Thetto go/package<CR>
 
 " custom action
-nnoremap [finder]; :<C-u>Thetto vim/filetype --action=open_proto<CR>
+nnoremap [finder]; :<C-u>Thetto vim/filetype --sorters=length --action=open_proto<CR>
