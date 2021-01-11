@@ -53,19 +53,6 @@ function! s:to_syntax(syntax_pattern, start_line_num, column, offset, go_backwor
     call s:to_syntax(a:syntax_pattern, wrap_line_num, a:column, a:offset, a:go_backword, v:false)
 endfunction
 
-function! notomo#vimrc#search_parent_recursive(file_name_pattern, start_path) abort
-    let path = fnamemodify(a:start_path, ':p')
-    while path !=? '//'
-        let files = glob(path . a:file_name_pattern, v:false, v:true)
-        if !empty(files)
-            let file = files[0]
-            return isdirectory(file) ? file . '/' : file
-        endif
-        let path = fnamemodify(path, ':h:h') . '/'
-    endwhile
-    return ''
-endfunction
-
 function! notomo#vimrc#add_closed_tag() abort
     let pos = getpos('.')
     let reg = @a

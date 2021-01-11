@@ -18,6 +18,19 @@ endfunction
 nnoremap <silent> [term]v :<C-u>call <SID>open_terminal('vsplit')<CR>
 nnoremap <silent> [term]h :<C-u>call <SID>open_terminal('split')<CR>
 nnoremap <silent> [term]t :<C-u>call <SID>open_terminal('tabedit')<CR>
+nnoremap <silent> [term]g :<C-u>call <SID>open_terminal_on_project_root()<CR>
+
+function! s:open_terminal_on_project_root() abort
+    let path = finddir('.git', ',;')
+    let project_path = '.'
+    if path != ''
+        let project_path = fnamemodify(path, ':p:h:h')
+    endif
+    
+    tabedit
+    call termopen(&shell, {'cwd': project_path})
+    execute 'lcd' project_path
+endfunction
 
 nnoremap [exec]C :<C-u>checkhealth<CR>
 nnoremap [exec]u :<C-u>call notomo#vimrc#update_remote_plugin()<CR>
