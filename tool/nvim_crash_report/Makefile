@@ -20,7 +20,8 @@ all:
 # sudo ln -s /usr/bin/llvm-symbolizer-6.0 /usr/bin/llvm-symbolizer
 LOG_DIR := ${HOME}/logs
 # TEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/eval/api_functions_spec.lua
-TEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/api/window_spec.lua
+# TEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/api/window_spec.lua
+TEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/api/vim_spec.lua TEST_FILTER=.*nvim_echo.*
 test:
 	rm -rf ${LOG_DIR}
 	mkdir -p ${LOG_DIR}
@@ -28,6 +29,14 @@ test:
 	# cd ${NVIM_DIR}; make functionaltest
 	# cat ${LOG_DIR}/asan.*
 .PHONY: test
+
+# LSAN_OPTIONS=verbosity=1:log_threads=1 
+OLDTEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test_cmdline.vim
+# OLDTEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1
+oldtest:
+	rm -rf ${LOG_DIR}
+	mkdir -p ${LOG_DIR}
+	cd ${NVIM_DIR}; make oldtest ${OLDTEST_ENV}
 
 lint:
 	cd ${NVIM_DIR}; make clint-full
@@ -42,11 +51,15 @@ run:
 	gdb ${NVIM} core --eval-command "thread apply all bt full" --batch 2>&1 | tee backtrace.txt
 .PHONY: run
 
+headless:
+	${NVIM} --headless -u NORC +"luafile ./minimal.lua" +"quitall!"
+
 _run:
 	# ${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
 	# ${NVIM} -u NORC +"source ./minimal.vim" +"quitall!"
-	${NVIM} --headless -u NORC +"source ./minimal.vim"
+	# ${NVIM} --headless -u NORC +"source ./minimal.vim"
 	# ${NVIM} -u NORC +"source ./minimal.vim"
+	${NVIM} -u NORC +"luafile ./minimal.lua"
 .PHONY: _run
 
 ISSUE := issue.md

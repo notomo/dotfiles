@@ -13,7 +13,7 @@ endif
 let s:sources.vim = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
 let s:sources.python = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
 let s:sources.go = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
-let s:sources.c = ['file', 'buffer', 'around', 'neosnippet']
+let s:sources.c = ['lsp', 'file', 'buffer', 'around', 'neosnippet']
 let s:sources.cs = ['file', 'buffer', 'around', 'neosnippet']
 let s:sources['rust'] = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
 let s:sources.dart = ['lsp', 'buffer', 'file', 'around', 'neosnippet']
