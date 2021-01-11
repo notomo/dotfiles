@@ -9,10 +9,6 @@ nnoremap S :<C-u>TDDTest make_start npm_start<CR>
 nnoremap [exec]D :<C-u>TDDTest npm_dev<CR>
 nnoremap [exec]dd :<C-u>TDDTest make_doc<CR>
 
-nnoremap [exec]cm :<C-u>TDDTest vim/messages -layout=horizontal -silent<CR>
-nnoremap [exec]cv :<C-u>TDDTest vim/version -layout=horizontal -silent<CR>
-nnoremap [exec]ch :<C-u>TDDTest vim/execute -layout=horizontal -args=
-
 nnoremap <Leader>Q :<C-u>TDDTest -type=run -layout=horizontal -target=file<CR>
 
 autocmd MyAuGroup User TDDSourceLoad ++once call s:settings()
@@ -37,12 +33,6 @@ function! s:settings() abort
 
     call tdd#command#alias('make_doc', 'make')
     call tdd#command#args('make_doc', ['doc'])
-
-    call tdd#command#alias('vim/messages', 'vim/execute')
-    call tdd#command#args('vim/messages', ['messages'])
-
-    call tdd#command#alias('vim/version', 'vim/execute')
-    call tdd#command#args('vim/version', ['version'])
 
     autocmd MyAuGroup FileType tdd-result call s:tdd_result()
     function! s:tdd_result() abort

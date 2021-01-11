@@ -30,7 +30,6 @@ function! s:thetto_settings() abort
     nnoremap <buffer> fl :<C-u>ThettoDo directory_tab_open<CR>
     nnoremap <buffer> ff :<C-u>ThettoDo directory_enter<CR>
     nnoremap <buffer> yy :<C-u>ThettoDo yank<CR>
-    nnoremap <buffer> v :<C-u>ThettoDo toggle_preview<CR>
 
     " custom
     nnoremap <buffer> <Leader>rp :<C-u>ThettoDo qfreplace<CR>
@@ -99,6 +98,8 @@ nnoremap [file]f :<C-u>Thetto file/alter --auto=preview --immediately --no-inser
 nnoremap [file]l :<C-u>Thetto file/alter --auto=preview --immediately --no-insert --action=tab_open<CR>
 nnoremap [file]t :<C-u>Thetto file/alter --auto=preview --x-allow-new  --immediately --no-insert<CR>
 nnoremap [finder]T :<C-u>Thetto vim/buffer --x-buftype=terminal --auto=preview<CR>
+nnoremap [exec]cm :<C-u>Thetto vim/execute --x-cmd=messages --display-limit=1000 --no-insert --offset=1000<CR>
+nnoremap [exec]cv :<C-u>Thetto vim/execute --x-cmd=version --no-insert<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
