@@ -30,6 +30,7 @@ function! s:thetto_settings() abort
     nnoremap <buffer> fl :<C-u>ThettoDo directory_tab_open<CR>
     nnoremap <buffer> ff :<C-u>ThettoDo directory_enter<CR>
     nnoremap <buffer> yy :<C-u>ThettoDo yank<CR>
+    nnoremap <buffer> tsl :<C-u>ThettoDo toggle_sorter --x-name=length<CR>
 
     " custom
     nnoremap <buffer> <Leader>rp :<C-u>ThettoDo qfreplace<CR>
