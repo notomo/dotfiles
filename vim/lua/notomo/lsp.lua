@@ -38,10 +38,25 @@ setup_ls(nvimlsp.gopls, {
 setup_ls(nvimlsp.sumneko_lua, {
   cmd = {
     vim.env.HOME .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
-    "-E",
     vim.env.HOME .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua",
+    "-E",
   },
-  settings = {Lua = {diagnostics = {enable = false}}},
+  settings = {
+    Lua = {
+      runtime = {version = "LuaJIT", path = vim.split(package.path, ";")},
+      diagnostics = {
+        enable = true,
+        globals = {"vim", "it", "describe", "before_each", "after_each"},
+        -- disable = {"lowercase-global"},
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+        },
+      },
+    },
+  },
 }, "mac", "win32")
 setup_ls(nvimlsp.pyls, {})
 setup_ls(nvimlsp.clangd, {})
@@ -59,7 +74,7 @@ setup_ls(nvimlsp.dartls, {
 setup_ls(nvimlsp.efm, {
   cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
   -- filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};
-  filetypes = {"vim", "go", "python", "lua", "sh"},
+  filetypes = {"vim", "go", "python", "sh"},
   root_dir = function(fname)
     return require("lspconfig/util").find_git_ancestor(fname) or vim.loop.cwd()
   end,
@@ -113,9 +128,9 @@ vim.lsp.handlers["textDocument/documentSymbol"] = function(_, _, result)
   })
 end
 
-vim.lsp.handlers["workspace/configuration"] = function(_, _, _)
-  return {}
-end
+-- vim.lsp.handlers["workspace/configuration"] = function(_, _, _)
+--   return {}
+-- end
 
 vim.lsp.handlers["textDocument/definition"] = function(_, _, result)
   if result == nil or vim.tbl_isempty(result) then
