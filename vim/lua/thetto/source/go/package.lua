@@ -9,7 +9,7 @@ M.collect = function(self, opts)
         local package, dir = unpack(vim.split(output, " ", true))
         table.insert(items, {value = package, path = dir})
       end
-      self.append(items)
+      self:append(items)
     end,
     on_stderr = self.jobs.print_stderr,
     cwd = opts.cwd,
