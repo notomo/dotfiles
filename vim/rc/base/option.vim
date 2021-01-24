@@ -110,7 +110,7 @@ function! s:tabpage_label(tab_num) "{{{
         let file_nm = expand('#')
         let buf_cnt -= 1
     endif
-    let file_nm = file_nm ==? '' ? 'NONE' : file_nm
+    let file_nm = file_nm ==? '' ? 'NONE' : substitute(file_nm, '%', '%%', 'g')
 
     if getbufvar(curbuf_num, '&modified')
         let is_mod_str = '+'
