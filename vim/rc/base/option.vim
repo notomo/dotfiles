@@ -73,9 +73,7 @@ set nofixendofline
 set tagcase=match
 set completeopt-=preview
 set termguicolors
-if exists('+spelloptions')
-    set spelloptions=camel
-endif
+set spelloptions=camel
 
 if !has('nvim')
     set viminfo+=n~/.vim/tmp/viminfo.txt

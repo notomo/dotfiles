@@ -26,7 +26,6 @@ function! s:open_terminal_on_project_root() abort
     if path != ''
         let project_path = fnamemodify(path, ':p:h:h')
     endif
-    
     tabedit
     call termopen(&shell, {'cwd': project_path})
     execute 'lcd' project_path
