@@ -1,6 +1,4 @@
 
-set runtimepath+=~/dotfiles/vim/rc/rplugins
-
 set clipboard+=unnamedplus
 set inccommand=nosplit
 set viminfo+=n~/.vim/tmp/nviminfo.txt
