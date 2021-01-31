@@ -23,9 +23,6 @@ xnoremap <Space>. @:
 " redo
 nnoremap <Leader>r <C-r>
 
-" open commandline window
-nnoremap Q q:
-
 "}}}
 
 " edit"{{{
