@@ -17,6 +17,16 @@ function! s:kivi() abort
     nnoremap <buffer> rn <Cmd>KiviDo rename<CR>
     nnoremap <buffer> o <Cmd>KiviDo toggle_tree<CR>
     nnoremap <buffer> <2-LeftMouse> <Cmd>KiviDo tab_open<CR>
+    packadd gesture.nvim
+lua << EOF
+local gesture = require('gesture')
+gesture.register({
+    name = "go to the parent",
+    buffer = "%",
+    inputs = { gesture.left() },
+    action = "KiviDo parent"
+})
+EOF
 endfunction
 
 autocmd MyAuGroup FileType kivi-file call s:kivi_file()
