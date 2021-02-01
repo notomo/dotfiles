@@ -74,6 +74,7 @@ set tagcase=match
 set completeopt-=preview
 set termguicolors
 set spelloptions=camel
+set cedit=<C-q>
 
 if !has('nvim')
     set viminfo+=n~/.vim/tmp/viminfo.txt
