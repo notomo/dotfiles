@@ -46,7 +46,7 @@ setup_ls(nvimlsp.sumneko_lua, {
       runtime = {version = "LuaJIT", path = vim.split(package.path, ";")},
       diagnostics = {
         enable = true,
-        globals = {"vim", "it", "describe", "before_each", "after_each"},
+        globals = {"vim", "it", "describe", "before_each", "after_each", "pending"},
         -- disable = {"lowercase-global"},
       },
       workspace = {

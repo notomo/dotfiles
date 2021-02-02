@@ -4,8 +4,8 @@ nnoremap [exec]f <Cmd>Kivi --layout=vertical --new<CR>
 autocmd MyAuGroup FileType kivi-* call s:kivi()
 function! s:kivi() abort
     nnoremap <buffer> o <Cmd>KiviDo open<CR>
-    nnoremap <buffer> t<Space> <Cmd>KiviDo tab_open<CR>
-    nnoremap <buffer> sv <Cmd>KiviDo vsplit_open --quit<CR>
+    nnoremap <expr> <buffer> t<Space> kivi#is_parent() ? '<Cmd>KiviDo tab_open<CR>' : '<Cmd>KiviDo tab_open --quit<CR>'
+    nnoremap <expr> <buffer> sv kivi#is_parent() ? '<Cmd>KiviDo vsplit_open<CR>' : '<Cmd>KiviDo vsplit_open --quit<CR>'
     nnoremap <buffer> D <Cmd>KiviDo debug_print<CR>
     nnoremap <buffer> yr <Cmd>KiviDo yank<CR>
     nnoremap <buffer> <Space>h <Cmd>Kivi --path=~<CR>

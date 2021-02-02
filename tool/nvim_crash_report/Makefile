@@ -57,9 +57,9 @@ headless:
 _run:
 	# ${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
 	# ${NVIM} -u NORC +"source ./minimal.vim" +"quitall!"
-	# ${NVIM} --headless -u NORC +"source ./minimal.vim"
+	${NVIM} --headless -u NORC +"luafile ./minimal.lua" +"quitall!"
 	# ${NVIM} -u NORC +"source ./minimal.vim"
-	${NVIM} -u NORC +"luafile ./minimal.lua"
+	# ${NVIM} -u NORC +"luafile ./minimal.lua"
 .PHONY: _run
 
 ISSUE := issue.md
