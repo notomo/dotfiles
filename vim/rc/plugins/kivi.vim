@@ -16,7 +16,7 @@ function! s:kivi() abort
     xnoremap <buffer> sm :KiviDo toggle_selection<CR>
     nnoremap <buffer> rn <Cmd>KiviDo rename<CR>
     nnoremap <buffer> o <Cmd>KiviDo toggle_tree<CR>
-    nnoremap <buffer> <2-LeftMouse> <Cmd>KiviDo tab_open<CR>
+    nnoremap <buffer> <2-LeftMouse> <Cmd>KiviDo child<CR>
     packadd gesture.nvim
 lua << EOF
 local gesture = require('gesture')

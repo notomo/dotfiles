@@ -1,3 +1,4 @@
+let g:reacher_debug = 1
 packadd reacher.nvim
 nnoremap gw <Cmd>lua require("reacher").start()<CR>
 
