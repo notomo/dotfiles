@@ -132,4 +132,11 @@ call s:add('notomo/cmdbuf.nvim', {'depth': 0})
 " TODO: lazy load require
 nnoremap Q <Cmd>lua require("cmdbuf").split_open(10)<CR>
 cnoremap <C-q> <Cmd>lua require('cmdbuf').split_open(vim.o.cmdwinheight, {line = vim.fn.getcmdline(), column = vim.fn.getcmdpos()})<CR><C-c>
+augroup cmdbuf_setting
+  autocmd!
+  autocmd User CmdbufNew call s:cmdbuf()
+augroup END
+function! s:cmdbuf() abort
+    nnoremap <buffer> q <Cmd>quit<CR>
+endfunction
 packadd cmdbuf.nvim
