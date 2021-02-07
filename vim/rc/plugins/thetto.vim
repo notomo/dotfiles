@@ -1,7 +1,5 @@
 autocmd MyAuGroup User ThettoSourceLoad lua dofile(vim.fn.expand('~/dotfiles/vim/lua/notomo/thetto.lua'))
 
-let g:thetto_debug = 1
-
 ThettoSetup file/mru
 
 autocmd MyAuGroup FileType thetto call s:thetto_settings()

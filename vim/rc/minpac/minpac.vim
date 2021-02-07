@@ -39,4 +39,5 @@ if has('nvim')
     if executable('python3')
         source ~/.vim/rc/plugins/deoplete.vim
     endif
+    lua require('notomo/lreload')
 endif

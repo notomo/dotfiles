@@ -1,4 +1,3 @@
-let g:reacher_debug = 1
 packadd reacher.nvim
 nnoremap gw <Cmd>lua require("reacher").start()<CR>
 
@@ -8,7 +7,6 @@ function! s:reacher() abort
     inoremap <buffer> <C-p> <Cmd>lua require("reacher").prev()<CR>
     inoremap <buffer> <C-a> <Cmd>lua require("reacher").first()<CR>
     inoremap <buffer> <C-e> <Cmd>lua require("reacher").last()<CR>
-    inoremap <buffer> <CR> <Cmd>lua require("reacher").finish()<CR>
     inoremap <silent> <buffer> jj <Cmd>lua require("reacher").cancel()<CR>
     inoremap <buffer> <Space> <Cmd>lua require("reacher").finish()<CR>
     inoremap <buffer> <CR> <ESC>

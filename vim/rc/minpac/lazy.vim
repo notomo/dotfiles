@@ -127,7 +127,6 @@ source ~/.vim/rc/plugins/reacher.vim
 call s:add('dart-lang/dart-vim-plugin', {'ft' : 'dart'})
 call s:add('thosakwe/vim-flutter', {'ft' : 'dart'})
 
-let g:cmdbuf_debug = 1
 call s:add('notomo/cmdbuf.nvim', {'depth': 0})
 " TODO: lazy load require
 nnoremap Q <Cmd>lua require("cmdbuf").split_open(10)<CR>
@@ -138,5 +137,7 @@ augroup cmdbuf_setting
 augroup END
 function! s:cmdbuf() abort
     nnoremap <buffer> q <Cmd>quit<CR>
+    nnoremap <buffer> dd <Cmd>lua require('cmdbuf').delete()<CR>
+    xnoremap <buffer> D :lua require('cmdbuf').delete({vim.api.nvim_buf_get_mark(0, "<")[1], vim.api.nvim_buf_get_mark(0, ">")[1]})<CR>
 endfunction
 packadd cmdbuf.nvim

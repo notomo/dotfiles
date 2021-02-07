@@ -80,7 +80,6 @@ table.insert(keymaps, {
 EOF
 endfunction
 
-let g:wintablib_debug = 1
 call minpac#add('notomo/wintablib.nvim', {'depth': 0})
 function! MakeTabLine()
     return luaeval('require("wintablib.tab").line()')
@@ -88,3 +87,5 @@ endfunction
 set tabline=%!MakeTabLine()
 
 call minpac#add('tbastos/vim-lua')
+
+call minpac#add('notomo/lreload.nvim', {'depth': 0})
