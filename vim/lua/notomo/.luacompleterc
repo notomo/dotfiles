@@ -1,6 +1,0 @@
-{
-  "global": {},
-  "luaVersion": "luajit-2.0",
-  "packagePath": "src/?.lua;src/?/init.lua;src/lib/?.lua;src/lib/?/init.lua",
-  "cwd": "."
-}

@@ -28,6 +28,9 @@ function! s:add(name, options) abort
     if has_key(a:options, 'do')
         let options['do'] = a:options['do']
     endif
+    if has_key(a:options, 'module')
+        call luaeval('require("notomo/hook").RequireHook.create(_A[1], _A[2])', [name, a:options['module']])
+    endif
 
     call minpac#add(a:name, options)
 endfunction
@@ -116,19 +119,18 @@ nnoremap gk :<C-u>Hita upside_line<CR>
 nnoremap gn :<C-u>Hita line<CR>
 nnoremap g<CR> :<C-u>Hita search<CR>
 
-call s:add('neovim/nvim-lspconfig', {})
+call s:add('neovim/nvim-lspconfig', {'module': 'lspconfig'})
 
 call s:add('notomo/kivi.nvim', {'cmd': 'Kivi*', 'depth': 0})
 source ~/.vim/rc/plugins/kivi.vim
 
-call s:add('notomo/reacher.nvim', {'cmd': 'Reacher*', 'depth': 0})
+call s:add('notomo/reacher.nvim', {'depth': 0, 'module': 'reacher'})
 source ~/.vim/rc/plugins/reacher.vim
 
 call s:add('dart-lang/dart-vim-plugin', {'ft' : 'dart'})
 call s:add('thosakwe/vim-flutter', {'ft' : 'dart'})
 
-call s:add('notomo/cmdbuf.nvim', {'depth': 0})
-" TODO: lazy load require
+call s:add('notomo/cmdbuf.nvim', {'depth': 0, 'module': 'cmdbuf'})
 nnoremap Q <Cmd>lua require("cmdbuf").split_open(10)<CR>
 cnoremap <C-q> <Cmd>lua require('cmdbuf').split_open(vim.o.cmdwinheight, {line = vim.fn.getcmdline(), column = vim.fn.getcmdpos()})<CR><C-c>
 augroup cmdbuf_setting
@@ -140,4 +142,3 @@ function! s:cmdbuf() abort
     nnoremap <buffer> dd <Cmd>lua require('cmdbuf').delete()<CR>
     xnoremap <buffer> D :lua require('cmdbuf').delete({vim.api.nvim_buf_get_mark(0, "<")[1], vim.api.nvim_buf_get_mark(0, ">")[1]})<CR>
 endfunction
-packadd cmdbuf.nvim

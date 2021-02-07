@@ -1,4 +1,3 @@
-packadd reacher.nvim
 nnoremap gw <Cmd>lua require("reacher").start()<CR>
 
 autocmd MyAuGroup FileType reacher call s:reacher()
