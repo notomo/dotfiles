@@ -75,6 +75,7 @@ set completeopt-=preview
 set termguicolors
 set spelloptions=camel
 set cedit=<C-q>
+set cmdwinheight=12
 
 if !has('nvim')
     set viminfo+=n~/.vim/tmp/viminfo.txt

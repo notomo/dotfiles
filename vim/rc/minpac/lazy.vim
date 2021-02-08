@@ -131,13 +131,14 @@ call s:add('dart-lang/dart-vim-plugin', {'ft' : 'dart'})
 call s:add('thosakwe/vim-flutter', {'ft' : 'dart'})
 
 call s:add('notomo/cmdbuf.nvim', {'depth': 0, 'module': 'cmdbuf'})
-nnoremap Q <Cmd>lua require("cmdbuf").split_open(10)<CR>
+nnoremap Q <Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight)<CR>
 cnoremap <C-q> <Cmd>lua require('cmdbuf').split_open(vim.o.cmdwinheight, {line = vim.fn.getcmdline(), column = vim.fn.getcmdpos()})<CR><C-c>
 augroup cmdbuf_setting
   autocmd!
   autocmd User CmdbufNew call s:cmdbuf()
 augroup END
 function! s:cmdbuf() abort
+    setlocal bufhidden=wipe
     nnoremap <buffer> q <Cmd>quit<CR>
     nnoremap <buffer> dd <Cmd>lua require('cmdbuf').delete()<CR>
     xnoremap <buffer> D :lua require('cmdbuf').delete({vim.api.nvim_buf_get_mark(0, "<")[1], vim.api.nvim_buf_get_mark(0, ">")[1]})<CR>
