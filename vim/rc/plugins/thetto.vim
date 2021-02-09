@@ -100,6 +100,7 @@ nnoremap [file]t :<C-u>Thetto file/alter --auto=preview --x-allow-new  --immedia
 nnoremap [finder]T :<C-u>Thetto vim/buffer --x-buftype=terminal --auto=preview<CR>
 nnoremap [exec]cm :<C-u>Thetto vim/execute --x-cmd=messages --display-limit=1000 --no-insert --offset=1000<CR>
 nnoremap [exec]cv :<C-u>Thetto vim/execute --x-cmd=version --no-insert<CR>
+nnoremap [finder]J :<C-u>Thetto vim/jump --auto=preview<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
