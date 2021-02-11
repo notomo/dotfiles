@@ -11,6 +11,7 @@ vim.api.nvim_command("nnoremap <silent> [exec]gn <Cmd>lua vim.lsp.buf.rename()<C
 vim.api.nvim_command("nnoremap <silent> [exec]gd <Cmd>lua vim.lsp.buf.document_symbol()<CR>")
 vim.api.nvim_command("nnoremap <silent> [exec]gw <Cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 vim.api.nvim_command("nnoremap <silent> [keyword]c <Cmd>lua vim.lsp.buf.code_action()<CR>")
+vim.api.nvim_command("nnoremap <silent> [exec]gi <Cmd>lua vim.lsp.buf.implementation()<CR>")
 
 vim.api.nvim_command("highlight! link LspDiagnosticsError SpellBad")
 vim.api.nvim_command("highlight! link LspDiagnosticsWarning Tag")
