@@ -11,8 +11,10 @@ function! s:reacher() abort
     inoremap <buffer> <CR> <ESC>
 
     nnoremap <silent> <buffer> q <Cmd>lua require("reacher").cancel()<CR>
+    nnoremap <buffer> gg <Cmd>lua require("reacher").first()<CR>
     nnoremap <buffer> ga <Cmd>lua require("reacher").first()<CR>
     nnoremap <buffer> ge <Cmd>lua require("reacher").last()<CR>
+    nnoremap <buffer> G <Cmd>lua require("reacher").last()<CR>
     nnoremap <buffer> j <Cmd>lua require("reacher").next()<CR>
     nnoremap <buffer> k <Cmd>lua require("reacher").prev()<CR>
     nnoremap <nowait> <buffer> <Space> <Cmd>lua require("reacher").finish()<CR>

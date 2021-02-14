@@ -419,15 +419,6 @@ endfunction
 inoremap <expr> j<Space>k <SID>complete_pair()
 "}}}
 
-" macro"{{{
-nnoremap [macro] <Nop>
-nmap q [macro]
-nnoremap [macro]r qa
-nnoremap [macro]q q
-nnoremap [macro]s @a
-nnoremap [macro]d qaq
-"}}}
-
 " diff"{{{
 function! s:diff_tab_open(...)
     if a:0 == 1

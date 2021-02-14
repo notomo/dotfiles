@@ -278,9 +278,9 @@ options word
 
 snippet map
 options word
-	vim.tbl_map(function (${1:e})
-		return ${2:expr}
-	end, ${0:table})
+	vim.tbl_map(function (${2:e})
+		return ${0:expr}
+	end, ${1:table})
 
 snippet sort_desc
 	table.sort(${1:table}, function(a, b)
