@@ -102,6 +102,7 @@ nnoremap [exec]cm :<C-u>Thetto vim/execute --x-cmd=messages --display-limit=1000
 nnoremap [exec]cv :<C-u>Thetto vim/execute --x-cmd=version --no-insert<CR>
 nnoremap [finder]J :<C-u>Thetto vim/jump --auto=preview<CR>
 nnoremap [finder]c :<C-u>Thetto vim/command<CR>
+nnoremap [finder]M :<C-u>Thetto manual --sorters=length<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>
