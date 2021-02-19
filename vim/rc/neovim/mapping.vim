@@ -80,3 +80,42 @@ nnoremap <silent> <Plug>(tabclose_r) <Cmd>lua require("wintablib.tab").close_rig
 nnoremap <silent> <Plug>(tabclose_l) <Cmd>lua require("wintablib.tab").close_left()<CR>
 nnoremap <silent> <Plug>(tabclose_c) <Cmd>lua require("wintablib.tab").close()<CR>
 nnoremap <silent> <Plug>(new_tab) <Cmd>lua require("wintablib.tab").scratch()<CR>
+
+function! s:start_termdebug() abort
+    packadd termdebug
+
+    let path = expand('~/workspace/neovim/')
+    let nvim = path .. 'build/bin/nvim'
+    let rc = expand('~/dotfiles/tool/nvim_development/debugrc.vim')
+    tabedit
+    let window_id = nvim_get_current_win()
+    execute 'tcd' path
+    execute 'TermdebugCommand' nvim '-u' rc
+    call TermDebugSendCommand('run')
+    call nvim_set_current_win(window_id)
+
+    nnoremap [term]s <Cmd>Step<CR>
+    nnoremap [term]b <Cmd>Break<CR>
+    nnoremap [term]B <Cmd>Clear<CR>
+    nnoremap [term]n <Cmd>Over<CR>
+    nnoremap [term]c <Cmd>Continue<CR>
+    nnoremap [term]f <Cmd>Finish<CR>
+    nnoremap [keyword]e :Evaluate<CR>
+
+    " restore K
+    nnoremap <silent> <S-k> :<C-u>keepjumps normal! {<CR>
+endfunction
+
+function! s:quit_termdebug() abort
+    if !exists('*TermDebugSendCommand')
+        return
+    endif
+    try
+        call TermDebugSendCommand('quit')
+        call TermDebugSendCommand('y')
+    catch /Can't send data to closed stream\|E900: Invalid channel id/
+    endtry
+endfunction
+
+nnoremap [term]S <Cmd>call <SID>start_termdebug()<CR>
+nnoremap [term]q <Cmd>call <SID>quit_termdebug()<CR>

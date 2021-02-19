@@ -139,7 +139,7 @@ augroup cmdbuf_setting
 augroup END
 function! s:cmdbuf() abort
     setlocal bufhidden=wipe
-    nnoremap <buffer> q <Cmd>quit<CR>
+    nnoremap <nowait> <buffer> q <Cmd>quit<CR>
     nnoremap <buffer> dd <Cmd>lua require('cmdbuf').delete()<CR>
     xnoremap <buffer> D :lua require('cmdbuf').delete({vim.api.nvim_buf_get_mark(0, "<")[1], vim.api.nvim_buf_get_mark(0, ">")[1]})<CR>
 endfunction
