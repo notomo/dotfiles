@@ -88,11 +88,10 @@ function! s:start_termdebug() abort
     let nvim = path .. 'build/bin/nvim'
     let rc = expand('~/dotfiles/tool/nvim_development/debugrc.vim')
     tabedit
-    let window_id = nvim_get_current_win()
     execute 'tcd' path
     execute 'TermdebugCommand' nvim '-u' rc
     call TermDebugSendCommand('run')
-    call nvim_set_current_win(window_id)
+    Source
 
     nnoremap [term]s <Cmd>Step<CR>
     nnoremap [term]b <Cmd>Break<CR>

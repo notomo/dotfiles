@@ -1,0 +1,31 @@
+snippet final
+	final ${1:name} = ${0:value};
+
+snippet main
+	void main() {
+		${0:TARGET}
+	}
+
+snippet closure
+options word
+	(${1:arg}) {
+		${0:TARGET}
+	}
+
+snippet print
+	print(${0:expr});
+
+snippet ifonly
+	if (${1:condition}) {
+		${0:TARGET}
+	}
+
+snippet else
+	else {
+		${0:TARGET}
+	}
+
+snippet method
+	${1:void} ${2:name}(${3:arg}) {
+		${0:TARGET}
+	}

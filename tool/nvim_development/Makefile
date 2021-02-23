@@ -106,6 +106,9 @@ issue:
 	echo "</details>" >> ${ISSUE}
 .PHONY: issue
 
+event:
+	${NVIM} --headless -u NORC +"luafile ./event.lua"
+
 # doxygen:
 # 	sudo apt-get install flex
 # 	sudo apt-get install bison

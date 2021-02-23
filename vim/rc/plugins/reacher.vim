@@ -8,6 +8,7 @@ function! s:reacher() abort
     inoremap <buffer> <C-e> <Cmd>lua require("reacher").last()<CR>
     inoremap <silent> <buffer> jj <Cmd>lua require("reacher").cancel()<CR>
     inoremap <buffer> <Space> <Cmd>lua require("reacher").finish()<CR>
+    inoremap <buffer> <C-Space> <Cmd>lua require("reacher").finish()<CR>
     inoremap <buffer> <CR> <ESC>
 
     nnoremap <silent> <buffer> q <Cmd>lua require("reacher").cancel()<CR>

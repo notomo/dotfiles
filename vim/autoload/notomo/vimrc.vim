@@ -157,6 +157,7 @@ function! notomo#vimrc#open_note() abort
     elseif offset < -1
         execute 'tabmove ' . (offset + 1)
     endif
+    normal! G
 endfunction
 
 function! notomo#vimrc#open_proto(filetype) abort

@@ -70,6 +70,7 @@ setup_ls(nvimlsp.dartls, {
     vim.fn.expand("~/app/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot"),
     "--lsp",
   },
+  init_options = {flutterOutline = true, outline = true},
 }, "mac", "win32")
 setup_ls(nvimlsp.efm, {
   cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
@@ -128,10 +129,6 @@ vim.lsp.handlers["textDocument/documentSymbol"] = function(_, _, result)
   })
 end
 
--- vim.lsp.handlers["workspace/configuration"] = function(_, _, _)
---   return {}
--- end
-
 vim.lsp.handlers["textDocument/definition"] = function(_, _, result)
   if result == nil or vim.tbl_isempty(result) then
     return nil
@@ -146,4 +143,12 @@ vim.lsp.handlers["textDocument/definition"] = function(_, _, result)
   else
     util.jump_to_location(result)
   end
+end
+
+vim.lsp.handlers["dart/textDocument/publishOutline"] = function(_, _, result, _, bufnr)
+  vim.api.nvim_buf_set_var(bufnr, "_thetto_dart_outline", result)
+end
+
+vim.lsp.handlers["dart/textDocument/publishFlutterOutline"] = function(_, _, result, _, bufnr)
+  vim.api.nvim_buf_set_var(bufnr, "_thetto_flutter_outline", result)
 end
