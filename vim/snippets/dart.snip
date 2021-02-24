@@ -1,6 +1,17 @@
 snippet final
 	final ${1:name} = ${0:value};
 
+snippet const
+options word
+	const ${1:expr}
+
+snippet import
+	import '${0:name}';
+
+snippet as
+options word
+	as ${0:name}
+
 snippet main
 	void main() {
 		${0:TARGET}
@@ -25,7 +36,63 @@ snippet else
 		${0:TARGET}
 	}
 
+snippet return
+	return ${0:expr}
+
 snippet method
 	${1:void} ${2:name}(${3:arg}) {
 		${0:TARGET}
+	}
+
+snippet class
+	class ${1:Name} {
+		${0:TARGET}
+	}
+
+snippet extension
+	extension ${1:Name} on ${2:TargetName} {
+		${0:TARGET}
+	}
+
+## flutter
+
+snippet initState
+	@override
+	void initState() {
+		super.initState();
+		${0:TARGET}
+	}
+
+snippet build
+	@override
+	M.Widget build(M.BuildContext context) {
+		${0:TARGET}
+	}
+
+snippet dispose
+	@override
+	void dispose() {
+		${0:TARGET}
+		super.dispose();
+	}
+
+snippet stateful
+	class ${1:Name} extends M.StatefulWidget {
+		@override
+		_$1State createState() => _$1State();
+	}
+
+	class _$1State extends M.State<$1> {
+		@override
+		M.Widget build(M.BuildContext context) {
+			${0:TARGET}
+		}
+	}
+
+snippet stateless
+	class ${1:name} extends M.StatelessWidget {
+		@override
+		M.Widget build(M.BuildContext context) {
+			${0:TARGET}
+		}
 	}
