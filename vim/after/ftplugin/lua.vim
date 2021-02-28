@@ -6,4 +6,4 @@ nnoremap <buffer> [exec]s :<C-u>luafile %<CR>
 nnoremap <buffer> <expr> [exec]l ':lua ' . getline('.') . '<CR>'
 call notomo#lsp#mapping()
 call ale#fix#registry#Add('luaformat', 'ale#fixers#luaformat#Fix', ['lua'], '')
-inoreabbrev != ~=
+inoreabbrev <buffer> != ~=

@@ -162,6 +162,7 @@ require("thetto/source/outline").opts = {
 
 require("thetto/source/git/branch").sorters = {"length"}
 require("thetto/custom").default_filters = {"substring", "-substring"}
+require("thetto/custom").opts = {display_limit = 500}
 
 require("thetto/source/file/alter").opts.pattern_groups = {
   {"%_test.go", "%.go"},

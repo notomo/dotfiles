@@ -1,4 +1,6 @@
 nnoremap gw <Cmd>lua require("reacher").start()<CR>
+nnoremap gs <Cmd>lua require("reacher").start("char")<CR>
+nnoremap gl <Cmd>lua require("reacher").start("line")<CR>
 
 autocmd MyAuGroup FileType reacher call s:reacher()
 function! s:reacher() abort
@@ -10,6 +12,7 @@ function! s:reacher() abort
     inoremap <buffer> <Space> <Cmd>lua require("reacher").finish()<CR>
     inoremap <buffer> <C-Space> <Cmd>lua require("reacher").finish()<CR>
     inoremap <buffer> <CR> <ESC>
+    inoremap <buffer> <Tab> <Space>
 
     nnoremap <silent> <buffer> q <Cmd>lua require("reacher").cancel()<CR>
     nnoremap <buffer> gg <Cmd>lua require("reacher").first()<CR>

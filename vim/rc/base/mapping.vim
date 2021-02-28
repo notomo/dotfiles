@@ -244,6 +244,8 @@ noremap <3-MiddleMouse> <Nop>
 inoremap <3-MiddleMouse> <Nop>
 noremap <4-MiddleMouse> <Nop>
 inoremap <4-MiddleMouse> <Nop>
+
+nnoremap q <Nop>
 "}}}
 
 " diary"{{{
