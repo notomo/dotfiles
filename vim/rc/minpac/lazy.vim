@@ -114,9 +114,6 @@ source ~/.vim/rc/plugins/thetto.vim
 call s:add('notomo/counteria.nvim', {'cmd' : 'Counteria*', 'depth': 0})
 
 call s:add('notomo/hita.nvim', {'cmd' : 'Hita*', 'depth': 0})
-nnoremap gj :<C-u>Hita downside_line<CR>
-nnoremap gk :<C-u>Hita upside_line<CR>
-nnoremap gn :<C-u>Hita line<CR>
 nnoremap g<CR> :<C-u>Hita search<CR>
 
 call s:add('neovim/nvim-lspconfig', {'module': 'lspconfig'})

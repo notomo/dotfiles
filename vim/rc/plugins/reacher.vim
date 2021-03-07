@@ -1,6 +1,9 @@
-nnoremap gw <Cmd>lua require("reacher").start()<CR>
-nnoremap gs <Cmd>lua require("reacher").start("char")<CR>
-nnoremap gl <Cmd>lua require("reacher").start("line")<CR>
+nnoremap gw <Cmd>lua require("reacher").start("word")<CR>
+nnoremap gs <Cmd>lua require("reacher").start("pattern")<CR>
+nnoremap g; <Cmd>lua require("reacher").start("line")<CR>
+nnoremap gj <Cmd>lua require("reacher").start("pattern", {first_row = vim.fn.line(".") + 1})<CR>
+nnoremap gk <Cmd>lua require("reacher").start("pattern", {last_row = vim.fn.line(".") - 1})<CR>
+nnoremap gl <Cmd>lua require("reacher").start("pattern", {first_row = vim.fn.line("."), last_row = vim.fn.line(".")})<CR>
 
 autocmd MyAuGroup FileType reacher call s:reacher()
 function! s:reacher() abort
