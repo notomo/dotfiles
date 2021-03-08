@@ -8,7 +8,6 @@ local modules = {
   "kivi",
   "flompt",
   "gesture",
-  "hita",
   "searcho",
   "notomo",
 }
