@@ -4,7 +4,7 @@ nnoremap g; <Cmd>lua require("reacher").start("line")<CR>
 nnoremap gj <Cmd>lua require("reacher").start("pattern", {first_row = vim.fn.line(".") + 1})<CR>
 nnoremap gk <Cmd>lua require("reacher").start("pattern", {last_row = vim.fn.line(".") - 1})<CR>
 nnoremap gl <Cmd>lua require("reacher").start("pattern", {first_row = vim.fn.line("."), last_row = vim.fn.line(".")})<CR>
-nnoremap g<CR> <Cmd>lua require("reacher").start("pattern", {input = vim.fn.getreg("/")})<CR><ESC>
+nnoremap g<CR> <Cmd>lua require("reacher").start("pattern", {input = vim.fn.histget("/")})<CR><ESC>
 
 autocmd MyAuGroup FileType reacher call s:reacher()
 function! s:reacher() abort
@@ -17,8 +17,10 @@ function! s:reacher() abort
     inoremap <buffer> <C-Space> <Cmd>lua require("reacher").finish()<CR>
     inoremap <buffer> <CR> <ESC>
     inoremap <buffer> <Tab> <Space>
+    inoremap <buffer> <C-j> <Cmd>lua require("reacher").forward_history()<CR>
+    inoremap <buffer> <C-k> <Cmd>lua require("reacher").backward_history()<CR>
 
-    nnoremap <silent> <buffer> q <Cmd>lua require("reacher").cancel()<CR>
+    nnoremap <silent> <nowait> <buffer> q <Cmd>lua require("reacher").cancel()<CR>
     nnoremap <buffer> gg <Cmd>lua require("reacher").first()<CR>
     nnoremap <buffer> ga <Cmd>lua require("reacher").first()<CR>
     nnoremap <buffer> ge <Cmd>lua require("reacher").last()<CR>

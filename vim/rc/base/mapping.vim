@@ -25,6 +25,9 @@ nnoremap <Leader>r <C-r>
 
 "}}}
 
+nnoremap [edit]; q:
+nnoremap [edit]/ q/
+
 " edit"{{{
 nnoremap <silent> <Leader>x :<C-u>call notomo#vimrc#exchange()<CR>
 nnoremap [edit]r r
@@ -362,6 +365,8 @@ noremap! <C-b> <Left>
 noremap! <C-f> <Right>
 inoremap <C-k> <C-o>C
 cnoremap <C-k> <Up>
+cnoremap <Up> <C-p>
+cnoremap <Down> <C-n>
 cnoremap <C-j> <Down>
 noremap! <C-e> <End>
 inoremap <C-a> <C-o>^

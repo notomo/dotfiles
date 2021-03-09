@@ -11,7 +11,7 @@ function! s:thetto_settings() abort
     nnoremap <buffer> I :<C-u>ThettoDo move_to_input<CR><Home>
     nnoremap <buffer> a :<C-u>ThettoDo move_to_input --x-behavior=a<CR>
     nnoremap <buffer> A :<C-u>ThettoDo move_to_input<CR><End>
-    nnoremap <buffer> q :<C-u>ThettoDo quit<CR>
+    nnoremap <nowait> <buffer> q :<C-u>ThettoDo quit<CR>
     nnoremap <buffer> o :<C-u>ThettoDo open<CR>
     nnoremap <buffer> sv :<C-u>ThettoDo vsplit_open<CR>
     nnoremap <buffer> D :<C-u>ThettoDo debug_print<CR>

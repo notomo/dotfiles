@@ -42,6 +42,6 @@ endfunction
 
 autocmd MyAuGroup BufRead */kivi-renamer,*/kivi-creator call s:kivi_input()
 function! s:kivi_input() abort
-    nnoremap <buffer> q <Cmd>quit!<CR>
+    nnoremap <nowait> <buffer> q <Cmd>quit!<CR>
     inoremap <buffer> jq <ESC><Cmd>quit!<CR>
 endfunction
