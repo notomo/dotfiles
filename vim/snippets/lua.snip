@@ -151,7 +151,12 @@ options word
 
 snippet describe
 	describe('${1:name}', function ()
+		
+		before_each(helper.before_each)
+		after_each(helper.after_each)
+		
 		${0:TARGET}
+		
 	end)
 
 snippet it
