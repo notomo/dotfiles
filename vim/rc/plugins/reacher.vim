@@ -5,6 +5,7 @@ nnoremap gk <Cmd>lua require("reacher").start({last_row = vim.fn.line(".") - 1})
 nnoremap gl <Cmd>lua require("reacher").start({first_row = vim.fn.line("."), last_row = vim.fn.line(".")})<CR>
 nnoremap g<CR> <Cmd>lua require("reacher").start({input = vim.fn.histget("/")})<CR><ESC>
 xnoremap gs <Cmd>lua require("reacher").start()<CR>
+xnoremap gl <Cmd>lua require("reacher").start({first_row = vim.fn.line("."), last_row = vim.fn.line(".")})<CR>
 
 autocmd MyAuGroup FileType reacher call s:reacher()
 function! s:reacher() abort

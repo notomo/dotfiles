@@ -30,6 +30,7 @@ function! s:thetto_settings() abort
     nnoremap <buffer> yy :<C-u>ThettoDo yank<CR>
     nnoremap <buffer> tsl :<C-u>ThettoDo toggle_sorter --x-name=length<CR>
     nnoremap <buffer> p :<C-u>ThettoDo toggle_preview<CR>
+    nnoremap <buffer> P :<C-u>ThettoDo dry_run<CR>
 
     " custom
     nnoremap <buffer> <Leader>rp :<C-u>ThettoDo qfreplace<CR>
