@@ -67,7 +67,9 @@ source_actions["vim/filetype"] = {
     if item == nil then
       return
     end
-    vim.fn["notomo#vimrc#open_proto"](item.value)
+    local filetype = item.value
+    local name = require("filetypext").detect({filetype = filetype})[1]
+    vim.fn["notomo#vimrc#open_sandbox"](name, filetype)
   end,
 }
 source_actions["url/bookmark"] = {

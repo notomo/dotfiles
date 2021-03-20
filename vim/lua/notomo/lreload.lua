@@ -9,6 +9,7 @@ local modules = {
   "flompt",
   "gesture",
   "searcho",
+  "filetypext",
   "notomo",
 }
 for _, m in ipairs(modules) do

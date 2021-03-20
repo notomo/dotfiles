@@ -137,3 +137,6 @@ function! s:cmdbuf() abort
     nnoremap <buffer> dd <Cmd>lua require('cmdbuf').delete()<CR>
     xnoremap <buffer> D :lua require('cmdbuf').delete({vim.api.nvim_buf_get_mark(0, "<")[1], vim.api.nvim_buf_get_mark(0, ">")[1]})<CR>
 endfunction
+
+call s:add('notomo/filetypext.nvim', {'depth': 0, 'module': 'filetypext'})
+nnoremap [exec]; <Cmd>lua vim.fn["notomo#vimrc#open_sandbox"](require("filetypext").detect({bufnr = 0})[1], vim.bo.filetype ~= '' and vim.bo.filetype or "markdown")<CR>

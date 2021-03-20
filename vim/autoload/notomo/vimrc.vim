@@ -160,20 +160,13 @@ function! notomo#vimrc#open_note() abort
     normal! G
 endfunction
 
-function! notomo#vimrc#open_proto(filetype) abort
+function! notomo#vimrc#open_sandbox(name, filetype) abort
     let type = empty(a:filetype) ? 'nofiletype' : a:filetype
     let dir_path = expand('~/workspace/proto/' . type)
     if !isdirectory(dir_path)
         call mkdir(dir_path, 'p')
     endif
-    let pattern = dir_path . '/proto\.*'
-    let paths = glob(pattern, v:true, v:true)
-    call sort(paths, { a, b -> strlen(a) - strlen(b) })
-    if !empty(paths)
-        let file_path = paths[0]
-    else
-        let file_path = dir_path . '/proto.' . type
-    endif
+    let file_path = join([dir_path, a:name], '/')
     execute 'tab drop' file_path
     execute 'lcd' dir_path
 endfunction
