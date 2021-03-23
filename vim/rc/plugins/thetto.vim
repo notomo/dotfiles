@@ -59,7 +59,7 @@ function! s:thetto_input_settings() abort
 endfunction
 
 nnoremap [finder]R :<C-u>Thetto vim/runtimepath<CR>
-nnoremap <Space>ur :<C-u>Thetto file/mru --auto=preview<CR>
+nnoremap <Space>ur :<C-u>Thetto file/mru --auto=preview --target=project<CR>
 nnoremap [finder]<CR> :<C-u>Thetto --resume<CR>
 nnoremap <Space>usf :<C-u>Thetto file/recursive --auto=preview<CR>
 nnoremap <Space>usg :<C-u>Thetto file/recursive --target=project --auto=preview<CR>
