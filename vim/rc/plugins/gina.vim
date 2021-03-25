@@ -22,7 +22,7 @@ nnoremap [git]R :<C-u>Gina! rebase<Space>
 nnoremap <expr> [git]A ":<C-u>Gina! apply " . fnamemodify(bufname('%'), ':p')
 nnoremap [git]dl :<C-u>Gina log --diff-filter=D --summary<CR> " deleted file log
 nnoremap [git]G :<C-u>Gina log -S""<Left>
-nnoremap [yank]U :<C-u>Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>
+nnoremap [yank]U :<C-u>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>
 xnoremap [yank]U :Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>
 
 function! s:get_current_relpath() abort

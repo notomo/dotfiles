@@ -87,11 +87,20 @@ function! s:start_termdebug() abort
     let path = expand('~/workspace/neovim/')
     let nvim = path .. 'build/bin/nvim'
     let rc = expand('~/dotfiles/tool/nvim_development/debugrc.vim')
-    tabedit
-    execute 'tcd' path
+
+    let current = expand('%:p')
+    let in_repo = current =~? '^' .. path
+    if !in_repo
+        tabedit
+        execute 'tcd' path
+    endif
+
     execute 'TermdebugCommand' nvim '-u' rc
-    call TermDebugSendCommand('run')
     Source
+    if in_repo
+        Break
+    endif
+    call TermDebugSendCommand('run')
 
     nnoremap [term]s <Cmd>Step<CR>
     nnoremap [term]b <Cmd>Break<CR>
