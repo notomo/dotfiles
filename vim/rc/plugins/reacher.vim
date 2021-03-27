@@ -20,19 +20,8 @@ function! s:reacher() abort
     inoremap <buffer> <C-j> <Cmd>lua require("reacher").forward_history()<CR>
     inoremap <buffer> <C-k> <Cmd>lua require("reacher").backward_history()<CR>
 
-    nnoremap <silent> <nowait> <buffer> q <Cmd>lua require("reacher").cancel()<CR>
-    nnoremap <buffer> gg <Cmd>lua require("reacher").first()<CR>
+    nnoremap <nowait> <buffer> q <Cmd>lua require("reacher").cancel()<CR>
     nnoremap <buffer> ga <Cmd>lua require("reacher").first_column()<CR>
     nnoremap <buffer> ge <Cmd>lua require("reacher").last_column()<CR>
-    nnoremap <buffer> G <Cmd>lua require("reacher").last()<CR>
-    nnoremap <buffer> j <Cmd>lua require("reacher").next_line()<CR>
-    nnoremap <buffer> w <Cmd>lua require("reacher").next()<CR>
-    nnoremap <buffer> l <Cmd>lua require("reacher").side_next()<CR>
-    nnoremap <buffer> L <Cmd>lua require("reacher").next_column()<CR>
-    nnoremap <buffer> k <Cmd>lua require("reacher").previous_line()<CR>
-    nnoremap <buffer> b <Cmd>lua require("reacher").previous()<CR>
-    nnoremap <buffer> h <Cmd>lua require("reacher").side_previous()<CR>
-    nnoremap <buffer> H <Cmd>lua require("reacher").previous_column()<CR>
     nnoremap <nowait> <buffer> <Space> <Cmd>lua require("reacher").finish()<CR>
-    nnoremap <buffer> <CR> <Cmd>lua require("reacher").finish()<CR>
 endfunction

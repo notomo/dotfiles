@@ -59,7 +59,7 @@ table.insert(keymaps, {
 })
 table.insert(keymaps, {
     lhs = "<CR>",
-    rhs = "<CR><Cmd>lua require('reacher').start('pattern', {input = vim.fn.getreg('/')})<CR><ESC>",
+    rhs = "<CR><Cmd>lua require('reacher').start({input = vim.fn.getreg('/')})<CR><ESC>",
     noremap = true,
 })
 table.insert(keymaps, {
