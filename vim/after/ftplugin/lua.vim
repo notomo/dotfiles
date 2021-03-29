@@ -8,5 +8,5 @@ call notomo#lsp#mapping()
 call ale#fix#registry#Add('luaformat', 'ale#fixers#luaformat#Fix', ['lua'], '')
 inoreabbrev <buffer> != ~=
 if expand("%")  =~? '_spec.lua$'
-    nnoremap [finder]o <Cmd>Thetto lua/busted --auto=preview<CR>
+    nnoremap <buffer> [finder]o <Cmd>Thetto lua/busted --auto=preview<CR>
 endif
