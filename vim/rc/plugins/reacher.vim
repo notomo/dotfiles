@@ -23,5 +23,9 @@ function! s:reacher() abort
     nnoremap <nowait> <buffer> q <Cmd>lua require("reacher").cancel()<CR>
     nnoremap <buffer> ga <Cmd>lua require("reacher").first_column()<CR>
     nnoremap <buffer> ge <Cmd>lua require("reacher").last_column()<CR>
+    nnoremap <buffer> gz <Cmd>lua require("reacher").last()<CR>
+    nnoremap <buffer> w <Cmd>lua require("reacher").next()<CR>
+    nnoremap <buffer> b <Cmd>lua require("reacher").previous()<CR>
+    nnoremap <buffer> v <Nop>
     nnoremap <nowait> <buffer> <Space> <Cmd>lua require("reacher").finish()<CR>
 endfunction
