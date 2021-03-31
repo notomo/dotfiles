@@ -21,8 +21,10 @@ function! s:reacher() abort
     inoremap <buffer> <C-k> <Cmd>lua require("reacher").backward_history()<CR>
 
     nnoremap <nowait> <buffer> q <Cmd>lua require("reacher").cancel()<CR>
-    nnoremap <buffer> ga <Cmd>lua require("reacher").first_column()<CR>
-    nnoremap <buffer> ge <Cmd>lua require("reacher").last_column()<CR>
+    nnoremap <buffer> h <Cmd>lua require("reacher").side_previous()<CR>
+    nnoremap <buffer> l <Cmd>lua require("reacher").side_next()<CR>
+    nnoremap <buffer> ga <Cmd>lua require("reacher").side_first()<CR>
+    nnoremap <buffer> ge <Cmd>lua require("reacher").side_last()<CR>
     nnoremap <buffer> gz <Cmd>lua require("reacher").last()<CR>
     nnoremap <buffer> w <Cmd>lua require("reacher").next()<CR>
     nnoremap <buffer> b <Cmd>lua require("reacher").previous()<CR>
