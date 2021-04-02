@@ -1,6 +1,6 @@
 
-nnoremap <silent> <LeftDrag> <Cmd>Gesture draw<CR>
-nnoremap <silent> <LeftRelease> <Cmd>Gesture finish<CR>
+nnoremap <silent> <LeftDrag> <Cmd>lua require("gesture").draw()<CR>
+nnoremap <silent> <LeftRelease> <Cmd>lua require("gesture").finish()<CR>
 autocmd MyAuGroup User GestureSourceLoad call s:gesture_settings()
 function! s:gesture_settings() abort
     lua << EOF
