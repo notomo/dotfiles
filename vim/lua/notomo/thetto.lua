@@ -58,6 +58,7 @@ file_bookmark.default_paths = {
   "~/.bashrc",
   "~/.local/.bash_profile",
   "~/.bash_profile",
+  "~/workspace/*",
 }
 
 local source_actions = require("thetto/custom").source_actions

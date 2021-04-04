@@ -1,4 +1,4 @@
-local custom = require("curstr/custom")
+local custom = require("curstr.custom")
 
 custom.source_aliases.swagger = {
   names = {"file/search"},

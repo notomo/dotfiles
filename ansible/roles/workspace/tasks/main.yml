@@ -7,14 +7,6 @@
     - proto
     - memo
 
-- name: make workspace directory
-  file:
-    path: "{{ home_dir }}/workspace/{{ item }}"
-    state: directory
-  with_items:
-    - lsync
-  when: is_linux
-
 - name: make .local/bin directory
   file:
     path: "{{ home_dir }}/.local/bin"
