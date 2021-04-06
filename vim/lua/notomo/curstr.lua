@@ -16,7 +16,7 @@ custom.sources["vim/autoload_function"] = {
 }
 
 custom.source_aliases.openable = {
-  names = {"vim/function", "vim/lua", "file", "directory", "swagger", "vim/runtime"},
+  names = {"vim/function", "lua", "file", "directory", "swagger", "vim/runtime"},
 }
 
 custom.source_aliases.bool = {

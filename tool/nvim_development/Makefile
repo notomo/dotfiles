@@ -4,10 +4,12 @@ NVIM := ${NVIM_DIR}/build/bin/nvim
 
 unexport LUA_PATH
 unexport LUA_CPATH
-build:
+
+build_with_asan:
 	cd ${NVIM_DIR}; CC=clang-11 make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
-	# cd ${NVIM_DIR}; CC=clang-11 make
-	# cd ${NVIM_DIR}; make
+
+build:
+	cd ${NVIM_DIR}; CC=clang-11 make
 .PHONY: build
 
 all:
@@ -48,8 +50,12 @@ run:
 	rm -f core
 	rm -f backtrace.txt
 	${MAKE} _run || echo
-	gdb ${NVIM} core --eval-command "thread apply all bt full" --batch 2>&1 | tee backtrace.txt
+	${MAKE} gdb
 .PHONY: run
+
+gdb:
+	gdb ${NVIM} core --eval-command "thread apply all bt full" --batch 2>&1 | tee backtrace.txt
+.PHONY: gdb
 
 headless:
 	${NVIM} --headless -u NORC +"luafile ./minimal.lua" +"quitall!"
@@ -57,7 +63,8 @@ headless:
 _run:
 	# ${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
 	# ${NVIM} -u NORC +"source ./minimal.vim" +"quitall!"
-	${NVIM} --headless -u NORC +"luafile ./minimal.lua" +"quitall!"
+	# ${NVIM} --headless -u NORC +"luafile ./minimal.lua" +"quitall!"
+	${NVIM}
 	# ${NVIM} -u NORC +"source ./minimal.vim"
 	# ${NVIM} -u NORC +"luafile ./minimal.lua"
 .PHONY: _run
