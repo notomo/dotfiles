@@ -89,15 +89,15 @@ source ~/.vim/rc/plugins/tdd.vim
 call s:add('notomo/vimonga', {'cmd': 'Vimonga*', 'depth': 0})
 source ~/.vim/rc/plugins/vimonga.vim
 
-call s:add('notomo/curstr.nvim', {'cmd': 'Curstr*', 'depth': 0})
-nnoremap <silent> [keyword]fo :<C-u>Curstr openable -action=open<CR>
-nnoremap <silent> [keyword]ft :<C-u>Curstr openable -action=tab_open<CR>
-nnoremap <silent> [keyword]fv :<C-u>Curstr openable -action=vertical_open<CR>
-nnoremap <silent> [keyword]fh :<C-u>Curstr openable -action=horizontal_open<CR>
-nnoremap <silent> [edit]s :<C-u>Curstr togglable<CR>
-nnoremap <Space>rj :<C-u>Curstr print -action=append<CR>j
-nnoremap [edit]J :<C-u>Curstr range -action=join<CR>
-xnoremap [edit]J :Curstr range -action=join<CR>
+call s:add('notomo/curstr.nvim', {'module': 'curstr', 'depth': 0})
+nnoremap <silent> [keyword]fo <Cmd>lua require("curstr").execute("openable", {action = "open"})<CR>
+nnoremap <silent> [keyword]ft <Cmd>lua require("curstr").execute("openable", {action = "tab_open"})<CR>
+nnoremap <silent> [keyword]fv <Cmd>lua require("curstr").execute("openable", {action = "vertical_open"})<CR>
+nnoremap <silent> [keyword]fh <Cmd>lua require("curstr").execute("openable", {action = "horizontal_open"})<CR>
+nnoremap <silent> [edit]s <Cmd>lua require("curstr").execute("togglable")<CR>
+nnoremap <Space>rj <Cmd>lua require("curstr").execute("print", {action = "append"})<CR>j
+nnoremap [edit]J <Cmd>lua require("curstr").execute("range", {action = "join"})<CR>
+xnoremap [edit]J <Cmd>lua require("curstr").execute("range", {action = "join"})<CR>
 autocmd MyAuGroup User CurstrSourceLoad lua dofile(vim.fn.expand('~/dotfiles/vim/lua/notomo/curstr.lua'))
 
 call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*', 'depth': 0})
