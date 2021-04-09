@@ -24,6 +24,7 @@ nnoremap [git]dl :<C-u>Gina log --diff-filter=D --summary<CR> " deleted file log
 nnoremap [git]G :<C-u>Gina log -S""<Left>
 nnoremap [yank]U :<C-u>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>
 xnoremap [yank]U :Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>
+nnoremap [exec]gu :<C-u>Gina browse :<CR>
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()

@@ -5,3 +5,4 @@ __pycache__
 .php_cs.cache
 .tern-port
 .DS_Store
+.envrc
