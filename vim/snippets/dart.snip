@@ -1,6 +1,12 @@
 snippet final
 	final ${1:name} = ${0:value};
 
+snippet var
+	final ${1:name} = ${0:value};
+
+snippet import_show
+    import '${1:package_name}' show ${0:name};
+
 snippet const
 options word
 	const ${1:expr}
@@ -26,6 +32,11 @@ options word
 snippet print
 	print(${0:expr});
 
+snippet for
+	for (${1:e} in ${2:list}) {
+		${0:TARGET}
+	}
+
 snippet ifonly
 	if (${1:condition}) {
 		${0:TARGET}
@@ -37,7 +48,7 @@ snippet else
 	}
 
 snippet return
-	return ${0:expr}
+	return ${0:expr};
 
 snippet method
 	${1:void} ${2:name}(${3:arg}) {

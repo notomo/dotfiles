@@ -238,6 +238,10 @@ snippet mode
 options word
 	vim.api.nvim_get_mode().mode${0}
 
+snippet namespace
+options word
+	local ns = vim.api.nvim_create_namespace("${0:name}")
+
 snippet wait
 	local ok = vim.wait(${1:1000}, function ()
 		return ${0:finished}
