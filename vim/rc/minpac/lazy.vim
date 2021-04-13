@@ -100,7 +100,7 @@ nnoremap [edit]J <Cmd>lua require("curstr").execute("range", {action = "join"})<
 xnoremap [edit]J <Cmd>lua require("curstr").execute("range", {action = "join"})<CR>
 autocmd MyAuGroup User CurstrSourceLoad lua dofile(vim.fn.expand('~/dotfiles/vim/lua/notomo/curstr.lua'))
 
-call s:add('notomo/nvimtool', {'cmd' : 'NvimTool*', 'depth': 0})
+call s:add('notomo/nvimtool', {'module' : 'nvimtool', 'depth': 0})
 
 call s:add('notomo/gesture.nvim', {'module': 'gesture', 'depth': 0})
 source ~/.vim/rc/plugins/gesture.vim
