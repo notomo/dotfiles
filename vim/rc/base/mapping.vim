@@ -500,8 +500,8 @@ nmap <Space>q [qf]
 
 nnoremap [qf]o :<C-u>call notomo#qf#open()<CR>
 nnoremap [qf]c :<C-u>call notomo#qf#close()<CR>
-nnoremap [qf]f :<C-u>call notomo#qf#first()<CR>
-nnoremap [qf]l :<C-u>call notomo#qf#last()<CR>
+nnoremap [qf]s :<C-u>call notomo#qf#first()<CR>
+nnoremap [qf]e :<C-u>call notomo#qf#last()<CR>
 nnoremap [qf]n :<C-u>call notomo#qf#next()<CR>
 nnoremap [qf]p :<C-u>call notomo#qf#previous()<CR>
 nnoremap [qf]d :<C-u>call notomo#qf#delete()<CR>

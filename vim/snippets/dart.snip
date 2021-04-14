@@ -33,7 +33,7 @@ snippet print
 	print(${0:expr});
 
 snippet for
-	for (${1:e} in ${2:list}) {
+	for (final ${1:e} in ${2:list}) {
 		${0:TARGET}
 	}
 
@@ -107,3 +107,8 @@ snippet stateless
 			${0:TARGET}
 		}
 	}
+
+snippet enum
+    enum ${1:Name} {
+        ${0:TARGET}
+    }

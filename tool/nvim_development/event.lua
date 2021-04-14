@@ -24,9 +24,9 @@ M.request("nvim_ui_attach", 30, 30, {ext_multigrid = true, ext_linegrid = true})
 M.request("nvim_list_uis")
 
 session:run(function(...)
-  print(vim.inspect({...}))
+  print(vim.fn.json_encode({...}))
 end, function(...)
-  print(vim.inspect({...}))
+  print(vim.fn.json_encode({...}))
 end, 1000)
 
 session:close()

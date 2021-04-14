@@ -126,6 +126,7 @@ call s:add('thosakwe/vim-flutter', {'ft' : 'dart'})
 
 call s:add('notomo/cmdbuf.nvim', {'depth': 0, 'module': 'cmdbuf'})
 nnoremap Q <Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight)<CR>
+nnoremap <Space>ql <Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "lua/cmd"})<CR>
 cnoremap <C-q> <Cmd>lua require('cmdbuf').split_open(vim.o.cmdwinheight, {line = vim.fn.getcmdline(), column = vim.fn.getcmdpos()})<CR><C-c>
 augroup cmdbuf_setting
   autocmd!
