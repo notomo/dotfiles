@@ -7,6 +7,9 @@ snippet var
 snippet import_show
     import '${1:package_name}' show ${0:name};
 
+snippet export
+    export '${1:package_name}';
+
 snippet const
 options word
 	const ${1:expr}
@@ -65,6 +68,14 @@ snippet extension
 		${0:TARGET}
 	}
 
+snippet enum
+    enum ${1:Name} {
+        ${0:TARGET}
+    }
+
+snippet list_type
+    List<${0:dynamic}>
+
 ## flutter
 
 snippet initState
@@ -107,8 +118,3 @@ snippet stateless
 			${0:TARGET}
 		}
 	}
-
-snippet enum
-    enum ${1:Name} {
-        ${0:TARGET}
-    }

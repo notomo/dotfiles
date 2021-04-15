@@ -20,7 +20,7 @@ function M.request(method, ...)
   return result
 end
 
-M.request("nvim_ui_attach", 30, 30, {ext_multigrid = true, ext_linegrid = true})
+M.request("nvim_ui_attach", 30, 30, {ext_multigrid = true})
 M.request("nvim_list_uis")
 
 session:run(function(...)
