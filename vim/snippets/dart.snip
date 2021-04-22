@@ -28,6 +28,14 @@ snippet switch
 		${0:TARGET}
 	}
 
+snippet generator_sync
+	Iterable<${1:T}> ${2:name}() sync* {
+	    ${0:TARGET}
+	}
+
+snippet yield
+    yield ${0:expr};
+
 snippet case
 	case ${1:expr}:
 		${0:TARGET}
@@ -60,7 +68,7 @@ snippet for
 	}
 
 snippet for_inc
-	for (i = ${1:0}; i < ${2:max}; i++) {
+	for (var i = ${1:0}; i < ${2:max}; i++) {
 		${0:TARGET}
 	}
 

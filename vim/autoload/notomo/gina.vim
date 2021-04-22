@@ -78,7 +78,7 @@ function! notomo#gina#edit(action)
             tabnew
         endif
         execute 'cd ' . path
-        Kivi --layout=no --new
+        lua require("kivi").open("file", {layout = "no", new = true})
         return
     endif
 

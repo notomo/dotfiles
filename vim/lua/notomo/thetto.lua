@@ -1,5 +1,5 @@
 require("thetto/kind/directory").after = function(path)
-  vim.api.nvim_command("Kivi --layout=no --path=" .. path)
+  require("kivi").open("file", {layout = "no", path = path})
 end
 
 require("thetto/setup/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kivi)://)"

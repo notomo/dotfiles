@@ -115,7 +115,7 @@ call s:add('notomo/counteria.nvim', {'cmd' : 'Counteria*', 'depth': 0})
 
 call s:add('neovim/nvim-lspconfig', {'module': 'lspconfig'})
 
-call s:add('notomo/kivi.nvim', {'cmd': 'Kivi*', 'depth': 0})
+call s:add('notomo/kivi.nvim', {'module': 'kivi', 'depth': 0})
 source ~/.vim/rc/plugins/kivi.vim
 
 call s:add('notomo/reacher.nvim', {'depth': 0, 'module': 'reacher'})
