@@ -1,5 +1,5 @@
 
-nnoremap [exec]f <Cmd>lua require("kivi").open("file", {layout = "vertical", new = true})<CR>
+nnoremap [exec]f <Cmd>lua require("kivi").open({layout = "vertical", new = true})<CR>
 
 autocmd MyAuGroup FileType kivi-* call s:kivi()
 function! s:kivi() abort
@@ -13,9 +13,7 @@ function! s:kivi() abort
     nnoremap <buffer> <2-LeftMouse> <Cmd>lua require("kivi").execute("child")<CR>
     nnoremap <buffer> sm <Cmd>lua require("kivi").execute("toggle_selection")<CR>j
     xnoremap <buffer> sm <Cmd>lua require("kivi").execute("toggle_selection")<CR>
-    nnoremap <buffer> <Space>g <Cmd>lua require("kivi").open("file", {target = "project"})<CR>
 
-    packadd gesture.nvim
 lua << EOF
 local gesture = require('gesture')
 gesture.register({
@@ -29,8 +27,9 @@ endfunction
 
 autocmd MyAuGroup FileType kivi-file call s:kivi_file()
 function! s:kivi_file() abort
-    nnoremap <buffer> <Space>h <Cmd>lua require("kivi").open("file", {path = "~"})<CR>
-    nnoremap <nowait> <buffer> <Space>h <Cmd>lua require("kivi").open("file", {path = "/tmp"})<CR>
+    nnoremap <buffer> <Space>g <Cmd>lua require("kivi").open({source_opts = {target = "project"}})<CR>
+    nnoremap <buffer> <Space>h <Cmd>lua require("kivi").open({path = "~"})<CR>
+    nnoremap <nowait> <buffer> <Space>r <Cmd>lua require("kivi").open({path = "/tmp"})<CR>
     nnoremap <buffer> df <Cmd>lua require("kivi").execute("delete")<CR>
     nnoremap <buffer> xf <Cmd>lua require("kivi").execute("cut")<CR>
     nnoremap <buffer> yf <Cmd>lua require("kivi").execute("copy")<CR>

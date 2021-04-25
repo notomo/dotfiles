@@ -77,8 +77,8 @@ function! notomo#gina#edit(action)
         if a:action ==? 'edit:tab'
             tabnew
         endif
-        execute 'cd ' . path
-        lua require("kivi").open("file", {layout = "no", new = true})
+        execute 'lcd ' . path
+        lua require("kivi").open({layout = "no", new = true})
         return
     endif
 

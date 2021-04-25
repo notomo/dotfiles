@@ -1,5 +1,5 @@
 require("thetto/kind/directory").after = function(path)
-  require("kivi").open("file", {layout = "no", path = path})
+  require("kivi").open({layout = "no", path = path})
 end
 
 require("thetto/setup/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kivi)://)"
