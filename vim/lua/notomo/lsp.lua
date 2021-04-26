@@ -24,7 +24,10 @@ local setup_ls = function(ls, config, ...)
       return
     end
   end
-  ls.setup(config or {})
+  config = config or {}
+  config.flags = config.flags or {}
+  config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
+  ls.setup(config)
 end
 
 setup_ls(nvimlsp.rls, {})
