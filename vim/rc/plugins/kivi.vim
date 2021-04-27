@@ -27,7 +27,7 @@ endfunction
 
 autocmd MyAuGroup FileType kivi-file call s:kivi_file()
 function! s:kivi_file() abort
-    nnoremap <buffer> <Space>g <Cmd>lua require("kivi").open({source_opts = {target = "project"}})<CR>
+    nnoremap <buffer> <Space>g <Cmd>lua require("kivi").open({source_setup_opts = {target = "project"}})<CR>
     nnoremap <buffer> <Space>h <Cmd>lua require("kivi").open({path = "~"})<CR>
     nnoremap <nowait> <buffer> <Space>r <Cmd>lua require("kivi").open({path = "/tmp"})<CR>
     nnoremap <buffer> df <Cmd>lua require("kivi").execute("delete")<CR>
