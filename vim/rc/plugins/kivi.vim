@@ -1,5 +1,5 @@
 
-nnoremap [exec]f <Cmd>lua require("kivi").open({layout = "vertical", new = true})<CR>
+nnoremap [exec]f <Cmd>lua require("kivi").open({layout = {type = "vertical"}})<CR>
 
 autocmd MyAuGroup FileType kivi-* call s:kivi()
 function! s:kivi() abort

@@ -78,7 +78,7 @@ function! notomo#gina#edit(action)
             tabnew
         endif
         execute 'lcd ' . path
-        lua require("kivi").open({layout = "no", new = true})
+        lua require("kivi").open()
         return
     endif
 
