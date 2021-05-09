@@ -29,7 +29,7 @@ function! s:add(name, options) abort
         let options['do'] = a:options['do']
     endif
     if has_key(a:options, 'module')
-        call luaeval('require("notomo/hook").RequireHook.create(_A[1], _A[2])', [name, a:options['module']])
+        call luaeval('require("notomo/hook").RequireHook.create(_A[1], _A[2], _A[3])', [name, a:options['module'], get(a:options, 'post_hook_file', v:null)])
     endif
 
     call minpac#add(a:name, options)
@@ -89,7 +89,7 @@ source ~/.vim/rc/plugins/tdd.vim
 call s:add('notomo/vimonga', {'cmd': 'Vimonga*', 'depth': 0})
 source ~/.vim/rc/plugins/vimonga.vim
 
-call s:add('notomo/curstr.nvim', {'module': 'curstr', 'depth': 0})
+call s:add('notomo/curstr.nvim', {'module': 'curstr', 'post_hook_file': '~/dotfiles/vim/lua/notomo/curstr.lua', 'depth': 0})
 nnoremap <silent> [keyword]fo <Cmd>lua require("curstr").execute("openable", {action = "open"})<CR>
 nnoremap <silent> [keyword]ft <Cmd>lua require("curstr").execute("openable", {action = "tab_open"})<CR>
 nnoremap <silent> [keyword]fv <Cmd>lua require("curstr").execute("openable", {action = "vertical_open"})<CR>
@@ -98,7 +98,13 @@ nnoremap <silent> [edit]s <Cmd>lua require("curstr").execute("togglable")<CR>
 nnoremap <Space>rj <Cmd>lua require("curstr").execute("print", {action = "append"})<CR>j
 nnoremap [edit]J <Cmd>lua require("curstr").execute("range", {action = "join"})<CR>
 xnoremap [edit]J <Cmd>lua require("curstr").execute("range", {action = "join"})<CR>
-autocmd MyAuGroup User CurstrSourceLoad lua dofile(vim.fn.expand('~/dotfiles/vim/lua/notomo/curstr.lua'))
+lua << EOF
+require("lreload").enable("curstr", {
+  post_hook = function()
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/curstr.lua"))
+  end,
+})
+EOF
 
 call s:add('notomo/nvimtool', {'module' : 'nvimtool', 'depth': 0})
 
@@ -145,3 +151,4 @@ call s:add('notomo/filetypext.nvim', {'depth': 0, 'module': 'filetypext'})
 nnoremap [exec]; <Cmd>lua vim.fn["notomo#vimrc#open_sandbox"](require("filetypext").detect({bufnr = 0})[1], vim.bo.filetype ~= '' and vim.bo.filetype or "markdown")<CR>
 
 call s:add('notomo/cmdhndlr.nvim', {'depth': 0, 'module': 'cmdhndlr'})
+xnoremap <Leader>Q <Cmd>lua require("cmdhndlr").run()<CR>

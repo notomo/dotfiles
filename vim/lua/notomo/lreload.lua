@@ -2,7 +2,6 @@ local modules = {
   "reacher",
   "cmdbuf",
   "wintablib",
-  "curstr",
   "nvimtool",
   "thetto",
   "kivi",
