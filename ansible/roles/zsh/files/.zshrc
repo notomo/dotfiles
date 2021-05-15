@@ -18,9 +18,15 @@ setopt no_beep
 setopt ignore_eof
 setopt share_history
 setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
 export HISTSIZE=1000
 export SAVEHIST=100000
 export HISTFILE=${HOME}/.zsh_history
 setopt EXTENDED_HISTORY
 
 zinit light zsh-users/zsh-completions
+
+zshaddhistory() {
+  ! [[ ${1%%$'\n'} =~ "(token|TOKEN|password|PASSWORD|secret|SECRET).*=.*" ]]
+}
