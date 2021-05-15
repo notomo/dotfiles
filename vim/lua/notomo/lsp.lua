@@ -57,7 +57,10 @@ setup_ls(nvimlsp.sumneko_lua, {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
           [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
         },
+        maxPreload = 2000,
+        preloadFileSize = 50000,
       },
+      telemetry = {enable = false},
     },
   },
 }, "mac", "win32")
