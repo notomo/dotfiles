@@ -19,5 +19,6 @@
       - cscope
       - supervisor
       - jq
+      - tmpreaper
   when: is_ubuntu
   become: yes
