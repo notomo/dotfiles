@@ -47,6 +47,8 @@ mklink ".vintrc.yaml" %HOMEPATH%"\dotfiles\lint\vim\.vintrc.yaml"
 
 mklink ".gitignore_global" %HOMEPATH%"\dotfiles\git\.gitignore_global"
 
+mklink ".wslconfig" %HOMEPATH%"\dotfiles\setup\windows\.wslconfig"
+
 mkdir %HOMEPATH%"\app" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
