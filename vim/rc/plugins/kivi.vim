@@ -10,6 +10,7 @@ function! s:kivi() abort
     nnoremap <buffer> B <Cmd>lua require("kivi").execute("back")<CR>
     nnoremap <buffer> rn <Cmd>lua require("kivi").execute("rename")<CR>
     nnoremap <buffer> o <Cmd>lua require("kivi").execute("toggle_tree")<CR>
+    nnoremap <buffer> c <Cmd>lua require("kivi").execute("close_all_tree")<CR>
     nnoremap <buffer> <2-LeftMouse> <Cmd>lua require("kivi").execute("child")<CR>
     nnoremap <buffer> sm <Cmd>lua require("kivi").execute("toggle_selection")<CR>j
     xnoremap <buffer> sm <Cmd>lua require("kivi").execute("toggle_selection")<CR>

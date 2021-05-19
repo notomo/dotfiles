@@ -89,3 +89,5 @@ set tabline=%!MakeTabLine()
 call minpac#add('tbastos/vim-lua')
 
 call minpac#add('notomo/lreload.nvim', {'depth': 0})
+
+call minpac#add('nanotee/luv-vimdocs')
