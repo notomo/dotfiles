@@ -105,6 +105,7 @@ inoremap <silent> ｊｊ <ESC>
 cnoremap <silent> jj <C-c>
 onoremap jj <ESC>
 snoremap jj <ESC>
+cnoremap <LeftMouse> <C-c>
 "}}}
 
 
