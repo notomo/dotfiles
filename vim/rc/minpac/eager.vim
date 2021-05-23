@@ -69,7 +69,7 @@ endif
 autocmd MyAuGroup BufEnter * call s:auto_cd()
 function! s:auto_cd() abort
     try
-        execute ':lcd ' . substitute(expand('%:p:h'),' ','\\\\ ','g')
+        lcd `=expand('%:p:h')`
     catch
     endtry
 endfunction

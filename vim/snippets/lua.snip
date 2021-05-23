@@ -225,7 +225,9 @@ snippet setmetatable
 	setmetatable(${1:value}, ${0:metatable})
 
 snippet index
-	${1:M}.__index = $1
+	function ${1:class}.__index(self, k)
+		return rawget($1, k) or self._${0:base}[k]
+	end
 
 snippet meta
 	${1:Name}.__${2:method} = ${0:expr}
