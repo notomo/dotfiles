@@ -59,7 +59,7 @@ function! LightlineGitBranch()
 endfunction
 
 function! LightlineFileInfo()
-    return s:surround(&fileencoding . ':' . &fileformat . ':' . &filetype)
+    return s:surround(&filetype)
 endfunction
 
 function! LightlinePosition()
@@ -71,7 +71,7 @@ function! LightlineFilePath()
 endfunction
 
 function! LightlineMode()
-    return lightline#mode()
+    return lightline#mode()[0]
 endfunction
 
 let g:lightline.colorscheme = 'spring_night'
