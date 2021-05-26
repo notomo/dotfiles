@@ -341,3 +341,7 @@ snippet new
 		local tbl = {${0:TARGET}}
 		return setmetatable(tbl, $1)
 	end
+
+snippet lines
+options word
+	vim.api.nvim_buf_get_lines(0, 0, -1, false)

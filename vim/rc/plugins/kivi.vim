@@ -14,6 +14,7 @@ function! s:kivi() abort
     nnoremap <buffer> <2-LeftMouse> <Cmd>lua require("kivi").execute("child")<CR>
     nnoremap <buffer> sm <Cmd>lua require("kivi").execute("toggle_selection")<CR>j
     xnoremap <buffer> sm <Cmd>lua require("kivi").execute("toggle_selection")<CR>
+    nnoremap <buffer> O <Cmd>lua require("kivi").execute("expand_parent")<CR>
 
 lua << EOF
 local gesture = require('gesture')
