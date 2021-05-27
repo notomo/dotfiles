@@ -94,10 +94,6 @@ function! notomo#vimrc#yank_and_echo(value) abort
 endfunction
 
 function! notomo#vimrc#update_rplugin_runtimepath() abort
-    if !has('nvim')
-        return
-    endif
-
     let runtimepaths = split(&runtimepath, ',')
     let pack_path = split(&packpath, ',')[0]
     let rplugin_paths = globpath(pack_path, 'pack/*/opt/*/rplugin', v:true, v:true)

@@ -3,7 +3,6 @@
   set_fact:
     dotfiles_dir: "{{ home_dir }}/dotfiles"
     link_dict:
-      vim/rc/.vimrc: .vimrc
       vim/rc: .vim/rc
       vim/autoload: .vim/autoload
       vim/lua: .vim/lua

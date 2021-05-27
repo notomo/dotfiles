@@ -27,7 +27,7 @@ function! s:surround(value) abort
 endfunction
 
 function! LightlineVimonga()
-    if !has('nvim') || !exists('*vimonga#status')
+    if !exists('*vimonga#status')
         return ''
     endif
 

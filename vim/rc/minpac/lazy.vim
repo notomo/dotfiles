@@ -77,10 +77,6 @@ endif
 call s:add('notomo/minfiler.vim', {'cmd': 'Minfiler', 'depth': 0})
 nnoremap [exec]F :<C-u>tabedit<CR>:Minfiler<CR>
 
-if !has('nvim')
-    finish
-endif
-
 call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
 
 call s:add('notomo/tdd.vim', {'cmd' : 'TDD*', 'depth': 0})

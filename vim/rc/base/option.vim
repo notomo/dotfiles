@@ -77,11 +77,6 @@ set spelloptions=camel
 set cedit=<C-q>
 set cmdwinheight=12
 
-if !has('nvim')
-    set viminfo+=n~/.vim/tmp/viminfo.txt
-    set swapsync=
-endif
-
 if executable('zsh')
     set shell=zsh
 endif
@@ -89,3 +84,21 @@ endif
 if !has('gui')
     colorscheme spring-night
 endif
+
+set clipboard+=unnamedplus
+if has('win32')
+    let g:clipboard = {
+        \ 'name': 'win32yank',
+        \ 'copy': {'+': 'win32yank -i --crlf', '*': 'win32yank -i --crlf'},
+        \ 'paste': {'+': 'win32yank -o --lf', '*': 'win32yank -o --lf'},
+        \ 'cache_enabled': 0,
+    \ }
+endif
+
+set inccommand=nosplit
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175
+set wildoptions+=pum
+set pumblend=15
+set shada^='1000
+
+autocmd MyAuGroup TextYankPost * silent! lua vim.highlight.on_yank({higroup = "Flashy", timeout = 200, on_macro = true, on_visual = true})

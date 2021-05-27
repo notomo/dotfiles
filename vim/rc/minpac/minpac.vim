@@ -11,16 +11,11 @@ packadd minpac
 call minpac#init()
 
 source ~/.vim/rc/minpac/eager.vim
-if has('nvim')
-    source ~/.vim/rc/minpac/neovim_eager.vim
-endif
 source ~/.vim/rc/minpac/lazy.vim
 
 if s:initializing
     call minpac#update()
-    if has('nvim')
-        UpdateRemotePlugins
-    endif
+    UpdateRemotePlugins
 endif
 
 packloadall
@@ -29,15 +24,13 @@ packloadall
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
 
-if has('nvim')
-    " NOTE: to load before default lua syntax.
-    let s:lua_syntax = s:pack_dir .. '/pack/minpac/start/vim-lua'
-    execute 'set runtimepath-=' .. s:lua_syntax
-    execute 'set runtimepath^=' .. s:lua_syntax
+" NOTE: to load before default lua syntax.
+let s:lua_syntax = s:pack_dir .. '/pack/minpac/start/vim-lua'
+execute 'set runtimepath-=' .. s:lua_syntax
+execute 'set runtimepath^=' .. s:lua_syntax
 
-    lua require('notomo/lsp')
-    if executable('python3')
-        source ~/.vim/rc/plugins/deoplete.vim
-    endif
-    lua require('notomo/lreload')
+lua require('notomo/lsp')
+if executable('python3')
+    source ~/.vim/rc/plugins/deoplete.vim
 endif
+lua require('notomo/lreload')

@@ -1,7 +1,5 @@
 
 cd %HOMEPATH%
-mklink ".vimrc" %HOMEPATH%"\dotfiles\vim\rc\.vimrc"
-mklink ".gvimrc" %HOMEPATH%"\dotfiles\vim\rc\.gvimrc"
 
 mkdir %HOMEPATH%"\.vim" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
