@@ -249,18 +249,6 @@ function! s:add(name, options) abort
     call minpac#add(a:name, options)
 endfunction
 
-call s:add('h1mesuke/vim-alignta', {'cmd' : 'Alignta'})
-xnoremap [alignta] <Nop>
-xmap <Leader>a [alignta]
-xnoremap [alignta]i :<C-u>'<,'>Alignta =><CR>
-xnoremap [alignta]e :<C-u>'<,'>Alignta =<CR>
-xnoremap [alignta], :<C-u>'<,'>Alignta ,<CR>
-xnoremap [alignta]c :<C-u>'<,'>Alignta :<CR>
-xnoremap [alignta]p :<C-u>'<,'>Alignta )<CR>
-xnoremap [alignta]<Space> :<C-u>'<,'>Alignta <<0 \ <CR>
-
-call s:add('lilydjwg/colorizer', {'cmd' : 'ColorHighlight'})
-
 call s:add('AndrewRadev/linediff.vim', {'cmd' : '*Linediff'})
 xnoremap [diff]l :Linediff<CR>
 
@@ -287,9 +275,6 @@ if !empty($SSH_CLIENT) && executable('lemonade') && has('mac')
 elseif executable('wslview')
     let g:openbrowser_browser_commands = [{'name': 'wslview', 'args': 'wslview {uri}'}]
 endif
-
-call s:add('notomo/minfiler.vim', {'cmd': 'Minfiler', 'depth': 0})
-nnoremap [exec]F :<C-u>tabedit<CR>:Minfiler<CR>
 
 call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
 
