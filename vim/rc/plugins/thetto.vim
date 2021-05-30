@@ -67,6 +67,7 @@ nnoremap [finder]f :<C-u>Thetto file/in_dir<CR>
 nnoremap [finder]h :<C-u>Thetto vim/help --sorters=length<CR>
 nnoremap [finder]l :<C-u>Thetto line --auto=preview --filters=regex --filters=-regex --filters=substring --filters=-substring<CR>
 nnoremap [finder]r :<C-u>Thetto directory/recursive --target=project --sorters=length<CR>
+nnoremap <Space>usd :<C-u>Thetto directory/recursive --sorters=length<CR>
 nnoremap [finder]v :<C-u>Thetto file/recursive --cwd=~/dotfiles --auto=preview<CR>
 nnoremap [finder]O :<C-u>Thetto vim/option<CR>
 nnoremap [finder]H :<C-u>Thetto vim/highlight_group<CR>
