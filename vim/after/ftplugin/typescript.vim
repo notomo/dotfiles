@@ -3,4 +3,4 @@ setlocal completeopt-=preview
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal expandtab
-call notomo#lsp#mapping()
+call notomo#mapping#lsp()
