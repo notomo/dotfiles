@@ -1,5 +1,16 @@
 scriptencoding utf-8
 
+nnoremap [surround] <Nop>
+nmap s [surround]
+xnoremap [surround] <Nop>
+xmap s [surround]
+nmap <silent>[surround]a <Plug>(operator-surround-append)
+xmap <silent>[surround]a <Plug>(operator-surround-append)
+nmap <silent>[surround]d v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-delete)
+xmap <silent>[surround]d <Plug>(operator-surround-delete)
+nmap <silent>[surround]r v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-replace)
+xmap <silent>[surround]r <Plug>(operator-surround-replace)
+
 let g:operator#surround#ignore_space = 0
 let g:operator#surround#uses_input_if_no_block = 0
 

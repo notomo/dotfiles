@@ -1,5 +1,43 @@
 scriptencoding utf-8
 
+let g:mapleader = ','
+let g:maplocalleader = '<Leader>l'
+
+nnoremap [exec] <Nop>
+nmap <Space>x [exec]
+xnoremap [exec] <Nop>
+xmap <Space>x [exec]
+nnoremap [keyword] <Nop>
+nmap <Space>k [keyword]
+nnoremap [diff] <Nop>
+nmap <Leader>d [diff]
+xnoremap [diff] <Nop>
+xmap <Leader>d [diff]
+nnoremap [edit] <Nop>
+nmap <Space>e [edit]
+xnoremap [edit] <Nop>
+xmap <Space>e [edit]
+nnoremap [file] <Nop>
+nmap <Space>f [file]
+nnoremap [operator] <Nop>
+nmap <Space><Leader> [operator]
+xnoremap [operator] <Nop>
+xmap <Space><Leader> [operator]
+nnoremap [git] <Nop>
+nmap <Leader>g [git]
+xnoremap [git] <Nop>
+xmap <Leader>g [git]
+nnoremap [test] <Nop>
+nmap <Leader>t [test]
+nnoremap [substitute] <Nop>
+nmap <Space>s [substitute]
+xnoremap [substitute] <Nop>
+xmap <Space>s [substitute]
+nnoremap [finder] <Nop>
+nmap <Space>d [finder]
+xnoremap [finder] <Nop>
+xmap <Space>d [finder]
+
 let s:LHS_KEY = notomo#mapping#get_lhs_key()
 let s:RHS_KEY = notomo#mapping#get_rhs_key()
 
@@ -488,7 +526,6 @@ nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
 nnoremap <expr> [exec]l ':' . getline('.') . '<CR>'
 " relode vimrc
 nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
-nnoremap [exec]e :<C-u>smile<CR>
 nnoremap [exec]cC :<C-u>messages clear<CR>
 nnoremap [exec]do :<C-u>tab drop ~/.local/.mytodo<CR>
 nnoremap [exec]q :<C-u>call notomo#vimrc#jq()<CR>
@@ -661,21 +698,6 @@ xnoremap <silent> <C-j> :<C-u>lua require('notomo/insert').replace_down()<CR>gv
 xnoremap <silent> <C-k> :<C-u>lua require('notomo/insert').replace_up()<CR>gv
 
 nnoremap <silent> [yank]M :<C-u>call notomo#vimrc#yank_and_echo(trim(system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>
-
-nnoremap [win]O <Cmd>lua require("wintablib.window").close_floating()<CR>
-nnoremap [win]H <Cmd>lua require("wintablib.window").from_left_tab()<CR>
-nnoremap [win]L <Cmd>lua require("wintablib.window").from_right_tab()<CR>
-nnoremap [win]l <Cmd>lua require("wintablib.window").to_right_tab()<CR>
-nnoremap [win]w <Cmd>lua require("wintablib.window").duplicate_as_right_tab()<CR>
-nnoremap [win]b <Cmd>lua require("wintablib.window").from_alt()<CR>
-nnoremap [win]j <Cmd>lua require("wintablib.window").close_downside()<CR>
-nnoremap [win]; <Cmd>lua require("wintablib.window").close_rightside()<CR>
-nnoremap [win]a <Cmd>lua require("wintablib.window").close_leftside()<CR>
-nnoremap [winmv]f <Cmd>lua require("wintablib.window").focus_on_floating()<CR>
-nnoremap <silent> <Plug>(tabclose_r) <Cmd>lua require("wintablib.tab").close_right()<CR>
-nnoremap <silent> <Plug>(tabclose_l) <Cmd>lua require("wintablib.tab").close_left()<CR>
-nnoremap <silent> <Plug>(tabclose_c) <Cmd>lua require("wintablib.tab").close()<CR>
-nnoremap <silent> <Plug>(new_tab) <Cmd>lua require("wintablib.tab").scratch()<CR>
 
 function! s:start_termdebug() abort
     packadd termdebug

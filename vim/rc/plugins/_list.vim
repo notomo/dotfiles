@@ -1,142 +1,3 @@
-let g:mapleader = ','
-let g:maplocalleader = '<Leader>l'
-
-nnoremap [exec] <Nop>
-nmap <Space>x [exec]
-xnoremap [exec] <Nop>
-xmap <Space>x [exec]
-nnoremap [keyword] <Nop>
-nmap <Space>k [keyword]
-nnoremap [diff] <Nop>
-nmap <Leader>d [diff]
-xnoremap [diff] <Nop>
-xmap <Leader>d [diff]
-nnoremap [edit] <Nop>
-nmap <Space>e [edit]
-xnoremap [edit] <Nop>
-xmap <Space>e [edit]
-nnoremap [file] <Nop>
-nmap <Space>f [file]
-nnoremap [operator] <Nop>
-nmap <Space><Leader> [operator]
-xnoremap [operator] <Nop>
-xmap <Space><Leader> [operator]
-nnoremap [git] <Nop>
-nmap <Leader>g [git]
-xnoremap [git] <Nop>
-xmap <Leader>g [git]
-nnoremap [test] <Nop>
-nmap <Leader>t [test]
-nnoremap [substitute] <Nop>
-nmap <Space>s [substitute]
-xnoremap [substitute] <Nop>
-xmap <Space>s [substitute]
-nnoremap [finder] <Nop>
-nmap <Space>d [finder]
-xnoremap [finder] <Nop>
-xmap <Space>d [finder]
-
-let g:plugin_dicwin_disable = 1
-let g:loaded_gzip = 1
-let g:loaded_tar = 1
-let g:loaded_tarPlugin = 1
-let g:loaded_zip = 1
-let g:loaded_zipPlugin = 1
-let g:loaded_rrhelper = 1
-let g:loaded_2html_plugin = 1
-let g:loaded_vimball = 1
-let g:loaded_vimballPlugin = 1
-let g:loaded_getscript = 1
-let g:loaded_getscriptPlugin = 1
-let g:loaded_netrw = 1
-let g:loaded_netrwPlugin = 1
-let g:loaded_netrwSettings = 1
-let g:loaded_netrwFileHandlers = 1
-let g:loaded_spellfile_plugin = 1
-let g:loaded_logiPat = 1
-let g:loaded_matchparen = 1
-
-augroup MyAuGroup
-    autocmd!
-augroup END
-
-autocmd MyAuGroup BufNewFile,BufRead * set iminsert=0
-
-autocmd MyAuGroup BufEnter * call s:auto_cd()
-function! s:auto_cd() abort
-    try
-        lcd `=expand('%:p:h')`
-    catch
-    endtry
-endfunction
-
-autocmd MyAuGroup VimEnter * if @% == '' && s:get_buf_byte() == 0 | setlocal buftype=nofile noswapfile fileformat=unix | endif
-function! s:get_buf_byte()
-    let byte = line2byte(line('$') + 1)
-    return byte == -1 ? 0 : byte - 1
-endfunction
-
-function! s:define_highlight() abort
-    highlight Search cterm=NONE guifg=#000000 guibg=#aaccaa
-    highlight incSearch cterm=NONE guifg=#fffeeb guibg=#fb8965
-    highlight Flashy term=bold ctermbg=0 guifg=#333333 guibg=#a8d2eb
-    highlight ParenMatch term=underline cterm=underline guibg=#5f8770
-    highlight TabLine guifg=#fff5ee guibg=#536273 gui=none
-    highlight YankRoundRegion guifg=#333333 guibg=#fedf81
-    highlight def link sqlStatement sqlKeyword
-    highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560
-    highlight NormalFloat guibg=#213243
-
-    " for gina status
-    highlight AnsiColor1 ctermfg=1 guifg=#ffaaaa
-    highlight AnsiColor2 ctermfg=2 guifg=#aaddaa
-
-    highlight clear SpellCap
-    highlight def link SpellCap NONE
-    highlight clear SpellBad
-    highlight SpellBad guifg=#ff5555
-    highlight clear SpellRare
-    highlight SpellRare guifg=#ff5555
-    highlight clear SpellLocal
-    highlight SpellLocal guifg=#ff5555
-
-    if has('mac')
-        highlight Cursor guibg=#bbbbba
-    endif
-endfunction
-
-autocmd MyAuGroup ColorScheme * :call s:define_highlight()
-
-autocmd MyAuGroup InsertEnter * :setlocal nocursorline
-autocmd MyAuGroup InsertLeave * :setlocal cursorline
-autocmd MyAuGroup WinEnter * :setlocal cursorline
-autocmd MyAuGroup WinLeave * :setlocal nocursorline
-
-autocmd MyAuGroup BufRead,BufNewFile */roles/*.yml set filetype=yaml.ansible
-autocmd MyAuGroup BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
-
-set guioptions+=M
-set guioptions+=c
-
-let g:loaded_python_provider = 0
-let g:loaded_ruby_provider = 0
-let g:loaded_node_provider = 0
-let g:loaded_perl_provider = 0
-if has('mac')
-    let g:python3_host_prog = '/usr/local/bin/python3'
-elseif has('unix')
-    let g:python3_host_prog = '/usr/bin/python3'
-elseif has('win32')
-    let g:python3_host_prog = 'python3.exe'
-endif
-
-let g:python_highlight_all = 1
-let g:markdown_fenced_languages = ['vim']
-let g:ft_ignroe_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$'
-
-autocmd MyAuGroup OptionSet diff setlocal nocursorline
-autocmd MyAuGroup WinEnter,InsertLeave * if &diff == 1 | setlocal nocursorline | endif
-
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 nnoremap [exec]U :<C-u>call minpac#update('', {'do': 'call notomo#vimrc#update_rplugin_runtimepath()'})<CR>
 nnoremap [exec]R :<C-u>call notomo#vimrc#clean()<CR>
@@ -277,16 +138,6 @@ omap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 xmap <expr> a/ textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')
 
 call minpac#add('rhysd/vim-operator-surround')
-nnoremap [surround] <Nop>
-nmap s [surround]
-xnoremap [surround] <Nop>
-xmap s [surround]
-nmap <silent>[surround]a <Plug>(operator-surround-append)
-xmap <silent>[surround]a <Plug>(operator-surround-append)
-nmap <silent>[surround]d v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-delete)
-xmap <silent>[surround]d <Plug>(operator-surround-delete)
-nmap <silent>[surround]r v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-replace)
-xmap <silent>[surround]r <Plug>(operator-surround-replace)
 source ~/.vim/rc/plugins/operator-surround.vim
 
 call minpac#add('tyru/caw.vim')
@@ -351,55 +202,149 @@ nnoremap <expr> [substitute]aw ':%' . suball#input(expand('<cword>'), "")
 nnoremap <expr> [substitute]ay ':%' . suball#input(@+, "")
 
 call minpac#add('notomo/searcho.nvim', {'depth': 0})
-nnoremap <expr> / searcho#do('forward') .. '\v'
-nnoremap <expr> sJ searcho#do('stay_forward') .. '\v(^\|[^[:alnum:]])\zs' .. expand('<cword>') .. searcho#with_left('\ze([^[:alnum:]]\|$)')
-nnoremap <expr> sK searcho#do('stay_backward') .. '\v(^\|[^[:alnum:]])\zs' .. expand('<cword>') .. searcho#with_left('\ze([^[:alnum:]]\|$)')
-nnoremap <expr> sj searcho#do('stay_forward') .. expand('<cword>')
-nnoremap <expr> sk searcho#do('stay_backward') .. expand('<cword>')
-nnoremap <expr> s<Space>j searcho#do('forward') .. '\v' .. @"
-nnoremap <expr> s<Space>k searcho#do('backward') .. '\v' .. @"
-nnoremap <expr> n searcho#do('next')
-nnoremap <expr> N searcho#do('prev')
-autocmd MyAuGroup User SearchoSourceLoad call s:searcho_settings()
-function! s:searcho_settings() abort
-    lua << EOF
-local keymaps = require('searcho/search').keymaps
-table.insert(keymaps, {
-    lhs = "<Space>",
-    rhs = "<CR>",
-    noremap = true,
-})
-table.insert(keymaps, {
-    lhs = "<CR>",
-    rhs = "<CR><Cmd>lua require('reacher').start({input = vim.fn.getreg('/')})<CR><ESC>",
-    noremap = true,
-})
-table.insert(keymaps, {
-    lhs = "<Tab>",
-    rhs = "<C-g>",
-    noremap = true,
-})
-table.insert(keymaps, {
-    lhs = "<S-Tab>",
-    rhs = "<C-t>",
-    noremap = true,
-})
-table.insert(keymaps, {
-    lhs = "<C-Space>",
-    rhs = "<Space>",
-    noremap = true,
-})
-EOF
-endfunction
+source ~/.vim/rc/plugins/searcho.vim
 
 call minpac#add('notomo/wintablib.nvim', {'depth': 0})
-function! MakeTabLine()
-    return luaeval('require("wintablib.tab").line()')
-endfunction
-set tabline=%!MakeTabLine()
+source ~/.vim/rc/plugins/wintablib.vim
 
 call minpac#add('tbastos/vim-lua')
 
 call minpac#add('notomo/lreload.nvim', {'depth': 0})
 
 call minpac#add('nanotee/luv-vimdocs')
+
+function! s:define_lazy_load(name, group, event, pattern) abort
+    execute 'autocmd' a:group a:event a:pattern '++once packadd' a:name
+endfunction
+
+function! s:add(name, options) abort
+    let name = join(split(a:name, '/')[1:], '')
+    let group = 'MyLazyLoad' . name
+    execute 'augroup' group '| autocmd! | augroup END'
+
+    let options = {'type': 'opt'}
+    if has_key(a:options, 'ft')
+        let ft = a:options['ft']
+        let filetypes = type(ft) == v:t_list ? join(ft, ',') : ft
+        call s:define_lazy_load(name, group, 'FileType', filetypes)
+    endif
+    if has_key(a:options, 'cmd')
+        let cmd = a:options['cmd']
+        call s:define_lazy_load(name, group, 'CmdUndefined', cmd)
+    endif
+    if has_key(a:options, 'event')
+        let event = a:options['event']
+        call s:define_lazy_load(name, group, event, '*')
+    endif
+    if has_key(a:options, 'depth')
+        let options['depth'] = a:options['depth']
+    endif
+    if has_key(a:options, 'do')
+        let options['do'] = a:options['do']
+    endif
+    if has_key(a:options, 'module')
+        call luaeval('require("notomo/hook").RequireHook.create(_A[1], _A[2], _A[3])', [name, a:options['module'], get(a:options, 'post_hook_file', v:null)])
+    endif
+
+    call minpac#add(a:name, options)
+endfunction
+
+call s:add('h1mesuke/vim-alignta', {'cmd' : 'Alignta'})
+xnoremap [alignta] <Nop>
+xmap <Leader>a [alignta]
+xnoremap [alignta]i :<C-u>'<,'>Alignta =><CR>
+xnoremap [alignta]e :<C-u>'<,'>Alignta =<CR>
+xnoremap [alignta], :<C-u>'<,'>Alignta ,<CR>
+xnoremap [alignta]c :<C-u>'<,'>Alignta :<CR>
+xnoremap [alignta]p :<C-u>'<,'>Alignta )<CR>
+xnoremap [alignta]<Space> :<C-u>'<,'>Alignta <<0 \ <CR>
+
+call s:add('lilydjwg/colorizer', {'cmd' : 'ColorHighlight'})
+
+call s:add('AndrewRadev/linediff.vim', {'cmd' : '*Linediff'})
+xnoremap [diff]l :Linediff<CR>
+
+call s:add('tmhedberg/matchit', {'ft' : ['html', 'vim', 'sql']})
+
+call s:add('fuenor/im_control.vim', {'event' : 'InsertEnter'})
+let g:IM_CtrlMode = 4
+
+call s:add('thinca/vim-qfreplace', {'cmd': 'Qfreplace'})
+nnoremap [exec]Q :<C-u>Qfreplace<CR>
+
+call s:add('tyru/open-browser.vim', {'cmd': 'OpenBrowser*'})
+nnoremap [browser] <Nop>
+nmap [exec]b [browser]
+xnoremap [browser] <Nop>
+xmap [exec]b [browser]
+
+nnoremap <expr> [browser]s ":\<C-u>OpenBrowserSearch " . expand('<cword>') . "\<CR>"
+nnoremap <expr> [browser]o ":\<C-u>OpenBrowser " . expand('<cWORD>') . "\<CR>"
+nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
+
+if !empty($SSH_CLIENT) && executable('lemonade') && has('mac')
+    let g:openbrowser_browser_commands = [{'name': 'lemonade', 'args': 'lemonade open {uri}'}]
+elseif executable('wslview')
+    let g:openbrowser_browser_commands = [{'name': 'wslview', 'args': 'wslview {uri}'}]
+endif
+
+call s:add('notomo/minfiler.vim', {'cmd': 'Minfiler', 'depth': 0})
+nnoremap [exec]F :<C-u>tabedit<CR>:Minfiler<CR>
+
+call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
+
+call s:add('notomo/tdd.vim', {'cmd' : 'TDD*', 'depth': 0})
+source ~/.vim/rc/plugins/tdd.vim
+
+call s:add('notomo/vimonga', {'cmd': 'Vimonga*', 'depth': 0})
+source ~/.vim/rc/plugins/vimonga.vim
+
+call s:add('notomo/curstr.nvim', {'module': 'curstr', 'post_hook_file': '~/dotfiles/vim/lua/notomo/curstr.lua', 'depth': 0})
+nnoremap <silent> [keyword]fo <Cmd>lua require("curstr").execute("openable", {action = "open"})<CR>
+nnoremap <silent> [keyword]ft <Cmd>lua require("curstr").execute("openable", {action = "tab_open"})<CR>
+nnoremap <silent> [keyword]fv <Cmd>lua require("curstr").execute("openable", {action = "vertical_open"})<CR>
+nnoremap <silent> [keyword]fh <Cmd>lua require("curstr").execute("openable", {action = "horizontal_open"})<CR>
+nnoremap <silent> [edit]s <Cmd>lua require("curstr").execute("togglable")<CR>
+nnoremap <Space>rj <Cmd>lua require("curstr").execute("print", {action = "append"})<CR>j
+nnoremap [edit]J <Cmd>lua require("curstr").execute("range", {action = "join"})<CR>
+xnoremap [edit]J <Cmd>lua require("curstr").execute("range", {action = "join"})<CR>
+lua << EOF
+require("lreload").enable("curstr", {
+  post_hook = function()
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/curstr.lua"))
+  end,
+})
+EOF
+
+call s:add('notomo/nvimtool', {'module' : 'nvimtool', 'depth': 0})
+
+call s:add('notomo/gesture.nvim', {'module': 'gesture', 'depth': 0})
+source ~/.vim/rc/plugins/gesture.vim
+
+call s:add('notomo/flompt.nvim', {'module': 'flompt', 'depth': 0})
+source ~/.vim/rc/plugins/flompt.vim
+
+call s:add('notomo/thetto.nvim', {'cmd' : 'Thetto*', 'depth': 0})
+source ~/.vim/rc/plugins/thetto.vim
+
+call s:add('notomo/counteria.nvim', {'cmd' : 'Counteria*', 'depth': 0})
+
+call s:add('neovim/nvim-lspconfig', {'module': 'lspconfig'})
+
+call s:add('notomo/kivi.nvim', {'module': 'kivi', 'depth': 0})
+source ~/.vim/rc/plugins/kivi.vim
+
+call s:add('notomo/reacher.nvim', {'depth': 0, 'module': 'reacher'})
+source ~/.vim/rc/plugins/reacher.vim
+
+call s:add('dart-lang/dart-vim-plugin', {'ft' : 'dart'})
+call s:add('thosakwe/vim-flutter', {'ft' : 'dart'})
+
+call s:add('notomo/cmdbuf.nvim', {'depth': 0, 'module': 'cmdbuf'})
+source ~/.vim/rc/plugins/cmdbuf.vim
+
+call s:add('notomo/filetypext.nvim', {'depth': 0, 'module': 'filetypext'})
+nnoremap [exec]; <Cmd>lua vim.fn["notomo#vimrc#open_sandbox"](require("filetypext").detect({bufnr = 0})[1], vim.bo.filetype ~= '' and vim.bo.filetype or "markdown")<CR>
+
+call s:add('notomo/cmdhndlr.nvim', {'depth': 0, 'module': 'cmdhndlr'})
+xnoremap <Leader>Q <Cmd>lua require("cmdhndlr").run()<CR>

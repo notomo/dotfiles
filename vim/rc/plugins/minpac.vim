@@ -10,8 +10,7 @@ endif
 packadd minpac
 call minpac#init()
 
-source ~/.vim/rc/minpac/eager.vim
-source ~/.vim/rc/minpac/lazy.vim
+source ~/.vim/rc/plugins/_list.vim
 
 if s:initializing
     call minpac#update()
@@ -23,6 +22,7 @@ packloadall
 " post source eager load plugins
 source ~/.vim/rc/plugins/gina.vim
 source ~/.vim/rc/plugins/lightline.vim
+colorscheme spring-night
 
 " NOTE: to load before default lua syntax.
 let s:lua_syntax = s:pack_dir .. '/pack/minpac/start/vim-lua'
