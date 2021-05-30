@@ -167,6 +167,23 @@ function! notomo#vimrc#open_sandbox(name, filetype) abort
     execute 'lcd' dir_path
 endfunction
 
+function! notomo#vimrc#rotate_file() abort
+    let origin = expand("%")
+    if empty(origin)
+        return
+    endif
+    for i in range(10000)
+        let name = printf('%s_%s', i, origin)
+        if !filereadable(name) && !bufexists(name)
+            execute 'file' name
+            write
+            execute 'edit' origin
+            return
+        endif
+    endfor
+    throw 'fail rotate:' .. origin
+endfunction
+
 let s:port = 49152
 function! notomo#vimrc#mkup(open_current) abort
     if !executable('mkup')
