@@ -695,9 +695,6 @@ tnoremap <CR> <Cmd>call <SID>set_title('^\$ ', 24)<CR><CR>
 nnoremap <silent> [yank]ud :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_decode()"))<CR>
 nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_encode()"))<CR>
 
-xnoremap <silent> <C-j> :<C-u>lua require('notomo/insert').replace_down()<CR>gv
-xnoremap <silent> <C-k> :<C-u>lua require('notomo/insert').replace_up()<CR>gv
-
 nnoremap <silent> [yank]M :<C-u>call notomo#vimrc#yank_and_echo(trim(system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>
 
 function! s:start_termdebug() abort
