@@ -1,7 +1,8 @@
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]
-nnoremap [exec]r <Cmd>source ~/dotfiles/vim/rc/vscode.vim<CR>
+nnoremap [exec]r <Cmd>source ~/dotfiles/vim/rc/vscode.vim<CR><Cmd>echomsg 'reloaded'<CR>
 nnoremap [exec]N :<C-u>tabedit ~/workspace/memo/note.md<CR>
+nnoremap [exec]R <Cmd>call VSCodeNotify("workbench.action.reloadWindow")<CR>
 
 nnoremap k gk
 nnoremap j gj
@@ -25,7 +26,6 @@ onoremap gp ])
 xnoremap gp ])h
 onoremap gd ]}
 xnoremap gd ]}h
-
 onoremap gl t]
 onoremap gs t"
 onoremap gb t`
@@ -100,7 +100,6 @@ nnoremap :  ;
 xnoremap ;  :
 xnoremap :  ;
 
-" inner and around vomapping"{{{
 function! s:ia_vonoremap(lhs, rhs) abort
     let inner_lhs = 'i' . a:lhs
     let inner_rhs = 'i' . a:rhs
@@ -122,4 +121,17 @@ call s:ia_vonoremap('w', '"')
 call s:ia_vonoremap('q', "'")
 call s:ia_vonoremap('d', '}')
 call s:ia_vonoremap('b', '`')
-"}}}
+
+nnoremap [winmv] <Nop>
+nmap m [winmv]
+
+nnoremap [winmv]a <Cmd>call VSCodeNotify("workbench.action.navigateLeft")<CR>
+nnoremap [winmv]x <Cmd>call VSCodeNotify("workbench.action.navigateDown")<CR>
+nnoremap [winmv]w <Cmd>call VSCodeNotify("workbench.action.navigateUp")<CR>
+nnoremap [winmv]l <Cmd>call VSCodeNotify("workbench.action.navigateRight")<CR>
+
+nnoremap [win] <Nop>
+nmap <Space>w [win]
+
+nnoremap [win]v <Cmd>call VSCodeNotify("workbench.action.splitEditorLeft")<CR>
+nnoremap [win]o <Cmd>only<CR>
