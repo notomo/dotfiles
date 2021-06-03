@@ -1,0 +1,11 @@
+{
+    "vscode-neovim.neovimInitVimPaths.win32": "~/dotfiles/vscode/neovim.vim",
+    "vscode-neovim.logOutputToConsole": true,
+    "editor.minimap.enabled": false,
+    "explorer.openEditors.visible": 0,
+    "extensions.ignoreRecommendations": true,
+    "workbench.editor.untitled.hint": "hidden",
+    "window.zoomLevel": 0,
+    "breadcrumbs.enabled": false,
+    "workbench.activityBar.visible": false
+}
