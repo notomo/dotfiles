@@ -1,9 +1,15 @@
+let g:mapleader = ','
+let g:maplocalleader = '<Leader>l'
+
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]
 nnoremap [exec]r <Cmd>source ~/dotfiles/vscode/neovim.vim<CR><Cmd>echomsg 'reloaded'<CR>
 nnoremap [exec]R <Cmd>call VSCodeNotify("workbench.action.reloadWindow")<CR>
 nnoremap [exec]f <Cmd>call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>
 nnoremap [exec]m <Cmd>call VSCodeNotify("markdown.showPreviewToSide")<CR>
+nnoremap [exec]n <Cmd>nohlsearch<CR>
+nnoremap [exec]ljo <Cmd>call VSCodeNotify("liveshare.join")<CR>
+nnoremap [exec]ls <Cmd>call VSCodeNotify("liveshare.start")<CR>
 
 nnoremap k gk
 nnoremap j gj
@@ -41,6 +47,14 @@ onoremap gP t(
 
 nnoremap go <Cmd>call VSCodeNotify("workbench.action.navigateBack")<CR>
 nnoremap gi <Cmd>call VSCodeNotify("workbench.action.navigateForward")<CR>
+
+nnoremap <Space>h <C-v>
+nnoremap <Space>l <S-v>
+nnoremap <Space>v gv
+xnoremap <Space>h <C-v>
+xnoremap <Space>l <S-v>
+xnoremap <Space>v v
+xnoremap v <ESC>
 
 xnoremap <S-j> }
 xnoremap <S-k> {
@@ -160,10 +174,85 @@ nmap <Space>k [keyword]
 nnoremap [keyword]o <Cmd>call VSCodeNotify("editor.action.revealDefinition")<CR>
 nnoremap [keyword]k <Cmd>call VSCodeNotify("editor.action.showHover")<CR>
 
+nnoremap [finder] <Nop>
+nmap <Space>d [finder]
+
+nnoremap [finder]; <Cmd>call VSCodeNotify("workbench.action.showCommands")<CR>
+
+nnoremap [qf] <Nop>
+nmap <Space>q [qf]
+
+nnoremap [qf]n <Cmd>call VSCodeNotify("editor.action.marker.next")<CR>
+nnoremap [qf]p <Cmd>call VSCodeNotify("editor.action.marker.prev")<CR>
+nnoremap [qf]N <Cmd>call VSCodeNotify("editor.action.marker.nextInFiles")<CR>
+nnoremap [qf]P <Cmd>call VSCodeNotify("editor.action.marker.prevInFiles")<CR>
+nnoremap [qf]o <Cmd>call VSCodeNotify("workbench.action.problems.focus")<CR>
+
+nnoremap <Space>c <Cmd>VSCodeCommentary<CR>
+xnoremap <Space>c :VSCodeCommentary<CR>
+
+nnoremap Y y$
+
+function! s:yank_and_echo(value) abort
+    let [@", @+, @0, @*] = [a:value, a:value, a:value, a:value]
+    echomsg 'yank '. a:value
+endfunction
+
+nnoremap [yank] <Nop>
+nmap <Space>y [yank]
+xnoremap [yank] <Nop>
+xmap <Space>y [yank]
+
+nnoremap <silent> [yank]d <Cmd>call <SID>yank_and_echo(strftime('%Y-%m-%d'))<CR>
+nnoremap <silent> [yank]w <Cmd>call <SID>yank_and_echo(expand('%:p:h:t'))<CR>
+
+set ignorecase
+set smartcase
+nnoremap sj *N
+nnoremap sk #N
+
 " TODO
 " escape
-" search
 " substitute
-" jump to next/prev problem
-" live share
-" plugin
+
+set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-textobj-user
+set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-operator-user
+
+set runtimepath+=~/.vim/minpac/pack/minpac/start/CamelCaseMotion
+nmap <Leader>w <Plug>CamelCaseMotion_w
+xmap <Leader>w <Plug>CamelCaseMotion_w
+omap <Leader>w <Plug>CamelCaseMotion_w
+nmap <Leader>b <Plug>CamelCaseMotion_b
+xmap <Leader>b <Plug>CamelCaseMotion_b
+omap <Leader>b <Plug>CamelCaseMotion_b
+nmap <Leader>e <Plug>CamelCaseMotion_e
+xmap <Leader>e <Plug>CamelCaseMotion_e
+omap <Leader>e <Plug>CamelCaseMotion_e
+
+set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-operator-replace
+nmap r <Plug>(operator-replace)
+xmap r <Plug>(operator-replace)
+omap r <Plug>(operator-replace)
+
+set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-textobj-line
+xmap ag <Plug>(textobj-line-a)
+xmap ig <Plug>(textobj-line-i)
+omap ag <Plug>(textobj-line-a)
+omap ig <Plug>(textobj-line-i)
+
+set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-smartword
+nmap w <Plug>(smartword-w)
+xmap w <Plug>(smartword-w)
+omap w <Plug>(smartword-w)
+nmap b <Plug>(smartword-b)
+xmap b <Plug>(smartword-b)
+omap b <Plug>(smartword-b)
+nmap e <Plug>(smartword-e)
+xmap e <Plug>(smartword-e)
+omap e <Plug>(smartword-e)
+
+set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-textobj-entire
+omap ae <Plug>(textobj-entire-a)
+omap ie <Plug>(textobj-entire-i)
+xmap ae <Plug>(textobj-entire-a)
+xmap ie <Plug>(textobj-entire-i)
