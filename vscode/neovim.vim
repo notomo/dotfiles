@@ -1,8 +1,9 @@
 nnoremap [exec] <Nop>
 nmap <Space>x [exec]
-nnoremap [exec]r <Cmd>source ~/dotfiles/vim/rc/vscode.vim<CR><Cmd>echomsg 'reloaded'<CR>
-nnoremap [exec]N :<C-u>tabedit ~/workspace/memo/note.md<CR>
+nnoremap [exec]r <Cmd>source ~/dotfiles/vscode/neovim.vim<CR><Cmd>echomsg 'reloaded'<CR>
 nnoremap [exec]R <Cmd>call VSCodeNotify("workbench.action.reloadWindow")<CR>
+nnoremap [exec]f <Cmd>call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>
+nnoremap [exec]m <Cmd>call VSCodeNotify("markdown.showPreviewToSide")<CR>
 
 nnoremap k gk
 nnoremap j gj
@@ -38,22 +39,22 @@ onoremap g. t.
 onoremap gc t:
 onoremap gP t(
 
-nnoremap go <C-o>
-nnoremap gi <C-i>
+nnoremap go <Cmd>call VSCodeNotify("workbench.action.navigateBack")<CR>
+nnoremap gi <Cmd>call VSCodeNotify("workbench.action.navigateForward")<CR>
 
 xnoremap <S-j> }
 xnoremap <S-k> {
 " remap for matchit
 xmap <S-l> %
-nnoremap <silent> <S-l> :<C-u>keepjumps normal %<CR>
+nnoremap <silent> <S-l> <Cmd>keepjumps normal %<CR>
 
-nnoremap <silent> <S-j> :<C-u>keepjumps normal! }<CR>
-nnoremap <silent> <S-k> :<C-u>keepjumps normal! {<CR>
+nnoremap <silent> <S-j> <Cmd>keepjumps normal! }<CR>
+nnoremap <silent> <S-k> <Cmd>keepjumps normal! {<CR>
 
 nnoremap [newline] <Nop>
 nmap o [newline]
-nnoremap <silent> [newline]o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <silent> [newline]j :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal! j' \| endfor<CR>
+nnoremap <silent> [newline]o <Cmd>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <silent> [newline]j <Cmd>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal! j' \| endfor<CR>
 
 
 nnoremap [arith] <Nop>
@@ -83,7 +84,7 @@ xnoremap [arith]u g<C-a>gv
 
 nnoremap [file] <Nop>
 nmap <Space>f [file]
-nnoremap [file]w :<C-u>write<CR>
+nnoremap [file]w <Cmd>call VSCodeNotify("workbench.action.files.save")<CR>
 
 nnoremap x "_x
 xnoremap x "_x
@@ -135,3 +136,34 @@ nmap <Space>w [win]
 
 nnoremap [win]v <Cmd>call VSCodeNotify("workbench.action.splitEditorLeft")<CR>
 nnoremap [win]o <Cmd>only<CR>
+
+nnoremap [term] <Nop>
+nmap <Space>t [term]
+
+nnoremap [term]o <Cmd>call VSCodeCall("terminal.focus")<CR>
+nnoremap [term]v <Cmd>call VSCodeCall("terminal.focus")<CR><Cmd>call VSCodeNotify("workbench.action.positionPanelLeft")<CR><Cmd>call VSCodeCall("terminal.focus")<CR>
+nnoremap [term]V <Cmd>call VSCodeCall("terminal.focus")<CR><Cmd>call VSCodeNotify("workbench.action.positionPanelLeft")<CR><Cmd>call VSCodeCall("terminal.focus")<CR><Cmd>call VSCodeNotify("workbench.action.terminal.sendSequence", {'text': "nvim\n"})<CR>
+
+nnoremap T <Cmd>call VSCodeNotify("workbench.action.toggleMaximizedPanel")<CR>
+
+nnoremap [tab] <Nop>
+nmap t [tab]
+
+nnoremap [tab]q <Cmd>call VSCodeNotify("workbench.action.closeActiveEditor")<CR>
+nnoremap [tab]o <Cmd>call VSCodeNotify("workbench.action.closeOtherEditors")<CR>
+nnoremap [tab]l <Cmd>call VSCodeNotify("workbench.action.nextEditorInGroup")<CR>
+nnoremap [tab]a <Cmd>call VSCodeNotify("workbench.action.previousEditorInGroup")<CR>
+
+nnoremap [keyword] <Nop>
+nmap <Space>k [keyword]
+
+nnoremap [keyword]o <Cmd>call VSCodeNotify("editor.action.revealDefinition")<CR>
+nnoremap [keyword]k <Cmd>call VSCodeNotify("editor.action.showHover")<CR>
+
+" TODO
+" escape
+" search
+" substitute
+" jump to next/prev problem
+" live share
+" plugin

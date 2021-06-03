@@ -531,6 +531,7 @@ nnoremap [exec]cC :<C-u>messages clear<CR>
 nnoremap [exec]do :<C-u>tab drop ~/.local/.mytodo<CR>
 nnoremap [exec]q :<C-u>call notomo#vimrc#jq()<CR>
 nnoremap [exec]N :<C-u>call notomo#vimrc#open_note()<CR>
+nnoremap [exec]cc <Cmd>execute '!code -r -g %:' .. line('.') .. ':' .. col('.')<CR>
 "}}}
 
 " quickfix and locationlist"{{{
