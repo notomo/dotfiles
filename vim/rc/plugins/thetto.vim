@@ -106,6 +106,7 @@ nnoremap [finder]J :<C-u>Thetto vim/jump --auto=preview<CR>
 nnoremap [finder]c :<C-u>Thetto vim/command<CR>
 nnoremap [finder]M :<C-u>Thetto manual --sorters=length<CR>
 nnoremap [finder]q :<C-u>Thetto jq --filters=interactive --filters=substring --filters=-substring<CR>
+nnoremap [finder]gR :<C-u>Thetto gron --filters=substring --filters=-substring<CR>
 
 " custom source
 nnoremap [finder]p :<C-u>Thetto plugin<CR>

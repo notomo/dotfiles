@@ -15,7 +15,8 @@ build:
 all:
 	# cd ${NVIM_DIR}; make distclean
 	# cd ${NVIM_DIR}; make clean
-	${MAKE} build
+	# ${MAKE} build
+	${MAKE} build_with_asan
 .PHONY: all
 
 # NOTE: for print_stacktrace
