@@ -79,6 +79,8 @@ autocmd MyAuGroup WinLeave * :setlocal nocursorline
 autocmd MyAuGroup BufRead,BufNewFile */roles/*.yml set filetype=yaml.ansible
 autocmd MyAuGroup BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
 
+autocmd MyAuGroup FileType typescriptreact set filetype=typescript.tsx
+
 set guioptions+=M
 set guioptions+=c
 

@@ -149,7 +149,7 @@ nnoremap [win] <Nop>
 nmap <Space>w [win]
 
 nnoremap [win]v <Cmd>call VSCodeNotify("workbench.action.splitEditorLeft")<CR>
-nnoremap [win]o <Cmd>only<CR>
+nnoremap [win]o <Cmd>Only<CR>
 
 nnoremap [term] <Nop>
 nmap <Space>t [term]
@@ -219,15 +219,7 @@ set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-textobj-user
 set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-operator-user
 
 set runtimepath+=~/.vim/minpac/pack/minpac/start/CamelCaseMotion
-nmap <Leader>w <Plug>CamelCaseMotion_w
-xmap <Leader>w <Plug>CamelCaseMotion_w
-omap <Leader>w <Plug>CamelCaseMotion_w
-nmap <Leader>b <Plug>CamelCaseMotion_b
-xmap <Leader>b <Plug>CamelCaseMotion_b
-omap <Leader>b <Plug>CamelCaseMotion_b
-nmap <Leader>e <Plug>CamelCaseMotion_e
-xmap <Leader>e <Plug>CamelCaseMotion_e
-omap <Leader>e <Plug>CamelCaseMotion_e
+source ~/dotfiles/vim/rc/plugins/camelcasemotion.vim
 
 set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-operator-replace
 nmap r <Plug>(operator-replace)
@@ -235,24 +227,10 @@ xmap r <Plug>(operator-replace)
 omap r <Plug>(operator-replace)
 
 set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-textobj-line
-xmap ag <Plug>(textobj-line-a)
-xmap ig <Plug>(textobj-line-i)
-omap ag <Plug>(textobj-line-a)
-omap ig <Plug>(textobj-line-i)
+source ~/dotfiles/vim/rc/plugins/textobj-line.vim
 
 set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-smartword
-nmap w <Plug>(smartword-w)
-xmap w <Plug>(smartword-w)
-omap w <Plug>(smartword-w)
-nmap b <Plug>(smartword-b)
-xmap b <Plug>(smartword-b)
-omap b <Plug>(smartword-b)
-nmap e <Plug>(smartword-e)
-xmap e <Plug>(smartword-e)
-omap e <Plug>(smartword-e)
+source ~/dotfiles/vim/rc/plugins/smartword.vim
 
 set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-textobj-entire
-omap ae <Plug>(textobj-entire-a)
-omap ie <Plug>(textobj-entire-i)
-xmap ae <Plug>(textobj-entire-a)
-xmap ie <Plug>(textobj-entire-i)
+source ~/dotfiles/vim/rc/plugins/textobj-entire.vim
