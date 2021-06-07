@@ -80,8 +80,8 @@ setup_ls(nvimlsp.dartls, {
 }, "mac", "win32")
 setup_ls(nvimlsp.efm, {
   cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
-  -- filetypes = {"vim", "go", "python", "lua", "sh", "typescript.tsx", "typescript"};
-  filetypes = {"vim", "go", "python", "sh"},
+  -- filetypes = {"vim", "python", "lua", "sh", "typescript.tsx", "typescript"};
+  filetypes = {"vim", "python", "sh"},
   root_dir = function(fname)
     return require("lspconfig/util").find_git_ancestor(fname) or vim.loop.cwd()
   end,

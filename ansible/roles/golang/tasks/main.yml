@@ -34,7 +34,6 @@
   failed_when: go_module_exists.rc not in [0, 1]
   with_items:
     - golang.org/x/tools/cmd/goimports
-    - golang.org/x/lint/golint
     - honnef.co/go/tools/cmd/staticcheck
     - github.com/mattn/mkup
     - github.com/mattn/efm-langserver

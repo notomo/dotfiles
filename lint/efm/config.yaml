@@ -22,12 +22,6 @@ tools:
       - '%f:%l:%c: %tarning: %m'
       - '%f:%l:%c: %tote: %m'
 
-  golint: &golint
-    lint-command: 'golint'
-    lint-ignore-exit-code: true
-    lint-formats:
-      - '%f:%l:%c:%m'
-
   shellcheck: &shellcheck
     lint-command: 'shellcheck -f gcc -x'
     lint-formats:
@@ -60,9 +54,6 @@ languages:
   python:
     - <<: *python-flake8
     - <<: *python-mypy
-
-  go:
-    - <<: *golint
 
   sh:
     - <<: *shellcheck
