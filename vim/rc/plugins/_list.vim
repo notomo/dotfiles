@@ -164,9 +164,6 @@ source ~/.vim/rc/plugins/open-browser.vim
 
 call s:add('Shougo/context_filetype.vim', {'ft' : 'vue'})
 
-call s:add('notomo/tdd.vim', {'cmd' : 'TDD*', 'depth': 0})
-source ~/.vim/rc/plugins/tdd.vim
-
 call s:add('notomo/vimonga', {'cmd': 'Vimonga*', 'depth': 0})
 source ~/.vim/rc/plugins/vimonga.vim
 
@@ -204,4 +201,4 @@ call s:add('notomo/filetypext.nvim', {'depth': 0, 'module': 'filetypext'})
 nnoremap [exec]; <Cmd>lua vim.fn["notomo#vimrc#open_sandbox"](require("filetypext").detect({bufnr = 0})[1], vim.bo.filetype ~= '' and vim.bo.filetype or "markdown")<CR>
 
 call s:add('notomo/cmdhndlr.nvim', {'depth': 0, 'module': 'cmdhndlr'})
-xnoremap <Leader>Q <Cmd>lua require("cmdhndlr").run()<CR>
+source ~/.vim/rc/plugins/cmdhndlr.vim
