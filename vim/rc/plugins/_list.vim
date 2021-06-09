@@ -202,3 +202,5 @@ nnoremap [exec]; <Cmd>lua vim.fn["notomo#vimrc#open_sandbox"](require("filetypex
 
 call s:add('notomo/cmdhndlr.nvim', {'depth': 0, 'module': 'cmdhndlr'})
 source ~/.vim/rc/plugins/cmdhndlr.vim
+
+call s:add('nvim-treesitter/nvim-treesitter', {'cmd' : 'TS*'})
