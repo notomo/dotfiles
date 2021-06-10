@@ -90,6 +90,7 @@ setup_ls(nvimlsp.efm, {
     client.resolved_capabilities.text_document_save_include_text = true
   end,
 })
+setup_ls(nvimlsp.yamlls, {})
 
 vim.lsp.set_log_level("error")
 
