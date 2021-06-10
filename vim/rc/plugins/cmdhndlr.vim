@@ -7,3 +7,8 @@ nnoremap [exec]bl <Cmd>lua require("cmdhndlr").build({name = 'make/make'})<CR>
 
 nnoremap [test]f <Cmd>lua require("cmdhndlr").test()<CR>
 nnoremap [test]n <Cmd>lua require("cmdhndlr").test({scope = "cursor"})<CR>
+
+autocmd MyAuGroup FileType cmdhndlr call s:settings()
+function! s:settings() abort
+    nnoremap <buffer> [file]rl <Cmd>lua require('cmdhndlr').retry()<CR>
+endfunction
