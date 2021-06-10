@@ -34,18 +34,18 @@ endfunction
 function! notomo#mapping#tab() abort
     let mappings = []
     call add(mappings, {s:LHS_KEY : 'l', s:RHS_KEY : '<Esc>gt', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move right
-    call add(mappings, {s:LHS_KEY : 's', s:RHS_KEY : ':<C-u>tabr<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move right end
-    call add(mappings, {s:LHS_KEY : 'e', s:RHS_KEY : ':<C-u>tabl<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move left end
+    call add(mappings, {s:LHS_KEY : 's', s:RHS_KEY : '<Cmd>tabr<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move right end
+    call add(mappings, {s:LHS_KEY : 'e', s:RHS_KEY : '<Cmd>tabl<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move left end
     call add(mappings, {s:LHS_KEY : 'a', s:RHS_KEY : '<Esc>gT', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move left
     call add(mappings, {s:LHS_KEY : 'h', s:RHS_KEY : '<Esc>gT', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move left
     call add(mappings, {s:LHS_KEY : 'q', s:RHS_KEY : '<Esc><Plug>(tabclose_c)', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 1}) " close a tab
     call add(mappings, {s:LHS_KEY : 'da', s:RHS_KEY : '<Esc><Plug>(tabclose_l)', s:MAP_ONLY_KEY : 1, s:REMAP_KEY : 1}) " close left tabs
     call add(mappings, {s:LHS_KEY : 'dl', s:RHS_KEY : '<Esc><Plug>(tabclose_r)', s:MAP_ONLY_KEY : 1, s:REMAP_KEY : 1}) " close right tabs
-    call add(mappings, {s:LHS_KEY : 'd;', s:RHS_KEY : ':<C-u>+tabclose<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " close a right tab
-    call add(mappings, {s:LHS_KEY : 'ml', s:RHS_KEY : ':<C-u>tabm+1<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move a tab right
-    call add(mappings, {s:LHS_KEY : 'ms', s:RHS_KEY : ':<C-u>tabm 0<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move a tab right end
-    call add(mappings, {s:LHS_KEY : 'me', s:RHS_KEY : ':<C-u>tabm<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move a tab left end
-    call add(mappings, {s:LHS_KEY : 'ma', s:RHS_KEY : ':<C-u>tabm-1<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move a tab left
+    call add(mappings, {s:LHS_KEY : 'd;', s:RHS_KEY : '<Cmd>+tabclose<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " close a right tab
+    call add(mappings, {s:LHS_KEY : 'ml', s:RHS_KEY : '<Cmd>tabm+1<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move a tab right
+    call add(mappings, {s:LHS_KEY : 'ms', s:RHS_KEY : '<Cmd>tabm 0<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move a tab right end
+    call add(mappings, {s:LHS_KEY : 'me', s:RHS_KEY : '<Cmd>tabm<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move a tab left end
+    call add(mappings, {s:LHS_KEY : 'ma', s:RHS_KEY : '<Cmd>tabm-1<CR>', s:MAP_ONLY_KEY : 0, s:REMAP_KEY : 0}) " move a tab left
     return mappings
 endfunction
 
@@ -99,7 +99,7 @@ endfunction
 
 function! notomo#mapping#lsp() abort
     nnoremap <buffer> [keyword]o <Cmd>lua vim.lsp.buf.definition()<CR>
-    nnoremap <buffer> [keyword]v :<C-u>vsplit \| lua vim.lsp.buf.definition()<CR>
-    nnoremap <buffer> [keyword]h :<C-u>split \| lua vim.lsp.buf.definition()<CR>
-    nnoremap <buffer> [keyword]t :<C-u>lua require("wintablib.window").duplicate_as_right_tab()<CR>:lua vim.lsp.buf.definition()<CR>
+    nnoremap <buffer> [keyword]v <Cmd>vsplit \| lua vim.lsp.buf.definition()<CR>
+    nnoremap <buffer> [keyword]h <Cmd>split \| lua vim.lsp.buf.definition()<CR>
+    nnoremap <buffer> [keyword]t <Cmd>lua require("wintablib.window").duplicate_as_right_tab()<CR>:lua vim.lsp.buf.definition()<CR>
 endfunction

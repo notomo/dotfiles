@@ -4,7 +4,7 @@ if exists('loaded_matchit')
 endif
 setlocal iskeyword-=#
 
-nnoremap <buffer> [exec]s :<C-u>source %<CR>
-nnoremap <buffer> <silent> sgj :<C-u>call notomo#vim#next()<CR>
-nnoremap <buffer> <silent> sgk :<C-u>call notomo#vim#prev()<CR>
+nnoremap <buffer> [exec]s <Cmd>source %<CR>
+nnoremap <buffer> <silent> sgj <Cmd>call notomo#vim#next()<CR>
+nnoremap <buffer> <silent> sgk <Cmd>call notomo#vim#prev()<CR>
 call notomo#mapping#lsp()

@@ -1,5 +1,5 @@
 
-nnoremap [exec]v :<C-u>Vimonga database.list -open=tab<CR>
+nnoremap [exec]v <Cmd>Vimonga database.list -open=tab<CR>
 
 autocmd MyAuGroup User VimongaSourceLoad ++once call s:settings()
 function! s:settings() abort

@@ -36,8 +36,8 @@ function! s:add(name, options) abort
 endfunction
 
 call minpac#add('k-takata/minpac', {'type': 'opt'})
-nnoremap [exec]U :<C-u>call minpac#update('', {'do': 'call notomo#vimrc#update_rplugin_runtimepath()'})<CR>
-nnoremap [exec]R :<C-u>call notomo#vimrc#clean()<CR>
+nnoremap [exec]U <Cmd>call minpac#update('', {'do': 'call notomo#vimrc#update_rplugin_runtimepath()'})<CR>
+nnoremap [exec]R <Cmd>call notomo#vimrc#clean()<CR>
 
 call minpac#add('kana/vim-textobj-user')
 call minpac#add('kana/vim-operator-user')
@@ -113,7 +113,7 @@ call minpac#add('notomo/genvdoc', {'depth': 0})
 if has('unix')
     call minpac#add('lambdalisue/suda.vim')
     let g:suda_startup = 1
-    nnoremap [file]W :<C-u>write suda://%<CR>
+    nnoremap [file]W <Cmd>write suda://%<CR>
 endif
 
 call minpac#add('w0rp/ale')
@@ -157,7 +157,7 @@ call s:add('fuenor/im_control.vim', {'event' : 'InsertEnter'})
 let g:IM_CtrlMode = 4
 
 call s:add('thinca/vim-qfreplace', {'cmd': 'Qfreplace'})
-nnoremap [exec]Q :<C-u>Qfreplace<CR>
+nnoremap [exec]Q <Cmd>Qfreplace<CR>
 
 call s:add('tyru/open-browser.vim', {'cmd': 'OpenBrowser*'})
 source ~/.vim/rc/plugins/open-browser.vim

@@ -35,10 +35,10 @@ function! s:_open(path, open_way) abort
         return
     endif
 
-    nnoremap <buffer> [keyword]r :<C-u>call <SID>_open(notomo#doc#path(), 'enew')<CR>
-    nnoremap <buffer> [keyword]o :<C-u>call <SID>_open(notomo#doc#path(), 'enew')<CR>
-    nnoremap <buffer> [keyword]t :<C-u>call <SID>_open(notomo#doc#path(), 'tabedit')<CR>
-    nnoremap <buffer> [keyword]v :<C-u>call <SID>_open(notomo#doc#path(), 'vsplit')<CR>
+    nnoremap <buffer> [keyword]r <Cmd>call <SID>_open(notomo#doc#path(), 'enew')<CR>
+    nnoremap <buffer> [keyword]o <Cmd>call <SID>_open(notomo#doc#path(), 'enew')<CR>
+    nnoremap <buffer> [keyword]t <Cmd>call <SID>_open(notomo#doc#path(), 'tabedit')<CR>
+    nnoremap <buffer> [keyword]v <Cmd>call <SID>_open(notomo#doc#path(), 'vsplit')<CR>
 
     " HACK
     syntax clear

@@ -67,7 +67,7 @@ nnoremap [edit]; q:
 nnoremap [edit]/ q/
 
 " edit"{{{
-nnoremap <silent> <Leader>x :<C-u>call notomo#vimrc#exchange()<CR>
+nnoremap <silent> <Leader>x <Cmd>call notomo#vimrc#exchange()<CR>
 nnoremap [edit]r r
 xnoremap [edit]r r
 nnoremap [edit]h gU
@@ -76,16 +76,16 @@ xnoremap [edit]h gU
 xnoremap [edit]l gu
 nnoremap [edit]t viwo<ESC>g~l
 nnoremap [edit]m i<C-@>
-nnoremap [edit]j :<C-u>join<CR>
+nnoremap [edit]j <Cmd>join<CR>
 xnoremap [edit]j :join<CR>
 nnoremap [edit]d *N"_cgn
 nnoremap [edit]a *``cgn<C-r>"
-nnoremap [edit]T :<C-u>call notomo#vimrc#add_closed_tag()<CR>
+nnoremap [edit]T <Cmd>call notomo#vimrc#add_closed_tag()<CR>
 
 nnoremap [edit]p [p
 nnoremap [edit]P [P
 
-nnoremap <Space>ud :<C-u>call notomo#vimrc#open_latest()<CR>
+nnoremap <Space>ud <Cmd>call notomo#vimrc#open_latest()<CR>
 "}}}
 
 " kana"{{{
@@ -94,10 +94,10 @@ nnoremap あ a
 "}}}
 
 " file"{{{
-nnoremap [file]w :<C-u>write<CR>
+nnoremap [file]w <Cmd>write<CR>
 nnoremap [file]rn :<C-u>file<Space>
-nnoremap [file]rl :<C-u>edit!<CR>
-nnoremap [file]v :<C-u>edit $MYVIMRC<CR>
+nnoremap [file]rl <Cmd>edit!<CR>
+nnoremap [file]v <Cmd>edit $MYVIMRC<CR>
 nnoremap [file]R <Cmd>call notomo#vimrc#rotate_file()<CR>
 "}}}
 
@@ -118,7 +118,7 @@ xnoremap :  ;
 nnoremap <Space>h <C-v>
 nnoremap <Space>l <S-v>
 nnoremap <Space>v gv
-nnoremap <Space>p :<C-u>call <SID>select_paste_region()<CR>
+nnoremap <Space>p <Cmd>call <SID>select_paste_region()<CR>
 xnoremap <Space>h <C-v>
 xnoremap <Space>l <S-v>
 xnoremap <Space>v v
@@ -173,12 +173,12 @@ nnoremap [indent]h <<
 xnoremap [indent]h <gv
 nnoremap [indent]s ==
 xnoremap [indent]s =gv
-nnoremap [indent]r :<C-u>left<CR>
+nnoremap [indent]r <Cmd>left<CR>
 xnoremap [indent]r :left<CR>gv
-nnoremap <silent> [indent]t :<C-u>call <SID>convert_indent_style(1, 0)<CR>
-xnoremap <silent> [indent]t :<C-u>call <SID>convert_indent_style(1, 1)<CR>
-nnoremap <silent> [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 0)<CR>
-xnoremap <silent> [indent]<Space> :<C-u>call <SID>convert_indent_style(0, 1)<CR>
+nnoremap <silent> [indent]t <Cmd>call <SID>convert_indent_style(1, 0)<CR>
+xnoremap <silent> [indent]t <ESC><Cmd>call <SID>convert_indent_style(1, 1)<CR>
+nnoremap <silent> [indent]<Space> <Cmd>call <SID>convert_indent_style(0, 0)<CR>
+xnoremap <silent> [indent]<Space> <ESC><Cmd>call <SID>convert_indent_style(0, 1)<CR>
 "}}}
 
 " move"{{{
@@ -227,10 +227,10 @@ xnoremap <S-j> }
 xnoremap <S-k> {
 " remap for matchit
 xmap <S-l> %
-nnoremap <silent> <S-l> :<C-u>keepjumps normal %<CR>
+nnoremap <silent> <S-l> <Cmd>keepjumps normal %<CR>
 
-nnoremap <silent> <S-j> :<C-u>keepjumps normal! }<CR>
-nnoremap <silent> <S-k> :<C-u>keepjumps normal! {<CR>
+nnoremap <silent> <S-j> <Cmd>keepjumps normal! }<CR>
+nnoremap <silent> <S-k> <Cmd>keepjumps normal! {<CR>
 
 nnoremap <C-k> <C-b>
 nnoremap <C-j> <C-f>
@@ -244,17 +244,17 @@ nnoremap sgk [m^
 " newline"{{{
 nnoremap [newline] <Nop>
 nmap o [newline]
-nnoremap <silent> [newline]o :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <silent> [newline]j :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal! j' \| endfor<CR>
+nnoremap <silent> [newline]o <Cmd>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <silent> [newline]j <Cmd>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal! j' \| endfor<CR>
 "}}}
 
-nnoremap <Space>os :<C-u>setlocal spell!<CR>
+nnoremap <Space>os <Cmd>setlocal spell!<CR>
 
 " keyword"{{{
-nnoremap [keyword]v :<C-u>vertical stjump <C-r>=expand('<cword>')<CR><CR>
-nnoremap [keyword]t :<C-u>tab stjump <C-r>=expand('<cword>')<CR><CR>
+nnoremap [keyword]v <Cmd>vertical stjump <C-r>=expand('<cword>')<CR><CR>
+nnoremap [keyword]t <Cmd>tab stjump <C-r>=expand('<cword>')<CR><CR>
 nnoremap [keyword]o <C-]>
-nnoremap [keyword]h :<C-u>stjump <C-r>=expand('<cword>')<CR><CR>
+nnoremap [keyword]h <Cmd>stjump <C-r>=expand('<cword>')<CR><CR>
 "}}}
 
 " Nop"{{{
@@ -292,7 +292,7 @@ nnoremap q <Nop>
 "}}}
 
 " diary"{{{
-nnoremap [edit]w :<C-u>call notomo#diary#open()<CR>
+nnoremap [edit]w <Cmd>call notomo#diary#open()<CR>
 "}}}
 
 " substitute"{{{
@@ -356,19 +356,19 @@ xnoremap [yank] <Nop>
 xmap <Space>y [yank]
 
 nnoremap Y y$
-nnoremap <silent> [yank]d :<C-u>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d'))<CR>
-nnoremap <silent> [yank]D :<C-u>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d %T'))<CR>
-nnoremap <silent> [yank]n :<C-u>call notomo#vimrc#yank_and_echo(fnamemodify(expand('%'), ':r'))<CR>
-nnoremap <silent> [yank]N :<C-u>call notomo#vimrc#yank_and_echo(expand('%'))<CR>
-nnoremap <silent> [yank]p :<C-u>call notomo#vimrc#yank_and_echo(substitute(substitute(expand('%:p'), substitute(expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\', '/', 'g'))<CR>
-nnoremap <silent> [yank]P :<C-u>call notomo#vimrc#yank_and_echo(substitute(expand('%:p'), '\', '/', 'g'))<CR>
-nnoremap <silent> [yank]; :<C-u>call notomo#vimrc#yank_and_echo(@:)<CR>
-nnoremap <silent> [yank]/ :<C-u>call notomo#vimrc#yank_and_echo(@/)<CR>
-nnoremap <silent> [yank]i :<C-u>call notomo#vimrc#yank_and_echo(@.)<CR>
-nnoremap <silent> [yank]b :<C-u>call notomo#vimrc#yank_and_echo(gina#component#repo#branch())<CR>
-nnoremap <silent> [yank]l :<C-u>call notomo#vimrc#yank_and_echo(line('.'))<CR>
-nnoremap <silent> [yank]c :<C-u>call notomo#vimrc#yank_and_echo(col('.'))<CR>
-nnoremap <silent> [yank]w :<C-u>call notomo#vimrc#yank_and_echo(expand('%:p:h:t'))<CR>
+nnoremap <silent> [yank]d <Cmd>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d'))<CR>
+nnoremap <silent> [yank]D <Cmd>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d %T'))<CR>
+nnoremap <silent> [yank]n <Cmd>call notomo#vimrc#yank_and_echo(fnamemodify(expand('%'), ':r'))<CR>
+nnoremap <silent> [yank]N <Cmd>call notomo#vimrc#yank_and_echo(expand('%'))<CR>
+nnoremap <silent> [yank]p <Cmd>call notomo#vimrc#yank_and_echo(substitute(substitute(expand('%:p'), substitute(expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\', '/', 'g'))<CR>
+nnoremap <silent> [yank]P <Cmd>call notomo#vimrc#yank_and_echo(substitute(expand('%:p'), '\', '/', 'g'))<CR>
+nnoremap <silent> [yank]; <Cmd>call notomo#vimrc#yank_and_echo(@:)<CR>
+nnoremap <silent> [yank]/ <Cmd>call notomo#vimrc#yank_and_echo(@/)<CR>
+nnoremap <silent> [yank]i <Cmd>call notomo#vimrc#yank_and_echo(@.)<CR>
+nnoremap <silent> [yank]b <Cmd>call notomo#vimrc#yank_and_echo(gina#component#repo#branch())<CR>
+nnoremap <silent> [yank]l <Cmd>call notomo#vimrc#yank_and_echo(line('.'))<CR>
+nnoremap <silent> [yank]c <Cmd>call notomo#vimrc#yank_and_echo(col('.'))<CR>
+nnoremap <silent> [yank]w <Cmd>call notomo#vimrc#yank_and_echo(expand('%:p:h:t'))<CR>
 "}}}
 
 " inner and around vomapping"{{{
@@ -481,13 +481,13 @@ endfunction
 command! -nargs=+ -complete=file MyDiff call <SID>diff_tab_open(<f-args>)
 nnoremap [diff]i :<C-u>MyDiff<Space>
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-nnoremap [diff]o :<C-u>DiffOrig<CR>
+nnoremap [diff]o <Cmd>DiffOrig<CR>
 
 nnoremap [diff]j ]c
 nnoremap [diff]k [c
-nnoremap [diff]g :<C-u>diffget<CR>
-nnoremap [diff]p :<C-u>diffput<CR>
-nnoremap [diff]q :<C-u>diffoff!<CR>
+nnoremap [diff]g <Cmd>diffget<CR>
+nnoremap [diff]p <Cmd>diffput<CR>
+nnoremap [diff]q <Cmd>diffoff!<CR>
 xnoremap [diff]j ]c
 xnoremap [diff]k [c
 xnoremap [diff]g :diffget<CR>
@@ -522,15 +522,15 @@ xnoremap [arith]u g<C-a>gv
 "}}}
 
 " exec"{{{
-nnoremap <silent> [exec]n :<C-u>nohlsearch<CR>
+nnoremap <silent> [exec]n <Cmd>nohlsearch<CR>
 " execute current line
 nnoremap <expr> [exec]l ':' . getline('.') . '<CR>'
 " relode vimrc
-nnoremap <silent> [exec]r :<C-u>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
-nnoremap [exec]cC :<C-u>messages clear<CR>
-nnoremap [exec]do :<C-u>tab drop ~/.local/.mytodo<CR>
-nnoremap [exec]q :<C-u>call notomo#vimrc#jq()<CR>
-nnoremap [exec]N :<C-u>call notomo#vimrc#open_note()<CR>
+nnoremap <silent> [exec]r <Cmd>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
+nnoremap [exec]cC <Cmd>messages clear<CR>
+nnoremap [exec]do <Cmd>tab drop ~/.local/.mytodo<CR>
+nnoremap [exec]q <Cmd>call notomo#vimrc#jq()<CR>
+nnoremap [exec]N <Cmd>call notomo#vimrc#open_note()<CR>
 nnoremap [exec]cc <Cmd>execute '!code -r -g %:' .. line('.') .. ':' .. col('.')<CR>
 "}}}
 
@@ -538,16 +538,16 @@ nnoremap [exec]cc <Cmd>execute '!code -r -g %:' .. line('.') .. ':' .. col('.')<
 nnoremap [qf] <Nop>
 nmap <Space>q [qf]
 
-nnoremap [qf]o :<C-u>call notomo#qf#open()<CR>
-nnoremap [qf]c :<C-u>call notomo#qf#close()<CR>
-nnoremap [qf]s :<C-u>call notomo#qf#first()<CR>
-nnoremap [qf]e :<C-u>call notomo#qf#last()<CR>
-nnoremap [qf]n :<C-u>call notomo#qf#next()<CR>
-nnoremap [qf]p :<C-u>call notomo#qf#previous()<CR>
-nnoremap [qf]d :<C-u>call notomo#qf#delete()<CR>
-nnoremap [qf]u :<C-u>call notomo#qf#undo()<CR>
-nnoremap [qf]<CR> :<C-u>call notomo#qf#current_open()<CR>
-nnoremap [qf]<Space> :<C-u>call notomo#qf#preview()<CR>
+nnoremap [qf]o <Cmd>call notomo#qf#open()<CR>
+nnoremap [qf]c <Cmd>call notomo#qf#close()<CR>
+nnoremap [qf]s <Cmd>call notomo#qf#first()<CR>
+nnoremap [qf]e <Cmd>call notomo#qf#last()<CR>
+nnoremap [qf]n <Cmd>call notomo#qf#next()<CR>
+nnoremap [qf]p <Cmd>call notomo#qf#previous()<CR>
+nnoremap [qf]d <Cmd>call notomo#qf#delete()<CR>
+nnoremap [qf]u <Cmd>call notomo#qf#undo()<CR>
+nnoremap [qf]<CR> <Cmd>call notomo#qf#current_open()<CR>
+nnoremap [qf]<Space> <Cmd>call notomo#qf#preview()<CR>
 "}}}
 
 " window"{{{
@@ -573,13 +573,13 @@ nnoremap [win] <Nop>
 nmap <Space>w [win]
 
 " split horizontally
-nnoremap [win]h :<C-u>split<CR>
+nnoremap [win]h <Cmd>split<CR>
 " split vertically
-nnoremap [win]v :<C-u>vsplit<CR>
+nnoremap [win]v <Cmd>vsplit<CR>
 " close others
-nnoremap [win]o :<C-u>silent only<CR>
+nnoremap [win]o <Cmd>silent only<CR>
 " close
-nnoremap [win]q :<C-u>q<CR>
+nnoremap [win]q <Cmd>q<CR>
 " equalize
 nnoremap [win]e <C-w>=
 "}}}
@@ -591,11 +591,11 @@ nmap t [tab]
 xnoremap [tab] <Nop>
 xmap t [tab]
 
-nnoremap <silent> [tab]o :<C-u>silent tabonly<CR>
-xnoremap <silent> [tab]o :<C-u>silent tabonly<CR>
-nnoremap <silent> [tab]O :<C-u>qall<CR>
-nnoremap <silent> <Plug>(tabclose_c) :<C-u>tabclose<CR>
-nnoremap <silent> <Plug>(new_tab) :<C-u>tabedit<CR>:setlocal buftype=nofile noswapfile<CR>
+nnoremap <silent> [tab]o <Cmd>silent tabonly<CR>
+xnoremap <silent> [tab]o <Esc><Cmd>silent tabonly<CR>
+nnoremap <silent> [tab]O <Cmd>qall<CR>
+nnoremap <silent> <Plug>(tabclose_c) <Cmd>tabclose<CR>
+nnoremap <silent> <Plug>(new_tab) <Cmd>tabedit<CR>:setlocal buftype=nofile noswapfile<CR>
 nmap [tab]t <Plug>(new_tab)
 
 " for mouse"{{{
@@ -606,13 +606,13 @@ inoremap <C-S-Tab> <Esc>gT
 vnoremap <C-Tab> <Esc>gt
 vnoremap <C-S-Tab> <Esc>gT
 nmap <silent> <C-w> <Plug>(tabclose_c)
-imap <silent> <C-w> <ESC>:<C-u>call <Plug>(tabclose_c)
+imap <silent> <C-w> <ESC><Cmd>call <Plug>(tabclose_c)
 vmap <silent> <C-w> <ESC><Plug>(tabclose_c)
 nmap <silent> <C-t> <Plug>(new_tab)
 "}}}
 
 for s:info in notomo#mapping#tab()
-    silent execute join(['nnoremap', '[tab]' . s:info[s:LHS_KEY], ":<C-u>call notomo#tab#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
+    silent execute join(['nnoremap', '[tab]' . s:info[s:LHS_KEY], "<Cmd>call notomo#tab#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
 endfor
 "}}}
 
@@ -644,16 +644,16 @@ execute join(['tnoremap', s:MAIN_INPUT_PFX . 'o', '<Tab>'])
 nnoremap [term] <Nop>
 nmap <Space>t [term]
 
-nnoremap <silent> [term]o :<C-u>terminal<CR>
+nnoremap <silent> [term]o <Cmd>terminal<CR>
 
 function! s:open_terminal(open_cmd) abort
     execute a:open_cmd
     execute 'terminal'
 endfunction
-nnoremap <silent> [term]v :<C-u>call <SID>open_terminal('vsplit')<CR>
-nnoremap <silent> [term]h :<C-u>call <SID>open_terminal('split')<CR>
-nnoremap <silent> [term]t :<C-u>call <SID>open_terminal('tabedit')<CR>
-nnoremap <silent> [term]g :<C-u>call <SID>open_terminal_on_project_root()<CR>
+nnoremap <silent> [term]v <Cmd>call <SID>open_terminal('vsplit')<CR>
+nnoremap <silent> [term]h <Cmd>call <SID>open_terminal('split')<CR>
+nnoremap <silent> [term]t <Cmd>call <SID>open_terminal('tabedit')<CR>
+nnoremap <silent> [term]g <Cmd>call <SID>open_terminal_on_project_root()<CR>
 
 function! s:open_terminal_on_project_root() abort
     let path = finddir('.git', ',;')
@@ -666,16 +666,16 @@ function! s:open_terminal_on_project_root() abort
     execute 'lcd' project_path
 endfunction
 
-nnoremap [exec]C :<C-u>checkhealth<CR>
-nnoremap [exec]u :<C-u>call notomo#vimrc#update_remote_plugin()<CR>
+nnoremap [exec]C <Cmd>checkhealth<CR>
+nnoremap [exec]u <Cmd>call notomo#vimrc#update_remote_plugin()<CR>
 
-nnoremap [exec]m :<C-u>call notomo#vimrc#mkup(v:false)<CR>
-nnoremap [exec]M :<C-u>call notomo#vimrc#mkup(v:true)<CR>
+nnoremap [exec]m <Cmd>call notomo#vimrc#mkup(v:false)<CR>
+nnoremap [exec]M <Cmd>call notomo#vimrc#mkup(v:true)<CR>
 
-nnoremap [exec]o :<C-u>call notomo#vimrc#job(['gh', 'repo', 'view', '--web'])<CR>
-nnoremap [exec]P :<C-u>call notomo#github#view_pr()<CR>
-nnoremap [exec]O :<C-u>call notomo#github#view_repo(expand('<cWORD>'))<CR>
-nnoremap [exec]I :<C-u>call notomo#github#view_issue(expand('<cword>'))<CR>
+nnoremap [exec]o <Cmd>call notomo#vimrc#job(['gh', 'repo', 'view', '--web'])<CR>
+nnoremap [exec]P <Cmd>call notomo#github#view_pr()<CR>
+nnoremap [exec]O <Cmd>call notomo#github#view_repo(expand('<cWORD>'))<CR>
+nnoremap [exec]I <Cmd>call notomo#github#view_issue(expand('<cword>'))<CR>
 
 function! s:set_title(prompt_pattern, max_length) abort
     let path = nvim_buf_get_name(0)
@@ -693,10 +693,10 @@ endfunction
 
 tnoremap <CR> <Cmd>call <SID>set_title('^\$ ', 24)<CR><CR>
 
-nnoremap <silent> [yank]ud :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_decode()"))<CR>
-nnoremap <silent> [yank]ue :<C-u>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_encode()"))<CR>
+nnoremap <silent> [yank]ud <Cmd>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_decode()"))<CR>
+nnoremap <silent> [yank]ue <Cmd>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo/url'.cursor_url_encode()"))<CR>
 
-nnoremap <silent> [yank]M :<C-u>call notomo#vimrc#yank_and_echo(trim(system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>
+nnoremap <silent> [yank]M <Cmd>call notomo#vimrc#yank_and_echo(trim(system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>
 
 function! s:start_termdebug() abort
     packadd termdebug
@@ -728,7 +728,7 @@ function! s:start_termdebug() abort
     nnoremap [keyword]e :Evaluate<CR>
 
     " restore K
-    nnoremap <silent> <S-k> :<C-u>keepjumps normal! {<CR>
+    nnoremap <silent> <S-k> <Cmd>keepjumps normal! {<CR>
 endfunction
 
 function! s:quit_termdebug() abort

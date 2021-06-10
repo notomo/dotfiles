@@ -3,8 +3,8 @@ nmap [exec]b [browser]
 xnoremap [browser] <Nop>
 xmap [exec]b [browser]
 
-nnoremap <expr> [browser]s ":\<C-u>OpenBrowserSearch " . expand('<cword>') . "\<CR>"
-nnoremap <expr> [browser]o ":\<C-u>OpenBrowser " . expand('<cWORD>') . "\<CR>"
+nnoremap [browser]s <Cmd>execute 'OpenBrowserSearch' expand('<cword>')<CR>
+nnoremap [browser]o <Cmd>execute 'OpenBrowser' expand('<cword>')<CR>
 nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 
 if !empty($SSH_CLIENT) && executable('lemonade') && has('mac')

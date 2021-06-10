@@ -36,5 +36,5 @@ function! s:toggle_fix_on_save() abort
     let g:ale_fix_on_save = !current_value
 endfunction
 
-nnoremap [exec]T :<C-u>call <SID>toggle_fix_on_save()<CR>
-nnoremap [exec]<C-f> :<C-u>ALEFix<CR>
+nnoremap [exec]T <Cmd>call <SID>toggle_fix_on_save()<CR>
+nnoremap [exec]<C-f> <Cmd>ALEFix<CR>

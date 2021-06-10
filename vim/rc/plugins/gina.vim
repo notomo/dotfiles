@@ -1,15 +1,15 @@
-nnoremap <silent> [git]s :<C-u>call notomo#gina#toggle_buffer('status', 'gina-status')<CR>
-nnoremap [git]D :<C-u>Gina diff<CR>
-nnoremap <silent> [git]b :<C-u>call notomo#gina#toggle_buffer('branch', 'gina-branch')<CR>
-nnoremap [git]L :<C-u>Gina log master...HEAD<CR>
-nnoremap [git]ll :<C-u>Gina log<CR>
-nnoremap [git]rl :<C-u>Gina reflog<CR>
-nnoremap [git]ls :<C-u>Gina ls<CR>
-nnoremap [git]T :<C-u>Gina tag<CR>
-nnoremap [git]c :<C-u>Gina commit<CR>
-nnoremap [git]xl :<C-u>call notomo#gina#toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>
+nnoremap <silent> [git]s <Cmd>call notomo#gina#toggle_buffer('status', 'gina-status')<CR>
+nnoremap [git]D <Cmd>Gina diff<CR>
+nnoremap <silent> [git]b <Cmd>call notomo#gina#toggle_buffer('branch', 'gina-branch')<CR>
+nnoremap [git]L <Cmd>Gina log master...HEAD<CR>
+nnoremap [git]ll <Cmd>Gina log<CR>
+nnoremap [git]rl <Cmd>Gina reflog<CR>
+nnoremap [git]ls <Cmd>Gina ls<CR>
+nnoremap [git]T <Cmd>Gina tag<CR>
+nnoremap [git]c <Cmd>Gina commit<CR>
+nnoremap [git]xl <Cmd>call notomo#gina#toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>
 nnoremap [git]xs :<C-u>Gina stash save ""<Left>
-nnoremap [git]xc :<C-u>Gina stash show<CR>
+nnoremap [git]xc <Cmd>Gina stash show<CR>
 nnoremap <expr> [git]P ':<C-u>Gina! push ' . notomo#gina#get_remote_name() . ' ' . gina#component#repo#branch()
 nnoremap <expr> [git]H ':<C-u>Gina! pull ' . notomo#gina#get_remote_name() . ' ' . gina#component#repo#branch()
 nnoremap [git]M :<C-u>Gina! merge<Space>
@@ -20,11 +20,11 @@ nnoremap [git]ra :<C-u>Gina! rebase --abort
 nnoremap [git]rc :<C-u>Gina! rebase --continue
 nnoremap [git]R :<C-u>Gina! rebase<Space>
 nnoremap <expr> [git]A ":<C-u>Gina! apply " . fnamemodify(bufname('%'), ':p')
-nnoremap [git]dl :<C-u>Gina log --diff-filter=D --summary<CR> " deleted file log
+nnoremap [git]dl <Cmd>Gina log --diff-filter=D --summary<CR> " deleted file log
 nnoremap [git]G :<C-u>Gina log -S""<Left>
-nnoremap [yank]U :<C-u>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>
+nnoremap [yank]U <Cmd>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>
 xnoremap [yank]U :Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>
-nnoremap [exec]gu :<C-u>Gina browse :<CR>
+nnoremap [exec]gu <Cmd>Gina browse :<CR>
 
 function! s:get_current_relpath() abort
     let git = gina#core#get_or_fail()
@@ -33,10 +33,10 @@ function! s:get_current_relpath() abort
     let relpath = substitute(curpath, abspath, '', '')
     return relpath
 endfunction
-nnoremap [git]B :<C-u>execute 'Gina blame :' . <SID>get_current_relpath()<CR>
-nnoremap [git]fl :<C-u>execute 'Gina log :' . <SID>get_current_relpath()<CR>
-nnoremap [git]dd :<C-u>execute 'Gina compare :' . <SID>get_current_relpath()<CR>
-nnoremap [git]df :<C-u>execute 'Gina diff :' . <SID>get_current_relpath()<CR>
+nnoremap [git]B <Cmd>execute 'Gina blame :' . <SID>get_current_relpath()<CR>
+nnoremap [git]fl <Cmd>execute 'Gina log :' . <SID>get_current_relpath()<CR>
+nnoremap [git]dd <Cmd>execute 'Gina compare :' . <SID>get_current_relpath()<CR>
+nnoremap [git]df <Cmd>execute 'Gina diff :' . <SID>get_current_relpath()<CR>
 
 let s:silent = {'silent': 1}
 let s:noremap_silent = {'noremap':1, 'silent': 1}
@@ -79,8 +79,8 @@ let g:gina#command#tag#use_default_aliases = 0
 " status
 let g:gina#command#status#use_default_mappings = 0
 let g:gina#action#index#discard_directories = 1
-call gina#custom#mapping#nmap('status', 'cc', ':<C-u>Gina commit<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'ca', ':<C-u>Gina commit --amend<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'cc', '<Cmd>Gina commit<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'ca', '<Cmd>Gina commit --amend<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'cs', ':call gina#action#call(''chaperon:tab'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'pp', ':call gina#action#call("patch:tab")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'S', ':call notomo#gina#stash_file()<CR>', s:noremap_silent)

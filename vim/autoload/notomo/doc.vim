@@ -22,8 +22,8 @@ function! notomo#doc#open(path, way) abort
     call setbufline(bufnr('%'), 1, content)
     setlocal nomodifiable
 
-    nnoremap <buffer> [keyword]r :<C-u>call notomo#doc#open_under_cursor('enew')<CR>
-    nnoremap <buffer> [keyword]o :<C-u>call notomo#doc#open_under_cursor('enew')<CR>
-    nnoremap <buffer> [keyword]t :<C-u>call notomo#doc#open_under_cursor('tabedit')<CR>
-    nnoremap <buffer> [keyword]v :<C-u>call notomo#doc#open_under_cursor('vsplit')<CR>
+    nnoremap <buffer> [keyword]r <Cmd>call notomo#doc#open_under_cursor('enew')<CR>
+    nnoremap <buffer> [keyword]o <Cmd>call notomo#doc#open_under_cursor('enew')<CR>
+    nnoremap <buffer> [keyword]t <Cmd>call notomo#doc#open_under_cursor('tabedit')<CR>
+    nnoremap <buffer> [keyword]v <Cmd>call notomo#doc#open_under_cursor('vsplit')<CR>
 endfunction

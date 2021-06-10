@@ -1,4 +1,4 @@
-nnoremap [keyword]T :<C-u>Translate<CR>
+nnoremap [keyword]T <Cmd>Translate<CR>
 xmap T <Plug>TranslateV
 let g:translator_target_lang = 'ja'
 let g:translator_default_engines = ['google']

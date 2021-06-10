@@ -4,8 +4,8 @@
 " set background=dark
 " set termguicolors
 
-nnoremap <Space>q :<C-u>qa!<CR>
-nnoremap <Space>wq :<C-u>q<CR>
+nnoremap <Space>q <Cmd>qa!<CR>
+nnoremap <Space>wq <Cmd>q<CR>
 
 " augroup MyAuGroup
 "     autocmd!
