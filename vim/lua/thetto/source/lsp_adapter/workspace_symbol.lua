@@ -34,11 +34,11 @@ M.collect = function(self, opts)
   return items
 end
 
-M.highlight = function(self, bufnr, items)
-  local highlighter = self.highlights:reset(bufnr)
+M.highlight = function(self, bufnr, first_line, items)
+  local highlighter = self.highlights:create(bufnr)
   for i, item in ipairs(items) do
-    highlighter:add("Comment", i - 1, 0, item.column_offsets.value - 1)
-    highlighter:add("Statement", i - 1, item.column_offsets.kind, -1)
+    highlighter:add("Comment", first_line + i - 1, 0, item.column_offsets.value - 1)
+    highlighter:add("Statement", first_line + i - 1, item.column_offsets.kind, -1)
   end
 end
 

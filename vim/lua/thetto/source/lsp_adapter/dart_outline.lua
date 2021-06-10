@@ -93,11 +93,11 @@ function M._to_items(self, item, parent, current_path)
   return items
 end
 
-M.highlight = function(self, bufnr, items)
-  local highlighter = self.highlights:reset(bufnr)
+M.highlight = function(self, bufnr, first_line, items)
+  local highlighter = self.highlights:create(bufnr)
   for i, item in ipairs(items) do
-    highlighter:add("Comment", i - 1, 0, item.column_offsets.value)
-    highlighter:add("Comment", i - 1, item.column_offsets.value + #item.value, -1)
+    highlighter:add("Comment", first_line + i - 1, 0, item.column_offsets.value)
+    highlighter:add("Comment", first_line + i - 1, item.column_offsets.value + #item.value, -1)
   end
 end
 
