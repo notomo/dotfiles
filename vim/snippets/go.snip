@@ -338,3 +338,10 @@ snippet errgroup
 	if err := eg.Wait(); err != nil {
 		return err
 	}
+
+snippet json_print
+	encorder := json.NewEncoder(os.Stdout)
+	encorder.SetIndent("", "  ")
+	if err := encorder.Encode(value); err != nil {
+		return err
+	}
