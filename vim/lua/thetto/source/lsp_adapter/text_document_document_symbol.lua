@@ -2,31 +2,34 @@ local util = require("notomo/thetto_util")
 
 local M = {}
 
-M._to_item = function()
+M.collect = function(self)
   local current_path = vim.fn.expand("%:p")
-  return function(v)
-    local kind = vim.lsp.protocol.SymbolKind[v.kind]
-    local desc = ("%s %s [%s]"):format(v.name, v.detail or "", kind)
-    local range = v.selectionRange or v.location.range
-    return {
-      path = current_path,
-      row = range.start.line + 1,
-      column = range.start.character + 1,
-      desc = desc,
-      value = v.name,
-      column_offsets = {value = 0, kind = #desc - #kind - 2},
-      range = util.range(v.selectionRange),
-    }
+  local items = {}
+  for _, v in ipairs(self.opts.result) do
+    vim.list_extend(items, self:_to_items(v, "", current_path))
   end
+  return items
 end
 
-M.collect = function(self)
-  local result = self.opts.result
-  local to_item = self:_to_item()
-
+function M._to_items(self, item, parent_key, current_path)
   local items = {}
-  for _, v in ipairs(result) do
-    table.insert(items, to_item(v))
+
+  local kind = vim.lsp.protocol.SymbolKind[item.kind]
+  local range = item.selectionRange or item.location.range
+  local name = parent_key .. item.name
+  local desc = ("%s %s [%s]"):format(name, item.detail or "", kind)
+  table.insert(items, {
+    path = current_path,
+    row = range.start.line + 1,
+    column = range.start.character + 1,
+    desc = desc,
+    value = name,
+    column_offsets = {value = 0, kind = #desc - #kind - 2},
+    range = util.range(item.selectionRange),
+  })
+
+  for _, v in ipairs(item.children or {}) do
+    vim.list_extend(items, self:_to_items(v, name .. ".", current_path))
   end
   return items
 end
