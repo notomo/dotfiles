@@ -192,7 +192,6 @@ call s:add('notomo/reacher.nvim', {'depth': 0, 'module': 'reacher'})
 source ~/.vim/rc/plugins/reacher.vim
 
 call s:add('dart-lang/dart-vim-plugin', {'ft' : 'dart'})
-call s:add('thosakwe/vim-flutter', {'ft' : 'dart'})
 
 call s:add('notomo/cmdbuf.nvim', {'depth': 0, 'module': 'cmdbuf'})
 source ~/.vim/rc/plugins/cmdbuf.vim

@@ -96,7 +96,7 @@ nnoremap あ a
 " file"{{{
 nnoremap [file]w <Cmd>write<CR>
 nnoremap [file]rn :<C-u>file<Space>
-nnoremap [file]rl <Cmd>edit!<CR>
+nnoremap [file]rl :<C-u>edit!<CR>
 nnoremap [file]v <Cmd>edit $MYVIMRC<CR>
 nnoremap [file]R <Cmd>call notomo#vimrc#rotate_file()<CR>
 "}}}
