@@ -3,6 +3,6 @@ setlocal completeopt-=preview
 setlocal tabstop=2
 setlocal softtabstop=2
 call notomo#mapping#lsp()
-nnoremap <buffer> [exec]bL <Cmd>tabedit<CR><Cmd>FlutterRun<CR><Cmd>only<CR>
-nnoremap <buffer> [file]L <Cmd>FlutterHotRestart<CR>
+nnoremap <buffer> [exec]bL <Cmd>lua require("cmdhndlr").run({name = "dart/flutter", layout = {type = "tab"}})<CR>
+nnoremap <buffer> [file]L <Cmd>lua require("cmdhndlr").input("R", {name = "normal_runner/dart/flutter"})<CR>
 nnoremap <buffer> [finder]o <Cmd>Thetto lsp_adapter/dart_outline --auto=preview<CR>

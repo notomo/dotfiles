@@ -250,7 +250,8 @@ snippet wait
 	end)
 
 snippet create_buffer
-	vim.api.nvim_create_buf(false, true)
+alias buffer
+	local bufnr = vim.api.nvim_create_buf(false, true)
 
 snippet open_win
 	local bufnr = vim.api.nvim_create_buf(false, true)
