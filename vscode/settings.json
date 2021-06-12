@@ -7,5 +7,6 @@
     "workbench.editor.untitled.hint": "hidden",
     "window.zoomLevel": 0,
     "breadcrumbs.enabled": false,
-    "workbench.activityBar.visible": false
+    "workbench.activityBar.visible": false,
+    "vscode-neovim.neovimExecutablePaths.win32": "C:/Users/tmno3/app/Neovim/bin/nvim.exe"
 }

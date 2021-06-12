@@ -61,4 +61,10 @@ if ERRORLEVEL 1 cmd /c exit 0
 cd %HOMEPATH%"\.config"
 copy %HOMEPATH%"\dotfiles\setup\windows\lemonade.toml" "lemonade.toml" /Y
 
+mkdir %APPDATA%"\Code\User" > NUL 2>&1
+if ERRORLEVEL 1 cmd /c exit 0
+
+mklink %APPDATA%"\Code\User\keybindings.json" %HOMEPATH%"\dotfiles\vscode\keybindings.json"
+mklink %APPDATA%"\Code\User\settings.json" %HOMEPATH%"\dotfiles\vscode\settings.json"
+
 pause
