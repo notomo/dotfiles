@@ -1,2 +1,2 @@
-nnoremap <expr> [substitute]aw ':%' . suball#input(expand('<cword>'), "")
-nnoremap <expr> [substitute]ay ':%' . suball#input(@+, "")
+nnoremap <expr> [substitute]aw ':%' .. luaeval('require("suball").map(_A, "")', expand('<cword>'))
+nnoremap <expr> [substitute]ay ':%' .. luaeval('require("suball").map(_A, "")', @+)

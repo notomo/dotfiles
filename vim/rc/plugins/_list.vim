@@ -133,9 +133,6 @@ endif
 call minpac#add('voldikss/vim-translator')
 source ~/.vim/rc/plugins/translator.vim
 
-call minpac#add('notomo/suball.vim', {'depth': 0})
-source ~/.vim/rc/plugins/suball.vim
-
 call minpac#add('notomo/searcho.nvim', {'depth': 0})
 source ~/.vim/rc/plugins/searcho.vim
 
@@ -201,5 +198,8 @@ nnoremap [exec]; <Cmd>lua vim.fn["notomo#vimrc#open_sandbox"](require("filetypex
 
 call s:add('notomo/cmdhndlr.nvim', {'depth': 0, 'module': 'cmdhndlr'})
 source ~/.vim/rc/plugins/cmdhndlr.vim
+
+call s:add('notomo/suball.nvim', {'depth': 0, 'module': 'suball'})
+source ~/.vim/rc/plugins/suball.vim
 
 call s:add('nvim-treesitter/nvim-treesitter', {'cmd' : 'TS*', 'module': 'cmdhndlr'})

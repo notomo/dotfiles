@@ -10,6 +10,7 @@ local modules = {
   "searcho",
   "filetypext",
   "cmdhndlr",
+  "suball",
   "notomo",
 }
 for _, m in ipairs(modules) do
