@@ -88,7 +88,7 @@ gesture.register({
 gesture.register({
     name = "open the recent files",
     inputs = { gesture.up(), gesture.right() },
-    action = "Thetto file/mru --no-insert"
+    action = "lua require('thetto').start('file/mru', {opts = {insert = false}})"
 })
 gesture.register({
     name = "open todo files",

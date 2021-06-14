@@ -175,7 +175,7 @@ source ~/.vim/rc/plugins/gesture.vim
 call s:add('notomo/flompt.nvim', {'module': 'flompt', 'depth': 0})
 source ~/.vim/rc/plugins/flompt.vim
 
-call s:add('notomo/thetto.nvim', {'cmd' : 'Thetto*', 'depth': 0})
+call s:add('notomo/thetto.nvim', {'module' : 'thetto', 'post_hook_file': '~/dotfiles/vim/lua/notomo/thetto.lua', 'depth': 0})
 source ~/.vim/rc/plugins/thetto.vim
 
 call s:add('notomo/counteria.nvim', {'cmd' : 'Counteria*', 'depth': 0})

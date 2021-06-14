@@ -3,7 +3,6 @@ local modules = {
   "cmdbuf",
   "wintablib",
   "nvimtool",
-  "thetto",
   "kivi",
   "flompt",
   "gesture",

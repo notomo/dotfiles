@@ -103,10 +103,7 @@ vim.lsp.handlers["textDocument/references"] = function(_, _, result)
   if not result or result == {} then
     return
   end
-  -- NOTICE: need to be added to runtimepath
-  local thetto = require("thetto/entrypoint/command")
-  thetto.start({
-    source_name = "lsp_adapter/text_document_references",
+  require("thetto").start("lsp_adapter/text_document_references", {
     opts = {target = "project", auto = "preview"},
     source_opts = {result = result},
   })
@@ -116,9 +113,7 @@ vim.lsp.handlers["workspace/symbol"] = function(_, _, result)
   if not result or result == {} then
     return
   end
-  local thetto = require("thetto/entrypoint/command")
-  thetto.start({
-    source_name = "lsp_adapter/workspace_symbol",
+  require("thetto").start("lsp_adapter/workspace_symbol", {
     opts = {target = "project", auto = "preview"},
     source_opts = {result = result},
   })
@@ -128,9 +123,7 @@ vim.lsp.handlers["textDocument/documentSymbol"] = function(_, _, result)
   if not result or result == {} then
     return
   end
-  local thetto = require("thetto/entrypoint/command")
-  thetto.start({
-    source_name = "lsp_adapter/text_document_document_symbol",
+  require("thetto").start("lsp_adapter/text_document_document_symbol", {
     opts = {auto = "preview"},
     source_opts = {result = result},
   })
