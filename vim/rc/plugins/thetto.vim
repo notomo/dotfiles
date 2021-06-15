@@ -101,10 +101,10 @@ xnoremap [finder]s :lua require("thetto").start("vim/substitute", {opts = {auto 
 nnoremap [finder]gd <Cmd>lua require("thetto").start("git/diff", {opts = {auto = "preview", target = "project"}})<CR>
 nnoremap [finder]gr <Cmd>lua require("thetto").start("git/diff", {opts = {auto = "preview", target = "project"}, source_opts = {expr = "%:p"}})<CR>
 nnoremap [finder]G <Cmd>lua require("thetto").start("file/grep", {opts = {auto = "preview", target = "project", debounce_ms = 100, filters = {"interactive", "substring", "-substring", "substring:path:relative", "-substring:path:relative"}}})<CR>
-nnoremap [finder]gL <Cmd>lua require("thetto").start("file/grep", {opts = {auto = "preview", target = "project", debounce_ms = 100, filters = {"interactive", "substring", "-substring", "substring:path:relative", "-substring:path:relative"}}})<CR>
+nnoremap [finder]gL <Cmd>lua require("thetto").start("file/grep", {opts = {auto = "preview", debounce_ms = 100, filters = {"interactive", "substring", "-substring", "substring:path:relative", "-substring:path:relative"}}})<CR>
 nnoremap [file]f <Cmd>lua require("thetto").start("file/alter", {opts = {auto = "preview", immediately = true, insert = false}})<CR>
 nnoremap [file]l <Cmd>lua require("thetto").start("file/alter", {opts = {auto = "preview", immediately = true, insert = false, action = "tab_open"}})<CR>
-nnoremap [file]t <Cmd>lua require("thetto").start("file/alter", {opts = {auto = "preview", immediately = true, insert = false}, source_opts = {allow = "new"}})<CR>
+nnoremap [file]t <Cmd>lua require("thetto").start("file/alter", {opts = {auto = "preview", immediately = true, insert = false}, source_opts = {allow_new = true}})<CR>
 nnoremap [finder]T <Cmd>lua require("thetto").start("vim/buffer", {opts = {auto = "preview"}, source_opts = {buftype = "terminal"}})<CR>
 nnoremap [exec]cm <Cmd>lua require("thetto").start("vim/execute", {opts = {display_limit = 1000, insert = false, offset = 1000}, source_opts = {cmd = "messages"}})<CR>
 nnoremap [exec]cv <Cmd>lua require("thetto").start("vim/execute", {opts = {insert = true}, source_opts = {cmd = "version"}})<CR>
