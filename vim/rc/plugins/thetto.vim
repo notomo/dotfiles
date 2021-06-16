@@ -26,7 +26,7 @@ function! s:thetto_settings() abort
     nnoremap <silent> <buffer> <expr> k line('.') == 1 ? 'G' : 'k'
     nnoremap <silent> <buffer> <2-LeftMouse> <Cmd>lua require("thetto").execute()<CR>
     inoremap <silent> <buffer> <2-LeftMouse> <Cmd>lua require("thetto").execute()<CR><ESC>
-    nnoremap <buffer> <Tab> :<C-u>lua require("thetto").execute("")<Left><Left>
+    nnoremap <buffer> <Tab> <Cmd>lua require("thetto").start("action")<CR>
     nnoremap <buffer> sm <Cmd>lua require("thetto").execute("toggle_selection")<CR><Down>
     xnoremap <buffer> sm :lua require("thetto").execute("toggle_selection")<CR>
     nnoremap <buffer> sa <Cmd>lua require("thetto").execute("toggle_all_selection")<CR>
