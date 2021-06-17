@@ -37,6 +37,9 @@ function! s:thetto_settings() abort
     nnoremap <buffer> tsl <Cmd>lua require("thetto").execute("toggle_sorter", {action_opts = {name = "length"}})<CR>
     nnoremap <buffer> p <Cmd>lua require("thetto").execute("toggle_preview")<CR>
     nnoremap <buffer> P <Cmd>lua require("thetto").execute("dry_run")<CR>
+    nnoremap <buffer> [finder]<CR> <Cmd>lua require("thetto").execute("resume_previous")<CR>
+    nnoremap <buffer> [finder]n <Cmd>lua require("thetto").execute("resume_previous")<CR>
+    nnoremap <buffer> [finder]N <Cmd>lua require("thetto").execute("resume_next")<CR>
 
     " custom
     nnoremap <buffer> <Leader>rp <Cmd>lua require("thetto").execute("qfreplace")<CR>
@@ -59,6 +62,9 @@ function! s:thetto_input_settings() abort
     nnoremap <buffer> fd <Cmd>lua require("thetto").execute("remove_filter")<CR>
     nnoremap <buffer> fi <Cmd>lua require("thetto").execute("inverse_filter")<CR>
     nnoremap <buffer> sr <Cmd>lua require("thetto").execute("reverse_sorter")<CR>
+    nnoremap <buffer> [finder]<CR> <Cmd>lua require("thetto").execute("resume_previous")<CR>
+    nnoremap <buffer> [finder]n <Cmd>lua require("thetto").execute("resume_previous")<CR>
+    nnoremap <buffer> [finder]N <Cmd>lua require("thetto").execute("resume_next")<CR>
 
     " custom
     inoremap <buffer> <C-u> <Cmd>lua require('notomo/insert').delete_prev()<CR>
