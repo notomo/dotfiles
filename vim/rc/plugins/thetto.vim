@@ -28,7 +28,7 @@ function! s:thetto_settings() abort
     inoremap <silent> <buffer> <2-LeftMouse> <Cmd>lua require("thetto").execute()<CR><ESC>
     nnoremap <buffer> <Tab> <Cmd>lua require("thetto").start("action")<CR>
     nnoremap <buffer> sm <Cmd>lua require("thetto").execute("toggle_selection")<CR><Down>
-    xnoremap <buffer> sm :lua require("thetto").execute("toggle_selection")<CR>
+    xnoremap <buffer> sm <Cmd>lua require("thetto").execute("toggle_selection")<CR>
     nnoremap <buffer> sa <Cmd>lua require("thetto").execute("toggle_all_selection")<CR>
     nnoremap <buffer> fo <Cmd>lua require("thetto").execute("directory_open")<CR>
     nnoremap <buffer> fl <Cmd>lua require("thetto").execute("directory_tab_open")<CR>
