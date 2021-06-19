@@ -105,7 +105,6 @@ source ~/.vim/rc/plugins/signify.vim
 
 call minpac#add('junegunn/vim-emoji')
 
-call minpac#add('thinca/vim-themis')
 call minpac#add('notomo/vusted', {'depth': 0})
 call minpac#add('notomo/virtes.nvim', {'depth': 0})
 call minpac#add('notomo/genvdoc', {'depth': 0})
@@ -150,11 +149,7 @@ xnoremap [diff]l :Linediff<CR>
 
 call s:add('tmhedberg/matchit', {'ft' : ['html', 'vim', 'sql']})
 
-call s:add('fuenor/im_control.vim', {'event' : 'InsertEnter'})
-let g:IM_CtrlMode = 4
-
 call s:add('thinca/vim-qfreplace', {'cmd': 'Qfreplace'})
-nnoremap [exec]Q <Cmd>Qfreplace<CR>
 
 call s:add('tyru/open-browser.vim', {'cmd': 'OpenBrowser*'})
 source ~/.vim/rc/plugins/open-browser.vim
@@ -177,8 +172,6 @@ source ~/.vim/rc/plugins/flompt.vim
 
 call s:add('notomo/thetto.nvim', {'module' : 'thetto', 'post_hook_file': '~/dotfiles/vim/lua/notomo/thetto.lua', 'depth': 0})
 source ~/.vim/rc/plugins/thetto.vim
-
-call s:add('notomo/counteria.nvim', {'cmd' : 'Counteria*', 'depth': 0})
 
 call s:add('neovim/nvim-lspconfig', {'module': 'lspconfig'})
 
