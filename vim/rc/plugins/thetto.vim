@@ -93,13 +93,13 @@ nnoremap [finder]go <Cmd>lua require("thetto").start("directory/recursive", {opt
 nnoremap [keyword]gg <Cmd>lua require("thetto").start("file/grep", {opts = {target = "project", pattern_type = "word", auto = "preview"}})<CR>
 nnoremap <silent> [finder]gl <Cmd>lua require("thetto").start("file/grep", {opts = {auto = "preview"}})<CR>
 nnoremap <silent> [finder]gg <Cmd>lua require("thetto").start("file/grep", {opts = {auto = "preview", target = "project"}})<CR>
-nnoremap [finder]P <Cmd>lua require("thetto").start("process")<CR>
+nnoremap [finder]P <Cmd>lua require("thetto").start("env/process")<CR>
 nnoremap [finder]a <Cmd>lua require("thetto").start("vim/autocmd")<CR>
 nnoremap [finder]s <Cmd>lua require("thetto").start("source")<CR>
 nnoremap [finder]n <Cmd>lua require("thetto").resume_execute({opts = {offset = 1}})<CR>
 nnoremap [finder]N <Cmd>lua require("thetto").resume_execute({opts = {offset = -1}})<CR>
 nnoremap [finder]m <Cmd>lua require("thetto").start("vim/keymap")<CR>
-nnoremap [finder]o <Cmd>lua require("thetto").start("outline", {opts = {filters = {"regex", "-regex"}, auto = "preview"}})<CR>
+nnoremap [finder]o <Cmd>lua require("thetto").start("cmd/ctags", {opts = {filters = {"regex", "-regex"}, auto = "preview"}})<CR>
 nnoremap [finder], <Cmd>lua require("thetto").start("make/target", {opts = {auto = "preview", target = "project"}})<CR>
 nnoremap [exec], <Cmd>lua require("thetto").start("make/target", {opts = {target = "upward", target_patterns = {"Makefile"}, auto = "preview", insert = false}})<CR>
 nnoremap [finder]S <Cmd>lua require("thetto").start("vim/substitute", {opts = {auto = "preview"}})<CR>
@@ -117,8 +117,8 @@ nnoremap [exec]cv <Cmd>lua require("thetto").start("vim/execute", {opts = {inser
 nnoremap [finder]J <Cmd>lua require("thetto").start("vim/jump", {opts = {auto ="preview"}})<CR>
 nnoremap [finder]c <Cmd>lua require("thetto").start("vim/command")<CR>
 nnoremap [finder]M <Cmd>lua require("thetto").start("manual", {opts = {sorters = {"length"}}})<CR>
-nnoremap [finder]q <Cmd>lua require("thetto").start("jq", {opts = {filters = {"interactive", "substring", "-substring"}}})<CR>
-nnoremap [finder]gR <Cmd>lua require("thetto").start("gron", {opts = {filters = {"substring", "-substring"}}})<CR>
+nnoremap [finder]q <Cmd>lua require("thetto").start("cmd/jq", {opts = {filters = {"interactive", "substring", "-substring"}}})<CR>
+nnoremap [finder]gR <Cmd>lua require("thetto").start("cmd/gron", {opts = {filters = {"substring", "-substring"}}})<CR>
 
 " custom source
 nnoremap [finder]p <Cmd>lua require("thetto").start("plugin")<CR>

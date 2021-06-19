@@ -159,7 +159,7 @@ require("thetto/source/file/grep").filters = {
 }
 require("thetto/source/line").filters = {"regex", "-regex"}
 
-require("thetto/source/outline").opts = {
+require("thetto/source/cmd/ctags").opts = {
   ignore = {"member", "package", "packageName", "anonMember", "constant"},
 }
 
