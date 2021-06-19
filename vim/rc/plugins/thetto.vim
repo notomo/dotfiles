@@ -73,14 +73,14 @@ endfunction
 nnoremap [finder]R <Cmd>lua require("thetto").start("vim/runtimepath")<CR>
 nnoremap <Space>ur <Cmd>lua require("thetto").start("file/mru", {opts = {auto = "preview", target = "project"}})<CR>
 nnoremap [finder]<CR> <Cmd>lua require("thetto").resume()<CR>
-nnoremap <Space>usf <Cmd>lua require("thetto").start("file/recursive", {opts = {auto = "preview"}})<CR>
-nnoremap <Space>usg <Cmd>lua require("thetto").start("file/recursive", {opts = {auto = "preview", target = "project"}})<CR>
+nnoremap <Space>usf <Cmd>lua require("thetto").start("file/recursive", {opts = {auto = "preview", sorters = {"length"}}})<CR>
+nnoremap <Space>usg <Cmd>lua require("thetto").start("file/recursive", {opts = {auto = "preview", target = "project", sorters = {"length"}}})<CR>
 nnoremap [finder]f <Cmd>lua require("thetto").start("file/in_dir")<CR>
 nnoremap [finder]h <Cmd>lua require("thetto").start("vim/help", {opts = {sorters = {"length"}}})<CR>
 nnoremap [finder]l <Cmd>lua require("thetto").start("line", {opts = {auto = "preview", filters = {"regex", "-regex", "substring", "-substring"}}})<CR>
 nnoremap [finder]r <Cmd>lua require("thetto").start("directory/recursive", {opts = {target = "project", sorters = {"length"}}})<CR>
 nnoremap <Space>usd <Cmd>lua require("thetto").start("directory/recursive", {opts = {sorters = {"length"}}})<CR>
-nnoremap [finder]v <Cmd>lua require("thetto").start("file/recursive", {opts = {cwd = "~/dotfiles", auto = "preview"}})<CR>
+nnoremap [finder]v <Cmd>lua require("thetto").start("file/recursive", {opts = {cwd = "~/dotfiles", auto = "preview", sorters = {"length"}}})<CR>
 nnoremap [finder]O <Cmd>lua require("thetto").start("vim/option")<CR>
 nnoremap [finder]H <Cmd>lua require("thetto").start("vim/highlight_group")<CR>
 nnoremap [finder]B <Cmd>lua require("thetto").start("vim/buffer", {opts = {auto = "preview"}})<CR>

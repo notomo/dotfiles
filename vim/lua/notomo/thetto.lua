@@ -1,10 +1,10 @@
-require("thetto/kind/directory").after = function(path)
+require("thetto/handler/kind/directory").after = function(path)
   require("kivi").open({path = path})
 end
 
-require("thetto/setup/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kivi)://)"
+require("thetto/handler/setup/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kivi)://)"
 if vim.fn.has("win32") == 0 then
-  require("thetto/source/file/recursive").get_command = function(path, max_depth)
+  require("thetto/handler/source/file/recursive").get_command = function(path, max_depth)
     return {
       "pt",
       "--follow",
@@ -28,14 +28,14 @@ if vim.fn.has("win32") == 0 then
     vim.list_extend(extended_cmd, {"-type", "d", "-name", name, "-prune", "-o"})
   end
   vim.list_extend(extended_cmd, {"-type", "d", "-print"})
-  require("thetto/source/directory/recursive").get_command = function(path, max_depth)
+  require("thetto/handler/source/directory/recursive").get_command = function(path, max_depth)
     local cmd = {"find", "-L", path, "-maxdepth", max_depth}
     vim.list_extend(cmd, extended_cmd)
     return cmd
   end
 end
 
-local grep = require("thetto/source/file/grep")
+local grep = require("thetto/handler/source/file/grep")
 grep.command = "pt"
 grep.command_opts = {
   "--nogroup",
@@ -50,7 +50,7 @@ grep.pattern_opt = ""
 grep.recursive_opt = ""
 grep.separator = "--"
 
-local file_bookmark = require("thetto/source/file/bookmark")
+local file_bookmark = require("thetto/handler/source/file/bookmark")
 file_bookmark.default_paths = {
   "~/.local/share/nvim/rplugin.vim",
   "~/dotfiles/vim/rc/local/local.vim",
@@ -147,27 +147,27 @@ local colors = {
   {pattern = "/$", chunks = {{" ", "ThettoColorLabelDir"}}},
   {always = true, pattern = "", chunks = {{" ", "ThettoColorLabelOthers"}}},
 }
-require("thetto/source/file/in_dir").colors = colors
-require("thetto/source/file/mru").colors = colors
-require("thetto/source/file/recursive").colors = colors
-require("thetto/source/file/grep").colors = colors
-require("thetto/source/file/grep").filters = {
+require("thetto/handler/source/file/in_dir").colors = colors
+require("thetto/handler/source/file/mru").colors = colors
+require("thetto/handler/source/file/recursive").colors = colors
+require("thetto/handler/source/file/grep").colors = colors
+require("thetto/handler/source/file/grep").filters = {
   "substring",
   "-substring",
   "substring:path:relative",
   "-substring:path:relative",
 }
-require("thetto/source/line").filters = {"regex", "-regex"}
+require("thetto/handler/source/line").filters = {"regex", "-regex"}
 
-require("thetto/source/cmd/ctags").opts = {
+require("thetto/handler/source/cmd/ctags").opts = {
   ignore = {"member", "package", "packageName", "anonMember", "constant"},
 }
 
-require("thetto/source/git/branch").sorters = {"length"}
+require("thetto/handler/source/git/branch").sorters = {"length"}
 require("thetto/custom").default_filters = {"substring", "-substring"}
 require("thetto/custom").opts = {display_limit = 500}
 
-require("thetto/source/file/alter").opts.pattern_groups = {
+require("thetto/handler/source/file/alter").opts.pattern_groups = {
   {"%_test.go", "%.go"},
   {"%/spec/lua/%_spec.lua", "%/lua/%.lua"},
   {"%/test/lua/%_spec.lua", "%/lua/%.lua"},
