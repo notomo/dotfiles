@@ -1,8 +1,8 @@
-require("thetto/handler/kind/directory").after = function(path)
+require("thetto/handler/kind/file/directory").after = function(path)
   require("kivi").open({path = path})
 end
 
-require("thetto/handler/setup/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kivi)://)"
+require("thetto/handler/store/file/mru").ignore_pattern = "\\v(^(gina|thetto|term|kivi)://)"
 if vim.fn.has("win32") == 0 then
   require("thetto/handler/source/file/recursive").get_command = function(path, max_depth)
     return {
@@ -28,7 +28,7 @@ if vim.fn.has("win32") == 0 then
     vim.list_extend(extended_cmd, {"-type", "d", "-name", name, "-prune", "-o"})
   end
   vim.list_extend(extended_cmd, {"-type", "d", "-print"})
-  require("thetto/handler/source/directory/recursive").get_command = function(path, max_depth)
+  require("thetto/handler/source/file/directory/recursive").get_command = function(path, max_depth)
     local cmd = {"find", "-L", path, "-maxdepth", max_depth}
     vim.list_extend(cmd, extended_cmd)
     return cmd

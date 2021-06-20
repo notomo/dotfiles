@@ -17,6 +17,6 @@ M.collect = function(self, opts)
   return {}, job
 end
 
-M.kind_name = "directory"
+M.kind_name = "file/directory"
 
 return M
