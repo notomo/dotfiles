@@ -2,7 +2,7 @@ local util = require("notomo/thetto_util")
 
 local M = {}
 
-M._to_item = function(self, opts)
+function M._to_item(self, opts)
   local to_relative = self.pathlib.relative_modifier(opts.cwd)
   return function(v)
     local path = vim.uri_to_fname(v.uri)
@@ -17,7 +17,7 @@ M._to_item = function(self, opts)
   end
 end
 
-M.collect = function(self, opts)
+function M.collect(self, opts)
   local result = self.opts.result
   local to_item = self:_to_item(opts)
 

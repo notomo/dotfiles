@@ -1,6 +1,6 @@
 local M = {}
 
-M.collect = function(self, opts)
+function M.collect(self, opts)
   local cmd = {"go", "list", "-f", "{{.ImportPath}} {{.Dir}}", "std"}
   local job = self.jobs.new(cmd, {
     on_exit = function(job_self)

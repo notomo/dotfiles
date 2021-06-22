@@ -1,6 +1,6 @@
 local M = {}
 
-M.collect = function()
+function M.collect()
   local items = {}
 
   local query = vim.treesitter.parse_query("lua", [[

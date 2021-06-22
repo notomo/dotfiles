@@ -2,7 +2,7 @@ local util = require("notomo/thetto_util")
 
 local M = {}
 
-M.collect = function(self)
+function M.collect(self)
   local current_path = vim.fn.expand("%:p")
   local items = {}
   for _, v in ipairs(self.opts.result) do
@@ -34,7 +34,7 @@ function M._to_items(self, item, parent_key, current_path)
   return items
 end
 
-M.highlight = function(self, bufnr, first_line, items)
+function M.highlight(self, bufnr, first_line, items)
   local highlighter = self.highlights:create(bufnr)
   for i, item in ipairs(items) do
     highlighter:add("Statement", first_line + i - 1, item.column_offsets.kind, -1)

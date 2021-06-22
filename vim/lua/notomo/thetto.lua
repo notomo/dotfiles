@@ -111,14 +111,32 @@ require("thetto").setup({
 
   source = {
 
-    line = {filters = {"regex", "-regex"}},
+    line = {
+      filters = {"regex", "-regex", "substring", "-substring"},
+      global_opts = {auto = "preview"},
+    },
+
+    ["vim/jump"] = {global_opts = {auto = "preview"}},
+    ["vim/substitute"] = {global_opts = {auto = "preview"}},
+    ["vim/filetype"] = {sorters = {"length"}},
 
     ["git/branch"] = {sorters = {"length"}},
 
     ["file/in_dir"] = {colors = colors},
-    ["file/mru"] = {colors = colors},
-    ["file/recursive"] = {colors = colors, opts = {get_command = file_recursive}},
-    ["file/directory/recursive"] = {opts = {get_command = directory_recursive}},
+    ["file/mru"] = {colors = colors, global_opts = {auto = "preview"}},
+    ["file/recursive"] = {
+      colors = colors,
+      opts = {get_command = file_recursive},
+      sorters = {"length"},
+      global_opts = {auto = "preview"},
+    },
+    ["file/directory/recursive"] = {
+      opts = {get_command = directory_recursive},
+      sorters = {"length"},
+    },
+
+    ["vim/help"] = {sorters = {"length"}},
+    ["vim/buffer"] = {global_opts = {auto = "preview"}},
 
     ["file/grep"] = {
       opts = {
@@ -138,6 +156,7 @@ require("thetto").setup({
       },
       filters = {"substring", "-substring", "substring:path:relative", "-substring:path:relative"},
       colors = colors,
+      global_opts = {auto = "preview"},
     },
 
     ["file/bookmark"] = {
@@ -156,9 +175,18 @@ require("thetto").setup({
 
     ["cmd/ctags"] = {
       opts = {ignore = {"member", "package", "packageName", "anonMember", "constant"}},
+      global_opts = {auto = "preview"},
+      filters = {"regex", "-regex"},
     },
 
+    ["cmd/make/target"] = {global_opts = {auto = "preview"}},
+
+    ["git/diff"] = {global_opts = {auto = "preview"}},
+
+    ["env/manual"] = {sorters = {"length"}},
+
     ["file/alter"] = {
+      global_opts = {auto = "preview", immediately = true, insert = false},
       opts = {
         pattern_groups = {
           {"%_test.go", "%.go"},

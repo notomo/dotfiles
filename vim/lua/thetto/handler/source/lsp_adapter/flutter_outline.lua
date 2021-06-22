@@ -3,11 +3,11 @@ local M = {}
 M._element_key = "dartElement"
 M._result_key = "_thetto_flutter_outline"
 
-M.collect = function(self, opts)
+function M.collect(self, opts)
   return require("thetto/handler/source/lsp_adapter/dart_outline").collect(self, opts)
 end
 
-M.highlight = function(self, bufnr, items)
+function M.highlight(self, bufnr, items)
   return require("thetto/handler/source/lsp_adapter/dart_outline").highlight(self, bufnr, items)
 end
 

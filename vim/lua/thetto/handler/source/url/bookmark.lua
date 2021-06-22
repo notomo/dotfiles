@@ -11,7 +11,7 @@ local encode = function(url)
   return url
 end
 
-M.collect = function(self)
+function M.collect(self)
   local file_path = self.pathlib.user_data_path("url_bookmark.txt")
   if self.filelib.create_if_need(file_path) then
     local f = io.open(file_path, "w")

@@ -2,7 +2,7 @@ local util = require("notomo/thetto_util")
 
 local M = {}
 
-M._to_item = function(self, opts)
+function M._to_item(self, opts)
   local to_relative = self.pathlib.relative_modifier(opts.cwd)
   return function(v)
     local kind = vim.lsp.protocol.SymbolKind[v.kind]
@@ -23,7 +23,7 @@ M._to_item = function(self, opts)
   end
 end
 
-M.collect = function(self, opts)
+function M.collect(self, opts)
   local result = self.opts.result
   local to_item = self:_to_item(opts)
 
@@ -34,7 +34,7 @@ M.collect = function(self, opts)
   return items
 end
 
-M.highlight = function(self, bufnr, first_line, items)
+function M.highlight(self, bufnr, first_line, items)
   local highlighter = self.highlights:create(bufnr)
   for i, item in ipairs(items) do
     highlighter:add("Comment", first_line + i - 1, 0, item.column_offsets.value - 1)

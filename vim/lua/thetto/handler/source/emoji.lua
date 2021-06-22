@@ -1,6 +1,6 @@
 local M = {}
 
-M.collect = function()
+function M.collect()
   local items = {}
   for name, codes in pairs(vim.fn["emoji#data#dict"]()) do
     local char = ""
