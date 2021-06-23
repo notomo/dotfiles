@@ -17,7 +17,8 @@ function M._to_items(self, item, parent_key, current_path)
   local kind = vim.lsp.protocol.SymbolKind[item.kind]
   local range = item.selectionRange or item.location.range
   local name = parent_key .. item.name
-  local desc = ("%s %s [%s]"):format(name, item.detail:gsub("\n", "\\n") or "", kind)
+  local detail = item.detail or ""
+  local desc = ("%s %s [%s]"):format(name, detail:gsub("\n", "\\n"), kind)
   table.insert(items, {
     path = current_path,
     row = range.start.line + 1,

@@ -120,6 +120,9 @@ require("thetto").setup({
     ["vim/substitute"] = {global_opts = {auto = "preview"}},
     ["vim/filetype"] = {sorters = {"length"}},
 
+    ["plugin"] = {sorters = {"alphabet"}},
+    ["thetto/source"] = {sorters = {"length"}},
+
     ["git/branch"] = {sorters = {"length"}},
 
     ["file/in_dir"] = {colors = colors},
