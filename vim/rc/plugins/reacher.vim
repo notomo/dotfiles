@@ -1,10 +1,13 @@
 nnoremap gw <Cmd>lua require("reacher").start({input = "\\v[^[:alnum:]]\\zs[[:alnum:]]+&.\\zs"})<CR>
+nnoremap gW <Cmd>lua require("reacher").start_multiple({input = "\\v[^[:alnum:]]\\zs[[:alnum:]]+&.\\zs"})<CR>
 nnoremap gs <Cmd>lua require("reacher").start()<CR>
+nnoremap gS <Cmd>lua require("reacher").start_multiple()<CR>
 nnoremap gj <Cmd>lua require("reacher").start({first_row = vim.fn.line(".") + 1})<CR>
 nnoremap gk <Cmd>lua require("reacher").start({last_row = vim.fn.line(".") - 1})<CR>
 nnoremap gl <Cmd>lua require("reacher").start({first_row = vim.fn.line("."), last_row = vim.fn.line(".")})<CR>
-nnoremap g<CR> <Cmd>lua require("reacher").start({input = vim.fn.histget("/")})<CR><ESC>
+nnoremap g<CR> <Cmd>lua require("reacher").again({input = vim.fn.histget("/")})<CR><ESC>
 xnoremap gs <Cmd>lua require("reacher").start()<CR>
+xnoremap gS <Cmd>lua require("reacher").start_multiple()<CR>
 xnoremap gl <Cmd>lua require("reacher").start({first_row = vim.fn.line("."), last_row = vim.fn.line(".")})<CR>
 
 autocmd MyAuGroup FileType reacher call s:reacher()
