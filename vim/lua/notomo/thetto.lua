@@ -141,6 +141,8 @@ require("thetto").setup({
     ["vim/help"] = {sorters = {"length"}},
     ["vim/buffer"] = {global_opts = {auto = "preview"}},
 
+    ["cmdhndlr/executed"] = {global_opts = {auto = "preview"}},
+
     ["file/grep"] = {
       opts = {
         command = "pt",

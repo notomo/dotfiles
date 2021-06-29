@@ -125,6 +125,7 @@ nnoremap [finder]p <Cmd>lua require("thetto").start("plugin")<CR>
 nnoremap [finder]b <Cmd>lua require("thetto").start("url/bookmark", {opts = {action = "browser_open"}})<CR>
 nnoremap [finder]e <Cmd>lua require("thetto").start("emoji", {opts = {action = "append"}, action_opts = {key = "emoji"}})<CR>
 nnoremap [finder]gp <Cmd>lua require("thetto").start("go/package")<CR>
+nnoremap [finder]Q <Cmd>lua require("thetto").start("cmdhndlr/executed")<CR>
 
 " custom action
 nnoremap [finder]; <Cmd>lua require("thetto").start("vim/filetype", {opts = {action = "open_proto"}})<CR>
