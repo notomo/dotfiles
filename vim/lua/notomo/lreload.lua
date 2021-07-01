@@ -5,7 +5,6 @@ local modules = {
   "nvimtool",
   "kivi",
   "flompt",
-  "gesture",
   "searcho",
   "filetypext",
   "cmdhndlr",
