@@ -134,3 +134,14 @@ event:
 # 	wget https://apt.llvm.org/llvm.sh
 # 	chmod +x llvm.sh
 # 	sudo ./llvm.sh 11
+
+VIM_DIR := ${HOME}/app/vim/src
+VIM := ${VIM_DIR}/vim
+vim:
+	cd ${VIM_DIR}; ./configure --with-features=huge
+	cd ${VIM_DIR}; make
+.PHONY: vim
+
+vim_run:
+	${VIM} -es -u NONE +"source ./minimal.vim" +"quitall!"
+.PHONY: vim_run
