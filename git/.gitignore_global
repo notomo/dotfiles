@@ -3,3 +3,5 @@ tags
 __pycache__
 .DS_Store
 .envrc
+core
+!core/
