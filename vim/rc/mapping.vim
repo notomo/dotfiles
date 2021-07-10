@@ -698,6 +698,8 @@ nnoremap <silent> [yank]ue <Cmd>call notomo#vimrc#yank_and_echo(luaeval("require
 
 nnoremap <silent> [yank]M <Cmd>call notomo#vimrc#yank_and_echo(trim(system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>
 
+let g:_debug_args = []
+let g:_debug_watched = []
 function! s:start_termdebug() abort
     packadd termdebug
 
@@ -712,11 +714,14 @@ function! s:start_termdebug() abort
         execute 'tcd' path
     endif
 
-    execute 'TermdebugCommand' nvim '-u' rc
+    execute 'TermdebugCommand' nvim join(g:_debug_args, ' ') ' -u' rc
     Source
     if in_repo
         Break
     endif
+    for var in g:_debug_watched
+        call TermDebugSendCommand('watch ' .. var)
+    endfor
     call TermDebugSendCommand('run')
 
     nnoremap [term]s <Cmd>Step<CR>

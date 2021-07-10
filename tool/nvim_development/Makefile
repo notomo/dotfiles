@@ -61,6 +61,8 @@ gdb:
 headless:
 	${NVIM} --headless -u NORC +"luafile ./minimal.lua" +"quitall!"
 
+start: headless
+
 _run:
 	# ${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
 	# ${NVIM} -u NORC +"source ./minimal.vim" +"quitall!"
