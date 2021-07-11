@@ -1,40 +1,24 @@
-nnoremap <expr> / searcho#do('forward') .. '\v'
-nnoremap <expr> sJ searcho#do('stay_forward') .. '\v(^\|[^[:alnum:]])\zs' .. expand('<cword>') .. searcho#with_left('\ze([^[:alnum:]]\|$)')
-nnoremap <expr> sK searcho#do('stay_backward') .. '\v(^\|[^[:alnum:]])\zs' .. expand('<cword>') .. searcho#with_left('\ze([^[:alnum:]]\|$)')
-nnoremap <expr> sj searcho#do('stay_forward') .. expand('<cword>')
-nnoremap <expr> sk searcho#do('stay_backward') .. expand('<cword>')
-nnoremap <expr> s<Space>j searcho#do('forward') .. '\v' .. @"
-nnoremap <expr> s<Space>k searcho#do('backward') .. '\v' .. @"
-nnoremap <expr> n searcho#do('next')
-nnoremap <expr> N searcho#do('prev')
-autocmd MyAuGroup User SearchoSourceLoad call s:searcho_settings()
-function! s:searcho_settings() abort
-    lua << EOF
-local keymaps = require('searcho/search').keymaps
-table.insert(keymaps, {
-    lhs = "<Space>",
-    rhs = "<CR>",
-    noremap = true,
-})
-table.insert(keymaps, {
-    lhs = "<CR>",
-    rhs = "<CR><Cmd>lua require('reacher').start({input = vim.fn.getreg('/')})<CR><ESC>",
-    noremap = true,
-})
-table.insert(keymaps, {
-    lhs = "<Tab>",
-    rhs = "<C-g>",
-    noremap = true,
-})
-table.insert(keymaps, {
-    lhs = "<S-Tab>",
-    rhs = "<C-t>",
-    noremap = true,
-})
-table.insert(keymaps, {
-    lhs = "<C-Space>",
-    rhs = "<Space>",
-    noremap = true,
-})
-EOF
+nnoremap / <Cmd>lua require("searcho").forward("\\v")<CR>
+nnoremap ? <Cmd>lua require("searcho").backward("\\v")<CR>
+nnoremap sj <Cmd>lua require("searcho").forward_word()<CR>
+nnoremap sJ <Cmd>lua require("searcho").forward_word({left = "\\v(^\|[^[:alnum:]])\\zs", right = "\\ze([^[:alnum:]]\|$)"})<CR>
+nnoremap sk <Cmd>lua require("searcho").backward_word()<CR>
+nnoremap sK <Cmd>lua require("searcho").backward_word({left = "\\v(^\|[^[:alnum:]])\\zs", right = "\\ze([^[:alnum:]]\|$)"})<CR>
+nnoremap s<Space>j <Cmd>lua require("searcho").forward("\\v" .. vim.fn.getreg('"'))<CR>
+nnoremap s<Space>k <Cmd>lua require("searcho").backward("\\v" .. vim.fn.getreg('"'))<CR>
+nnoremap n <Cmd>lua require("searcho").next()<CR>
+nnoremap N <Cmd>lua require("searcho").previous()<CR>
+
+autocmd MyAuGroup FileType searcho call s:searcho()
+function! s:searcho() abort
+    inoremap <silent> <buffer> jj <Cmd>lua require("searcho").cancel()<CR>
+    inoremap <buffer> <Space> <Cmd>lua require("searcho").finish()<CR>
+    inoremap <buffer> <CR> <Cmd>lua require("searcho").finish()<CR><Cmd>lua require('reacher').start({input = vim.fn.getreg('/')})<CR><ESC>
+    inoremap <buffer> <C-Space> <Space>
+    inoremap <buffer> <C-j> <Cmd>lua require("searcho").forward_history()<CR>
+    inoremap <buffer> <C-k> <Cmd>lua require("searcho").backward_history()<CR>
+    inoremap <buffer> <C-n> <Cmd>lua require("searcho").next_page()<CR>
+    inoremap <buffer> <C-p> <Cmd>lua require("searcho").previous_page()<CR>
+    inoremap <buffer> <Tab> <Cmd>lua require("searcho").next_match()<CR>
+    inoremap <buffer> <S-Tab> <Cmd>lua require("searcho").previous_match()<CR>
 endfunction
