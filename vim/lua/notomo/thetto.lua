@@ -107,6 +107,17 @@ require("thetto").setup({
       end,
     },
 
+    ["vim/variable"] = {
+      action_edit = function(_, items)
+        local item = items[1]
+        if item == nil then
+          return
+        end
+        require("cmdbuf").split_open(vim.o.cmdwinheight, {line = "let " .. item.value})
+        vim.cmd("normal! $")
+      end,
+    },
+
   },
 
   source = {
@@ -201,6 +212,8 @@ require("thetto").setup({
         },
       },
     },
+
+    ["vim/variable"] = {global_opts = {action = "edit"}},
 
   },
 
