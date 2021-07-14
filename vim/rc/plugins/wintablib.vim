@@ -17,3 +17,4 @@ nnoremap <silent> <Plug>(tabclose_r) <Cmd>lua require("wintablib.tab").close_rig
 nnoremap <silent> <Plug>(tabclose_l) <Cmd>lua require("wintablib.tab").close_left()<CR>
 nnoremap <silent> <Plug>(tabclose_c) <Cmd>lua require("wintablib.tab").close()<CR>
 nnoremap <silent> <Plug>(new_tab) <Cmd>lua require("wintablib.tab").scratch()<CR>
+lua require("wintablib.tab").activate_left_on_closed()
