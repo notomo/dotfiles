@@ -215,6 +215,11 @@ require("thetto").setup({
 
     ["vim/variable"] = {global_opts = {action = "edit"}},
 
+    ["cmd/zsh/history"] = {
+      sorters = {"length"},
+      global_opts = {target = "upward", target_patterns = {"Makefile"}},
+    },
+
   },
 
   source_actions = {

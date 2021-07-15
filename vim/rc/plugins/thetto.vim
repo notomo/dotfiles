@@ -120,6 +120,7 @@ nnoremap [finder]M <Cmd>lua require("thetto").start("env/manual")<CR>
 nnoremap [finder]q <Cmd>lua require("thetto").start("cmd/jq", {opts = {filters = {"interactive", "substring", "-substring"}}})<CR>
 nnoremap [finder]gR <Cmd>lua require("thetto").start("cmd/gron")<CR>
 nnoremap [finder]jl <Cmd>lua require("thetto").start("vim/jump", {source_opts = {per_file = true}})<CR>
+nnoremap [finder]z <Cmd>lua require("thetto").start("cmd/zsh/history")<CR>
 
 " custom source
 nnoremap [finder]p <Cmd>lua require("thetto").start("plugin")<CR>
