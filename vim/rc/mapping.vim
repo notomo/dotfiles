@@ -672,7 +672,7 @@ nnoremap [exec]u <Cmd>call notomo#vimrc#update_remote_plugin()<CR>
 nnoremap [exec]m <Cmd>call notomo#vimrc#mkup(v:false)<CR>
 nnoremap [exec]M <Cmd>call notomo#vimrc#mkup(v:true)<CR>
 
-nnoremap [exec]o <Cmd>call notomo#vimrc#job(['gh', 'repo', 'view', '--web'])<CR>
+nnoremap [browser]r <Cmd>call notomo#vimrc#job(['gh', 'repo', 'view', '--web'])<CR>
 nnoremap [exec]P <Cmd>call notomo#github#view_pr()<CR>
 nnoremap [exec]O <Cmd>call notomo#github#view_repo(expand('<cWORD>'))<CR>
 nnoremap [exec]I <Cmd>call notomo#github#view_issue(expand('<cword>'))<CR>
