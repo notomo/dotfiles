@@ -66,7 +66,7 @@ setup_ls(nvimlsp.sumneko_lua, {
     },
   },
 }, "mac", "win32")
-setup_ls(nvimlsp.pyls, {})
+setup_ls(nvimlsp.pylsp, {})
 setup_ls(nvimlsp.clangd, {})
 setup_ls(nvimlsp.tsserver, {})
 setup_ls(nvimlsp.vimls, {}, "mac", "win32")
