@@ -12,14 +12,13 @@ xnoremap gl <Cmd>lua require("reacher").start({first_row = vim.fn.line("."), las
 
 autocmd MyAuGroup FileType reacher call s:reacher()
 function! s:reacher() abort
-    inoremap <buffer> <C-n> <Cmd>lua require("reacher").next()<CR>
-    inoremap <buffer> <C-p> <Cmd>lua require("reacher").previous()<CR>
     inoremap <silent> <buffer> jj <Cmd>lua require("reacher").cancel()<CR>
     inoremap <buffer> <Space> <Cmd>lua require("reacher").finish()<CR>
     inoremap <buffer> <C-Space> <Cmd>lua require("reacher").finish()<CR>
     inoremap <buffer> <C-s> <Space>
     inoremap <buffer> <CR> <ESC>
-    inoremap <buffer> <Tab> .*
+    inoremap <buffer> <Tab> <Cmd>lua require("reacher").next()<CR>
+    inoremap <buffer> <S-Tab> <Cmd>lua require("reacher").previous()<CR>
     inoremap <buffer> <C-j> <Cmd>lua require("reacher").forward_history()<CR>
     inoremap <buffer> <C-k> <Cmd>lua require("reacher").backward_history()<CR>
 
