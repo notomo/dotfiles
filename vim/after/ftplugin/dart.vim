@@ -5,6 +5,7 @@ setlocal softtabstop=2
 call notomo#mapping#lsp()
 nnoremap <buffer> [exec]bL <Cmd>lua require("cmdhndlr").run({name = "dart/flutter", layout = {type = "tab"}})<CR>
 nnoremap <buffer> [file]L <Cmd>lua require("cmdhndlr").input("R", {name = "normal_runner/dart/flutter"})<CR>
+nnoremap <buffer> [file]O <Cmd>lua require("thetto").start("cmdhndlr/executed", {opts = {action = "tab_open", immediately = true, input = "flutter"}, source_opts = {is_running = true}})<CR>
 nnoremap <buffer> [finder]o <Cmd>lua require("thetto").start("lsp_adapter/dart_outline", {opts = {auto = "preview"}})<CR>
 
 augroup flutter_hot_reload
