@@ -98,7 +98,7 @@ vim.lsp.set_log_level("error")
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, method, result, client_id, bufnr, config)
   vim.lsp.diagnostic.on_publish_diagnostics(err, method, result, client_id, bufnr, config)
-  vim.lsp.diagnostic.set_loclist({open_loclist = false, client_id = client_id})
+  vim.lsp.diagnostic.set_loclist({open = false, client_id = client_id})
 end
 
 vim.lsp.handlers["textDocument/references"] = function(_, _, result)
