@@ -61,13 +61,13 @@ gdb:
 headless:
 	${NVIM} --headless -u NORC +"luafile ./minimal.lua" +"quitall!"
 
-start: headless
+start: _run
 
 _run:
-	# ${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
+	${NVIM} -u NORC +"luafile ./minimal.lua"
 	# ${NVIM} -u NORC +"source ./minimal.vim" +"quitall!"
 	# ${NVIM} --headless -u NORC +"luafile ./minimal.lua" +"quitall!"
-	${NVIM}
+	# ${NVIM}
 	# ${NVIM} -u NORC +"source ./minimal.vim"
 	# ${NVIM} -u NORC +"luafile ./minimal.lua"
 .PHONY: _run
@@ -75,7 +75,7 @@ _run:
 ISSUE := issue.md
 issue:
 	rm -f ${ISSUE}
-	echo "TITLE: Segmantation fault ❗TODO❗" >> ${ISSUE}
+	echo "TITLE: Segmentation fault ❗TODO❗" >> ${ISSUE}
 	echo>> ${ISSUE}
 	echo "- ``nvim --version``:" >> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
@@ -118,18 +118,6 @@ issue:
 
 event:
 	${NVIM} --headless -u NORC +"luafile ./event.lua"
-
-# doxygen:
-# 	sudo apt-get install flex
-# 	sudo apt-get install bison
-# 	wget https://github.com/doxygen/doxygen/archive/Release_1_8_20.tar.gz -o doxygen.tar.gz
-# 	tar -zxvf doxygen.tar.gz
-# 	cd doxygen
-# 	mkdir build
-# 	cd build
-# 	cmake -G "Unix Makefiles" ..
-# 	make
-# 	sudo make install
 
 # clang:
 # 	# https://apt.llvm.org/

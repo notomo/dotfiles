@@ -1,6 +1,6 @@
 /core
 /backtrace.txt*
 /issue.md
-/minimal.lua
-/minimal.vim
-/debugrc.vim
+/*minimal.lua
+/*minimal.vim
+/*debugrc.vim
