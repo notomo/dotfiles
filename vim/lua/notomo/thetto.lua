@@ -215,6 +215,8 @@ require("thetto").setup({
 
     ["vim/variable"] = {global_opts = {action = "edit"}},
 
+    ["github/pr"] = {global_opts = {action = "browser_open"}},
+
     ["cmd/zsh/history"] = {
       sorters = {"length"},
       global_opts = {target = "upward", target_patterns = {"Makefile"}},
@@ -239,12 +241,18 @@ require("thetto").setup({
     ["url/bookmark"] = {
       action_browser_open = function(_, items)
         for _, item in ipairs(items) do
-          if item.url ~= nil then
-            vim.cmd("OpenBrowser " .. item.url)
-          end
+          vim.cmd("OpenBrowser " .. item.url)
         end
       end,
       opts = {yank = {key = "url"}},
+    },
+
+    ["github/pr"] = {
+      action_browser_open = function(_, items)
+        for _, item in ipairs(items) do
+          vim.cmd("OpenBrowser " .. item.url)
+        end
+      end,
     },
 
   },
