@@ -225,6 +225,7 @@ require("thetto").setup({
     ["github/issue"] = {global_opts = {action = "browser_open"}},
     ["github/milestone"] = {global_opts = {action = "browser_open"}},
     ["github/release"] = {global_opts = {action = "browser_open"}},
+    ["github/repository"] = {global_opts = {action = "browser_open"}},
 
     ["cmd/zsh/history"] = {
       sorters = {"length"},
@@ -252,6 +253,7 @@ require("thetto").setup({
     ["github/issue"] = {action_browser_open = brwoser_open},
     ["github/milestone"] = {action_browser_open = brwoser_open},
     ["github/release"] = {action_browser_open = brwoser_open},
+    ["github/repository"] = {action_browser_open = brwoser_open},
 
   },
 
