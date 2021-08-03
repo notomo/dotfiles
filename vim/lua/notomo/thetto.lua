@@ -52,6 +52,12 @@ if vim.fn.has("win32") == 0 then
   end
 end
 
+local brwoser_open = function(_, items)
+  for _, item in ipairs(items) do
+    vim.cmd("OpenBrowser " .. item.url)
+  end
+end
+
 -- TODO move to setup
 require("thetto.handler.kind.file.directory").after = function(path)
   require("kivi").open({path = path})
@@ -216,6 +222,7 @@ require("thetto").setup({
     ["vim/variable"] = {global_opts = {action = "edit"}},
 
     ["github/pr"] = {global_opts = {action = "browser_open"}},
+    ["github/issue"] = {global_opts = {action = "browser_open"}},
 
     ["cmd/zsh/history"] = {
       sorters = {"length"},
@@ -238,22 +245,9 @@ require("thetto").setup({
       end,
     },
 
-    ["url/bookmark"] = {
-      action_browser_open = function(_, items)
-        for _, item in ipairs(items) do
-          vim.cmd("OpenBrowser " .. item.url)
-        end
-      end,
-      opts = {yank = {key = "url"}},
-    },
-
-    ["github/pr"] = {
-      action_browser_open = function(_, items)
-        for _, item in ipairs(items) do
-          vim.cmd("OpenBrowser " .. item.url)
-        end
-      end,
-    },
+    ["url/bookmark"] = {action_browser_open = brwoser_open, opts = {yank = {key = "url"}}},
+    ["github/pr"] = {action_browser_open = brwoser_open},
+    ["github/issue"] = {action_browser_open = brwoser_open},
 
   },
 
