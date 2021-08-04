@@ -1,6 +1,6 @@
 local M = {}
 
-M.opts = {user_name = vim.env.USER}
+M.opts = {user_name = ":owner"}
 
 function M.collect(self, opts)
   local cmd = {

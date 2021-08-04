@@ -1,7 +1,17 @@
 local M = {}
 
+M.opts = {owner = ":owner", repo = ":repo"}
+
 function M.collect(self, opts)
-  local cmd = {"gh", "api", "-X", "GET", "repos/:owner/:repo/releases", "-F", "per_page=100"}
+  local cmd = {
+    "gh",
+    "api",
+    "-X",
+    "GET",
+    ("repos/%s/%s/releases"):format(self.opts.owner, self.opts.repo),
+    "-F",
+    "per_page=100",
+  }
   local job = self.jobs.new(cmd, {
     on_exit = function(job_self, code)
       if code ~= 0 then
