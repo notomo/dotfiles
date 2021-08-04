@@ -1,14 +1,19 @@
 local M = {}
 
-M.opts = {user_name = ":owner"}
+M.opts = {owner = ":owner", is_org = false}
 
 function M.collect(self, opts)
+  local typ = "users"
+  if self.opts.is_org then
+    typ = "orgs"
+  end
+
   local cmd = {
     "gh",
     "api",
     "-X",
     "GET",
-    ("users/%s/repos"):format(self.opts.user_name),
+    ("%s/%s/repos"):format(typ, self.opts.owner),
     "-F",
     "per_page=100",
     "-F",
