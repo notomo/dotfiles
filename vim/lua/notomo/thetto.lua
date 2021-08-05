@@ -52,12 +52,6 @@ if vim.fn.has("win32") == 0 then
   end
 end
 
-local brwoser_open = function(_, items)
-  for _, item in ipairs(items) do
-    vim.cmd("OpenBrowser " .. item.url)
-  end
-end
-
 -- TODO move to setup
 require("thetto.handler.kind.file.directory").after = function(path)
   require("kivi").open({path = path})
@@ -121,6 +115,14 @@ require("thetto").setup({
         end
         require("cmdbuf").split_open(vim.o.cmdwinheight, {line = "let " .. item.value})
         vim.cmd("normal! $")
+      end,
+    },
+
+    ["url"] = {
+      action_open_browser = function(_, items)
+        for _, item in ipairs(items) do
+          vim.cmd("OpenBrowser " .. item.url)
+        end
       end,
     },
 
@@ -221,14 +223,6 @@ require("thetto").setup({
 
     ["vim/variable"] = {global_opts = {action = "edit"}},
 
-    ["github/pr"] = {global_opts = {action = "browser_open"}},
-    ["github/issue"] = {global_opts = {action = "browser_open"}},
-    ["github/milestone"] = {global_opts = {action = "browser_open"}},
-    ["github/release"] = {global_opts = {action = "browser_open"}},
-    ["github/repository"] = {global_opts = {action = "browser_open"}},
-    ["github/action/workflow"] = {global_opts = {action = "browser_open"}},
-    ["github/action/run"] = {global_opts = {action = "browser_open"}},
-
     ["cmd/zsh/history"] = {
       sorters = {"length"},
       global_opts = {target = "upward", target_patterns = {"Makefile"}},
@@ -250,14 +244,14 @@ require("thetto").setup({
       end,
     },
 
-    ["url/bookmark"] = {action_browser_open = brwoser_open, opts = {yank = {key = "url"}}},
-    ["github/pr"] = {action_browser_open = brwoser_open},
-    ["github/issue"] = {action_browser_open = brwoser_open},
-    ["github/milestone"] = {action_browser_open = brwoser_open},
-    ["github/release"] = {action_browser_open = brwoser_open},
-    ["github/repository"] = {action_browser_open = brwoser_open},
-    ["github/action/workflow"] = {action_browser_open = brwoser_open},
-    ["github/action/run"] = {action_browser_open = brwoser_open},
+    ["url/bookmark"] = {
+      action_browser_open = function(_, items)
+        for _, item in ipairs(items) do
+          vim.cmd("OpenBrowser " .. item.url)
+        end
+      end,
+      opts = {yank = {key = "url"}},
+    },
 
   },
 
