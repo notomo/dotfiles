@@ -10,7 +10,7 @@ endif
 filetype off
 filetype plugin indent off
 
-runtime! rc/local/*.vim
+runtime! rc/local/*.vim rc/local/*.lua
 source ~/.vim/rc/option.vim
 source ~/.vim/rc/mapping.vim
 
@@ -27,4 +27,4 @@ syntax enable
 filetype plugin indent on
 colorscheme spring-night
 
-runtime! rc/local/after/*.vim
+runtime! rc/local/after/*.vim rc/local/after/*.lua
