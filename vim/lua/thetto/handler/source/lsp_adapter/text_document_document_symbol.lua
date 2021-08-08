@@ -5,7 +5,7 @@ local M = {}
 function M.collect(self)
   local current_path = vim.fn.expand("%:p")
   local items = {}
-  for _, v in ipairs(self.opts.result) do
+  for _, v in ipairs(self.opts.result or {}) do
     vim.list_extend(items, self:_to_items(v, "", current_path))
   end
   return items

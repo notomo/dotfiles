@@ -18,7 +18,7 @@ function M._to_item(self, opts)
 end
 
 function M.collect(self, opts)
-  local result = self.opts.result
+  local result = self.opts.result or {}
   local to_item = self:_to_item(opts)
 
   local items = {}
