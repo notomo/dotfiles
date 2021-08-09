@@ -1,7 +1,5 @@
-function! MakeTabLine()
-    return luaeval('require("wintablib.tab").line()')
-endfunction
-set tabline=%!MakeTabLine()
+lua _G._tab_line = require("wintablib.tab").line
+set tabline=%!v:lua._tab_line()
 
 nnoremap [win]O <Cmd>lua require("wintablib.window").close_floating()<CR>
 nnoremap [win]H <Cmd>lua require("wintablib.window").from_left_tab()<CR>
