@@ -32,7 +32,7 @@ function! s:thetto_settings() abort
     nnoremap <buffer> sa <Cmd>lua require("thetto").execute("toggle_all_selection")<CR>
     nnoremap <buffer> fo <Cmd>lua require("thetto").execute("directory_open")<CR>
     nnoremap <buffer> fl <Cmd>lua require("thetto").execute("directory_tab_open")<CR>
-    nnoremap <buffer> ff <Cmd>lua require("thetto").execute("directory_enter")<CR>
+    nnoremap <buffer> ff <Cmd>lua require("thetto").execute("list_children")<CR>
     nnoremap <buffer> yy <Cmd>lua require("thetto").execute("yank")<CR>
     nnoremap <buffer> tsl <Cmd>lua require("thetto").execute("toggle_sorter", {action_opts = {name = "length"}})<CR>
     nnoremap <buffer> p <Cmd>lua require("thetto").execute("toggle_preview")<CR>
