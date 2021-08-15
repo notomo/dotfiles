@@ -4,7 +4,13 @@ abbr func main() {}
 	package main
 	
 	func main() {
-		${0}
+		if err := run(); err != nil {
+			panic(err)
+		}
+	}
+	
+	func run() error {
+		return nil
 	}
 
 snippet function
@@ -344,4 +350,32 @@ snippet json_print
 	encorder.SetIndent("", "  ")
 	if err := encorder.Encode(value); err != nil {
 		return err
+	}
+
+snippet json_decode
+	var decoded ${0:TypeName}
+	if err := json.Unmarshal(b, &decoded); err != nil {
+		return err
+	}
+
+snippet embed
+	//go:embed ${1:files}
+	var ${0:nam} []byte
+
+snippet sync_once
+	var ${1:name} sync.Once
+	once.Do(func() {
+		${0:TARGET}
+	})
+
+snippet sync_mutex
+	type ${1:Name} struct {
+		value ${2:int}
+		mu    sync.Once
+	}
+	
+	func (v *$1) ${0:name}() error {
+		v.mu.Lock()
+		defer v.mu.Unlock()
+		return v.value
 	}
