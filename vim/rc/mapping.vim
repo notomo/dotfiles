@@ -268,9 +268,9 @@ nnoremap zD <Nop>
 nnoremap <Ins> <Nop>
 inoremap <Ins> <Nop>
 
-nnoremap <RightMouse> p
-vnoremap <RightMouse> p
-inoremap <RightMouse> <C-r>"
+nnoremap <RightMouse> <LeftMouse>p
+vnoremap <RightMouse> <LeftMouse>p
+inoremap <RightMouse> <LeftMouse><C-r>"
 
 nnoremap <S-LeftMouse> p
 vnoremap <S-LeftMouse> p
