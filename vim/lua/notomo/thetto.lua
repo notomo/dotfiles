@@ -118,6 +118,17 @@ require("thetto").setup({
       end,
     },
 
+    ["vim/command"] = {
+      action_open = function(_, items)
+        local item = items[1]
+        if item == nil then
+          return
+        end
+        require("cmdbuf").split_open(vim.o.cmdwinheight, {line = item.value})
+        vim.cmd("normal! $")
+      end,
+    },
+
     ["url"] = {
       action_open_browser = function(_, items)
         for _, item in ipairs(items) do

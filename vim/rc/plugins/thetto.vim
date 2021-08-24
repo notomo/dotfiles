@@ -126,13 +126,13 @@ nnoremap [finder]q <Cmd>lua require("thetto").start("cmd/jq", {opts = {filters =
 nnoremap [finder]gR <Cmd>lua require("thetto").start("cmd/gron")<CR>
 nnoremap [finder]jl <Cmd>lua require("thetto").start("vim/jump", {source_opts = {per_file = true}})<CR>
 nnoremap [finder]z <Cmd>lua require("thetto").start("cmd/zsh/history")<CR>
+nnoremap [finder]Q <Cmd>lua require("thetto").start("vim/history/command")<CR>
 
 " custom source
 nnoremap [finder]p <Cmd>lua require("thetto").start("plugin")<CR>
 nnoremap [finder]b <Cmd>lua require("thetto").start("url/bookmark", {opts = {action = "browser_open"}})<CR>
 nnoremap [finder]e <Cmd>lua require("thetto").start("emoji", {opts = {action = "append"}, action_opts = {key = "emoji"}})<CR>
 nnoremap [finder]gp <Cmd>lua require("thetto").start("go/package")<CR>
-nnoremap [finder]Q <Cmd>lua require("thetto").start("cmdhndlr/executed")<CR>
 
 " custom action
 nnoremap [finder]; <Cmd>lua require("thetto").start("vim/filetype", {opts = {action = "open_proto"}})<CR>
