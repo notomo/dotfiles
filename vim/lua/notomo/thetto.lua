@@ -118,6 +118,17 @@ require("thetto").setup({
       end,
     },
 
+    ["vim/option"] = {
+      action_edit = function(_, items)
+        local item = items[1]
+        if item == nil then
+          return
+        end
+        require("cmdbuf").split_open(vim.o.cmdwinheight, {line = "setlocal " .. item.value})
+        vim.cmd("normal! $")
+      end,
+    },
+
     ["vim/command"] = {
       action_open = function(_, items)
         local item = items[1]
