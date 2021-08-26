@@ -182,10 +182,9 @@ snippet iferr
 		return err
 	}
 
-snippet ifcause
-	if errors.Cause(err) == ${1:Err} {
-		${0:TARGET}
-	}
+snippet error_is
+options word
+	errors.Is(err, ${0:Err})
 
 snippet wrap
 	fmt.Errorf("${1:msg}: %w", err)
@@ -379,3 +378,6 @@ snippet sync_mutex
 		defer v.mu.Unlock()
 		return v.value
 	}
+
+snippet assert_interface
+    var _ ${1:Interface} = &${0:Impl}{}
