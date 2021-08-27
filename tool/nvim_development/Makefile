@@ -26,9 +26,9 @@ all:
 LOG_DIR := ${HOME}/logs
 # TEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/eval/api_functions_spec.lua
 # TEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/api/window_spec.lua
-TEST_ENV := CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/api/vim_spec.lua TEST_FILTER=.*nvim_echo.*
+TEST_ENV := NVIM_LOG_FILE=${NVIM_DIR}/build/.nvimlog CC=clang-11 ASAN_OPTIONS=detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan UBSAN_OPTIONS=print_stacktrace=1 TEST_FILE=test/functional/lua/highlight_spec.lua
 test:
-	rm -rf ${LOG_DIR}
+	rm -rf ${LOG_DIR} ${NVIM_DIR}/build/.nvimlog
 	mkdir -p ${LOG_DIR}
 	cd ${NVIM_DIR}; ${TEST_ENV} make functionaltest
 	# cd ${NVIM_DIR}; make functionaltest

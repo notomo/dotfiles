@@ -131,6 +131,16 @@ vim.lsp.handlers["textDocument/documentSymbol"] = function(_, _, result)
   })
 end
 
+vim.lsp.handlers["textDocument/implementation"] = function(_, _, result)
+  if not result or result == {} then
+    return
+  end
+  require("thetto").start("lsp_adapter/text_document_implementation", {
+    opts = {target = "project", auto = "preview"},
+    source_opts = {result = result},
+  })
+end
+
 vim.lsp.handlers["textDocument/definition"] = function(_, _, result)
   if result == nil or vim.tbl_isempty(result) then
     return nil
