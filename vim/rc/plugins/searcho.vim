@@ -7,7 +7,9 @@ nnoremap sK <Cmd>lua require("searcho").backward_word({left = "\\v(^\|[^[:alnum:
 nnoremap s<Space>j <Cmd>lua require("searcho").forward("\\v" .. vim.fn.getreg('"'))<CR>
 nnoremap s<Space>k <Cmd>lua require("searcho").backward("\\v" .. vim.fn.getreg('"'))<CR>
 nnoremap n <Cmd>lua require("searcho").next()<CR>
+xnoremap n <Cmd>lua require("searcho").next()<CR>
 nnoremap N <Cmd>lua require("searcho").previous()<CR>
+xnoremap N <Cmd>lua require("searcho").previous()<CR>
 
 autocmd MyAuGroup FileType searcho call s:searcho()
 function! s:searcho() abort
