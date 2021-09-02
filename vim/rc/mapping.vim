@@ -606,7 +606,7 @@ inoremap <C-S-Tab> <Esc>gT
 vnoremap <C-Tab> <Esc>gt
 vnoremap <C-S-Tab> <Esc>gT
 nmap <silent> <C-w> <Plug>(tabclose_c)
-imap <silent> <C-w> <ESC><Cmd>call <Plug>(tabclose_c)
+imap <silent> <C-w> <ESC><Plug>(tabclose_c)
 vmap <silent> <C-w> <ESC><Plug>(tabclose_c)
 nmap <silent> <C-t> <Plug>(new_tab)
 "}}}
