@@ -1,1 +1,9 @@
+augroup notomo_local
+    autocmd!
+    autocmd BufRead,BufEnter ~/workspace/neovim/* call s:neovim()
+augroup END
 
+function! s:neovim() abort
+    nnoremap <buffer> [test]t <Cmd>lua require("cmdhndlr").test({name = 'make/make', working_dir_marker = function() return vim.fn.expand("~/dotfiles/tool/nvim_development/Makefile") end, layout = {type = 'tab'}, env = {TEST_FILE = "test/functional/lua/highlight_spec.lua"}})<CR>
+    nnoremap <buffer> [exec]bl <Cmd>lua require("cmdhndlr").build({name = 'make/make', working_dir_marker = function() return vim.fn.expand("~/dotfiles/tool/nvim_development/Makefile") end})<CR>
+endfunction
