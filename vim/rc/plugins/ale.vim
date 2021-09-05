@@ -26,10 +26,10 @@ let g:ale_fixers['vue'] = ['prettier']
 let g:ale_fixers['json'] = ['fixjson']
 let g:ale_fixers['sql'] = ['sqlfmt']
 let g:ale_fixers['terraform'] = ['terraform']
-let g:ale_fixers['lua'] = ['luaformat']
-let g:ale_fixers['dart'] = ['dartfmt']
+let g:ale_fixers['lua'] = ['lua-format']
+let g:ale_fixers['dart'] = ['dart-format']
 
-let g:ale_lua_luaformat_options = '-c ' .. expand('~/dotfiles/tool/.lua-format')
+let g:ale_lua_lua_format_options = '-c ' .. expand('~/dotfiles/tool/.lua-format')
 let g:ale_sql_sqlfmt_options = '-u'
 function! s:toggle_fix_on_save() abort
     let current_value = get(g:, 'ale_fix_on_save', 0)
