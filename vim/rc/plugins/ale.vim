@@ -9,6 +9,7 @@ let g:ale_virtualtext_cursor = 1
 let g:ale_virtualtext_prefix = ' '
 let g:ale_lint_on_insert_leave = 0
 let g:ale_hover_cursor = 0
+let g:ale_disable_lsp = 1
 
 let g:ale_linters = {}
 
