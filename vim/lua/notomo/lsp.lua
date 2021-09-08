@@ -96,12 +96,12 @@ setup_ls(nvimlsp.yamlls, {})
 
 vim.lsp.set_log_level("error")
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, method, result, client_id, bufnr, config)
-  vim.lsp.diagnostic.on_publish_diagnostics(err, method, result, client_id, bufnr, config)
-  vim.lsp.diagnostic.set_loclist({open = false, client_id = client_id})
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+  vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
+  vim.lsp.diagnostic.set_loclist({open = false, client_id = ctx.client_id})
 end
 
-vim.lsp.handlers["textDocument/references"] = function(_, _, result)
+vim.lsp.handlers["textDocument/references"] = function(_, result)
   if not result or result == {} then
     return
   end
@@ -111,7 +111,7 @@ vim.lsp.handlers["textDocument/references"] = function(_, _, result)
   })
 end
 
-vim.lsp.handlers["workspace/symbol"] = function(_, _, result)
+vim.lsp.handlers["workspace/symbol"] = function(_, result)
   if not result or result == {} then
     return
   end
@@ -121,7 +121,7 @@ vim.lsp.handlers["workspace/symbol"] = function(_, _, result)
   })
 end
 
-vim.lsp.handlers["textDocument/documentSymbol"] = function(_, _, result)
+vim.lsp.handlers["textDocument/documentSymbol"] = function(_, result)
   if not result or result == {} then
     return
   end
@@ -131,7 +131,7 @@ vim.lsp.handlers["textDocument/documentSymbol"] = function(_, _, result)
   })
 end
 
-vim.lsp.handlers["textDocument/implementation"] = function(_, _, result)
+vim.lsp.handlers["textDocument/implementation"] = function(_, result)
   if not result or result == {} then
     return
   end
@@ -141,7 +141,7 @@ vim.lsp.handlers["textDocument/implementation"] = function(_, _, result)
   })
 end
 
-vim.lsp.handlers["textDocument/definition"] = function(_, _, result)
+vim.lsp.handlers["textDocument/definition"] = function(_, result)
   if result == nil or vim.tbl_isempty(result) then
     return nil
   end
@@ -157,10 +157,10 @@ vim.lsp.handlers["textDocument/definition"] = function(_, _, result)
   end
 end
 
-vim.lsp.handlers["dart/textDocument/publishOutline"] = function(_, _, result, _, bufnr)
-  vim.api.nvim_buf_set_var(bufnr, "_thetto_dart_outline", result)
+vim.lsp.handlers["dart/textDocument/publishOutline"] = function(_, result, ctx)
+  vim.api.nvim_buf_set_var(ctx.bufnr, "_thetto_dart_outline", result)
 end
 
-vim.lsp.handlers["dart/textDocument/publishFlutterOutline"] = function(_, _, result, _, bufnr)
-  vim.api.nvim_buf_set_var(bufnr, "_thetto_flutter_outline", result)
+vim.lsp.handlers["dart/textDocument/publishFlutterOutline"] = function(_, result, ctx)
+  vim.api.nvim_buf_set_var(ctx.bufnr, "_thetto_flutter_outline", result)
 end
