@@ -127,6 +127,7 @@ nnoremap [finder]gR <Cmd>lua require("thetto").start("cmd/gron")<CR>
 nnoremap [finder]jl <Cmd>lua require("thetto").start("vim/jump", {source_opts = {per_file = true}})<CR>
 nnoremap [finder]z <Cmd>lua require("thetto").start("cmd/zsh/history")<CR>
 nnoremap [finder]Q <Cmd>lua require("thetto").start("vim/history/command")<CR>
+nnoremap [finder]I <Cmd>lua require("thetto").start("github/issue", {source_opts = {assignee = "me"}})<CR>
 
 " custom source
 nnoremap [finder]p <Cmd>lua require("thetto").start("plugin")<CR>
