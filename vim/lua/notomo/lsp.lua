@@ -38,6 +38,7 @@ setup_ls(nvimlsp.gopls, {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks
     analyses = {ST1000 = false},
+    -- codelenses = {test = true},
   },
 })
 setup_ls(nvimlsp.sumneko_lua, {

@@ -10,7 +10,7 @@
 
 - name: download golang
   get_url:
-    url: https://storage.googleapis.com/golang/go1.15.3.linux-amd64.tar.gz
+    url: https://storage.googleapis.com/golang/go1.17.1.linux-amd64.tar.gz
     dest: "{{ app_dir }}/go.tar.gz"
   when: is_linux and not golang_installed.stat.exists
 
@@ -27,27 +27,15 @@
     extra_opts: [--strip-components=1]
   when: is_linux and not golang_installed.stat.exists
 
-- name: check go modules
-  shell: bash -lc "IGNORE_LOCAL_FILE=1 go list {{ item }}"
-  register: go_module_exists
-  changed_when: False
-  failed_when: go_module_exists.rc not in [0, 1]
+- name: go install
+  shell: bash -lc "IGNORE_LOCAL_FILE=1 go install {{ item }}@latest"
   with_items:
     - golang.org/x/tools/cmd/goimports
-    - honnef.co/go/tools/cmd/staticcheck
     - github.com/mattn/mkup
     - github.com/mattn/efm-langserver
     - github.com/pocke/lemonade
-    - github.com/kisielk/godepgraph
     - golang.org/x/tools/gopls
-    - github.com/k0kubun/pp
+    # - github.com/k0kubun/pp
     - github.com/fatih/motion
   environment:
-    GOPATH: "{{ home_dir }}/go"
-
-- name: go get
-  shell: bash -lc "IGNORE_LOCAL_FILE=1 go get {{ item.item }}"
-  when: item.stderr or item.rc == 1
-  with_items: "{{ go_module_exists.results }}"
-  environment:
-    GOPATH: "{{ home_dir }}/go"
+    GOBIN: "{{ home_dir }}/go/bin"
