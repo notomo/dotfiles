@@ -32,6 +32,9 @@ gesture.register({
     action = "lua require('kivi').execute('parent')"
 })
 EOF
+
+    nnoremap <buffer> <RightMouse> <LeftMouse><Cmd>lua require("piemenu").start("kivi")<CR>
+    nnoremap <buffer> <2-RightMouse> <LeftMouse><Cmd>lua require("piemenu").start("kivi")<CR>
 endfunction
 
 autocmd MyAuGroup FileType kivi-file call s:kivi_file()

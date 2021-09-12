@@ -164,6 +164,9 @@ source ~/.vim/rc/plugins/curstr.vim
 
 call s:add('notomo/nvimtool', {'module' : 'nvimtool', 'depth': 0})
 
+call s:add('notomo/piemenu.nvim', {'module': 'piemenu', 'post_hook_file': '~/dotfiles/vim/lua/notomo/piemenu.lua', 'depth': 0})
+source ~/.vim/rc/plugins/piemenu.vim
+
 call s:add('notomo/gesture.nvim', {'module': 'gesture', 'post_hook_file': '~/dotfiles/vim/lua/notomo/gesture.lua', 'depth': 0})
 source ~/.vim/rc/plugins/gesture.vim
 

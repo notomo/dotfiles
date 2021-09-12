@@ -72,12 +72,15 @@ gesture.register({
   action = "normal [tab]o",
 })
 gesture.register({
-  name = "open the recent files",
-  inputs = {gesture.up(), gesture.right()},
-  action = "lua require('thetto').start('file/mru', {opts = {insert = false}})",
-})
-gesture.register({
   name = "open todo files",
   inputs = {gesture.left(), gesture.down(), gesture.right()},
   action = "normal [exec]do",
+})
+gesture.register({
+  name = "open pie menu",
+  inputs = {gesture.up(), gesture.right()},
+  action = function(ctx)
+    require("piemenu").start("default", {position = ctx.last_position})
+  end,
+  nowait = true,
 })
