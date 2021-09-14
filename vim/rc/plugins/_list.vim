@@ -29,7 +29,7 @@ function! s:add(name, options) abort
         let options['do'] = a:options['do']
     endif
     if has_key(a:options, 'module')
-        call luaeval('require("notomo/hook").RequireHook.create(_A[1], _A[2], _A[3])', [name, a:options['module'], get(a:options, 'post_hook_file', v:null)])
+        call luaeval('require("notomo.hook").RequireHook.create(_A[1], _A[2], _A[3])', [name, a:options['module'], get(a:options, 'post_hook_file', v:null)])
     endif
 
     call minpac#add(a:name, options)

@@ -72,7 +72,7 @@ function! s:thetto_input_settings() abort
     nnoremap <buffer> [finder]N <Cmd>lua require("thetto").execute("resume_next")<CR>
 
     " custom
-    inoremap <buffer> <C-u> <Cmd>lua require('notomo/insert').delete_prev()<CR>
+    inoremap <buffer> <C-u> <Cmd>lua require('notomo.insert').delete_prev()<CR>
 endfunction
 
 nnoremap [finder]R <Cmd>lua require("thetto").start("vim/runtimepath")<CR>
