@@ -10,6 +10,7 @@ abbr func main() {}
 	}
 	
 	func run() error {
+	    ${0:TARGET}
 		return nil
 	}
 
@@ -330,7 +331,7 @@ snippet waitgroup
 	var wg sync.WaitGroup
 	wg.Add(1)
 	go func() {
-		${1:task}
+		${0:task}
 		wg.Done()
 	}()
 	wg.Wait()
@@ -338,7 +339,7 @@ snippet waitgroup
 snippet errgroup
 	var eg errgroup.Group
 	eg.Go(func() error {
-		${1:task}
+		${0:task}
 	})
 	if err := eg.Wait(); err != nil {
 		return err
@@ -347,7 +348,7 @@ snippet errgroup
 snippet json_print
 	encorder := json.NewEncoder(os.Stdout)
 	encorder.SetIndent("", "  ")
-	if err := encorder.Encode(value); err != nil {
+	if err := encorder.Encode(${0:value}); err != nil {
 		return err
 	}
 
@@ -370,10 +371,10 @@ snippet sync_once
 snippet sync_mutex
 	type ${1:Name} struct {
 		value ${2:int}
-		mu    sync.Once
+		mu    sync.Mutex
 	}
 	
-	func (v *$1) ${0:name}() error {
+	func (v *$1) ${0:lookup}() $2 {
 		v.mu.Lock()
 		defer v.mu.Unlock()
 		return v.value
