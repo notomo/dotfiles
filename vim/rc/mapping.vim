@@ -527,7 +527,6 @@ nnoremap <silent> [exec]n <Cmd>nohlsearch<CR>
 nnoremap <expr> [exec]l ':' . getline('.') . '<CR>'
 " relode vimrc
 nnoremap <silent> [exec]r <Cmd>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
-nnoremap [exec]cC <Cmd>messages clear<CR>
 nnoremap [exec]do <Cmd>tab drop ~/.local/.mytodo<CR>
 nnoremap [exec]q <Cmd>call notomo#vimrc#jq()<CR>
 nnoremap [exec]N <Cmd>call notomo#vimrc#open_note()<CR>
