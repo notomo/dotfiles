@@ -63,9 +63,6 @@ nnoremap <Leader>r <C-r>
 
 "}}}
 
-nnoremap [edit]; q:
-nnoremap [edit]/ q/
-
 " edit"{{{
 nnoremap <silent> <Leader>x <Cmd>call notomo#vimrc#exchange()<CR>
 nnoremap [edit]r r
@@ -84,8 +81,6 @@ nnoremap [edit]T <Cmd>call notomo#vimrc#add_closed_tag()<CR>
 
 nnoremap [edit]p [p
 nnoremap [edit]P [P
-
-nnoremap <Space>ud <Cmd>call notomo#vimrc#open_latest()<CR>
 "}}}
 
 " kana"{{{
@@ -97,7 +92,6 @@ nnoremap あ a
 nnoremap [file]w <Cmd>write<CR>
 nnoremap [file]rn :<C-u>file<Space>
 nnoremap [file]rl :<C-u>edit!<CR>
-nnoremap [file]v <Cmd>edit $MYVIMRC<CR>
 nnoremap [file]R <Cmd>call notomo#vimrc#rotate_file()<CR>
 "}}}
 
@@ -355,7 +349,6 @@ nmap <Space>y [yank]
 xnoremap [yank] <Nop>
 xmap <Space>y [yank]
 
-nnoremap Y y$
 nnoremap <silent> [yank]d <Cmd>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d'))<CR>
 nnoremap <silent> [yank]D <Cmd>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d %T'))<CR>
 nnoremap <silent> [yank]n <Cmd>call notomo#vimrc#yank_and_echo(fnamemodify(expand('%'), ':r'))<CR>
@@ -530,7 +523,6 @@ nnoremap <silent> [exec]r <Cmd>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \|
 nnoremap [exec]do <Cmd>tab drop ~/.local/.mytodo<CR>
 nnoremap [exec]q <Cmd>call notomo#vimrc#jq()<CR>
 nnoremap [exec]N <Cmd>call notomo#vimrc#open_note()<CR>
-nnoremap [exec]cc <Cmd>execute '!code -r -g %:' .. line('.') .. ':' .. col('.')<CR>
 "}}}
 
 " quickfix and locationlist"{{{
@@ -664,17 +656,6 @@ function! s:open_terminal_on_project_root() abort
     call termopen(&shell, {'cwd': project_path})
     execute 'lcd' project_path
 endfunction
-
-nnoremap [exec]C <Cmd>checkhealth<CR>
-nnoremap [exec]u <Cmd>call notomo#vimrc#update_remote_plugin()<CR>
-
-nnoremap [exec]m <Cmd>call notomo#vimrc#mkup(v:false)<CR>
-nnoremap [exec]M <Cmd>call notomo#vimrc#mkup(v:true)<CR>
-
-nnoremap [browser]r <Cmd>call notomo#vimrc#job(['gh', 'repo', 'view', '--web'])<CR>
-nnoremap [exec]P <Cmd>call notomo#github#view_pr()<CR>
-nnoremap [exec]O <Cmd>call notomo#github#view_repo(expand('<cWORD>'))<CR>
-nnoremap [exec]I <Cmd>call notomo#github#view_issue(expand('<cword>'))<CR>
 
 function! s:set_title(prompt_pattern, max_length) abort
     let path = nvim_buf_get_name(0)

@@ -99,7 +99,7 @@ nnoremap [keyword]gg <Cmd>lua require("thetto").start("file/grep", {opts = {targ
 nnoremap <silent> [finder]gl <Cmd>lua require("thetto").start("file/grep")<CR>
 nnoremap <silent> [finder]gg <Cmd>lua require("thetto").start("file/grep", {opts = {target = "project"}})<CR>
 nnoremap [finder]P <Cmd>lua require("thetto").start("env/process")<CR>
-nnoremap [finder]a <Cmd>lua require("thetto").start("vim/autocmd")<CR>
+nnoremap [finder]A <Cmd>lua require("thetto").start("vim/autocmd")<CR>
 nnoremap [finder]s <Cmd>lua require("thetto").start("thetto/source")<CR>
 nnoremap [finder]n <Cmd>lua require("thetto").resume_execute({opts = {offset = 1}})<CR>
 nnoremap [finder]N <Cmd>lua require("thetto").resume_execute({opts = {offset = -1}})<CR>
@@ -134,6 +134,7 @@ nnoremap [finder]p <Cmd>lua require("thetto").start("plugin")<CR>
 nnoremap [finder]b <Cmd>lua require("thetto").start("url/bookmark", {opts = {action = "browser_open"}})<CR>
 nnoremap [finder]e <Cmd>lua require("thetto").start("emoji", {opts = {action = "append"}, action_opts = {key = "emoji"}})<CR>
 nnoremap [finder]gp <Cmd>lua require("thetto").start("go/package")<CR>
+nnoremap [finder]a <Cmd>lua require("thetto").start("aliaser")<CR>
 
 " custom action
 nnoremap [finder]; <Cmd>lua require("thetto").start("vim/filetype", {opts = {action = "open_proto"}})<CR>

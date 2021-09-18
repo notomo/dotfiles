@@ -115,13 +115,6 @@ function! notomo#vimrc#clean() abort
     call notomo#vimrc#update_rplugin_runtimepath()
 endfunction
 
-function! notomo#vimrc#open_latest() abort
-    if empty(v:oldfiles)
-        return
-    endif
-    execute 'edit' v:oldfiles[0]
-endfunction
-
 function! notomo#vimrc#jq() abort
     let tmp = @+
     normal! ]}v%y
