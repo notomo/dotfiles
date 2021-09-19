@@ -360,3 +360,7 @@ snippet new
 snippet lines
 options word
 	vim.api.nvim_buf_get_lines(0, 0, -1, false)
+
+snippet alias
+alias aliases
+	aliases:set("${1:name}", ${0:rhs})

@@ -90,7 +90,6 @@ nnoremap あ a
 
 " file"{{{
 nnoremap [file]w <Cmd>write<CR>
-nnoremap [file]rn :<C-u>file<Space>
 nnoremap [file]rl :<C-u>edit!<CR>
 nnoremap [file]R <Cmd>call notomo#vimrc#rotate_file()<CR>
 "}}}
@@ -460,22 +459,6 @@ inoremap <expr> j<Space>k <SID>complete_pair()
 "}}}
 
 " diff"{{{
-function! s:diff_tab_open(...)
-    if a:0 == 1
-        tabedit %:p
-        execute 'rightbelow vertical diffsplit ' . a:1
-    else
-        execute 'tabedit ' . a:1
-        for l:file in a:000[1:]
-            execute 'rightbelow vertical diffsplit ' . l:file
-        endfor
-    endif
-endfunction
-command! -nargs=+ -complete=file MyDiff call <SID>diff_tab_open(<f-args>)
-nnoremap [diff]i :<C-u>MyDiff<Space>
-command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-nnoremap [diff]o <Cmd>DiffOrig<CR>
-
 nnoremap [diff]j ]c
 nnoremap [diff]k [c
 nnoremap [diff]g <Cmd>diffget<CR>
@@ -518,8 +501,6 @@ xnoremap [arith]u g<C-a>gv
 nnoremap <silent> [exec]n <Cmd>nohlsearch<CR>
 " execute current line
 nnoremap <expr> [exec]l ':' . getline('.') . '<CR>'
-" relode vimrc
-nnoremap <silent> [exec]r <Cmd>if !empty(expand($MYVIMRC)) \| source $MYVIMRC \| endif \| if !empty(expand($MYGVIMRC)) \| source $MYGVIMRC \| endif \| nohlsearch<CR>
 nnoremap [exec]do <Cmd>tab drop ~/.local/.mytodo<CR>
 nnoremap [exec]q <Cmd>call notomo#vimrc#jq()<CR>
 nnoremap [exec]N <Cmd>call notomo#vimrc#open_note()<CR>

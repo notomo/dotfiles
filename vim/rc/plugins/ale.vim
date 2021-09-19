@@ -32,10 +32,3 @@ let g:ale_fixers['dart'] = ['dart-format']
 
 let g:ale_lua_lua_format_options = '-c ' .. expand('~/dotfiles/tool/.lua-format')
 let g:ale_sql_sqlfmt_options = '-u'
-function! s:toggle_fix_on_save() abort
-    let current_value = get(g:, 'ale_fix_on_save', 0)
-    let g:ale_fix_on_save = !current_value
-endfunction
-
-nnoremap [exec]T <Cmd>call <SID>toggle_fix_on_save()<CR>
-nnoremap [exec]<C-f> <Cmd>ALEFix<CR>
