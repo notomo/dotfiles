@@ -13,4 +13,4 @@ end
 
 M.default_action = "call"
 
-return M
+return require("thetto.core.kind").extend(M, "file")
