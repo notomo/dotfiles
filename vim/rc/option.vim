@@ -84,17 +84,11 @@ autocmd MyAuGroup FileType typescriptreact set filetype=typescript.tsx
 set guioptions+=M
 set guioptions+=c
 
+let g:loaded_python3_provider = 0
 let g:loaded_python_provider = 0
 let g:loaded_ruby_provider = 0
 let g:loaded_node_provider = 0
 let g:loaded_perl_provider = 0
-if has('mac')
-    let g:python3_host_prog = '/usr/local/bin/python3'
-elseif has('unix')
-    let g:python3_host_prog = '/usr/bin/python3'
-elseif has('win32')
-    let g:python3_host_prog = 'python3.exe'
-endif
 
 let g:python_highlight_all = 1
 let g:markdown_fenced_languages = ['vim']

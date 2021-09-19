@@ -29,6 +29,9 @@ local setup_ls = function(ls, config, ...)
   config = config or {}
   config.flags = config.flags or {}
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
+  config.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities(), {
+    snippetSupport = false,
+  })
   ls.setup(config)
 end
 
@@ -55,6 +58,7 @@ setup_ls(nvimlsp.sumneko_lua, {
         globals = {"vim", "it", "describe", "before_each", "after_each", "pending"},
         -- disable = {"lowercase-global"},
       },
+      completion = {callSnippet = "Disable", keywordSnippet = "Disable"},
       workspace = {
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,

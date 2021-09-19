@@ -97,17 +97,6 @@ endif
 call minpac#add('w0rp/ale')
 source ~/.vim/rc/plugins/ale.vim
 
-if executable('python3')
-    if !has('win32')
-        call minpac#add('ujihisa/neco-look')
-    endif
-
-    call minpac#add('Shougo/deoplete.nvim')
-    let g:deoplete#enable_at_startup = 1
-
-    call minpac#add('Shougo/deoplete-lsp')
-endif
-
 call minpac#add('voldikss/vim-translator')
 source ~/.vim/rc/plugins/translator.vim
 
@@ -122,6 +111,14 @@ call minpac#add('tbastos/vim-lua')
 call minpac#add('notomo/lreload.nvim', {'depth': 0})
 
 call minpac#add('nanotee/luv-vimdocs')
+
+call minpac#add('hrsh7th/nvim-cmp')
+luafile ~/.vim/lua/notomo/cmp.lua
+
+call minpac#add('hrsh7th/cmp-nvim-lsp')
+call minpac#add('hrsh7th/cmp-buffer')
+call minpac#add('hrsh7th/cmp-path')
+call minpac#add('notomo/cmp-neosnippet')
 
 call s:add('AndrewRadev/linediff.vim', {'cmd' : '*Linediff'})
 xnoremap [diff]l :Linediff<CR>
@@ -195,7 +192,7 @@ call s:add('kana/vim-operator-user', {'event' : 'VimEnter'})
 call s:add('osyo-manga/vim-textobj-multiblock', {'event' : 'BufLeave'})
 source ~/dotfiles/vim/rc/plugins/textobj-multiblock.vim
 
-call s:add('Shougo/neosnippet.vim', {'event' : 'FileType'})
+call s:add('Shougo/neosnippet.vim', {'event' : 'VimEnter'})
 source ~/dotfiles/vim/rc/plugins/neosnippet.vim
 
 call s:add('osyo-manga/vim-operator-blockwise', {'event' : 'VimEnter'})

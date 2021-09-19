@@ -29,7 +29,4 @@ execute 'set runtimepath-=' .. s:lua_syntax
 execute 'set runtimepath^=' .. s:lua_syntax
 
 lua require('notomo.lsp')
-if executable('python3')
-    source ~/.vim/rc/plugins/deoplete.vim
-endif
 lua require('notomo.lreload')
