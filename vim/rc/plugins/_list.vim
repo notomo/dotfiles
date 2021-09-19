@@ -40,7 +40,6 @@ nnoremap [exec]U <Cmd>call minpac#update('', {'do': 'call notomo#vimrc#update_rp
 nnoremap [exec]R <Cmd>call notomo#vimrc#clean()<CR>
 
 call minpac#add('kana/vim-textobj-user')
-call minpac#add('kana/vim-operator-user')
 
 call minpac#add('kana/vim-submode')
 let g:submode_keep_leaving_key = 1
@@ -51,11 +50,6 @@ let g:zenspace#default_mode = 'on'
 
 call minpac#add('LeafCage/yankround.vim')
 source ~/dotfiles/vim/rc/plugins/yankround.vim
-
-call minpac#add('Shougo/neosnippet.vim')
-source ~/dotfiles/vim/rc/plugins/neosnippet.vim
-
-call minpac#add('tpope/vim-repeat')
 
 call minpac#add('kana/vim-smartword')
 source ~/dotfiles/vim/rc/plugins/smartword.vim
@@ -71,12 +65,6 @@ call minpac#add('itchyny/lightline.vim')
 call minpac#add('kana/vim-textobj-entire')
 source ~/dotfiles/vim/rc/plugins/textobj-entire.vim
 
-call minpac#add('osyo-manga/vim-textobj-multiblock')
-source ~/dotfiles/vim/rc/plugins/textobj-multiblock.vim
-
-call minpac#add('osyo-manga/vim-operator-blockwise')
-source ~/dotfiles/vim/rc/plugins/operator-blockwise.vim
-
 call minpac#add('osyo-manga/vim-textobj-blockwise')
 
 call minpac#add('kana/vim-textobj-line')
@@ -85,17 +73,8 @@ source ~/dotfiles/vim/rc/plugins/textobj-line.vim
 call minpac#add('bkad/CamelCaseMotion')
 source ~/dotfiles/vim/rc/plugins/camelcasemotion.vim
 
-call minpac#add('kana/vim-operator-replace')
-source ~/dotfiles/vim/rc/plugins/operator-replace.vim
-
 call minpac#add('osyo-manga/vim-textobj-from_regexp')
 source ~/.vim/rc/plugins/textobj-from_regexp.vim
-
-call minpac#add('rhysd/vim-operator-surround')
-source ~/.vim/rc/plugins/operator-surround.vim
-
-call minpac#add('tyru/caw.vim')
-source ~/.vim/rc/plugins/caw.vim
 
 call minpac#add('haya14busa/vim-edgemotion')
 source ~/.vim/rc/plugins/edgemotion.vim
@@ -208,3 +187,25 @@ require("lreload").enable("aliaser", {
   end,
 })
 EOF
+
+call s:add('tpope/vim-repeat', {'event' : 'VimEnter'})
+
+call s:add('kana/vim-operator-user', {'event' : 'VimEnter'})
+
+call s:add('osyo-manga/vim-textobj-multiblock', {'event' : 'BufLeave'})
+source ~/dotfiles/vim/rc/plugins/textobj-multiblock.vim
+
+call s:add('Shougo/neosnippet.vim', {'event' : 'FileType'})
+source ~/dotfiles/vim/rc/plugins/neosnippet.vim
+
+call s:add('osyo-manga/vim-operator-blockwise', {'event' : 'VimEnter'})
+source ~/dotfiles/vim/rc/plugins/operator-blockwise.vim
+
+call s:add('kana/vim-operator-replace', {'event' : 'VimEnter'})
+source ~/dotfiles/vim/rc/plugins/operator-replace.vim
+
+call s:add('rhysd/vim-operator-surround', {'event' : 'VimEnter'})
+source ~/.vim/rc/plugins/operator-surround.vim
+
+call s:add('tyru/caw.vim', {'event' : 'FileType'})
+source ~/.vim/rc/plugins/caw.vim

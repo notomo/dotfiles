@@ -14,8 +14,8 @@ nnoremap <silent> [exec]gw <Cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> [keyword]c <Cmd>lua vim.lsp.buf.code_action()<CR>
 nnoremap <silent> [exec]gi <Cmd>lua vim.lsp.buf.implementation()<CR>
 
-highlight! link LspDiagnosticsError SpellBad
-highlight! link LspDiagnosticsWarning Tag
+highlight! link DiagnosticError SpellBad
+highlight! link DiagnosticWarn Tag
 ]])
 
 local nvimlsp = require("lspconfig")
@@ -99,7 +99,10 @@ vim.lsp.set_log_level("error")
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
-  vim.lsp.diagnostic.set_loclist({open = false, client_id = ctx.client_id})
+  vim.diagnostic.setloclist({
+    open = false,
+    namespace = vim.lsp.diagnostic.get_namespace(ctx.client_id),
+  })
 end
 
 vim.lsp.handlers["textDocument/references"] = function(_, result)
