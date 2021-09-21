@@ -9,5 +9,11 @@ require("cmp").setup({
   enabled = function()
     return not vim.tbl_contains({"thetto-input", "reacher", "searcho"}, vim.bo.filetype)
   end,
-  sources = {{name = "neosnippet"}, {name = "nvim_lsp"}, {name = "buffer"}, {name = "path"}},
+  sources = {
+    {name = "neosnippet"},
+    {name = "nvim_lsp"},
+    {name = "nvim_lua"},
+    {name = "buffer"},
+    {name = "path"},
+  },
 })

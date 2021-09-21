@@ -118,6 +118,7 @@ luafile ~/.vim/lua/notomo/cmp.lua
 call minpac#add('hrsh7th/cmp-nvim-lsp')
 call minpac#add('hrsh7th/cmp-buffer')
 call minpac#add('hrsh7th/cmp-path')
+call minpac#add('hrsh7th/cmp-nvim-lua')
 call minpac#add('notomo/cmp-neosnippet')
 
 call s:add('AndrewRadev/linediff.vim', {'cmd' : '*Linediff'})
