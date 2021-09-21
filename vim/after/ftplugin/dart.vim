@@ -12,3 +12,6 @@ augroup flutter_hot_reload
     autocmd! BufWritePost <buffer>
     autocmd BufWritePost <buffer> lua require("cmdhndlr").input("r", {name = "normal_runner/dart/flutter"})
 augroup END
+
+nnoremap <buffer> <silent> sgj <Cmd>TSTextobjectGotoNextStart @function.outer<CR>
+nnoremap <buffer> <silent> sgk <Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>

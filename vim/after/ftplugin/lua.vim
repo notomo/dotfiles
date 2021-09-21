@@ -10,3 +10,6 @@ inoreabbrev <buffer> != ~=
 if expand("%")  =~? '_spec.lua$'
     nnoremap <buffer> [finder]o <Cmd>lua require("thetto").start("lua/busted", {opts = {auto = "preview"}})<CR>
 endif
+
+nnoremap <buffer> <silent> sgj <Cmd>lua require("notomo.text_object").next_no_indent_function()<CR>
+nnoremap <buffer> <silent> sgk <Cmd>lua require("notomo.text_object").prev_no_indent_function()<CR>
