@@ -285,7 +285,7 @@ nnoremap q <Nop>
 "}}}
 
 " diary"{{{
-nnoremap [edit]w <Cmd>call notomo#diary#open()<CR>
+nnoremap [edit]w <Cmd>lua require("notomo.diary").open()<CR>
 "}}}
 
 " substitute"{{{
