@@ -38,9 +38,6 @@ nmap <Space>d [finder]
 xnoremap [finder] <Nop>
 xmap <Space>d [finder]
 
-let s:LHS_KEY = notomo#mapping#get_lhs_key()
-let s:RHS_KEY = notomo#mapping#get_rhs_key()
-
 " basic"{{{
 
 " delete a character using delete register
@@ -410,8 +407,6 @@ inoremap <C-o> <C-o>o
 " インデント
 inoremap <S-TAB> <C-d>
 
-silent execute 'noremap!' notomo#mapping#get_calculator_key() '<C-r>='
-
 " カーソル位置の単語を大文字に変換
 inoremap j<Space><Space> <ESC>gUiwea
 
@@ -423,21 +418,8 @@ cnoremap j<Space>o <Space><BS><C-z>
 cnoremap <Tab> <C-n>
 cnoremap <S-Tab> <C-p>
 
-let s:JOIN_UNDO = "\<C-g>U"
-function! s:cinoremap_with_prefix(lhs, rhs) abort
-    silent execute join(['inoremap', a:lhs, substitute(a:rhs, '\ze<Left>$', s:JOIN_UNDO, '')])
-    silent execute join(['cnoremap', a:lhs, a:rhs])
-endfunction
-
-for s:info in notomo#mapping#main_input()
-    call s:cinoremap_with_prefix(s:info[s:LHS_KEY], s:info[s:RHS_KEY])
-endfor
-let s:main_input_key = notomo#mapping#get_main_input_key()
-execute 'inoremap <expr> ' . s:main_input_key . '<CR> notomo#vimrc#to_multiline()'
-
-for s:info in notomo#mapping#sub_input()
-    call s:cinoremap_with_prefix(s:info[s:LHS_KEY], s:info[s:RHS_KEY])
-endfor
+lua require("notomo.mapping").set_main_input()
+lua require("notomo.mapping").set_sub_input()
 
 let s:pairs = [
 \ ['(', ')'],
@@ -576,9 +558,7 @@ vmap <silent> <C-w> <ESC><Plug>(tabclose_c)
 nmap <silent> <C-t> <Plug>(new_tab)
 "}}}
 
-for s:info in notomo#mapping#tab()
-    silent execute join(['nnoremap', '[tab]' . s:info[s:LHS_KEY], "<Cmd>call notomo#tab#setup_submode('" . s:info[s:LHS_KEY] . "')<CR>"])
-endfor
+lua require("notomo.mapping").set_tab()
 "}}}
 
 if has('win32')
@@ -591,20 +571,8 @@ if has('win32')
     tnoremap <C-u> <C-Home>
 endif
 
-for s:info in notomo#mapping#main_input()
-    silent execute join(['tnoremap', s:info[s:LHS_KEY], s:info[s:RHS_KEY]])
-endfor
-
-for s:info in notomo#mapping#sub_input()
-    silent execute join(['tnoremap', s:info[s:LHS_KEY], s:info[s:RHS_KEY]])
-endfor
-
 tnoremap <C-p> <Up>
 tnoremap <C-n> <Down>
-
-let s:MAIN_INPUT_PFX = notomo#mapping#get_main_input_key()
-execute join(['tnoremap', s:MAIN_INPUT_PFX . 'h', '<Cmd>put +<CR>'])
-execute join(['tnoremap', s:MAIN_INPUT_PFX . 'o', '<Tab>'])
 
 nnoremap [term] <Nop>
 nmap <Space>t [term]

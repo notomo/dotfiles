@@ -1,6 +1,6 @@
 setlocal completeopt-=preview
 setlocal noexpandtab
-call notomo#mapping#lsp()
+lua require("notomo.mapping").lsp()
 
 nnoremap <buffer> <silent> [yank]I <Cmd>call notomo#vimrc#yank_and_echo(trim(system('go list -f "{{.ImportPath}}" ./')))<CR>
 nnoremap <buffer> <silent> sgj <Cmd>lua require("notomo.text_object").next_no_indent_function()<CR>

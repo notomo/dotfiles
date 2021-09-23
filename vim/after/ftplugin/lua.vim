@@ -4,7 +4,7 @@ setlocal tabstop=2
 setlocal softtabstop=2
 nnoremap <buffer> [exec]s <Cmd>luafile %<CR>
 nnoremap <buffer> <expr> [exec]l ':lua ' . getline('.') . '<CR>'
-call notomo#mapping#lsp()
+lua require("notomo.mapping").lsp()
 call ale#fix#registry#Add('luaformat', 'ale#fixers#luaformat#Fix', ['lua'], '')
 inoreabbrev <buffer> != ~=
 if expand("%")  =~? '_spec.lua$'

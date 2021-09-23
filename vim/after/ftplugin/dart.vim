@@ -2,7 +2,7 @@ setlocal nomodeline
 setlocal completeopt-=preview
 setlocal tabstop=2
 setlocal softtabstop=2
-call notomo#mapping#lsp()
+lua require("notomo.mapping").lsp()
 nnoremap <buffer> [exec]bL <Cmd>lua require("cmdhndlr").run({name = "dart/flutter", layout = {type = "tab"}})<CR>
 nnoremap <buffer> [file]L <Cmd>lua require("cmdhndlr").input("R", {name = "normal_runner/dart/flutter"})<CR>
 nnoremap <buffer> [file]O <Cmd>lua require("thetto").start("cmdhndlr/executed", {opts = {action = "tab_drop", immediately = true, input = "flutter"}, source_opts = {is_running = true}})<CR>
