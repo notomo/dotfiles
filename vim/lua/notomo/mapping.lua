@@ -78,7 +78,7 @@ function M.set_main_input()
   M._set("tnoremap", main_input)
   M._set_one("tnoremap", MAIN_INPUT_PFX .. "h", "<Cmd>put +<CR>")
   M._set_one("tnoremap", MAIN_INPUT_PFX .. "o", "<Tab>")
-  M._set_one("inoremap <expr>", MAIN_INPUT_PFX .. "<CR>", "notomo#vimrc#to_multiline()")
+  M._set_one("inoremap <expr>", MAIN_INPUT_PFX .. "<CR>", [=[luaeval("require('notomo.edit').to_multiline()")]=])
 end
 
 local SUB_INPUT_PFX = "jk"

@@ -151,14 +151,14 @@ call gina#custom#mapping#nmap('blame', 'k', 'k<Plug>(gina-blame-echo)')
 call gina#custom#mapping#nmap('blame', '<CR>', ':call gina#action#call(''show:commit:tab'')<CR>', s:noremap_silent)
 
 " diff
-call gina#custom#mapping#nmap('/\%(diff\|commit\)', 'sgj', ':call notomo#vimrc#to_next_syntax(''diffLine'', 1, 1)<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('/\%(diff\|commit\)', 'sgk', ':call notomo#vimrc#to_previous_syntax(''diffLine'', 1, -1)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(diff\|commit\)', 'sgj', ':lua require("notomo.edit").to_next_syntax([[diffLine]], 1, 1)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(diff\|commit\)', 'sgk', ':lua require("notomo.edit").to_prev_syntax([[diffLine]], 1, -1)<CR>', s:noremap_silent)
 
 " status
-call gina#custom#mapping#nmap('status', 'j', ':call notomo#vimrc#to_next_syntax(''\vAnsi+'', 10, 0)<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'k', ':call notomo#vimrc#to_previous_syntax(''\vAnsi+'', 10, 0)<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'gg', 'gg:call notomo#vimrc#to_next_syntax(''\vAnsi+'', 10, 0)<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'G', 'G:call notomo#vimrc#to_previous_syntax(''\vAnsi+'', 10, 0)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'j', ':lua require("notomo.edit").to_next_syntax([[\vAnsi+]], 10, 0)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'k', ':lua require("notomo.edit").to_prev_syntax([[\vAnsi+]], 10, 0)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'gg', 'gg:lua require("notomo.edit").to_next_syntax([[\vAnsi+]], 10, 0)<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'G', 'G:lua require("notomo.edit").to_prev_syntax([[\vAnsi+]], 10, 0)<CR>', s:noremap_silent)
 
 " log
 let g:gina#command#log#use_default_mappings = 0

@@ -262,7 +262,7 @@ require("thetto").setup({
         end
         local filetype = item.value
         local name = require("filetypext").detect({filetype = filetype})[1]
-        vim.fn["notomo#vimrc#open_sandbox"](name, filetype)
+        require("notomo.edit").scratch(name, filetype)
       end,
     },
 

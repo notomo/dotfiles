@@ -61,7 +61,7 @@ nnoremap <Leader>r <C-r>
 "}}}
 
 " edit"{{{
-nnoremap <silent> <Leader>x <Cmd>call notomo#vimrc#exchange()<CR>
+nnoremap <silent> <Leader>x <Cmd>lua require("notomo.edit").exchange()<CR>
 nnoremap [edit]r r
 xnoremap [edit]r r
 nnoremap [edit]h gU
@@ -87,7 +87,7 @@ nnoremap あ a
 " file"{{{
 nnoremap [file]w <Cmd>write<CR>
 nnoremap [file]rl :<C-u>edit!<CR>
-nnoremap [file]R <Cmd>call notomo#vimrc#rotate_file()<CR>
+nnoremap [file]R <Cmd>lua require("notomo.edit").rotate_file()<CR>
 "}}}
 
 " buffer"{{{
@@ -344,19 +344,19 @@ nmap <Space>y [yank]
 xnoremap [yank] <Nop>
 xmap <Space>y [yank]
 
-nnoremap <silent> [yank]d <Cmd>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d'))<CR>
-nnoremap <silent> [yank]D <Cmd>call notomo#vimrc#yank_and_echo(strftime('%Y-%m-%d %T'))<CR>
-nnoremap <silent> [yank]n <Cmd>call notomo#vimrc#yank_and_echo(fnamemodify(expand('%'), ':r'))<CR>
-nnoremap <silent> [yank]N <Cmd>call notomo#vimrc#yank_and_echo(expand('%'))<CR>
-nnoremap <silent> [yank]p <Cmd>call notomo#vimrc#yank_and_echo(substitute(substitute(expand('%:p'), substitute(expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\', '/', 'g'))<CR>
-nnoremap <silent> [yank]P <Cmd>call notomo#vimrc#yank_and_echo(substitute(expand('%:p'), '\', '/', 'g'))<CR>
-nnoremap <silent> [yank]; <Cmd>call notomo#vimrc#yank_and_echo(@:)<CR>
-nnoremap <silent> [yank]/ <Cmd>call notomo#vimrc#yank_and_echo(@/)<CR>
-nnoremap <silent> [yank]i <Cmd>call notomo#vimrc#yank_and_echo(@.)<CR>
-nnoremap <silent> [yank]b <Cmd>call notomo#vimrc#yank_and_echo(gina#component#repo#branch())<CR>
-nnoremap <silent> [yank]l <Cmd>call notomo#vimrc#yank_and_echo(line('.'))<CR>
-nnoremap <silent> [yank]c <Cmd>call notomo#vimrc#yank_and_echo(col('.'))<CR>
-nnoremap <silent> [yank]w <Cmd>call notomo#vimrc#yank_and_echo(expand('%:p:h:t'))<CR>
+nnoremap <silent> [yank]d <Cmd>lua require("notomo.edit").yank(vim.fn.strftime('%Y-%m-%d'))<CR>
+nnoremap <silent> [yank]D <Cmd>lua require("notomo.edit").yank(vim.fn.strftime('%Y-%m-%d %T'))<CR>
+nnoremap <silent> [yank]n <Cmd>lua require("notomo.edit").yank(vim.fn.fnamemodify(vim.fn.expand('%'), ':r'))<CR>
+nnoremap <silent> [yank]N <Cmd>lua require("notomo.edit").yank(vim.fn.expand('%'))<CR>
+nnoremap <silent> [yank]p <Cmd>lua require("notomo.edit").yank(vim.fn.substitute(vim.fn.substitute(vim.fn.expand('%:p'), vim.fn.substitute(vim.fn.expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\\', '/', 'g'))<CR>
+nnoremap <silent> [yank]P <Cmd>lua require("notomo.edit").yank(vim.fn.substitute(vim.fn.expand('%:p'), '\\', '/', 'g'))<CR>
+nnoremap <silent> [yank]; <Cmd>lua require("notomo.edit").yank(vim.fn.getreg(":"))<CR>
+nnoremap <silent> [yank]/ <Cmd>lua require("notomo.edit").yank(vim.fn.getreg("/"))<CR>
+nnoremap <silent> [yank]i <Cmd>lua require("notomo.edit").yank(vim.fn.getreg("."))<CR>
+nnoremap <silent> [yank]b <Cmd>lua require("notomo.edit").yank(vim.fn["gina#component#repo#branch"]())<CR>
+nnoremap <silent> [yank]l <Cmd>lua require("notomo.edit").yank(vim.fn.line('.'))<CR>
+nnoremap <silent> [yank]c <Cmd>lua require("notomo.edit").yank(vim.fn.col('.'))<CR>
+nnoremap <silent> [yank]w <Cmd>lua require("notomo.edit").yank(vim.fn.expand('%:p:h:t'))<CR>
 "}}}
 
 " inner and around vomapping"{{{
@@ -483,8 +483,8 @@ nnoremap <silent> [exec]n <Cmd>nohlsearch<CR>
 " execute current line
 nnoremap <expr> [exec]l ':' . getline('.') . '<CR>'
 nnoremap [exec]do <Cmd>tab drop ~/.local/.mytodo<CR>
-nnoremap [exec]q <Cmd>call notomo#vimrc#jq()<CR>
-nnoremap [exec]N <Cmd>call notomo#vimrc#open_note()<CR>
+nnoremap [exec]q <Cmd>lua require("notomo.edit").jq()<CR>
+nnoremap [exec]N <Cmd>lua require("notomo.edit").note()<CR>
 "}}}
 
 " quickfix and locationlist"{{{
@@ -614,10 +614,10 @@ endfunction
 
 tnoremap <CR> <Cmd>call <SID>set_title('^\$ ', 24)<CR><CR>
 
-nnoremap <silent> [yank]ud <Cmd>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo.url'.cursor_url_decode()"))<CR>
-nnoremap <silent> [yank]ue <Cmd>call notomo#vimrc#yank_and_echo(luaeval("require 'notomo.url'.cursor_url_encode()"))<CR>
+nnoremap <silent> [yank]ud <Cmd>lua require("notomo.edit").yank(require('notomo.url').cursor_url_decode())<CR>
+nnoremap <silent> [yank]ue <Cmd>lua require("notomo.edit").yank(require('notomo.url').cursor_url_encode())<CR>
 
-nnoremap <silent> [yank]M <Cmd>call notomo#vimrc#yank_and_echo(trim(system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>
+nnoremap <silent> [yank]M <Cmd>lua require("notomo.edit").yank(vim.fn.trim(vim.fn.system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>
 
 let g:_debug_args = []
 let g:_debug_watched = []

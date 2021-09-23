@@ -166,7 +166,7 @@ call s:add('notomo/cmdbuf.nvim', {'depth': 0, 'module': 'cmdbuf'})
 source ~/.vim/rc/plugins/cmdbuf.vim
 
 call s:add('notomo/filetypext.nvim', {'depth': 0, 'module': 'filetypext'})
-nnoremap [exec]; <Cmd>lua vim.fn["notomo#vimrc#open_sandbox"](require("filetypext").detect({bufnr = 0})[1], vim.bo.filetype ~= '' and vim.bo.filetype or "markdown")<CR>
+nnoremap [exec]; <Cmd>lua require("notomo.edit").scratch(require("filetypext").detect({bufnr = 0})[1], vim.bo.filetype ~= '' and vim.bo.filetype or "markdown")<CR>
 
 call s:add('notomo/cmdhndlr.nvim', {'depth': 0, 'module': 'cmdhndlr'})
 source ~/.vim/rc/plugins/cmdhndlr.vim
