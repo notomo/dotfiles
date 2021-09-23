@@ -41,27 +41,6 @@ function! s:to_syntax(syntax_pattern, start_line_num, column, offset, go_backwor
     call s:to_syntax(a:syntax_pattern, wrap_line_num, a:column, a:offset, a:go_backword, v:false)
 endfunction
 
-function! notomo#vimrc#add_closed_tag() abort
-    let pos = getpos('.')
-    let reg = @a
-
-    execute 'normal! "ayi>'
-    let yanked = @a
-    let tag_name = split(yanked)[0]
-
-    if tag_name !~? '^\/'
-        let closed_tag = '</' . tag_name . '>'
-        call setline('.', getline('.') . closed_tag)
-        execute 'normal %'
-        execute 'normal! h'
-        startinsert
-    else
-        call setpos('.', pos)
-    endif
-
-    let @a = reg
-endfunction
-
 function! notomo#vimrc#to_multiline() abort
     let char = getline('.')[col('.') - 1] 
     if char !~? '\v\>|}|\)|]|\<'
@@ -79,28 +58,6 @@ endfunction
 function! notomo#vimrc#yank_and_echo(value) abort
     let [@", @+, @0, @*] = [a:value, a:value, a:value, a:value]
     echomsg 'yank '. a:value
-endfunction
-
-function! notomo#vimrc#update_rplugin_runtimepath() abort
-    let runtimepaths = split(&runtimepath, ',')
-    let pack_path = split(&packpath, ',')[0]
-    let rplugin_paths = globpath(pack_path, 'pack/*/opt/*/rplugin', v:true, v:true)
-    let paths = map(rplugin_paths, { _, path -> fnamemodify(path, ':h') })
-    call filter(paths, { _, path -> count(runtimepaths, path) == 0 })
-    let names = map(paths, { _, path -> fnamemodify(path, ':t') })
-    for name in names
-        execute 'packadd' name
-    endfor
-endfunction
-
-function! notomo#vimrc#update_remote_plugin() abort
-    call notomo#vimrc#update_rplugin_runtimepath()
-    UpdateRemotePlugins
-endfunction
-
-function! notomo#vimrc#clean() abort
-    call minpac#clean()
-    call notomo#vimrc#update_rplugin_runtimepath()
 endfunction
 
 function! notomo#vimrc#jq() abort

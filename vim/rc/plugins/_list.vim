@@ -36,8 +36,7 @@ function! s:add(name, options) abort
 endfunction
 
 call minpac#add('k-takata/minpac', {'type': 'opt'})
-nnoremap [exec]U <Cmd>call minpac#update('', {'do': 'call notomo#vimrc#update_rplugin_runtimepath()'})<CR>
-nnoremap [exec]R <Cmd>call notomo#vimrc#clean()<CR>
+nnoremap [exec]U <Cmd>call minpac#update()<CR>
 
 call minpac#add('kana/vim-textobj-user')
 

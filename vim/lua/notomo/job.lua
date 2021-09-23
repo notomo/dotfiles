@@ -11,7 +11,7 @@ function M.run(cmd)
         return v ~= ""
       end, data)
       for _, msg in ipairs(data) do
-        vim.api.nvim_echo({{prefix .. msg}})
+        vim.api.nvim_echo({{prefix .. msg}}, true, {})
       end
     end,
     on_stderr = function(_, data, _)
@@ -19,7 +19,7 @@ function M.run(cmd)
         return v ~= ""
       end, data)
       for _, msg in ipairs(data) do
-        vim.api.nvim_echo({{prefix .. msg, "WarningMsg"}})
+        vim.api.nvim_echo({{prefix .. msg, "WarningMsg"}}, true, {})
       end
     end,
     stderr_buffered = true,

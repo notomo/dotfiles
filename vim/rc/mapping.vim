@@ -74,7 +74,6 @@ nnoremap [edit]j <Cmd>join<CR>
 xnoremap [edit]j :join<CR>
 nnoremap [edit]d *N"_cgn
 nnoremap [edit]a *``cgn<C-r>"
-nnoremap [edit]T <Cmd>call notomo#vimrc#add_closed_tag()<CR>
 
 nnoremap [edit]p [p
 nnoremap [edit]P [P

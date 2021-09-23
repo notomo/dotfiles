@@ -22,10 +22,12 @@ end
 
 function M.view_repo(target)
   local cmd = {"gh", "repo", "view", "--web"}
-  target = vim.fn.substitute(target, "^https:\\/\\/", "", "")
-  target = vim.fn.substitute(target, "^github\\.com\\/", "", "")
+  if target then
+    target = vim.fn.substitute(target, "^https:\\/\\/", "", "")
+    target = vim.fn.substitute(target, "^github\\.com\\/", "", "")
+  end
   if target ~= "" then
-    table.insert(cmd, "--repo=" .. target)
+    table.insert(cmd, target)
   end
   require("notomo.job").run(cmd)
 end
