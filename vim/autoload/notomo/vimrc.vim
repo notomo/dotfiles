@@ -6,18 +6,6 @@ function! notomo#vimrc#exchange() abort
     normal! l
 endfunction
 
-function! notomo#vimrc#timer_start() abort
-    let g:start_time = reltime()
-endfunction
-
-function! notomo#vimrc#timer_end() abort
-    echomsg reltimestr(reltime(g:start_time)) | unlet g:start_time
-endfunction
-
-function! notomo#vimrc#cd_current() abort
-    cd %:p:h
-endfunction
-
 function! notomo#vimrc#to_next_syntax(syntax_pattern, column, offset) abort
     call s:to_syntax(a:syntax_pattern, line('.'), a:column, a:offset, v:false, v:true)
 endfunction
@@ -211,34 +199,4 @@ function! notomo#vimrc#mkup(open_current) abort
 
     tabprevious
     +tabclose
-endfunction
-
-function! notomo#vimrc#job(cmd) abort
-    call jobstart(a:cmd, {
-        \ 'on_exit': function('s:handle_exit'),
-        \ 'on_stdout': function('s:handle_stdout'),
-        \ 'on_stderr': function('s:handle_stderr'),
-        \ 'stderr_buffered': v:true,
-        \ 'stdout_buffered': v:true,
-        \ 'cmd_name': join(a:cmd, ' '),
-    \ })
-endfunction
-
-function! s:handle_stderr(job_id, data, event) abort dict
-    echohl WarningMsg
-    let data = filter(a:data, { _, v -> !empty(v) })
-    for message in data
-        echomsg printf('[%s]: %s', self.cmd_name, message)
-    endfor
-    echohl None
-endfunction
-
-function! s:handle_stdout(job_id, data, event) abort dict
-    let data = filter(a:data, { _, v -> !empty(v) })
-    for message in data
-        echomsg printf('[%s]: %s', self.cmd_name, message)
-    endfor
-endfunction
-
-function! s:handle_exit(job_id, exit_code, event) abort dict
 endfunction
