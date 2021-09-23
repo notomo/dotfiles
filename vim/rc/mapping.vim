@@ -510,16 +510,9 @@ nnoremap [exec]N <Cmd>call notomo#vimrc#open_note()<CR>
 nnoremap [qf] <Nop>
 nmap <Space>q [qf]
 
-nnoremap [qf]o <Cmd>call notomo#qf#open()<CR>
-nnoremap [qf]c <Cmd>call notomo#qf#close()<CR>
-nnoremap [qf]s <Cmd>call notomo#qf#first()<CR>
-nnoremap [qf]e <Cmd>call notomo#qf#last()<CR>
-nnoremap [qf]n <Cmd>call notomo#qf#next()<CR>
-nnoremap [qf]p <Cmd>call notomo#qf#previous()<CR>
-nnoremap [qf]d <Cmd>call notomo#qf#delete()<CR>
-nnoremap [qf]u <Cmd>call notomo#qf#undo()<CR>
-nnoremap [qf]<CR> <Cmd>call notomo#qf#current_open()<CR>
-nnoremap [qf]<Space> <Cmd>call notomo#qf#preview()<CR>
+nnoremap [qf]o <Cmd>lua require("notomo.qf").open()<CR>
+nnoremap [qf]n <Cmd>lua require("notomo.qf").next()<CR>
+nnoremap [qf]p <Cmd>lua require("notomo.qf").prev()<CR>
 "}}}
 
 " window"{{{
