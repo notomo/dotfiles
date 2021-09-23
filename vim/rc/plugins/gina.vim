@@ -1,19 +1,19 @@
-nnoremap <silent> [git]s <Cmd>call notomo#gina#toggle_buffer('status', 'gina-status')<CR>
+nnoremap <silent> [git]s <Cmd>lua require("notomo.gina").toggle_buffer('status', 'gina-status')<CR>
 nnoremap [git]D <Cmd>Gina diff<CR>
-nnoremap <silent> [git]b <Cmd>call notomo#gina#toggle_buffer('branch', 'gina-branch')<CR>
+nnoremap <silent> [git]b <Cmd>lua require("notomo.gina").toggle_buffer('branch', 'gina-branch')<CR>
 nnoremap [git]L <Cmd>Gina log master...HEAD<CR>
 nnoremap [git]ll <Cmd>Gina log<CR>
 nnoremap [git]rl <Cmd>Gina reflog<CR>
 nnoremap [git]ls <Cmd>Gina ls<CR>
 nnoremap [git]T <Cmd>Gina tag<CR>
 nnoremap [git]c <Cmd>Gina commit<CR>
-nnoremap [git]xl <Cmd>call notomo#gina#toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>
+nnoremap [git]xl <Cmd>lua require("notomo.gina").toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>
 nnoremap [git]xs :<C-u>Gina stash save ""<Left>
 nnoremap [git]xc <Cmd>Gina stash show<CR>
-nnoremap <expr> [git]P ':<C-u>Gina! push ' . notomo#gina#get_remote_name() . ' ' . gina#component#repo#branch()
-nnoremap <expr> [git]H ':<C-u>Gina! pull ' . notomo#gina#get_remote_name() . ' ' . gina#component#repo#branch()
+nnoremap <expr> [git]P ':<C-u>Gina! push ' .. luaeval('require("notomo.gina").remote()') .. ' ' . gina#component#repo#branch()
+nnoremap <expr> [git]H ':<C-u>Gina! pull ' .. luaeval('require("notomo.gina").remote()') .. ' ' . gina#component#repo#branch()
 nnoremap [git]M :<C-u>Gina! merge<Space>
-nnoremap <expr> [git]F ':<C-u>Gina! fetch ' . notomo#gina#get_remote_name() . ' --prune'
+nnoremap <expr> [git]F ':<C-u>Gina! fetch ' .. luaeval('require("notomo.gina").remote()') .. ' --prune'
 nnoremap [git]ma :<C-u>Gina! merge --abort
 nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
 nnoremap [git]ra :<C-u>Gina! rebase --abort
@@ -83,7 +83,7 @@ call gina#custom#mapping#nmap('status', 'cc', '<Cmd>Gina commit<CR>', s:noremap_
 call gina#custom#mapping#nmap('status', 'ca', '<Cmd>Gina commit --amend<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'cs', ':call gina#action#call(''chaperon:tab'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('status', 'pp', ':call gina#action#call("patch:tab")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'S', ':call notomo#gina#stash_file()<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'S', ':lua require("notomo.gina").stash_file()<CR>', s:noremap_silent)
 
 " stash
 call gina#custom#mapping#nmap('stash', 'AP', '<Plug>(gina-stash-apply)', s:silent)
@@ -120,13 +120,13 @@ call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 't<S
 call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 'sv', ':call gina#action#call("show:rightest")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(log\|ls\|blame\|changes\|tag\|branch\)', 'sh', ':call gina#action#call("show:bottom")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(ls\|blame\|changes\|status\|tag\)', '<CR>', ':call gina#action#call("show:tab")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 'o', ':call notomo#gina#edit("edit")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', 't<Space>', ':call notomo#gina#edit("edit:tab")<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('status', '<CR>', ':call notomo#gina#edit("edit:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 'o', ':lua require("notomo.gina").edit("edit")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', 't<Space>', ':lua require("notomo.gina").edit("edit:tab")<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('status', '<CR>', ':lua require("notomo.gina").edit("edit:tab")<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('/\%(status\|stash\|branch\)', 'q', ':quit<CR>', s:noremap_silent)
 
 " yank
-call gina#custom#mapping#nmap('/\%(log\|branch\|blame\)', 'yr', ':call notomo#gina#yank_rev_with_echo()<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(log\|branch\|blame\)', 'yr', ':lua require("notomo.gina").yank_rev()<CR>', s:noremap_silent)
 
 " show changes, compare
 call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cb', ':call gina#action#call("changes:between:rightest")<CR>', s:noremap_silent)
@@ -164,15 +164,14 @@ call gina#custom#mapping#nmap('status', 'G', 'G:call notomo#vimrc#to_previous_sy
 let g:gina#command#log#use_default_mappings = 0
 call gina#custom#mapping#nmap('log', '<CR>', ':call gina#action#call(''show:commit:right'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'RS', '<Plug>(gina-commit-reset)', s:silent)
-" call gina#custom#mapping#nmap('log', 'RESET', ':call gina#action#call(''commit:reset:hard'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'ch', ':call gina#action#call(''commit:checkout'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('log', 'T', ':call gina#action#call(''commit:tag:lightweight'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('log', 'I', ':call notomo#gina#rebase_i()<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('log', 'F', ':call notomo#gina#fixup()<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 'I', ':lua require("notomo.gina").rebase_i()<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('log', 'F', ':lua require("notomo.gina").fixup()<CR>', s:noremap_silent)
 
 " tag
 call gina#custom#mapping#nmap('tag', 'DD', ':call gina#action#call(''tag:delete'')<CR>', s:noremap_silent)
 call gina#custom#mapping#nmap('tag', 'C', ':call gina#action#call(''tag:new:lightweight'')<CR>', s:noremap_silent)
-call gina#custom#mapping#nmap('tag', 'P', 'notomo#gina#tag_push_command()', {'noremap':1, 'expr': 1})
+call gina#custom#mapping#nmap('tag', 'P', 'luaeval("require([[notomo.gina]]).push_cmd()")', {'noremap':1, 'expr': 1})
 
 let g:gina#core#console#enable_message_history = 1
