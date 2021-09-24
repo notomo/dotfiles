@@ -7,8 +7,8 @@ nnoremap [browser]s <Cmd>execute 'OpenBrowserSearch' expand('<cword>')<CR>
 nnoremap [browser]o <Cmd>execute 'OpenBrowser' expand('<cWORD>')<CR>
 nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 
-if !empty($SSH_CLIENT) && executable('lemonade') && has('mac')
+if !empty($SSH_CLIENT) && has('mac') && executable('lemonade')
     let g:openbrowser_browser_commands = [{'name': 'lemonade', 'args': 'lemonade open {uri}'}]
-elseif executable('wslview')
+elseif !has('mac') && !has('win32') && executable('wslview')
     let g:openbrowser_browser_commands = [{'name': 'wslview', 'args': 'wslview {uri}'}]
 endif

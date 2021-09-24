@@ -132,7 +132,7 @@ set shiftwidth=0
 set softtabstop=4
 set tabstop=4
 set smarttab
-set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
 set foldmethod=manual
 set noshowmode
 set conceallevel=0
@@ -173,19 +173,20 @@ set termguicolors
 set spelloptions=camel
 set cedit=<C-q>
 set cmdwinheight=12
-
-if executable('zsh')
+if !has('win32')
     set shell=zsh
 endif
 
-set clipboard+=unnamedplus
+let s:win32yank = {
+    \ 'name': 'win32yank',
+    \ 'copy': {'+': 'win32yank.exe -i --crlf', '*': 'win32yank.exe -i --crlf'},
+    \ 'paste': {'+': 'win32yank.exe -o --lf', '*': 'win32yank.exe -o --lf'},
+    \ 'cache_enabled': 0,
+\ }
 if has('win32')
-    let g:clipboard = {
-        \ 'name': 'win32yank',
-        \ 'copy': {'+': 'win32yank -i --crlf', '*': 'win32yank -i --crlf'},
-        \ 'paste': {'+': 'win32yank -o --lf', '*': 'win32yank -o --lf'},
-        \ 'cache_enabled': 0,
-    \ }
+    let g:clipboard = s:win32yank
+elseif !has('mac') && executable('win32yank.exe')
+    let g:clipboard = s:win32yank
 endif
 
 set inccommand=nosplit
