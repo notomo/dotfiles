@@ -255,7 +255,7 @@ require("thetto").setup({
   source_actions = {
 
     ["vim/filetype"] = {
-      action_open_proto = function(_, items)
+      action_open_scratch = function(_, items)
         local item = items[1]
         if item == nil then
           return

@@ -1,12 +1,4 @@
 
-- name: make workspace directory
-  file:
-    path: "{{ home_dir }}/workspace/{{ item }}"
-    state: directory
-  with_items:
-    - proto
-    - memo
-
 - name: make .local/bin directory
   file:
     path: "{{ home_dir }}/.local/bin"

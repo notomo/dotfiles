@@ -14,7 +14,6 @@ source ~/.vim/rc/plugins/_list.vim
 
 if s:initializing
     call minpac#update()
-    UpdateRemotePlugins
 endif
 
 packloadall

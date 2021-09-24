@@ -137,4 +137,4 @@ nnoremap [finder]gp <Cmd>lua require("thetto").start("go/package")<CR>
 nnoremap [finder]a <Cmd>lua require("thetto").start("aliaser")<CR>
 
 " custom action
-nnoremap [finder]; <Cmd>lua require("thetto").start("vim/filetype", {opts = {action = "open_proto"}})<CR>
+nnoremap [finder]; <Cmd>lua require("thetto").start("vim/filetype", {opts = {action = "open_scratch"}})<CR>
