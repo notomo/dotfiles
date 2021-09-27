@@ -1,3 +1,9 @@
+require("lreload").enable("aliaser", {
+  post_hook = function()
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/aliaser.lua"))
+  end,
+})
+
 local aliaser = require("aliaser")
 
 aliaser.register_factory("thetto", function(aliases)

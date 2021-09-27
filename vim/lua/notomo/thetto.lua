@@ -1,3 +1,9 @@
+require("lreload").enable("thetto", {
+  post_hook = function()
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/thetto.lua"))
+  end,
+})
+
 vim.cmd([[
 highlight! ThettoColorLabelLua guibg=#7098e6
 highlight! ThettoColorLabelVim guibg=#33aa77

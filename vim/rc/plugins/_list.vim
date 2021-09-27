@@ -178,13 +178,6 @@ call s:add('nvim-treesitter/nvim-treesitter', {'cmd' : 'TS*'})
 call s:add('nvim-treesitter/nvim-treesitter-textobjects', {'cmd' : 'TS*', 'post_hook_file': '~/dotfiles/vim/lua/notomo/treesitter.lua'})
 
 call s:add('notomo/aliaser.nvim', {'depth': 0, 'post_hook_file': '~/dotfiles/vim/lua/notomo/aliaser.lua', 'module': 'aliaser'})
-lua << EOF
-require("lreload").enable("aliaser", {
-  post_hook = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/aliaser.lua"))
-  end,
-})
-EOF
 
 call s:add('tpope/vim-repeat', {'event' : 'VimEnter'})
 

@@ -1,11 +1,3 @@
-lua << EOF
-require("lreload").enable("piemenu", {
-  post_hook = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/piemenu.lua"))
-  end,
-})
-EOF
-
 nnoremap <RightMouse> <LeftMouse><Cmd>lua require("piemenu").start("lsp")<CR>
 xnoremap <RightMouse> <Cmd>lua require("piemenu").start("lsp")<CR>
 

@@ -1,3 +1,9 @@
+require("lreload").enable("curstr", {
+  post_hook = function()
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/curstr.lua"))
+  end,
+})
+
 require("curstr").setup({
   source_aliases = {
     swagger = {

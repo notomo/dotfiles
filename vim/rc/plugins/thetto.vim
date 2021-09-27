@@ -1,11 +1,3 @@
-lua << EOF
-require("lreload").enable("thetto", {
-  post_hook = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/thetto.lua"))
-  end,
-})
-EOF
-
 lua require("thetto").setup_store("file/mru")
 
 autocmd MyAuGroup FileType thetto call s:thetto_settings()
