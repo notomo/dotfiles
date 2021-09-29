@@ -19,8 +19,16 @@ endif
 packloadall
 
 " post source eager load plugins
-source ~/.vim/rc/plugins/gina.vim
+lua << EOF
+vim.schedule(function()
+  vim.cmd([[
 source ~/.vim/rc/plugins/lightline.vim
+source ~/.vim/rc/plugins/gina.vim
+luafile ~/.vim/lua/notomo/cmp.lua
+]])
+  vim.fn["lightline#update"]()
+end)
+EOF
 
 " NOTE: to load before default lua syntax.
 let s:lua_syntax = s:pack_dir .. '/pack/minpac/start/vim-lua'

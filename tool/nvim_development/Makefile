@@ -55,6 +55,10 @@ run:
 	${MAKE} gdb
 .PHONY: run
 
+version:
+	${NVIM} --version
+.PHONY: version
+
 gdb:
 	gdb ${NVIM} core --eval-command "thread apply all bt full" --batch 2>&1 | tee backtrace.txt
 .PHONY: gdb

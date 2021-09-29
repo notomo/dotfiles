@@ -35,87 +35,84 @@ function! s:add(name, options) abort
     call minpac#add(a:name, options)
 endfunction
 
-call minpac#add('k-takata/minpac', {'type': 'opt'})
-nnoremap [exec]U <Cmd>call minpac#update()<CR>
-
-call minpac#add('kana/vim-textobj-user')
-
-call minpac#add('kana/vim-submode')
-let g:submode_keep_leaving_key = 1
-let g:submode_timeout = 0
-
-call minpac#add('thinca/vim-zenspace')
-let g:zenspace#default_mode = 'on'
-
-call minpac#add('LeafCage/yankround.vim')
-source ~/dotfiles/vim/rc/plugins/yankround.vim
-
-call minpac#add('kana/vim-smartword')
-source ~/dotfiles/vim/rc/plugins/smartword.vim
-
-call minpac#add('rhysd/vim-color-spring-night')
-let g:spring_night_kill_italic = 1
-let g:spring_night_high_contrast = 0
-
-call minpac#add('lambdalisue/gina.vim')
-
-call minpac#add('itchyny/lightline.vim')
-
-call minpac#add('kana/vim-textobj-entire')
-source ~/dotfiles/vim/rc/plugins/textobj-entire.vim
-
-call minpac#add('osyo-manga/vim-textobj-blockwise')
-
-call minpac#add('kana/vim-textobj-line')
-source ~/dotfiles/vim/rc/plugins/textobj-line.vim
-
-call minpac#add('bkad/CamelCaseMotion')
-source ~/dotfiles/vim/rc/plugins/camelcasemotion.vim
-
-call minpac#add('osyo-manga/vim-textobj-from_regexp')
-source ~/.vim/rc/plugins/textobj-from_regexp.vim
-
-call minpac#add('haya14busa/vim-edgemotion')
-source ~/.vim/rc/plugins/edgemotion.vim
-
-call minpac#add('mhinz/vim-signify')
-source ~/.vim/rc/plugins/signify.vim
-
-call minpac#add('junegunn/vim-emoji')
-
 call minpac#add('notomo/vusted', {'depth': 0})
 call minpac#add('notomo/virtes.nvim', {'depth': 0})
 call minpac#add('notomo/genvdoc', {'depth': 0})
+call minpac#add('tbastos/vim-lua')
+
+call s:add('k-takata/minpac', {})
+nnoremap [exec]U <Cmd>call minpac#update()<CR>
+
+call s:add('kana/vim-textobj-user', {'event': 'VimEnter'})
+
+call s:add('kana/vim-submode', {'event': 'VimEnter'})
+let g:submode_keep_leaving_key = 1
+let g:submode_timeout = 0
+
+call s:add('thinca/vim-zenspace', {'event': 'VimEnter'})
+let g:zenspace#default_mode = 'on'
+
+call s:add('LeafCage/yankround.vim', {'event': 'VimEnter'})
+source ~/dotfiles/vim/rc/plugins/yankround.vim
+
+call s:add('kana/vim-smartword', {'event': 'VimEnter'})
+source ~/dotfiles/vim/rc/plugins/smartword.vim
+
+call s:add('rhysd/vim-color-spring-night', {})
+let g:spring_night_kill_italic = 1
+let g:spring_night_high_contrast = 0
+
+call s:add('lambdalisue/gina.vim', {'event': 'VimEnter'})
+
+call s:add('itchyny/lightline.vim', {'event': 'VimEnter'})
+
+call s:add('kana/vim-textobj-entire', {'event': 'VimEnter'})
+source ~/dotfiles/vim/rc/plugins/textobj-entire.vim
+
+call s:add('osyo-manga/vim-textobj-blockwise', {'event': 'VimEnter'})
+
+call s:add('kana/vim-textobj-line', {'event': 'VimEnter'})
+source ~/dotfiles/vim/rc/plugins/textobj-line.vim
+
+call s:add('bkad/CamelCaseMotion', {'event': 'VimEnter'})
+source ~/dotfiles/vim/rc/plugins/camelcasemotion.vim
+
+call s:add('osyo-manga/vim-textobj-from_regexp', {'event': 'VimEnter'})
+source ~/.vim/rc/plugins/textobj-from_regexp.vim
+
+call s:add('haya14busa/vim-edgemotion', {'event': 'VimEnter'})
+source ~/.vim/rc/plugins/edgemotion.vim
+
+call s:add('mhinz/vim-signify', {'event': 'VimEnter'})
+source ~/.vim/rc/plugins/signify.vim
+
+call s:add('junegunn/vim-emoji', {'event': 'VimEnter'})
 
 if has('unix')
-    call minpac#add('lambdalisue/suda.vim')
+    call s:add('lambdalisue/suda.vim', {'event': 'VimEnter'})
     let g:suda_startup = 1
     nnoremap [file]W <Cmd>write suda://%<CR>
 endif
 
-call minpac#add('w0rp/ale')
+call s:add('w0rp/ale', {'event': 'VimEnter'})
 source ~/.vim/rc/plugins/ale.vim
 
-call minpac#add('voldikss/vim-translator')
+call s:add('voldikss/vim-translator', {'event': 'VimEnter'})
 source ~/.vim/rc/plugins/translator.vim
 
-call minpac#add('notomo/wintablib.nvim', {'depth': 0})
+call s:add('notomo/wintablib.nvim', {'module' : 'wintablib', 'depth': 0})
 source ~/.vim/rc/plugins/wintablib.vim
 
-call minpac#add('tbastos/vim-lua')
+call s:add('notomo/lreload.nvim', {'module': 'lreload', 'depth': 0})
 
-call minpac#add('notomo/lreload.nvim', {'depth': 0})
+call s:add('nanotee/luv-vimdocs', {'event': 'VimEnter'})
 
-call minpac#add('nanotee/luv-vimdocs')
-
-call minpac#add('hrsh7th/nvim-cmp')
-luafile ~/.vim/lua/notomo/cmp.lua
-
-call minpac#add('hrsh7th/cmp-nvim-lsp')
-call minpac#add('hrsh7th/cmp-buffer')
-call minpac#add('hrsh7th/cmp-path')
-call minpac#add('hrsh7th/cmp-nvim-lua')
-call minpac#add('notomo/cmp-neosnippet')
+call s:add('hrsh7th/nvim-cmp', {'event' : 'VimEnter'})
+call s:add('hrsh7th/cmp-nvim-lsp', {'event' : 'VimEnter', 'module': 'cmp_nvim_lsp'})
+call s:add('hrsh7th/cmp-buffer', {'event' : 'VimEnter'})
+call s:add('hrsh7th/cmp-path', {'event' : 'VimEnter'})
+call s:add('hrsh7th/cmp-nvim-lua', {'event' : 'VimEnter'})
+call s:add('notomo/cmp-neosnippet', {'event' : 'VimEnter', 'depth': 0})
 
 call s:add('notomo/searcho.nvim', {'module': 'searcho', 'depth': 0})
 source ~/.vim/rc/plugins/searcho.vim
