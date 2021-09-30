@@ -171,7 +171,7 @@ source ~/.vim/rc/plugins/cmdhndlr.vim
 call s:add('notomo/suball.nvim', {'depth': 0, 'module': 'suball'})
 source ~/.vim/rc/plugins/suball.vim
 
-call s:add('nvim-treesitter/nvim-treesitter', {'cmd' : 'TS*'})
+call s:add('nvim-treesitter/nvim-treesitter', {'cmd' : 'TS*', 'module': 'cmdhndlr'})
 call s:add('nvim-treesitter/nvim-treesitter-textobjects', {'cmd' : 'TS*', 'post_hook_file': '~/dotfiles/vim/lua/notomo/treesitter.lua'})
 
 call s:add('notomo/aliaser.nvim', {'depth': 0, 'post_hook_file': '~/dotfiles/vim/lua/notomo/aliaser.lua', 'module': 'aliaser'})
