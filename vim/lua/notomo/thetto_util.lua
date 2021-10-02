@@ -1,6 +1,6 @@
 local M = {}
 
-M.range = function(range)
+function M.range(range)
   if not range then
     return nil
   end
