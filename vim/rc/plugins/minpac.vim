@@ -19,15 +19,16 @@ endif
 packloadall
 
 " post source eager load plugins
+packadd gina.vim
+source ~/.vim/rc/plugins/gina.vim
+packadd lightline.vim
+source ~/.vim/rc/plugins/lightline.vim
 lua << EOF
 vim.schedule(function()
   vim.cmd([[
-source ~/.vim/rc/plugins/lightline.vim
-source ~/.vim/rc/plugins/gina.vim
 runtime! after/plugin/cmp_*.lua
 luafile ~/.vim/lua/notomo/cmp.lua
 ]])
-  vim.fn["lightline#update"]()
 end)
 EOF
 

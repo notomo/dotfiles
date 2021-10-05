@@ -9,6 +9,7 @@ local modules = {
   "filetypext",
   "cmdhndlr",
   "suball",
+  "optpack",
   "notomo",
 }
 for _, m in ipairs(modules) do
