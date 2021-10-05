@@ -8,8 +8,7 @@ setlocal formatoptions+=r
 setlocal formatoptions+=o
 
 setlocal indentkeys=0{,0},0),0],:,!^F,o,O,e,*<Return>,=?>,=<?,=*/
-lua _G._notomo_vim_indent = require("notomo.vim").indent
-setlocal indentexpr=v:lua._notomo_vim_indent()
+setlocal indentexpr=v:lua.require('notomo.vim').indent()
 
 let b:undo_indent = 'setlocal '.join([
 \   'comments<',
