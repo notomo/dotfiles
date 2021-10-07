@@ -3,7 +3,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 export GROOVY_HOME=$HOME/app/groovy/latest
-export PATH=$HOME/.local/bin:$PATH:$HOME/bin:$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
+export PATH=$HOME/.local/nvim/bin:$HOME/.local/bin:$PATH:$HOME/bin:$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
 # enable on wsl
 # export BROWSER=wslview
 
