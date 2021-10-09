@@ -27,7 +27,7 @@ lua << EOF
 vim.schedule(function()
   vim.cmd([[
 runtime! after/plugin/cmp_*.lua
-luafile ~/.vim/lua/notomo/cmp.lua
+lua dofile(vim.fn.expand("~/.vim/lua/notomo/cmp.lua")).setup()
 ]])
 end)
 EOF
