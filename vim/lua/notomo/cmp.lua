@@ -21,8 +21,22 @@ function M.complete()
   return vim.api.nvim_eval([["\<C-n>"]])
 end
 
+function M.tab()
+  if vim.fn["neosnippet#jumpable"]() ~= 0 then
+    cmp.close()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(neosnippet_jump)", true, true, true), "m", true)
+    return ""
+  end
+  if cmp.visible() then
+    return vim.api.nvim_eval([["\<C-n>"]])
+  end
+  return vim.api.nvim_eval([["\<Tab>"]])
+end
+
 function M.setup()
   vim.cmd([[imap <expr> j<Space>o luaeval("require('notomo.cmp').complete()")]])
+  vim.cmd([[imap <expr> <Tab> luaeval("require('notomo.cmp').tab()")]])
+  vim.cmd([[smap <expr> <Tab> luaeval("require('notomo.cmp').tab()")]])
   vim.o.completeopt = "menu,menuone,noselect"
   cmp.setup({
     snippet = {
