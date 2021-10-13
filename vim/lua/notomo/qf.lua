@@ -45,12 +45,12 @@ end
 function M._type()
   if vim.bo.filetype == "qf" then
     local info = vim.fn.getwininfo()[1]
-    return info.quickfix and TYPE_QUICKFIX or TYPE_LOCLIST
+    return info.quickfix ~= 0 and TYPE_QUICKFIX or TYPE_LOCLIST
   end
   if #vim.fn.getloclist(0) > 0 then
     return TYPE_LOCLIST
   end
-  if #vim.fn.getqflist(0) > 0 then
+  if #vim.fn.getqflist() > 0 then
     return TYPE_QUICKFIX
   end
 end
