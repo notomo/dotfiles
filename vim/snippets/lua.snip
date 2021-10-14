@@ -65,6 +65,9 @@ snippet for_inc
 		${0:TARGET}
 	end
 
+snippet error
+	error(${0:TARGET})
+
 snippet foreach_array
 alias for
 	for ${1:key}, ${2:value} in ipairs(${3:expr}) do
@@ -284,7 +287,7 @@ snippet schedule
 snippet command
 alias cmd
 options word
-	vim.cmd("${1:excmd}")
+	vim.cmd([[${1:excmd}]])
 
 snippet bench
 	do
