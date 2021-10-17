@@ -103,5 +103,5 @@ function! s:settings() abort
     endfunction
 
     call vimonga#config#set('default_host', 'localhost:27017')
-    call vimonga#config#set('connection_config', '~/.vim/minpac/pack/minpac/opt/vimonga/example/connection.json')
+    call vimonga#config#set('connection_config', '~/.vim/packages/pack/optpack/opt/vimonga/example/connection.json')
 endfunction

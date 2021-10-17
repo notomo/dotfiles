@@ -2,15 +2,9 @@ local M = {}
 
 function M.collect()
   local items = {}
-  local plugins = vim.tbl_values(vim.fn["minpac#getpluglist"]())
+  local plugins = require("optpack").list()
   for _, plugin in ipairs(plugins) do
-    local path = plugin.dir
-    local factors = vim.split(plugin.url, "/", true)
-    local name = table.concat({unpack(factors, #factors - 1, #factors)}, "/")
-    if vim.endswith(name, ".git") then
-      name = name:sub(1, #name - #(".git"))
-    end
-    table.insert(items, {value = name, path = path})
+    table.insert(items, {value = plugin.full_name, path = plugin.directory})
   end
   return items
 end

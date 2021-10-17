@@ -215,22 +215,22 @@ nnoremap sk #N
 " escape
 " substitute
 
-set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-textobj-user
-set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-operator-user
+set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-textobj-user
+set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-operator-user
 
-set runtimepath+=~/.vim/minpac/pack/minpac/start/CamelCaseMotion
+set runtimepath+=~/.vim/packages/pack/optpack/opt/CamelCaseMotion
 source ~/dotfiles/vim/rc/plugins/camelcasemotion.vim
 
-set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-operator-replace
+set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-operator-replace
 nmap r <Plug>(operator-replace)
 xmap r <Plug>(operator-replace)
 omap r <Plug>(operator-replace)
 
-set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-textobj-line
+set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-textobj-line
 source ~/dotfiles/vim/rc/plugins/textobj-line.vim
 
-set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-smartword
+set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-smartword
 source ~/dotfiles/vim/rc/plugins/smartword.vim
 
-set runtimepath+=~/.vim/minpac/pack/minpac/start/vim-textobj-entire
+set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-textobj-entire
 source ~/dotfiles/vim/rc/plugins/textobj-entire.vim

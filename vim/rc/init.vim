@@ -15,7 +15,7 @@ source ~/.vim/rc/option.vim
 source ~/.vim/rc/mapping.vim
 
 try
-    source ~/.vim/rc/plugins/minpac.vim
+    luafile ~/.vim/rc/plugins/_manager.lua
 catch
     " avoid aborting
     echohl ErrorMsg

@@ -27,7 +27,6 @@ aliaser.register_factory("vim", function(aliases)
   end)
 
   aliases:set("check_health", "checkhealth")
-  aliases:set("minpac_clean", "call minpac#clean()")
   aliases:set("reload_vimrc", function()
     if vim.env.MYVIMRC and vim.env.MYVIMRC ~= "" then
       vim.cmd("source " .. vim.env.MYVIMRC)
