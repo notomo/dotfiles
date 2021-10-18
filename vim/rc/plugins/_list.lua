@@ -90,16 +90,17 @@ optpack.add("rhysd/vim-color-spring-night", {
   },
 })
 
-optpack.add("lambdalisue/gina.vim", {load_on = {events = {"VimEnter"}}})
+optpack.add("lambdalisue/gina.vim", {
+  load_on = {events = {"VimEnter"}},
+  hooks = {post_load = source("~/.vim/rc/plugins/gina.vim")},
+})
 
 optpack.add("itchyny/lightline.vim", {
   load_on = {events = {"VimEnter"}},
   hooks = {
     post_load = function()
-      vim.schedule(function()
-        vim.cmd([[source ~/.vim/rc/plugins/lightline.vim]])
-        vim.fn["lightline#update"]()
-      end)
+      vim.cmd([[source ~/.vim/rc/plugins/lightline.vim]])
+      vim.fn["lightline#update"]()
     end,
   },
 })
@@ -196,7 +197,7 @@ optpack.add("notomo/searcho.nvim", {
 })
 
 optpack.add("AndrewRadev/linediff.vim", {
-  load_on = {cmds = {"*Linediff"}},
+  load_on = {cmds = {"Linediff*"}},
   hooks = {post_add = cmd([[xnoremap [diff]l :Linediff<CR>]])},
 })
 

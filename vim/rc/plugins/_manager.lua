@@ -17,7 +17,6 @@ end
 vim.schedule(function()
   vim.cmd([[
 runtime! after/plugin/cmp_*.lua
-source ~/.vim/rc/plugins/gina.vim
 ]])
   require("notomo.cmp").setup()
 end)
