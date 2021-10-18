@@ -178,17 +178,20 @@ optpack.add("notomo/lreload.nvim", {
 
 optpack.add("nanotee/luv-vimdocs", {load_on = {events = {"VimEnter"}}})
 
-optpack.add("hrsh7th/nvim-cmp", {load_on = {modules = {"cmp"}, events = {"VimEnter"}}})
-optpack.add("hrsh7th/cmp-nvim-lsp", {
-  load_on = {modules = {"cmp", "cmp_nvim_lsp"}, events = {"VimEnter"}},
-})
-optpack.add("hrsh7th/cmp-buffer", {load_on = {modules = {"cmp"}, events = {"VimEnter"}}})
-optpack.add("hrsh7th/cmp-path", {load_on = {modules = {"cmp"}, events = {"VimEnter"}}})
-optpack.add("hrsh7th/cmp-nvim-lua", {load_on = {modules = {"cmp"}, events = {"VimEnter"}}})
-optpack.add("notomo/cmp-neosnippet", {
+optpack.add("hrsh7th/nvim-cmp", {
   load_on = {modules = {"cmp"}, events = {"VimEnter"}},
-  fetch = {depth = 0},
+  hooks = {
+    post_load = vim.schedule_wrap(function()
+      vim.cmd([[runtime! after/plugin/cmp_*.lua]])
+      require("notomo.cmp").setup()
+    end),
+  },
 })
+optpack.add("hrsh7th/cmp-nvim-lsp", {load_on = {events = {"VimEnter"}}})
+optpack.add("hrsh7th/cmp-buffer", {load_on = {events = {"VimEnter"}}})
+optpack.add("hrsh7th/cmp-path", {load_on = {events = {"VimEnter"}}})
+optpack.add("hrsh7th/cmp-nvim-lua", {load_on = {events = {"VimEnter"}}})
+optpack.add("notomo/cmp-neosnippet", {load_on = {events = {"VimEnter"}}, fetch = {depth = 0}})
 
 optpack.add("notomo/searcho.nvim", {
   fetch = {depth = 0},
@@ -260,7 +263,15 @@ optpack.add("notomo/thetto.nvim", {
   },
 })
 
-optpack.add("neovim/nvim-lspconfig", {load_on = {modules = {"lspconfig"}}})
+optpack.add("neovim/nvim-lspconfig", {
+  load_on = {events = {"FileType"}},
+  hooks = {
+    post_load = function()
+      require("notomo.lsp")
+      vim.cmd([[edit]]) -- restart
+    end,
+  },
+})
 
 optpack.add("notomo/kivi.nvim", {
   fetch = {depth = 0},

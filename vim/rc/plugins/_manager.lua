@@ -12,12 +12,3 @@ vim.cmd([[luafile ~/.vim/rc/plugins/_list.lua]])
 if initializing then
   require("optpack").update()
 end
-
--- HACK
-vim.schedule(function()
-  vim.cmd([[
-runtime! after/plugin/cmp_*.lua
-]])
-  require("notomo.cmp").setup()
-end)
-require("notomo.lsp")
