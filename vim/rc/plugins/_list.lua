@@ -3,19 +3,25 @@ local optpack = require("optpack")
 
 local cmd = function(str)
   return function()
-    vim.cmd(str)
+    xpcall(function()
+      vim.cmd(str)
+    end, debug.traceback)
   end
 end
 
 local source = function(path)
   return function()
-    vim.cmd("source " .. path)
+    xpcall(function()
+      vim.cmd("source " .. path)
+    end, debug.traceback)
   end
 end
 
 local luafile = function(path)
   return function()
-    vim.cmd("luafile " .. path)
+    xpcall(function()
+      vim.cmd("luafile " .. path)
+    end, debug.traceback)
   end
 end
 
@@ -82,6 +88,7 @@ optpack.add("kana/vim-smartword", {
 })
 
 optpack.add("rhysd/vim-color-spring-night", {
+  load_on = {events = {"ColorSchemePre"}},
   hooks = {
     post_add = function()
       vim.g.spring_night_kill_italic = 1
@@ -162,16 +169,21 @@ optpack.add("voldikss/vim-translator", {
 
 optpack.add("notomo/wintablib.nvim", {
   fetch = {depth = 0},
-  load_on = {modules = {"wintablib"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/wintablib.vim")},
+  load_on = {events = {"VimEnter"}, modules = {"wintablib"}},
+  hooks = {post_load = source("~/.vim/rc/plugins/wintablib.vim")},
 })
 
 optpack.add("notomo/lreload.nvim", {
   fetch = {depth = 0},
-  load_on = {modules = {"lreload"}},
+  load_on = {modules = {"lreload"}, events = {"BufWritePre"}},
   hooks = {
     post_load = function()
       require("notomo.lreload")
+      require("lreload").enable("optpack", {
+        post_hook = function()
+          dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/_list.lua"))
+        end,
+      })
     end,
   },
 })
@@ -256,7 +268,7 @@ optpack.add("notomo/flompt.nvim", {
 
 optpack.add("notomo/thetto.nvim", {
   fetch = {depth = 0},
-  load_on = {modules = {"thetto"}},
+  load_on = {modules = {"thetto"}, events = {{"BufReadPost", "*/*"}}},
   hooks = {
     post_add = source("~/.vim/rc/plugins/thetto.vim"),
     post_load = luafile("~/dotfiles/vim/lua/notomo/thetto.lua"),
@@ -268,7 +280,7 @@ optpack.add("neovim/nvim-lspconfig", {
   hooks = {
     post_load = function()
       require("notomo.lsp")
-      vim.cmd([[edit]]) -- restart
+      vim.cmd([[silent! edit]]) -- restart
     end,
   },
 })

@@ -7,8 +7,18 @@ if initializing then
   vim.cmd([[!git clone https://github.com/notomo/optpack.nvim ]] .. manager_dir)
 end
 
-vim.cmd([[luafile ~/.vim/rc/plugins/_list.lua]])
+vim.cmd([[
+luafile ~/.vim/rc/plugins/_list.lua
+syntax enable
+filetype plugin indent on
+]])
 
 if initializing then
-  require("optpack").update()
+  require("optpack").update({
+    on_finished = function()
+      vim.cmd([[colorscheme spring-night]])
+    end,
+  })
+else
+  vim.cmd([[colorscheme spring-night]])
 end

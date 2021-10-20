@@ -23,8 +23,4 @@ catch
     echohl None
 endtry
 
-syntax enable
-filetype plugin indent on
-colorscheme spring-night
-
 runtime! rc/local/after/*.vim rc/local/after/*.lua

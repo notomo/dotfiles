@@ -1,5 +1,3 @@
-lua require("thetto").setup_store("file/mru")
-
 autocmd MyAuGroup FileType thetto call s:thetto_settings()
 function! s:thetto_settings() abort
     nnoremap <buffer> <CR> <Cmd>lua require("thetto").execute()<CR>

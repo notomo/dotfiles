@@ -4,6 +4,8 @@ require("lreload").enable("thetto", {
   end,
 })
 
+require("thetto").setup_store("file/mru")
+
 vim.cmd([[
 highlight! ThettoColorLabelLua guibg=#7098e6
 highlight! ThettoColorLabelVim guibg=#33aa77
