@@ -1,37 +1,33 @@
 vim.cmd([[packadd optpack.nvim]])
 local optpack = require("optpack")
 
-local cmd = function(str)
+local with_trace = function(f)
   return function()
-    xpcall(function()
-      vim.cmd(str)
-    end, debug.traceback)
+    xpcall(f, debug.traceback)
   end
+end
+
+local cmd = function(str)
+  return with_trace(function()
+    vim.cmd(str)
+  end)
 end
 
 local source = function(path)
-  return function()
-    xpcall(function()
-      vim.cmd("source " .. path)
-    end, debug.traceback)
-  end
+  return with_trace(function()
+    vim.cmd("source " .. path)
+  end)
 end
 
 local luafile = function(path)
-  return function()
-    xpcall(function()
-      vim.cmd("luafile " .. path)
-    end, debug.traceback)
-  end
+  return with_trace(function()
+    vim.cmd("luafile " .. path)
+  end)
 end
 
 optpack.add("notomo/optpack.nvim", {
   fetch = {depth = 0},
-  hooks = {
-    post_add = function()
-      vim.cmd([=[nnoremap [exec]U <Cmd>lua require("optpack").update()<CR>]=])
-    end,
-  },
+  hooks = {post_add = cmd([=[nnoremap [exec]U <Cmd>lua require("optpack").update()<CR>]=])},
 })
 
 optpack.add("notomo/vusted", {fetch = {depth = 0}})
@@ -69,7 +65,7 @@ optpack.add("kana/vim-submode", {
 })
 
 optpack.add("thinca/vim-zenspace", {
-  load_on = {events = {"VimEnter"}},
+  load_on = {events = {{"BufReadPre", "*/*"}}},
   hooks = {
     post_add = function()
       vim.g["zenspace#default_mode"] = "on"
@@ -140,7 +136,7 @@ optpack.add("haya14busa/vim-edgemotion", {
 })
 
 optpack.add("mhinz/vim-signify", {
-  load_on = {events = {"VimEnter"}},
+  load_on = {events = {{"BufReadPre", "*/*"}}},
   hooks = {post_add = source("~/.vim/rc/plugins/signify.vim")},
 })
 
@@ -148,7 +144,7 @@ optpack.add("junegunn/vim-emoji", {load_on = {events = {"VimEnter"}}})
 
 optpack.add("lambdalisue/suda.vim", {
   enabled = vim.fn.has("unix") == 1,
-  load_on = {events = {"VimEnter"}},
+  load_on = {events = {{"BufReadPre", "*/*"}}},
   hooks = {
     post_add = cmd([[
 let g:suda_startup = 1
@@ -297,7 +293,7 @@ optpack.add("notomo/reacher.nvim", {
   hooks = {post_add = source("~/.vim/rc/plugins/reacher.vim")},
 })
 
-optpack.add("dart-lang/dart-vim-plugin", {ft = "dart"})
+optpack.add("dart-lang/dart-vim-plugin", {load_on = {filetypes = {"dart"}}})
 
 optpack.add("notomo/cmdbuf.nvim", {
   fetch = {depth = 0},
@@ -344,7 +340,7 @@ optpack.add("tpope/vim-repeat", {load_on = {events = {"VimEnter"}}})
 optpack.add("kana/vim-operator-user", {load_on = {events = {"VimEnter"}}})
 
 optpack.add("osyo-manga/vim-textobj-multiblock", {
-  load_on = {events = {"BufLeave"}},
+  load_on = {events = {"VimEnter"}},
   hooks = {post_add = source("~/dotfiles/vim/rc/plugins/textobj-multiblock.vim")},
 })
 
