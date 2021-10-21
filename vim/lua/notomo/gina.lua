@@ -49,7 +49,7 @@ end
 function M.rebase_i()
   local revision = M._revision()
   vim.cmd("terminal")
-  vim.fn.jobsend(vim.b.terminal_job_id, "git rebase -i --autosquash " .. revision .. "~\\<CR>")
+  vim.fn.jobsend(vim.b.terminal_job_id, "git rebase -i --autosquash " .. revision .. "~" .. vim.api.nvim_eval([["\<CR>"]]))
 end
 
 function M.stash_file()
