@@ -1,19 +1,11 @@
-set encoding=utf-8
-scriptencoding utf-8
-let $LANG = 'en_US.UTF-8'
-
-if has('win32') && has('vim_starting')
-    set runtimepath^=~/.vim/
-    set runtimepath+=~/.vim/after
-endif
-
 filetype off
 filetype plugin indent off
 
 runtime! rc/local/*.vim rc/local/*.lua
-source ~/.vim/rc/option.vim
-source ~/.vim/rc/mapping.vim
 
+luafile ~/.vim/rc/option.lua
+source ~/.vim/rc/autocmd.vim
+source ~/.vim/rc/mapping.vim
 try
     luafile ~/.vim/rc/plugins/_manager.lua
 catch
