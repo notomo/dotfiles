@@ -135,4 +135,40 @@ nnoremap <buffer> [keyword]t <Cmd>lua require("wintablib.window").duplicate_as_r
 ]])
 end
 
+function M.gina()
+  vim.cmd([[
+nnoremap <silent> [git]s <Cmd>lua require("notomo.gina").toggle_buffer('status', 'gina-status')<CR>
+nnoremap [git]D <Cmd>Gina diff<CR>
+nnoremap <silent> [git]b <Cmd>lua require("notomo.gina").toggle_buffer('branch', 'gina-branch')<CR>
+nnoremap [git]L <Cmd>Gina log master...HEAD<CR>
+nnoremap [git]ll <Cmd>Gina log<CR>
+nnoremap [git]rl <Cmd>Gina reflog<CR>
+nnoremap [git]ls <Cmd>Gina ls<CR>
+nnoremap [git]T <Cmd>Gina tag<CR>
+nnoremap [git]c <Cmd>Gina commit<CR>
+nnoremap [git]xl <Cmd>lua require("notomo.gina").toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>
+nnoremap [git]xs :<C-u>Gina stash save ""<Left>
+nnoremap [git]xc <Cmd>Gina stash show<CR>
+nnoremap <expr> [git]P ':<C-u>Gina! push ' .. luaeval('require("notomo.gina").remote()') .. ' ' . gina#component#repo#branch()
+nnoremap <expr> [git]H ':<C-u>Gina! pull ' .. luaeval('require("notomo.gina").remote()') .. ' ' . gina#component#repo#branch()
+nnoremap [git]M :<C-u>Gina! merge<Space>
+nnoremap <expr> [git]F ':<C-u>Gina! fetch ' .. luaeval('require("notomo.gina").remote()') .. ' --prune'
+nnoremap [git]ma :<C-u>Gina! merge --abort
+nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
+nnoremap [git]ra :<C-u>Gina! rebase --abort
+nnoremap [git]rc :<C-u>Gina! rebase --continue
+nnoremap [git]R :<C-u>Gina! rebase<Space>
+nnoremap <expr> [git]A ":<C-u>Gina! apply " . fnamemodify(bufname('%'), ':p')
+nnoremap [git]dl <Cmd>Gina log --diff-filter=D --summary<CR> " deleted file log
+nnoremap [git]G :<C-u>Gina log -S""<Left>
+nnoremap [yank]U <Cmd>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>
+xnoremap [yank]U :Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>
+nnoremap [exec]gu <Cmd>Gina browse :<CR>
+nnoremap [git]B <Cmd>execute 'Gina blame :' .. luaeval('require("notomo.gina").relpath()')<CR>
+nnoremap [git]fl <Cmd>execute 'Gina log :' .. luaeval('require("notomo.gina").relpath()')<CR>
+nnoremap [git]dd <Cmd>execute 'Gina compare :' .. luaeval('require("notomo.gina").relpath()')<CR>
+nnoremap [git]df <Cmd>execute 'Gina diff :' .. luaeval('require("notomo.gina").relpath()')<CR>
+]])
+end
+
 return M

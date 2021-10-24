@@ -43,6 +43,9 @@ function! LightlineVimonga()
 endfunction
 
 function! LightlineGitBranch()
+    if !exists('*gina#component#repo#branch')
+        return ''
+    endif
     let branch = gina#component#repo#branch()
     if empty(branch)
         return ''

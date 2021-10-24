@@ -94,8 +94,11 @@ optpack.add("rhysd/vim-color-spring-night", {
 })
 
 optpack.add("lambdalisue/gina.vim", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_load = source("~/.vim/rc/plugins/gina.vim")},
+  load_on = {cmds = {"Gina*"}, events = {{"BufReadPre", "*/*"}}},
+  hooks = {
+    post_add = require("notomo.mapping").gina,
+    post_load = source("~/.vim/rc/plugins/gina.vim"),
+  },
 })
 
 optpack.add("itchyny/lightline.vim", {

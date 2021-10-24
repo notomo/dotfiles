@@ -1,43 +1,3 @@
-nnoremap <silent> [git]s <Cmd>lua require("notomo.gina").toggle_buffer('status', 'gina-status')<CR>
-nnoremap [git]D <Cmd>Gina diff<CR>
-nnoremap <silent> [git]b <Cmd>lua require("notomo.gina").toggle_buffer('branch', 'gina-branch')<CR>
-nnoremap [git]L <Cmd>Gina log master...HEAD<CR>
-nnoremap [git]ll <Cmd>Gina log<CR>
-nnoremap [git]rl <Cmd>Gina reflog<CR>
-nnoremap [git]ls <Cmd>Gina ls<CR>
-nnoremap [git]T <Cmd>Gina tag<CR>
-nnoremap [git]c <Cmd>Gina commit<CR>
-nnoremap [git]xl <Cmd>lua require("notomo.gina").toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>
-nnoremap [git]xs :<C-u>Gina stash save ""<Left>
-nnoremap [git]xc <Cmd>Gina stash show<CR>
-nnoremap <expr> [git]P ':<C-u>Gina! push ' .. luaeval('require("notomo.gina").remote()') .. ' ' . gina#component#repo#branch()
-nnoremap <expr> [git]H ':<C-u>Gina! pull ' .. luaeval('require("notomo.gina").remote()') .. ' ' . gina#component#repo#branch()
-nnoremap [git]M :<C-u>Gina! merge<Space>
-nnoremap <expr> [git]F ':<C-u>Gina! fetch ' .. luaeval('require("notomo.gina").remote()') .. ' --prune'
-nnoremap [git]ma :<C-u>Gina! merge --abort
-nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
-nnoremap [git]ra :<C-u>Gina! rebase --abort
-nnoremap [git]rc :<C-u>Gina! rebase --continue
-nnoremap [git]R :<C-u>Gina! rebase<Space>
-nnoremap <expr> [git]A ":<C-u>Gina! apply " . fnamemodify(bufname('%'), ':p')
-nnoremap [git]dl <Cmd>Gina log --diff-filter=D --summary<CR> " deleted file log
-nnoremap [git]G :<C-u>Gina log -S""<Left>
-nnoremap [yank]U <Cmd>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>
-xnoremap [yank]U :Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>
-nnoremap [exec]gu <Cmd>Gina browse :<CR>
-
-function! s:get_current_relpath() abort
-    let git = gina#core#get_or_fail()
-    let abspath = gina#core#repo#abspath(git, '')
-    let curpath = substitute(expand('%:p'), '\', '/', 'g')
-    let relpath = substitute(curpath, abspath, '', '')
-    return relpath
-endfunction
-nnoremap [git]B <Cmd>execute 'Gina blame :' . <SID>get_current_relpath()<CR>
-nnoremap [git]fl <Cmd>execute 'Gina log :' . <SID>get_current_relpath()<CR>
-nnoremap [git]dd <Cmd>execute 'Gina compare :' . <SID>get_current_relpath()<CR>
-nnoremap [git]df <Cmd>execute 'Gina diff :' . <SID>get_current_relpath()<CR>
-
 let s:silent = {'silent': 1}
 let s:noremap_silent = {'noremap':1, 'silent': 1}
 for s:mode_char in ['n', 'v']
@@ -175,3 +135,6 @@ call gina#custom#mapping#nmap('tag', 'C', ':call gina#action#call(''tag:new:ligh
 call gina#custom#mapping#nmap('tag', 'P', 'luaeval("require([[notomo.gina]]).push_cmd()")', {'noremap':1, 'expr': 1})
 
 let g:gina#core#console#enable_message_history = 1
+
+" HACK
+call gina#component#repo#branch()

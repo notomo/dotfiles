@@ -19,11 +19,15 @@ build_with_asan:
 	cp ${NVIM} ${ASAN_NVIM}
 .PHONY: build_with_asan
 
-build_release_with_deb_info:
+build_release_with_deb_info: reset_build_type
 	# cd ${NVIM_DIR}; make distclean
 	cd ${NVIM_DIR}; make CMAKE_BUILD_TYPE=RelWithDebInfo
 	cd ${NVIM_DIR}; make install CMAKE_INSTALL_PREFIX=${HOME}/.local/nvim
 .PHONY: build_release_with_deb_info
+
+reset_build_type:
+	cd ${NVIM_DIR}; rm -rf ./build/.ran-cmake
+.PHONY: reset_build_type
 
 build:
 	cd ${NVIM_DIR}; make
