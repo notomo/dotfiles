@@ -198,7 +198,7 @@ optpack.add("hrsh7th/nvim-cmp", {
     end),
   },
 })
-optpack.add("hrsh7th/cmp-nvim-lsp", {load_on = {events = {"VimEnter"}}})
+optpack.add("hrsh7th/cmp-nvim-lsp", {load_on = {events = {"VimEnter"}, modules = {"cmp_nvim_lsp"}}})
 optpack.add("hrsh7th/cmp-buffer", {load_on = {events = {"VimEnter"}}})
 optpack.add("hrsh7th/cmp-path", {load_on = {events = {"VimEnter"}}})
 optpack.add("hrsh7th/cmp-nvim-lua", {load_on = {events = {"VimEnter"}}})
