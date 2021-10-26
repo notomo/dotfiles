@@ -9,7 +9,9 @@ function M.complete()
     return ""
   end
 
-  -- TODO: close if selected
+  if cmp.get_selected_entry() then
+    return vim.api.nvim_eval([["\<C-y>"]])
+  end
 
   -- NOTE: select by <C-n> and then close and expand
   vim.schedule(function()
@@ -37,13 +39,15 @@ function M.setup()
   vim.cmd([[imap <expr> j<Space>o luaeval("require('notomo.cmp').complete()")]])
   vim.cmd([[imap <expr> <Tab> luaeval("require('notomo.cmp').tab()")]])
   vim.cmd([[smap <expr> <Tab> luaeval("require('notomo.cmp').tab()")]])
-  vim.o.completeopt = "menu,menuone,noselect"
   cmp.setup({
     snippet = {
       expand = function(_)
       end,
     },
-    mapping = {["<C-n>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert})},
+    mapping = {
+      ["<C-n>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert}),
+      ["<C-y>"] = cmp.mapping.confirm({select = true}),
+    },
     enabled = function()
       if vim.startswith(vim.api.nvim_buf_get_name(0), "kivi://") then
         return false
