@@ -4,7 +4,9 @@ local cmp = require("cmp")
 
 function M.complete()
   if vim.fn["neosnippet#expandable"]() ~= 0 then
-    cmp.close()
+    vim.schedule(function()
+      cmp.close()
+    end)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(neosnippet_expand)", true, true, true), "m", true)
     return ""
   end
@@ -25,7 +27,9 @@ end
 
 function M.tab()
   if vim.fn["neosnippet#jumpable"]() ~= 0 then
-    cmp.close()
+    vim.schedule(function()
+      cmp.close()
+    end)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(neosnippet_jump)", true, true, true), "m", true)
     return ""
   end
