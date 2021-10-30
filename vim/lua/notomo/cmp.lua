@@ -58,6 +58,7 @@ function M.setup()
       end
       return not vim.tbl_contains({"thetto-input", "reacher", "searcho"}, vim.bo.filetype)
     end,
+    preselect = cmp.PreselectMode.None,
     sources = {
       {name = "neosnippet"},
       {name = "nvim_lsp"},
