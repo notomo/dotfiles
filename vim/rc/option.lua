@@ -119,7 +119,7 @@ opt.inccommand = "nosplit"
 opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 opt.wildoptions:append("pum")
 opt.pumblend = 15
-opt.shada:prepend("'1000")
+opt.shada = [['10,!,<50,/0,s10,h,@10]]
 if vim.fn.has("win32") ~= 1 then
   if vim.fn.has("vim_starting") == 1 then
     opt.runtimepath:prepend(vim.fn.expand("~/.vim/"))
