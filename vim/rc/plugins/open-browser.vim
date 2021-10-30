@@ -9,6 +9,6 @@ nnoremap [browser]i :<C-u>OpenBrowserSearch<Space>
 
 if !empty($SSH_CLIENT) && has('mac') && executable('lemonade')
     let g:openbrowser_browser_commands = [{'name': 'lemonade', 'args': 'lemonade open {uri}'}]
-elseif !has('mac') && !has('win32') && executable('wslview')
+elseif has('wsl')
     let g:openbrowser_browser_commands = [{'name': 'wslview', 'args': 'wslview {uri}'}]
 endif
