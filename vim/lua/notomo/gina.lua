@@ -54,7 +54,7 @@ end
 
 function M.stash_file()
   local path = M._path()
-  vim.cmd("Gina! stash path --" .. path)
+  vim.cmd("Gina! stash -- " .. path)
 end
 
 function M.yank_rev()

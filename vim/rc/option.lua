@@ -31,8 +31,8 @@ g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 g.python_highlight_all = 1
 g.markdown_fenced_languages = {"vim"}
-g.ft_ignroe_pat = [[\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$]]
-if vim.fn.has("win32") == 1 or (vim.fn.has("mac") ~= 1 and vim.fn.executable("win32yank.exe")) then
+g.ft_ignore_pat = [[\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$]]
+if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "win32yank",
     copy = {["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf"},
