@@ -5,6 +5,7 @@ function M.exchange()
   vim.cmd("s/\\v%#(\\_.)(\\_.)/\\2\\1/g")
   vim.api.nvim_win_set_cursor(0, pos)
   vim.cmd("normal! l")
+  vim.cmd("nohlsearch")
 end
 
 function M.to_next_syntax(pattern, column, offset)
