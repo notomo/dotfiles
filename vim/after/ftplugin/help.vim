@@ -1,9 +1,10 @@
 if &l:buftype !=# 'help'
-    setlocal list tabstop=8 shiftwidth=8 softtabstop=8 noexpandtab textwidth=78
-    if exists('+colorcolumn')
-        setlocal colorcolumn=+1
-    endif
-    if has('conceal')
-        setlocal conceallevel=0
-    endif
+    setlocal list
+    setlocal tabstop=8
+    setlocal shiftwidth=8
+    setlocal softtabstop=8
+    setlocal noexpandtab
+    setlocal textwidth=78
+    setlocal colorcolumn=+1
+    setlocal conceallevel=0
 endif
