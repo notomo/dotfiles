@@ -60,6 +60,7 @@ local main_input = {
   {lhs = MAIN_INPUT_PFX .. "w", rhs = "\"\"<Left>"},
   {lhs = MAIN_INPUT_PFX .. "b", rhs = "``<Left>"},
   {lhs = MAIN_INPUT_PFX .. "l", rhs = "[]<Left>"},
+  {lhs = MAIN_INPUT_PFX .. "L", rhs = "[[]]<Left><Left>"},
   {lhs = MAIN_INPUT_PFX .. "t", rhs = "<><Left>"},
   {lhs = MAIN_INPUT_PFX .. "p", rhs = "()<Left>"},
   {lhs = MAIN_INPUT_PFX .. "d", rhs = "{}<Left>"},
