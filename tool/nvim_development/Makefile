@@ -2,6 +2,7 @@ NVIM_DIR := ${HOME}/workspace/neovim
 NVIM := ${NVIM_DIR}/build/bin/nvim
 # NVIM := nvim
 ASAN_NVIM := ./bin/asan_nvim
+# NVIM := ./bin/asan_nvim
 
 CC := clang-11
 unexport LUA_PATH
@@ -14,7 +15,7 @@ all:
 	# ${MAKE} build_with_asan
 .PHONY: all
 
-build_with_asan:
+build_with_asan: reset_build_type
 	cd ${NVIM_DIR}; make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
 	cp ${NVIM} ${ASAN_NVIM}
 .PHONY: build_with_asan

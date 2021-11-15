@@ -8,9 +8,9 @@ local piemenu = require("piemenu")
 piemenu.register("default", {
   menus = {
     {
-      text = "📖 help",
+      text = "📖 note",
       action = function()
-        require("thetto").start("vim/help", {opts = {insert = false}})
+        require("notomo.edit").note()
       end,
     },
     {
@@ -102,6 +102,12 @@ piemenu.register("lsp", {
       text = "📚 references",
       action = function()
         vim.lsp.buf.references()
+      end,
+    },
+    {
+      text = "📝 paste",
+      action = function()
+        vim.cmd("normal! p")
       end,
     },
   },
