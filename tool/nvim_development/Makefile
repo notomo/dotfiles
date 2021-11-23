@@ -105,10 +105,10 @@ issue:
 	echo "- ``\$$TERM``: ${TERM}" >> ${ISSUE}
 	echo "- Installation: build from repo" >> ${ISSUE}
 	echo>> ${ISSUE}
-	echo "### Steps to reproduce using \`nvim -u NORC\`" >> ${ISSUE}
+	echo "### Steps to reproduce using \`nvim --clean NORC\`" >> ${ISSUE}
 	echo>> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
-	echo "build/bin/nvim -u NORC +'luafile minimal.lua'"  >> ${ISSUE}
+	echo "build/bin/nvim --clean +'luafile minimal.lua'"  >> ${ISSUE}
 	echo "❗TODO❗" >> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
 	echo>> ${ISSUE}

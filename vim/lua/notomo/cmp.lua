@@ -66,7 +66,7 @@ function M.setup()
       {name = "path"},
       {
         name = "buffer",
-        opts = {
+        option = {
           keyword_pattern = [[\k\+]],
           get_bufnrs = function()
             local bufnrs = {}
