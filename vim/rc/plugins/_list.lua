@@ -371,3 +371,9 @@ optpack.add("tyru/caw.vim", {
   load_on = {events = {"FileType"}},
   hooks = {post_add = source("~/.vim/rc/plugins/caw.vim")},
 })
+
+optpack.add("notomo/promise.nvim", {
+  fetch = {depth = 0},
+  enabled = vim.fn.has("unix") == 1,
+  load_on = {modules = {"promise"}},
+})
