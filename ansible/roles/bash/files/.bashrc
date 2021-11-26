@@ -18,7 +18,7 @@ alias df='df -h'
 alias dsl="docker_compose logs -f --tail=100"
 
 function docker_compose() {
-    docker-compose "$@"
+    docker compose "$@"
 }
 
 function kill_process() {
