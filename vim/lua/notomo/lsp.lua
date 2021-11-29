@@ -66,6 +66,7 @@ setup_ls(nvimlsp.sumneko_lua, {
           "teardown",
           "lazy_teardown",
           "pending",
+          "newproxy",
         },
         -- disable = {"lowercase-global"},
       },
