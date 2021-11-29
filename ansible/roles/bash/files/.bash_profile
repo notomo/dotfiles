@@ -8,6 +8,7 @@ export PATH=$HOME/.local/nvim/bin:$HOME/.local/bin:$PATH:$HOME/bin:$HOME/.compos
 # export BROWSER=wslview
 
 export PATH=$PATH:$HOME/.vim/packages/pack/optpack/opt/vim-themis/bin
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 export THEMIS_VIM=nvim
 export THEMIS_ARGS="-e -s --headless"
 export THEMIS_PROFILE_LOG=profile.txt
