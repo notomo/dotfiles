@@ -172,4 +172,12 @@ nnoremap [git]df <Cmd>execute 'Gina diff :' .. luaeval('require("notomo.gina").r
 ]])
 end
 
+function M.npm()
+  vim.cmd([[
+nnoremap <buffer> [exec]bl <Cmd>lua require("cmdhndlr").build({name = 'javascript/npm'})<CR>
+nnoremap <buffer> [test]t <Cmd>lua require("cmdhndlr").test({name = 'javascript/npm', layout = {type = "tab"}})<CR>
+nnoremap <buffer> [exec], <Cmd>lua require("thetto").start("cmd/npm/script", {opts = {sorters = {"alphabet"}, target = "upward", target_patterns = {"package.json"}, insert = false}})<CR>
+]])
+end
+
 return M
