@@ -7,9 +7,9 @@ cd ~
 sudo apt --yes update
 sudo apt --yes upgrade
 
-sudo apt --yes install software-properties-common
-sudo apt-add-repository --yes --update ppa:ansible/ansible
-sudo apt --yes install ansible
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install ansible
 
 git clone https://github.com/notomo/dotfiles.git ~/dotfiles
 
