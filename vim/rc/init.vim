@@ -1,3 +1,8 @@
+if has('win32') && has('vim_starting')
+    set runtimepath^=~/.vim/
+    set runtimepath+=~/.vim/after
+endif
+
 filetype off
 filetype plugin indent off
 
