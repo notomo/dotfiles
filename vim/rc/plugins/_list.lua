@@ -41,6 +41,7 @@ optpack.add("tbastos/vim-lua", {
       -- HACK
       local path
       for _, p in ipairs(vim.opt.runtimepath:get()) do
+        p = p:gsub("\\", "/")
         if p:find("/vim%-lua$") then
           path = p
           break
