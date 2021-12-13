@@ -1,2 +1,1 @@
 - homebrew: name=ruby
-  when: is_macos

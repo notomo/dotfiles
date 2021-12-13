@@ -1,4 +1,3 @@
 - name: install tmux with homebrew
   homebrew:
     name: tmux
-  when: is_macos

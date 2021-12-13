@@ -1,39 +1,6 @@
 
 - name: install node with homebrew
   homebrew: name=node
-  when: is_macos
-
-- name: check node_installer
-  stat:
-    path: "{{ app_dir }}/node_installer"
-  register: node_installer_downloaded
-  when: is_linux
-
-- name: download installer on ubuntu
-  get_url:
-    url: https://deb.nodesource.com/setup_10.x
-    dest: "{{ app_dir }}/node_installer"
-  when: is_ubuntu and not node_installer_downloaded.stat.exists
-
-- name: check node install
-  command: "node -v"
-  register: node_installed
-  changed_when: False
-  failed_when: False
-  when: is_linux
-
-- name: install node
-  shell:
-    chdir: "{{ app_dir }}"
-    cmd: "bash node_installer"
-  become: yes
-  when: is_linux and node_installed.rc != 0
-
-- name: install nodejs with apt
-  apt:
-    name: nodejs
-  become: yes
-  when: is_ubuntu
 
 - name: set variables
   set_fact:
@@ -50,12 +17,3 @@
     name: "{{ item }}"
     global: yes
   with_items: "{{ node_packages }}"
-  when: is_macos
-
-- name: install node.js package globally
-  npm:
-    name: "{{ item }}"
-    global: yes
-  with_items: "{{ node_packages }}"
-  become: yes
-  when: is_linux

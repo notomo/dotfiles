@@ -1,3 +1,1 @@
-
 - homebrew: name=mysql
-  when: is_macos

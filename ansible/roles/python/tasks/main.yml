@@ -2,39 +2,6 @@
 - homebrew:
     name:
       - python3
-  when: is_macos
-
-- name: install common with apt
-  apt:
-    name: software-properties-common
-  when: is_ubuntu
-  become: yes
-
-- name: add apt repository
-  apt_repository:
-    repo: ppa:deadsnakes/ppa
-  when: is_ubuntu
-  become: yes
-
-# - python3-pip TODO: wget https://bootstrap.pypa.io/get-pip.py, python3 get-pip.py
-- name: install python3 with apt
-  apt:
-    name:
-      - python3.7
-      - python3.7-dev
-      - python3-pip
-      - python3-dev
-      - python3-venv
-  when: is_ubuntu
-  become: yes
-
-# - name: create symbolic link for python3
-#   file:
-#     src: "/usr/bin/python3.7"
-#     dest: "/usr/bin/python3"
-#     state: link
-#   when: is_ubuntu
-#   become: yes
 
 - name: set variables
   set_fact:
@@ -56,10 +23,3 @@
 - pip:
     name: "{{ python3_packages }}"
     executable: pip3
-  when: is_macos
-
-- pip:
-    name: "{{ python3_packages }}"
-    executable: pip3
-  when: is_ubuntu
-  become: yes
