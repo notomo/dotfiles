@@ -5,8 +5,6 @@
     - { role: 'vim', tags: 'vim' }
     - { role: 'firefox', tags: 'firefox' }
     - { role: 'tmux', tags: 'tmux' }
-    - { role: 'mysql', tags: 'mysql' }
-    - { role: 'ruby', tags: 'ruby' }
     - { role: 'rust', tags: 'rust' }
   tasks:
     - name: install with homebrew_cask

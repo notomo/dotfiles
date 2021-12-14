@@ -1,4 +1,4 @@
 
 - name: install gh with homebrew
   homebrew:
-    name: github/gh/gh
+    name: gh

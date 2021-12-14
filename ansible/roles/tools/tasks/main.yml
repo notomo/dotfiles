@@ -8,13 +8,13 @@
       - nkf
       - jq
       - actionlint
+      - tmpreaper
+      - supervisor
+      - cscope
 
 - name: install with apt
   apt:
     name:
       - wamerican # words dict
-      - cscope
-      - supervisor
-      - tmpreaper
   when: is_ubuntu
   become: yes
