@@ -170,7 +170,7 @@ vim.lsp.handlers["textDocument/definition"] = function(_, result)
   if vim.tbl_islist(result) then
     util.jump_to_location(result[1])
     if #result > 1 then
-      util.set_loclist(util.locations_to_items(result))
+      vim.fn.setloclist(0, util.locations_to_items(result))
     end
   else
     util.jump_to_location(result)
