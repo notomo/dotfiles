@@ -62,6 +62,11 @@ function M.yank_rev()
   vim.api.nvim_echo({{vim.fn.getreg("+")}}, true, {})
 end
 
+function M.browse_yank()
+  vim.fn["gina#action#call"]("browse:yank")
+  vim.api.nvim_echo({{vim.fn.getreg("+")}}, true, {})
+end
+
 function M.edit(action)
   local splitted = vim.split(vim.fn.getline("."), " ")
   if #splitted == 0 then
