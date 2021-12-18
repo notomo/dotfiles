@@ -37,18 +37,9 @@ optpack.add("notomo/genvdoc", {fetch = {depth = 0}, load_on = {modules = {"genvd
 optpack.add("tbastos/vim-lua", {
   load_on = {filetypes = {"lua"}},
   hooks = {
-    post_load = function()
-      -- HACK
-      local path
-      for _, p in ipairs(vim.opt.runtimepath:get()) do
-        p = p:gsub("\\", "/")
-        if p:find("/vim%-lua$") then
-          path = p
-          break
-        end
-      end
-      vim.opt.runtimepath:remove(path)
-      vim.opt.runtimepath:prepend(path)
+    post_load = function(plugin)
+      vim.opt.runtimepath:remove(plugin.directory)
+      vim.opt.runtimepath:prepend(plugin.directory)
     end,
   },
 })

@@ -53,9 +53,6 @@ function M.setup()
       ["<C-y>"] = cmp.mapping.confirm({select = true}),
     },
     enabled = function()
-      if vim.startswith(vim.api.nvim_buf_get_name(0), "kivi://") then
-        return false
-      end
       return not vim.tbl_contains({"thetto-input", "reacher", "searcho"}, vim.bo.filetype)
     end,
     preselect = cmp.PreselectMode.None,
