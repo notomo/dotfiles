@@ -369,3 +369,9 @@ optpack.add("notomo/promise.nvim", {
   enabled = vim.fn.has("unix") == 1,
   load_on = {modules = {"promise"}},
 })
+
+optpack.add("nvim-lua/plenary.nvim", {load_on = {modules = {"plenary"}}})
+optpack.add("jose-elias-alvarez/null-ls.nvim", {
+  load_on = {filetypes = {"yaml"}, modules = {"null-ls"}},
+  hooks = {post_load = luafile("~/dotfiles/vim/lua/notomo/null_ls.lua")},
+})
