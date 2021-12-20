@@ -13,11 +13,9 @@
       - autopep8
       - isort
       - black
-      - python-lsp-server
-      - "git+https://github.com/vimjas/vintim-vint"
+      - python-lsp-server[all]
       - neovim-remote
       - httpie
-      - pprint
       - pytest
 
 - pip:
