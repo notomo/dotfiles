@@ -21,9 +21,11 @@ build_with_asan: reset_build_type
 .PHONY: build_with_asan
 
 build_release_with_deb_info: reset_build_type
+	nvim --version
 	# cd ${NVIM_DIR}; make distclean
 	cd ${NVIM_DIR}; make CMAKE_BUILD_TYPE=RelWithDebInfo
 	cd ${NVIM_DIR}; make install CMAKE_INSTALL_PREFIX=${HOME}/.local/nvim
+	nvim --version
 .PHONY: build_release_with_deb_info
 
 reset_build_type:
