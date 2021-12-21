@@ -20,3 +20,4 @@ local actionlint = {
   }),
 }
 null_ls.register(actionlint)
+null_ls.setup({})

@@ -184,3 +184,17 @@ end
 vim.lsp.handlers["dart/textDocument/publishFlutterOutline"] = function(_, result, ctx)
   vim.api.nvim_buf_set_var(ctx.bufnr, "_thetto_flutter_outline", result)
 end
+
+_G._notomo_progress = function()
+  local messages = vim.lsp.util.get_progress_messages()
+  for _, msg in ipairs(messages) do
+    print(("[%s] %s"):format(msg.name, msg.message))
+  end
+end
+
+vim.cmd([[
+augroup notomo_lsp_progress
+  autocmd!
+  autocmd User LspProgressUpdate lua _G._notomo_progress()
+augroup END
+]])
