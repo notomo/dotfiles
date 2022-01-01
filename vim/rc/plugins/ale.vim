@@ -27,10 +27,10 @@ let g:ale_fixers['vue'] = ['prettier']
 let g:ale_fixers['json'] = ['fixjson']
 let g:ale_fixers['sql'] = ['sqlfmt']
 let g:ale_fixers['terraform'] = ['terraform']
-let g:ale_fixers['lua'] = ['lua-format']
+let g:ale_fixers['lua'] = ['stylua']
 let g:ale_fixers['dart'] = ['dart-format']
 let g:ale_fixers['c'] = ['uncrustify']
 
 let g:ale_c_uncrustify_options = '-l c -c ' .. expand('~/workspace/neovim/src/uncrustify.cfg')
-let g:ale_lua_lua_format_options = '-c ' .. expand('~/dotfiles/tool/.lua-format')
+let g:ale_lua_stylua_options = '--config-path ' .. expand('~/dotfiles/tool/stylua.toml')
 let g:ale_sql_sqlfmt_options = '-u'

@@ -21,8 +21,6 @@
 # sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 # sudo apt update
 # sudo apt install -y g++-8
-# CXX=g++-8 CC=gcc-8 sudo luarocks install --server=https://luarocks.org/dev luaformatter
-# sudo luarocks install Formatter
 
 - name: update-alternatives
   alternatives:
