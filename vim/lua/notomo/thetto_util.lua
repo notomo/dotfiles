@@ -5,8 +5,8 @@ function M.range(range)
     return nil
   end
   return {
-    s = {row = range.start.line, column = range.start.character},
-    e = {row = range["end"].line, column = range["end"].character},
+    s = { row = range.start.line, column = range.start.character },
+    e = { row = range["end"].line, column = range["end"].character },
   }
 end
 

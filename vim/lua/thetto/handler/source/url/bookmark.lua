@@ -24,7 +24,7 @@ function M.collect(self)
   local i = 1
   for line in f:lines() do
     local url = encode(vim.fn.reverse(vim.split(line, "\t", true))[1])
-    table.insert(items, {value = line, path = file_path, row = i, url = url})
+    table.insert(items, { value = line, path = file_path, row = i, url = url })
     i = i + 1
   end
   f:close()

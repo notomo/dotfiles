@@ -8,7 +8,7 @@ M._result_key = "_thetto_dart_outline"
 function M.collect(self)
   local current_path = vim.fn.expand("%:p")
   local items = {}
-  local result = vim.b[self._result_key] or {outline = {children = {}}}
+  local result = vim.b[self._result_key] or { outline = { children = {} } }
   for _, v in ipairs(result.outline.children) do
     vim.list_extend(items, M._to_items(self, v, nil, current_path))
   end
@@ -82,7 +82,7 @@ function M._to_items(self, item, parent, current_path)
     row = range.start.line + 1,
     column = range.start.character,
     range = util.range(range),
-    column_offsets = {value = #pre_desc},
+    column_offsets = { value = #pre_desc },
     _origin = item,
   })
 

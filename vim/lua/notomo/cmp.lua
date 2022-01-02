@@ -45,22 +45,21 @@ function M.setup()
   vim.cmd([[smap <expr> <Tab> luaeval("require('notomo.cmp').tab()")]])
   cmp.setup({
     snippet = {
-      expand = function(_)
-      end,
+      expand = function(_) end,
     },
     mapping = {
-      ["<C-n>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert}),
-      ["<C-y>"] = cmp.mapping.confirm({select = true}),
+      ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<C-y>"] = cmp.mapping.confirm({ select = true }),
     },
     enabled = function()
-      return not vim.tbl_contains({"thetto-input", "reacher", "searcho"}, vim.bo.filetype)
+      return not vim.tbl_contains({ "thetto-input", "reacher", "searcho" }, vim.bo.filetype)
     end,
     preselect = cmp.PreselectMode.None,
     sources = {
-      {name = "neosnippet"},
-      {name = "nvim_lsp"},
-      {name = "nvim_lua"},
-      {name = "path"},
+      { name = "neosnippet" },
+      { name = "nvim_lsp" },
+      { name = "nvim_lua" },
+      { name = "path" },
       {
         name = "buffer",
         option = {

@@ -5,7 +5,7 @@ function M.action_call(_, items)
     local alias = item.alias
     if alias:need_args() then
       local line = require("aliaser").to_string(alias)
-      return require("cmdbuf").split_open(vim.o.cmdwinheight, {line = line, type = "lua/cmd"})
+      return require("cmdbuf").split_open(vim.o.cmdwinheight, { line = line, type = "lua/cmd" })
     end
     alias:call()
   end

@@ -30,13 +30,13 @@ g.loaded_ruby_provider = 0
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 g.python_highlight_all = 1
-g.markdown_fenced_languages = {"vim"}
+g.markdown_fenced_languages = { "vim" }
 g.ft_ignore_pat = [[\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$]]
 if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "win32yank",
-    copy = {["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf"},
-    paste = {["+"] = "win32yank.exe -o --lf", ["*"] = "win32yank.exe -o --lf"},
+    copy = { ["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf" },
+    paste = { ["+"] = "win32yank.exe -o --lf", ["*"] = "win32yank.exe -o --lf" },
     cache_enabled = 0,
   }
 end
@@ -116,7 +116,8 @@ opt.spelloptions = "camel"
 opt.cedit = [[<C-q>]]
 opt.cmdwinheight = 12
 opt.inccommand = "nosplit"
-opt.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
+opt.guicursor =
+  [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
 opt.wildoptions:append("pum")
 opt.pumblend = 15
 opt.shada = [['10,!,<50,/0,s10,h,@10]]

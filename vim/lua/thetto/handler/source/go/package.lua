@@ -1,13 +1,13 @@
 local M = {}
 
 function M.collect(self, opts)
-  local cmd = {"go", "list", "-f", "{{.ImportPath}} {{.Dir}}", "std"}
+  local cmd = { "go", "list", "-f", "{{.ImportPath}} {{.Dir}}", "std" }
   local job = self.jobs.new(cmd, {
     on_exit = function(job_self)
       local items = {}
       for _, output in ipairs(job_self:get_stdout()) do
         local package, dir = unpack(vim.split(output, " ", true))
-        table.insert(items, {value = package, path = dir})
+        table.insert(items, { value = package, path = dir })
       end
       self:append(items)
     end,

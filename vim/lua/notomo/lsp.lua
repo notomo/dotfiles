@@ -21,7 +21,7 @@ highlight! link DiagnosticWarn Tag
 local nvimlsp = require("lspconfig")
 
 local setup_ls = function(ls, config, ...)
-  for _, disabled_feature in ipairs({...}) do
+  for _, disabled_feature in ipairs({ ... }) do
     if vim.fn.has(disabled_feature) == 1 then
       return
     end
@@ -40,7 +40,7 @@ setup_ls(nvimlsp.gopls, {
   init_options = {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks
-    analyses = {ST1000 = false},
+    analyses = { ST1000 = false },
     -- codelenses = {test = true},
   },
 })
@@ -52,7 +52,7 @@ setup_ls(nvimlsp.sumneko_lua, {
   },
   settings = {
     Lua = {
-      runtime = {version = "LuaJIT", path = vim.split(package.path, ";")},
+      runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
       diagnostics = {
         enable = true,
         globals = {
@@ -70,7 +70,7 @@ setup_ls(nvimlsp.sumneko_lua, {
         },
         -- disable = {"lowercase-global"},
       },
-      completion = {callSnippet = "Disable", keywordSnippet = "Disable"},
+      completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
       workspace = {
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
@@ -79,7 +79,7 @@ setup_ls(nvimlsp.sumneko_lua, {
         maxPreload = 2000,
         preloadFileSize = 50000,
       },
-      telemetry = {enable = false},
+      telemetry = { enable = false },
     },
   },
 }, "mac", "win32")
@@ -95,12 +95,12 @@ setup_ls(nvimlsp.dartls, {
     vim.fn.expand("~/app/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot"),
     "--lsp",
   },
-  init_options = {flutterOutline = true, outline = true},
+  init_options = { flutterOutline = true, outline = true },
 }, "mac", "win32")
 setup_ls(nvimlsp.efm, {
-  cmd = {"efm-langserver", "-logfile=/tmp/efm.log"},
+  cmd = { "efm-langserver", "-logfile=/tmp/efm.log" },
   -- filetypes = {"vim", "python", "lua", "sh", "typescript.tsx", "typescript"};
-  filetypes = {"vim", "python", "sh"},
+  filetypes = { "vim", "python", "sh" },
   root_dir = function(fname)
     return require("lspconfig/util").find_git_ancestor(fname) or vim.loop.cwd()
   end,
@@ -126,8 +126,8 @@ vim.lsp.handlers["textDocument/references"] = function(_, result)
     return
   end
   require("thetto").start("lsp_adapter/text_document_references", {
-    opts = {target = "project", auto = "preview"},
-    source_opts = {result = result},
+    opts = { target = "project", auto = "preview" },
+    source_opts = { result = result },
   })
 end
 
@@ -136,8 +136,8 @@ vim.lsp.handlers["workspace/symbol"] = function(_, result)
     return
   end
   require("thetto").start("lsp_adapter/workspace_symbol", {
-    opts = {target = "project", auto = "preview"},
-    source_opts = {result = result},
+    opts = { target = "project", auto = "preview" },
+    source_opts = { result = result },
   })
 end
 
@@ -146,8 +146,8 @@ vim.lsp.handlers["textDocument/documentSymbol"] = function(_, result)
     return
   end
   require("thetto").start("lsp_adapter/text_document_document_symbol", {
-    opts = {auto = "preview"},
-    source_opts = {result = result},
+    opts = { auto = "preview" },
+    source_opts = { result = result },
   })
 end
 
@@ -156,8 +156,8 @@ vim.lsp.handlers["textDocument/implementation"] = function(_, result)
     return
   end
   require("thetto").start("lsp_adapter/text_document_implementation", {
-    opts = {target = "project", auto = "preview"},
-    source_opts = {result = result},
+    opts = { target = "project", auto = "preview" },
+    source_opts = { result = result },
   })
 end
 

@@ -1,7 +1,7 @@
 local M = {}
 
 function M.diff(...)
-  local args = {...}
+  local args = { ... }
 
   local tab_target = ""
   local paths = {}

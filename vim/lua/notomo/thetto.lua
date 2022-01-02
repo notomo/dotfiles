@@ -16,15 +16,15 @@ highlight! ThettoColorLabelDir guibg=#a9dd9d
 ]])
 
 local colors = {
-  {pattern = ".lua$", chunks = {{" ", "ThettoColorLabelLua"}}},
-  {pattern = ".go$", chunks = {{" ", "ThettoColorLabelGo"}}},
-  {pattern = ".vim$", chunks = {{" ", "ThettoColorLabelVim"}}},
+  { pattern = ".lua$", chunks = { { " ", "ThettoColorLabelLua" } } },
+  { pattern = ".go$", chunks = { { " ", "ThettoColorLabelGo" } } },
+  { pattern = ".vim$", chunks = { { " ", "ThettoColorLabelVim" } } },
   {
     pattern = ".py$",
-    chunks = {{" ", "ThettoColorLabelPythonYellow"}, {" ", "ThettoColorLabelPythonBlue"}},
+    chunks = { { " ", "ThettoColorLabelPythonYellow" }, { " ", "ThettoColorLabelPythonBlue" } },
   },
-  {pattern = "/$", chunks = {{" ", "ThettoColorLabelDir"}}},
-  {always = true, pattern = "", chunks = {{" ", "ThettoColorLabelOthers"}}},
+  { pattern = "/$", chunks = { { " ", "ThettoColorLabelDir" } } },
+  { always = true, pattern = "", chunks = { { " ", "ThettoColorLabelOthers" } } },
 }
 
 local file_recursive, directory_recursive
@@ -47,14 +47,14 @@ if vim.fn.has("win32") == 0 then
     }
   end
 
-  local ignore_dirs = {".git", "node_modules", ".mypy_cache"}
+  local ignore_dirs = { ".git", "node_modules", ".mypy_cache" }
   local cmds = {}
   for _, name in ipairs(ignore_dirs) do
-    vim.list_extend(cmds, {"-type", "d", "-name", name, "-prune", "-o"})
+    vim.list_extend(cmds, { "-type", "d", "-name", name, "-prune", "-o" })
   end
-  vim.list_extend(cmds, {"-type", "d", "-print"})
+  vim.list_extend(cmds, { "-type", "d", "-print" })
   directory_recursive = function(path, max_depth)
-    local cmd = {"find", "-L", path, "-maxdepth", max_depth}
+    local cmd = { "find", "-L", path, "-maxdepth", max_depth }
     vim.list_extend(cmd, cmds)
     return cmd
   end
@@ -62,11 +62,11 @@ end
 
 -- TODO move to setup
 require("thetto.handler.kind.file.directory").after = function(path)
-  require("kivi").open({path = path})
+  require("kivi").open({ path = path })
 end
 
 require("thetto").setup({
-  store = {["file/mru"] = {opts = {ignore_pattern = "\\v(^(gina|thetto|term|kivi)://)"}}},
+  store = { ["file/mru"] = { opts = { ignore_pattern = "\\v(^(gina|thetto|term|kivi)://)" } } },
 
   kind_actions = {
 
@@ -102,7 +102,7 @@ require("thetto").setup({
           if item.row == nil or item.path == nil then
             goto continue
           end
-          table.insert(qflist, {filename = item.path, lnum = item.row, text = item.value})
+          table.insert(qflist, { filename = item.path, lnum = item.row, text = item.value })
           ::continue::
         end
         if #qflist == 0 then
@@ -121,7 +121,7 @@ require("thetto").setup({
         if item == nil then
           return
         end
-        require("cmdbuf").split_open(vim.o.cmdwinheight, {line = "let " .. item.value})
+        require("cmdbuf").split_open(vim.o.cmdwinheight, { line = "let " .. item.value })
         vim.cmd("normal! $")
       end,
     },
@@ -132,7 +132,7 @@ require("thetto").setup({
         if item == nil then
           return
         end
-        require("cmdbuf").split_open(vim.o.cmdwinheight, {line = "setlocal " .. item.value})
+        require("cmdbuf").split_open(vim.o.cmdwinheight, { line = "setlocal " .. item.value })
         vim.cmd("normal! $")
       end,
     },
@@ -143,7 +143,7 @@ require("thetto").setup({
         if item == nil then
           return
         end
-        require("cmdbuf").split_open(vim.o.cmdwinheight, {line = item.value})
+        require("cmdbuf").split_open(vim.o.cmdwinheight, { line = item.value })
         vim.cmd("normal! $")
       end,
     },
@@ -155,42 +155,41 @@ require("thetto").setup({
         end
       end,
     },
-
   },
 
   source = {
 
     line = {
-      filters = {"regex", "-regex", "substring", "-substring"},
-      global_opts = {auto = "preview"},
+      filters = { "regex", "-regex", "substring", "-substring" },
+      global_opts = { auto = "preview" },
     },
 
-    ["vim/jump"] = {global_opts = {auto = "preview"}},
-    ["vim/substitute"] = {global_opts = {auto = "preview"}},
-    ["vim/filetype"] = {sorters = {"length"}},
+    ["vim/jump"] = { global_opts = { auto = "preview" } },
+    ["vim/substitute"] = { global_opts = { auto = "preview" } },
+    ["vim/filetype"] = { sorters = { "length" } },
 
-    ["plugin"] = {sorters = {"alphabet"}},
-    ["thetto/source"] = {sorters = {"length"}},
+    ["plugin"] = { sorters = { "alphabet" } },
+    ["thetto/source"] = { sorters = { "length" } },
 
-    ["git/branch"] = {sorters = {"length"}},
+    ["git/branch"] = { sorters = { "length" } },
 
-    ["file/in_dir"] = {colors = colors},
-    ["file/mru"] = {colors = colors, global_opts = {auto = "preview"}},
+    ["file/in_dir"] = { colors = colors },
+    ["file/mru"] = { colors = colors, global_opts = { auto = "preview" } },
     ["file/recursive"] = {
       colors = colors,
-      opts = {get_command = file_recursive},
-      sorters = {"length"},
-      global_opts = {auto = "preview"},
+      opts = { get_command = file_recursive },
+      sorters = { "length" },
+      global_opts = { auto = "preview" },
     },
     ["file/directory/recursive"] = {
-      opts = {get_command = directory_recursive},
-      sorters = {"length"},
+      opts = { get_command = directory_recursive },
+      sorters = { "length" },
     },
 
-    ["vim/help"] = {sorters = {"length"}},
-    ["vim/buffer"] = {global_opts = {auto = "preview"}},
+    ["vim/help"] = { sorters = { "length" } },
+    ["vim/buffer"] = { global_opts = { auto = "preview" } },
 
-    ["cmdhndlr/executed"] = {global_opts = {auto = "preview"}},
+    ["cmdhndlr/executed"] = { global_opts = { auto = "preview" } },
 
     ["file/grep"] = {
       opts = {
@@ -208,9 +207,9 @@ require("thetto").setup({
         recursive_opt = "",
         separator = "--",
       },
-      filters = {"substring", "-substring", "substring:path:relative", "-substring:path:relative"},
+      filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
       colors = colors,
-      global_opts = {auto = "preview"},
+      global_opts = { auto = "preview" },
     },
 
     ["file/bookmark"] = {
@@ -228,36 +227,35 @@ require("thetto").setup({
     },
 
     ["cmd/ctags"] = {
-      opts = {ignore = {"member", "package", "packageName", "anonMember", "constant"}},
-      global_opts = {auto = "preview"},
-      filters = {"regex", "-regex"},
+      opts = { ignore = { "member", "package", "packageName", "anonMember", "constant" } },
+      global_opts = { auto = "preview" },
+      filters = { "regex", "-regex" },
     },
 
-    ["cmd/make/target"] = {global_opts = {auto = "preview"}},
+    ["cmd/make/target"] = { global_opts = { auto = "preview" } },
 
-    ["git/diff"] = {global_opts = {auto = "preview"}},
+    ["git/diff"] = { global_opts = { auto = "preview" } },
 
-    ["env/manual"] = {sorters = {"length"}},
+    ["env/manual"] = { sorters = { "length" } },
 
     ["file/alter"] = {
-      global_opts = {auto = "preview", immediately = true, insert = false},
+      global_opts = { auto = "preview", immediately = true, insert = false },
       opts = {
         pattern_groups = {
-          {"%_test.go", "%.go"},
-          {"%/spec/lua/%_spec.lua", "%/lua/%.lua"},
-          {"%/test/lua/%_spec.lua", "%/lua/%.lua"},
-          {"%.c", "%.h"},
+          { "%_test.go", "%.go" },
+          { "%/spec/lua/%_spec.lua", "%/lua/%.lua" },
+          { "%/test/lua/%_spec.lua", "%/lua/%.lua" },
+          { "%.c", "%.h" },
         },
       },
     },
 
-    ["vim/variable"] = {global_opts = {action = "edit"}},
+    ["vim/variable"] = { global_opts = { action = "edit" } },
 
     ["cmd/zsh/history"] = {
-      sorters = {"length"},
-      global_opts = {target = "upward", target_patterns = {"Makefile"}},
+      sorters = { "length" },
+      global_opts = { target = "upward", target_patterns = { "Makefile" } },
     },
-
   },
 
   source_actions = {
@@ -269,7 +267,7 @@ require("thetto").setup({
           return
         end
         local filetype = item.value
-        local name = require("filetypext").detect({filetype = filetype})[1]
+        local name = require("filetypext").detect({ filetype = filetype })[1]
         require("notomo.edit").scratch(name, filetype)
       end,
     },
@@ -280,13 +278,11 @@ require("thetto").setup({
           vim.cmd("OpenBrowser " .. item.url)
         end
       end,
-      opts = {yank = {key = "url"}},
+      opts = { yank = { key = "url" } },
     },
-
   },
 
-  global_opts = {display_limit = 500},
+  global_opts = { display_limit = 500 },
 
-  filters = {"substring", "-substring"},
+  filters = { "substring", "-substring" },
 })
-

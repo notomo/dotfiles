@@ -25,7 +25,7 @@ function M._to_items(self, item, parent_key, current_path)
     column = range.start.character + 1,
     desc = desc,
     value = name,
-    column_offsets = {value = 0, kind = #desc - #kind - 2},
+    column_offsets = { value = 0, kind = #desc - #kind - 2 },
     range = util.range(item.selectionRange),
   })
 

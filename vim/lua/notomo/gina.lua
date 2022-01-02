@@ -49,7 +49,10 @@ end
 function M.rebase_i()
   local revision = M._revision()
   vim.cmd("terminal")
-  vim.fn.jobsend(vim.b.terminal_job_id, "git rebase -i --autosquash " .. revision .. "~" .. vim.api.nvim_eval([["\<CR>"]]))
+  vim.fn.jobsend(
+    vim.b.terminal_job_id,
+    "git rebase -i --autosquash " .. revision .. "~" .. vim.api.nvim_eval([["\<CR>"]])
+  )
 end
 
 function M.stash_file()
@@ -59,12 +62,12 @@ end
 
 function M.yank_rev()
   vim.fn["gina#action#call"]("yank:rev")
-  vim.api.nvim_echo({{vim.fn.getreg("+")}}, true, {})
+  vim.api.nvim_echo({ { vim.fn.getreg("+") } }, true, {})
 end
 
 function M.browse_yank()
   vim.fn["gina#action#call"]("browse:yank")
-  vim.api.nvim_echo({{vim.fn.getreg("+")}}, true, {})
+  vim.api.nvim_echo({ { vim.fn.getreg("+") } }, true, {})
 end
 
 function M.edit(action)

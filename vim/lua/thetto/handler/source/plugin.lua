@@ -4,7 +4,7 @@ function M.collect()
   local items = {}
   local plugins = require("optpack").list()
   for _, plugin in ipairs(plugins) do
-    table.insert(items, {value = plugin.full_name, path = plugin.directory})
+    table.insert(items, { value = plugin.full_name, path = plugin.directory })
   end
   return items
 end

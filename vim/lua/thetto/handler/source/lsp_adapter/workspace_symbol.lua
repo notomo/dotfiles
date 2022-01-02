@@ -17,7 +17,7 @@ function M._to_item(self, opts)
       column = v.location.range.start.character + 1,
       desc = desc,
       value = v.name,
-      column_offsets = {value = #path_row + 1, kind = #desc - #kind - 2},
+      column_offsets = { value = #path_row + 1, kind = #desc - #kind - 2 },
       range = util.range(v.location.range),
     }
   end

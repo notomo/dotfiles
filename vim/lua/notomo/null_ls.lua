@@ -3,10 +3,10 @@ local helpers = require("null-ls.helpers")
 
 local actionlint = {
   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-  filetypes = {"yaml"},
+  filetypes = { "yaml" },
   generator = null_ls.generator({
     command = "actionlint",
-    args = {"-oneline"},
+    args = { "-oneline" },
     to_stdin = false,
     format = "line",
     check_exit_code = function(code)

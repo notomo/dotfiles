@@ -12,7 +12,7 @@ function M.collect()
       char = vim.fn.nr2char(codes)
     end
     local value = ("%s %s"):format(char, name)
-    table.insert(items, {value = value, emoji = char})
+    table.insert(items, { value = value, emoji = char })
   end
   return items
 end

@@ -16,39 +16,39 @@ piemenu.register("default", {
     {
       text = "🔍 finder",
       action = function()
-        require("thetto").start("thetto/source", {opts = {insert = false}})
+        require("thetto").start("thetto/source", { opts = { insert = false } })
       end,
     },
     {
       text = "🔌 plugin",
       action = function()
-        require("thetto").start("plugin", {opts = {insert = false}})
+        require("thetto").start("plugin", { opts = { insert = false } })
       end,
     },
     {
       text = "📁 directory",
       action = function()
         require("thetto").start("file/directory/recursive", {
-          opts = {insert = false, target = "project"},
+          opts = { insert = false, target = "project" },
         })
       end,
     },
     {
       text = "🔖 bookmark",
       action = function()
-        require("thetto").start("file/bookmark", {opts = {insert = false}})
+        require("thetto").start("file/bookmark", { opts = { insert = false } })
       end,
     },
     {
       text = "📂 file",
       action = function()
-        require("thetto").start("file/in_dir", {opts = {insert = false}})
+        require("thetto").start("file/in_dir", { opts = { insert = false } })
       end,
     },
     {
       text = "👀 mru",
       action = function()
-        require("thetto").start("file/mru", {opts = {insert = false}})
+        require("thetto").start("file/mru", { opts = { insert = false } })
       end,
     },
     {},
@@ -60,7 +60,7 @@ piemenu.register("kivi", {
     {
       text = "📖 tab",
       action = function()
-        require("kivi").execute("tab_open", {quit = not require("kivi").is_parent()})
+        require("kivi").execute("tab_open", { quit = not require("kivi").is_parent() })
       end,
     },
     {
@@ -72,7 +72,7 @@ piemenu.register("kivi", {
     {
       text = "📖 vsplit",
       action = function()
-        require("kivi").execute("vsplit_open", {quit = not require("kivi").is_parent()})
+        require("kivi").execute("vsplit_open", { quit = not require("kivi").is_parent() })
       end,
     },
   },

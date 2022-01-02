@@ -1,11 +1,11 @@
 local M = {}
 
-M.opts = {is_running = nil}
+M.opts = { is_running = nil }
 
 function M.collect(self)
   local items = {}
   for _, runner in ipairs(require("cmdhndlr").executed_runners()) do
-    local item = {value = runner.name, bufnr = runner.bufnr, is_running = runner.is_running}
+    local item = { value = runner.name, bufnr = runner.bufnr, is_running = runner.is_running }
     if self.opts.is_running and not item.is_running then
       goto continue
     end

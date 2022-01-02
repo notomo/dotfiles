@@ -8,7 +8,7 @@ local aliaser = require("aliaser")
 
 aliaser.register_factory("thetto", function(aliases)
   aliases:set("assigned_issues", function()
-    require("thetto").start("github/issue", {source_opts = {assignee = "me"}})
+    require("thetto").start("github/issue", { source_opts = { assignee = "me" } })
   end)
 end)
 
@@ -36,7 +36,7 @@ aliaser.register_factory("vim", function(aliases)
 
   aliases:set("diff", function(...)
     require("notomo.diff").diff(...)
-  end, {nargs_max = 2})
+  end, { nargs_max = 2 })
 end)
 
 aliaser.register_factory("other", function(aliases)

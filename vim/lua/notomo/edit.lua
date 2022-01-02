@@ -37,7 +37,7 @@ function M._to_syntax(pattern, start_row, column, offset, go_backword, wrap)
   while is_limited(row, limit_row) do
     local syntax = vim.fn.synIDattr(vim.fn.synID(row, column, 1), "name")
     if vim.fn.match(syntax, pattern) ~= -1 then
-      vim.fn.setpos(".", {vim.fn.bufnr("%"), row + offset, 1, 0})
+      vim.fn.setpos(".", { vim.fn.bufnr("%"), row + offset, 1, 0 })
       return
     end
     row = row + move_row
@@ -62,11 +62,11 @@ function M.to_multiline()
 end
 
 function M.yank(value)
-  vim.fn.setreg("\"", value)
+  vim.fn.setreg('"', value)
   vim.fn.setreg("+", value)
   vim.fn.setreg("0", value)
   vim.fn.setreg("*", value)
-  vim.api.nvim_echo({{"yank " .. value}}, true, {})
+  vim.api.nvim_echo({ { "yank " .. value } }, true, {})
 end
 
 function M.jq()
@@ -89,7 +89,7 @@ function M.scratch(name, filetype)
   if vim.fn.isdirectory(dir_path) ~= 1 then
     vim.fn.mkdir(dir_path, "p")
   end
-  local file_path = table.concat({dir_path, name}, "/")
+  local file_path = table.concat({ dir_path, name }, "/")
   vim.cmd("tab drop " .. file_path)
   vim.cmd("lcd " .. dir_path)
 end
@@ -100,7 +100,7 @@ function M.note()
     vim.fn.mkdir(dir_path, "p")
   end
 
-  local file_path = table.concat({dir_path, "note.md"}, "/")
+  local file_path = table.concat({ dir_path, "note.md" }, "/")
   if vim.fn.filereadable(file_path) ~= 1 then
     io.open(file_path, "w"):close()
   end
@@ -122,7 +122,7 @@ end
 local prev_port = 49152
 function M.mkup(open_current)
   if vim.fn.executable("mkup") ~= 1 then
-    return vim.api.nvim_echo({{"not found mkup", "WarningMsg"}}, true, {})
+    return vim.api.nvim_echo({ { "not found mkup", "WarningMsg" } }, true, {})
   end
 
   prev_port = prev_port + 1
@@ -136,7 +136,7 @@ function M.mkup(open_current)
     path = vim.fn.filereadable(vim.fn.expand("%:p")) == 1 and vim.fn.expand("%") or ""
   end
   if vim.fn.isdirectory(document_root) ~= 1 then
-    return vim.api.nvim_echo({{document_root .. " is not directory", "WarningMsg"}}, true, {})
+    return vim.api.nvim_echo({ { document_root .. " is not directory", "WarningMsg" } }, true, {})
   end
 
   local cd_cmd = ("cd %s"):format(document_root)

@@ -26,16 +26,16 @@ local luafile = function(path)
 end
 
 optpack.add("notomo/optpack.nvim", {
-  fetch = {depth = 0},
-  hooks = {post_add = cmd([=[nnoremap [exec]U <Cmd>lua require("optpack").update()<CR>]=])},
+  fetch = { depth = 0 },
+  hooks = { post_add = cmd([=[nnoremap [exec]U <Cmd>lua require("optpack").update()<CR>]=]) },
 })
 
-optpack.add("notomo/vusted", {fetch = {depth = 0}})
-optpack.add("notomo/virtes.nvim", {fetch = {depth = 0}})
-optpack.add("notomo/genvdoc", {fetch = {depth = 0}, load_on = {modules = {"genvdoc"}}})
+optpack.add("notomo/vusted", { fetch = { depth = 0 } })
+optpack.add("notomo/virtes.nvim", { fetch = { depth = 0 } })
+optpack.add("notomo/genvdoc", { fetch = { depth = 0 }, load_on = { modules = { "genvdoc" } } })
 
 optpack.add("tbastos/vim-lua", {
-  load_on = {filetypes = {"lua"}},
+  load_on = { filetypes = { "lua" } },
   hooks = {
     post_load = function(plugin)
       vim.opt.runtimepath:remove(plugin.directory)
@@ -44,10 +44,10 @@ optpack.add("tbastos/vim-lua", {
   },
 })
 
-optpack.add("kana/vim-textobj-user", {load_on = {events = {"VimEnter"}}})
+optpack.add("kana/vim-textobj-user", { load_on = { events = { "VimEnter" } } })
 
 optpack.add("kana/vim-submode", {
-  load_on = {events = {"VimEnter"}},
+  load_on = { events = { "VimEnter" } },
   hooks = {
     post_add = function()
       vim.g.submode_keep_leaving_key = 1
@@ -57,7 +57,7 @@ optpack.add("kana/vim-submode", {
 })
 
 optpack.add("thinca/vim-zenspace", {
-  load_on = {events = {{"BufReadPre", "*/*"}}},
+  load_on = { events = { { "BufReadPre", "*/*" } } },
   hooks = {
     post_add = function()
       vim.g["zenspace#default_mode"] = "on"
@@ -66,17 +66,17 @@ optpack.add("thinca/vim-zenspace", {
 })
 
 optpack.add("LeafCage/yankround.vim", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/dotfiles/vim/rc/plugins/yankround.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/yankround.vim") },
 })
 
 optpack.add("kana/vim-smartword", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/dotfiles/vim/rc/plugins/smartword.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/smartword.vim") },
 })
 
 optpack.add("rhysd/vim-color-spring-night", {
-  load_on = {events = {"ColorSchemePre"}},
+  load_on = { events = { "ColorSchemePre" } },
   hooks = {
     post_add = function()
       vim.g.spring_night_kill_italic = 1
@@ -86,7 +86,7 @@ optpack.add("rhysd/vim-color-spring-night", {
 })
 
 optpack.add("lambdalisue/gina.vim", {
-  load_on = {cmds = {"Gina*"}, events = {{"BufReadPre", "*/*"}}},
+  load_on = { cmds = { "Gina*" }, events = { { "BufReadPre", "*/*" } } },
   hooks = {
     post_add = require("notomo.mapping").gina,
     post_load = source("~/.vim/rc/plugins/gina.vim"),
@@ -94,7 +94,7 @@ optpack.add("lambdalisue/gina.vim", {
 })
 
 optpack.add("itchyny/lightline.vim", {
-  load_on = {events = {"VimEnter"}},
+  load_on = { events = { "VimEnter" } },
   hooks = {
     post_load = function()
       vim.cmd([[source ~/.vim/rc/plugins/lightline.vim]])
@@ -104,42 +104,42 @@ optpack.add("itchyny/lightline.vim", {
 })
 
 optpack.add("kana/vim-textobj-entire", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/dotfiles/vim/rc/plugins/textobj-entire.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/textobj-entire.vim") },
 })
 
-optpack.add("osyo-manga/vim-textobj-blockwise", {load_on = {events = {"VimEnter"}}})
+optpack.add("osyo-manga/vim-textobj-blockwise", { load_on = { events = { "VimEnter" } } })
 
 optpack.add("kana/vim-textobj-line", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/dotfiles/vim/rc/plugins/textobj-line.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/textobj-line.vim") },
 })
 
 optpack.add("bkad/CamelCaseMotion", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/dotfiles/vim/rc/plugins/camelcasemotion.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/camelcasemotion.vim") },
 })
 
 optpack.add("osyo-manga/vim-textobj-from_regexp", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/textobj-from_regexp.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/textobj-from_regexp.vim") },
 })
 
 optpack.add("haya14busa/vim-edgemotion", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/edgemotion.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/edgemotion.vim") },
 })
 
 optpack.add("mhinz/vim-signify", {
-  load_on = {events = {{"BufReadPre", "*/*"}}},
-  hooks = {post_add = source("~/.vim/rc/plugins/signify.vim")},
+  load_on = { events = { { "BufReadPre", "*/*" } } },
+  hooks = { post_add = source("~/.vim/rc/plugins/signify.vim") },
 })
 
-optpack.add("junegunn/vim-emoji", {load_on = {events = {"VimEnter"}}})
+optpack.add("junegunn/vim-emoji", { load_on = { events = { "VimEnter" } } })
 
 optpack.add("lambdalisue/suda.vim", {
   enabled = vim.fn.has("unix") == 1,
-  load_on = {events = {{"BufReadPre", "*/*"}}},
+  load_on = { events = { { "BufReadPre", "*/*" } } },
   hooks = {
     post_add = cmd([[
 let g:suda_startup = 1
@@ -149,24 +149,24 @@ nnoremap [file]W <Cmd>write suda://%<CR>
 })
 
 optpack.add("w0rp/ale", {
-  load_on = {events = {"FileType"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/ale.vim")},
+  load_on = { events = { "FileType" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/ale.vim") },
 })
 
 optpack.add("voldikss/vim-translator", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/translator.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/translator.vim") },
 })
 
 optpack.add("notomo/wintablib.nvim", {
-  fetch = {depth = 0},
-  load_on = {events = {"VimEnter"}, modules = {"wintablib"}},
-  hooks = {post_load = source("~/.vim/rc/plugins/wintablib.vim")},
+  fetch = { depth = 0 },
+  load_on = { events = { "VimEnter" }, modules = { "wintablib" } },
+  hooks = { post_load = source("~/.vim/rc/plugins/wintablib.vim") },
 })
 
 optpack.add("notomo/lreload.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"lreload"}, events = {"BufWritePre"}},
+  fetch = { depth = 0 },
+  load_on = { modules = { "lreload" }, events = { "BufWritePre" } },
   hooks = {
     post_load = function()
       require("notomo.lreload")
@@ -179,10 +179,10 @@ optpack.add("notomo/lreload.nvim", {
   },
 })
 
-optpack.add("nanotee/luv-vimdocs", {load_on = {events = {"VimEnter"}}})
+optpack.add("nanotee/luv-vimdocs", { load_on = { events = { "VimEnter" } } })
 
 optpack.add("hrsh7th/nvim-cmp", {
-  load_on = {modules = {"cmp"}, events = {"VimEnter"}},
+  load_on = { modules = { "cmp" }, events = { "VimEnter" } },
   hooks = {
     post_load = vim.schedule_wrap(function()
       vim.cmd([[runtime! after/plugin/cmp_*.lua]])
@@ -190,52 +190,52 @@ optpack.add("hrsh7th/nvim-cmp", {
     end),
   },
 })
-optpack.add("hrsh7th/cmp-nvim-lsp", {load_on = {events = {"VimEnter"}, modules = {"cmp_nvim_lsp"}}})
-optpack.add("hrsh7th/cmp-buffer", {load_on = {events = {"VimEnter"}}})
-optpack.add("hrsh7th/cmp-path", {load_on = {events = {"VimEnter"}}})
-optpack.add("hrsh7th/cmp-nvim-lua", {load_on = {events = {"VimEnter"}}})
-optpack.add("notomo/cmp-neosnippet", {load_on = {events = {"VimEnter"}}, fetch = {depth = 0}})
+optpack.add("hrsh7th/cmp-nvim-lsp", { load_on = { events = { "VimEnter" }, modules = { "cmp_nvim_lsp" } } })
+optpack.add("hrsh7th/cmp-buffer", { load_on = { events = { "VimEnter" } } })
+optpack.add("hrsh7th/cmp-path", { load_on = { events = { "VimEnter" } } })
+optpack.add("hrsh7th/cmp-nvim-lua", { load_on = { events = { "VimEnter" } } })
+optpack.add("notomo/cmp-neosnippet", { load_on = { events = { "VimEnter" } }, fetch = { depth = 0 } })
 
 optpack.add("notomo/searcho.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"searcho"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/searcho.vim")},
+  fetch = { depth = 0 },
+  load_on = { modules = { "searcho" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/searcho.vim") },
 })
 
 optpack.add("AndrewRadev/linediff.vim", {
-  load_on = {cmds = {"Linediff*"}},
-  hooks = {post_add = cmd([[xnoremap [diff]l :Linediff<CR>]])},
+  load_on = { cmds = { "Linediff*" } },
+  hooks = { post_add = cmd([[xnoremap [diff]l :Linediff<CR>]]) },
 })
 
-optpack.add("tmhedberg/matchit", {load_on = {filetypes = {"html", "vim", "sql"}}})
+optpack.add("tmhedberg/matchit", { load_on = { filetypes = { "html", "vim", "sql" } } })
 
-optpack.add("thinca/vim-qfreplace", {load_on = {cmds = {"Qfreplace"}}})
+optpack.add("thinca/vim-qfreplace", { load_on = { cmds = { "Qfreplace" } } })
 
 optpack.add("tyru/open-browser.vim", {
-  load_on = {cmds = {"OpenBrowser*"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/open-browser.vim")},
+  load_on = { cmds = { "OpenBrowser*" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/open-browser.vim") },
 })
 
 optpack.add("notomo/vimonga", {
-  fetch = {depth = 0},
-  load_on = {cmds = {"Vimonga*"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/vimonga.vim")},
+  fetch = { depth = 0 },
+  load_on = { cmds = { "Vimonga*" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/vimonga.vim") },
 })
 
 optpack.add("notomo/curstr.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"curstr"}},
+  fetch = { depth = 0 },
+  load_on = { modules = { "curstr" } },
   hooks = {
     post_add = source("~/.vim/rc/plugins/curstr.vim"),
     post_load = luafile("~/dotfiles/vim/lua/notomo/curstr.lua"),
   },
 })
 
-optpack.add("notomo/nvimtool", {load_on = {modules = {"nvimtool"}}, fetch = {depth = 0}})
+optpack.add("notomo/nvimtool", { load_on = { modules = { "nvimtool" } }, fetch = { depth = 0 } })
 
 optpack.add("notomo/piemenu.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"piemenu"}},
+  fetch = { depth = 0 },
+  load_on = { modules = { "piemenu" } },
   hooks = {
     post_add = source("~/.vim/rc/plugins/piemenu.vim"),
     post_load = luafile("~/dotfiles/vim/lua/notomo/piemenu.lua"),
@@ -243,8 +243,8 @@ optpack.add("notomo/piemenu.nvim", {
 })
 
 optpack.add("notomo/gesture.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"gesture"}},
+  fetch = { depth = 0 },
+  load_on = { modules = { "gesture" } },
   hooks = {
     post_add = source("~/.vim/rc/plugins/gesture.vim"),
     post_load = luafile("~/dotfiles/vim/lua/notomo/gesture.lua"),
@@ -252,14 +252,14 @@ optpack.add("notomo/gesture.nvim", {
 })
 
 optpack.add("notomo/flompt.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"flompt"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/flompt.vim")},
+  fetch = { depth = 0 },
+  load_on = { modules = { "flompt" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/flompt.vim") },
 })
 
 optpack.add("notomo/thetto.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"thetto"}, events = {{"BufReadPost", "*/*"}}},
+  fetch = { depth = 0 },
+  load_on = { modules = { "thetto" }, events = { { "BufReadPost", "*/*" } } },
   hooks = {
     post_add = source("~/.vim/rc/plugins/thetto.vim"),
     post_load = luafile("~/dotfiles/vim/lua/notomo/thetto.lua"),
@@ -267,7 +267,7 @@ optpack.add("notomo/thetto.nvim", {
 })
 
 optpack.add("neovim/nvim-lspconfig", {
-  load_on = {events = {"FileType"}},
+  load_on = { events = { "FileType" } },
   hooks = {
     post_load = function()
       require("notomo.lsp")
@@ -277,28 +277,28 @@ optpack.add("neovim/nvim-lspconfig", {
 })
 
 optpack.add("notomo/kivi.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"kivi"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/kivi.vim")},
+  fetch = { depth = 0 },
+  load_on = { modules = { "kivi" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/kivi.vim") },
 })
 
 optpack.add("notomo/reacher.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"reacher"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/reacher.vim")},
+  fetch = { depth = 0 },
+  load_on = { modules = { "reacher" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/reacher.vim") },
 })
 
-optpack.add("dart-lang/dart-vim-plugin", {load_on = {filetypes = {"dart"}}})
+optpack.add("dart-lang/dart-vim-plugin", { load_on = { filetypes = { "dart" } } })
 
 optpack.add("notomo/cmdbuf.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"cmdbuf"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/cmdbuf.vim")},
+  fetch = { depth = 0 },
+  load_on = { modules = { "cmdbuf" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/cmdbuf.vim") },
 })
 
 optpack.add("notomo/filetypext.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"filetypext"}},
+  fetch = { depth = 0 },
+  load_on = { modules = { "filetypext" } },
   hooks = {
     post_add = cmd([[
 nnoremap [exec]; <Cmd>lua require("notomo.edit").scratch(require("filetypext").detect({bufnr = 0})[1], vim.bo.filetype ~= '' and vim.bo.filetype or "markdown")<CR>
@@ -307,71 +307,71 @@ nnoremap [exec]; <Cmd>lua require("notomo.edit").scratch(require("filetypext").d
 })
 
 optpack.add("notomo/cmdhndlr.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"cmdhndlr"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/cmdhndlr.vim")},
+  fetch = { depth = 0 },
+  load_on = { modules = { "cmdhndlr" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/cmdhndlr.vim") },
 })
 
 optpack.add("notomo/suball.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"suball"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/suball.vim")},
+  fetch = { depth = 0 },
+  load_on = { modules = { "suball" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/suball.vim") },
 })
 
-optpack.add("nvim-treesitter/nvim-treesitter", {load_on = {cmds = {"TS*"}, modules = {"cmdhndlr"}}})
+optpack.add("nvim-treesitter/nvim-treesitter", { load_on = { cmds = { "TS*" }, modules = { "cmdhndlr" } } })
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
-  load_on = {cmds = {"TS*"}},
-  hooks = {post_load = luafile("~/dotfiles/vim/lua/notomo/treesitter.lua")},
+  load_on = { cmds = { "TS*" } },
+  hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/treesitter.lua") },
 })
 
 optpack.add("notomo/aliaser.nvim", {
-  fetch = {depth = 0},
-  load_on = {modules = {"aliaser"}},
-  hooks = {post_load = luafile("~/dotfiles/vim/lua/notomo/aliaser.lua")},
+  fetch = { depth = 0 },
+  load_on = { modules = { "aliaser" } },
+  hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/aliaser.lua") },
 })
 
-optpack.add("tpope/vim-repeat", {load_on = {events = {"VimEnter"}}})
+optpack.add("tpope/vim-repeat", { load_on = { events = { "VimEnter" } } })
 
-optpack.add("kana/vim-operator-user", {load_on = {events = {"VimEnter"}}})
+optpack.add("kana/vim-operator-user", { load_on = { events = { "VimEnter" } } })
 
 optpack.add("osyo-manga/vim-textobj-multiblock", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/dotfiles/vim/rc/plugins/textobj-multiblock.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/textobj-multiblock.vim") },
 })
 
 optpack.add("Shougo/neosnippet.vim", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/dotfiles/vim/rc/plugins/neosnippet.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/neosnippet.vim") },
 })
 
 optpack.add("osyo-manga/vim-operator-blockwise", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/dotfiles/vim/rc/plugins/operator-blockwise.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/operator-blockwise.vim") },
 })
 
 optpack.add("kana/vim-operator-replace", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/dotfiles/vim/rc/plugins/operator-replace.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/operator-replace.vim") },
 })
 
 optpack.add("rhysd/vim-operator-surround", {
-  load_on = {events = {"VimEnter"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/operator-surround.vim")},
+  load_on = { events = { "VimEnter" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/operator-surround.vim") },
 })
 
 optpack.add("tyru/caw.vim", {
-  load_on = {events = {"FileType"}},
-  hooks = {post_add = source("~/.vim/rc/plugins/caw.vim")},
+  load_on = { events = { "FileType" } },
+  hooks = { post_add = source("~/.vim/rc/plugins/caw.vim") },
 })
 
 optpack.add("notomo/promise.nvim", {
-  fetch = {depth = 0},
+  fetch = { depth = 0 },
   enabled = vim.fn.has("unix") == 1,
-  load_on = {modules = {"promise"}},
+  load_on = { modules = { "promise" } },
 })
 
-optpack.add("nvim-lua/plenary.nvim", {load_on = {modules = {"plenary"}}})
+optpack.add("nvim-lua/plenary.nvim", { load_on = { modules = { "plenary" } } })
 optpack.add("jose-elias-alvarez/null-ls.nvim", {
-  load_on = {filetypes = {"yaml"}, modules = {"null-ls"}},
-  hooks = {post_load = luafile("~/dotfiles/vim/lua/notomo/null_ls.lua")},
+  load_on = { filetypes = { "yaml" }, modules = { "null-ls" } },
+  hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/null_ls.lua") },
 })
