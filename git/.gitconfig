@@ -16,3 +16,5 @@
     pushfff = push --force-with-lease
     rc = rebase --continue
     rs = rebase --skip
+[init]
+    defaultBranch = main
