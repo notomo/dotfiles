@@ -10,6 +10,7 @@ local modules = {
   "cmdhndlr",
   "suball",
   "promise",
+  "docfilter",
   "notomo",
 }
 for _, m in ipairs(modules) do
