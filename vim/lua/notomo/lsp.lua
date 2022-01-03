@@ -188,7 +188,10 @@ end
 _G._notomo_progress = function()
   local messages = vim.lsp.util.get_progress_messages()
   for _, msg in ipairs(messages) do
-    print(("[%s] %s"):format(msg.name, msg.message))
+    if msg.done and not msg.message then
+      msg.message = "done"
+    end
+    print(("[%s] %s: %s"):format(msg.name, msg.title, msg.message))
   end
 end
 
