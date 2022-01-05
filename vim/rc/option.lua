@@ -31,6 +31,8 @@ g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
 g.python_highlight_all = 1
 g.markdown_fenced_languages = { "vim" }
+g.do_filetype_lua = 1
+g.did_load_filetypes = 0
 g.ft_ignore_pat = [[\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$]]
 if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
