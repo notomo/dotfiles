@@ -1,2 +1,2 @@
-home_dir: '/home/{{ ansible_ssh_user }}'
+home_dir: '/home/{{ ansible_env.USER }}'
 app_dir: '{{ home_dir }}/app'
