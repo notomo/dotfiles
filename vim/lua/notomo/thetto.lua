@@ -154,6 +154,11 @@ require("thetto").setup({
           vim.cmd("OpenBrowser " .. item.url)
         end
       end,
+      action_docfilter = function(_, items)
+        for _, item in ipairs(items) do
+          require("docfilter").open(item.url)
+        end
+      end,
     },
   },
 
@@ -276,6 +281,11 @@ require("thetto").setup({
       action_browser_open = function(_, items)
         for _, item in ipairs(items) do
           vim.cmd("OpenBrowser " .. item.url)
+        end
+      end,
+      action_docfilter = function(_, items)
+        for _, item in ipairs(items) do
+          require("docfilter").open(item.url)
         end
       end,
       opts = { yank = { key = "url" } },

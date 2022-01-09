@@ -379,4 +379,7 @@ optpack.add("jose-elias-alvarez/null-ls.nvim", {
 optpack.add("notomo/docfilter.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "docfilter" } },
+  hooks = {
+    post_add = cmd([[nnoremap [exec]o :<C-u>lua require("docfilter").open("<C-r>+")]]),
+  },
 })
