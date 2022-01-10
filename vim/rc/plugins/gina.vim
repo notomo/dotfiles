@@ -87,6 +87,7 @@ call gina#custom#mapping#nmap('/\%(status\|stash\|branch\)', 'q', ':quit<CR>', s
 
 " yank
 call gina#custom#mapping#nmap('/\%(log\|branch\|blame\)', 'yr', ':lua require("notomo.gina").yank_rev()<CR>', s:noremap_silent)
+call gina#custom#mapping#nmap('/\%(log\)', 'yR', ':lua require("notomo.gina").yank_rev_with_repo()<CR>', s:noremap_silent)
 
 " show changes, compare
 call gina#custom#mapping#nmap('/\%(log\|blame\|branch\|tag\)', 'cb', ':call gina#action#call("changes:between:rightest")<CR>', s:noremap_silent)

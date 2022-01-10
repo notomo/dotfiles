@@ -65,6 +65,22 @@ function M.yank_rev()
   vim.api.nvim_echo({ { vim.fn.getreg("+") } }, true, {})
 end
 
+function M.yank_rev_with_repo()
+  vim.fn["gina#action#call"]("yank:rev")
+  local name = vim.fn.systemlist({
+    "gh",
+    "repo",
+    "view",
+    "--json",
+    "nameWithOwner",
+    "--template",
+    "{{.nameWithOwner}}",
+  })[1]
+  local rev = vim.fn.getreg("+")
+  local name_with_rev = ("%s@%s"):format(name, rev)
+  require("notomo.edit").yank(name_with_rev)
+end
+
 function M.browse_yank()
   vim.fn["gina#action#call"]("browse:yank")
   vim.api.nvim_echo({ { vim.fn.getreg("+") } }, true, {})
