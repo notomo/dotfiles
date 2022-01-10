@@ -10,7 +10,7 @@ runtime! rc/local/*.vim rc/local/*.lua
 
 luafile ~/.vim/rc/option.lua
 source ~/.vim/rc/autocmd.vim
-source ~/.vim/rc/mapping.vim
+luafile ~/.vim/rc/mapping.lua
 try
     luafile ~/.vim/rc/plugins/_manager.lua
 catch

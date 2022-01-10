@@ -1,0 +1,2 @@
+test:
+	nvim --headless +"quitall!"

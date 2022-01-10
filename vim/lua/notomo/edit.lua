@@ -168,4 +168,50 @@ function M.rotate_file()
   error("fail rotate: " .. origin)
 end
 
+function M.set_term_title(prompt_pattern, max_length)
+  local path = vim.api.nvim_buf_get_name(0)
+  local shell = vim.split(vim.fn.fnamemodify(path, ":t"), ":", true)[1]
+  local term_path = ("%s/%s"):format(vim.fn.fnamemodify(path, ":h"), shell)
+
+  local prompt_line = vim.fn.getline(vim.fn.search(prompt_pattern, "nbcW"))
+  local prompt = vim.fn.matchstr(prompt_line, prompt_pattern)
+  local cmd = prompt_line:sub(vim.fn.strlen(prompt), max_length)
+  cmd = vim.fn.substitute(cmd, "/", [[\]], "g")
+
+  vim.api.nvim_buf_set_name(0, ("%s:%s"):format(term_path, cmd))
+  vim.cmd([[redrawtabline]])
+end
+
+function M.inc_or_dec(is_inc)
+  local key = is_inc and "<C-a>" or "<C-x>"
+  local line = vim.fn.getline(".")
+  local col = vim.fn.col(".")
+  local pattern = [=[\v\d+\ze[^[:digit:]]*$]=]
+  if vim.fn.matchend(line:sub(col - 1), pattern) then
+    local idx = vim.fn.matchend(line:sub(1, col - 1), pattern)
+    if idx ~= -1 then
+      return ("%dh%s"):format(col - idx, key)
+    end
+  end
+  return key
+end
+
+local CURSOR_KEY = "{cursor}"
+local REGISTER_KEY = "{register}"
+local WORD_KEY = "{word}"
+function M.gen_substitute(cmd_pattern, is_visual)
+  local word = vim.fn.expand("<cword>")
+  local replaced_word = vim.fn.substitute(cmd_pattern, WORD_KEY, word, "g")
+  local register = vim.fn.getreg('"')
+  local alter_register = vim.fn["repeat"]("x", #register)
+  local alter_replaced_register = vim.fn.substitute(replaced_word, REGISTER_KEY, alter_register, "g")
+  local cursor_pos = vim.fn.matchend(alter_replaced_register, CURSOR_KEY)
+  local deleted_cursor = vim.fn.substitute(replaced_word, CURSOR_KEY, "", "")
+  local result = vim.fn.substitute(deleted_cursor, REGISTER_KEY, register, "g")
+    .. vim.fn["repeat"]([[<Left>]], #alter_replaced_register - cursor_pos)
+  -- a\<BS> is for inccommand
+  result = vim.fn.substitute(result, [[\n]], [[\\n]], "g") .. [[a<BS>]]
+  return is_visual and result or vim.fn.substitute(result, [[:\zs]], [[<C-u>]], "")
+end
+
 return M
