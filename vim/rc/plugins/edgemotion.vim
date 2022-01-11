@@ -1,6 +1,0 @@
-nmap gJ <Plug>(edgemotion-j)
-xmap gJ <Plug>(edgemotion-j)
-omap gJ <Plug>(edgemotion-j)
-nmap gK <Plug>(edgemotion-k)
-xmap gK <Plug>(edgemotion-k)
-omap gK <Plug>(edgemotion-k)

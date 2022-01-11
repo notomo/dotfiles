@@ -117,7 +117,7 @@ optpack.add("kana/vim-textobj-line", {
 
 optpack.add("bkad/CamelCaseMotion", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/camelcasemotion.vim") },
+  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/camelcasemotion.lua") },
 })
 
 optpack.add("osyo-manga/vim-textobj-from_regexp", {
@@ -127,7 +127,7 @@ optpack.add("osyo-manga/vim-textobj-from_regexp", {
 
 optpack.add("haya14busa/vim-edgemotion", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/edgemotion.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/edgemotion.lua") },
 })
 
 optpack.add("mhinz/vim-signify", {
@@ -150,7 +150,7 @@ nnoremap [file]W <Cmd>write suda://%<CR>
 
 optpack.add("w0rp/ale", {
   load_on = { events = { "FileType" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/ale.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/ale.lua") },
 })
 
 optpack.add("voldikss/vim-translator", {
@@ -361,7 +361,7 @@ optpack.add("rhysd/vim-operator-surround", {
 
 optpack.add("tyru/caw.vim", {
   load_on = { events = { "FileType" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/caw.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/caw.lua") },
 })
 
 optpack.add("notomo/promise.nvim", {

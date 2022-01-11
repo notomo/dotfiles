@@ -1,9 +1,0 @@
-nmap <Leader>w <Plug>CamelCaseMotion_w
-xmap <Leader>w <Plug>CamelCaseMotion_w
-omap <Leader>w <Plug>CamelCaseMotion_w
-nmap <Leader>b <Plug>CamelCaseMotion_b
-xmap <Leader>b <Plug>CamelCaseMotion_b
-omap <Leader>b <Plug>CamelCaseMotion_b
-nmap <Leader>e <Plug>CamelCaseMotion_e
-xmap <Leader>e <Plug>CamelCaseMotion_e
-omap <Leader>e <Plug>CamelCaseMotion_e
