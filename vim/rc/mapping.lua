@@ -9,11 +9,7 @@ local remap = { remap = true }
 local silent_remap = { silent = true, remap = true }
 local expr = { expr = true }
 
-local set_prefix = function(modes, name, key)
-  local name_key = ("[%s]"):format(name)
-  set(modes, name_key, "<Nop>")
-  set(modes, key, name_key, remap)
-end
+local set_prefix = require("notomo.mapping").set_prefix
 
 set_prefix({ "n", "x" }, "exec", "<Space>x")
 set_prefix({ "n" }, "keyword", "<Space>k")

@@ -3,7 +3,10 @@ local optpack = require("optpack")
 
 local with_trace = function(f)
   return function()
-    xpcall(f, debug.traceback)
+    local ok, result = xpcall(f, debug.traceback)
+    if not ok then
+      error(result)
+    end
   end
 end
 
@@ -67,12 +70,12 @@ optpack.add("thinca/vim-zenspace", {
 
 optpack.add("LeafCage/yankround.vim", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/yankround.vim") },
+  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/yankround.lua") },
 })
 
 optpack.add("kana/vim-smartword", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/smartword.vim") },
+  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/smartword.lua") },
 })
 
 optpack.add("rhysd/vim-color-spring-night", {
@@ -105,14 +108,14 @@ optpack.add("itchyny/lightline.vim", {
 
 optpack.add("kana/vim-textobj-entire", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/textobj-entire.vim") },
+  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/textobj-entire.lua") },
 })
 
 optpack.add("osyo-manga/vim-textobj-blockwise", { load_on = { events = { "VimEnter" } } })
 
 optpack.add("kana/vim-textobj-line", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/textobj-line.vim") },
+  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/textobj-line.lua") },
 })
 
 optpack.add("bkad/CamelCaseMotion", {
@@ -122,7 +125,7 @@ optpack.add("bkad/CamelCaseMotion", {
 
 optpack.add("osyo-manga/vim-textobj-from_regexp", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/textobj-from_regexp.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/textobj-from_regexp.lua") },
 })
 
 optpack.add("haya14busa/vim-edgemotion", {
@@ -132,7 +135,7 @@ optpack.add("haya14busa/vim-edgemotion", {
 
 optpack.add("mhinz/vim-signify", {
   load_on = { events = { { "BufReadPre", "*/*" } } },
-  hooks = { post_add = source("~/.vim/rc/plugins/signify.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/signify.lua") },
 })
 
 optpack.add("junegunn/vim-emoji", { load_on = { events = { "VimEnter" } } })
@@ -155,13 +158,13 @@ optpack.add("w0rp/ale", {
 
 optpack.add("voldikss/vim-translator", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/translator.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/translator.lua") },
 })
 
 optpack.add("notomo/wintablib.nvim", {
   fetch = { depth = 0 },
   load_on = { events = { "VimEnter" }, modules = { "wintablib" } },
-  hooks = { post_load = source("~/.vim/rc/plugins/wintablib.vim") },
+  hooks = { post_load = luafile("~/.vim/rc/plugins/wintablib.lua") },
 })
 
 optpack.add("notomo/lreload.nvim", {
@@ -213,7 +216,7 @@ optpack.add("thinca/vim-qfreplace", { load_on = { cmds = { "Qfreplace" } } })
 
 optpack.add("tyru/open-browser.vim", {
   load_on = { cmds = { "OpenBrowser*" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/open-browser.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/open-browser.lua") },
 })
 
 optpack.add("notomo/vimonga", {
@@ -226,7 +229,7 @@ optpack.add("notomo/curstr.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "curstr" } },
   hooks = {
-    post_add = source("~/.vim/rc/plugins/curstr.vim"),
+    post_add = luafile("~/.vim/rc/plugins/curstr.lua"),
     post_load = luafile("~/dotfiles/vim/lua/notomo/curstr.lua"),
   },
 })
@@ -246,7 +249,7 @@ optpack.add("notomo/gesture.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "gesture" } },
   hooks = {
-    post_add = source("~/.vim/rc/plugins/gesture.vim"),
+    post_add = luafile("~/.vim/rc/plugins/gesture.lua"),
     post_load = luafile("~/dotfiles/vim/lua/notomo/gesture.lua"),
   },
 })
@@ -315,7 +318,7 @@ optpack.add("notomo/cmdhndlr.nvim", {
 optpack.add("notomo/suball.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "suball" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/suball.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/suball.lua") },
 })
 
 optpack.add("nvim-treesitter/nvim-treesitter", { load_on = { cmds = { "TS*" }, modules = { "cmdhndlr" } } })
@@ -336,27 +339,27 @@ optpack.add("kana/vim-operator-user", { load_on = { events = { "VimEnter" } } })
 
 optpack.add("osyo-manga/vim-textobj-multiblock", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/textobj-multiblock.vim") },
+  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/textobj-multiblock.lua") },
 })
 
 optpack.add("Shougo/neosnippet.vim", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/neosnippet.vim") },
+  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/neosnippet.lua") },
 })
 
 optpack.add("osyo-manga/vim-operator-blockwise", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/operator-blockwise.vim") },
+  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/operator-blockwise.lua") },
 })
 
 optpack.add("kana/vim-operator-replace", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/dotfiles/vim/rc/plugins/operator-replace.vim") },
+  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/operator-replace.lua") },
 })
 
 optpack.add("rhysd/vim-operator-surround", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/operator-surround.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/operator-surround.lua") },
 })
 
 optpack.add("tyru/caw.vim", {

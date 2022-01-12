@@ -1,0 +1,6 @@
+vim.keymap.set("n", "[substitute]aw", function()
+  return ":%" .. require("suball").map(vim.fn.expand("<cword>"), "")
+end, { expr = true })
+vim.keymap.set("n", "[substitute]ay", function()
+  return ":%" .. require("suball").map(vim.fn.getreg("+"), "")
+end, { expr = true })
