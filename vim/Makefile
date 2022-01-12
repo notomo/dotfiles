@@ -1,2 +1,2 @@
 test:
-	nvim --headless +"lua vim.schedule(function() vim.schedule(function() vim.cmd([[messages | quitall!]]) end) end)"
+	nvim --headless +"lua require('notomo.startup').test()"

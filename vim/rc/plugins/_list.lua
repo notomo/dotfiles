@@ -210,7 +210,16 @@ optpack.add("AndrewRadev/linediff.vim", {
   hooks = { post_add = cmd([[xnoremap [diff]l :Linediff<CR>]]) },
 })
 
-optpack.add("tmhedberg/matchit", { load_on = { filetypes = { "html", "vim", "sql" } } })
+optpack.add("tmhedberg/matchit", {
+  load_on = { filetypes = { "html", "vim", "sql" } },
+  hooks = {
+    post_load = function(plugin)
+      -- prior than builtin
+      vim.opt.runtimepath:remove(plugin.directory)
+      vim.opt.runtimepath:prepend(plugin.directory)
+    end,
+  },
+})
 
 optpack.add("thinca/vim-qfreplace", { load_on = { cmds = { "Qfreplace" } } })
 
