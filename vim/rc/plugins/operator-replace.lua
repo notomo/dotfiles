@@ -18,4 +18,4 @@ vim.keymap.set(
   [["<ESC><Plug>(builtin-/)<C-r>=v:lua._notomo_search()<CR><CR><Plug>(builtin-N)<Plug>(operator-replace)<Plug>(builtin-gn)"]],
   { expr = true, remap = true }
 )
-vim.keymap.set("x", "[edit]d ", [["<ESC>/<C-r>=v:lua._notomo_search()<CR><CR>N"_cgn"]], { expr = true })
+vim.keymap.set("x", "[edit]d", [["<ESC>/<C-r>=v:lua._notomo_search()<CR><CR>N\"_cgn"]], { expr = true })
