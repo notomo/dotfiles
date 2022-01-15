@@ -57,3 +57,4 @@ autocmd MyAuGroup FileType typescriptreact set filetype=typescript.tsx
 autocmd MyAuGroup OptionSet diff setlocal nocursorline
 autocmd MyAuGroup WinEnter,InsertLeave * if &diff == 1 | setlocal nocursorline | endif
 autocmd MyAuGroup TextYankPost * silent! lua vim.highlight.on_yank({higroup = "Flashy", timeout = 200, on_macro = true, on_visual = true})
+autocmd MyAuGroup UIEnter * lua require('notomo.gui').init()
