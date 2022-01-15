@@ -68,6 +68,11 @@ end)
 aliaser.register_factory("ale", function(aliases)
   aliases:set("fix", "ALEFix")
   aliases:set("toggle_fix_on_save", function()
-    vim.g.ale_fix_on_save = not vim.g.ale_fix_on_save
+    if vim.b.ale_fix_on_save == nil then
+      vim.b.ale_fix_on_save = true
+    end
+    vim.b.ale_fix_on_save = not vim.b.ale_fix_on_save
+    local msg = vim.b.ale_fix_on_save and "enabled" or "disabled"
+    print("fix: " .. msg)
   end)
 end)
