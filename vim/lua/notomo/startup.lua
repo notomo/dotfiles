@@ -22,9 +22,13 @@ function M.test()
   require("thetto").execute()
   assert(vim.bo.filetype == "lua")
 
+  M.schedule([[message | quitall!]])
+end
+
+function M.schedule(cmd)
   vim.schedule(function()
     vim.schedule(function()
-      vim.cmd([[messages | quitall!]])
+      vim.cmd(cmd)
     end)
   end)
 end
