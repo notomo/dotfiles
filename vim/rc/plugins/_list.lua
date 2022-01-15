@@ -10,12 +10,6 @@ local with_trace = function(f)
   end
 end
 
-local cmd = function(str)
-  return with_trace(function()
-    vim.cmd(str)
-  end)
-end
-
 local source = function(path)
   return with_trace(function()
     vim.cmd("source " .. path)
@@ -30,7 +24,11 @@ end
 
 optpack.add("notomo/optpack.nvim", {
   fetch = { depth = 0 },
-  hooks = { post_add = cmd([=[nnoremap [exec]U <Cmd>lua require("optpack").update()<CR>]=]) },
+  hooks = {
+    post_add = function()
+      vim.keymap.set("n", "[exec]U", [[<Cmd>lua require("optpack").update()<CR>]])
+    end,
+  },
 })
 
 optpack.add("notomo/vusted", { fetch = { depth = 0 } })
@@ -144,10 +142,10 @@ optpack.add("lambdalisue/suda.vim", {
   enabled = vim.fn.has("unix") == 1,
   load_on = { events = { { "BufReadPre", "*/*" } } },
   hooks = {
-    post_add = cmd([[
-let g:suda_startup = 1
-nnoremap [file]W <Cmd>write suda://%<CR>
-]]),
+    post_add = function()
+      vim.g.suda_startup = 1
+      vim.keymap.set("n", "[file]W", [[<Cmd>write suda://%<CR>]])
+    end,
   },
 })
 
@@ -207,7 +205,11 @@ optpack.add("notomo/searcho.nvim", {
 
 optpack.add("AndrewRadev/linediff.vim", {
   load_on = { cmds = { "Linediff*" } },
-  hooks = { post_add = cmd([[xnoremap [diff]l :Linediff<CR>]]) },
+  hooks = {
+    post_add = function()
+      vim.keymap.set("x", "[diff]l", [[:Linediff<CR>]])
+    end,
+  },
 })
 
 optpack.add("tmhedberg/matchit", {
@@ -313,9 +315,14 @@ optpack.add("notomo/filetypext.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "filetypext" } },
   hooks = {
-    post_add = cmd([[
-nnoremap [exec]; <Cmd>lua require("notomo.edit").scratch(require("filetypext").detect({bufnr = 0})[1], vim.bo.filetype ~= '' and vim.bo.filetype or "markdown")<CR>
-]]),
+    post_add = function()
+      vim.keymap.set("n", "[exec];", function()
+        require("notomo.edit").scratch(
+          require("filetypext").detect({ bufnr = 0 })[1],
+          vim.bo.filetype ~= "" and vim.bo.filetype or "markdown"
+        )
+      end)
+    end,
   },
 })
 
@@ -393,6 +400,8 @@ optpack.add("notomo/docfilter.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "docfilter" } },
   hooks = {
-    post_add = cmd([[nnoremap [exec]o :<C-u>lua require("docfilter").open("<C-r>+")]]),
+    post_add = function()
+      vim.keymap.set("n", "[exec]o", [[:<C-u>lua require("docfilter").open("<C-r>+")]])
+    end,
   },
 })
