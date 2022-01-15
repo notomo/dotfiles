@@ -69,9 +69,3 @@
     dest: "{{ home_dir }}/{{ item.value }}"
     state: link
   with_dict: "{{ link_dict }}"
-
-- name: copy refresh_dotfiles_git.sh
-  copy:
-    remote_src: True
-    src: "{{ dotfiles_dir }}/tool/refresh_dotfiles_git.sh"
-    dest: "{{ app_dir }}/refresh_dotfiles_git.sh"
