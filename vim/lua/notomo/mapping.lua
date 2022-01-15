@@ -19,7 +19,9 @@ local tab_input = {
 }
 function M.set_tab()
   for _, m in ipairs(tab_input) do
-    vim.cmd(([[nnoremap [tab]%s <Cmd>lua require("notomo.mapping").setup_tab_submode(%q)<CR>]]):format(m.lhs, m.lhs))
+    vim.keymap.set("n", "[tab]" .. m.lhs, function()
+      return require("notomo.mapping").setup_tab_submode(m.lhs)
+    end)
   end
 end
 
@@ -38,11 +40,9 @@ function M._tab(m)
   end
   if m.map_only then
     if m.remap then
-      M._set_one("nmap", TAB_KEY .. m.lhs, m.rhs)
-      M._set_one("xmap", TAB_KEY .. m.lhs, m.rhs)
+      vim.keymap.set({ "n", "x" }, TAB_KEY .. m.lhs, m.rhs, { remap = true })
     else
-      M._set_one("nnoremap", TAB_KEY .. m.lhs, m.rhs)
-      M._set_one("xnoremap", TAB_KEY .. m.lhs, m.rhs)
+      vim.keymap.set({ "n", "x" }, TAB_KEY .. m.lhs, m.rhs)
     end
   else
     vim.fn["submode#enter_with"](TAB_MODE, "nx", remap, TAB_KEY .. m.lhs, m.rhs)
@@ -75,11 +75,14 @@ local main_input = {
 }
 function M.set_main_input()
   M._set_with_undo(main_input)
-  M._set("cnoremap", main_input)
-  M._set("tnoremap", main_input)
-  M._set_one("tnoremap", MAIN_INPUT_PFX .. "h", "<Cmd>put +<CR>")
-  M._set_one("tnoremap", MAIN_INPUT_PFX .. "o", "<Tab>")
-  M._set_one("inoremap <expr>", MAIN_INPUT_PFX .. "<CR>", [=[luaeval("require('notomo.edit').to_multiline()")]=])
+  for _, m in ipairs(main_input) do
+    vim.keymap.set({ "c", "t" }, m.lhs, m.rhs)
+  end
+  vim.keymap.set("t", MAIN_INPUT_PFX .. "h", "<Cmd>put +<CR>")
+  vim.keymap.set("t", MAIN_INPUT_PFX .. "o", "<Tab>")
+  vim.keymap.set("i", MAIN_INPUT_PFX .. "<CR>", function()
+    return require("notomo.edit").to_multiline()
+  end, { expr = true })
 end
 
 local SUB_INPUT_PFX = "jk"
@@ -106,78 +109,111 @@ local sub_input = {
 }
 function M.set_sub_input()
   M._set_with_undo(sub_input)
-  M._set("cnoremap", sub_input)
-  M._set("tnoremap", sub_input)
-  M._set_one("noremap!", SUB_INPUT_PFX .. "<CR>", "<C-r>=")
-end
-
-function M._set(cmd, mappings)
-  for _, m in ipairs(mappings) do
-    M._set_one(cmd, m.lhs, m.rhs)
+  for _, m in ipairs(sub_input) do
+    vim.keymap.set({ "c", "t" }, m.lhs, m.rhs)
   end
+  vim.keymap.set({ "i", "c" }, SUB_INPUT_PFX .. "<CR>", "<C-r>=")
 end
 
 function M._set_with_undo(mappings)
   for _, m in ipairs(mappings) do
-    M._set_one("inoremap", m.lhs, vim.fn.substitute(m.rhs, "\\ze<Left>$", "\\<C-g>U", ""))
+    vim.keymap.set("i", m.lhs, vim.fn.substitute(m.rhs, "\\ze<Left>$", "\\<C-g>U", ""))
   end
 end
 
-function M._set_one(cmd, lhs, rhs)
-  vim.cmd(("%s %s %s"):format(cmd, lhs, rhs))
-end
-
 function M.lsp()
-  vim.cmd([[
-nnoremap <buffer> [keyword]o <Cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <buffer> [keyword]v <Cmd>vsplit \| lua vim.lsp.buf.definition()<CR>
-nnoremap <buffer> [keyword]h <Cmd>split \| lua vim.lsp.buf.definition()<CR>
-nnoremap <buffer> [keyword]t <Cmd>lua require("wintablib.window").duplicate_as_right_tab()<CR>:lua vim.lsp.buf.definition()<CR>
-]])
+  vim.keymap.set("n", "[keyword]o", [[<Cmd>lua vim.lsp.buf.definition()<CR>]], { buffer = true })
+  vim.keymap.set("n", "[keyword]v", [[<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>]], { buffer = true })
+  vim.keymap.set("n", "[keyword]h", [[<Cmd>split | lua vim.lsp.buf.definition()<CR>]], { buffer = true })
+  vim.keymap.set("n", "[keyword]t", function()
+    require("wintablib.window").duplicate_as_right_tab()
+    vim.lsp.buf.definition()
+  end, { buffer = true })
 end
 
 function M.gina()
-  vim.cmd([[
-nnoremap <silent> [git]s <Cmd>lua require("notomo.gina").toggle_buffer('status', 'gina-status')<CR>
-nnoremap [git]D <Cmd>Gina diff<CR>
-nnoremap <silent> [git]b <Cmd>lua require("notomo.gina").toggle_buffer('branch', 'gina-branch')<CR>
-nnoremap [git]L <Cmd>Gina log master...HEAD<CR>
-nnoremap [git]ll <Cmd>Gina log<CR>
-nnoremap [git]rl <Cmd>Gina reflog<CR>
-nnoremap [git]ls <Cmd>Gina ls<CR>
-nnoremap [git]T <Cmd>Gina tag<CR>
-nnoremap [git]c <Cmd>Gina commit<CR>
-nnoremap [git]xl <Cmd>lua require("notomo.gina").toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>
-nnoremap [git]xs :<C-u>Gina stash save ""<Left>
-nnoremap [git]xc <Cmd>Gina stash show<CR>
-nnoremap <expr> [git]P ':<C-u>Gina! push ' .. luaeval('require("notomo.gina").remote()') .. ' ' . gina#component#repo#branch()
-nnoremap <expr> [git]H ':<C-u>Gina! pull ' .. luaeval('require("notomo.gina").remote()') .. ' ' . gina#component#repo#branch()
-nnoremap [git]M :<C-u>Gina! merge<Space>
-nnoremap <expr> [git]F ':<C-u>Gina! fetch ' .. luaeval('require("notomo.gina").remote()') .. ' --prune'
-nnoremap [git]ma :<C-u>Gina! merge --abort
-nnoremap [git]ca :<C-u>Gina! cherry-pick --abort
-nnoremap [git]ra :<C-u>Gina! rebase --abort
-nnoremap [git]rc :<C-u>Gina! rebase --continue
-nnoremap [git]R :<C-u>Gina! rebase<Space>
-nnoremap <expr> [git]A ":<C-u>Gina! apply " . fnamemodify(bufname('%'), ':p')
-nnoremap [git]dl <Cmd>Gina log --diff-filter=D --summary<CR> " deleted file log
-nnoremap [git]G :<C-u>Gina log -S""<Left>
-nnoremap [yank]U <Cmd>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>
-xnoremap [yank]U :Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>
-nnoremap [exec]gu <Cmd>Gina browse :<CR>
-nnoremap [git]B <Cmd>execute 'Gina blame :' .. luaeval('require("notomo.gina").relpath()')<CR>
-nnoremap [git]fl <Cmd>execute 'Gina log :' .. luaeval('require("notomo.gina").relpath()')<CR>
-nnoremap [git]dd <Cmd>execute 'Gina compare :' .. luaeval('require("notomo.gina").relpath()')<CR>
-nnoremap [git]df <Cmd>execute 'Gina diff :' .. luaeval('require("notomo.gina").relpath()')<CR>
-]])
+  vim.keymap.set(
+    "n",
+    "[git]s",
+    [[<Cmd>lua require("notomo.gina").toggle_buffer('status', 'gina-status')<CR>]],
+    { silent = true }
+  )
+  vim.keymap.set("n", "[git]D", [[<Cmd>Gina diff<CR>]])
+  vim.keymap.set(
+    "n",
+    "[git]b",
+    [[<Cmd>lua require("notomo.gina").toggle_buffer('branch', 'gina-branch')<CR>]],
+    { silent = true }
+  )
+  vim.keymap.set("n", "[git]L", [[<Cmd>Gina log master...HEAD<CR>]])
+  vim.keymap.set("n", "[git]ll", [[<Cmd>Gina log<CR>]])
+  vim.keymap.set("n", "[git]rl", [[<Cmd>Gina reflog<CR>]])
+  vim.keymap.set("n", "[git]ls", [[<Cmd>Gina ls<CR>]])
+  vim.keymap.set("n", "[git]T", [[<Cmd>Gina tag<CR>]])
+  vim.keymap.set("n", "[git]c", [[<Cmd>Gina commit<CR>]])
+  vim.keymap.set(
+    "n",
+    "[git]xl",
+    [[<Cmd>lua require("notomo.gina").toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>]]
+  )
+  vim.keymap.set("n", "[git]xs", [[:<C-u>Gina stash save ""<Left>]])
+  vim.keymap.set("n", "[git]xc", [[<Cmd>Gina stash show<CR>]])
+  vim.keymap.set("n", "[git]P", function()
+    return ":<C-u>Gina! push " .. require("notomo.gina").remote() .. " " .. vim.fn["gina#component#repo#branch"]()
+  end, { expr = true })
+  vim.keymap.set("n", "[git]H", function()
+    return ":<C-u>Gina! pull " .. require("notomo.gina").remote() .. " " .. vim.fn["gina#component#repo#branch"]()
+  end, { expr = true })
+  vim.keymap.set("n", "[git]M", [[:<C-u>Gina! merge<Space>]])
+  vim.keymap.set("n", "[git]F", function()
+    return ":<C-u>Gina! fetch " .. require("notomo.gina").remote() .. " --prune"
+  end, { expr = true })
+  vim.keymap.set("n", "[git]ma", [[:<C-u>Gina! merge --abort]])
+  vim.keymap.set("n", "[git]ca", [[:<C-u>Gina! cherry-pick --abort]])
+  vim.keymap.set("n", "[git]ra", [[:<C-u>Gina! rebase --abort]])
+  vim.keymap.set("n", "[git]rc", [[:<C-u>Gina! rebase --continue]])
+  vim.keymap.set("n", "[git]R", [[:<C-u>Gina! rebase<Space>]])
+  vim.keymap.set("n", "<expr>[git]A", function()
+    return ":<C-u>Gina! apply " .. vim.fn.fnamemodify(vim.fn.bufname("%"), ":p")
+  end, { expr = true })
+  vim.keymap.set("n", "[git]dl", [[<Cmd>Gina log --diff-filter=D --summary<CR> " deleted file log]])
+  vim.keymap.set("n", "[git]G", [[:<C-u>Gina log -S""<Left>]])
+  vim.keymap.set("n", "[yank]U", [[<Cmd>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>]])
+  vim.keymap.set("x", "[yank]U", [[:Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>]])
+  vim.keymap.set("n", "[exec]gu", [[<Cmd>Gina browse :<CR>]])
+  vim.keymap.set("n", "[git]B", function()
+    return ":<C-u>Gina blame :" .. require("notomo.gina").relpath() .. "<CR>"
+  end, { expr = true })
+  vim.keymap.set("n", "[git]fl", function()
+    return ":<C-u>Gina log :" .. require("notomo.gina").relpath() .. "<CR>"
+  end, { expr = true })
+  vim.keymap.set("n", "[git]dd", function()
+    return ":<C-u>Gina compare :" .. require("notomo.gina").relpath() .. "<CR>"
+  end, { expr = true })
+  vim.keymap.set("n", "[git]df", function()
+    return ":<C-u>Gina diff :" .. require("notomo.gina").relpath() .. "<CR>"
+  end, { expr = true })
 end
 
 function M.npm()
-  vim.cmd([[
-nnoremap <buffer> [exec]bl <Cmd>lua require("cmdhndlr").build({name = 'javascript/npm'})<CR>
-nnoremap <buffer> [test]t <Cmd>lua require("cmdhndlr").test({name = 'javascript/npm', layout = {type = "tab"}})<CR>
-nnoremap <buffer> [exec], <Cmd>lua require("thetto").start("cmd/npm/script", {opts = {sorters = {"alphabet"}, target = "upward", target_patterns = {"package.json"}, insert = false}})<CR>
-]])
+  vim.keymap.set(
+    "n",
+    "[exec]bl",
+    [[<Cmd>lua require("cmdhndlr").build({name = 'javascript/npm'})<CR>]],
+    { buffer = true }
+  )
+  vim.keymap.set(
+    "n",
+    "[test]t",
+    [[<Cmd>lua require("cmdhndlr").test({name = 'javascript/npm', layout = {type = "tab"}})<CR>]],
+    { buffer = true }
+  )
+  vim.keymap.set(
+    "n",
+    "[exec],",
+    [[<Cmd>lua require("thetto").start("cmd/npm/script", {opts = {sorters = {"alphabet"}, target = "upward", target_patterns = {"package.json"}, insert = false}})<CR>]],
+    { buffer = true }
+  )
 end
 
 function M.set_prefix(modes, name, key)
