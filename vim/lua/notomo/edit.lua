@@ -186,9 +186,10 @@ function M.inc_or_dec(is_inc)
   local key = is_inc and "<C-a>" or "<C-x>"
   local line = vim.fn.getline(".")
   local col = vim.fn.col(".")
+  local index = math.max(col - 1, 1)
   local pattern = [=[\v\d+\ze[^[:digit:]]*$]=]
-  if vim.fn.matchend(line:sub(col - 1), pattern) then
-    local idx = vim.fn.matchend(line:sub(1, col - 1), pattern)
+  if vim.fn.matchend(line:sub(index), pattern) == -1 then
+    local idx = vim.fn.matchend(line:sub(1, index), pattern)
     if idx ~= -1 then
       return ("%dh%s"):format(col - idx, key)
     end
