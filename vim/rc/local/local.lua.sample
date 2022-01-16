@@ -1,0 +1,62 @@
+-- vim:ft=lua
+
+vim.cmd([[
+augroup notomo_local
+  autocmd!
+  autocmd BufRead,BufEnter ~/workspace/neovim/* lua _G._notomo_local_neovim()
+  autocmd BufRead,BufEnter ~/workspace/neovim/**/*.lua lua _G._notomo_local_neovim_lua()
+augroup END
+]])
+
+local home = vim.fn.expand("~")
+
+_G._notomo_local_neovim = function()
+  vim.keymap.set("n", "[test]t", function()
+    require("cmdhndlr").test({
+      name = "make/make",
+      working_dir_marker = function()
+        return vim.fn.expand("~/dotfiles/tool/nvim_development/Makefile")
+      end,
+      layout = { type = "tab" },
+      env = {
+        TEST_FILE = vim.fn.expand("%:p:s?" .. home .. "/workspace/neovim/??"),
+      },
+    })
+  end, { buffer = true })
+
+  vim.keymap.set("n", "[exec]bl", function()
+    require("cmdhndlr").build({
+      name = "make/make",
+      working_dir_marker = function()
+        return vim.fn.expand("~/dotfiles/tool/nvim_development/Makefile")
+      end,
+    })
+  end, { buffer = true })
+
+  vim.keymap.set("n", "S", function()
+    require("cmdhndlr").run({
+      name = "make/make",
+      runner_opts = { target = "build_release_with_deb_info" },
+      working_dir_marker = function()
+        return vim.fn.expand("~/dotfiles/tool/nvim_development/Makefile")
+      end,
+      layout = { type = "tab" },
+    })
+  end, { buffer = true })
+end
+
+_G._notomo_local_neovim_lua = function()
+  vim.b.ale_fix_on_save = 0
+  vim.keymap.set("n", "[test]f", function()
+    require("cmdhndlr").test({
+      name = "make/make",
+      runner_opts = { target = "functionaltest" },
+      layout = { type = "tab" },
+      env = {
+        TEST_FILE = vim.fn.expand("%:p:s?" .. home .. "/workspace/neovim/??"),
+        TEST_FILTER = ".*WIP.*",
+      },
+    })
+  end, { buffer = true })
+  return
+end
