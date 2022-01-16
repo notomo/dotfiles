@@ -361,7 +361,12 @@ optpack.add("osyo-manga/vim-textobj-multiblock", {
 
 optpack.add("Shougo/neosnippet.vim", {
   load_on = { events = { "VimEnter" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/neosnippet.lua") },
+  hooks = {
+    post_add = luafile("~/dotfiles/vim/rc/plugins/neosnippet.lua"),
+    post_load = function()
+      vim.cmd([[runtime ftdetect/neosnippet.vim]])
+    end,
+  },
 })
 
 optpack.add("osyo-manga/vim-operator-blockwise", {
