@@ -66,11 +66,11 @@ function M.definition(_, result, ctx)
 end
 
 function M.dart_publish_outline(_, result, ctx)
-  vim.api.nvim_buf_set_var(ctx.bufnr, "_thetto_dart_outline", result)
+  vim.api.nvim_buf_set_var(ctx.bufnr or 0, "_thetto_dart_outline", result)
 end
 
 function M.dart_publish_flutter_outline(_, result, ctx)
-  vim.api.nvim_buf_set_var(ctx.bufnr, "_thetto_flutter_outline", result)
+  vim.api.nvim_buf_set_var(ctx.bufnr or 0, "_thetto_flutter_outline", result)
 end
 
 M.ignore_progress = { "null-ls" }
