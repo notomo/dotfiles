@@ -9,13 +9,13 @@ vim.cmd([[inoreabbrev <buffer> != ~=]])
 if vim.regex("_spec.lua$"):match_str(vim.fn.expand("%")) then
   vim.keymap.set(
     "n",
-    "[finder]o ",
+    "[finder]o",
     [[<Cmd>lua require("thetto").start("lua/busted", {opts = {auto = "preview"}})<CR>]],
     { buffer = true }
   )
 end
 
-vim.keymap.set("n", "sgj ", [[<Cmd>lua require("notomo.text_object").next_no_indent_function()<CR>]], { buffer = true })
+vim.keymap.set("n", "sgj", [[<Cmd>lua require("notomo.text_object").next_no_indent_function()<CR>]], { buffer = true })
 vim.keymap.set(
   "n",
   "sgk",
