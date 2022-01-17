@@ -7,11 +7,7 @@ if initializing then
   vim.cmd([[!git clone https://github.com/notomo/optpack.nvim ]] .. manager_dir)
 end
 
-vim.cmd([[
-luafile ~/.vim/rc/plugins/_list.lua
-syntax enable
-filetype plugin indent on
-]])
+vim.cmd([[luafile ~/.vim/rc/plugins/_list.lua]])
 
 if initializing then
   require("optpack").update({

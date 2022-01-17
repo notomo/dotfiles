@@ -3,11 +3,6 @@ if vim.fn.has("win32") == 1 and vim.fn.has("vim_starting") then
   vim.opt.runtimepath:append(vim.fn.expand("~/.vim/after"))
 end
 
-vim.cmd([[
-filetype off
-filetype plugin indent off
-]])
-
 local safe_cmd = function(cmd)
   local ok, result = pcall(vim.cmd, cmd)
   if not ok then
