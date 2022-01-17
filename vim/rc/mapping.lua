@@ -134,8 +134,14 @@ set("o", "gc", [[t:]])
 set("o", "gP", [[t(]])
 set("n", "go", [[<C-o>]])
 set("n", "gi", [[<C-i>]])
-set("n", "gO", [[g;]])
-set("n", "gI", [[g,]])
+
+set("n", "gO", function()
+  return require("notomo.edit").prev_file()
+end, { expr = true })
+set("n", "gI", function()
+  return require("notomo.edit").next_file()
+end, { expr = true })
+
 set("x", "<S-j>", [[}]])
 set("x", "<S-k>", [[{]])
 -- remap for matchit

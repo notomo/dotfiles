@@ -5,6 +5,7 @@ local g = vim.g
 opt.encoding = "utf-8"
 vim.env.LANG = "en_US.UTF-8"
 
+g.no_plugin_maps = 1
 g.plugin_dicwin_disable = 1
 g.loaded_gzip = 1
 g.loaded_tar = 1

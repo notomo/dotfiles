@@ -215,4 +215,33 @@ function M.gen_substitute(cmd_pattern, is_visual)
   return is_visual and result or vim.fn.substitute(result, [[:\zs]], [[<C-u>]], "")
 end
 
+function M.prev_file()
+  local jumps, index = unpack(vim.fn.getjumplist())
+  jumps = vim.list_slice(jumps, 1, index)
+  jumps = vim.fn.reverse(jumps)
+  local bufnr = vim.api.nvim_get_current_buf()
+  local count = 0
+  for _, jump in ipairs(jumps) do
+    count = count + 1
+    if bufnr ~= jump.bufnr then
+      return ("<C-o>"):rep(count)
+    end
+  end
+  return [[<Cmd>lua require('notomo.message').warn("no prev file")<CR>]]
+end
+
+function M.next_file()
+  local jumps, index = unpack(vim.fn.getjumplist())
+  jumps = vim.list_slice(jumps, index + 1)
+  local bufnr = vim.api.nvim_get_current_buf()
+  local count = 0
+  for _, jump in ipairs(jumps) do
+    count = count + 1
+    if bufnr ~= jump.bufnr then
+      return ("<C-i>"):rep(count)
+    end
+  end
+  return [[<Cmd>lua require('notomo.message').warn("no next file")<CR>]]
+end
+
 return M
