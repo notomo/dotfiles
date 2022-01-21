@@ -85,8 +85,8 @@ start: _run
 
 _run:
 	# ${NVIM} -u NORC +"luafile ./minimal.lua"
-	${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
-	# ${NVIM} -u NORC --headless +"luafile ./minimal.lua" +"quitall!"
+	# ${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
+	${NVIM} -u NORC --headless +"luafile ./minimal.lua" +"quitall!"
 	# ${NVIM} -u NORC +"source ./minimal.vim" +"quitall!"
 	# ${NVIM} -u NORC +"source ./minimal.vim"
 	# ${NVIM}

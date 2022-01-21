@@ -6,3 +6,6 @@ profile:
 	nvim --startuptime log +"lua require('notomo.startup').schedule('quitall!')"
 	cat log
 	rm -f log
+
+test_plugins:
+	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} make test -C {}
