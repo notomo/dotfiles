@@ -109,7 +109,16 @@ optpack.add("kana/vim-textobj-entire", {
   hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/textobj-entire.lua") },
 })
 
-optpack.add("osyo-manga/vim-textobj-blockwise", { load_on = { events = { "VimEnter" } } })
+optpack.add("osyo-manga/vim-textobj-blockwise", {
+  load_on = {
+    events = { "VimEnter" },
+  },
+  hooks = {
+    pre_load = function()
+      vim.g.textobj_blockwise_enable_default_key_mapping = 0
+    end,
+  },
+})
 
 optpack.add("kana/vim-textobj-line", {
   load_on = { events = { "VimEnter" } },
@@ -338,9 +347,12 @@ optpack.add("notomo/suball.nvim", {
   hooks = { post_add = luafile("~/.vim/rc/plugins/suball.lua") },
 })
 
-optpack.add("nvim-treesitter/nvim-treesitter", { load_on = { cmds = { "TS*" }, modules = { "cmdhndlr" } } })
+optpack.add(
+  "nvim-treesitter/nvim-treesitter",
+  { load_on = { cmds = { "TS*" }, modules = { "cmdhndlr", "nvim-treesitter" } } }
+)
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
-  load_on = { cmds = { "TS*" } },
+  load_on = { cmds = { "TS*" }, modules = { "nvim-treesitter" } },
   hooks = {
     post_load = function()
       require("notomo.treesitter").setup()

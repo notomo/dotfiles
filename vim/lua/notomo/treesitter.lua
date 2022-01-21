@@ -19,33 +19,30 @@ function M.setup()
 end
 
 function M.text_object_mapping()
-  vim.keymap.set("o", "ic", function()
-    vim.cmd([[TSTextobjectSelect @call.inner]])
-  end, { buffer = true })
-  vim.keymap.set("o", "ac", function()
-    vim.cmd([[TSTextobjectSelect @call.outer]])
-  end, { buffer = true })
+  local set = function(lhs, query)
+    vim.keymap.set("o", lhs, function()
+      vim.cmd([[TSTextobjectSelect ]] .. query)
+    end, { buffer = true })
+    vim.keymap.set("x", lhs, function()
+      -- HACK
+      return ([[:lua require("nvim-treesitter.textobjects.select").select_textobject("%s", "x")<CR>]]):format(query)
+    end, { silent = true, buffer = true, expr = true })
+  end
 
-  vim.keymap.set("o", "if", function()
-    vim.cmd([[TSTextobjectSelect @function.inner]])
-  end, { buffer = true })
-  vim.keymap.set("o", "af", function()
-    vim.cmd([[TSTextobjectSelect @function.outer]])
-  end, { buffer = true })
+  set("ic", "@call.inner")
+  set("ac", "@call.outer")
 
-  vim.keymap.set("o", "ir", function()
-    vim.cmd([[TSTextobjectSelect @parameter.inner]])
-  end, { buffer = true })
-  vim.keymap.set("o", "ar", function()
-    vim.cmd([[TSTextobjectSelect @parameter.outer]])
-  end, { buffer = true })
+  set("if", "@function.inner")
+  set("af", "@function.outer")
 
-  vim.keymap.set("o", "iv", function()
-    vim.cmd([[TSTextobjectSelect @block.inner]])
-  end, { buffer = true })
-  vim.keymap.set("o", "av", function()
-    vim.cmd([[TSTextobjectSelect @block.outer]])
-  end, { buffer = true })
+  set("ir", "@parameter.inner")
+  set("ar", "@parameter.outer")
+
+  set("iv", "@block.inner")
+  set("av", "@block.outer")
+
+  set("is", "@statement.outer")
+  set("as", "@statement.outer")
 end
 
 return M
