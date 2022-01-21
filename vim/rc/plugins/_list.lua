@@ -341,7 +341,11 @@ optpack.add("notomo/suball.nvim", {
 optpack.add("nvim-treesitter/nvim-treesitter", { load_on = { cmds = { "TS*" }, modules = { "cmdhndlr" } } })
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
   load_on = { cmds = { "TS*" } },
-  hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/treesitter.lua") },
+  hooks = {
+    post_load = function()
+      require("notomo.treesitter").setup()
+    end,
+  },
 })
 
 optpack.add("notomo/aliaser.nvim", {

@@ -16,9 +16,6 @@ if vim.regex("_spec.lua$"):match_str(vim.fn.expand("%")) then
 end
 
 vim.keymap.set("n", "sgj", [[<Cmd>lua require("notomo.text_object").next_no_indent_function()<CR>]], { buffer = true })
-vim.keymap.set(
-  "n",
-  "sgk",
-  [[sgk <Cmd>lua require("notomo.text_object").prev_no_indent_function()<CR>]],
-  { buffer = true }
-)
+vim.keymap.set("n", "sgk", [[<Cmd>lua require("notomo.text_object").prev_no_indent_function()<CR>]], { buffer = true })
+
+require("notomo.treesitter").text_object_mapping()

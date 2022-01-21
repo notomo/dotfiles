@@ -18,3 +18,5 @@ highlight link goKeywords Boolean
 ]])
 
 vim.cmd([[inoreabbrev <buffer> ~= !=]])
+
+require("notomo.treesitter").text_object_mapping()
