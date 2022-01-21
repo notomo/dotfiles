@@ -14,7 +14,7 @@
 
 # snippet
 /vim/snippets/mydiary.snip
-/vim/snippets/sql/*
+/vim/snippets/*/*
 
 # ansible
 /ansible/**/*.retry
