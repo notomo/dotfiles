@@ -37,6 +37,10 @@ aliaser.register_factory("vim", function(aliases)
   aliases:set("diff", function(...)
     require("notomo.diff").diff(...)
   end, { nargs_max = 2 })
+
+  aliases:set("generate_helptags", function()
+    vim.cmd([[helptags ALL]])
+  end)
 end)
 
 aliaser.register_factory("other", function(aliases)
