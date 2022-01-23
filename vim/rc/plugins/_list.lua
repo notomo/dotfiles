@@ -94,16 +94,6 @@ optpack.add("lambdalisue/gina.vim", {
   },
 })
 
-optpack.add("itchyny/lightline.vim", {
-  load_on = { events = { "VimEnter" } },
-  hooks = {
-    post_load = function()
-      vim.cmd([[source ~/.vim/rc/plugins/lightline.vim]])
-      vim.fn["lightline#update"]()
-    end,
-  },
-})
-
 optpack.add("kana/vim-textobj-entire", {
   load_on = { events = { "VimEnter" } },
   hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/textobj-entire.lua") },
@@ -423,6 +413,16 @@ optpack.add("notomo/docfilter.nvim", {
   hooks = {
     post_add = function()
       vim.keymap.set("n", "[exec]o", [[:<C-u>lua require("docfilter").open("<C-r>+")]])
+    end,
+  },
+})
+
+optpack.add("notomo/stlparts.nvim", {
+  fetch = { depth = 0 },
+  load_on = { events = { "VimEnter" }, modules = { "stlparts" } },
+  hooks = {
+    post_load = function()
+      require("notomo.stlparts").setup()
     end,
   },
 })
