@@ -244,4 +244,17 @@ function M.next_file()
   return [[<Cmd>lua require('notomo.message').warn("no next file")<CR>]]
 end
 
+function M.jump(pattern, search_flag)
+  local old = vim.api.nvim_win_get_cursor(0)
+  vim.api.nvim_win_set_cursor(0, { old[1], 0 })
+
+  local pos = vim.fn.searchpos(pattern, search_flag .. "n")
+  if pos[1] == 0 then
+    return vim.api.nvim_win_set_cursor(0, old)
+  end
+
+  vim.cmd("normal! m'")
+  vim.api.nvim_win_set_cursor(0, pos)
+end
+
 return M

@@ -1,0 +1,1 @@
+require("notomo.mapping").lsp()
