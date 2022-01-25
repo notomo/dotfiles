@@ -41,6 +41,10 @@ aliaser.register_factory("vim", function(aliases)
   aliases:set("generate_helptags", function()
     vim.cmd([[helptags ALL]])
   end)
+
+  aliases:set("install_plugins", function()
+    require("optpack").install()
+  end)
 end)
 
 aliaser.register_factory("other", function(aliases)

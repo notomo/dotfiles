@@ -426,3 +426,15 @@ optpack.add("notomo/stlparts.nvim", {
     end,
   },
 })
+
+optpack.add("romgrk/nvim-treesitter-context", {
+  load_on = { cmds = { "TSContext*" } },
+  hooks = {
+    post_add = function()
+      vim.keymap.set("n", "[exec]x", "<Cmd>TSContextToggle<CR>")
+    end,
+    post_load = function()
+      require("treesitter-context").setup({ enable = false })
+    end,
+  },
+})
