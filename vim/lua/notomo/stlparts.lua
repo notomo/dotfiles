@@ -1,5 +1,11 @@
 local M = {}
 
+require("lreload").enable("stlparts", {
+  post_hook = function()
+    require("notomo.stlparts").setup()
+  end,
+})
+
 local surround = function(s)
   return ("[%s]"):format(s)
 end
@@ -48,6 +54,7 @@ function M.setup()
   local stlparts = require("stlparts")
 
   local IfNormalWindow = stlparts.component("if_normal_window")
+  local TrancateLeft = stlparts.component("trancate_left")
   local Padding = stlparts.component("padding")
   local IfActiveWindow = stlparts.component("if_active_window")
   local Separate = stlparts.component("separate")
@@ -55,7 +62,7 @@ function M.setup()
 
   local active = Separate(List({ path, branch }), List({ column, filetype, mode }))
   local inactive = path
-  stlparts.set_root(IfNormalWindow(Padding(IfActiveWindow(active, inactive))))
+  stlparts.set_root(IfNormalWindow(TrancateLeft(Padding(IfActiveWindow(active, inactive)))))
 
   vim.opt.statusline = [[%!v:lua.require("stlparts").build()]]
 end
