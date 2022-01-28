@@ -339,7 +339,7 @@ optpack.add("notomo/suball.nvim", {
 
 optpack.add(
   "nvim-treesitter/nvim-treesitter",
-  { load_on = { cmds = { "TS*" }, modules = { "cmdhndlr", "nvim-treesitter" } } }
+  { load_on = { cmds = { "TS*" }, modules = { "cmdhndlr", "nvimtool", "nvim-treesitter" } } }
 )
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
   load_on = { cmds = { "TS*" }, modules = { "nvim-treesitter" } },
