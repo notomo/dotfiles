@@ -213,6 +213,7 @@ options word
 snippet module
 alias m
 	local M = {}
+	M.__index = M
 	
 	${0}
 	

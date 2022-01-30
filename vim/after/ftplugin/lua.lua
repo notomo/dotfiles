@@ -10,7 +10,7 @@ if vim.regex("_spec.lua$"):match_str(vim.fn.expand("%")) then
   vim.keymap.set(
     "n",
     "[finder]o",
-    [[<Cmd>lua require("thetto").start("lua/busted", {opts = {auto = "preview"}})<CR>]],
+    [[<Cmd>lua require("thetto").start("test", {opts = {auto = "preview"}})<CR>]],
     { buffer = true }
   )
 end

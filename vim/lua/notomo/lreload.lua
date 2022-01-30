@@ -11,6 +11,7 @@ local modules = {
   "suball",
   "promise",
   "docfilter",
+  "gettest",
   "notomo",
 }
 for _, m in ipairs(modules) do
