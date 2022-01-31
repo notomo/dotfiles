@@ -118,6 +118,8 @@ nnoremap [finder]jl <Cmd>lua require("thetto").start("vim/jump", {source_opts = 
 nnoremap [finder]z <Cmd>lua require("thetto").start("cmd/zsh/history")<CR>
 nnoremap [finder]Q <Cmd>lua require("thetto").start("vim/history/command")<CR>
 nnoremap [finder]I <Cmd>lua require("thetto").start("github/issue", {source_opts = {assignee = "me"}})<CR>
+nnoremap [finder]to <Cmd>lua require("thetto").start("test", {opts = {auto = "preview"}})<CR>
+nnoremap [finder]ts <Cmd>lua require("thetto").start("test", {source_opts = {scoped = true}, opts = {auto = "preview"}})<CR>
 
 " custom source
 nnoremap [finder]p <Cmd>lua require("thetto").start("plugin")<CR>
