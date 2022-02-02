@@ -328,7 +328,7 @@ optpack.add("notomo/filetypext.nvim", {
 optpack.add("notomo/cmdhndlr.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "cmdhndlr" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/cmdhndlr.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/cmdhndlr.lua") },
 })
 
 optpack.add("notomo/suball.nvim", {
@@ -339,7 +339,7 @@ optpack.add("notomo/suball.nvim", {
 
 optpack.add(
   "nvim-treesitter/nvim-treesitter",
-  { load_on = { cmds = { "TS*" }, modules = { "gettest", "cmdhndlr", "nvimtool", "nvim-treesitter" } } }
+  { load_on = { cmds = { "TS*" }, modules = { "gettest", "nvimtool", "nvim-treesitter" } } }
 )
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
   load_on = { cmds = { "TS*" }, modules = { "nvim-treesitter" } },
