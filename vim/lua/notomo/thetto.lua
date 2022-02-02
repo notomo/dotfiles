@@ -290,6 +290,16 @@ require("thetto").setup({
       end,
       opts = { yank = { key = "url" } },
     },
+
+    ["test"] = {
+      action_execute = function(_, items)
+        local window_id = vim.api.nvim_get_current_win()
+        for _, item in ipairs(items) do
+          vim.api.nvim_set_current_win(window_id)
+          require("cmdhndlr").test({ filter = item.value, layout = { type = "tab" } })
+        end
+      end,
+    },
   },
 
   global_opts = { display_limit = 500 },

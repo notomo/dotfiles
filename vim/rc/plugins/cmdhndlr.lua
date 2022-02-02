@@ -15,6 +15,11 @@ vim.keymap.set("n", "[test]n", function()
   test = test or {}
   require("cmdhndlr").test({ filter = test.name })
 end)
+vim.keymap.set("n", "[test]N", function()
+  local test = require("gettest").scope_root_node(vim.fn.line("."))
+  test = test or {}
+  require("cmdhndlr").test({ filter = test.name })
+end)
 
 vim.cmd([[
 function! s:settings() abort
