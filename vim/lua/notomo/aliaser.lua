@@ -73,6 +73,12 @@ aliaser.register_factory("github", function(aliases)
   end)
 end)
 
+aliaser.register_factory("package_json", function(aliases)
+  aliases:set("update", function()
+    require("notomo.package_json").update(vim.fn.expand("%:p"))
+  end)
+end)
+
 aliaser.register_factory("ale", function(aliases)
   aliases:set("fix", "ALEFix")
   aliases:set("toggle_fix_on_save", function()
