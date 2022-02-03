@@ -9,3 +9,6 @@ profile:
 
 test_plugins:
 	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} make test -C {}
+
+help_tags:
+	nvim --headless +"lua require('notomo.startup').generate_help_tags()"

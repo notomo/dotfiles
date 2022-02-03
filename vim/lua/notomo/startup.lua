@@ -1,11 +1,21 @@
 local M = {}
 
-function M.test()
+function M.load_plugins()
   local optpack = require("optpack")
   local plugins = optpack.list()
   for _, plugin in ipairs(plugins) do
     optpack.load(plugin.name)
   end
+end
+
+function M.generate_help_tags()
+  M.load_plugins()
+  vim.cmd([[helptags ALL]])
+  M.schedule([[message | quitall!]])
+end
+
+function M.test()
+  M.load_plugins()
 
   local dir = vim.fn.expand("~/dotfiles/vim/after/ftplugin/")
   local pattern = dir .. "**/*.lua"

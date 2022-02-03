@@ -39,7 +39,13 @@ aliaser.register_factory("vim", function(aliases)
   end, { nargs_max = 2 })
 
   aliases:set("generate_helptags", function()
-    vim.cmd([[helptags ALL]])
+    require("cmdhndlr").run({
+      name = "make/make",
+      working_dir_marker = function()
+        return vim.fn.expand("~/dotfiles/vim/Makefile")
+      end,
+      runner_opts = { target = "help_tags" },
+    })
   end)
 
   aliases:set("install_plugins", function()
