@@ -7,22 +7,33 @@ function M.complete()
     vim.schedule(function()
       cmp.close()
     end)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(neosnippet_expand)", true, true, true), "m", true)
-    return ""
+    return vim.api.nvim_feedkeys(
+      vim.api.nvim_replace_termcodes("<Plug>(neosnippet_expand)", true, true, true),
+      "m",
+      true
+    )
   end
 
-  if cmp.get_selected_entry() then
-    return vim.api.nvim_eval([["\<C-y>"]])
+  local selected = cmp.get_selected_entry()
+  if selected then
+    vim.schedule(function()
+      cmp.close()
+    end)
+    return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, true, true), "n", true)
   end
 
   -- NOTE: select by <C-n> and then close and expand
   vim.schedule(function()
     cmp.close()
     if vim.fn["neosnippet#expandable"]() ~= 0 then
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(neosnippet_expand)", true, true, true), "m", true)
+      return vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<Plug>(neosnippet_expand)", true, true, true),
+        "m",
+        true
+      )
     end
   end)
-  return vim.api.nvim_eval([["\<C-n>"]])
+  return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "m", true)
 end
 
 function M.tab()
@@ -40,7 +51,7 @@ function M.tab()
 end
 
 function M.setup()
-  vim.cmd([[imap <expr> j<Space>o luaeval("require('notomo.cmp').complete()")]])
+  vim.cmd([[inoremap j<Space>o <Cmd>lua require('notomo.cmp').complete()<CR>]])
   vim.cmd([[imap <expr> <Tab> luaeval("require('notomo.cmp').tab()")]])
   vim.cmd([[smap <expr> <Tab> luaeval("require('notomo.cmp').tab()")]])
   cmp.setup({
