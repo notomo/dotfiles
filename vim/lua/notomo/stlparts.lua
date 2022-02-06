@@ -22,7 +22,10 @@ local branch = function()
   if vim.fn.exists("*gina#component#repo#branch") == 0 then
     return ""
   end
-  local name = vim.fn["gina#component#repo#branch"]()
+  local ok, name = pcall(vim.fn["gina#component#repo#branch"])
+  if not ok then
+    return ""
+  end
   if #name == 0 then
     return ""
   end
