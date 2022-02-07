@@ -4,6 +4,12 @@ vim.opt_local.tabstop = 2
 vim.opt_local.softtabstop = 2
 vim.keymap.set("n", "[exec]s", [[<Cmd>luafile %<CR>]], { buffer = true })
 vim.keymap.set("n", "[exec]l", [[':lua ' . getline('.') . '<CR>']], { expr = true, buffer = true })
+vim.keymap.set(
+  "n",
+  "[yank]I",
+  [[<Cmd>lua require("notomo.edit").yank(require("notomo.module").path())<CR>]],
+  { buffer = true }
+)
 require("notomo.mapping").lsp()
 vim.cmd([[inoreabbrev <buffer> != ~=]])
 
