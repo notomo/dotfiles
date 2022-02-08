@@ -443,3 +443,8 @@ optpack.add("notomo/gettest.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "gettest" } },
 })
+
+optpack.add("notomo/tracebundler.nvim", {
+  fetch = { depth = 0 },
+  load_on = { modules = { "tracebundler" } },
+})

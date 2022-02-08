@@ -12,6 +12,7 @@ local modules = {
   "promise",
   "docfilter",
   "gettest",
+  "tracebundler",
   "notomo",
 }
 for _, m in ipairs(modules) do
