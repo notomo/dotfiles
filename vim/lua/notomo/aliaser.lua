@@ -12,6 +12,13 @@ aliaser.register_factory("thetto", function(aliases)
   end)
 end)
 
+aliaser.register_factory("buffer", function(aliases)
+  aliases:set("reverse", function()
+    vim.cmd([[g/^/m0]])
+    vim.cmd("nohlsearch")
+  end)
+end)
+
 aliaser.register_factory("vim", function(aliases)
   aliases:set("clear_messages", "messages clear")
 
