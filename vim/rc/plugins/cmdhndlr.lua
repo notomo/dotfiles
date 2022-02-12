@@ -13,12 +13,12 @@ vim.keymap.set("n", "[test]f", [[<Cmd>lua require("cmdhndlr").test()<CR>]])
 vim.keymap.set("n", "[test]n", function()
   local test = require("gettest").one_node(vim.fn.line("."))
   test = test or {}
-  require("cmdhndlr").test({ filter = test.name })
+  require("cmdhndlr").test({ filter = test.name, is_leaf = test.is_leaf })
 end)
 vim.keymap.set("n", "[test]N", function()
   local test = require("gettest").scope_root_node(vim.fn.line("."))
   test = test or {}
-  require("cmdhndlr").test({ filter = test.name })
+  require("cmdhndlr").test({ filter = test.name, is_leaf = test.is_leaf })
 end)
 
 vim.cmd([[

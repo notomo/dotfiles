@@ -296,7 +296,7 @@ require("thetto").setup({
         local window_id = vim.api.nvim_get_current_win()
         for _, item in ipairs(items) do
           vim.api.nvim_set_current_win(window_id)
-          require("cmdhndlr").test({ filter = item.value, layout = { type = "tab" } })
+          require("cmdhndlr").test({ filter = item.value, is_leaf = item.is_leaf, layout = { type = "tab" } })
         end
       end,
     },

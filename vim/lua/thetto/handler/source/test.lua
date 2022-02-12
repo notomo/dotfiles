@@ -17,6 +17,7 @@ function M.collect(self)
   for _, test in ipairs(tests) do
     table.insert(items, {
       value = test.name,
+      is_leaf = test.is_leaf,
       row = test.scope_node:start() + 1,
       path = path,
     })
