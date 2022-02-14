@@ -53,6 +53,10 @@ local mode = function()
   return modes[mode] or ""
 end
 
+local cwd = function()
+  return vim.fn.getcwd()
+end
+
 function M.setup()
   local stlparts = require("stlparts")
 
@@ -61,11 +65,16 @@ function M.setup()
   local Padding = stlparts.component("padding")
   local IfActiveWindow = stlparts.component("if_active_window")
   local Separate = stlparts.component("separate")
+  local FileType = stlparts.component("file_type")
   local List = stlparts.component("list")
 
   local active = Separate(List({ path, branch }), List({ column, filetype, mode }))
   local inactive = path
-  stlparts.set_root(IfNormalWindow(TrancateLeft(Padding(IfActiveWindow(active, inactive)))))
+  stlparts.set_root(
+    IfNormalWindow(
+      TrancateLeft(Padding(FileType({ ["kivi-file"] = List({ cwd, branch }) }, IfActiveWindow(active, inactive))))
+    )
+  )
 
   vim.opt.statusline = [[%!v:lua.require("stlparts").build()]]
 end
