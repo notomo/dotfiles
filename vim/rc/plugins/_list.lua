@@ -180,6 +180,7 @@ optpack.add("notomo/lreload.nvim", {
 })
 
 optpack.add("nanotee/luv-vimdocs", { load_on = { events = { "VimEnter" } } })
+optpack.add("milisims/nvim-luaref", { load_on = { events = { "VimEnter" } } })
 
 optpack.add("hrsh7th/nvim-cmp", {
   load_on = { modules = { "cmp" }, events = { "VimEnter" } },
