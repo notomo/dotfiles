@@ -51,6 +51,7 @@ function M.tab()
 end
 
 function M.setup()
+  vim.cmd([[highlight! link CmpItemAbbrMatch Keyword]])
   vim.cmd([[inoremap j<Space>o <Cmd>lua require('notomo.cmp').complete()<CR>]])
   vim.cmd([[imap <expr> <Tab> luaeval("require('notomo.cmp').tab()")]])
   vim.cmd([[smap <expr> <Tab> luaeval("require('notomo.cmp').tab()")]])
