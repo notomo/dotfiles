@@ -157,7 +157,7 @@ function M.rotate_file()
     return
   end
   for i = 1, 10000 do
-    local name = ("%s_%s"):format(i, origin)
+    local name = ("%03d_%s"):format(i, origin)
     if vim.fn.filereadable(name) ~= 1 and vim.fn.bufexists(name) ~= 1 then
       vim.cmd("file " .. name)
       vim.cmd("write")
