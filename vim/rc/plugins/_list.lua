@@ -169,7 +169,7 @@ optpack.add("notomo/lreload.nvim", {
   load_on = { modules = { "lreload" }, events = { "BufWritePre" } },
   hooks = {
     post_load = function()
-      require("notomo.lreload")
+      dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/lreload.lua"))
       require("lreload").enable("optpack", {
         post_hook = function()
           dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/_list.lua"))
@@ -260,8 +260,11 @@ optpack.add("notomo/gesture.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "gesture" } },
   hooks = {
-    post_add = luafile("~/.vim/rc/plugins/gesture.lua"),
-    post_load = luafile("~/dotfiles/vim/lua/notomo/gesture.lua"),
+    post_add = function()
+      vim.keymap.set("n", "<LeftDrag>", [[<Cmd>lua require("gesture").draw()<CR>]], { silent = true })
+      vim.keymap.set("n", "<LeftRelease>", [[<Cmd>lua require("gesture").finish()<CR>]], { silent = true })
+    end,
+    post_load = luafile("~/.vim/rc/plugins/gesture.lua"),
   },
 })
 
@@ -354,7 +357,7 @@ optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
 optpack.add("notomo/aliaser.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "aliaser" } },
-  hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/aliaser.lua") },
+  hooks = { post_load = luafile("~/dotfiles/vim/rc/plugins/aliaser.lua") },
 })
 
 optpack.add("tpope/vim-repeat", { load_on = { events = { "VimEnter" } } })
@@ -405,7 +408,7 @@ optpack.add("notomo/promise.nvim", {
 optpack.add("nvim-lua/plenary.nvim", { load_on = { modules = { "plenary" } } })
 optpack.add("jose-elias-alvarez/null-ls.nvim", {
   load_on = { filetypes = { "yaml" }, modules = { "null-ls" } },
-  hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/null_ls.lua") },
+  hooks = { post_load = luafile("~/dotfiles/vim/rc/plugins/null-ls.lua") },
 })
 
 optpack.add("notomo/docfilter.nvim", {
