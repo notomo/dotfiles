@@ -452,3 +452,11 @@ optpack.add("notomo/tracebundler.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "tracebundler" } },
 })
+
+optpack.add("mfussenegger/nvim-dap", {
+  load_on = { modules = { "dap" } },
+})
+optpack.add("jbyuki/one-small-step-for-vimkind", {
+  load_on = { modules = { "osv" } },
+  hooks = { post_load = luafile("~/dotfiles/vim/rc/plugins/nvim-dap.lua") },
+})

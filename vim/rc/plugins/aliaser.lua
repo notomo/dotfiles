@@ -58,6 +58,10 @@ aliaser.register_factory("vim", function(aliases)
   aliases:set("install_plugins", function()
     require("optpack").install()
   end)
+
+  aliases:set("start_debug", function()
+    require("osv").run_this()
+  end)
 end)
 
 aliaser.register_factory("other", function(aliases)
