@@ -85,7 +85,7 @@ nnoremap [finder]gA <Cmd>lua require("thetto").start("git/branch", {source_opts 
 nnoremap [finder]gt <Cmd>lua require("thetto").start("git/tag")<CR>
 nnoremap [finder]gT <Cmd>lua require("thetto").start("git/tag", {source_opts = {merged = true}})<CR>
 nnoremap [finder]go <Cmd>lua require("thetto").start("file/directory/recursive", {opts = {cwd = "$GOPATH/src"}, source_opts = {max_depth = 3}})<CR>
-nnoremap [keyword]gg <Cmd>lua require("thetto").start("file/grep", {opts = {target = "project", pattern_type = "word"}})<CR>
+nnoremap [keyword]gg <Cmd>lua require("thetto").start("file/grep", {opts = {target = "project", pattern = function() return vim.fn.expand("<cword>") end}})<CR>
 nnoremap <silent> [finder]gl <Cmd>lua require("thetto").start("file/grep")<CR>
 nnoremap <silent> [finder]gg <Cmd>lua require("thetto").start("file/grep", {opts = {target = "project"}})<CR>
 nnoremap [finder]P <Cmd>lua require("thetto").start("env/process")<CR>
