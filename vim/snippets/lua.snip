@@ -375,9 +375,9 @@ snippet keymap
 	vim.keymap.set("${1:n}", "${2:lhs}", [[${3:rhs}]])
 
 snippet autocmd
-	vim.api.nvim_create_autocmd({group = "${1:group_name}", event = {"${2:event_name}"}, pattern = {"${3:pattern}"}, callback = function()
+	vim.api.nvim_create_autocmd({"${2:event_name}"}, {group = "${1:group_name}", pattern = {"${3:pattern}"}, callback = function()
 		${0:TARGET}
 	end})
 
 snippet augroup
-	vim.api.nvim_create_augroup({name = "${1:name}", clear = true})
+	vim.api.nvim_create_augroup("${1:name}", {})

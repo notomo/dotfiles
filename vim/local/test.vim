@@ -7,10 +7,6 @@
 nnoremap <Space>q <Cmd>qa!<CR>
 nnoremap <Space>wq <Cmd>q<CR>
 
-" augroup MyAuGroup
-"     autocmd!
-" augroup END
-
 " filetype plugin indent on
 
 e ~/dotfiles/LICENSE

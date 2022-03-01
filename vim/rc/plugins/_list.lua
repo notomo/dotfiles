@@ -10,12 +10,6 @@ local with_trace = function(f)
   end
 end
 
-local source = function(path)
-  return with_trace(function()
-    vim.cmd("source " .. path)
-  end)
-end
-
 local luafile = function(path)
   return with_trace(function()
     vim.cmd("luafile " .. path)
@@ -90,7 +84,7 @@ optpack.add("lambdalisue/gina.vim", {
   load_on = { cmds = { "Gina*" }, events = { { "BufReadPre", "*/*" } } },
   hooks = {
     post_add = require("notomo.mapping").gina,
-    post_load = source("~/.vim/rc/plugins/gina.vim"),
+    post_load = luafile("~/.vim/rc/plugins/gina.lua"),
   },
 })
 
@@ -135,7 +129,7 @@ optpack.add("mhinz/vim-signify", {
   hooks = { post_add = luafile("~/.vim/rc/plugins/signify.lua") },
 })
 
-optpack.add("junegunn/vim-emoji", { load_on = { events = { "VimEnter" } } })
+optpack.add("junegunn/vim-emoji", { load_on = { modules = { "thetto" } } })
 
 optpack.add("lambdalisue/suda.vim", {
   enabled = vim.fn.has("unix") == 1,
@@ -179,8 +173,8 @@ optpack.add("notomo/lreload.nvim", {
   },
 })
 
-optpack.add("nanotee/luv-vimdocs", { load_on = { events = { "VimEnter" } } })
-optpack.add("milisims/nvim-luaref", { load_on = { events = { "VimEnter" } } })
+optpack.add("nanotee/luv-vimdocs")
+optpack.add("milisims/nvim-luaref")
 
 optpack.add("hrsh7th/nvim-cmp", {
   load_on = { modules = { "cmp" }, events = { "VimEnter" } },
@@ -200,7 +194,7 @@ optpack.add("notomo/cmp-neosnippet", { load_on = { events = { "VimEnter" } }, fe
 optpack.add("notomo/searcho.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "searcho" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/searcho.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/searcho.lua") },
 })
 
 optpack.add("AndrewRadev/linediff.vim", {
@@ -233,7 +227,7 @@ optpack.add("tyru/open-browser.vim", {
 optpack.add("notomo/vimonga", {
   fetch = { depth = 0 },
   load_on = { cmds = { "Vimonga*" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/vimonga.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/vimonga.lua") },
 })
 
 optpack.add("notomo/curstr.nvim", {
@@ -251,7 +245,7 @@ optpack.add("notomo/piemenu.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "piemenu" } },
   hooks = {
-    post_add = source("~/.vim/rc/plugins/piemenu.vim"),
+    post_add = luafile("~/.vim/rc/plugins/piemenu.lua"),
     post_load = luafile("~/dotfiles/vim/lua/notomo/piemenu.lua"),
   },
 })
@@ -271,14 +265,14 @@ optpack.add("notomo/gesture.nvim", {
 optpack.add("notomo/flompt.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "flompt" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/flompt.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/flompt.lua") },
 })
 
 optpack.add("notomo/thetto.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "thetto" }, events = { { "BufReadPost", "*/*" } } },
   hooks = {
-    post_add = source("~/.vim/rc/plugins/thetto.vim"),
+    post_add = luafile("~/.vim/rc/plugins/thetto.lua"),
     post_load = luafile("~/dotfiles/vim/lua/notomo/thetto.lua"),
   },
 })
@@ -297,13 +291,13 @@ optpack.add("neovim/nvim-lspconfig", {
 optpack.add("notomo/kivi.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "kivi" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/kivi.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/kivi.lua") },
 })
 
 optpack.add("notomo/reacher.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "reacher" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/reacher.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/reacher.lua") },
 })
 
 optpack.add("dart-lang/dart-vim-plugin", { load_on = { filetypes = { "dart" } } })
@@ -311,7 +305,7 @@ optpack.add("dart-lang/dart-vim-plugin", { load_on = { filetypes = { "dart" } } 
 optpack.add("notomo/cmdbuf.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "cmdbuf" } },
-  hooks = { post_add = source("~/.vim/rc/plugins/cmdbuf.vim") },
+  hooks = { post_add = luafile("~/.vim/rc/plugins/cmdbuf.lua") },
 })
 
 optpack.add("notomo/filetypext.nvim", {
