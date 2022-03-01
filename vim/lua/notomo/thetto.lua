@@ -31,18 +31,13 @@ local file_recursive, directory_recursive
 if vim.fn.has("win32") == 0 then
   file_recursive = function(path, max_depth)
     return {
-      "pt",
+      "rg",
       "--follow",
-      "--nocolor",
-      "--nogroup",
+      "--color=never",
       "--hidden",
-      "--ignore=.git",
-      "--ignore=.mypy_cache",
-      "--ignore=node_modules",
-      "--ignore=__pycache__",
-      "--ignore=.DS_Store",
-      "--depth=" .. max_depth,
-      "-g=",
+      "--glob=!.git",
+      "--max-depth=" .. max_depth,
+      "--files",
       path,
     }
   end
@@ -198,19 +193,18 @@ require("thetto").setup({
 
     ["file/grep"] = {
       opts = {
-        command = "pt",
+        command = "rg",
         command_opts = {
-          "--nogroup",
-          "--nocolor",
+          "--color=never",
+          "--no-heading",
           "--smart-case",
-          "--ignore=.git",
-          "--ignore=.mypy_cache",
-          "--ignore=tags",
+          "--glob=!.git",
           "--hidden",
+          "--line-number",
         },
-        pattern_opt = "",
+        pattern_opt = "-e",
         recursive_opt = "",
-        separator = "--",
+        separator = "",
       },
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
       colors = colors,

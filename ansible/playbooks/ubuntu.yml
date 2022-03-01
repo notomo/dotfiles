@@ -13,7 +13,6 @@
     - { role: 'neovim_dev', tags: 'neovim_dev' }
     - { role: 'vim', tags: 'vim' }
     - { role: 'ctags', tags: 'ctags' }
-    - { role: 'pt', tags: 'pt' }
     - { role: 'xvfb', tags: 'xvfb' }
     - { role: 'rust', tags: 'rust' }
     - { role: 'gh', tags: 'gh' }

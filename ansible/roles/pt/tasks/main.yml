@@ -1,3 +1,0 @@
-
-- name: install with homebrew
-  homebrew: name=pt

@@ -6,7 +6,6 @@
     - { role: 'workspace', tags: 'workspace' }
     - { role: 'dotfiles', tags: 'dotfiles' }
     - { role: 'neovim', tags: 'neovim' }
-    - { role: 'pt', tags: 'pt' }
     - { role: 'mac', tags: 'mac' }
     - { role: 'tools', tags: 'tools' }
     - { role: 'python', tags: 'python' }

@@ -11,6 +11,7 @@
       - tmpreaper
       - supervisor
       - cscope
+      - ripgrep
 
 - name: install with apt
   apt:
