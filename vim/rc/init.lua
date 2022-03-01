@@ -1,4 +1,4 @@
-if vim.fn.has("win32") == 1 and vim.fn.has("vim_starting") then
+if vim.fn.has("win32") == 1 and vim.fn.has("vim_starting") == 1 then
   vim.opt.runtimepath:prepend(vim.fn.expand("~/.vim/"))
   vim.opt.runtimepath:append(vim.fn.expand("~/.vim/after"))
 end
