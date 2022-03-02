@@ -215,22 +215,25 @@ nnoremap sk #N
 " escape
 " substitute
 
-set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-textobj-user
-set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-operator-user
+let s:pack_dir = expand("~/.vim/packages")
+execute 'set packpath^=' .. s:pack_dir
 
-set runtimepath+=~/.vim/packages/pack/optpack/opt/CamelCaseMotion
-source ~/dotfiles/vim/rc/plugins/camelcasemotion.vim
+packadd vim-textobj-user
+packadd vim-operator-user
 
-set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-operator-replace
+packadd CamelCaseMotion
+luafile ~/dotfiles/vim/rc/plugins/camelcasemotion.lua
+
+packadd vim-operator-replace
 nmap r <Plug>(operator-replace)
 xmap r <Plug>(operator-replace)
 omap r <Plug>(operator-replace)
 
-set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-textobj-line
-source ~/dotfiles/vim/rc/plugins/textobj-line.vim
+packadd vim-textobj-line
+luafile ~/dotfiles/vim/rc/plugins/textobj-line.lua
 
-set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-smartword
-source ~/dotfiles/vim/rc/plugins/smartword.vim
+packadd vim-smartword
+luafile ~/dotfiles/vim/rc/plugins/smartword.lua
 
-set runtimepath+=~/.vim/packages/pack/optpack/opt/vim-textobj-entire
-source ~/dotfiles/vim/rc/plugins/textobj-entire.vim
+packadd vim-textobj-entire
+luafile ~/dotfiles/vim/rc/plugins/textobj-entire.lua
