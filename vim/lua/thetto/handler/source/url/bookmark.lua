@@ -1,3 +1,6 @@
+local pathlib = require("thetto.lib.path")
+local filelib = require("thetto.lib.file")
+
 local M = {}
 
 local char_to_hex = function(c)
@@ -11,9 +14,9 @@ local encode = function(url)
   return url
 end
 
-function M.collect(self)
-  local file_path = self.pathlib.user_data_path("url_bookmark.txt")
-  if self.filelib.create_if_need(file_path) then
+function M.collect()
+  local file_path = pathlib.user_data_path("url_bookmark.txt")
+  if filelib.create_if_need(file_path) then
     local f = io.open(file_path, "w")
     f:write("sample\thttps://github.com/notomo/dotfiles")
     f:close()

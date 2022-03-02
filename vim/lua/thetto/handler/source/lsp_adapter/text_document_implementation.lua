@@ -1,9 +1,10 @@
+local pathlib = require("thetto.lib.path")
 local util = require("notomo.thetto_util")
 
 local M = {}
 
-function M._to_item(self, opts)
-  local to_relative = self.pathlib.relative_modifier(opts.cwd)
+function M._to_item(_, opts)
+  local to_relative = pathlib.relative_modifier(opts.cwd)
   return function(v)
     local path = vim.uri_to_fname(v.uri)
     local relative_path = to_relative(path)
