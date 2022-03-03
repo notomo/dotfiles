@@ -117,6 +117,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       [[<Cmd>lua require("thetto").execute("add_filter", {action_opts = {name = "-substring"}})<CR>Gi]],
       { buffer = true }
     )
+    vim.keymap.set(
+      "n",
+      "fau",
+      [[<Cmd>lua require("thetto").execute("add_filter", {action_opts = {name = "unique:path"}})<CR>Gi]],
+      { buffer = true }
+    )
+    vim.keymap.set(
+      "n",
+      "faU",
+      [[<Cmd>lua require("thetto").execute("remove_filter", {action_opts = {name = "unique:path"}})<CR>Gi]],
+      { buffer = true }
+    )
     vim.keymap.set("n", "fd", [[<Cmd>lua require("thetto").execute("remove_filter")<CR>]], { buffer = true })
     vim.keymap.set("n", "fi", [[<Cmd>lua require("thetto").execute("inverse_filter")<CR>]], { buffer = true })
     vim.keymap.set("n", "sr", [[<Cmd>lua require("thetto").execute("reverse_sorter")<CR>]], { buffer = true })
@@ -204,7 +216,7 @@ vim.keymap.set(
   [[<Cmd>lua require("thetto").start("cmd/make/target", {opts = {target = "upward", target_patterns = {"Makefile"}, insert = false}})<CR>]]
 )
 vim.keymap.set("n", "[finder]S", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
-vim.keymap.set("x", "[finder]s", [[:lua require("thetto").start("vim/substitute")<CR>]])
+vim.keymap.set("x", "[finder]s", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
 vim.keymap.set("n", "[finder]gd", [[<Cmd>lua require("thetto").start("git/diff", {opts = {target = "project"}})<CR>]])
 vim.keymap.set(
   "n",
