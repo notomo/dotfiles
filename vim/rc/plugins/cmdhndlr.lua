@@ -21,12 +21,11 @@ vim.keymap.set("n", "[test]N", function()
   require("cmdhndlr").test({ filter = test.name, is_leaf = test.is_leaf })
 end)
 
-vim.cmd([[
-function! s:settings() abort
-  nnoremap <buffer> [file]rl <Cmd>lua require('cmdhndlr').retry()<CR>
-endfunction
-augroup cmdhndlr_setting
-  autocmd!
-  autocmd FileType cmdhndlr call s:settings()
-augroup END
-]])
+vim.api.nvim_create_augroup("cmdhndlr_setting", {})
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = "cmdhndlr_setting",
+  pattern = { "cmdhndlr" },
+  callback = function()
+    vim.keymap.set("n", "[file]rl", [[<Cmd>lua require('cmdhndlr').retry()<CR>]], { buffer = true })
+  end,
+})

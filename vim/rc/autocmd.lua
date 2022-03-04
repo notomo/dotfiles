@@ -36,16 +36,17 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     vim.cmd([[highlight ParenMatch term=underline cterm=underline guibg=#5f8770]])
     vim.cmd([[highlight TabLine guifg=#fff5ee guibg=#536273 gui=none]])
     vim.cmd([[highlight YankRoundRegion guifg=#333333 guibg=#fedf81]])
-    vim.cmd([[highlight def link sqlStatement sqlKeyword]])
+    vim.cmd([[highlight default link sqlStatement sqlKeyword]])
     vim.cmd([[highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560]])
     vim.cmd([[highlight NormalFloat guibg=#213243]])
+    vim.cmd([[highlight default link LspReferenceText ColorColumn]])
 
     --for gina status
     vim.cmd([[highlight AnsiColor1 ctermfg=1 guifg=#ffaaaa]])
     vim.cmd([[highlight AnsiColor2 ctermfg=2 guifg=#aaddaa]])
 
     vim.cmd([[highlight clear SpellCap]])
-    vim.cmd([[highlight def link SpellCap NONE]])
+    vim.cmd([[highlight default link SpellCap NONE]])
     vim.cmd([[highlight clear SpellBad]])
     vim.cmd([[highlight SpellBad guifg=#ff5555]])
     vim.cmd([[highlight clear SpellRare]])

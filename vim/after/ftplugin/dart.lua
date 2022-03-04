@@ -28,12 +28,14 @@ vim.keymap.set(
   { buffer = true }
 )
 
-vim.cmd([[
-augroup flutter_hot_reload
-  autocmd! BufWritePost 
-  autocmd BufWritePost  lua require("cmdhndlr").input("r", {name = "normal_runner/dart/flutter"})
-augroup END
-]])
+vim.api.nvim_create_augroup("flutter_hot_reload", {})
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = "flutter_hot_reload",
+  buffer = 0,
+  callback = function()
+    require("cmdhndlr").input("r", { name = "normal_runner/dart/flutter" })
+  end,
+})
 
 vim.keymap.set("n", "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
 vim.keymap.set("n", "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })

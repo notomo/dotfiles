@@ -114,12 +114,14 @@ function M.setting()
     require("notomo.lsp.handler").dart_publish_flutter_outline(...)
   end
 
-  vim.cmd([[
-augroup notomo_lsp_progress
-  autocmd!
-  autocmd User LspProgressUpdate lua require("notomo.lsp.handler").progress()
-augroup END
-]])
+  vim.api.nvim_create_augroup("notomo_lsp_progress", {})
+  vim.api.nvim_create_autocmd({ "User" }, {
+    group = "notomo_lsp_progress",
+    pattern = { "LspProgressUpdate" },
+    callback = function()
+      require("notomo.lsp.handler").progress()
+    end,
+  })
 
   require("notomo.mapping").set_prefix({ "n" }, "lc", "<Leader>f")
   vim.keymap.set("n", "[lc]d", [[<Cmd>lua vim.lsp.buf.definition()<CR>]], { silent = true })
