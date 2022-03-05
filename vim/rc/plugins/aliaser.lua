@@ -1,6 +1,6 @@
 require("lreload").enable("aliaser", {
   post_hook = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/aliaser.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/aliaser.lua"))
   end,
 })
 

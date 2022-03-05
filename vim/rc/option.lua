@@ -125,9 +125,5 @@ opt.wildoptions:append("pum")
 opt.pumblend = 15
 opt.shada = [['10,!,<50,/0,s10,h,@10]]
 if vim.fn.has("win32") ~= 1 then
-  if vim.fn.has("vim_starting") == 1 then
-    opt.runtimepath:prepend(vim.fn.expand("~/.vim/"))
-    opt.runtimepath:append(vim.fn.expand("~/.vim/after"))
-  end
   opt.shell = "zsh"
 end
