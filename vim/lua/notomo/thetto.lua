@@ -61,7 +61,6 @@ require("thetto.handler.kind.file.directory").after = function(path)
 end
 
 require("thetto").setup({
-  store = { ["file/mru"] = { opts = { ignore_pattern = "\\v(^(gina|thetto|term|kivi)://)" } } },
 
   kind_actions = {
 
@@ -253,7 +252,7 @@ require("thetto").setup({
 
     ["cmd/zsh/history"] = {
       sorters = { "length" },
-      global_opts = { target = "upward", target_patterns = { "Makefile" } },
+      global_opts = { cwd = require("thetto.util").cwd.upward({ "Makefile" }) },
     },
   },
 
