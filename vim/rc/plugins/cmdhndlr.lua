@@ -8,6 +8,7 @@ vim.keymap.set(
   [[<Cmd>lua require("cmdhndlr").run({name = 'make/make', runner_opts = {target = "start"}})<CR>]]
 )
 vim.keymap.set("n", "[exec]bl", [[<Cmd>lua require("cmdhndlr").build({name = 'make/make'})<CR>]])
+vim.keymap.set("n", "[exec]bL", [[<Cmd>lua require("cmdhndlr").build()<CR>]])
 
 vim.keymap.set("n", "[test]f", [[<Cmd>lua require("cmdhndlr").test()<CR>]])
 vim.keymap.set("n", "[test]n", function()
