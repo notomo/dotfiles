@@ -65,7 +65,19 @@ setup_ls(lspconfig.sumneko_lua, {
 }, "mac", "win32")
 setup_ls(lspconfig.pylsp, {})
 setup_ls(lspconfig.clangd, {})
-setup_ls(lspconfig.tsserver, {})
+setup_ls(lspconfig.tsserver, {
+  root_dir = function(fname)
+    local denops = require("lspconfig/util").root_pattern("denops")(fname)
+    if denops then
+      return nil
+    end
+    return require("lspconfig/util").root_pattern("tsconfig.json")(fname)
+      or require("lspconfig/util").root_pattern("package.json", "jsconfig.json", ".git")(fname)
+  end,
+})
+setup_ls(lspconfig.denols, {
+  root_dir = require("lspconfig/util").root_pattern("deno.json", "deno.jsonc", "denops"),
+}, "mac", "win32")
 setup_ls(lspconfig.vimls, {}, "mac", "win32")
 setup_ls(lspconfig.cssls, {}, "mac", "win32")
 setup_ls(lspconfig.dartls, {
