@@ -222,7 +222,11 @@ packadd vim-textobj-user
 packadd vim-operator-user
 
 packadd CamelCaseMotion
-luafile ~/dotfiles/vim/rc/plugins/camelcasemotion.lua
+lua << EOF
+vim.keymap.set({ "n", "x", "o" }, "<Leader>w", "<Plug>CamelCaseMotion_w")
+vim.keymap.set({ "n", "x", "o" }, "<Leader>b", "<Plug>CamelCaseMotion_b")
+vim.keymap.set({ "n", "x", "o" }, "<Leader>e", "<Plug>CamelCaseMotion_e")
+EOF
 
 packadd vim-operator-replace
 nmap r <Plug>(operator-replace)
@@ -230,10 +234,20 @@ xmap r <Plug>(operator-replace)
 omap r <Plug>(operator-replace)
 
 packadd vim-textobj-line
-luafile ~/dotfiles/vim/rc/plugins/textobj-line.lua
+lua << EOF
+vim.keymap.set({ "x", "o" }, "ag", [[<Plug>(textobj-line-a)]])
+vim.keymap.set({ "x", "o" }, "ig", [[<Plug>(textobj-line-i)]])
+EOF
 
 packadd vim-smartword
-luafile ~/dotfiles/vim/rc/plugins/smartword.lua
+lua << EOF
+vim.keymap.set({ "n", "x", "o" }, "w", [[<Plug>(smartword-w)]])
+vim.keymap.set({ "n", "x", "o" }, "b", [[<Plug>(smartword-b)]])
+vim.keymap.set({ "n", "x", "o" }, "e", [[<Plug>(smartword-e)]])
+EOF
 
 packadd vim-textobj-entire
-luafile ~/dotfiles/vim/rc/plugins/textobj-entire.lua
+lua << EOF
+vim.keymap.set({ "o", "x" }, "ae", [[<Plug>(textobj-entire-a)]])
+vim.keymap.set({ "o", "x" }, "ie", [[<Plug>(textobj-entire-i)]])
+EOF
