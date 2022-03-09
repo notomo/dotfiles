@@ -10,13 +10,12 @@ vim.api.nvim_create_autocmd({ "User" }, {
       group = "vimonga_setting",
       pattern = { "vimonga-conns", "vimonga-dbs", "vimonga-colls" },
       callback = function()
-        vim.keymap.set(
-          "n",
-          "j",
-          [[j line('.') == line('$') ? 'gg' : 'j']],
-          { buffer = true, silent = true, expr = true }
-        )
-        vim.keymap.set("n", "k", [[k line('.') == 1 ? 'G' : 'k']], { buffer = true, silent = true, expr = true })
+        vim.keymap.set("n", "j", [[line('.') == line('$') ? 'gg' : 'j']], {
+          buffer = true,
+          silent = true,
+          expr = true,
+        })
+        vim.keymap.set("n", "k", [[line('.') == 1 ? 'G' : 'k']], { buffer = true, silent = true, expr = true })
       end,
     })
 
