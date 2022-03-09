@@ -1,21 +1,3 @@
-require("notomo.mapping").set_prefix({ "n", "x" }, "surround", "s")
-
-vim.keymap.set({ "n", "x" }, "[surround]a", [[<Plug>(operator-surround-append)]], { silent = true })
-vim.keymap.set(
-  "n",
-  "[surround]d",
-  [[v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-delete)]],
-  { silent = true, remap = true }
-)
-vim.keymap.set("x", "[surround]d", [[<Plug>(operator-surround-delete)]], { silent = true })
-vim.keymap.set(
-  "n",
-  "[surround]r",
-  [[v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-replace)]],
-  { silent = true, remap = true }
-)
-vim.keymap.set("x", "[surround]r", [[<Plug>(operator-surround-replace)]], { silent = true })
-
 vim.g["operator#surround#ignore_space"] = 0
 vim.g["operator#surround#uses_input_if_no_block"] = 0
 
