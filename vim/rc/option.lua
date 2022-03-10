@@ -25,6 +25,7 @@ g.loaded_netrwFileHandlers = 1
 g.loaded_spellfile_plugin = 1
 g.loaded_logiPat = 1
 g.loaded_matchparen = 1
+g.loaded_remote_plugins = 0
 g.loaded_python3_provider = 0
 g.loaded_python_provider = 0
 g.loaded_ruby_provider = 0
