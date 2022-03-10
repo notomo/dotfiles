@@ -39,7 +39,7 @@ optpack.add("tbastos/vim-lua", {
   },
 })
 
-optpack.add("kana/vim-textobj-user", { load_on = { events = { "VimEnter" } } })
+optpack.add("kana/vim-textobj-user")
 
 optpack.add("kana/vim-submode", {
   load_on = { events = { "VimEnter" } },
@@ -61,8 +61,15 @@ optpack.add("thinca/vim-zenspace", {
 })
 
 optpack.add("LeafCage/yankround.vim", {
-  load_on = { events = { "VimEnter" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/yankround.lua") },
+  load_on = {
+    keymaps = function(vim)
+      vim.g.yankround_use_region_hl = 1
+      vim.keymap.set({ "n", "x" }, "p", [[<Plug>(yankround-p)]])
+      vim.keymap.set("n", "P", [[<Plug>(yankround-P)]])
+      vim.keymap.set("n", "<C-p>", [[<Plug>(yankround-prev)]])
+      vim.keymap.set("n", "<C-n>", [[<Plug>(yankround-next)]])
+    end,
+  },
 })
 
 optpack.add("kana/vim-smartword", {
@@ -94,6 +101,7 @@ optpack.add("lambdalisue/gina.vim", {
 })
 
 optpack.add("kana/vim-textobj-entire", {
+  depends = { "vim-textobj-user" },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "o", "x" }, "ae", [[<Plug>(textobj-entire-a)]])
@@ -103,9 +111,7 @@ optpack.add("kana/vim-textobj-entire", {
 })
 
 optpack.add("osyo-manga/vim-textobj-blockwise", {
-  load_on = {
-    events = { "VimEnter" },
-  },
+  depends = { "vim-textobj-user" },
   hooks = {
     pre_load = function()
       vim.g.textobj_blockwise_enable_default_key_mapping = 0
@@ -114,6 +120,7 @@ optpack.add("osyo-manga/vim-textobj-blockwise", {
 })
 
 optpack.add("kana/vim-textobj-line", {
+  depends = { "vim-textobj-user" },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "x", "o" }, "ag", [[<Plug>(textobj-line-a)]])
@@ -133,6 +140,7 @@ optpack.add("bkad/CamelCaseMotion", {
 })
 
 optpack.add("osyo-manga/vim-textobj-from_regexp", {
+  depends = { "vim-textobj-user" },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "o", "x" }, "i.", [[textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')]], { expr = true })
@@ -220,7 +228,7 @@ optpack.add("nanotee/luv-vimdocs")
 optpack.add("milisims/nvim-luaref")
 
 optpack.add("hrsh7th/nvim-cmp", {
-  load_on = { modules = { "cmp" }, events = { "VimEnter" } },
+  load_on = { modules = { "cmp" }, events = { "InsertEnter" } },
   hooks = {
     post_load = vim.schedule_wrap(function()
       vim.cmd([[runtime! after/plugin/cmp_*.lua]])
@@ -228,11 +236,11 @@ optpack.add("hrsh7th/nvim-cmp", {
     end),
   },
 })
-optpack.add("hrsh7th/cmp-nvim-lsp", { load_on = { events = { "VimEnter" }, modules = { "cmp_nvim_lsp" } } })
-optpack.add("hrsh7th/cmp-buffer", { load_on = { events = { "VimEnter" } } })
-optpack.add("hrsh7th/cmp-path", { load_on = { events = { "VimEnter" } } })
-optpack.add("hrsh7th/cmp-nvim-lua", { load_on = { events = { "VimEnter" } } })
-optpack.add("notomo/cmp-neosnippet", { load_on = { events = { "VimEnter" } }, fetch = { depth = 0 } })
+optpack.add("hrsh7th/cmp-nvim-lsp", { load_on = { events = { "InsertEnter" }, modules = { "cmp_nvim_lsp" } } })
+optpack.add("hrsh7th/cmp-buffer", { load_on = { events = { "InsertEnter" } } })
+optpack.add("hrsh7th/cmp-path", { load_on = { events = { "InsertEnter" } } })
+optpack.add("hrsh7th/cmp-nvim-lua", { load_on = { events = { "InsertEnter" } } })
+optpack.add("notomo/cmp-neosnippet", { load_on = { events = { "InsertEnter" } }, fetch = { depth = 0 } })
 
 optpack.add("notomo/searcho.nvim", {
   fetch = { depth = 0 },
@@ -397,9 +405,10 @@ optpack.add("notomo/aliaser.nvim", {
   hooks = { post_load = luafile("~/dotfiles/vim/rc/plugins/aliaser.lua") },
 })
 
-optpack.add("kana/vim-operator-user", { load_on = { events = { "VimEnter" } } })
+optpack.add("kana/vim-operator-user")
 
 optpack.add("osyo-manga/vim-textobj-multiblock", {
+  depends = { "vim-textobj-user" },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "o", "x" }, "aj", [[<Plug>(textobj-multiblock-a)]])
@@ -433,6 +442,7 @@ optpack.add("Shougo/neosnippet.vim", {
 })
 
 optpack.add("osyo-manga/vim-operator-blockwise", {
+  depends = { "vim-operator-user", "vim-textobj-blockwise" },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set("n", "[operator]c", [[<Plug>(operator-blockwise-change)]])
@@ -443,11 +453,36 @@ optpack.add("osyo-manga/vim-operator-blockwise", {
 })
 
 optpack.add("kana/vim-operator-replace", {
-  load_on = { events = { "VimEnter" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/rc/plugins/operator-replace.lua") },
+  depends = { "vim-operator-user" },
+  load_on = {
+    keymaps = function(vim)
+      vim.keymap.set({ "n", "x", "o" }, "r", [[<Plug>(operator-replace)]])
+      vim.keymap.set("o", "<Plug>(builtin-gn)", [[gn]])
+      vim.keymap.set("n", "<Plug>(builtin-/)", [[/]])
+      vim.keymap.set("n", "<Plug>(builtin-N)", [[N]])
+      vim.keymap.set("n", "[edit]n", [[*<Plug>(builtin-N)<Plug>(operator-replace)<Plug>(builtin-gn)]], { remap = true })
+
+      _G._notomo_search = function()
+        local tmp = vim.fn.getreg('"')
+        vim.cmd([[normal! gv""y]])
+        local text = vim.fn.escape(vim.fn.getreg('"'), [[\/]])
+        vim.fn.setreg('"', tmp)
+        return [[\V]] .. vim.fn.substitute(text, "\n", [[\\n]], "g")
+      end
+
+      vim.keymap.set(
+        "x",
+        "[edit]n",
+        [["<ESC><Plug>(builtin-/)<C-r>=v:lua._notomo_search()<CR><CR><Plug>(builtin-N)<Plug>(operator-replace)<Plug>(builtin-gn)"]],
+        { expr = true, remap = true }
+      )
+      vim.keymap.set("x", "[edit]d", [["<ESC>/<C-r>=v:lua._notomo_search()<CR><CR>N\"_cgn"]], { expr = true })
+    end,
+  },
 })
 
 optpack.add("rhysd/vim-operator-surround", {
+  depends = { "vim-operator-user" },
   load_on = {
     keymaps = function(vim)
       require("notomo.mapping").set_prefix({ "n", "x" }, "surround", "s")
