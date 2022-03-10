@@ -293,6 +293,25 @@ require("thetto").setup({
         end
       end,
     },
+
+    ["plugin"] = {
+      action_search = function(_, items)
+        local item = items[1]
+        if item == nil then
+          return
+        end
+        local bufnr = vim.fn.bufadd(vim.fn.expand("~/dotfiles/vim/rc/plugins/_list.lua"))
+        vim.fn.bufload(bufnr)
+        require("thetto").start("line", {
+          opts = {
+            input_lines = { [[add("]] .. item.value },
+            immediately = true,
+            insert = false,
+          },
+          source_opts = { bufnr = bufnr },
+        })
+      end,
+    },
   },
 
   global_opts = { display_limit = 500 },

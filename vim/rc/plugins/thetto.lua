@@ -90,6 +90,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
     -- custom
     vim.keymap.set("n", "<Leader>rp", [[<Cmd>lua require("thetto").execute("qfreplace")<CR>]], { buffer = true })
+    vim.keymap.set("n", "O", [[<Cmd>lua require("thetto").execute("search")<CR>]], { buffer = true })
   end,
 })
 
