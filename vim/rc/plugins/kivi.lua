@@ -1,5 +1,3 @@
-vim.keymap.set("n", "[exec]f", [[<Cmd>lua require("kivi").open({layout = {type = "vertical"}})<CR>]])
-
 vim.api.nvim_create_augroup("kivi_setting", {})
 
 vim.api.nvim_create_autocmd({ "FileType" }, {

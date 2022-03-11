@@ -1,5 +1,3 @@
-vim.keymap.set("n", "[exec]v", [[<Cmd>Vimonga database.list -open=tab<CR>]])
-
 vim.api.nvim_create_augroup("vimonga_setting", {})
 vim.api.nvim_create_autocmd({ "User" }, {
   group = "vimonga_setting",

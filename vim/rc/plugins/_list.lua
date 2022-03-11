@@ -184,7 +184,7 @@ optpack.add("lambdalisue/suda.vim", {
 
 optpack.add("w0rp/ale", {
   load_on = { events = { "FileType" } },
-  hooks = { post_add = luafile("~/.vim/rc/plugins/ale.lua") },
+  hooks = { pre_load = luafile("~/.vim/rc/plugins/ale.lua") },
 })
 
 optpack.add("voldikss/vim-translator", {
@@ -278,7 +278,12 @@ optpack.add("tyru/open-browser.vim", {
 optpack.add("notomo/vimonga", {
   fetch = { depth = 0 },
   load_on = { cmds = { "Vimonga*" } },
-  hooks = { post_add = luafile("~/.vim/rc/plugins/vimonga.lua") },
+  hooks = {
+    post_add = function()
+      vim.keymap.set("n", "[exec]v", [[<Cmd>Vimonga database.list -open=tab<CR>]])
+    end,
+    pre_load = luafile("~/.vim/rc/plugins/vimonga.lua"),
+  },
 })
 
 optpack.add("notomo/curstr.nvim", {
@@ -342,7 +347,12 @@ optpack.add("neovim/nvim-lspconfig", {
 optpack.add("notomo/kivi.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "kivi" } },
-  hooks = { post_add = luafile("~/.vim/rc/plugins/kivi.lua") },
+  hooks = {
+    post_add = function()
+      vim.keymap.set("n", "[exec]f", [[<Cmd>lua require("kivi").open({layout = {type = "vertical"}})<CR>]])
+    end,
+    pre_load = luafile("~/.vim/rc/plugins/kivi.lua"),
+  },
 })
 
 optpack.add("notomo/reacher.nvim", {
