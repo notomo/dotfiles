@@ -509,6 +509,7 @@ optpack.add("rhysd/vim-operator-surround", {
 
 optpack.add("tpope/vim-repeat", { load_on = { events = { "FileType" } } })
 optpack.add("tyru/caw.vim", {
+  depends = { "vim-operator-user" },
   load_on = { events = { "FileType" } },
   hooks = { post_add = luafile("~/.vim/rc/plugins/caw.lua") },
 })
