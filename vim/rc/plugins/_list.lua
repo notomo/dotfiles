@@ -585,3 +585,7 @@ optpack.add("jbyuki/one-small-step-for-vimkind", {
   load_on = { modules = { "osv" } },
   hooks = { post_load = luafile("~/dotfiles/vim/rc/plugins/nvim-dap.lua") },
 })
+
+optpack.add("hashivim/vim-terraform", {
+  load_on = { filetypes = { "terraform" } },
+})
