@@ -72,7 +72,14 @@ aliaser.register_factory("other", function(aliases)
     require("notomo.edit").mkup(true)
   end)
 
-  aliases:set("open_vscode", [[execute '!code -r -g %:' .. line('.') .. ':' .. col('.')]])
+  local open_line = function()
+    vim.cmd([[!code -r ]] .. vim.fn.expand("%:p") .. vim.fn.line(".") .. ":" .. vim.fn.col("."))
+  end
+  aliases:set("open_line_in_vscode", open_line)
+  aliases:set("open_repo_in_vscode", function()
+    vim.cmd([[!code -r ]] .. vim.fn.fnamemodify(vim.fn.finddir(".git", ".;"), ":h"))
+    open_line()
+  end)
 end)
 
 aliaser.register_factory("github", function(aliases)
