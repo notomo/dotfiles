@@ -54,7 +54,7 @@ optpack.add("kana/vim-submode", {
 optpack.add("thinca/vim-zenspace", {
   load_on = { events = { { "BufReadPre", "*/*" } } },
   hooks = {
-    post_add = function()
+    pre_load = function()
       vim.g["zenspace#default_mode"] = "on"
     end,
   },
@@ -166,7 +166,7 @@ optpack.add("haya14busa/vim-edgemotion", {
 
 optpack.add("mhinz/vim-signify", {
   load_on = { events = { { "BufReadPre", "*/*" } } },
-  hooks = { post_add = luafile("~/.vim/rc/plugins/signify.lua") },
+  hooks = { pre_load = luafile("~/.vim/rc/plugins/signify.lua") },
 })
 
 optpack.add("junegunn/vim-emoji", { load_on = { modules = { "thetto" } } })
@@ -205,7 +205,7 @@ optpack.add("voldikss/vim-translator", {
 
 optpack.add("notomo/wintablib.nvim", {
   fetch = { depth = 0 },
-  load_on = { events = { "VimEnter" }, modules = { "wintablib" } },
+  load_on = { events = { "VimEnter" } },
   hooks = { post_load = luafile("~/.vim/rc/plugins/wintablib.lua") },
 })
 
@@ -295,7 +295,11 @@ optpack.add("notomo/curstr.nvim", {
   },
 })
 
-optpack.add("notomo/nvimtool", { load_on = { modules = { "nvimtool" } }, fetch = { depth = 0 } })
+optpack.add("notomo/nvimtool", {
+  depends = { "nvim-treesitter" },
+  load_on = { modules = { "nvimtool" } },
+  fetch = { depth = 0 },
+})
 
 optpack.add("notomo/piemenu.nvim", {
   fetch = { depth = 0 },
@@ -396,12 +400,11 @@ optpack.add("notomo/suball.nvim", {
   hooks = { post_add = luafile("~/.vim/rc/plugins/suball.lua") },
 })
 
-optpack.add(
-  "nvim-treesitter/nvim-treesitter",
-  { load_on = { cmds = { "TS*" }, modules = { "gettest", "nvimtool", "nvim-treesitter" } } }
-)
-optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
+optpack.add("nvim-treesitter/nvim-treesitter", {
   load_on = { cmds = { "TS*" }, modules = { "nvim-treesitter" } },
+})
+optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
+  depends = { "nvim-treesitter" },
   hooks = {
     post_load = function()
       require("notomo.treesitter").setup()
@@ -517,9 +520,9 @@ optpack.add("rhysd/vim-operator-surround", {
   hooks = { pre_load = luafile("~/.vim/rc/plugins/operator-surround.lua") },
 })
 
-optpack.add("tpope/vim-repeat", { load_on = { events = { "FileType" } } })
+optpack.add("tpope/vim-repeat")
 optpack.add("tyru/caw.vim", {
-  depends = { "vim-operator-user" },
+  depends = { "vim-operator-user", "vim-repeat" },
   load_on = { events = { "FileType" } },
   hooks = { post_add = luafile("~/.vim/rc/plugins/caw.lua") },
 })
@@ -532,6 +535,7 @@ optpack.add("notomo/promise.nvim", {
 
 optpack.add("nvim-lua/plenary.nvim", { load_on = { modules = { "plenary" } } })
 optpack.add("jose-elias-alvarez/null-ls.nvim", {
+  depends = { "plenary.nvim" },
   load_on = { filetypes = { "yaml" }, modules = { "null-ls" } },
   hooks = { post_load = luafile("~/dotfiles/vim/rc/plugins/null-ls.lua") },
 })
@@ -548,7 +552,7 @@ optpack.add("notomo/docfilter.nvim", {
 
 optpack.add("notomo/stlparts.nvim", {
   fetch = { depth = 0 },
-  load_on = { events = { "VimEnter" }, modules = { "stlparts" } },
+  load_on = { events = { "VimEnter" } },
   hooks = {
     post_load = function()
       require("notomo.stlparts").setup()
@@ -557,6 +561,7 @@ optpack.add("notomo/stlparts.nvim", {
 })
 
 optpack.add("romgrk/nvim-treesitter-context", {
+  depends = { "nvim-treesitter" },
   load_on = { cmds = { "TSContext*" } },
   hooks = {
     post_add = function()
@@ -569,6 +574,7 @@ optpack.add("romgrk/nvim-treesitter-context", {
 })
 
 optpack.add("notomo/gettest.nvim", {
+  depends = { "nvim-treesitter" },
   fetch = { depth = 0 },
   load_on = { modules = { "gettest" } },
 })
@@ -582,6 +588,7 @@ optpack.add("mfussenegger/nvim-dap", {
   load_on = { modules = { "dap" } },
 })
 optpack.add("jbyuki/one-small-step-for-vimkind", {
+  depends = { "nvim-dap" },
   load_on = { modules = { "osv" } },
   hooks = { post_load = luafile("~/dotfiles/vim/rc/plugins/nvim-dap.lua") },
 })
