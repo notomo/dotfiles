@@ -445,7 +445,7 @@ optpack.add("osyo-manga/vim-textobj-multiblock", {
 })
 
 optpack.add("Shougo/neosnippet.vim", {
-  load_on = { events = { "insertEnter" } },
+  load_on = { events = { "InsertEnter" } },
   hooks = {
     pre_load = luafile("~/dotfiles/vim/rc/plugins/neosnippet.lua"),
     post_load = function()
