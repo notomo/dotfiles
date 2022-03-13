@@ -13,6 +13,7 @@ local modules = {
   "docfilter",
   "gettest",
   "tracebundler",
+  "vendorlib",
   "notomo",
 }
 for _, m in ipairs(modules) do

@@ -596,3 +596,7 @@ optpack.add("jbyuki/one-small-step-for-vimkind", {
 optpack.add("hashivim/vim-terraform", {
   load_on = { filetypes = { "terraform" } },
 })
+
+optpack.add("notomo/vendorlib.nvim", {
+  load_on = { modules = { "vendorlib" } },
+})
