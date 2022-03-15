@@ -495,7 +495,7 @@ optpack.add("kana/vim-operator-replace", {
 })
 
 optpack.add("rhysd/vim-operator-surround", {
-  depends = { "vim-operator-user" },
+  depends = { "vim-operator-user", "vim-textobj-multiblock" },
   load_on = {
     keymaps = function(vim)
       require("notomo.mapping").set_prefix({ "n", "x" }, "surround", "s")
