@@ -44,7 +44,7 @@ optpack.add("kana/vim-textobj-user")
 optpack.add("kana/vim-submode", {
   load_on = { events = { "VimEnter" } },
   hooks = {
-    post_add = function()
+    pre_load = function()
       vim.g.submode_keep_leaving_key = 1
       vim.g.submode_timeout = 0
     end,
@@ -175,8 +175,7 @@ optpack.add("lambdalisue/suda.vim", {
   enabled = vim.fn.has("unix") == 1,
   load_on = { events = { { "BufReadPre", "*/*" } } },
   hooks = {
-    post_add = function()
-      vim.g.suda_startup = 1
+    pre_load = function()
       vim.keymap.set("n", "[file]W", [[<Cmd>write suda://%<CR>]])
     end,
   },
@@ -529,7 +528,6 @@ optpack.add("tyru/caw.vim", {
 
 optpack.add("notomo/promise.nvim", {
   fetch = { depth = 0 },
-  enabled = vim.fn.has("unix") == 1,
   load_on = { modules = { "promise" } },
 })
 
@@ -598,5 +596,6 @@ optpack.add("hashivim/vim-terraform", {
 })
 
 optpack.add("notomo/vendorlib.nvim", {
+  fetch = { depth = 0 },
   load_on = { modules = { "vendorlib" } },
 })
