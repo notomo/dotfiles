@@ -585,11 +585,34 @@ optpack.add("notomo/tracebundler.nvim", {
 
 optpack.add("mfussenegger/nvim-dap", {
   load_on = { modules = { "dap" } },
+  hooks = {
+    post_add = function()
+      vim.keymap.set("n", "[term]s", [[<Cmd>lua require("dap").step_into()<CR>]])
+      vim.keymap.set("n", "[term]b", [[<Cmd>lua require("dap").toggle_breakpoint()<CR>]])
+      vim.keymap.set("n", "[term]B", [[<Cmd>lua require("dap").clear_breakpoints()<CR>]])
+      vim.keymap.set("n", "[term]n", [[<Cmd>lua require("dap").step_over()<CR>]])
+      vim.keymap.set("n", "[term]c", [[<Cmd>lua require("dap").continue()<CR>]])
+      vim.keymap.set("n", "[term]f", [[<Cmd>lua require("dap").terminate()<CR>]])
+      vim.keymap.set("n", "[keyword]e", [[<Cmd>lua require('dap.ui.widgets').hover()<CR>]])
+    end,
+    pre_load = function()
+      vim.api.nvim_create_augroup("dap_setting", {})
+      vim.api.nvim_create_autocmd({ "FileType" }, {
+        group = "dap_setting",
+        pattern = { "dap-float" },
+        callback = function()
+          vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { nowait = true, buffer = true })
+        end,
+      })
+    end,
+  },
 })
 optpack.add("jbyuki/one-small-step-for-vimkind", {
   depends = { "nvim-dap" },
   load_on = { modules = { "osv" } },
-  hooks = { post_load = luafile("~/dotfiles/vim/rc/plugins/nvim-dap.lua") },
+  hooks = {
+    pre_load = luafile("~/.vim/rc/plugins/one-small-step-for-vimkind.lua"),
+  },
 })
 
 optpack.add("hashivim/vim-terraform", {
