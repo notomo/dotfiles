@@ -623,3 +623,8 @@ optpack.add("notomo/vendorlib.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "vendorlib" } },
 })
+
+optpack.add("notomo/misclib.nvim", {
+  fetch = { depth = 0 },
+  load_on = { modules = { "misclib" } },
+})

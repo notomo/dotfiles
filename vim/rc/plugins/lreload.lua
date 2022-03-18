@@ -14,6 +14,7 @@ local modules = {
   "gettest",
   "tracebundler",
   "vendorlib",
+  "misclib",
   "notomo",
 }
 for _, m in ipairs(modules) do
