@@ -92,16 +92,18 @@ function M.edit(action)
     return
   end
   local file_part = splitted[#splitted]
+  file_part = vim.fn.substitute(file_part, "\\v(\\t\\e[31m|\\e\\[m)", "", "g")
   local git = vim.fn["gina#core#get_or_fail"]()
   local abspath = vim.fn["gina#core#repo#abspath"](git, "")
-  local path = abspath .. vim.fn.substitute(file_part, "\\v(\\t\\e[31m|\\e\\[m)", "", "g")
-  if vim.fn.isdirectory(path) == 0 then
-    return vim.fn["gina#action#call"](action)
-  end
+  local path = abspath .. file_part
 
   if action == "edit:tab" then
     vim.cmd("tabnew")
   end
+  if vim.fn.isdirectory(path) == 0 then
+    return vim.cmd([[Gina edit ]] .. file_part)
+  end
+
   vim.cmd("lcd " .. path)
   require("kivi").open()
 end
