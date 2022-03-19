@@ -70,4 +70,31 @@ function M.plugins()
   io.stdout:write(table.concat(dirs, "\n"))
 end
 
+function M.vendorlib_used_plugins()
+  local optpack = require("optpack")
+  local plugins = optpack.list()
+
+  local dirs = {}
+  for _, plugin in ipairs(plugins) do
+    if not plugin.full_name:find("notomo/") then
+      goto continue
+    end
+
+    local lua_dir = plugin.directory .. "/lua"
+    if vim.fn.isdirectory(lua_dir) == 0 then
+      goto continue
+    end
+
+    local vendor_spec = vim.fn.glob(plugin.directory .. "**/vendorlib.lua")
+    if vim.fn.filereadable(vendor_spec) == 0 then
+      goto continue
+    end
+
+    table.insert(dirs, plugin.directory)
+    ::continue::
+  end
+
+  io.stdout:write(table.concat(dirs, "\n"))
+end
+
 return M
