@@ -4,6 +4,10 @@ require("lreload").enable("curstr", {
   end,
 })
 
+require("curstr.action_group.directory").after = function(path)
+  require("kivi").open(path)
+end
+
 require("curstr").setup({
   source_aliases = {
     swagger = {
