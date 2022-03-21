@@ -20,7 +20,9 @@ optpack.add("notomo/optpack.nvim", {
   fetch = { depth = 0 },
   hooks = {
     post_add = function()
-      vim.keymap.set("n", "[exec]U", [[<Cmd>lua require("optpack").update()<CR>]])
+      vim.keymap.set("n", "[exec]U", function()
+        require("optpack").update({ outputters = { echo = true } })
+      end)
     end,
   },
 })
