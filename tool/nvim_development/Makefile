@@ -77,18 +77,18 @@ gdb:
 .PHONY: gdb
 
 headless:
-	${NVIM} --headless -u NORC +"luafile ./minimal.lua" +"quitall!"
+	${NVIM} --headless --clean +"luafile ./minimal.lua" +"quitall!"
 .PHONY: headless
 
 start: _run
 .PHONY: start
 
 _run:
-	# ${NVIM} -u NORC +"luafile ./minimal.lua"
-	# ${NVIM} -u NORC +"luafile ./minimal.lua" +"quitall!"
-	${NVIM} -u NORC --headless +"luafile ./minimal.lua" +"quitall!"
-	# ${NVIM} -u NORC +"source ./minimal.vim" +"quitall!"
-	# ${NVIM} -u NORC +"source ./minimal.vim"
+	# ${NVIM} --clean +"luafile ./minimal.lua"
+	# ${NVIM} --clean +"luafile ./minimal.lua" +"quitall!"
+	${NVIM} --clean --headless +"luafile ./minimal.lua" +"quitall!"
+	# ${NVIM} --clean +"source ./minimal.vim" +"quitall!"
+	# ${NVIM} --clean +"source ./minimal.vim"
 	# ${NVIM}
 .PHONY: _run
 
@@ -140,7 +140,7 @@ issue:
 .PHONY: issue
 
 event:
-	${NVIM} --headless -u NORC +"luafile ./event.lua"
+	${NVIM} --headless --clean +"luafile ./event.lua"
 .PHONY: event
 
 # clang:

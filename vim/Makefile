@@ -13,5 +13,8 @@ test_plugins:
 vendor_plugins:
 	nvim --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} make vendor -C {}
 
+test_vendor_plugins:
+	nvim --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} make test -C {}
+
 help_tags:
 	nvim --headless +"lua require('notomo.startup').generate_help_tags()"
