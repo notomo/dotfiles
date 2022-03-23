@@ -150,7 +150,7 @@ vim.fn["gina#custom#command#alias"]("stash", "stash_for_list")
 vim.fn["gina#custom#command#option"]([[/\%(stash_for_list\|branch\)]], "--opener", "topleft split")
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-stash" },
+  pattern = { "gina-stash-list" },
   callback = function()
     vim.keymap.set({ "n", "v" }, "dr", [[<Plug>(gina-stash-drop)]], { buffer = true, silent = true })
     vim.keymap.set({ "n" }, "AP", [[<Plug>(gina-stash-apply)]], { buffer = true, silent = true })
@@ -206,18 +206,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-patch" },
-  callback = function()
-    vim.keymap.set({ "n", "x" }, "[diff]p", "<Plug>(gina-diffput)", { buffer = true, silent = true })
-    vim.keymap.set({ "n", "x" }, "[diff]G", "<Plug>(gina-diffget)", { buffer = true, silent = true })
-    vim.keymap.set({ "n", "x" }, "[diff]gl", "<Plug>(gina-diffget-r)", { buffer = true, silent = true })
-    vim.keymap.set({ "n", "x" }, "[diff]ga", "<Plug>(gina-diffget-l)", { buffer = true, silent = true })
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "gina_setting",
-  pattern = { "gina-diff" },
+  pattern = { "diff" },
   callback = function()
     vim.keymap.set("n", "sgj", function()
       require("notomo.edit").to_prev_syntax("diffLine", 1, 1)
@@ -251,7 +240,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-log", "gina-stash", "gina-blame", "gina-compare" },
+  pattern = { "gina-log", "gina-stash-list", "gina-blame" },
   callback = function()
     vim.keymap.set({ "n" }, "dd", [[:call gina#action#call("compare")<CR>]], { buffer = true, silent = true })
   end,
@@ -259,7 +248,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-status", "gina-log", "gina-stash", "gina-blame", "gina-compare" },
+  pattern = { "gina-status", "gina-log", "gina-stash-list", "gina-blame" },
   callback = function()
     vim.keymap.set({ "n" }, "D", [[:call gina#action#call("diff")<CR>]], { buffer = true, silent = true })
   end,
