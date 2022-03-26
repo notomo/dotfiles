@@ -23,7 +23,7 @@ build_with_asan: reset_build_type
 build_release_with_deb_info: reset_build_type
 	nvim --version
 	# cd ${NVIM_DIR}; make distclean
-	cd ${NVIM_DIR}; make CMAKE_BUILD_TYPE=RelWithDebInfo
+	cd ${NVIM_DIR}; LUAC_PRG=luac5.1 make CMAKE_BUILD_TYPE=RelWithDebInfo
 	cd ${NVIM_DIR}; make install CMAKE_INSTALL_PREFIX=${HOME}/.local/nvim
 	nvim --version
 .PHONY: build_release_with_deb_info
@@ -86,13 +86,21 @@ start: _run
 _run:
 	# ${NVIM} --clean +"luafile ./minimal.lua"
 	# ${NVIM} --clean +"luafile ./minimal.lua" +"quitall!"
-	${NVIM} --clean --headless +"luafile ./minimal.lua" +"quitall!"
+	# ${NVIM} --clean --headless +"luafile ./minimal.lua" +"quitall!"
+	${NVIM} --clean --headless +"source ./minimal.vim" +"quitall!"
 	# ${NVIM} --clean +"source ./minimal.vim" +"quitall!"
 	# ${NVIM} --clean +"source ./minimal.vim"
 	# ${NVIM}
 .PHONY: _run
 
 ISSUE := issue.md
+EXTENSION:=lua
+# EXTENSION:=vim
+ifeq (${EXTENSION},lua)
+	REPRODUCE_CMD:=luafile minimal.${EXTENSION}
+else
+	REPRODUCE_CMD:=source minimal.${EXTENSION}
+endif
 issue:
 	rm -f ${ISSUE}
 	echo "TITLE: Segmentation fault ❗TODO❗" >> ${ISSUE}
@@ -101,7 +109,10 @@ issue:
 	echo \`\`\` >> ${ISSUE}
 	${NVIM} --version >> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
-	echo "- \`vim -u DEFAULTS\` (version: ) behaves differently? N/A (❗TODO❗)" >> ${ISSUE}
+	echo "- \`Vim (not Nvim) behaves the same? no, vim 8.x.yyyy" >> ${ISSUE}
+	echo \`\`\` >> ${ISSUE}
+	${VIM} --version >> ${ISSUE}
+	echo \`\`\` >> ${ISSUE}
 	echo "- Operating system/version: `lsb_release -i -s` `lsb_release -r -s`" >> ${ISSUE}
 	echo "- Terminal name/version: wsltty" >> ${ISSUE}
 	echo "- ``\$$TERM``: ${TERM}" >> ${ISSUE}
@@ -109,14 +120,14 @@ issue:
 	echo>> ${ISSUE}
 	echo "### Steps to reproduce using \`nvim --clean NORC\`" >> ${ISSUE}
 	echo>> ${ISSUE}
-	echo \`\`\` >> ${ISSUE}
-	echo "build/bin/nvim --clean +'luafile minimal.lua'"  >> ${ISSUE}
-	echo "❗TODO❗" >> ${ISSUE}
+	echo minimal.${EXTENSION} >> ${ISSUE}
+	echo \`\`\`${EXTENSION} >> ${ISSUE}
+	cat minimal.${EXTENSION} >> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
 	echo>> ${ISSUE}
-	echo "minimal.lua" >> ${ISSUE}
-	echo \`\`\`lua >> ${ISSUE}
-	cat minimal.lua >> ${ISSUE}
+	echo \`\`\` >> ${ISSUE}
+	echo "build/bin/nvim --clean +'${REPRODUCE_CMD}'"  >> ${ISSUE}
+	echo "zsh: segmentation fault (core dumped)" >> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
 	echo>> ${ISSUE}
 	echo "### Expected behaviour" >> ${ISSUE}
@@ -125,8 +136,10 @@ issue:
 	echo>> ${ISSUE}
 	echo "### Actual behaviour" >> ${ISSUE}
 	echo>> ${ISSUE}
+	echo "Crash." >> ${ISSUE}
+	echo>> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
-	echo "❗TODO❗" >> ${ISSUE}
+	echo "build/bin/nvim --clean --headless +'${REPRODUCE_CMD}'" >> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
 	echo>> ${ISSUE}
 	echo "<details>" >> ${ISSUE}
