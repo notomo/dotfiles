@@ -73,7 +73,7 @@ aliaser.register_factory("other", function(aliases)
   end)
 
   local open_line = function()
-    vim.cmd([[!code -r ]] .. vim.fn.expand("%:p") .. vim.fn.line(".") .. ":" .. vim.fn.col("."))
+    vim.cmd([[!code -r -g ]] .. vim.fn.expand("%:p") .. ":" .. vim.fn.line(".") .. ":" .. vim.fn.col("."))
   end
   aliases:set("open_line_in_vscode", open_line)
   aliases:set("open_repo_in_vscode", function()
