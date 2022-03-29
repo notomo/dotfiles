@@ -32,12 +32,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     gesture.register({
       name = "go to the parent",
       buffer = "%",
-      inputs = { gesture.left() },
-      action = "lua require('kivi').execute('parent')",
-    })
-    gesture.register({
-      name = "go to the parent",
-      buffer = "%",
       inputs = { gesture.up() },
       action = "lua require('kivi').execute('parent')",
     })
