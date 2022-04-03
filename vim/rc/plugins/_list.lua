@@ -631,3 +631,8 @@ optpack.add("notomo/misclib.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "misclib" } },
 })
+
+optpack.add("notomo/importgraph.nvim", {
+  fetch = { depth = 0 },
+  load_on = { modules = { "importgraph" } },
+})
