@@ -1,9 +1,13 @@
+NVIM_DIR := ${HOME}/workspace/neovim
+# NVIM := ${NVIM_DIR}/build/bin/nvim
+NVIM := nvim
+
 test:
-	nvim --headless +"lua require('notomo.startup').test()"
+	${NVIM} --headless +"lua require('notomo.startup').test()"
 
 profile:
 	rm -f log
-	nvim --startuptime log +"lua require('notomo.startup').schedule('quitall!')"
+	${NVIM} --startuptime log +"lua require('notomo.startup').schedule('quitall!')"
 	cat log
 	rm -f log
 

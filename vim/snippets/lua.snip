@@ -394,3 +394,12 @@ snippet buffer_autocmd
 
 snippet augroup
 	vim.api.nvim_create_augroup("${1:name}", {})
+
+snippet doc
+	--- ${0:description}
+
+snippet doc_param
+	--- @param ${1:name} ${2:type}: ${0:description}
+
+snippet doc_return
+	--- @return ${1:type}: ${0:description}
