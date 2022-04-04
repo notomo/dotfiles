@@ -1,11 +1,5 @@
 local M = {}
 
-require("lreload").enable("stlparts", {
-  post_hook = function()
-    require("notomo.stlparts").setup()
-  end,
-})
-
 local surround = function(s)
   return ("[%s]"):format(s)
 end

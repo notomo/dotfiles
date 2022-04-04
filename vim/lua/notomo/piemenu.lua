@@ -1,9 +1,3 @@
-require("lreload").enable("piemenu", {
-  post_hook = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/piemenu.lua"))
-  end,
-})
-
 local piemenu = require("piemenu")
 piemenu.register("default", {
   menus = {

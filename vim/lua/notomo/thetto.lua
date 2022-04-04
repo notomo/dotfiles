@@ -1,9 +1,3 @@
-require("lreload").enable("thetto", {
-  post_hook = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/thetto.lua"))
-  end,
-})
-
 require("thetto").setup_store("file/mru")
 
 vim.cmd([[

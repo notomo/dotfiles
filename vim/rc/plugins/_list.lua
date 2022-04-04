@@ -216,11 +216,6 @@ optpack.add("notomo/lreload.nvim", {
   hooks = {
     post_load = function()
       dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/lreload.lua"))
-      require("lreload").enable("optpack", {
-        post_hook = function()
-          dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/_list.lua"))
-        end,
-      })
     end,
   },
 })

@@ -1,9 +1,3 @@
-require("lreload").enable("gesture", {
-  post_hook = function()
-    dofile(vim.fn.expand("~/.vim/rc/plugins/gesture.lua"))
-  end,
-})
-
 local gesture = require("gesture")
 gesture.register({
   name = "scroll to bottom",
