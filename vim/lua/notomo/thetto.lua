@@ -183,6 +183,7 @@ require("thetto").setup({
     ["vim/buffer"] = { global_opts = { auto = "preview" } },
 
     ["cmdhndlr/executed"] = { global_opts = { auto = "preview" } },
+    ["cmdhndlr/runner"] = { global_opts = { action = "execute" } },
 
     ["file/grep"] = {
       opts = {
@@ -285,6 +286,16 @@ require("thetto").setup({
           vim.api.nvim_set_current_win(window_id)
           require("cmdhndlr").test({ filter = item.value, is_leaf = item.is_leaf, layout = { type = "tab" } })
         end
+      end,
+    },
+
+    ["cmdhndlr/runner"] = {
+      action_execute = function(_, items)
+        local item = items[1]
+        if item == nil then
+          return
+        end
+        require("cmdhndlr").execute(item.value)
       end,
     },
 
