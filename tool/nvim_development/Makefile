@@ -33,7 +33,7 @@ reset_build_type:
 .PHONY: reset_build_type
 
 build:
-	cd ${NVIM_DIR}; make
+	cd ${NVIM_DIR}; make CMAKE_BUILD_TYPE=Debug
 .PHONY: build
 
 # NOTE: for print_stacktrace

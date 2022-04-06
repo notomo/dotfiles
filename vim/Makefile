@@ -29,3 +29,6 @@ list_vendor_plugins:
 
 help_tags:
 	nvim --headless +"lua require('notomo.startup').generate_help_tags()"
+
+version:
+	${NVIM} --version
