@@ -102,3 +102,11 @@ setup_ls(lspconfig.efm, {
   end,
 })
 setup_ls(lspconfig.yamlls, {})
+
+require("lsp_signature").setup({
+  bind = true,
+  handler_opts = {
+    border = "solid",
+  },
+  hint_enable = false,
+})
