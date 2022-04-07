@@ -55,6 +55,7 @@ setup_ls(lspconfig.sumneko_lua, {
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
           [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+          [require("optpack").get("coc-sumneko-lua").directory .. "/nvim_lua_types"] = true,
         },
         maxPreload = 2000,
         preloadFileSize = 50000,
