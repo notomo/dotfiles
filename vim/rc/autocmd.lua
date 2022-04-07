@@ -39,6 +39,7 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     vim.cmd([[highlight default link sqlStatement sqlKeyword]])
     vim.cmd([[highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560]])
     vim.cmd([[highlight NormalFloat guibg=#213243]])
+    vim.cmd([[highlight FloatBorder guibg=#213243]])
     vim.cmd([[highlight default link LspReferenceText ColorColumn]])
 
     --for gina status
