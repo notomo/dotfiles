@@ -1,13 +1,11 @@
 require("thetto").setup_store("file/mru")
 
-vim.cmd([[
-highlight! ThettoColorLabelLua guibg=#7098e6
-highlight! ThettoColorLabelVim guibg=#33aa77
-highlight! ThettoColorLabelGo guibg=#70ffe6
-highlight! ThettoColorLabelPythonBlue guibg=#3333dd
-highlight! ThettoColorLabelPythonYellow guibg=#fedf81
-highlight! ThettoColorLabelDir guibg=#a9dd9d
-]])
+vim.api.nvim_set_hl(0, "ThettoColorLabelLua", { bg = "#7098e6" })
+vim.api.nvim_set_hl(0, "ThettoColorLabelVim", { bg = "#33aa77" })
+vim.api.nvim_set_hl(0, "ThettoColorLabelGo", { bg = "#70ffe6" })
+vim.api.nvim_set_hl(0, "ThettoColorLabelPythonBlue", { bg = "#3333dd" })
+vim.api.nvim_set_hl(0, "ThettoColorLabelPythonYellow", { bg = "#fedf81" })
+vim.api.nvim_set_hl(0, "ThettoColorLabelDir", { bg = "#a9dd9d" })
 
 local colors = {
   { pattern = ".lua$", chunks = { { " ", "ThettoColorLabelLua" } } },

@@ -30,33 +30,31 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   group = group_name,
   pattern = { "*" },
   callback = function()
-    vim.cmd([[highlight Search cterm=NONE guifg=#000000 guibg=#aaccaa]])
-    vim.cmd([[highlight incSearch cterm=NONE guifg=#fffeeb guibg=#fb8965]])
-    vim.cmd([[highlight Flashy term=bold ctermbg=0 guifg=#333333 guibg=#a8d2eb]])
-    vim.cmd([[highlight ParenMatch term=underline cterm=underline guibg=#5f8770]])
-    vim.cmd([[highlight TabLine guifg=#fff5ee guibg=#536273 gui=none]])
-    vim.cmd([[highlight YankRoundRegion guifg=#333333 guibg=#fedf81]])
-    vim.cmd([[highlight default link sqlStatement sqlKeyword]])
-    vim.cmd([[highlight ZenSpace term=underline ctermbg=DarkGreen guibg=#ab6560]])
-    vim.cmd([[highlight NormalFloat guibg=#213243]])
-    vim.cmd([[highlight FloatBorder guibg=#213243]])
-    vim.cmd([[highlight default link LspReferenceText ColorColumn]])
+    vim.api.nvim_set_hl(0, "Search", { fg = "#000000", bg = "#aaccaa" })
+    vim.api.nvim_set_hl(0, "incSearch", { fg = "#fffeeb", bg = "#fb8965" })
+    vim.api.nvim_set_hl(0, "Flashy", { bold = true, ctermbg = 0, fg = "#333333", bg = "#a8d2eb" })
+    vim.api.nvim_set_hl(0, "ParenMatch", { underline = true, bg = "#5f8770" })
+    vim.api.nvim_set_hl(0, "TabLine", { fg = "#fff5ee", bg = "#536273" })
+    vim.api.nvim_set_hl(0, "YankRoundRegion", { fg = "#333333", bg = "#fedf81" })
+    vim.api.nvim_set_hl(0, "ZenSpace", { underline = true, ctermbg = "DarkGreen", bg = "#ab6560" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#213243" })
+    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#213243" })
 
     --for gina status
-    vim.cmd([[highlight AnsiColor1 ctermfg=1 guifg=#ffaaaa]])
-    vim.cmd([[highlight AnsiColor2 ctermfg=2 guifg=#aaddaa]])
+    vim.api.nvim_set_hl(0, "AnsiColor1", { ctermfg = 1, fg = "#ffaaaa" })
+    vim.api.nvim_set_hl(0, "AnsiColor2", { ctermfg = 2, fg = "#aaddaa" })
 
+    vim.cmd([[highlight default link sqlStatement sqlKeyword]])
+    vim.cmd([[highlight default link LspReferenceText ColorColumn]])
+
+    vim.api.nvim_set_hl(0, "SpellBad", { fg = "#ff5555" })
+    vim.api.nvim_set_hl(0, "SpellRare", { fg = "#ff5555" })
+    vim.api.nvim_set_hl(0, "SpellLocal", { fg = "#ff5555" })
     vim.cmd([[highlight clear SpellCap]])
     vim.cmd([[highlight default link SpellCap NONE]])
-    vim.cmd([[highlight clear SpellBad]])
-    vim.cmd([[highlight SpellBad guifg=#ff5555]])
-    vim.cmd([[highlight clear SpellRare]])
-    vim.cmd([[highlight SpellRare guifg=#ff5555]])
-    vim.cmd([[highlight clear SpellLocal]])
-    vim.cmd([[highlight SpellLocal guifg=#ff5555]])
 
     if vim.fn.has("mac") == 1 then
-      vim.cmd([[highlight Cursor guibg=#bbbbba]])
+      vim.api.nvim_set_hl(0, "Cursor", { bg = "#bbbbba" })
     end
   end,
 })
