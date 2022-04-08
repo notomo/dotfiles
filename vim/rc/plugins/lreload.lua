@@ -20,6 +20,9 @@ local hooks = {
   gesture = function()
     dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/gesture.lua"))
   end,
+  lreload = function()
+    dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/lreload.lua"))
+  end,
   notomo = function(args)
     dofile(args.match)
   end,
