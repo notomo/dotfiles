@@ -99,7 +99,7 @@ set("x", "[indent]r", [[:left<CR>gv]])
 local convert_indent_style = function(to_hard)
   local tmp = vim.opt.expandtab
   vim.opt_local.expandtab = not to_hard
-  local is_visual = require("notomo.mode").leave_visual_mode()
+  local is_visual = require("misclib.visual_mode").leave()
   local range = is_visual and "'<,'>" or "."
   vim.cmd(range .. "retab!")
   vim.opt.expandtab = tmp
