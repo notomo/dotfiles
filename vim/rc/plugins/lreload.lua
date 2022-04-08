@@ -18,12 +18,15 @@ local hooks = {
     dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/aliaser.lua"))
   end,
   gesture = function()
-    dofile(vim.fn.expand("~/.vim/rc/plugins/gesture.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/gesture.lua"))
+  end,
+  notomo = function(args)
+    dofile(args.match)
   end,
 }
 
 local plugins = vim.tbl_filter(function(plugin)
-  return plugin.full_name:find("notomo/") and plugin.full_name:find(".nvim$")
+  return plugin.full_name:match("^notomo/.+%.nvim$")
 end, require("optpack").list())
 
 local names = vim.tbl_map(function(plugin)
