@@ -294,8 +294,72 @@ set("c", "j<Space>o", [[<Space><BS><C-z>]])
 set("c", "<Tab>", [[<C-n>]])
 set("c", "<S-Tab>", [[<C-p>]])
 
-require("notomo.mapping").set_main_input()
-require("notomo.mapping").set_sub_input()
+local set_with_undo = function(mappings)
+  for _, m in ipairs(mappings) do
+    vim.keymap.set("i", m.lhs, vim.fn.substitute(m.rhs, "\\ze<Left>$", "\\<C-g>U", ""))
+  end
+end
+
+local MAIN_INPUT_PFX = "j<Space>"
+local main_input = {
+  { lhs = MAIN_INPUT_PFX .. "a", rhs = "-" },
+  { lhs = MAIN_INPUT_PFX .. "e", rhs = "=" },
+  { lhs = MAIN_INPUT_PFX .. "s", rhs = "_" },
+  { lhs = MAIN_INPUT_PFX .. "r", rhs = "<Bar>" },
+  { lhs = MAIN_INPUT_PFX .. "g", rhs = "\\" },
+  { lhs = MAIN_INPUT_PFX .. "w", rhs = '""<Left>' },
+  { lhs = MAIN_INPUT_PFX .. "b", rhs = "``<Left>" },
+  { lhs = MAIN_INPUT_PFX .. "l", rhs = "[]<Left>" },
+  { lhs = MAIN_INPUT_PFX .. "L", rhs = "[[]]<Left><Left>" },
+  { lhs = MAIN_INPUT_PFX .. "t", rhs = "<><Left>" },
+  { lhs = MAIN_INPUT_PFX .. "p", rhs = "()<Left>" },
+  { lhs = MAIN_INPUT_PFX .. "d", rhs = "{}<Left>" },
+  { lhs = MAIN_INPUT_PFX .. "q", rhs = "''<Left>" },
+  { lhs = MAIN_INPUT_PFX .. "h", rhs = "<C-r>+" },
+  { lhs = MAIN_INPUT_PFX .. "v", rhs = "<C-q>" },
+  { lhs = MAIN_INPUT_PFX .. "c", rhs = "::" },
+  { lhs = MAIN_INPUT_PFX .. "fe", rhs = ":=" },
+  { lhs = MAIN_INPUT_PFX .. "fq", rhs = "<C-c>" },
+  { lhs = MAIN_INPUT_PFX .. "fp", rhs = "<Up><CR>" },
+  { lhs = MAIN_INPUT_PFX .. "m", rhs = "<CR>" },
+}
+set_with_undo(main_input)
+for _, m in ipairs(main_input) do
+  vim.keymap.set({ "c", "t" }, m.lhs, m.rhs)
+end
+vim.keymap.set("t", MAIN_INPUT_PFX .. "h", "<Cmd>put +<CR>")
+vim.keymap.set("t", MAIN_INPUT_PFX .. "o", "<Tab>")
+vim.keymap.set("i", MAIN_INPUT_PFX .. "<CR>", function()
+  return require("notomo.edit").to_multiline()
+end, { expr = true })
+
+local SUB_INPUT_PFX = "jk"
+local sub_input = {
+  { lhs = SUB_INPUT_PFX .. "a", rhs = "&" },
+  { lhs = SUB_INPUT_PFX .. "h", rhs = "^" },
+  { lhs = SUB_INPUT_PFX .. "p", rhs = "+" },
+  { lhs = SUB_INPUT_PFX .. "s", rhs = "#" },
+  { lhs = SUB_INPUT_PFX .. "r", rhs = "%" },
+  { lhs = SUB_INPUT_PFX .. "m", rhs = "@" },
+  { lhs = SUB_INPUT_PFX .. "t", rhs = "~" },
+  { lhs = SUB_INPUT_PFX .. "d", rhs = "$" },
+  { lhs = SUB_INPUT_PFX .. "e", rhs = "!" },
+  { lhs = SUB_INPUT_PFX .. "b", rhs = "`" },
+  { lhs = SUB_INPUT_PFX .. "c", rhs = ":" },
+  { lhs = SUB_INPUT_PFX .. "x", rhs = "*" },
+  { lhs = SUB_INPUT_PFX .. "q", rhs = "?" },
+  { lhs = SUB_INPUT_PFX .. ";", rhs = '"' },
+  { lhs = SUB_INPUT_PFX .. ",", rhs = "'" },
+  { lhs = SUB_INPUT_PFX .. "g", rhs = "=>" },
+  { lhs = SUB_INPUT_PFX .. "f", rhs = "->" },
+  { lhs = SUB_INPUT_PFX .. "z", rhs = "<-" },
+  { lhs = SUB_INPUT_PFX .. "v", rhs = "<%=  %><Left><Left><Left>" },
+}
+set_with_undo(sub_input)
+for _, m in ipairs(sub_input) do
+  vim.keymap.set({ "c", "t" }, m.lhs, m.rhs)
+end
+vim.keymap.set({ "i", "c" }, SUB_INPUT_PFX .. "<CR>", "<C-r>=")
 
 local complete_pairs = {
   { "(", ")" },
