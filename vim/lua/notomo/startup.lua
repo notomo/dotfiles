@@ -26,16 +26,41 @@ function M.test()
       print(result)
     end
   end
+  vim.schedule(function()
+    local ok, result = pcall(M._test)
+    if not ok then
+      vim.api.nvim_echo({ { result, "Error" } }, true, {})
+      M.schedule([[message | cquit!]])
+    else
+      M.schedule([[message | quitall!]])
+    end
+  end)
+end
 
+function M._test()
   require("kivi").open()
+
   require("thetto").start("file/in_dir", { opts = { cwd = "~/dotfiles/vim/rc", input_lines = { "option.lua" } } })
   require("thetto").execute()
   assert(vim.bo.filetype == "lua")
 
   vim.fn.feedkeys("tt", "mx")
-  vim.fn.feedkeys("th", "mx")
+  assert(vim.fn.tabpagenr("$") == 2, "tab count")
 
-  M.schedule([[message | quitall!]])
+  vim.fn.feedkeys("th", "mx")
+  assert(vim.fn.tabpagenr() == 1, "tab current")
+
+  vim.cmd([[silent lua require("notomo.startup")._search()]])
+
+  vim.fn.feedkeys("tt", "mx")
+  vim.fn.feedkeys("idate", "ix")
+  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(neosnippet_expand)", true, true, true), "ixm")
+  assert(vim.fn.getline(".") ~= "date", "snippet expand")
+end
+
+function M._search()
+  require("searcho").forward("opt")
+  require("searcho").finish()
 end
 
 function M.schedule(cmd)
