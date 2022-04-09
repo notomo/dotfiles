@@ -1,55 +1,5 @@
 local M = {}
 
-local TAB_MODE = "tab"
-local TAB_KEY = ("[%s]"):format(TAB_MODE)
-local tab_input = {
-  { lhs = "l", rhs = "<Esc>gt", map_only = false, remap = false },
-  { lhs = "s", rhs = "<Cmd>tabr<CR>", map_only = false, remap = false },
-  { lhs = "e", rhs = "<Cmd>tabl<CR>", map_only = false, remap = false },
-  { lhs = "a", rhs = "<Esc>gT", map_only = false, remap = false },
-  { lhs = "h", rhs = "<Esc>gT", map_only = false, remap = false },
-  { lhs = "q", rhs = "<Esc><Plug>(tabclose_c)", map_only = false, remap = true },
-  { lhs = "da", rhs = "<Esc><Plug>(tabclose_l)", map_only = true, remap = true },
-  { lhs = "dl", rhs = "<Esc><Plug>(tabclose_r)", map_only = true, remap = true },
-  { lhs = "d;", rhs = "<Cmd>+tabclose<CR>", map_only = false, remap = false },
-  { lhs = "ml", rhs = "<Cmd>tabm+1<CR>", map_only = false, remap = false },
-  { lhs = "ms", rhs = "<Cmd>tabm 0<CR>", map_only = false, remap = false },
-  { lhs = "me", rhs = "<Cmd>tabm<CR>", map_only = false, remap = false },
-  { lhs = "ma", rhs = "<Cmd>tabm-1<CR>", map_only = false, remap = false },
-}
-function M.set_tab()
-  for _, m in ipairs(tab_input) do
-    vim.keymap.set("n", "[tab]" .. m.lhs, function()
-      return require("notomo.mapping").setup_tab_submode(m.lhs)
-    end)
-  end
-end
-
-function M.setup_tab_submode(enter_key)
-  for _, m in ipairs(tab_input) do
-    M._tab(m)
-  end
-  vim.fn["submode#leave_with"](TAB_MODE, "n", "", "j")
-  vim.fn.feedkeys(TAB_KEY .. enter_key)
-end
-
-function M._tab(m)
-  local remap = ""
-  if m.remap then
-    remap = "r"
-  end
-  if m.map_only then
-    if m.remap then
-      vim.keymap.set({ "n", "x" }, TAB_KEY .. m.lhs, m.rhs, { remap = true })
-    else
-      vim.keymap.set({ "n", "x" }, TAB_KEY .. m.lhs, m.rhs)
-    end
-  else
-    vim.fn["submode#enter_with"](TAB_MODE, "nx", remap, TAB_KEY .. m.lhs, m.rhs)
-  end
-  vim.fn["submode#map"](TAB_MODE, "n", remap, m.lhs, m.rhs)
-end
-
 function M.lsp()
   vim.keymap.set("n", "[keyword]o", [[<Cmd>lua vim.lsp.buf.definition()<CR>]], { buffer = true })
   vim.keymap.set("n", "[keyword]v", [[<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>]], { buffer = true })

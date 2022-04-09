@@ -44,7 +44,30 @@ optpack.add("tbastos/vim-lua", {
 optpack.add("kana/vim-textobj-user")
 
 optpack.add("kana/vim-submode", {
-  load_on = { events = { "VimEnter" } },
+  load_on = {
+    keymaps = function(vim)
+      local mappings = {
+        { lhs = "l", rhs = "<Esc>gt" },
+        { lhs = "s", rhs = "<Cmd>tabr<CR>" },
+        { lhs = "e", rhs = "<Cmd>tabl<CR>" },
+        { lhs = "a", rhs = "<Esc>gT" },
+        { lhs = "h", rhs = "<Esc>gT" },
+        { lhs = "q", rhs = "<Esc><Plug>(tabclose_c)" },
+        { lhs = "da", rhs = "<Esc><Plug>(tabclose_l)" },
+        { lhs = "dl", rhs = "<Esc><Plug>(tabclose_r)" },
+        { lhs = "d;", rhs = "<Cmd>+tabclose<CR>" },
+        { lhs = "ml", rhs = "<Cmd>tabm+1<CR>" },
+        { lhs = "ms", rhs = "<Cmd>tabm 0<CR>" },
+        { lhs = "me", rhs = "<Cmd>tabm<CR>" },
+        { lhs = "ma", rhs = "<Cmd>tabm-1<CR>" },
+      }
+      for _, m in ipairs(mappings) do
+        vim.keymap.set("n", "[tab]" .. m.lhs, function()
+          return require("notomo.submode").setup(m.lhs, mappings)
+        end)
+      end
+    end,
+  },
   hooks = {
     pre_load = function()
       vim.g.submode_keep_leaving_key = 1

@@ -436,8 +436,6 @@ set("t", "jj", [[<C-\><C-n>]])
 set("t", "<C-p>", [[<Up>]])
 set("t", "<C-n>", [[<Down>]])
 
-require("notomo.mapping").set_tab()
-
 if vim.fn.has("win32") == 1 then
   set("t", "<C-u>", [[<C-Home>]])
 end

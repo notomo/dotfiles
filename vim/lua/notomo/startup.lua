@@ -32,6 +32,9 @@ function M.test()
   require("thetto").execute()
   assert(vim.bo.filetype == "lua")
 
+  vim.fn.feedkeys("tt", "mx")
+  vim.fn.feedkeys("th", "mx")
+
   M.schedule([[message | quitall!]])
 end
 
