@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     vim.api.nvim_set_hl(0, "AnsiColor2", { ctermfg = 2, fg = "#aaddaa" })
 
     vim.cmd([[highlight default link sqlStatement sqlKeyword]])
-    vim.cmd([[highlight default link LspReferenceText ColorColumn]])
+    vim.cmd([[highlight default link LspReferenceText Todo]])
 
     vim.api.nvim_set_hl(0, "SpellBad", { fg = "#ff5555" })
     vim.api.nvim_set_hl(0, "SpellRare", { fg = "#ff5555" })
