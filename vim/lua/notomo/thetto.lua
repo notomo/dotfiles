@@ -183,6 +183,8 @@ require("thetto").setup({
     ["cmdhndlr/executed"] = { global_opts = { auto = "preview" } },
     ["cmdhndlr/runner"] = { global_opts = { action = "execute" } },
 
+    ["vendor_target"] = { global_opts = { action = "add" } },
+
     ["file/grep"] = {
       opts = {
         command = "rg",
@@ -294,6 +296,14 @@ require("thetto").setup({
           return
         end
         require("cmdhndlr").execute(item.value)
+      end,
+    },
+
+    ["vendor_target"] = {
+      action_add = function(_, items)
+        require("vendorlib").add(vim.tbl_map(function(item)
+          return item.value
+        end, items))
       end,
     },
 
