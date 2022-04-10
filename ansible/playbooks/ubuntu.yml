@@ -19,6 +19,7 @@
     - { role: 'sqlite3', tags: 'sqlite3' }
     - { role: 'lua', tags: 'lua' }
     - { role: 'timezone', tags: 'timezone' }
+    - { role: 'default_shell', tags: 'default_shell' }
     - { role: 'gitconfig', tags: 'gitconfig' }
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'

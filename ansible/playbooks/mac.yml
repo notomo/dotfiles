@@ -17,6 +17,7 @@
     - { role: 'ctags', tags: 'ctags' }
     - { role: 'golang', tags: 'golang' }
     - { role: 'gh', tags: 'gh' }
+    - { role: 'default_shell', tags: 'default_shell' }
     - { role: 'gitconfig', tags: 'gitconfig' }
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
