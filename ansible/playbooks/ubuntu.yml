@@ -1,25 +1,25 @@
 - hosts: 'local'
   roles:
-    - { role: 'workspace', tags: 'workspace' }
-    - { role: 'bash', tags: 'bash' }
-    - { role: 'zsh', tags: 'zsh' }
-    - { role: 'golang', tags: 'golang' }
-    - { role: 'dotfiles', tags: 'dotfiles' }
-    - { role: 'tools', tags: 'tools' }
-    - { role: 'python', tags: 'python' }
-    - { role: 'node', tags: 'node' }
-    - { role: 'docker', tags: 'docker' }
-    - { role: 'neovim', tags: 'neovim' }
-    - { role: 'neovim_dev', tags: 'neovim_dev' }
-    - { role: 'vim', tags: 'vim' }
-    - { role: 'ctags', tags: 'ctags' }
-    - { role: 'xvfb', tags: 'xvfb' }
-    - { role: 'rust', tags: 'rust' }
-    - { role: 'gh', tags: 'gh' }
-    - { role: 'sqlite3', tags: 'sqlite3' }
-    - { role: 'lua', tags: 'lua' }
-    - { role: 'timezone', tags: 'timezone' }
-    - { role: 'default_shell', tags: 'default_shell' }
-    - { role: 'gitconfig', tags: 'gitconfig' }
+    - { role: 'workspace', tags: ['workspace'] }
+    - { role: 'bash', tags: ['bash'] }
+    - { role: 'zsh', tags: ['zsh'] }
+    - { role: 'golang', tags: ['golang'] }
+    - { role: 'dotfiles', tags: ['dotfiles'] }
+    - { role: 'tools', tags: ['tools'] }
+    - { role: 'python', tags: ['python'] }
+    - { role: 'node', tags: ['node'] }
+    - { role: 'docker', tags: ['docker'] }
+    - { role: 'neovim', tags: ['neovim'] }
+    - { role: 'neovim_dev', tags: ['neovim_dev'] }
+    - { role: 'vim', tags: ['vim'] }
+    - { role: 'ctags', tags: ['ctags'] }
+    - { role: 'xvfb', tags: ['xvfb'] }
+    - { role: 'rust', tags: ['rust'] }
+    - { role: 'gh', tags: ['gh'] }
+    - { role: 'sqlite3', tags: ['sqlite3'] }
+    - { role: 'lua', tags: ['lua'] }
+    - { role: 'timezone', tags: ['timezone'] }
+    - { role: 'default_shell', tags: ['default_shell'] }
+    - { role: 'gitconfig', tags: ['gitconfig'] }
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
