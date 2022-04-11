@@ -6,7 +6,7 @@ local group = "notomo_local"
 vim.api.nvim_create_augroup(group, {})
 vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
   group = group,
-  pattern = { "~/workspace/neovim/*" },
+  pattern = { vim.fn.expand("~/workspace/neovim/") .. "*" },
   callback = function()
     vim.keymap.set("n", "[test]t", function()
       require("cmdhndlr").test({
@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
   group = group,
-  pattern = { "~/workspace/neovim/**/*.lua" },
+  pattern = { vim.fn.expand("~/workspace/neovim/") .. "**/*.lua" },
   callback = function()
     vim.b.ale_fix_on_save = 0
     vim.keymap.set("n", "[test]f", function()
