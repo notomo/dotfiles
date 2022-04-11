@@ -5,8 +5,12 @@ local collect_one = function(full_name)
   local account_name = parts[1]
   local plugin_name = parts[2]
 
-  local packpath = vim.opt.packpath:get()[1]
-  local pattern = ("%s/pack/optpack/opt/%s/lua/**/*.lua"):format(packpath, plugin_name)
+  local plugin = require("optpack").get(plugin_name)
+  if not plugin then
+    return {}
+  end
+  local pattern = ("%s/lua/**/*.lua"):format(plugin.directory)
+
   local paths = vim.fn.glob(pattern, false, true)
   paths = vim.tbl_filter(function(path)
     return not path:find("/test/")
