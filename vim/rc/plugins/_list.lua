@@ -21,7 +21,12 @@ optpack.add("notomo/optpack.nvim", {
   hooks = {
     post_add = function()
       vim.keymap.set("n", "[exec]U", function()
-        require("optpack").update({ outputters = { echo = true } })
+        require("optpack").update({
+          outputters = {
+            echo = { enabled = true },
+            log = { enabled = true },
+          },
+        })
       end)
     end,
   },
