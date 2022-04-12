@@ -5,9 +5,9 @@ local safe_cmd = function(cmd)
   end
 end
 
-safe_cmd([[runtime! rc/local/*.vim rc/local/*.lua]])
+safe_cmd([[runtime! rc/local/*.lua]])
 safe_cmd([[luafile ~/.vim/rc/option.lua]])
 safe_cmd([[luafile ~/.vim/rc/autocmd.lua]])
 safe_cmd([[luafile ~/.vim/rc/mapping.lua]])
 safe_cmd([[luafile ~/.vim/rc/plugins/_manager.lua]])
-safe_cmd([[runtime! rc/local/after/*.vim rc/local/after/*.lua]])
+safe_cmd([[runtime! rc/local/after/*.lua]])
