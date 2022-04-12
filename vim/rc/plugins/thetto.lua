@@ -147,22 +147,20 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-local util = require("thetto.util")
-
 vim.keymap.set("n", "[finder]R", [[<Cmd>lua require("thetto").start("vim/runtimepath")<CR>]])
 vim.keymap.set("n", "<Space>ur", function()
-  require("thetto").start("file/mru", { opts = { cwd = util.cwd.project() } })
+  require("thetto").start("file/mru", { opts = { cwd = require("thetto.util").cwd.project() } })
 end)
 vim.keymap.set("n", "[finder]<CR>", [[<Cmd>lua require("thetto").resume()<CR>]])
 vim.keymap.set("n", "<Space>usf", [[<Cmd>lua require("thetto").start("file/recursive")<CR>]])
 vim.keymap.set("n", "<Space>usg", function()
-  require("thetto").start("file/recursive", { opts = { cwd = util.cwd.project() } })
+  require("thetto").start("file/recursive", { opts = { cwd = require("thetto.util").cwd.project() } })
 end)
 vim.keymap.set("n", "[finder]f", [[<Cmd>lua require("thetto").start("file/in_dir")<CR>]])
 vim.keymap.set("n", "[finder]h", [[<Cmd>lua require("thetto").start("vim/help")<CR>]])
 vim.keymap.set("n", "[finder]l", [[<Cmd>lua require("thetto").start("line")<CR>]])
 vim.keymap.set("n", "[finder]r", function()
-  require("thetto").start("file/directory/recursive", { opts = { cwd = util.cwd.project() } })
+  require("thetto").start("file/directory/recursive", { opts = { cwd = require("thetto.util").cwd.project() } })
 end)
 vim.keymap.set("n", "<Space>usd", [[<Cmd>lua require("thetto").start("file/directory/recursive")<CR>]])
 vim.keymap.set(
@@ -190,7 +188,7 @@ vim.keymap.set(
 vim.keymap.set("n", "[keyword]gg", function()
   require("thetto").start("file/grep", {
     opts = {
-      cwd = util.cwd.project(),
+      cwd = require("thetto.util").cwd.project(),
       pattern = function()
         return vim.fn.expand("<cword>")
       end,
@@ -199,7 +197,7 @@ vim.keymap.set("n", "[keyword]gg", function()
 end)
 vim.keymap.set("n", "[finder]gl", [[<Cmd>lua require("thetto").start("file/grep")<CR>]], { silent = true })
 vim.keymap.set("n", "[finder]gg", function()
-  require("thetto").start("file/grep", { opts = { cwd = util.cwd.project() } })
+  require("thetto").start("file/grep", { opts = { cwd = require("thetto.util").cwd.project() } })
 end, { silent = true })
 vim.keymap.set("n", "[finder]P", [[<Cmd>lua require("thetto").start("env/process")<CR>]])
 vim.keymap.set("n", "[finder]A", [[<Cmd>lua require("thetto").start("vim/autocmd")<CR>]])
@@ -209,26 +207,32 @@ vim.keymap.set("n", "[finder]N", [[<Cmd>lua require("thetto").resume_execute({op
 vim.keymap.set("n", "[finder]m", [[<Cmd>lua require("thetto").start("vim/keymap")<CR>]])
 vim.keymap.set("n", "[finder]o", [[<Cmd>lua require("thetto").start("cmd/ctags")<CR>]])
 vim.keymap.set("n", "[finder],", function()
-  require("thetto").start("cmd/make/target", { opts = { cwd = util.cwd.project() } })
+  require("thetto").start("cmd/make/target", { opts = { cwd = require("thetto.util").cwd.project() } })
 end)
 vim.keymap.set("n", "[exec],", function()
-  require("thetto").start("cmd/make/target", { opts = { cwd = util.cwd.upward({ "Makefile" }), insert = false } })
+  require("thetto").start(
+    "cmd/make/target",
+    { opts = { cwd = require("thetto.util").cwd.upward({ "Makefile" }), insert = false } }
+  )
 end)
 vim.keymap.set("n", "[finder]S", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
 vim.keymap.set("x", "[finder]s", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
 vim.keymap.set("n", "[finder]gs", function()
-  require("thetto").start("git/status", { opts = { cwd = util.cwd.project() } })
+  require("thetto").start("git/status", { opts = { cwd = require("thetto.util").cwd.project() } })
 end)
 vim.keymap.set("n", "[finder]gd", function()
-  require("thetto").start("git/diff", { opts = { cwd = util.cwd.project() } })
+  require("thetto").start("git/diff", { opts = { cwd = require("thetto.util").cwd.project() } })
 end)
 vim.keymap.set("n", "[finder]gr", function()
-  require("thetto").start("git/diff", { opts = { cwd = util.cwd.project() }, source_opts = { expr = "%:p" } })
+  require("thetto").start(
+    "git/diff",
+    { opts = { cwd = require("thetto.util").cwd.project() }, source_opts = { expr = "%:p" } }
+  )
 end)
 vim.keymap.set("n", "[finder]G", function()
   require("thetto").start("file/grep", {
     opts = {
-      cwd = util.cwd.project(),
+      cwd = require("thetto.util").cwd.project(),
       debounce_ms = 100,
       filters = { "interactive", "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
     },
