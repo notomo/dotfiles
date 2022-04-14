@@ -98,7 +98,9 @@ function M.edit(action)
   local path = abspath .. file_part
 
   if action == "edit:tab" then
+    local window_id = vim.api.nvim_get_current_win()
     vim.cmd("tabnew")
+    vim.api.nvim_win_close(window_id, true)
   end
   if vim.fn.isdirectory(path) == 0 then
     return vim.cmd([[Gina edit ]] .. file_part)
