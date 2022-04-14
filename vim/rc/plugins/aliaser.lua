@@ -13,6 +13,12 @@ aliaser.register_factory("buffer", function(aliases)
   end)
 end)
 
+aliaser.register_factory("tree-sitter", function(aliases)
+  aliases:set("query", function()
+    require("nvimtool").tree.query()
+  end)
+end)
+
 aliaser.register_factory("vim", function(aliases)
   aliases:set("clear_messages", "messages clear")
 
