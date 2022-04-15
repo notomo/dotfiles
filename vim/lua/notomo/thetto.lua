@@ -155,6 +155,8 @@ require("thetto").setup({
       global_opts = { auto = "preview" },
     },
 
+    ["keymap"] = { global_opts = { auto = "preview" } },
+
     ["vim/jump"] = { global_opts = { auto = "preview" } },
     ["vim/substitute"] = { global_opts = { auto = "preview" } },
     ["vim/filetype"] = { sorters = { "length" } },

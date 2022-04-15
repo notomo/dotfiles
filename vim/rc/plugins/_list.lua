@@ -355,6 +355,7 @@ optpack.add("notomo/flompt.nvim", {
 })
 
 optpack.add("notomo/thetto.nvim", {
+  depends = { "nvim-treesitter" },
   fetch = { depth = 0 },
   load_on = { modules = { "thetto" }, events = { { "BufReadPost", "*/*" } } },
   hooks = {
