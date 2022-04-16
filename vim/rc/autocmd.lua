@@ -137,7 +137,7 @@ vim.api.nvim_create_autocmd({ "UIEnter" }, {
   group = group_name,
   pattern = { "*" },
   callback = function()
-    if vim.fn.exists("g:GuiLoaded") == 1 then
+    if vim.g.GuiLoaded then
       require("notomo.gui").init()
     end
   end,
