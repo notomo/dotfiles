@@ -329,6 +329,18 @@ require("thetto").setup({
           source_opts = { bufnr = bufnr },
         })
       end,
+      action_enable_hot_reloading = function(_, items)
+        for _, item in ipairs(items) do
+          local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
+          require("lreload").enable(name)
+        end
+      end,
+      action_disable_hot_reloading = function(_, items)
+        for _, item in ipairs(items) do
+          local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
+          require("lreload").disable(name)
+        end
+      end,
     },
   },
 
