@@ -4,6 +4,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "kivi_setting",
   pattern = { "kivi-*" },
   callback = function()
+    vim.keymap.set("n", "j", [[line('.') == line('$') ? 'gg' : 'j']], { silent = true, buffer = true, expr = true })
+    vim.keymap.set("n", "k", [[line('.') == 1 ? 'G' : 'k']], { silent = true, buffer = true, expr = true })
+    vim.keymap.set("n", "h", [[<Cmd>lua require("kivi").execute("parent")<CR>]], { buffer = true })
+    vim.keymap.set("n", "l", [[<Cmd>lua require("kivi").execute("child")<CR>]], { buffer = true })
+    vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
     vim.keymap.set(
       "n",
       "t<Space>",
