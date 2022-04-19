@@ -347,6 +347,7 @@ require("thetto").setup({
             input_lines = { [[add("]] .. item.value },
             immediately = true,
             insert = false,
+            can_resume = false,
           },
           source_opts = { bufnr = bufnr },
         })
