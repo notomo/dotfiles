@@ -52,6 +52,17 @@ require("thetto.handler.kind.file.directory").after = function(path)
   require("kivi").open({ path = path })
 end
 
+local cmdhndlr_driver = function(cmd, opts)
+  require("cmdhndlr").run({
+    name = "cmdhndlr/raw",
+    working_dir = function()
+      return opts.cwd
+    end,
+    layout = { type = "no" },
+    runner_opts = { cmd = cmd },
+  })
+end
+
 require("thetto").setup({
 
   kind_actions = {
@@ -279,6 +290,17 @@ require("thetto").setup({
         end
       end,
       opts = { yank = { key = "url" } },
+    },
+
+    ["cmd/make/target"] = {
+      opts = {
+        execute = { driver = cmdhndlr_driver },
+      },
+    },
+    ["cmd/npm/script"] = {
+      opts = {
+        execute = { driver = cmdhndlr_driver },
+      },
     },
 
     ["test"] = {
