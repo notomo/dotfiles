@@ -13,7 +13,7 @@ aliaser.register_factory("buffer", function(aliases)
   end)
 end)
 
-aliaser.register_factory("tree-sitter", function(aliases)
+aliaser.register_factory("tree_sitter", function(aliases)
   aliases:set("query", function()
     require("nvimtool").tree.query()
   end)
