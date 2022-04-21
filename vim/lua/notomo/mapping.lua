@@ -9,6 +9,7 @@ function M.lsp()
     vim.lsp.buf.definition()
   end, { buffer = true })
   vim.keymap.set("n", "sl", function()
+    vim.cmd([[nohlsearch]])
     vim.lsp.buf.document_highlight()
     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
       buffer = 0,
