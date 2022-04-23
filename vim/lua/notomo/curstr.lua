@@ -1,5 +1,5 @@
-require("curstr.action_group.directory").after = function(path)
-  require("kivi").open(path)
+require("curstr.action_group.directory").after = function(_, path)
+  require("kivi").open({ path = path })
 end
 
 require("curstr").setup({
