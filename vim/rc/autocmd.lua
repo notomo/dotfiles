@@ -44,16 +44,15 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     vim.api.nvim_set_hl(0, "AnsiColor1", { ctermfg = 1, fg = "#ffaaaa" })
     vim.api.nvim_set_hl(0, "AnsiColor2", { ctermfg = 2, fg = "#aaddaa" })
 
-    vim.cmd([[highlight default link sqlStatement sqlKeyword]])
-    vim.cmd([[highlight link LspReferenceText Search]])
-    vim.cmd([[highlight link LspReferenceRead Search]])
-    vim.cmd([[highlight link LspReferenceWrite Todo]])
+    vim.api.nvim_set_hl(0, "sqlStatement", { default = true, link = "sqlKeyword" })
+    vim.api.nvim_set_hl(0, "LspReferenceText", { link = "Search" })
+    vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "Search" })
+    vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "Todo" })
 
     vim.api.nvim_set_hl(0, "SpellBad", { fg = "#ff5555" })
     vim.api.nvim_set_hl(0, "SpellRare", { fg = "#ff5555" })
     vim.api.nvim_set_hl(0, "SpellLocal", { fg = "#ff5555" })
-    vim.cmd([[highlight clear SpellCap]])
-    vim.cmd([[highlight default link SpellCap NONE]])
+    vim.api.nvim_set_hl(0, "SpellCap", { link = "NONE" })
 
     if vim.fn.has("mac") == 1 then
       vim.api.nvim_set_hl(0, "Cursor", { bg = "#bbbbba" })
