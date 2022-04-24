@@ -10,7 +10,7 @@ vim.keymap.set(
 vim.keymap.set("n", "[exec]bl", [[<Cmd>lua require("cmdhndlr").build({name = 'make/make'})<CR>]])
 vim.keymap.set("n", "[exec]bL", [[<Cmd>lua require("cmdhndlr").build()<CR>]])
 
-vim.keymap.set("n", "[test]f", [[<Cmd>lua require("cmdhndlr").test()<CR>]])
+vim.keymap.set("n", "[test]f", [[<Cmd>lua require("cmdhndlr").test({layout = {type = "tab"}})<CR>]])
 vim.keymap.set("n", "[test]n", function()
   local test = require("gettest").one_node(vim.fn.line("."))
   test = test or {}

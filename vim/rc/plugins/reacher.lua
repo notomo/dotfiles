@@ -50,6 +50,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "w", [[<Cmd>lua require("reacher").next()<CR>]], { buffer = true })
     vim.keymap.set("n", "b", [[<Cmd>lua require("reacher").previous()<CR>]], { buffer = true })
     vim.keymap.set("n", "v", [[<Nop>]], { buffer = true })
-    vim.keymap.set("n", "<Space>", [[<Cmd>lua require("reacher").finish()<CR>]], { buffer = true })
+    vim.keymap.set("n", "<Space>", [[<Cmd>lua require("reacher").finish()<CR>]], { buffer = true, nowait = true })
   end,
 })

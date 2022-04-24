@@ -86,8 +86,8 @@ start: _run
 _run:
 	# ${NVIM} --clean +"luafile ./minimal.lua"
 	# ${NVIM} --clean +"luafile ./minimal.lua" +"quitall!"
-	# ${NVIM} --clean --headless +"luafile ./minimal.lua" +"quitall!"
-	${NVIM} --clean --headless +"source ./minimal.vim" +"quitall!"
+	${NVIM} --clean --headless +"luafile ./minimal.lua" +"quitall!"
+	# ${NVIM} --clean --headless +"source ./minimal.vim" +"quitall!"
 	# ${NVIM} --clean +"source ./minimal.vim" +"quitall!"
 	# ${NVIM} --clean +"source ./minimal.vim"
 	# ${NVIM}
