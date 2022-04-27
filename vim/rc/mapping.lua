@@ -256,7 +256,12 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "[yank]l", [[<Cmd>lua require("notomo.edit").yank(vim.fn.line('.'))<CR>]], silent)
 vim.keymap.set("n", "[yank]c", [[<Cmd>lua require("notomo.edit").yank(vim.fn.col('.'))<CR>]], silent)
-vim.keymap.set("n", "[yank]w", [[<Cmd>lua require("notomo.edit").yank(vim.fn.expand('%:p:h:t'))<CR>]], silent)
+vim.keymap.set(
+  "n",
+  "[yank]w",
+  [[<Cmd>lua require("notomo.edit").yank(vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"))<CR>]],
+  silent
+)
 
 local set_ia_xo = function(lhs, rhs)
   local inner_lhs = "i" .. lhs

@@ -62,6 +62,12 @@ aliaser.register_factory("vim", function(aliases)
   aliases:set("start_debug", function()
     require("osv").run_this()
   end)
+
+  aliases:set("test_highlight", function()
+    vim.cmd([[tabedit]])
+    vim.cmd([[source $VIMRUNTIME/syntax/hitest.vim]])
+    vim.cmd([[only]])
+  end)
 end)
 
 aliaser.register_factory("other", function(aliases)
