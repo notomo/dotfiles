@@ -9,12 +9,15 @@ end
 
 vim.cmd([[luafile ~/.vim/rc/plugins/_list.lua]])
 
+local scheme_name = "ultramarine"
 if initializing then
   require("optpack").update({
     on_finished = function()
-      vim.cmd([[colorscheme spring-night]])
+      vim.cmd([[colorscheme ]] .. scheme_name)
     end,
   })
 else
-  vim.cmd([[colorscheme spring-night]])
+  vim.schedule(function()
+    vim.cmd([[colorscheme ]] .. scheme_name)
+  end)
 end

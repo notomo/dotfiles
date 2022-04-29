@@ -30,15 +30,10 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   group = group_name,
   pattern = { "*" },
   callback = function()
-    vim.api.nvim_set_hl(0, "Search", { fg = "#000000", bg = "#aaccaa" })
-    vim.api.nvim_set_hl(0, "incSearch", { fg = "#fffeeb", bg = "#fb8965" })
-    vim.api.nvim_set_hl(0, "Flashy", { bold = true, ctermbg = 0, fg = "#333333", bg = "#a8d2eb" })
-    vim.api.nvim_set_hl(0, "ParenMatch", { underline = true, bg = "#5f8770" })
-    vim.api.nvim_set_hl(0, "TabLine", { fg = "#fff5ee", bg = "#536273" })
-    vim.api.nvim_set_hl(0, "YankRoundRegion", { fg = "#333333", bg = "#fedf81" })
-    vim.api.nvim_set_hl(0, "ZenSpace", { underline = true, ctermbg = "DarkGreen", bg = "#ab6560" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#213243" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#213243" })
+    local pallet = require("ultramarine").pallet
+    vim.api.nvim_set_hl(0, "Flashy", { bold = true, fg = pallet.black, bg = pallet.lightest_blue })
+    vim.api.nvim_set_hl(0, "YankRoundRegion", { fg = pallet.black, bg = pallet.yellow })
+    vim.api.nvim_set_hl(0, "ZenSpace", { underline = true, bg = pallet.red })
 
     --for gina status
     vim.api.nvim_set_hl(0, "AnsiColor1", { ctermfg = 1, fg = "#ffaaaa" })
@@ -49,9 +44,6 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "Search" })
     vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "Todo" })
 
-    vim.api.nvim_set_hl(0, "SpellBad", { fg = "#ff5555" })
-    vim.api.nvim_set_hl(0, "SpellRare", { fg = "#ff5555" })
-    vim.api.nvim_set_hl(0, "SpellLocal", { fg = "#ff5555" })
     vim.api.nvim_set_hl(0, "SpellCap", { link = "NONE" })
 
     if vim.fn.has("mac") == 1 then

@@ -26,6 +26,9 @@ local hooks = {
   notomo = function(args)
     dofile(args.match)
   end,
+  ultramarine = function()
+    vim.cmd([[colorscheme ultramarine]])
+  end,
 }
 
 local plugins = vim.tbl_filter(function(plugin)

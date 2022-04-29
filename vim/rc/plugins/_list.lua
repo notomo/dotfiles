@@ -112,16 +112,6 @@ optpack.add("kana/vim-smartword", {
   },
 })
 
-optpack.add("rhysd/vim-color-spring-night", {
-  load_on = { events = { "ColorSchemePre" } },
-  hooks = {
-    pre_load = function()
-      vim.g.spring_night_kill_italic = 1
-      vim.g.spring_night_high_contrast = 0
-    end,
-  },
-})
-
 optpack.add("lambdalisue/gina.vim", {
   load_on = { cmds = { "Gina*" }, events = { { "BufReadPre", "*/*" } } },
   hooks = {
@@ -661,4 +651,13 @@ optpack.add("notomo/misclib.nvim", {
 optpack.add("notomo/importgraph.nvim", {
   fetch = { depth = 0 },
   load_on = { modules = { "importgraph" } },
+})
+
+optpack.add("notomo/ultramarine.nvim", {
+  fetch = { depth = 0 },
+  load_on = { events = { "ColorSchemePre" } },
+})
+
+optpack.add("norcalli/nvim-colorizer.lua", {
+  load_on = { modules = { "colorizer" } },
 })
