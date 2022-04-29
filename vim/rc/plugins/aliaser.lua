@@ -68,6 +68,24 @@ aliaser.register_factory("vim", function(aliases)
     vim.cmd([[source $VIMRUNTIME/syntax/hitest.vim]])
     vim.cmd([[only]])
   end)
+
+  aliases:set("show_highlight_under_cursor", function()
+    local hl_group = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.synID(vim.fn.line("."), vim.fn.col("."), 1)), "name")
+    if hl_group ~= "" then
+      vim.api.nvim_echo({ { "" } }, false, {})
+      print(hl_group)
+      vim.cmd([[highlight ]] .. hl_group)
+    else
+      print("no hl_group")
+    end
+  end)
+end)
+
+aliaser.register_factory("dev", function(aliases)
+  local colorscheme = "ultramarine"
+  aliases:set("watch_" .. colorscheme, function()
+    require("notomo.colorscheme").watch(colorscheme, colorscheme .. ".nvim")
+  end)
 end)
 
 aliaser.register_factory("other", function(aliases)
