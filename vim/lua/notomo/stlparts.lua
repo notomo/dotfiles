@@ -1,5 +1,3 @@
-local M = {}
-
 local surround = function(s)
   return ("[%s]"):format(s)
 end
@@ -51,26 +49,22 @@ local cwd = function()
   return vim.fn.getcwd()
 end
 
-function M.setup()
-  local stlparts = require("stlparts")
+local stlparts = require("stlparts")
 
-  local IfNormalWindow = stlparts.component("if_normal_window")
-  local TrancateLeft = stlparts.component("trancate_left")
-  local Padding = stlparts.component("padding")
-  local IfActiveWindow = stlparts.component("if_active_window")
-  local Separate = stlparts.component("separate")
-  local FileType = stlparts.component("file_type")
-  local List = stlparts.component("list")
+local IfNormalWindow = stlparts.component("if_normal_window")
+local TrancateLeft = stlparts.component("trancate_left")
+local Padding = stlparts.component("padding")
+local IfActiveWindow = stlparts.component("if_active_window")
+local Separate = stlparts.component("separate")
+local FileType = stlparts.component("file_type")
+local List = stlparts.component("list")
 
-  local active = Separate(List({ path, branch }), List({ column, filetype, mode }))
-  local inactive = path
-  stlparts.set_root(
-    IfNormalWindow(
-      TrancateLeft(Padding(FileType({ ["kivi-file"] = List({ cwd, branch }) }, IfActiveWindow(active, inactive))))
-    )
+local active = Separate(List({ path, branch }), List({ column, filetype, mode }))
+local inactive = path
+stlparts.set_root(
+  IfNormalWindow(
+    TrancateLeft(Padding(FileType({ ["kivi-file"] = List({ cwd, branch }) }, IfActiveWindow(active, inactive))))
   )
+)
 
-  vim.opt.statusline = [[%!v:lua.require("stlparts").build()]]
-end
-
-return M
+vim.opt.statusline = [[%!v:lua.require("stlparts").build()]]

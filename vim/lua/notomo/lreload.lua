@@ -3,7 +3,7 @@ local hooks = {
     dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/_list.lua"))
   end,
   stlparts = function()
-    require("notomo.stlparts").setup()
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/stlparts.lua"))
   end,
   thetto = function()
     dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/thetto.lua"))
@@ -15,19 +15,20 @@ local hooks = {
     dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/piemenu.lua"))
   end,
   aliaser = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/aliaser.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/aliaser.lua"))
   end,
   gesture = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/gesture.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/gesture.lua"))
   end,
   lreload = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/lreload.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/lreload.lua"))
   end,
   notomo = function(args)
     dofile(args.match)
   end,
   ultramarine = function()
     vim.cmd([[colorscheme ultramarine]])
+    vim.api.nvim_exec_autocmds("ColorScheme", {})
   end,
 }
 
