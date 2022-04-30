@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("i", "<C-k>", [[<Cmd>lua require("searcho").backward_history()<CR>]], { buffer = true })
     vim.keymap.set("i", "<C-n>", [[<Cmd>lua require("searcho").next_page()<CR>]], { buffer = true })
     vim.keymap.set("i", "<C-p>", [[<Cmd>lua require("searcho").previous_page()<CR>]], { buffer = true })
-    vim.keymap.set("i", "<Tab>", [[ <Cmd>lua require("searcho").next_match()<CR>]], { buffer = true })
+    vim.keymap.set("i", "<Tab>", [[<Cmd>lua require("searcho").next_match()<CR>]], { buffer = true })
     vim.keymap.set("i", "<S-Tab>", [[<Cmd>lua require("searcho").previous_match()<CR>]], { buffer = true })
   end,
 })
