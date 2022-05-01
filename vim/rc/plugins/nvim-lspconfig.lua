@@ -98,8 +98,8 @@ setup_ls(lspconfig.efm, {
     return require("lspconfig/util").find_git_ancestor(fname) or vim.loop.cwd()
   end,
   on_attach = function(client)
-    client.resolved_capabilities.text_document_save = true
-    client.resolved_capabilities.text_document_save_include_text = true
+    client.server_capabilities.text_document_save = true
+    client.server_capabilities.text_document_save_include_text = true
   end,
 })
 setup_ls(lspconfig.yamlls, {})
