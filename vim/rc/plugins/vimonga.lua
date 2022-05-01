@@ -30,7 +30,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
       pattern = { "vimonga-dbs" },
       callback = function()
         vim.keymap.set("n", "l", [[<Cmd>Vimonga collection.list<CR>]], { buffer = true })
-        vim.keymap.set("n", "h", [[h <Cmd>Vimonga connection.list<CR>]], { buffer = true })
+        vim.keymap.set("n", "h", [[<Cmd>Vimonga connection.list<CR>]], { buffer = true })
         vim.keymap.set("n", "t<Space>", [[<Cmd>Vimonga collection.list -open=tab<CR>]], { buffer = true })
         vim.keymap.set("n", "dd", [[<Cmd>Vimonga database.drop<CR>]], { buffer = true })
         vim.keymap.set("x", "D", [[:Vimonga database.drop<CR>]], { buffer = true })
@@ -102,7 +102,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
       pattern = { "vimonga-docs" },
       callback = function()
         vim.keymap.set("n", "h", [[<Cmd>Vimonga collection.list<CR>]], { buffer = true })
-        vim.keymap.set("n", "<C-n>", [[<C-n> <Cmd>Vimonga document.page.next<CR>]], { buffer = true })
+        vim.keymap.set("n", "<C-n>", [[<Cmd>Vimonga document.page.next<CR>]], { buffer = true })
         vim.keymap.set("n", "<C-e>", [[<Cmd>Vimonga document.page.last<CR>]], { buffer = true })
         vim.keymap.set("n", "<C-p>", [[<Cmd>Vimonga document.page.prev<CR>]], { buffer = true })
         vim.keymap.set("n", "<C-a>", [[<Cmd>Vimonga document.page.first<CR>]], { buffer = true })
