@@ -13,7 +13,7 @@ local collect_one = function(full_name)
 
   local paths = vim.fn.glob(pattern, false, true)
   paths = vim.tbl_filter(function(path)
-    return not path:find("/test/")
+    return not path:find("/test/helper%.lua")
   end, paths)
 
   return vim.tbl_map(function(path)
@@ -28,8 +28,12 @@ end
 
 function M.collect()
   local items = {}
-  vim.list_extend(items, collect_one("notomo/misclib.nvim"))
-  vim.list_extend(items, collect_one("notomo/promise.nvim"))
+  for _, name in ipairs({
+    "notomo/promise.nvim",
+    "notomo/misclib.nvim",
+  }) do
+    vim.list_extend(items, collect_one(name))
+  end
   return items
 end
 
