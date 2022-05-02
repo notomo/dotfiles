@@ -7,19 +7,15 @@ export PATH=$HOME/.local/nvim/bin:$HOME/.local/bin:$PATH:$HOME/bin:$HOME/.compos
 # enable on wsl
 # export BROWSER=wslview
 
-export PATH=$PATH:$HOME/.vim/packages/pack/optpack/opt/vim-themis/bin
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-export THEMIS_VIM=nvim
-export THEMIS_ARGS="-e -s --headless"
-export THEMIS_PROFILE_LOG=profile.txt
 
-export PATH=$PATH:$HOME/.vim/packages/pack/optpack/opt/gevdoc/bin
+export PATH=$PATH:$HOME/.vim/packages/pack/mypack/opt/gevdoc/bin
 export GEVDOC_VIM=nvim
 export GEVDOC_ARGS="-e -s --headless"
 
-export PATH=$PATH:$HOME/.vim/packages/pack/optpack/opt/vusted/bin
+export PATH=$PATH:$HOME/.vim/packages/pack/mypack/opt/vusted/bin
 
-export PATH=$PATH:$HOME/.vim/packages/pack/optpack/opt/vimonga/target/debug/
+export PATH=$PATH:$HOME/.vim/packages/pack/mypack/opt/vimonga/target/debug/
 
 export EDITOR="nvr --remote-wait-silent"
 export GIT_EDITOR="nvr --remote-wait-silent"

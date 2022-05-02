@@ -1,4 +1,4 @@
-" set runtimepath+=~/.vim/packages/pack/optpack/opt/gesture.nvim
+" set runtimepath+=~/.vim/packages/pack/mypack/opt/gesture.nvim
 
 " colorscheme darkblue
 " set background=dark

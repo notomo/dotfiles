@@ -148,7 +148,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
     vim.fn["vimonga#config#set"]("default_host", "localhost:27017")
     vim.fn["vimonga#config#set"](
       "connection_config",
-      "~/.vim/packages/pack/optpack/opt/vimonga/example/connection.json"
+      require("optpack").get("vimonga").directory .. "/example/connection.json"
     )
   end,
 })

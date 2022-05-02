@@ -8,6 +8,19 @@ function M.load_plugins()
   end
 end
 
+function M.update_plugins()
+  local optpack = require("optpack")
+  optpack.update({
+    outputters = {
+      bufer = { enabled = false },
+      echo = { enabled = true },
+    },
+    on_finished = function()
+      vim.cmd([[quitall!]])
+    end,
+  })
+end
+
 function M.generate_help_tags()
   M.load_plugins()
   vim.cmd([[helptags ALL]])
