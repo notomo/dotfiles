@@ -14,7 +14,6 @@
       vim/rplugin: .vim/rplugin
       vim/plugin: .vim/plugin
       vim/ftdetect: .vim/ftdetect
-      vim/filetype.lua: .vim/filetype.lua
       vim/rc/init.lua: .config/nvim/init.lua
       lint/vim/.vintrc.yaml: .vintrc.yaml
       lint/python/setup.cfg: setup.cfg
