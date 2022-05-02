@@ -35,6 +35,10 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     vim.api.nvim_set_hl(0, "YankRoundRegion", { fg = pallet.black, bg = pallet.yellow })
     vim.api.nvim_set_hl(0, "ZenSpace", { underline = true, bg = pallet.red })
 
+    vim.api.nvim_set_hl(0, "markdownUrl", { fg = pallet.lightest_blue })
+    vim.api.nvim_set_hl(0, "makeCommands", { fg = pallet.white })
+    vim.api.nvim_set_hl(0, "helpExample", { fg = pallet.lightest_blue })
+
     --for gina status
     vim.api.nvim_set_hl(0, "AnsiColor1", { ctermfg = 1, fg = "#ffaaaa" })
     vim.api.nvim_set_hl(0, "AnsiColor2", { ctermfg = 2, fg = "#aaddaa" })
