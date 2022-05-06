@@ -153,9 +153,6 @@ vim.keymap.set("n", "<Space>ur", function()
 end)
 vim.keymap.set("n", "[finder]<CR>", [[<Cmd>lua require("thetto").resume()<CR>]])
 vim.keymap.set("n", "<Space>usf", [[<Cmd>lua require("thetto").start("file/recursive")<CR>]])
-vim.keymap.set("n", "<Space>usg", function()
-  require("thetto").start("file/recursive", { opts = { cwd = require("thetto.util").cwd.project() } })
-end)
 vim.keymap.set("n", "[finder]f", [[<Cmd>lua require("thetto").start("file/in_dir")<CR>]])
 vim.keymap.set("n", "[finder]h", [[<Cmd>lua require("thetto").start("vim/help")<CR>]])
 vim.keymap.set("n", "[finder]l", [[<Cmd>lua require("thetto").start("line")<CR>]])
@@ -163,11 +160,28 @@ vim.keymap.set("n", "[finder]r", function()
   require("thetto").start("file/directory/recursive", { opts = { cwd = require("thetto.util").cwd.project() } })
 end)
 vim.keymap.set("n", "<Space>usd", [[<Cmd>lua require("thetto").start("file/directory/recursive")<CR>]])
-vim.keymap.set(
-  "n",
-  "[finder]v",
-  [[<Cmd>lua require("thetto").start("file/recursive", {opts = {cwd = "~/dotfiles"}})<CR>]]
-)
+
+local git_ls_opts = {
+  get_command = function()
+    return { "git", "ls-files", "--full-name" }
+  end,
+  to_absolute = function(cwd, path)
+    return cwd .. "/" .. path
+  end,
+}
+vim.keymap.set("n", "<Space>usg", function()
+  require("thetto").start("file/recursive", {
+    opts = { cwd = require("thetto.util").cwd.project() },
+    source_opts = git_ls_opts,
+  })
+end)
+vim.keymap.set("n", "[finder]v", function()
+  require("thetto").start("file/recursive", {
+    opts = { cwd = "~/dotfiles" },
+    source_opts = git_ls_opts,
+  })
+end)
+
 vim.keymap.set("n", "[finder]O", [[<Cmd>lua require("thetto").start("vim/option")<CR>]])
 vim.keymap.set("n", "[finder]H", [[<Cmd>lua require("thetto").start("vim/highlight_group")<CR>]])
 vim.keymap.set("n", "[finder]B", [[<Cmd>lua require("thetto").start("vim/buffer")<CR>]])
