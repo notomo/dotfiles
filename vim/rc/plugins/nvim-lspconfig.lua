@@ -103,6 +103,7 @@ setup_ls(lspconfig.efm, {
   end,
 })
 setup_ls(lspconfig.yamlls, {})
+setup_ls(lspconfig.autohotkey2, {}, "unix")
 
 require("lsp_signature").setup({
   bind = true,
