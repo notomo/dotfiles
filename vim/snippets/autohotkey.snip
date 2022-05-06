@@ -1,0 +1,113 @@
+snippet ifonly
+	if (${1:condition})
+		${0:TARGET}
+
+snippet else
+	else
+		${0:TARGET}
+
+snippet function
+	${1:Name}()
+	{
+		${0:TARGET}
+	}
+
+snippet var
+options word
+	${1:name} := ${0:expr}
+
+snippet print
+	FileAppend(${1:expr}, "*")
+
+snippet variadic_params
+options word
+	${1:params}*
+
+snippet for
+	for ${1:value} in ${2:list}
+		${0:TARGET}
+
+snippet for_map
+	for ${1:key}, ${2:value} in ${3:map}
+		${0:TARGET}
+
+snippet while
+	while ${1:condition}
+	{
+		${0:TARGET}
+	}
+
+snippet loop_until
+	Loop
+		${0:TARGET}
+	Until ${1:condition}
+
+snippet map
+	Map("${1:key}", ${0:value})
+
+snippet include
+	#Include "${1:path}.ahk"
+
+snippet try_catch
+	try {
+		${1:statements}
+	} catch ${2:Error} as err {
+		${0:handle}
+	}
+
+snippet finally
+	finally {
+		${0:TARGET}
+	}
+
+snippet throw
+	throw ${1:ValueError}(${0:param})
+
+snippet switch
+	switch ${1:expr}
+	{
+	case ${2:case1}:
+		${0:TARGET}
+	}
+
+snippet default
+	default:
+		${0:TARGET}
+
+snippet return
+	return ${0:expr}
+
+snippet break
+	break
+
+snippet continue
+	continue
+
+snippet newline
+options word
+	${1:#:`n}
+
+snippet hotkey
+	${1:key}::
+	{
+		${0:TARGET}
+	}
+
+snippet on_error
+	OnError $1
+	
+	${1:ErrorFuncName}(exception, mode)
+	{
+		${0:TARGET}
+	}
+
+snippet on_exit
+	OnExit $1
+	
+	${1:ExitFuncName}(reason, code)
+	{
+		${0:TARGET}
+	}
+
+snippet sleep
+	Sleep ${1:ms}
