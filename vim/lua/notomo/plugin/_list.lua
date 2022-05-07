@@ -314,8 +314,8 @@ mypack.add("notomo/vimonga", {
 mypack.add("notomo/curstr.nvim", {
   load_on = { modules = { "curstr" } },
   hooks = {
-    post_add = luafile("~/.vim/rc/plugins/curstr.lua"),
-    post_load = luafile("~/dotfiles/vim/lua/notomo/curstr.lua"),
+    post_add = luafile("~/dotfiles/vim/lua/notomo/curstr/mapping.lua"),
+    post_load = luafile("~/dotfiles/vim/lua/notomo/curstr/init.lua"),
   },
 })
 
@@ -327,8 +327,8 @@ mypack.add("notomo/nvimtool", {
 mypack.add("notomo/piemenu.nvim", {
   load_on = { modules = { "piemenu" } },
   hooks = {
-    post_add = luafile("~/.vim/rc/plugins/piemenu.lua"),
-    post_load = luafile("~/dotfiles/vim/lua/notomo/piemenu.lua"),
+    post_add = luafile("~/dotfiles/vim/lua/notomo/piemenu/mapping.lua"),
+    post_load = luafile("~/dotfiles/vim/lua/notomo/piemenu/init.lua"),
   },
 })
 
