@@ -6,13 +6,13 @@ local hooks = {
     dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/stlparts.lua"))
   end,
   thetto = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/thetto.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/thetto/init.lua"))
   end,
   curstr = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/curstr.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/curstr/init.lua"))
   end,
   piemenu = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/piemenu.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/piemenu/init.lua"))
   end,
   aliaser = function()
     dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/aliaser.lua"))
