@@ -7,7 +7,7 @@ if initializing then
   vim.cmd([[!git clone https://github.com/notomo/optpack.nvim ]] .. manager_dir)
 end
 
-vim.cmd([[luafile ~/.vim/rc/plugins/_list.lua]])
+vim.cmd([[luafile ~/dotfiles/vim/lua/notomo/plugin/_list.lua]])
 
 local scheme_name = "ultramarine"
 if initializing then

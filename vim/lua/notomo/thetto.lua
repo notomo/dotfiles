@@ -340,7 +340,7 @@ require("thetto").setup({
         if item == nil then
           return
         end
-        local bufnr = vim.fn.bufadd(vim.fn.expand("~/dotfiles/vim/rc/plugins/_list.lua"))
+        local bufnr = vim.fn.bufadd(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/_list.lua"))
         vim.fn.bufload(bufnr)
         require("thetto").start("line", {
           opts = {

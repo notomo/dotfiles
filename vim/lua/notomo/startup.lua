@@ -53,7 +53,10 @@ end
 function M._test()
   require("kivi").open()
 
-  require("thetto").start("file/in_dir", { opts = { cwd = "~/dotfiles/vim/rc", input_lines = { "option.lua" } } })
+  require("thetto").start(
+    "file/in_dir",
+    { opts = { cwd = "~/dotfiles/vim/lua/notomo", input_lines = { "option.lua" } } }
+  )
   require("thetto").execute()
   assert(vim.bo.filetype == "lua")
 

@@ -1,6 +1,6 @@
 local hooks = {
   optpack = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/rc/plugins/_list.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/_list.lua"))
   end,
   stlparts = function()
     dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/stlparts.lua"))

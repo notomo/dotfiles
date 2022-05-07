@@ -1,4 +1,4 @@
-﻿local group_name = "notomo_setting"
+local group_name = "notomo_setting"
 vim.api.nvim_create_augroup(group_name, {})
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
