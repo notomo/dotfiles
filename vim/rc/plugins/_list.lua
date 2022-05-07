@@ -128,7 +128,7 @@ optpack.add("kana/vim-smartword", {
 optpack.add("lambdalisue/gina.vim", {
   load_on = { cmds = { "Gina*" }, events = { { "BufReadPre", "*/*" } } },
   hooks = {
-    post_add = require("notomo.mapping").gina,
+    post_add = require("notomo.gina.mapping").setup,
     post_load = luafile("~/.vim/rc/plugins/gina.lua"),
   },
 })
@@ -513,7 +513,7 @@ optpack.add("rhysd/vim-operator-surround", {
   depends = { "vim-operator-user", "vim-textobj-multiblock" },
   load_on = {
     keymaps = function(vim)
-      require("notomo.mapping").set_prefix({ "n", "x" }, "surround", "s")
+      require("notomo.mapping.util").set_prefix({ "n", "x" }, "surround", "s")
 
       vim.keymap.set({ "n", "x" }, "[surround]a", [[<Plug>(operator-surround-append)]], { silent = true })
       vim.keymap.set(

@@ -6,7 +6,7 @@ local remap = { remap = true }
 local silent_remap = { silent = true, remap = true }
 local expr = { expr = true }
 
-local set_prefix = require("notomo.mapping").set_prefix
+local set_prefix = require("notomo.mapping.util").set_prefix
 
 set_prefix({ "n", "x" }, "exec", "<Space>x")
 set_prefix({ "n" }, "keyword", "<Space>k")

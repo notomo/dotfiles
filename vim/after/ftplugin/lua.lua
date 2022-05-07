@@ -10,7 +10,7 @@ vim.keymap.set(
   [[<Cmd>lua require("notomo.edit").yank(require("notomo.module").path())<CR>]],
   { buffer = true }
 )
-require("notomo.mapping").lsp()
+require("notomo.lsp.mapping").setup()
 vim.cmd([[inoreabbrev <buffer> != ~=]])
 
 vim.keymap.set("n", "sgj", [[<Cmd>lua require("notomo.text_object").next_no_indent_function()<CR>]], { buffer = true })

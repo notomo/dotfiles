@@ -1,4 +1,4 @@
-require("notomo.mapping").set_prefix({ "n", "x" }, "browser", "[exec]b")
+require("notomo.mapping.util").set_prefix({ "n", "x" }, "browser", "[exec]b")
 
 vim.keymap.set("n", "[browser]s", [[<Cmd>execute 'OpenBrowserSearch' expand('<cword>')<CR>]])
 vim.keymap.set("n", "[browser]o", [[<Cmd>execute 'OpenBrowser' expand('<cWORD>')<CR>]])

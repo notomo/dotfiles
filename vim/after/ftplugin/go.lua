@@ -1,6 +1,6 @@
 vim.opt_local.completeopt:remove("preview")
 vim.opt_local.expandtab = false
-require("notomo.mapping").lsp()
+require("notomo.lsp.mapping").setup()
 
 vim.keymap.set(
   "n",

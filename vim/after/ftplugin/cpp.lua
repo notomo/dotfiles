@@ -1,1 +1,1 @@
-require("notomo.mapping").lsp()
+require("notomo.lsp.mapping").setup()

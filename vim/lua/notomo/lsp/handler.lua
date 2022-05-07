@@ -123,7 +123,7 @@ function M.setting()
     end,
   })
 
-  require("notomo.mapping").set_prefix({ "n" }, "lc", "<Leader>f")
+  require("notomo.mapping.util").set_prefix({ "n" }, "lc", "<Leader>f")
   vim.keymap.set("n", "[lc]d", [[<Cmd>lua vim.lsp.buf.definition()<CR>]], { silent = true })
   vim.keymap.set("n", "[lc]k", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], { silent = true })
   vim.keymap.set("n", "[lc]D", [[<Cmd>lua vim.lsp.buf.type_definition()<CR>]], { silent = true })
