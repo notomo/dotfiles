@@ -3,18 +3,14 @@
   set_fact:
     dotfiles_dir: "{{ home_dir }}/dotfiles"
     link_dict:
-      vim/rc: .vim/rc
-      vim/autoload: .vim/autoload
       vim/lua: .vim/lua
       vim/snippets: .vim/snippets
       vim/after: .vim/after
       vim/ftplugin: .vim/ftplugin
       vim/syntax: .vim/syntax
       vim/indent: .vim/indent
-      vim/rplugin: .vim/rplugin
-      vim/plugin: .vim/plugin
       vim/ftdetect: .vim/ftdetect
-      vim/rc/init.lua: .config/nvim/init.lua
+      vim/lua/notomo/init.lua: .config/nvim/init.lua
       lint/vim/.vintrc.yaml: .vintrc.yaml
       lint/python/setup.cfg: setup.cfg
       lint/efm/config.yaml: .config/efm-langserver/config.yaml

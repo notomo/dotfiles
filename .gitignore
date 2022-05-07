@@ -6,11 +6,10 @@
 # local
 /vim/local/*
 !/vim/local/test.vim
-/vim/autoload/local/*
-/vim/rc/local/*
-!/vim/rc/local/after
-!/vim/rc/local/*.sample
-/vim/rc/local/after/*
+/vim/lua/notomo/local/*
+!/vim/lua/notomo/local/after
+!/vim/lua/notomo/local/*.sample
+/vim/lua/notomo/local/after/*
 
 # snippet
 /vim/snippets/mydiary.snip
