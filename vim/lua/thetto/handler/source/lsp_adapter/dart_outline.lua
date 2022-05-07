@@ -1,4 +1,4 @@
-local util = require("notomo.thetto_util")
+local util = require("notomo.thetto.util")
 
 local M = {}
 

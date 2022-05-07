@@ -1,5 +1,5 @@
 local pathlib = require("thetto.lib.path")
-local util = require("notomo.thetto_util")
+local util = require("notomo.thetto.util")
 
 local M = {}
 

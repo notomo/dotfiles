@@ -354,7 +354,7 @@ mypack.add("notomo/thetto.nvim", {
   load_on = { modules = { "thetto" }, events = { { "BufReadPost", "*/*" } } },
   hooks = {
     post_add = luafile("~/.vim/rc/plugins/thetto.lua"),
-    post_load = luafile("~/dotfiles/vim/lua/notomo/thetto.lua"),
+    post_load = luafile("~/dotfiles/vim/lua/notomo/thetto/init.lua"),
   },
 })
 
