@@ -129,7 +129,7 @@ optpack.add("lambdalisue/gina.vim", {
   load_on = { cmds = { "Gina*" }, events = { { "BufReadPre", "*/*" } } },
   hooks = {
     post_add = require("notomo.gina.mapping").setup,
-    post_load = luafile("~/.vim/rc/plugins/gina.lua"),
+    post_load = luafile("~/dotfiles/vim/lua/notomo/gina/init.lua"),
   },
 })
 
