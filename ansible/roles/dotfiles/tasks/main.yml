@@ -6,7 +6,6 @@
       vim/lua: .vim/lua
       vim/snippets: .vim/snippets
       vim/after: .vim/after
-      vim/ftplugin: .vim/ftplugin
       vim/syntax: .vim/syntax
       vim/indent: .vim/indent
       vim/ftdetect: .vim/ftdetect
