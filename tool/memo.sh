@@ -22,8 +22,6 @@ alias gd='git push --delete origin ' # {tag_name} or {branch_name}
 alias apply_patch='git apply'
 alias create_patch='git diff --cached'
 alias create_empty_commit='git commit --allow-empty -m'
-alias nvU="nvim -u ~/dotfiles/vim/local/test.vim --noplugin"
-alias vu="vim -u ~/dotfiles/vim/local/test.vim"
 alias nvimtags="ctags --languages=C,C++,Lua -R -I EXTERN -I INIT --exclude=.git src build/include build/src/nvim/auto .deps/build/src"
 alias nvbuild="VIMRUNTIME=$HOME/workspace/neovim/runtime ~/workspace/neovim/build/bin/nvim"
 alias unfreeze="tar -zxvf"

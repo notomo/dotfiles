@@ -3,7 +3,6 @@ if [ -f /etc/bashrc ] && [ "${BASH_SOURCE[0]}" != "" ]; then
 fi
 
 alias nv="nvim"
-alias nvu="NVIM_RPLUGIN_MANIFEST=$HOME/rplugin.vim nvim -u ~/dotfiles/vim/local/test.vim"
 alias vi="vim"
 alias ee="exit"
 alias ll="ls -lah"

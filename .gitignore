@@ -4,8 +4,6 @@
 # vim
 
 # local
-/vim/local/*
-!/vim/local/test.vim
 /vim/lua/notomo/local/*
 !/vim/lua/notomo/local/after
 !/vim/lua/notomo/local/*.sample
