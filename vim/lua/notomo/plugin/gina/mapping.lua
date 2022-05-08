@@ -4,14 +4,14 @@ function M.setup()
   vim.keymap.set(
     "n",
     "[git]s",
-    [[<Cmd>lua require("notomo.gina.util").toggle_buffer('status', 'gina-status')<CR>]],
+    [[<Cmd>lua require("notomo.plugin.gina.util").toggle_buffer('status', 'gina-status')<CR>]],
     { silent = true }
   )
   vim.keymap.set("n", "[git]D", [[<Cmd>Gina diff<CR>]])
   vim.keymap.set(
     "n",
     "[git]b",
-    [[<Cmd>lua require("notomo.gina.util").toggle_buffer('branch', 'gina-branch')<CR>]],
+    [[<Cmd>lua require("notomo.plugin.gina.util").toggle_buffer('branch', 'gina-branch')<CR>]],
     { silent = true }
   )
   vim.keymap.set("n", "[git]L", [[<Cmd>Gina log master...HEAD<CR>]])
@@ -23,19 +23,25 @@ function M.setup()
   vim.keymap.set(
     "n",
     "[git]xl",
-    [[<Cmd>lua require("notomo.gina.util").toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>]]
+    [[<Cmd>lua require("notomo.plugin.gina.util").toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>]]
   )
   vim.keymap.set("n", "[git]xs", [[:<C-u>Gina stash save ""<Left>]])
   vim.keymap.set("n", "[git]xc", [[<Cmd>Gina stash show<CR>]])
   vim.keymap.set("n", "[git]P", function()
-    return ":<C-u>Gina! push " .. require("notomo.gina.util").remote() .. " " .. vim.fn["gina#component#repo#branch"]()
+    return ":<C-u>Gina! push "
+      .. require("notomo.plugin.gina.util").remote()
+      .. " "
+      .. vim.fn["gina#component#repo#branch"]()
   end, { expr = true })
   vim.keymap.set("n", "[git]H", function()
-    return ":<C-u>Gina! pull " .. require("notomo.gina.util").remote() .. " " .. vim.fn["gina#component#repo#branch"]()
+    return ":<C-u>Gina! pull "
+      .. require("notomo.plugin.gina.util").remote()
+      .. " "
+      .. vim.fn["gina#component#repo#branch"]()
   end, { expr = true })
   vim.keymap.set("n", "[git]M", [[:<C-u>Gina! merge<Space>]])
   vim.keymap.set("n", "[git]F", function()
-    return ":<C-u>Gina! fetch " .. require("notomo.gina.util").remote() .. " --prune"
+    return ":<C-u>Gina! fetch " .. require("notomo.plugin.gina.util").remote() .. " --prune"
   end, { expr = true })
   vim.keymap.set("n", "[git]ma", [[:<C-u>Gina! merge --abort]])
   vim.keymap.set("n", "[git]ca", [[:<C-u>Gina! cherry-pick --abort]])
@@ -51,16 +57,16 @@ function M.setup()
   vim.keymap.set("x", "[yank]U", [[:Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>]])
   vim.keymap.set("n", "[exec]gu", [[<Cmd>Gina browse :<CR>]])
   vim.keymap.set("n", "[git]B", function()
-    return ":<C-u>Gina blame :" .. require("notomo.gina.util").relpath() .. "<CR>"
+    return ":<C-u>Gina blame :" .. require("notomo.plugin.gina.util").relpath() .. "<CR>"
   end, { expr = true })
   vim.keymap.set("n", "[git]fl", function()
-    return ":<C-u>Gina log :" .. require("notomo.gina.util").relpath() .. "<CR>"
+    return ":<C-u>Gina log :" .. require("notomo.plugin.gina.util").relpath() .. "<CR>"
   end, { expr = true })
   vim.keymap.set("n", "[git]dd", function()
-    return ":<C-u>Gina compare :" .. require("notomo.gina.util").relpath() .. "<CR>"
+    return ":<C-u>Gina compare :" .. require("notomo.plugin.gina.util").relpath() .. "<CR>"
   end, { expr = true })
   vim.keymap.set("n", "[git]df", function()
-    return ":<C-u>Gina diff :" .. require("notomo.gina.util").relpath() .. "<CR>"
+    return ":<C-u>Gina diff :" .. require("notomo.plugin.gina.util").relpath() .. "<CR>"
   end, { expr = true })
 end
 

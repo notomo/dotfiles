@@ -39,18 +39,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set(
       { "n", "v" },
       "S",
-      [[:lua require("notomo.gina.util").stash_file()<CR>]],
+      [[:lua require("notomo.plugin.gina.util").stash_file()<CR>]],
       { buffer = true, silent = true }
     )
 
     vim.keymap.set("n", "o", function()
-      require("notomo.gina.util").edit("edit")
+      require("notomo.plugin.gina.util").edit("edit")
     end, { buffer = true, silent = true })
     vim.keymap.set("n", "t<Space>", function()
-      require("notomo.gina.util").edit("edit:tab")
+      require("notomo.plugin.gina.util").edit("edit:tab")
     end, { buffer = true, silent = true })
     vim.keymap.set("n", "<CR>", function()
-      require("notomo.gina.util").edit("edit:tab")
+      require("notomo.plugin.gina.util").edit("edit:tab")
     end, { buffer = true, silent = true })
 
     vim.keymap.set(
@@ -102,10 +102,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set(
       { "n" },
       "yu",
-      [[:lua require("notomo.gina.util").browse_yank()<CR>]],
+      [[:lua require("notomo.plugin.gina.util").browse_yank()<CR>]],
       { buffer = true, silent = true }
     )
-    vim.keymap.set({ "n" }, "yr", [[:lua require("notomo.gina.util").yank_rev()<CR>]], { buffer = true, silent = true })
+    vim.keymap.set(
+      { "n" },
+      "yr",
+      [[:lua require("notomo.plugin.gina.util").yank_rev()<CR>]],
+      { buffer = true, silent = true }
+    )
 
     vim.keymap.set({ "n" }, "q", ":quit<CR>", { buffer = true, silent = true })
   end,
@@ -130,12 +135,22 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       [[:call gina#action#call('commit:tag:lightweight')<CR>]],
       { buffer = true, silent = true }
     )
-    vim.keymap.set({ "n" }, "I", [[:lua require("notomo.gina.util").rebase_i()<CR>]], { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "F", [[:lua require("notomo.gina.util").fixup()<CR>]], { buffer = true, silent = true })
+    vim.keymap.set(
+      { "n" },
+      "I",
+      [[:lua require("notomo.plugin.gina.util").rebase_i()<CR>]],
+      { buffer = true, silent = true }
+    )
+    vim.keymap.set(
+      { "n" },
+      "F",
+      [[:lua require("notomo.plugin.gina.util").fixup()<CR>]],
+      { buffer = true, silent = true }
+    )
     vim.keymap.set(
       { "n" },
       "yR",
-      [[:lua require("notomo.gina.util").yank_rev_with_repo()<CR>]],
+      [[:lua require("notomo.plugin.gina.util").yank_rev_with_repo()<CR>]],
       { buffer = true, silent = true }
     )
 
@@ -148,11 +163,16 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set(
       { "n" },
       "yu",
-      [[:lua require("notomo.gina.util").browse_yank()<CR>]],
+      [[:lua require("notomo.plugin.gina.util").browse_yank()<CR>]],
       { buffer = true, silent = true }
     )
 
-    vim.keymap.set({ "n" }, "yr", [[:lua require("notomo.gina.util").yank_rev()<CR>]], { buffer = true, silent = true })
+    vim.keymap.set(
+      { "n" },
+      "yr",
+      [[:lua require("notomo.plugin.gina.util").yank_rev()<CR>]],
+      { buffer = true, silent = true }
+    )
   end,
 })
 
@@ -192,10 +212,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       { buffer = true, silent = true }
     )
     vim.keymap.set({ "n" }, "P", function()
-      return require([[notomo.gina]]).push_cmd()
+      return require([[notomo.plugin.gina.util]]).push_cmd()
     end, { buffer = true, silent = true, expr = true })
 
-    vim.keymap.set({ "n" }, "yr", [[:lua require("notomo.gina.util").yank_rev()<CR>]], { buffer = true, silent = true })
+    vim.keymap.set(
+      { "n" },
+      "yr",
+      [[:lua require("notomo.plugin.gina.util").yank_rev()<CR>]],
+      { buffer = true, silent = true }
+    )
   end,
 })
 

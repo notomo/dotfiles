@@ -3,25 +3,25 @@ local hooks = {
     dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/_list.lua"))
   end,
   stlparts = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/stlparts.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/stlparts.lua"))
   end,
   thetto = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/thetto/init.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/thetto/init.lua"))
   end,
   curstr = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/curstr/init.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/curstr/init.lua"))
   end,
   piemenu = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/piemenu/init.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/piemenu/init.lua"))
   end,
   aliaser = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/aliaser.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/aliaser.lua"))
   end,
   gesture = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/gesture.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/gesture.lua"))
   end,
   lreload = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/lreload.lua"))
+    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/lreload.lua"))
   end,
   notomo = function(args)
     dofile(args.match)
