@@ -63,6 +63,21 @@ local cmdhndlr_driver = function(cmd, opts)
   })
 end
 
+local run_without_focus = function(...)
+  local keys = { ... }
+  return function(_, items)
+    local targets = vim.tbl_map(function(item)
+      for _, key in ipairs(keys) do
+        local v = item[key]
+        if v then
+          return v
+        end
+      end
+    end, items)
+    require("notomo.autohotkey").run_without_focus(targets)
+  end
+end
+
 require("thetto").setup({
 
   kind_actions = {
@@ -110,6 +125,7 @@ require("thetto").setup({
         vim.cmd("Qfreplace")
         vim.cmd("only")
       end,
+      action_system = run_without_focus("url", "path"),
     },
 
     ["vim/variable"] = {
