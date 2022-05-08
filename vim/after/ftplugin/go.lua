@@ -8,8 +8,18 @@ vim.keymap.set(
   [[<Cmd>lua require("notomo.edit").yank(vim.fn.trim(vim.fn.system('go list -f "{{.ImportPath}}" ./')))<CR>]],
   { buffer = true }
 )
-vim.keymap.set("n", "sgj", [[<Cmd>lua require("notomo.text_object").next_no_indent_function()<CR>]], { buffer = true })
-vim.keymap.set("n", "sgk", [[<Cmd>lua require("notomo.text_object").prev_no_indent_function()<CR>]], { buffer = true })
+vim.keymap.set(
+  "n",
+  "sgj",
+  [[<Cmd>lua require("notomo.plugin.treesitter").next_no_indent_function()<CR>]],
+  { buffer = true }
+)
+vim.keymap.set(
+  "n",
+  "sgk",
+  [[<Cmd>lua require("notomo.plugin.treesitter").prev_no_indent_function()<CR>]],
+  { buffer = true }
+)
 
 local test_pattern = [[\v^(func Test|\s*t\.Run)]]
 vim.keymap.set("n", "sgn", function()
@@ -26,4 +36,4 @@ highlight link goKeywords Boolean
 
 vim.cmd([[inoreabbrev <buffer> ~= !=]])
 
-require("notomo.treesitter").text_object_mapping()
+require("notomo.plugin.treesitter").text_object_mapping()

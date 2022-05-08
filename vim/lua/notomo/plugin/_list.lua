@@ -423,7 +423,7 @@ optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
   load_on = { cmds = { "TS*" }, modules = { "nvim-treesitter.textobjects" } },
   hooks = {
     post_load = function()
-      require("notomo.treesitter").setup()
+      require("notomo.plugin.treesitter").setup()
     end,
   },
 })

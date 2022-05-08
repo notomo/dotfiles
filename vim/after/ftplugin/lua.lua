@@ -13,7 +13,17 @@ vim.keymap.set(
 require("notomo.lsp.mapping").setup()
 vim.cmd([[inoreabbrev <buffer> != ~=]])
 
-vim.keymap.set("n", "sgj", [[<Cmd>lua require("notomo.text_object").next_no_indent_function()<CR>]], { buffer = true })
-vim.keymap.set("n", "sgk", [[<Cmd>lua require("notomo.text_object").prev_no_indent_function()<CR>]], { buffer = true })
+vim.keymap.set(
+  "n",
+  "sgj",
+  [[<Cmd>lua require("notomo.plugin.treesitter").next_no_indent_function()<CR>]],
+  { buffer = true }
+)
+vim.keymap.set(
+  "n",
+  "sgk",
+  [[<Cmd>lua require("notomo.plugin.treesitter").prev_no_indent_function()<CR>]],
+  { buffer = true }
+)
 
-require("notomo.treesitter").text_object_mapping()
+require("notomo.plugin.treesitter").text_object_mapping()
