@@ -39,6 +39,11 @@ function M.test()
       print(result)
     end
   end
+
+  for _, name in ipairs(require("notomo.plugin.lreload")) do
+    require("lreload").refresh(name)
+  end
+
   vim.schedule(function()
     local ok, result = pcall(M._test)
     if not ok then

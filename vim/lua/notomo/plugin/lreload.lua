@@ -24,6 +24,9 @@ local hooks = {
     dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/lreload.lua"))
   end,
   notomo = function(args)
+    if not args then
+      return
+    end
     dofile(args.match)
   end,
   ultramarine = function()
@@ -44,3 +47,5 @@ table.insert(names, "notomo")
 for _, name in ipairs(names) do
   require("lreload").enable(name, { post_hook = hooks[name] })
 end
+
+return names
