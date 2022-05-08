@@ -10,7 +10,6 @@
 /vim/lua/notomo/local/after/*
 
 # snippet
-/vim/snippets/mydiary.snip
 /vim/snippets/*/*
 
 # ansible
