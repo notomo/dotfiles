@@ -123,7 +123,7 @@ end)
 
 aliaser.register_factory("package_json", function(aliases)
   aliases:set("update", function()
-    require("notomo.package_json").update(vim.fn.expand("%:p"))
+    require("notomo.npm.package_json").update(vim.fn.expand("%:p"))
   end)
 end)
 
