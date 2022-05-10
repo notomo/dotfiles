@@ -236,8 +236,8 @@ optpack.add("voldikss/vim-translator", {
 })
 
 mypack.add("notomo/wintablib.nvim", {
-  load_on = { events = { "VimEnter" } },
-  hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/wintablib.lua") },
+  load_on = { modules = { "wintablib" } },
+  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/wintablib.lua") },
 })
 
 mypack.add("notomo/lreload.nvim", {

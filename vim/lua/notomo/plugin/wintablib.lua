@@ -1,5 +1,3 @@
-vim.opt.tabline = [[%!v:lua.require('wintablib.tab').line()]]
-
 vim.keymap.set("n", "[win]O", [[<Cmd>lua require("wintablib.window").close_floating()<CR>]])
 vim.keymap.set("n", "[win]H", [[<Cmd>lua require("wintablib.window").from_left_tab()<CR>]])
 vim.keymap.set("n", "[win]L", [[<Cmd>lua require("wintablib.window").from_right_tab()<CR>]])
@@ -15,4 +13,11 @@ vim.keymap.set("n", "<Plug>(tabclose_l)", [[<Cmd>lua require("wintablib.tab").cl
 vim.keymap.set("n", "<Plug>(tabclose_c)", [[<Cmd>lua require("wintablib.tab").close()<CR>]], { silent = true })
 vim.keymap.set("n", "<Plug>(new_tab)", [[<Cmd>lua require("wintablib.tab").scratch()<CR>]], { silent = true })
 
-require("wintablib.tab").activate_left_on_closed()
+vim.api.nvim_create_autocmd({ "TabNew" }, {
+  group = vim.api.nvim_create_augroup("wintablib_setting", {}),
+  pattern = { "*" },
+  once = true,
+  callback = function()
+    require("wintablib.tab").activate_left_on_closed()
+  end,
+})
