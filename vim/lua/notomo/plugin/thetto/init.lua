@@ -84,9 +84,11 @@ require("thetto").setup({
 
     ["git/branch"] = {
       action_tab_open = function(_, items)
+        local cursor = vim.api.nvim_win_get_cursor(0)
         for _, item in ipairs(items) do
           local cmd = ("Gina show %s:%%:p --opener=tabedit"):format(item.value)
           vim.cmd(cmd)
+          require("misclib.cursor").set(cursor)
         end
       end,
       action_compare = function(_, items)
