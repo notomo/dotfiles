@@ -239,13 +239,17 @@ require("thetto").setup({
     ["file/bookmark"] = {
       opts = {
         default_paths = {
-          "~/.local/share/nvim/rplugin.vim",
           "~/dotfiles/vim/rc/local/local.vim",
           "~/.local/.bashrc",
           "~/.bashrc",
           "~/.local/.bash_profile",
           "~/.bash_profile",
           "~/workspace/*",
+          vim.fn.stdpath("cache"),
+          vim.fn.stdpath("config"),
+          vim.fn.stdpath("data"),
+          vim.fn.stdpath("state"),
+          vim.fn.stdpath("log"),
         },
       },
     },
