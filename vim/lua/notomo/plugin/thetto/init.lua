@@ -48,8 +48,14 @@ if vim.fn.has("win32") == 0 then
 end
 
 -- TODO move to setup
-require("thetto.handler.kind.file.directory").after = function(path)
-  require("kivi").open({ path = path })
+require("thetto.handler.kind.file.directory").after = function(path, is_preview)
+  local bufnr, layout
+  if is_preview then
+    bufnr = vim.api.nvim_create_buf(false, true)
+    layout = { type = "hide" }
+  end
+  require("kivi").open({ path = path, bufnr = bufnr, layout = layout })
+  return bufnr
 end
 
 local cmdhndlr_driver = function(cmd, opts)
@@ -195,7 +201,7 @@ require("thetto").setup({
 
     ["git/branch"] = { sorters = { "length" } },
 
-    ["file/in_dir"] = { colors = colors },
+    ["file/in_dir"] = { colors = colors, global_opts = { auto = "preview" } },
     ["file/mru"] = { colors = colors, global_opts = { auto = "preview" } },
     ["file/recursive"] = {
       colors = colors,
