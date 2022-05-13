@@ -17,6 +17,14 @@ aliaser.register_factory("tree_sitter", function(aliases)
   aliases:set("query", function()
     require("nvimtool").tree.query()
   end)
+  aliases:set("ready_parser", function()
+    for _, language in ipairs({
+      "lua",
+      "go",
+    }) do
+      vim.cmd([[TSInstall ]] .. language)
+    end
+  end)
 end)
 
 aliaser.register_factory("vim", function(aliases)
