@@ -300,6 +300,7 @@ vim.keymap.set(
   "[finder]I",
   [[<Cmd>lua require("thetto").start("github/issue", {source_opts = {assignee = "me"}})<CR>]]
 )
+vim.keymap.set("n", "[finder]gP", [[<Cmd>lua require("thetto").start("github/pull_request")<CR>]])
 vim.keymap.set(
   "n",
   "[finder]to",
