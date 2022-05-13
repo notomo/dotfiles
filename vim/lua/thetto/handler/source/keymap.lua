@@ -1,9 +1,6 @@
 local M = {}
 
 local get_first_tree_root = function(str, language)
-  if not vim.treesitter.language.require_language(language, nil, true) then
-    return nil, ("not found tree-sitter parser for `%s`"):format(language)
-  end
   local parser = vim.treesitter.get_string_parser(str, language)
   local trees = parser:parse()
   return trees[1]:root()
@@ -21,7 +18,7 @@ local get_captures = function(match, query, handlers)
   return captures
 end
 
-local collect = function(path, query)
+local collect = function(path, query, language)
   local f = io.open(path, "r")
   if not f then
     return nil, "cannot read: " .. path
@@ -30,11 +27,7 @@ local collect = function(path, query)
   local str = f:read("*a")
   f:close()
 
-  local root, err = get_first_tree_root(str, "lua")
-  if err then
-    return nil, err
-  end
-
+  local root = get_first_tree_root(str, language)
   local items = {}
   for _, match in query:iter_matches(root, str, 0, -1) do
     local captured = get_captures(match, query, {
@@ -81,6 +74,11 @@ local collect = function(path, query)
 end
 
 function M.collect()
+  local language = "lua"
+  if not vim.treesitter.language.require_language(language, nil, true) then
+    return nil, nil, ("not found tree-sitter parser for `%s`"):format(language)
+  end
+
   local paths = vim.fn.glob("~/dotfiles/vim/**/*.lua", false, true)
   local query = vim.treesitter.parse_query(
     "lua",
@@ -106,7 +104,7 @@ function M.collect()
 
   local items = {}
   for _, path in ipairs(paths) do
-    vim.list_extend(items, collect(path, query))
+    vim.list_extend(items, collect(path, query, language))
   end
   return items
 end
