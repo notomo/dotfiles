@@ -93,5 +93,8 @@ require("curstr").setup({
       opts = { include_packpath = true },
       filetypes = { "vim", "python", "lua" },
     },
+    ["vim/lua"] = {
+      filetypes = { "vim", "lua", "cmdhndlr" },
+    },
   },
 })

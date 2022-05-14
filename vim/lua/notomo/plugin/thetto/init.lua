@@ -196,7 +196,7 @@ require("thetto").setup({
     ["vim/substitute"] = { global_opts = { auto = "preview" } },
     ["vim/filetype"] = { sorters = { "length" } },
 
-    ["plugin"] = { sorters = { "alphabet" } },
+    ["plugin"] = { sorters = { "alphabet" }, global_opts = { auto = "preview" } },
     ["thetto/source"] = { sorters = { "length" } },
 
     ["git/branch"] = { sorters = { "length" } },
@@ -212,6 +212,7 @@ require("thetto").setup({
     ["file/directory/recursive"] = {
       opts = { get_command = directory_recursive },
       sorters = { "length" },
+      global_opts = { auto = "preview" },
     },
 
     ["vim/help"] = { sorters = { "length" } },
