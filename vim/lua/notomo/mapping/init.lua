@@ -9,7 +9,7 @@ local expr = { expr = true }
 local set_prefix = require("notomo.mapping.util").set_prefix
 
 set_prefix({ "n", "x" }, "exec", "<Space>x")
-set_prefix({ "n" }, "keyword", "<Space>k")
+set_prefix({ "n", "x" }, "keyword", "<Space>k")
 set_prefix({ "n", "x" }, "diff", "<Leader>d")
 set_prefix({ "n", "x" }, "edit", "<Space>e")
 set_prefix({ "n" }, "file", "<Space>f")

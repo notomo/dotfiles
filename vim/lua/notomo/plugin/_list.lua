@@ -362,7 +362,7 @@ optpack.add("neovim/nvim-lspconfig", {
   load_on = { events = { "FileType" } },
   hooks = {
     post_load = function()
-      require("notomo.lsp.handler").setting()
+      require("notomo.lsp.handler")
       luafile("~/dotfiles/vim/lua/notomo/plugin/nvim-lspconfig.lua")()
       vim.cmd([[silent! edit]]) -- restart
     end,
