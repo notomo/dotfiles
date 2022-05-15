@@ -56,13 +56,13 @@ local stlparts = require("stlparts")
 
 local List = stlparts.component("list")
 local Padding = stlparts.component("padding")
+local FileType = stlparts.component("file_type")
 
 local set_statusline = function()
   local IfNormalWindow = stlparts.component("if_normal_window")
   local TrancateLeft = stlparts.component("trancate_left")
   local IfActiveWindow = stlparts.component("if_active_window")
   local Separate = stlparts.component("separate")
-  local FileType = stlparts.component("file_type")
 
   local active = Separate(List({ path, branch }), List({ column, filetype, mode }))
   local inactive = path
@@ -104,10 +104,8 @@ local modified = function(current_bufnr, window_ids)
   return ""
 end
 
-local tab_label = function(tab_id)
-  local window_id = api.nvim_tabpage_get_win(tab_id)
+local tab_label = function(tab_id, window_id)
   local bufnr = api.nvim_win_get_buf(window_id)
-
   local name = fn.fnamemodify(api.nvim_buf_get_name(bufnr), ":t")
   if name == "" then
     name = "[Scratch]"
@@ -134,14 +132,26 @@ local set_tabline = function()
       List({
         Builder(function()
           local tab_ids = api.nvim_list_tabpages()
-          local tabnrs = fn.range(1, fn.tabpagenr("$"))
-          local current = fn.tabpagenr()
+          local current = api.nvim_get_current_tabpage()
           return List(
-            vim.tbl_map(function(tabnr)
-              local is_current = tabnr == current
+            vim.tbl_map(function(tab_id)
+              local is_current = tab_id == current
               local hl_group = is_current and "TabLineSel" or "TabLine"
-              return Tab(tabnr, Highlight(hl_group, Padding(tab_label(tab_ids[tabnr]))))
-            end, tabnrs),
+              return Tab(
+                tab_id,
+                Highlight(
+                  hl_group,
+                  Padding(FileType({
+                    ["kivi-file"] = function(_, ctx)
+                      local tab_number = api.nvim_tabpage_get_number(tab_id)
+                      return fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
+                    end,
+                  }, function(_, ctx)
+                    return tab_label(tab_id, ctx.window_id)
+                  end))
+                )
+              )
+            end, tab_ids),
             { separator = "" }
           )
         end),
