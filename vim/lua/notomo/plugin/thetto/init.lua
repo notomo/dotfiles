@@ -240,7 +240,7 @@ require("thetto").setup({
       },
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
       colors = colors,
-      global_opts = { auto = "preview" },
+      global_opts = { auto = "preview", view_type = "broad" },
     },
 
     ["file/bookmark"] = {
