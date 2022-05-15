@@ -11,6 +11,7 @@ vim.keymap.set(
   { buffer = true }
 )
 require("notomo.lsp.mapping").setup()
+require("notomo.lsp.autocmd").setup()
 vim.cmd([[inoreabbrev <buffer> != ~=]])
 
 vim.keymap.set(

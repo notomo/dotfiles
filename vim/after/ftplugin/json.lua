@@ -3,3 +3,4 @@ vim.keymap.set("n", "K", [[<Cmd>lua require("notomo.json").prev()<CR>]], { buffe
 if vim.fn.bufname("%") == "package.json" then
   require("notomo.npm").mapping()
 end
+require("notomo.lsp.autocmd").setup()
