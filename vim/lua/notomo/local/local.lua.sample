@@ -47,7 +47,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
   group = group,
   pattern = { vim.fn.expand("~/workspace/neovim/") .. "**/*.lua" },
   callback = function()
-    vim.b.ale_fix_on_save = 0
     vim.keymap.set("n", "[test]f", function()
       require("cmdhndlr").test({
         name = "make/make",

@@ -214,11 +214,6 @@ optpack.add("lambdalisue/suda.vim", {
   },
 })
 
-optpack.add("w0rp/ale", {
-  load_on = { events = { "FileType" } },
-  hooks = { pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/ale.lua") },
-})
-
 optpack.add("voldikss/vim-translator", {
   load_on = {
     keymaps = function(vim)
