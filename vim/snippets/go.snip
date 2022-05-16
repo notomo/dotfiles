@@ -383,3 +383,22 @@ snippet sync_mutex
 
 snippet assert_interface
     var _ ${1:Interface} = &${0:Impl}{}
+
+snippet underlying
+options word
+	~${1:type}
+
+snippet union
+	${1:type} | ${0:type}
+
+snippet comparable
+options word
+	comparable
+
+snippet generic_function
+	func ${1:name}[${2:T} ${3:type}](${4:args}) ${5:type} {
+		${0:TARGET}
+	}
+
+snippet generic_type
+	type ${1:Name}[${2:T} ${3:type}] ${0:type}
