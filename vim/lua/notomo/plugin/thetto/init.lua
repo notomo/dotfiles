@@ -202,7 +202,7 @@ require("thetto").setup({
     ["git/branch"] = { sorters = { "length" } },
 
     ["file/in_dir"] = { colors = colors, global_opts = { auto = "preview" } },
-    ["file/mru"] = { colors = colors, global_opts = { auto = "preview" } },
+    ["file/mru"] = { colors = colors, global_opts = { auto = "preview", view_type = "broad" } },
     ["file/recursive"] = {
       colors = colors,
       opts = { get_command = file_recursive },
@@ -215,7 +215,7 @@ require("thetto").setup({
       global_opts = { auto = "preview" },
     },
 
-    ["vim/help"] = { sorters = { "length" } },
+    ["vim/help"] = { sorters = { "length" }, global_opts = { auto = "preview", view_type = "broad" } },
     ["vim/buffer"] = { global_opts = { auto = "preview" } },
 
     ["cmdhndlr/executed"] = { global_opts = { auto = "preview" } },
@@ -259,6 +259,7 @@ require("thetto").setup({
           vim.fn.stdpath("log"),
         },
       },
+      global_opts = { auto = "preview" },
     },
 
     ["cmd/ctags"] = {
