@@ -35,11 +35,11 @@ BROWSER := "ahk_exe chrome.exe"
     Send "{Left}"
 }
 
-#HotIf WinActive(BROWSER)
-^f::
-{
-    Send "{Right}"
-}
+; #HotIf WinActive(BROWSER)
+; ^f::
+; {
+;     Send "{Right}"
+; }
 
 #HotIf WinActive(BROWSER)
 ^u::
