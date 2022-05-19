@@ -26,7 +26,7 @@ null_ls.setup({
     }),
     null_ls.builtins.formatting.uncrustify.with({
       extra_args = { "-c", vim.fn.expand("~/workspace/neovim/src/uncrustify.cfg") },
-      filetypes = { "c", },
+      filetypes = { "c" },
     }),
   },
   should_attach = function(bufnr)

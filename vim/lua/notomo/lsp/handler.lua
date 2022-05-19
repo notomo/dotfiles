@@ -132,6 +132,7 @@ vim.keymap.set("n", "[exec]gr", [[<Cmd>lua vim.lsp.buf.references()<CR>]], { sil
 vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true })
 vim.keymap.set("n", "[exec]gd", [[<Cmd>lua vim.lsp.buf.document_symbol()<CR>]], { silent = true })
 vim.keymap.set("n", "[exec]gw", [[<Cmd>lua vim.lsp.buf.workspace_symbol()<CR>]], { silent = true })
+vim.keymap.set("n", "[exec]gf", [[<Cmd>lua vim.lsp.buf.format({async = true})<CR>]])
 vim.keymap.set("n", "[keyword]c", [[<Cmd>lua vim.lsp.buf.code_action()<CR>]], { silent = true })
 vim.keymap.set("x", "[keyword]c", [[:lua vim.lsp.buf.range_code_action()<CR>]], { silent = true })
 vim.keymap.set("n", "[exec]gi", [[<Cmd>lua vim.lsp.buf.implementation()<CR>]], { silent = true })
