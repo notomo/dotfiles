@@ -129,33 +129,31 @@ local set_tabline = function()
     "tabline",
     DefaultHighlight(
       "TabLineFill",
-      List({
-        Builder(function()
-          local tab_ids = api.nvim_list_tabpages()
-          local current = api.nvim_get_current_tabpage()
-          return List(
-            vim.tbl_map(function(tab_id)
-              local is_current = tab_id == current
-              local hl_group = is_current and "TabLineSel" or "TabLine"
-              return Tab(
-                tab_id,
-                Highlight(
-                  hl_group,
-                  Padding(FileType({
-                    ["kivi-file"] = function(_, ctx)
-                      local tab_number = api.nvim_tabpage_get_number(tab_id)
-                      return fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
-                    end,
-                  }, function(_, ctx)
-                    return tab_label(tab_id, ctx.window_id)
-                  end))
-                )
+      Builder(function()
+        local tab_ids = api.nvim_list_tabpages()
+        local current = api.nvim_get_current_tabpage()
+        return List(
+          vim.tbl_map(function(tab_id)
+            local is_current = tab_id == current
+            local hl_group = is_current and "TabLineSel" or "TabLine"
+            return Tab(
+              tab_id,
+              Highlight(
+                hl_group,
+                Padding(FileType({
+                  ["kivi-file"] = function(_, ctx)
+                    local tab_number = api.nvim_tabpage_get_number(tab_id)
+                    return fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
+                  end,
+                }, function(_, ctx)
+                  return tab_label(tab_id, ctx.window_id)
+                end))
               )
-            end, tab_ids),
-            { separator = "" }
-          )
-        end),
-      }, { separator = "" })
+            )
+          end, tab_ids),
+          { separator = "" }
+        )
+      end)
     )
   )
 
