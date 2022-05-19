@@ -13,7 +13,7 @@ function M.references(_, result)
     return
   end
   require("thetto").start("lsp_adapter/text_document_references", {
-    opts = { target = "project", auto = "preview" },
+    opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
     source_opts = { result = result },
   })
 end
@@ -23,7 +23,7 @@ function M.symbol(_, result)
     return
   end
   require("thetto").start("lsp_adapter/workspace_symbol", {
-    opts = { target = "project", auto = "preview" },
+    opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
     source_opts = { result = result },
   })
 end
@@ -63,6 +63,20 @@ function M.definition(_, result, ctx)
   else
     util.jump_to_location(result, client.offset_encoding)
   end
+end
+
+function M.incoming_calls(_, result)
+  require("thetto").start("lsp_adapter/incoming_calls", {
+    opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
+    source_opts = { result = result },
+  })
+end
+
+function M.outgoing_calls(_, result, ctx)
+  require("thetto").start("lsp_adapter/outgoing_calls", {
+    opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
+    source_opts = { result = result, path = vim.api.nvim_buf_get_name(ctx.bufnr) },
+  })
 end
 
 function M.dart_publish_outline(_, result, ctx)
@@ -106,6 +120,12 @@ end
 vim.lsp.handlers["textDocument/definition"] = function(...)
   require("notomo.lsp.handler").definition(...)
 end
+vim.lsp.handlers["callHierarchy/incomingCalls"] = function(...)
+  require("notomo.lsp.handler").incoming_calls(...)
+end
+vim.lsp.handlers["callHierarchy/outgoingCalls"] = function(...)
+  require("notomo.lsp.handler").outgoing_calls(...)
+end
 vim.lsp.handlers["dart/textDocument/publishOutline"] = function(...)
   require("notomo.lsp.handler").dart_publish_outline(...)
 end
@@ -136,6 +156,8 @@ vim.keymap.set("n", "[exec]gf", [[<Cmd>lua vim.lsp.buf.format({async = true})<CR
 vim.keymap.set("n", "[keyword]c", [[<Cmd>lua vim.lsp.buf.code_action()<CR>]], { silent = true })
 vim.keymap.set("x", "[keyword]c", [[:lua vim.lsp.buf.range_code_action()<CR>]], { silent = true })
 vim.keymap.set("n", "[exec]gi", [[<Cmd>lua vim.lsp.buf.implementation()<CR>]], { silent = true })
+vim.keymap.set("n", "[keyword]I", [[<Cmd>lua vim.lsp.buf.incoming_calls()<CR>]])
+vim.keymap.set("n", "[keyword]O", [[<Cmd>lua vim.lsp.buf.outgoing_calls()<CR>]])
 
 local original_select = vim.ui.select
 vim.ui.select = function(items, opts, on_choice)
