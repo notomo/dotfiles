@@ -1,5 +1,13 @@
 local M = {}
 
+local remove_indent = function(str)
+  local lines = vim.split(str, "\n", true)
+  lines = vim.tbl_map(function(line)
+    return line:gsub("^%s+", "")
+  end, lines)
+  return table.concat(lines, " ")
+end
+
 local collect = function(path, query, language)
   local f = io.open(path, "r")
   if not f then
@@ -13,43 +21,25 @@ local collect = function(path, query, language)
   local items = {}
   for _, match in query:iter_matches(root, str, 0, -1) do
     local captured = require("notomo.treesitter").get_captures(match, query, {
-      ["keymap"] = function(tbl, tsnode)
-        tbl.keymap = tsnode
+      ["autocmd"] = function(tbl, tsnode)
+        tbl.autocmd = tsnode
       end,
-      ["keymap.mode"] = function(tbl, tsnode)
-        tbl.mode = tsnode
+      ["autocmd.events"] = function(tbl, tsnode)
+        tbl.events = tsnode
       end,
-      ["keymap.lhs"] = function(tbl, tsnode)
-        tbl.lhs = tsnode
-      end,
-      ["keymap.rhs"] = function(tbl, tsnode)
-        tbl.rhs = tsnode
-      end,
-      ["keymap.opts"] = function(tbl, tsnode)
+      ["autocmd.opts"] = function(tbl, tsnode)
         tbl.opts = tsnode
       end,
     })
-    local row = captured.keymap:start()
-    local mode = require("notomo.treesitter").remove_indent(vim.treesitter.get_node_text(captured.mode, str))
-    local lhs = require("notomo.treesitter").remove_indent(vim.treesitter.get_node_text(captured.lhs, str))
-    local rhs = require("notomo.treesitter").remove_indent(vim.treesitter.get_node_text(captured.rhs, str))
-    local texts = { mode, lhs, rhs }
-    local opts
-    if captured.opts then
-      opts = require("notomo.treesitter").remove_indent(vim.treesitter.get_node_text(captured.opts, str))
-      table.insert(texts, opts)
-    end
+    local row = captured.autocmd:start()
+    local events = require("notomo.treesitter").remove_indent(vim.treesitter.get_node_text(captured.events, str))
+    local opts = require("notomo.treesitter").remove_indent(vim.treesitter.get_node_text(captured.opts, str))
+    local texts = { events, opts }
     local text = table.concat(texts, " ")
     table.insert(items, {
       value = text,
       path = path,
       row = row + 1,
-      keymap = {
-        mode = mode,
-        lhs = lhs,
-        rhs = rhs,
-        opts = opts,
-      },
     })
   end
   return items
@@ -67,16 +57,12 @@ function M.collect()
     [[
 (
   (function_call
-    name: (_) @keymap (#match? @keymap "^vim.keymap.set$")
+    name: (_) @autocmd (#match? @autocmd "^vim.api.nvim_create_autocmd$")
     arguments: (arguments
       .
-      (_) @keymap.mode
+      (_) @autocmd.events
       .
-      (_) @keymap.lhs
-      .
-      (_) @keymap.rhs
-      .
-      (_)? @keymap.opts
+      (_) @autocmd.opts
       .
     )
   )
