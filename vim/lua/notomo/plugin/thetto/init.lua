@@ -222,6 +222,7 @@ require("thetto").setup({
     ["cmdhndlr/runner"] = { global_opts = { action = "execute" } },
 
     ["vendor_target"] = { global_opts = { action = "add" } },
+    ["diagnostic"] = { global_opts = { auto = "preview", view_type = "broad" } },
 
     ["file/grep"] = {
       opts = {
