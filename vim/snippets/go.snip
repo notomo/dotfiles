@@ -402,3 +402,20 @@ snippet generic_function
 
 snippet generic_type
 	type ${1:Name}[${2:T} ${3:type}] ${0:type}
+
+snippet regexp
+	var ${1:name} = regexp.MustCompile("${0:pattern}")
+
+snippet error_as
+	var e *${1:Error}
+	if errors.As(err, &e) {
+		${0:TARGET}
+	}
+
+snippet error_def
+	type ${1:Error} struct {
+	}
+	
+	func (e *$1) Error() string {
+		return ${1:fmt.Sprintf("message")}
+	}
