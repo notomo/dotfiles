@@ -26,7 +26,11 @@ function M.setup()
     buffer = 0,
     group = group,
     callback = function(args)
-      format(args.buf)
+      local bufnr = args.buf
+      if vim.b[bufnr].notomo_lsp_format_disabled then
+        return
+      end
+      format(bufnr)
     end,
   })
 end

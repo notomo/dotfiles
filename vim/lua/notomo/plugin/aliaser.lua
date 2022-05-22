@@ -134,3 +134,10 @@ aliaser.register_factory("package_json", function(aliases)
     require("notomo.npm.package_json").update(vim.fn.expand("%:p"))
   end)
 end)
+
+aliaser.register_factory("format", function(aliases)
+  aliases:set("toggle", function()
+    local disabled = vim.b.notomo_lsp_format_disabled
+    vim.b.notomo_lsp_format_disabled = not disabled
+  end)
+end)
