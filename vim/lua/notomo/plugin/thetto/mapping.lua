@@ -161,24 +161,27 @@ vim.keymap.set("n", "[finder]r", function()
 end)
 vim.keymap.set("n", "<Space>usd", [[<Cmd>lua require("thetto").start("file/directory/recursive")<CR>]])
 
-local git_ls_opts = {
-  get_command = function()
-    return { "git", "ls-files", "--full-name" }
-  end,
-  to_absolute = function(cwd, path)
-    return cwd .. "/" .. path
-  end,
-}
+local ls_opts = {}
+if vim.fn.has("win32") == 1 then
+  ls_opts = {
+    get_command = function()
+      return { "git", "ls-files", "--full-name" }
+    end,
+    to_absolute = function(cwd, path)
+      return cwd .. "/" .. path
+    end,
+  }
+end
 vim.keymap.set("n", "<Space>usg", function()
   require("thetto").start("file/recursive", {
     opts = { cwd = require("thetto.util").cwd.project() },
-    source_opts = git_ls_opts,
+    source_opts = ls_opts,
   })
 end)
 vim.keymap.set("n", "[finder]v", function()
   require("thetto").start("file/recursive", {
     opts = { cwd = "~/dotfiles" },
-    source_opts = git_ls_opts,
+    source_opts = ls_opts,
   })
 end)
 
