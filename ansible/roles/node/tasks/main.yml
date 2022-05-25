@@ -8,7 +8,7 @@
       - typescript
       - fixjson
       - typescript-language-server
-      - eslint
+      - vscode-langservers-extracted
       - prettier
       - yaml-language-server
 
