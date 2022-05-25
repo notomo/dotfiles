@@ -395,6 +395,9 @@ snippet buffer_autocmd
 snippet augroup
 	vim.api.nvim_create_augroup("${1:name}", {})
 
+snippet highlight
+	vim.api.set_hl(0, "${1:name}", {})
+
 snippet doc
 	--- ${0:description}
 

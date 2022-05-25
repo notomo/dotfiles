@@ -293,6 +293,8 @@ require("thetto").setup({
       sorters = { "length" },
       global_opts = { cwd = require("thetto.util").cwd.upward({ "Makefile" }) },
     },
+
+    ["go/package"] = { global_opts = { auto = "preview" } },
   },
 
   source_actions = {
