@@ -13,13 +13,18 @@ function M.collect(self, opts)
       local path = vim.uri_to_fname(call_hierarchy.uri)
       local relative_path = to_relative(path)
       local row = range.start.line + 1
+      local value = call_hierarchy.name
       local path_with_row = ("%s:%d"):format(relative_path, row)
       table.insert(items, {
         path = path,
-        value = ("%s %s()"):format(path_with_row, call_hierarchy.name),
+        desc = ("%s %s()"):format(path_with_row, call_hierarchy.name),
+        value = value,
         row = row,
         range = util.range(range),
-        column_offsets = { value = #path_with_row + 1 },
+        column_offsets = {
+          ["path:relative"] = 0,
+          value = #path_with_row + 1,
+        },
       })
     end
   end

@@ -21,7 +21,10 @@ function M.collect(self, opts)
         value = value,
         row = row,
         range = util.range(range),
-        column_offsets = { value = #path_with_row + 1 },
+        column_offsets = {
+          ["path:relative"] = 0,
+          value = #path_with_row + 1,
+        },
       })
     end
   end

@@ -244,6 +244,25 @@ require("thetto").setup({
       global_opts = { auto = "preview", view_type = "broad" },
     },
 
+    ["lsp_adapter/text_document_references"] = {
+      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
+    },
+    ["lsp_adapter/workspace_symbol"] = {
+      filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
+      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
+    },
+    ["lsp_adapter/text_document_document_symbol"] = {
+      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
+    },
+    ["lsp_adapter/incoming_calls"] = {
+      filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
+      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
+    },
+    ["lsp_adapter/outgoing_calls"] = {
+      filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
+      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
+    },
+
     ["file/bookmark"] = {
       opts = {
         default_paths = {

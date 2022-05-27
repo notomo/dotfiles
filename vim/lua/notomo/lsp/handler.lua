@@ -13,7 +13,6 @@ function M.references(_, result)
     return
   end
   require("thetto").start("lsp_adapter/text_document_references", {
-    opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
     source_opts = { result = result },
   })
 end
@@ -23,7 +22,6 @@ function M.symbol(_, result)
     return
   end
   require("thetto").start("lsp_adapter/workspace_symbol", {
-    opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
     source_opts = { result = result },
   })
 end
@@ -33,7 +31,6 @@ function M.document_symbol(_, result)
     return
   end
   require("thetto").start("lsp_adapter/text_document_document_symbol", {
-    opts = { auto = "preview" },
     source_opts = { result = result },
   })
 end
@@ -43,8 +40,19 @@ function M.implementation(_, result)
     return
   end
   require("thetto").start("lsp_adapter/text_document_implementation", {
-    opts = { target = "project", auto = "preview" },
     source_opts = { result = result },
+  })
+end
+
+function M.incoming_calls(_, result)
+  require("thetto").start("lsp_adapter/incoming_calls", {
+    source_opts = { result = result },
+  })
+end
+
+function M.outgoing_calls(_, result, ctx)
+  require("thetto").start("lsp_adapter/outgoing_calls", {
+    source_opts = { result = result, path = vim.api.nvim_buf_get_name(ctx.bufnr) },
   })
 end
 
@@ -63,20 +71,6 @@ function M.definition(_, result, ctx)
   else
     util.jump_to_location(result, client.offset_encoding)
   end
-end
-
-function M.incoming_calls(_, result)
-  require("thetto").start("lsp_adapter/incoming_calls", {
-    opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
-    source_opts = { result = result },
-  })
-end
-
-function M.outgoing_calls(_, result, ctx)
-  require("thetto").start("lsp_adapter/outgoing_calls", {
-    opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
-    source_opts = { result = result, path = vim.api.nvim_buf_get_name(ctx.bufnr) },
-  })
 end
 
 function M.dart_publish_outline(_, result, ctx)
