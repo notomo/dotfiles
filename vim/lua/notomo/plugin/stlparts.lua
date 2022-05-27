@@ -59,17 +59,18 @@ local Padding = stlparts.component("padding")
 local FileType = stlparts.component("file_type")
 
 local set_statusline = function()
-  local IfNormalWindow = stlparts.component("if_normal_window")
   local TrancateLeft = stlparts.component("trancate_left")
-  local IfActiveWindow = stlparts.component("if_active_window")
   local Separate = stlparts.component("separate")
 
-  local active = Separate(List({ path, branch }), List({ column, filetype, mode }))
-  local inactive = path
   stlparts.set(
     "default",
-    IfNormalWindow(
-      TrancateLeft(Padding(FileType({ ["kivi-file"] = List({ cwd, branch }) }, IfActiveWindow(active, inactive))))
+    TrancateLeft(
+      Padding(
+        FileType(
+          { ["kivi-file"] = List({ cwd, branch }) },
+          Separate(List({ path, branch }), List({ column, filetype, mode }))
+        )
+      )
     )
   )
 
