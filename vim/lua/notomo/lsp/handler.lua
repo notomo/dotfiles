@@ -17,15 +17,6 @@ function M.references(_, result)
   })
 end
 
-function M.symbol(_, result)
-  if not result or result == {} then
-    return
-  end
-  require("thetto").start("lsp_adapter/workspace_symbol", {
-    source_opts = { result = result },
-  })
-end
-
 function M.document_symbol(_, result)
   if not result or result == {} then
     return
@@ -101,9 +92,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
 end
 vim.lsp.handlers["textDocument/references"] = function(...)
   require("notomo.lsp.handler").references(...)
-end
-vim.lsp.handlers["workspace/symbol"] = function(...)
-  require("notomo.lsp.handler").symbol(...)
 end
 vim.lsp.handlers["textDocument/documentSymbol"] = function(...)
   require("notomo.lsp.handler").document_symbol(...)

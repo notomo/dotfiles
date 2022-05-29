@@ -1,13 +1,5 @@
 local M = {}
 
-local remove_indent = function(str)
-  local lines = vim.split(str, "\n", true)
-  lines = vim.tbl_map(function(line)
-    return line:gsub("^%s+", "")
-  end, lines)
-  return table.concat(lines, " ")
-end
-
 local collect = function(path, query, language)
   local f = io.open(path, "r")
   if not f then

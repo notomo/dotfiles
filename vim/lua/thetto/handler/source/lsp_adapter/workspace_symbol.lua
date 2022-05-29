@@ -30,11 +30,10 @@ function M._to_item(_, cwd)
 end
 
 function M.collect(self, source_ctx)
-  local pattern = source_ctx.pattern
   local to_item = self:_to_item(source_ctx.cwd)
   return function(observer)
     local method = "workspace/symbol"
-    local params = { query = pattern or "method" }
+    local params = { query = source_ctx.pattern or "" }
     vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
       local items = vim.tbl_map(function(e)
         return to_item(e)

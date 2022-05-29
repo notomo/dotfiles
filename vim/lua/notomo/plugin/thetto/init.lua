@@ -190,7 +190,7 @@ require("thetto").setup({
       global_opts = { auto = "preview" },
     },
 
-    ["keymap"] = { global_opts = { auto = "preview" } },
+    ["keymap"] = { global_opts = { auto = "preview", view_type = "broad" } },
 
     ["vim/jump"] = { global_opts = { auto = "preview" } },
     ["vim/substitute"] = { global_opts = { auto = "preview" } },
