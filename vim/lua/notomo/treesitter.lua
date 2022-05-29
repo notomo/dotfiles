@@ -1,7 +1,7 @@
 local M = {}
 
 function M.get_first_tree_root(str, language)
-  local parser = vim.treesitter.get_string_parser(str, language)
+  local parser = vim.treesitter.get_string_parser(str, language, { injections = { [language] = "" } })
   local trees = parser:parse()
   return trees[1]:root()
 end
