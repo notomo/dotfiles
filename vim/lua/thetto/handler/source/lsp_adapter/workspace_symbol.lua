@@ -3,8 +3,8 @@ local util = require("notomo.plugin.thetto.util")
 
 local M = {}
 
-function M._to_item(_, opts)
-  local to_relative = pathlib.relative_modifier(opts.cwd)
+function M._to_item(_, cwd)
+  local to_relative = pathlib.relative_modifier(cwd)
   return function(v)
     local kind = vim.lsp.protocol.SymbolKind[v.kind]
     local path = vim.uri_to_fname(v.location.uri)
@@ -18,6 +18,7 @@ function M._to_item(_, opts)
       column = v.location.range.start.character + 1,
       desc = desc,
       value = v.name,
+      kind = kind,
       column_offsets = {
         ["path:relative"] = 0,
         value = #path_row + 1,
@@ -28,15 +29,22 @@ function M._to_item(_, opts)
   end
 end
 
-function M.collect(self, opts)
-  local result = self.opts.result or {}
-  local to_item = self:_to_item(opts)
-
-  local items = {}
-  for _, v in ipairs(result) do
-    table.insert(items, to_item(v))
-  end
-  return items
+function M.collect(self, source_ctx)
+  local pattern = source_ctx.pattern
+  local to_item = self:_to_item(source_ctx.cwd)
+  return function(observer)
+    local method = "workspace/symbol"
+    local params = { query = pattern or "method" }
+    vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
+      local items = vim.tbl_map(function(e)
+        return to_item(e)
+      end, result or {})
+      observer:next(items)
+      observer:complete()
+    end)
+  end,
+    nil,
+    self.errors.skip_empty_pattern
 end
 
 function M.highlight(self, bufnr, first_line, items)

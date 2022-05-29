@@ -248,7 +248,14 @@ require("thetto").setup({
       global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
     },
     ["lsp_adapter/workspace_symbol"] = {
-      filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
+      filters = {
+        "interactive",
+        "substring",
+        "-substring",
+        "substring:kind",
+        "substring:path:relative",
+        "-substring:path:relative",
+      },
       global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
     },
     ["lsp_adapter/text_document_document_symbol"] = {
