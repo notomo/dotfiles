@@ -93,13 +93,18 @@ function M._to_items(self, item, parent, current_path)
   return items
 end
 
-function M.highlight(self, bufnr, first_line, items)
-  local highlighter = self.highlights:create(bufnr)
-  for i, item in ipairs(items) do
-    highlighter:add("Comment", first_line + i - 1, 0, item.column_offsets.value)
-    highlighter:add("Comment", first_line + i - 1, item.column_offsets.value + #item.value, -1)
-  end
-end
+M.highlight = require("thetto.util").highlight.columns({
+  {
+    group = "Comment",
+    end_key = "value",
+  },
+  {
+    group = "Comment",
+    start_key = function(item)
+      return item.column_offsets.value + #item.value
+    end,
+  },
+})
 
 M.kind_name = "file"
 

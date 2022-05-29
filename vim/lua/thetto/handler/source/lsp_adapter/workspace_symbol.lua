@@ -47,13 +47,16 @@ function M.collect(self, source_ctx)
     self.errors.skip_empty_pattern
 end
 
-function M.highlight(self, bufnr, first_line, items)
-  local highlighter = self.highlights:create(bufnr)
-  for i, item in ipairs(items) do
-    highlighter:add("Comment", first_line + i - 1, 0, item.column_offsets.value - 1)
-    highlighter:add("Statement", first_line + i - 1, item.column_offsets.kind, -1)
-  end
-end
+M.highlight = require("thetto.util").highlight.columns({
+  {
+    group = "Comment",
+    end_key = "value",
+  },
+  {
+    group = "Statement",
+    start_key = "kind",
+  },
+})
 
 M.kind_name = "file"
 

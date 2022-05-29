@@ -31,12 +31,12 @@ function M.collect(self, opts)
   return items
 end
 
-function M.highlight(self, bufnr, first_line, items)
-  local highlighter = self.highlights:create(bufnr)
-  for i, item in ipairs(items) do
-    highlighter:add("Comment", first_line + i - 1, 0, item.column_offsets.value)
-  end
-end
+M.highlight = require("thetto.util").highlight.columns({
+  {
+    group = "Comment",
+    end_key = "value",
+  },
+})
 
 M.kind_name = "file"
 M.sorters = { "row" }

@@ -35,12 +35,12 @@ function M._to_items(self, item, parent_key, current_path)
   return items
 end
 
-function M.highlight(self, bufnr, first_line, items)
-  local highlighter = self.highlights:create(bufnr)
-  for i, item in ipairs(items) do
-    highlighter:add("Statement", first_line + i - 1, item.column_offsets.kind, -1)
-  end
-end
+M.highlight = require("thetto.util").highlight.columns({
+  {
+    group = "Statement",
+    start_key = "kind",
+  },
+})
 
 M.kind_name = "file"
 

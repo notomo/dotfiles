@@ -27,13 +27,14 @@ local hl_groups = {
   [vim.diagnostic.severity.HINT] = "DiagnosticHint",
 }
 
-function M.highlight(self, bufnr, first_line, items)
-  local highlighter = self.highlights:create(bufnr)
-  for i, item in ipairs(items) do
-    local hl_group = hl_groups[item.severity]
-    highlighter:add(hl_group, first_line + i - 1, 0, PREFIX_LENGTH)
-  end
-end
+M.highlight = require("thetto.util").highlight.columns({
+  {
+    group = function(item)
+      return hl_groups[item.severity]
+    end,
+    end_column = PREFIX_LENGTH,
+  },
+})
 
 M.kind_name = "file"
 M.sorters = { "row", "numeric:severity" }
