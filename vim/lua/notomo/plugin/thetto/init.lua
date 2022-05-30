@@ -324,6 +324,7 @@ require("thetto").setup({
     },
 
     ["go/package"] = { global_opts = { auto = "preview" } },
+    ["lua/luarocks"] = { global_opts = { auto = "preview" } },
   },
 
   source_actions = {

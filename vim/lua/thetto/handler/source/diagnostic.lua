@@ -9,7 +9,7 @@ function M.collect()
     local path = vim.api.nvim_buf_get_name(diagnostic.bufnr)
     local desc = PREFIX .. diagnostic.message
     table.insert(items, {
-      value = diagnostic.message,
+      value = diagnostic.message:gsub("\n", " "),
       desc = desc,
       row = diagnostic.lnum + 1,
       path = path,
