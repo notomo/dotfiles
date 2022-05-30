@@ -8,18 +8,6 @@ function M.publish_diagnostics(err, result, ctx, config)
   })
 end
 
-function M.incoming_calls(_, result)
-  require("thetto").start("lsp_adapter/incoming_calls", {
-    source_opts = { result = result },
-  })
-end
-
-function M.outgoing_calls(_, result, ctx)
-  require("thetto").start("lsp_adapter/outgoing_calls", {
-    source_opts = { result = result, path = vim.api.nvim_buf_get_name(ctx.bufnr) },
-  })
-end
-
 function M.definition(_, result, ctx)
   if result == nil or vim.tbl_isempty(result) then
     return nil
@@ -66,12 +54,6 @@ end
 vim.lsp.handlers["textDocument/definition"] = function(...)
   require("notomo.lsp.handler").definition(...)
 end
-vim.lsp.handlers["callHierarchy/incomingCalls"] = function(...)
-  require("notomo.lsp.handler").incoming_calls(...)
-end
-vim.lsp.handlers["callHierarchy/outgoingCalls"] = function(...)
-  require("notomo.lsp.handler").outgoing_calls(...)
-end
 vim.lsp.handlers["dart/textDocument/publishOutline"] = function(...)
   require("notomo.lsp.handler").dart_publish_outline(...)
 end
@@ -98,8 +80,6 @@ vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent 
 vim.keymap.set("n", "[exec]gf", [[<Cmd>lua vim.lsp.buf.format({async = true})<CR>]])
 vim.keymap.set("n", "[keyword]c", [[<Cmd>lua vim.lsp.buf.code_action()<CR>]], { silent = true })
 vim.keymap.set("x", "[keyword]c", [[:lua vim.lsp.buf.range_code_action()<CR>]], { silent = true })
-vim.keymap.set("n", "[keyword]I", [[<Cmd>lua vim.lsp.buf.incoming_calls()<CR>]])
-vim.keymap.set("n", "[keyword]O", [[<Cmd>lua vim.lsp.buf.outgoing_calls()<CR>]])
 
 local original_select = vim.ui.select
 vim.ui.select = function(items, opts, on_choice)
