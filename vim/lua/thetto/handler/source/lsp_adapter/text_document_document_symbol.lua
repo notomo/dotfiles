@@ -4,11 +4,18 @@ local M = {}
 
 function M.collect(self)
   local current_path = vim.fn.expand("%:p")
-  local items = {}
-  for _, v in ipairs(self.opts.result or {}) do
-    vim.list_extend(items, self:_to_items(v, "", current_path))
+  return function(observer)
+    local method = "textDocument/documentSymbol"
+    local params = { textDocument = vim.lsp.util.make_text_document_params() }
+    vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
+      local items = {}
+      for _, v in ipairs(result or {}) do
+        vim.list_extend(items, self:_to_items(v, "", current_path))
+      end
+      observer:next(items)
+      observer:complete()
+    end)
   end
-  return items
 end
 
 function M._to_items(self, item, parent_key, current_path)

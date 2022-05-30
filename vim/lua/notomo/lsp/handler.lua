@@ -8,33 +8,6 @@ function M.publish_diagnostics(err, result, ctx, config)
   })
 end
 
-function M.references(_, result)
-  if not result or result == {} then
-    return
-  end
-  require("thetto").start("lsp_adapter/text_document_references", {
-    source_opts = { result = result },
-  })
-end
-
-function M.document_symbol(_, result)
-  if not result or result == {} then
-    return
-  end
-  require("thetto").start("lsp_adapter/text_document_document_symbol", {
-    source_opts = { result = result },
-  })
-end
-
-function M.implementation(_, result)
-  if not result or result == {} then
-    return
-  end
-  require("thetto").start("lsp_adapter/text_document_implementation", {
-    source_opts = { result = result },
-  })
-end
-
 function M.incoming_calls(_, result)
   require("thetto").start("lsp_adapter/incoming_calls", {
     source_opts = { result = result },
@@ -90,15 +63,6 @@ vim.lsp.set_log_level("error")
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
   require("notomo.lsp.handler").publish_diagnostics(...)
 end
-vim.lsp.handlers["textDocument/references"] = function(...)
-  require("notomo.lsp.handler").references(...)
-end
-vim.lsp.handlers["textDocument/documentSymbol"] = function(...)
-  require("notomo.lsp.handler").document_symbol(...)
-end
-vim.lsp.handlers["textDocument/implementation"] = function(...)
-  require("notomo.lsp.handler").implementation(...)
-end
 vim.lsp.handlers["textDocument/definition"] = function(...)
   require("notomo.lsp.handler").definition(...)
 end
@@ -130,13 +94,10 @@ vim.keymap.set("n", "[lc]k", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], { silent = tr
 vim.keymap.set("n", "[lc]D", [[<Cmd>lua vim.lsp.buf.type_definition()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]K", [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]s", [[<Cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>]], { silent = true })
-vim.keymap.set("n", "[exec]gr", [[<Cmd>lua vim.lsp.buf.references()<CR>]], { silent = true })
 vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true })
-vim.keymap.set("n", "[exec]gd", [[<Cmd>lua vim.lsp.buf.document_symbol()<CR>]], { silent = true })
 vim.keymap.set("n", "[exec]gf", [[<Cmd>lua vim.lsp.buf.format({async = true})<CR>]])
 vim.keymap.set("n", "[keyword]c", [[<Cmd>lua vim.lsp.buf.code_action()<CR>]], { silent = true })
 vim.keymap.set("x", "[keyword]c", [[:lua vim.lsp.buf.range_code_action()<CR>]], { silent = true })
-vim.keymap.set("n", "[exec]gi", [[<Cmd>lua vim.lsp.buf.implementation()<CR>]], { silent = true })
 vim.keymap.set("n", "[keyword]I", [[<Cmd>lua vim.lsp.buf.incoming_calls()<CR>]])
 vim.keymap.set("n", "[keyword]O", [[<Cmd>lua vim.lsp.buf.outgoing_calls()<CR>]])
 

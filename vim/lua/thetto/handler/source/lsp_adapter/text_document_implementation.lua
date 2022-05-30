@@ -3,8 +3,8 @@ local util = require("notomo.plugin.thetto.util")
 
 local M = {}
 
-function M._to_item(_, opts)
-  local to_relative = pathlib.relative_modifier(opts.cwd)
+function M._to_item(_, cwd)
+  local to_relative = pathlib.relative_modifier(cwd)
   return function(v)
     local path = vim.uri_to_fname(v.uri)
     local relative_path = to_relative(path)
@@ -18,15 +18,19 @@ function M._to_item(_, opts)
   end
 end
 
-function M.collect(self, opts)
-  local result = type(self.opts.result) == "table" and self.opts.result or {}
-  local to_item = self:_to_item(opts)
-
-  local items = {}
-  for _, v in ipairs(result) do
-    table.insert(items, to_item(v))
+function M.collect(self, source_ctx)
+  local to_item = self:_to_item(source_ctx.cwd)
+  return function(observer)
+    local method = "textDocument/implementation"
+    local params = vim.lsp.util.make_position_params()
+    vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
+      local items = vim.tbl_map(function(e)
+        return to_item(e)
+      end, result or {})
+      observer:next(items)
+      observer:complete()
+    end)
   end
-  return items
 end
 
 M.kind_name = "file"

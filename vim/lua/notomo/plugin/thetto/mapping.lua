@@ -331,6 +331,7 @@ vim.keymap.set("n", "[finder]gp", [[<Cmd>lua require("thetto").start("go/package
 vim.keymap.set("n", "[finder]a", [[<Cmd>lua require("thetto").start("aliaser")<CR>]])
 vim.keymap.set("n", "[finder]d", [[<Cmd>lua require("thetto").start("diagnostic")<CR>]])
 vim.keymap.set("n", "[finder]w", [[<Cmd>lua require("thetto").start("lsp_adapter/workspace_symbol")<CR>]])
+vim.keymap.set("n", "[exec]gr", [[<Cmd>lua require("thetto").start("lsp_adapter/text_document_references")<CR>]])
 
 -- custom action
 vim.keymap.set(

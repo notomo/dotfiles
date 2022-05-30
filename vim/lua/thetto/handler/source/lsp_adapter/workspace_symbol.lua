@@ -41,9 +41,7 @@ function M.collect(self, source_ctx)
       observer:next(items)
       observer:complete()
     end)
-  end,
-    nil,
-    self.errors.skip_empty_pattern
+  end
 end
 
 M.highlight = require("thetto.util").highlight.columns({
