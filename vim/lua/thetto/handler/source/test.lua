@@ -12,7 +12,7 @@ function M.collect(self)
     tests, err = require("gettest").all_leaves()
   end
   if err then
-    return nil, nil, err
+    return nil, err
   end
   for _, test in ipairs(tests) do
     table.insert(items, {

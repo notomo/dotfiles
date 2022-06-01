@@ -40,7 +40,7 @@ end
 function M.collect()
   local language = "lua"
   if not vim.treesitter.language.require_language(language, nil, true) then
-    return nil, nil, ("not found tree-sitter parser for `%s`"):format(language)
+    return nil, ("not found tree-sitter parser for `%s`"):format(language)
   end
 
   local paths = vim.fn.glob("~/dotfiles/vim/**/*.lua", false, true)
