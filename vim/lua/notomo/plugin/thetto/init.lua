@@ -325,6 +325,13 @@ require("thetto").setup({
 
     ["go/package"] = { global_opts = { auto = "preview" } },
     ["lua/luarocks"] = { global_opts = { auto = "preview" } },
+
+    ["github/user"] = {
+      filters = { "interactive", "regex", "-regex" },
+    },
+    ["github/search_repository"] = {
+      filters = { "interactive", "regex", "-regex" },
+    },
   },
 
   source_actions = {
