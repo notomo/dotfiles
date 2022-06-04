@@ -7,7 +7,7 @@ function M.collect(self)
   return function(observer)
     local method = "textDocument/documentSymbol"
     local params = { textDocument = vim.lsp.util.make_text_document_params() }
-    vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
+    local _, cancel = vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
       local items = {}
       for _, v in ipairs(result or {}) do
         vim.list_extend(items, self:_to_items(v, "", current_path))
@@ -15,6 +15,7 @@ function M.collect(self)
       observer:next(items)
       observer:complete()
     end)
+    return cancel
   end
 end
 

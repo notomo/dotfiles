@@ -26,13 +26,14 @@ function M.collect(self, source_ctx)
     params.context = {
       includeDeclaration = true,
     }
-    vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
+    local _, cancel = vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
       local items = vim.tbl_map(function(e)
         return to_item(e)
       end, result or {})
       observer:next(items)
       observer:complete()
     end)
+    return cancel
   end
 end
 

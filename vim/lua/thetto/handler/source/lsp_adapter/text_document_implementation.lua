@@ -23,13 +23,14 @@ function M.collect(self, source_ctx)
   return function(observer)
     local method = "textDocument/implementation"
     local params = vim.lsp.util.make_position_params()
-    vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
+    local _, cancel = vim.lsp.buf_request(self.bufnr, method, params, function(_, result)
       local items = vim.tbl_map(function(e)
         return to_item(e)
       end, result or {})
       observer:next(items)
       observer:complete()
     end)
+    return cancel
   end
 end
 
