@@ -301,6 +301,7 @@ require("thetto").setup({
     ["cmd/make/target"] = { global_opts = { auto = "preview" } },
 
     ["git/diff"] = { global_opts = { auto = "preview" } },
+    ["git/log"] = { global_opts = { auto = "preview", view_type = "broad" } },
 
     ["env/manual"] = { sorters = { "length" } },
 
