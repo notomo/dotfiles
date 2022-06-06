@@ -8,23 +8,6 @@ function M.publish_diagnostics(err, result, ctx, config)
   })
 end
 
-function M.definition(_, result, ctx)
-  if result == nil or vim.tbl_isempty(result) then
-    return nil
-  end
-
-  local util = vim.lsp.util
-  local client = vim.lsp.get_client_by_id(ctx.client_id)
-  if vim.tbl_islist(result) then
-    util.jump_to_location(result[1], client.offset_encoding)
-    if #result > 1 then
-      vim.fn.setloclist(0, util.locations_to_items(result))
-    end
-  else
-    util.jump_to_location(result, client.offset_encoding)
-  end
-end
-
 function M.dart_publish_outline(_, result, ctx)
   vim.api.nvim_buf_set_var(ctx.bufnr or 0, "_thetto_dart_outline", result)
 end
@@ -51,9 +34,6 @@ vim.lsp.set_log_level("error")
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
   require("notomo.lsp.handler").publish_diagnostics(...)
 end
-vim.lsp.handlers["textDocument/definition"] = function(...)
-  require("notomo.lsp.handler").definition(...)
-end
 vim.lsp.handlers["dart/textDocument/publishOutline"] = function(...)
   require("notomo.lsp.handler").dart_publish_outline(...)
 end
@@ -71,7 +51,6 @@ vim.api.nvim_create_autocmd({ "User" }, {
 })
 
 require("notomo.mapping.util").set_prefix({ "n" }, "lc", "<Leader>f")
-vim.keymap.set("n", "[lc]d", [[<Cmd>lua vim.lsp.buf.definition()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]k", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]D", [[<Cmd>lua vim.lsp.buf.type_definition()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]K", [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], { silent = true })
