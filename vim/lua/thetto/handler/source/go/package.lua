@@ -11,6 +11,6 @@ function M.collect(_, source_ctx)
   end)
 end
 
-M.kind_name = "file/directory"
+M.kind_name = "go/package"
 
 return M

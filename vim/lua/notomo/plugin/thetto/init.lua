@@ -437,18 +437,6 @@ require("thetto").setup({
         end
       end,
     },
-
-    ["go/package"] = {
-      action_list_children = function(_, items)
-        local item = items[1]
-        if item == nil then
-          return
-        end
-        require("thetto").start("go/document", {
-          source_opts = { package_name = item.value },
-        })
-      end,
-    },
   },
 
   global_opts = { display_limit = 500 },
