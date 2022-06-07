@@ -325,6 +325,7 @@ require("thetto").setup({
     },
 
     ["go/package"] = { global_opts = { auto = "preview" } },
+    ["go/document"] = { global_opts = { auto = "preview", view_type = "broad" } },
     ["lua/luarocks"] = { global_opts = { auto = "preview" } },
 
     ["github/user"] = {
@@ -434,6 +435,18 @@ require("thetto").setup({
           local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
           require("lreload").disable(name)
         end
+      end,
+    },
+
+    ["go/package"] = {
+      action_list_children = function(_, items)
+        local item = items[1]
+        if item == nil then
+          return
+        end
+        require("thetto").start("go/document", {
+          source_opts = { package_name = item.value },
+        })
       end,
     },
   },
