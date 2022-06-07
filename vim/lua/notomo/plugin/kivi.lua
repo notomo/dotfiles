@@ -25,7 +25,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "yr", [[<Cmd>lua require("kivi").execute("yank")<CR>]], { buffer = true })
     vim.keymap.set("n", "B", [[<Cmd>lua require("kivi").execute("back")<CR>]], { buffer = true })
     vim.keymap.set("n", "rn", [[<Cmd>lua require("kivi").execute("rename")<CR>]], { buffer = true })
-    vim.keymap.set("n", "o", [[<Cmd>lua require("kivi").execute("toggle_tree")<CR>]], { buffer = true })
+    vim.keymap.set("n", "o", function()
+      if require("kivi").is_parent() then
+        return require("kivi").execute("toggle_tree")
+      end
+      return require("kivi").execute("open")
+    end, { buffer = true })
     vim.keymap.set("n", "c", [[<Cmd>lua require("kivi").execute("close_all_tree")<CR>]], { buffer = true })
     vim.keymap.set("n", "<2-LeftMouse>", [[<Cmd>lua require("kivi").execute("child")<CR>]], { buffer = true })
     vim.keymap.set("n", "sm", [[<Cmd>lua require("kivi").execute("toggle_selection")<CR>j]], { buffer = true })
