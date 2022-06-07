@@ -187,7 +187,7 @@ require("thetto").setup({
 
     line = {
       filters = { "regex", "-regex", "substring", "-substring" },
-      global_opts = { auto = "preview" },
+      global_opts = { auto = "preview", view_type = "broad" },
     },
 
     ["keymap"] = { global_opts = { auto = "preview", view_type = "broad" } },
