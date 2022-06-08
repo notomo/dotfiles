@@ -51,4 +51,6 @@ function M.action_open(_, items)
   })
 end
 
+M.default_action = "open"
+
 return M
