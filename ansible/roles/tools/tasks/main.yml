@@ -12,6 +12,7 @@
       - supervisor
       - cscope
       - ripgrep
+      - gron
 
 - name: install with apt
   apt:
