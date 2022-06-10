@@ -32,6 +32,12 @@ end
 
 M.action_tab_open = M.action_show
 
+function M.action_search(_, items)
+  for _, item in ipairs(items) do
+    vim.cmd([[OpenBrowserSearch -python ]] .. item.value)
+  end
+end
+
 M.default_action = "show"
 
 return M

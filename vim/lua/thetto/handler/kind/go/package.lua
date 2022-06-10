@@ -10,4 +10,10 @@ function M.action_list_children(_, items)
   })
 end
 
+function M.action_search(_, items)
+  for _, item in ipairs(items) do
+    vim.cmd([[OpenBrowserSearch -go ]] .. item.value)
+  end
+end
+
 return require("thetto.core.kind").extend(M, "file/directory")
