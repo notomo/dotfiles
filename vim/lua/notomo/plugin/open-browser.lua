@@ -4,6 +4,7 @@ vim.keymap.set("n", "[browser]s", [[<Cmd>execute 'OpenBrowserSearch' expand('<cw
 vim.keymap.set("n", "[browser]o", [[<Cmd>execute 'OpenBrowser' expand('<cWORD>')<CR>]])
 vim.keymap.set("n", "[browser]i", [[:<C-u>OpenBrowserSearch ]])
 vim.keymap.set("n", "[browser]I", [[:<C-u>OpenBrowserSearch -github ]])
+vim.keymap.set("n", "[browser]m", [[:<C-u>OpenBrowserSearch -mdn ]])
 vim.keymap.set("n", "[browser]y", [[<Cmd>execute 'OpenBrowser' getreg('+')<CR>]])
 
 if not vim.fn.empty(vim.env.SSH_CLIENT) and vim.fn.has("mac") == 1 and vim.fn.executable("lemonade") then
@@ -11,3 +12,6 @@ if not vim.fn.empty(vim.env.SSH_CLIENT) and vim.fn.has("mac") == 1 and vim.fn.ex
 elseif vim.fn.has("wsl") == 1 then
   vim.g.openbrowser_browser_commands = { { name = "wslview", args = "wslview {uri}" } }
 end
+vim.g.openbrowser_search_engines = {
+  mdn = [[https://developer.mozilla.org/ja/search?q={query}]],
+}
