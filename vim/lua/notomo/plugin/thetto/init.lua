@@ -326,6 +326,7 @@ require("thetto").setup({
 
     ["go/package"] = { global_opts = { auto = "preview" } },
     ["go/document"] = { global_opts = { auto = "preview", view_type = "broad" } },
+    ["python/attribute"] = { global_opts = { auto = "preview", view_type = "broad" } },
     ["lua/luarocks"] = { global_opts = { auto = "preview" } },
 
     ["github/user"] = {
