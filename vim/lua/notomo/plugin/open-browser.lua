@@ -14,4 +14,9 @@ elseif vim.fn.has("wsl") == 1 then
 end
 vim.g.openbrowser_search_engines = {
   mdn = [[https://developer.mozilla.org/ja/search?q={query}]],
+  docker = [[https://docs.docker.com/search/?q={query}]],
+  mongo = [[https://www.mongodb.com/docs/search/?q={query}]],
+  github_api = [[https://docs.github.com/en?query={query}]],
+  ansible = [[https://docs.ansible.com/ansible/latest/index.html#stq={query}]],
+  git = [[http://git-scm.com/search/results?search={query}]],
 }
