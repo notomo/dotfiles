@@ -32,7 +32,7 @@ null_ls.setup({
   should_attach = function(bufnr)
     local name = vim.api.nvim_buf_get_name(bufnr)
     if vim.endswith(name, ".yaml") or vim.endswith(name, ".yml") then
-      return vim.api.nvim_buf_get_name(bufnr):match("/%.github/")
+      return vim.api.nvim_buf_get_name(bufnr):match("/%.github/workflows/")
     end
     return true
   end,
