@@ -335,6 +335,9 @@ require("thetto").setup({
     ["github/search_repository"] = {
       filters = { "interactive", "regex", "-regex" },
     },
+    ["zsh/completion"] = {
+      filters = { "interactive", "substring", "-substring" },
+    },
   },
 
   source_actions = {
