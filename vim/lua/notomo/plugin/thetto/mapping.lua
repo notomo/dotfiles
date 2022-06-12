@@ -87,6 +87,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     )
     vim.keymap.set("n", "[finder]n", [[<Cmd>lua require("thetto").execute("resume_previous")<CR>]], { buffer = true })
     vim.keymap.set("n", "[finder]N", [[<Cmd>lua require("thetto").execute("resume_next")<CR>]], { buffer = true })
+    vim.keymap.set("n", "<C-n>", [[<Cmd>lua require("thetto").execute("go_to_next_page")<CR>]], { buffer = true })
+    vim.keymap.set("n", "<C-p>", [[<Cmd>lua require("thetto").execute("go_to_previous_page")<CR>]], { buffer = true })
 
     -- custom
     vim.keymap.set("n", "<Leader>rp", [[<Cmd>lua require("thetto").execute("qfreplace")<CR>]], { buffer = true })
