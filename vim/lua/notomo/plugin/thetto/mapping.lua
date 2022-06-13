@@ -144,6 +144,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "[finder]n", [[<Cmd>lua require("thetto").execute("resume_previous")<CR>]], { buffer = true })
     vim.keymap.set("n", "[finder]N", [[<Cmd>lua require("thetto").execute("resume_next")<CR>]], { buffer = true })
 
+    vim.keymap.set("i", "<Tab>", [[<Cmd>lua require("thetto").execute("append_filter_input")<CR>]], { buffer = true })
+
     -- custom
     vim.keymap.set("n", "<C-u>", [[<Cmd>lua require('notomo.edit').delete_prev()<CR>]], { buffer = true })
   end,

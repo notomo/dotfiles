@@ -13,9 +13,25 @@ function M.collect(_, source_ctx)
 
   local cmd = { "capture.zsh", pattern }
   return require("thetto.util").job.start(cmd, source_ctx, function(output)
-    return { value = vim.fn.trim(output, 2) }
+    local desc = vim.fn.trim(output, 2)
+    local value = vim.split(desc, "%s+")[1]
+    return {
+      value = value,
+      desc = desc,
+      column_offsets = {
+        value = 0,
+        desc = #value,
+      },
+    }
   end)
 end
+
+M.highlight = require("thetto.util").highlight.columns({
+  {
+    group = "Comment",
+    start_key = "desc",
+  },
+})
 
 M.kind_name = "word"
 
