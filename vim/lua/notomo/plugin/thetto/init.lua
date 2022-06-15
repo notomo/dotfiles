@@ -222,7 +222,7 @@ require("thetto").setup({
     ["cmdhndlr/runner"] = { global_opts = { action = "execute" } },
 
     ["vendor_target"] = { global_opts = { action = "add" } },
-    ["diagnostic"] = { global_opts = { auto = "preview", view_type = "broad" } },
+    ["vim/diagnostic"] = { global_opts = { auto = "preview", view_type = "broad" } },
 
     ["file/grep"] = {
       opts = {
@@ -244,10 +244,10 @@ require("thetto").setup({
       global_opts = { auto = "preview", view_type = "broad" },
     },
 
-    ["lsp_adapter/text_document_references"] = {
+    ["vim/lsp/references"] = {
       global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
     },
-    ["lsp_adapter/workspace_symbol"] = {
+    ["vim/lsp/workspace_symbol"] = {
       filters = {
         "interactive",
         "substring",
@@ -258,17 +258,17 @@ require("thetto").setup({
       },
       global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
     },
-    ["lsp_adapter/text_document_document_symbol"] = {
+    ["vim/lsp/document_symbol"] = {
       global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
     },
-    ["lsp_adapter/text_document_implementation"] = {
+    ["vim/lsp/implementation"] = {
       global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
     },
-    ["lsp_adapter/incoming_calls"] = {
+    ["vim/lsp/incoming_calls"] = {
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
       global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
     },
-    ["lsp_adapter/outgoing_calls"] = {
+    ["vim/lsp/outgoing_calls"] = {
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
       global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview", view_type = "broad" },
     },
@@ -335,7 +335,7 @@ require("thetto").setup({
     ["github/search_repository"] = {
       filters = { "interactive", "regex", "-regex" },
     },
-    ["zsh/completion"] = {
+    ["cmd/zsh/completion"] = {
       filters = { "interactive", "substring", "-substring" },
     },
   },

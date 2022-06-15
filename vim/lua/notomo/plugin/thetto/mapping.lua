@@ -333,11 +333,11 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "[finder]gp", [[<Cmd>lua require("thetto").start("go/package")<CR>]])
 vim.keymap.set("n", "[finder]a", [[<Cmd>lua require("thetto").start("aliaser")<CR>]])
-vim.keymap.set("n", "[finder]d", [[<Cmd>lua require("thetto").start("diagnostic")<CR>]])
-vim.keymap.set("n", "[finder]w", [[<Cmd>lua require("thetto").start("lsp_adapter/workspace_symbol")<CR>]])
-vim.keymap.set("n", "[exec]gr", [[<Cmd>lua require("thetto").start("lsp_adapter/text_document_references")<CR>]])
-vim.keymap.set("n", "[keyword]O", [[<Cmd>lua require("thetto").start("lsp_adapter/outgoing_calls")<CR>]])
-vim.keymap.set("n", "[keyword]I", [[<Cmd>lua require("thetto").start("lsp_adapter/incoming_calls")<CR>]])
+vim.keymap.set("n", "[finder]d", [[<Cmd>lua require("thetto").start("vim/diagnostic")<CR>]])
+vim.keymap.set("n", "[finder]w", [[<Cmd>lua require("thetto").start("vim/lsp/workspace_symbol")<CR>]])
+vim.keymap.set("n", "[exec]gr", [[<Cmd>lua require("thetto").start("vim/lsp/references")<CR>]])
+vim.keymap.set("n", "[keyword]O", [[<Cmd>lua require("thetto").start("vim/lsp/outgoing_calls")<CR>]])
+vim.keymap.set("n", "[keyword]I", [[<Cmd>lua require("thetto").start("vim/lsp/incoming_calls")<CR>]])
 
 -- custom action
 vim.keymap.set(

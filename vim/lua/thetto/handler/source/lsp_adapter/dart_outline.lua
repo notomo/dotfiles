@@ -1,4 +1,4 @@
-local util = require("notomo.plugin.thetto.util")
+local util = require("thetto.util.lsp")
 
 local M = {}
 
