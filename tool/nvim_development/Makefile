@@ -1,5 +1,5 @@
 NVIM_DIR := ${HOME}/workspace/neovim
-NVIM := ${NVIM_DIR}/build/bin/nvim
+NVIM := VIMRUNTIME=${NVIM_DIR}/runtime ${NVIM_DIR}/build/bin/nvim
 # NVIM := nvim
 ASAN_NVIM := ./bin/asan_nvim
 # NVIM := ./bin/asan_nvim
