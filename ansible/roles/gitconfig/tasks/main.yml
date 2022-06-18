@@ -6,7 +6,7 @@
 
 - name: copy .gitconfig
   copy:
-    src: "{{ home_dir }}/dotfiles/git/.gitconfig"
+    src: .gitconfig
     dest: "{{ home_dir }}/.gitconfig"
   when: not gitconfig_file.stat.exists
 
