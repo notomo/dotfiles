@@ -10,28 +10,36 @@
     dest: "{{ home_dir }}/.gitconfig"
   when: not gitconfig_file.stat.exists
 
+- name: set variables
+  set_fact:
+    env_user: "{{ lookup('env', 'USER') }}"
+    env_git_email: "{{ lookup('env', 'GIT_EMAIL') }}"
+
 - name: input git user name
   pause:
     prompt: "input git user name"
-  register: git_user_name
-  when: not gitconfig_file.stat.exists
+  register: git_user_name_input
+  when: env_user == ""
 
 - name: input git user email
   pause:
     prompt: "input git user email"
-  register: git_user_email
-  when: not gitconfig_file.stat.exists
+  register: git_user_email_input
+  when: env_git_email == ""
+
+- name: set variables
+  set_fact:
+    git_user_name: "{{ env_user or git_user_name_input.user_input }}"
+    git_user_email: "{{ env_git_email or git_user_email_input.user_input }}"
 
 - name: set git user name
   git_config:
     name: user.name
     scope: global
-    value: "{{ git_user_name.user_input }}"
-  when: not gitconfig_file.stat.exists
+    value: "{{ git_user_name }}"
 
 - name: set git user email
   git_config:
     name: user.email
     scope: global
-    value: "{{ git_user_email.user_input }}"
-  when: not gitconfig_file.stat.exists
+    value: "{{ git_user_email }}"
