@@ -6,6 +6,14 @@ snippet run
 alias RUN
 	RUN ${0:command}
 
+snippet heredoc
+	RUN <<EOF
+	  ${0:TARGET}
+	EOF
+
+snippet syntax
+	# syntax=docker/dockerfile:1
+
 snippet env
 alias ENV
 	ENV ${1:name}=${0:value}${0:#: more_key=value}
@@ -29,3 +37,6 @@ alias ENTRYPOINT
 snippet user
 alias USER
 	USER ${0:name}
+
+snippet arg
+	ARG ${1:name}=${0:value}
