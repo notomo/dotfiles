@@ -59,16 +59,3 @@
   become: yes
   when: is_ubuntu
   changed_when: False
-
-- name: check docker-compose
-  stat:
-    path: "{{ home_dir }}/.local/bin/docker-compose"
-  register: docker_compose_installed
-  when: is_linux
-
-- name: download docker-compose
-  get_url:
-    url: https://github.com/docker/compose/releases/download/1.27.4/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
-    dest: "{{ home_dir }}/.local/bin/docker-compose"
-    mode: u+x
-  when: is_linux and not docker_compose_installed.stat.exists
