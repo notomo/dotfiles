@@ -14,9 +14,9 @@
       - ripgrep
       - gron
 
-- name: install with apt
-  apt:
-    name:
-      - wamerican # words dict
-  when: is_ubuntu
-  become: yes
+# - name: install with apt
+#   apt:
+#     name:
+#       - wamerican # words dict
+#   when: is_ubuntu
+#   become: yes
