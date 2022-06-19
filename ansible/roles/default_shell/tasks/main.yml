@@ -6,4 +6,4 @@
   become: yes
   user:
     name: "{{ shell_user_name }}"
-    shell: /bin/zsh
+    shell: /home/linuxbrew/.linuxbrew/bin/zsh
