@@ -4,8 +4,6 @@ fi
 
 export GROOVY_HOME=$HOME/app/groovy/latest
 export PATH=$HOME/.local/nvim/bin:$HOME/.local/bin:$PATH:$HOME/bin:$HOME/.composer/vendor/bin:$HOME/.config/composer/vendor/bin:/usr/local/go/bin:$GROOVY_HOME/bin:$HOME/.cargo/bin
-# enable on wsl
-# export BROWSER=wslview
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
@@ -19,9 +17,6 @@ export PATH=$PATH:$HOME/.vim/packages/pack/mypack/opt/vimonga/target/debug/
 
 export EDITOR="nvr --remote-wait-silent"
 export GIT_EDITOR="nvr --remote-wait-silent"
-
-# used by firefox
-export DISPLAY=:0
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin:$HOME/.local/go/bin
@@ -55,6 +50,8 @@ if [[ "$(< /proc/sys/kernel/osrelease)" == *microsoft* ]]; then
     export LIBGL_ALWAYS_INDIRECT=1
     export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
     export DISPLAY=$WSL_HOST:0
+
+    export BROWSER=wslview
 fi
 
 if [ -d "/home/linuxbrew" ]; then

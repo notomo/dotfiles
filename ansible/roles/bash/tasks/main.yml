@@ -59,25 +59,6 @@
     content: |
       {{ lookup('file', '.bashrc') }}
 
-- name: add .bashrc content on mac
-  blockinfile:
-    marker: "# {mark} ANSIBLE MANAGED BLOCK bash on mac"
-    dest: "{{ home_dir }}/.bashrc"
-    content: |
-      alias anc='cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml'
-      alias anct='cd ~/dotfiles/ansible;ansible-playbook playbooks/mac.yml --tags'
-      alias psa='ps -aux'
-  when: is_macos
-
-- name: add .bashrc content on ubuntu
-  blockinfile:
-    marker: "# {mark} ANSIBLE MANAGED BLOCK bash on ubuntu"
-    dest: "{{ home_dir }}/.bashrc"
-    content: |
-      alias anc='cd ~/dotfiles/ansible;ansible-playbook playbooks/ubuntu.yml'
-      alias anct='cd ~/dotfiles/ansible;ansible-playbook playbooks/ubuntu.yml --tags'
-  when: is_ubuntu
-
 - name: add .bash_profile content
   blockinfile:
     marker: "# {mark} ANSIBLE MANAGED BLOCK bash role"
