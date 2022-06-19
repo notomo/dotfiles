@@ -15,7 +15,7 @@
 
 - name: get zinit
   git:
-    repo: https://github.com/zdharma/zinit.git
+    repo: https://github.com/zdharma-continuum/zinit.git
     dest: "{{ home_dir }}/.zinit/bin"
   when: not zinit_installed.stat.exists
 
