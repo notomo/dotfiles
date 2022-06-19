@@ -2,3 +2,4 @@
   homebrew:
     name:
       - luarocks
+      - lua@5.1
