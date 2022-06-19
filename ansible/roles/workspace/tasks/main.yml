@@ -8,3 +8,11 @@
   file:
     path: "{{ home_dir }}/app"
     state: directory
+
+- name: create .sudo_as_admin_successful
+  file:
+    path: "{{ home_dir }}/.sudo_as_admin_successful"
+    state: touch
+    modification_time: preserve
+    access_time: preserve
+  when: is_ubuntu
