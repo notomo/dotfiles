@@ -57,6 +57,10 @@ if [[ "$(< /proc/sys/kernel/osrelease)" == *microsoft* ]]; then
     export DISPLAY=$WSL_HOST:0
 fi
 
+if [ -d "/home/linuxbrew" ]; then
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
 if [ -d "$HOME/dotfiles" ]; then
     cd ~/dotfiles
 fi
