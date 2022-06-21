@@ -10,7 +10,6 @@
       vim/indent: .vim/indent
       vim/ftdetect: .vim/ftdetect
       vim/lua/notomo/init.lua: .config/nvim/init.lua
-      lint/vim/.vintrc.yaml: .vintrc.yaml
       lint/python/setup.cfg: setup.cfg
       lint/efm/config.yaml: .config/efm-langserver/config.yaml
       git/.gitignore_global: .gitignore_global

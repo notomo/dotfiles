@@ -2,12 +2,6 @@ version: 2
 log-level: 1
 
 tools:
-  vim-vint: &vim-vint
-    lint-command: 'vint -f "{file_path}:{line_number}:{column_number}: {severity}: {description} (see {reference})" -'
-    lint-stdin: true
-    lint-formats:
-      - '%f:%l:%c: %trror: %m'
-      - '%f:%l:%c: %tarning: %m'
 
   python-flake8: &python-flake8
     lint-command: 'flake8 --stdin-display-name ${INPUT} -'
@@ -43,13 +37,7 @@ tools:
   json-fixjson: &json-fixjson
     format-command: 'fixjson'
 
-  # lua-lua-format: &lua-lua-format
-  #   format-command: 'lua-format -i -c ~/dotfiles/tool/.lua-format'
-  #   format-stdin: true
-
 languages:
-  vim:
-    - <<: *vim-vint
 
   python:
     - <<: *python-flake8
@@ -60,7 +48,6 @@ languages:
 
   lua:
     - <<: *luacheck
-    # - <<: *lua-lua-format
 
   typescript.tsx:
     - <<: *eslint
