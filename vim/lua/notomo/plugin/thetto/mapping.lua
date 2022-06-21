@@ -255,15 +255,18 @@ vim.keymap.set("n", "[finder]G", function()
     opts = {
       cwd = require("thetto.util").cwd.project(),
       debounce_ms = 100,
-      filters = { "interactive", "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
+      filters = require("thetto.util").filter.prepend("interactive"),
     },
   })
 end)
-vim.keymap.set(
-  "n",
-  "[finder]gL",
-  [[<Cmd>lua require("thetto").start("file/grep", {opts = {debounce_ms = 100, filters = {"interactive", "substring", "-substring", "substring:path:relative", "-substring:path:relative"}}})<CR>]]
-)
+vim.keymap.set("n", "[finder]gL", function()
+  require("thetto").start("file/grep", {
+    opts = {
+      debounce_ms = 100,
+      filters = require("thetto.util").filter.prepend("interactive"),
+    },
+  })
+end)
 vim.keymap.set("n", "[file]f", [[<Cmd>lua require("thetto").start("file/alter")<CR>]])
 vim.keymap.set("n", "[file]l", [[<Cmd>lua require("thetto").start("file/alter", {opts = {action = "tab_open"}})<CR>]])
 vim.keymap.set(
@@ -289,11 +292,9 @@ vim.keymap.set(
 vim.keymap.set("n", "[finder]J", [[<Cmd>lua require("thetto").start("vim/jump")<CR>]])
 vim.keymap.set("n", "[finder]c", [[<Cmd>lua require("thetto").start("vim/command")<CR>]])
 vim.keymap.set("n", "[finder]M", [[<Cmd>lua require("thetto").start("env/manual")<CR>]])
-vim.keymap.set(
-  "n",
-  "[finder]q",
-  [[<Cmd>lua require("thetto").start("cmd/jq", {opts = {filters = {"interactive", "substring", "-substring"}}})<CR>]]
-)
+vim.keymap.set("n", "[finder]q", function()
+  require("thetto").start("cmd/jq", { opts = { filters = require("thetto.util").filter.prepend("interactive") } })
+end)
 vim.keymap.set("n", "[finder]gR", [[<Cmd>lua require("thetto").start("cmd/gron")<CR>]])
 vim.keymap.set(
   "n",
