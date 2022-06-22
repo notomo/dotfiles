@@ -3,3 +3,4 @@
     name:
       - luarocks
       - lua@5.1
+      - lua-language-server

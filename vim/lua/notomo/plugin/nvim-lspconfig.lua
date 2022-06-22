@@ -25,11 +25,6 @@ setup_ls(lspconfig.gopls, {
   },
 })
 setup_ls(lspconfig.sumneko_lua, {
-  cmd = {
-    vim.env.HOME .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/bin/Linux/lua-language-server",
-    vim.env.HOME .. "/.cache/nvim/lspconfig/sumneko_lua/lua-language-server/main.lua",
-    "-E",
-  },
   settings = {
     Lua = {
       runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
