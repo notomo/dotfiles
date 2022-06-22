@@ -1,7 +1,7 @@
 
 [core]
     excludesfile = ~/.gitignore_global
-    editor = nvr --remote-wait-silent
+    editor = nvim
     quotepath = false
 
 [user]

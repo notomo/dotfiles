@@ -15,9 +15,6 @@ export PATH=$PATH:$HOME/.vim/packages/pack/mypack/opt/vusted/bin
 
 export PATH=$PATH:$HOME/.vim/packages/pack/mypack/opt/vimonga/target/debug/
 
-export EDITOR="nvr --remote-wait-silent"
-export GIT_EDITOR="nvr --remote-wait-silent"
-
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin:$HOME/.local/go/bin
 

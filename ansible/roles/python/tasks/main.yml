@@ -6,15 +6,9 @@
 - name: set variables
   set_fact:
     python3_packages:
-      - pynvim
-      - flake8
-      - requests
-      - mypy
-      - autopep8
       - isort
       - black
       - python-lsp-server[all]
-      - neovim-remote
       - httpie
       - pytest
 
