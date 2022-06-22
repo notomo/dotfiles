@@ -1,3 +1,0 @@
-- name: install tmux with homebrew
-  homebrew:
-    name: tmux

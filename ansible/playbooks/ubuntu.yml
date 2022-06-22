@@ -11,7 +11,6 @@
     - { role: 'docker', tags: ['docker'] }
     - { role: 'neovim', tags: ['neovim'] }
     - { role: 'neovim_dev', tags: ['neovim_dev'] }
-    - { role: 'vim', tags: ['vim'] }
     - { role: 'ctags', tags: ['ctags'] }
     - { role: 'xvfb', tags: ['xvfb'] }
     - { role: 'rust', tags: ['rust'] }

@@ -1,5 +1,0 @@
-- name: install firefox with homebrew_cask
-  homebrew_cask:
-    name: firefox
-  when: is_macos
-  ignore_errors: yes

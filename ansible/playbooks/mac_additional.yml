@@ -2,9 +2,6 @@
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
   roles:
-    - { role: 'vim', tags: ['vim'] }
-    - { role: 'firefox', tags: ['firefox'] }
-    - { role: 'tmux', tags: ['tmux'] }
     - { role: 'rust', tags: ['rust'] }
   tasks:
     - name: install with homebrew_cask
