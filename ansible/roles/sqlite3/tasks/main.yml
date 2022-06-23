@@ -1,45 +1,4 @@
-- name: check sqlite3
-  stat:
-    path: "{{ home_dir }}/.local/bin/sqlite3"
-  register: sqlite3_installed
-
-- name: make sqlite3 directory
-  file:
-    path: "{{ app_dir }}/sqlite3"
-    state: directory
-  when: is_ubuntu and not sqlite3_installed.stat.exists
-
-- name: download sqlite3 on ubuntu
-  get_url:
-    url: https://www.sqlite.org/snapshot/sqlite-snapshot-202003121754.tar.gz
-    dest: "{{ app_dir }}/sqlite3.zip"
-  when: is_ubuntu and not sqlite3_installed.stat.exists
-
-- name: unarchive sqlite3
-  unarchive:
-    src: "{{ app_dir }}/sqlite3.zip"
-    dest: "{{ app_dir }}/sqlite3"
-  when: is_ubuntu and not sqlite3_installed.stat.exists and not sqlite3_installed.stat.exists
-
-- name: check sqlite3 build
-  stat:
-    path: "{{ app_dir }}/sqlite3/sqlite-snapshot-202003121754/sqlite3"
-  register: sqlite3_built
-
-- name: config
-  shell: ./configure
-  args:
-    chdir: "{{ app_dir }}/sqlite3/sqlite-snapshot-202003121754"
-  when: is_ubuntu and not sqlite3_installed.stat.exists and not sqlite3_built.stat.exists
-
-- name: build
-  make:
-    chdir: "{{ app_dir }}/sqlite3/sqlite-snapshot-202003121754"
-  when: is_linux and not sqlite3_installed.stat.exists and not sqlite3_built.stat.exists
-
-- name: create sqlite3 symbolic link
-  file:
-    src: "{{ app_dir }}/sqlite3/sqlite-snapshot-202003121754/sqlite3"
-    dest: "{{ home_dir }}/.local/bin/sqlite3"
-    state: link
-  when: is_ubuntu and not sqlite3_installed.stat.exists and not sqlite3_installed.stat.exists
+- name: install sqlite3 with homebrew
+  homebrew:
+    name:
+      - sqlite3
