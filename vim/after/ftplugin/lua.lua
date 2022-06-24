@@ -10,7 +10,7 @@ vim.keymap.set(
   [[<Cmd>lua require("notomo.edit").yank(require("notomo.module").path())<CR>]],
   { buffer = true }
 )
-require("notomo.lsp.mapping").setup()
+require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
 require("notomo.lsp.autocmd").setup()
 vim.cmd([[inoreabbrev <buffer> != ~=]])
 

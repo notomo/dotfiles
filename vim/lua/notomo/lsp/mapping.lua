@@ -4,7 +4,7 @@ local M = {}
 
 function M.go_to_definition()
   local params = util.make_position_params()
-  vim.lsp.buf_request(0, "textDocument/definition", params, function(_, result, ctx)
+  vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result, ctx)
     if vim.tbl_contains({ "thetto", "thetto-input" }, vim.bo.filetype) then
       return require("misclib.message").warn("already canceled: " .. vim.inspect(params, { newline = "", indent = "" }))
     end
@@ -13,6 +13,11 @@ function M.go_to_definition()
     end
 
     local client = vim.lsp.get_client_by_id(ctx.client_id)
+    local handlers = client.handlers or {}
+    if handlers["textDocument/definition"] then
+      return handlers["textDocument/definition"](err, result, ctx)
+    end
+
     if vim.tbl_islist(result) then
       util.jump_to_location(result[1], client.offset_encoding)
       if #result > 1 then
@@ -24,7 +29,12 @@ function M.go_to_definition()
   end)
 end
 
-function M.setup()
+function M.setup(opts)
+  local default = {
+    symbol_source = "vim/lsp/document_symbol",
+  }
+  opts = vim.tbl_deep_extend("force", default, opts or {})
+
   vim.keymap.set("n", "[keyword]o", M.go_to_definition, { buffer = true })
   vim.keymap.set("n", "[keyword]v", function()
     vim.cmd([[vsplit]])
@@ -38,6 +48,7 @@ function M.setup()
     require("wintablib.window").duplicate_as_right_tab()
     M.go_to_definition()
   end, { buffer = true })
+
   vim.keymap.set("n", "sl", function()
     vim.cmd([[nohlsearch]])
     vim.lsp.buf.document_highlight()
@@ -48,6 +59,10 @@ function M.setup()
         vim.lsp.buf.clear_references()
       end,
     })
+  end, { buffer = true })
+
+  vim.keymap.set("n", "[finder]o", function()
+    require("thetto").start(opts.symbol_source)
   end, { buffer = true })
 end
 

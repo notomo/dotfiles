@@ -43,7 +43,7 @@ setup_ls(lspconfig.sumneko_lua, {
           "pending",
           "newproxy",
         },
-        -- disable = {"lowercase-global"},
+        disable = { "missing-parameter" }, -- HACK: for expand()
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
       workspace = {
@@ -66,7 +66,7 @@ setup_ls(lspconfig.eslint, {
 })
 setup_ls(lspconfig.tsserver, {
   root_dir = function(fname)
-    local denops = require("lspconfig/util").root_pattern("denops")(fname)
+    local denops = require("lspconfig/util").root_pattern("deno.json", "deno.jsonc", "denops")(fname)
     if denops then
       return nil
     end

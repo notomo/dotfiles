@@ -1,6 +1,6 @@
 vim.opt_local.completeopt:remove("preview")
 vim.opt_local.expandtab = false
-require("notomo.lsp.mapping").setup()
+require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
 require("notomo.lsp.autocmd").setup()
 
 vim.keymap.set(
