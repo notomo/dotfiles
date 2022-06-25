@@ -47,3 +47,5 @@ RUN <<EOF
     --tags lua \
     --tags gitconfig
 EOF
+
+COPY thetto.nvim /home/$USERNAME/.local/share/nvim/thetto.nvim
