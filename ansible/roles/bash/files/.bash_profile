@@ -21,9 +21,6 @@ export PATH=$PATH:$GOPATH/bin:$HOME/.local/go/bin
 export PATH=${HOME}/app/flutter/bin:$PATH
 export PATH=${HOME}/app/flutter/bin/cache/dart-sdk/bin:$PATH
 
-# export NVIM_PYTHON_LOG_FILE=$HOME/log
-# export NVIM_PYTHON_LOG_LEVEL=ERROR
-
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 
 # for rustfmt: https://github.com/rust-lang-nursery/rustfmt/issues/1687

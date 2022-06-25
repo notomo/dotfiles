@@ -13,6 +13,7 @@ alias less='less -N'
 alias ps='ps au'
 alias df='df -h'
 alias dsl="docker_compose logs -f --tail=100"
+alias nvb="VIMRUNTIME=$HOME/workspace/neovim/runtime ~/workspace/neovim/build/bin/nvim"
 
 function docker_compose() {
     docker compose "$@"
