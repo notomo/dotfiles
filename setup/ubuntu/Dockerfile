@@ -13,7 +13,9 @@ RUN <<EOF
   useradd --create-home --shell /bin/bash -u 1000 -g 1000 -G sudo $USERNAME
   echo $USERNAME:$PASSWORD | chpasswd
   echo "[user]\ndefault=$USERNAME" > /etc/wsl.conf
+  DEBIAN_FRONTEND=noninteractive apt install tzdata
 EOF
+ENV TZ=Asia/Tokyo
 
 # install brew
 RUN <<EOF
