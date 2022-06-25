@@ -49,3 +49,4 @@ RUN <<EOF
 EOF
 
 COPY thetto.nvim /home/$USERNAME/.local/share/nvim/thetto.nvim
+COPY --chown=$USERNAME:$USERNAME .ssh /home/$USERNAME/.ssh
