@@ -1,9 +1,5 @@
-- name: set variables
-  set_fact:
-    shell_user_name: "{{ ansible_env.USER }}"
-
 - name: change default shell
   become: yes
   user:
-    name: "{{ shell_user_name }}"
+    name: "{{ ansible_env.USER }}"
     shell: /home/linuxbrew/.linuxbrew/bin/zsh
