@@ -66,7 +66,7 @@ setup_ls(lspconfig.eslint, {
 })
 setup_ls(lspconfig.tsserver, {
   root_dir = function(fname)
-    local denops = require("lspconfig/util").root_pattern("deno.json", "deno.jsonc", "denops")(fname)
+    local denops = require("lspconfig/util").root_pattern("deno.json", "deno.jsonc", "denops", "import_map.json")(fname)
     if denops then
       return nil
     end
@@ -76,7 +76,14 @@ setup_ls(lspconfig.tsserver, {
   end,
 })
 setup_ls(lspconfig.denols, {
-  root_dir = require("lspconfig/util").root_pattern("deno.json", "deno.jsonc", "denops"),
+  root_dir = require("lspconfig/util").root_pattern("deno.json", "deno.jsonc", "denops", "import_map.json"),
+  before_init = function(config)
+    local import_map = config.rootPath .. "/import_map.json"
+    if vim.fn.filereadable(import_map) ~= 1 then
+      return
+    end
+    config.initializationOptions["importMap"] = import_map
+  end,
 }, "mac", "win32")
 setup_ls(lspconfig.vimls, {}, "mac", "win32")
 setup_ls(lspconfig.cssls, {}, "mac", "win32")
