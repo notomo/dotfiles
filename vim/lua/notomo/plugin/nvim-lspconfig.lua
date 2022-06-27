@@ -43,7 +43,10 @@ setup_ls(lspconfig.sumneko_lua, {
           "pending",
           "newproxy",
         },
-        disable = { "missing-parameter" }, -- HACK: for expand()
+        disable = {
+          "missing-parameter", -- HACK: for expand()
+          "redundant-parameter", -- HACK: return function
+        },
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
       workspace = {
