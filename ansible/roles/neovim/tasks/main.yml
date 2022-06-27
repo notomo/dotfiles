@@ -33,7 +33,7 @@
 
 - name: create nvim symbolic link
   file:
-    src: "{{ app_dir }}/nvim/nvim-osx64/bin/nvim"
+    src: "{{ app_dir }}/nvim/nvim-macos/bin/nvim"
     dest: "{{ home_dir }}/.local/bin/nvim"
     state: link
   when: is_macos and not nvim_installed.stat.exists and not nvim_installed.stat.exists
