@@ -37,6 +37,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("x", "sm", [[<Cmd>lua require("kivi").execute("toggle_selection")<CR>]], { buffer = true })
     vim.keymap.set("n", "O", [[<Cmd>lua require("kivi").execute("expand_parent")<CR>]], { buffer = true })
     vim.keymap.set("n", ".", [[<Cmd>lua require("kivi").execute("shrink")<CR>]], { buffer = true })
+    vim.keymap.set("n", "I", [[<Cmd>lua require("kivi").execute("show_details")<CR>]], { buffer = true })
+    vim.keymap.set("x", "I", [[<Cmd>lua require("kivi").execute("show_details")<CR>]], { buffer = true })
 
     local gesture = require("gesture")
     gesture.register({
