@@ -6,10 +6,14 @@ null_ls.setup({
     null_ls.builtins.formatting.isort,
     null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.formatting.deno_fmt.with({
+      filetypes = {
+        "typescript",
+      },
+    }),
     null_ls.builtins.formatting.prettier.with({
       filetypes = {
         "javascript",
-        "typescript",
         "typescriptreact",
         "vue",
         "css",
