@@ -46,6 +46,7 @@ if [[ "$(< /proc/sys/kernel/osrelease)" == *microsoft* ]]; then
     export DISPLAY=$WSL_HOST:0
 
     export BROWSER=wslview
+    ulimit -c unlimited
 fi
 
 if [ -d "/home/linuxbrew" ]; then
