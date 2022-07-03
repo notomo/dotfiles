@@ -342,6 +342,12 @@ vim.keymap.set(
 vim.keymap.set("n", "[finder]gp", [[<Cmd>lua require("thetto").start("go/package")<CR>]])
 vim.keymap.set("n", "[finder]a", [[<Cmd>lua require("thetto").start("aliaser")<CR>]])
 vim.keymap.set("n", "[finder]d", [[<Cmd>lua require("thetto").start("vim/diagnostic")<CR>]])
+vim.keymap.set("n", "[finder]D", function()
+  require("thetto").start("vim/diagnostic", {
+    opts = { cwd = require("thetto.util").cwd.project() },
+    source_opts = { args = {} },
+  })
+end)
 vim.keymap.set("n", "[finder]w", [[<Cmd>lua require("thetto").start("vim/lsp/workspace_symbol")<CR>]])
 vim.keymap.set("n", "[exec]gr", [[<Cmd>lua require("thetto").start("vim/lsp/references")<CR>]])
 vim.keymap.set("n", "[keyword]O", [[<Cmd>lua require("thetto").start("vim/lsp/outgoing_calls")<CR>]])

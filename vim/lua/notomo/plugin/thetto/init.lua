@@ -222,7 +222,15 @@ require("thetto").setup({
     ["cmdhndlr/runner"] = { global_opts = { action = "execute" } },
 
     ["vendor_target"] = { global_opts = { action = "add" } },
-    ["vim/diagnostic"] = { global_opts = { auto = "preview" } },
+    ["vim/diagnostic"] = {
+      global_opts = { auto = "preview" },
+      filters = {
+        "substring",
+        "-substring",
+        "substring:path:relative",
+        "-substring:path:relative",
+      },
+  },
 
     ["file/grep"] = {
       opts = {
