@@ -46,6 +46,7 @@ setup_ls(lspconfig.sumneko_lua, {
         disable = {
           "missing-parameter", -- HACK: for expand()
           "redundant-parameter", -- HACK: return function
+          "need-check-nil", -- HACK: return tbl, err
         },
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
