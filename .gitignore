@@ -1,20 +1,6 @@
-# setup
-/setup/*/*.log
-
-# vim
-
-# local
 /vim/lua/notomo/local/*
-!/vim/lua/notomo/local/after
 !/vim/lua/notomo/local/*.sample
 /vim/lua/notomo/local/after/*
-
-# snippet
 /vim/snippets/*/*
 
-# ansible
-/ansible/**/*.retry
-
 !.gitkeep
-
-__pycache__
