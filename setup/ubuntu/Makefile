@@ -3,11 +3,19 @@ IMAGE_NAME:=notomo_dev
 DEP_DIR:=./tmp
 $(DEP_DIR):
 	mkdir -p ${DEP_DIR}
-	cp -rf ./../../ansible ${DEP_DIR}/ansible
-	cp -rf ~/.local/share/nvim/thetto.nvim ${DEP_DIR}/thetto.nvim
-	cp -rf ~/.ssh ${DEP_DIR}/.ssh
 
-build: $(DEP_DIR)
+$(DEP_DIR)/ansible: $(DEP_DIR)
+	cp -rf ./../../ansible $@
+
+$(DEP_DIR)/.ssh: $(DEP_DIR)
+	mkdir -p ~/.ssh
+	cp -rf ~/.ssh $@
+
+$(DEP_DIR)/thetto.nvim: $(DEP_DIR)
+	mkdir -p ~/.local/share/nvim/thetto.nvim
+	cp -rf ~/.local/share/nvim/thetto.nvim $@
+
+build: $(DEP_DIR)/ansible $(DEP_DIR)/.ssh $(DEP_DIR)/thetto.nvim
 	DOCKER_BUILDKIT=1 docker build --progress=plain -f ./Dockerfile -t ${IMAGE_NAME} ${DEP_DIR}
 
 start:
