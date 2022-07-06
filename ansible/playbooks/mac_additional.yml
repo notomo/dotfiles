@@ -3,6 +3,7 @@
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
   roles:
     - { role: 'rust', tags: ['rust'] }
+    - { role: 'deno', tags: ['deno'] }
   tasks:
     - name: install with homebrew_cask
       homebrew_cask: name={{ item }}
