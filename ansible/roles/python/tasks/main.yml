@@ -2,6 +2,7 @@
 - homebrew:
     name:
       - python3
+      - pyenv
 
 - name: set variables
   set_fact:
@@ -10,8 +11,19 @@
       - black
       - python-lsp-server[all]
       - httpie
-      - pytest
+    pyenv_python_version: 3.10.5
+
+- shell: pyenv install --skip-existing {{ pyenv_python_version }}
+  register: pyenv_install
+  changed_when: pyenv_install.stdout != ''
+
+- shell: pyenv global {{ pyenv_python_version }}
+  changed_when: False
+
+- shell: pyenv which pip
+  register: pyenv_which_pip
+  changed_when: False
 
 - pip:
     name: "{{ python3_packages }}"
-    executable: pip3
+    executable: "{{ pyenv_which_pip.stdout }}"
