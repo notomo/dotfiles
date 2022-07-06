@@ -5,7 +5,6 @@
 - name: set variables
   set_fact:
     node_packages:
-      - typescript
       - fixjson
       - typescript-language-server
       - vscode-langservers-extracted
