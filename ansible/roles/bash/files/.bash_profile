@@ -28,12 +28,6 @@ if [ -d "$HOME/.cargo" ]; then
     export LD_LIBRARY_PATH=$(rustc --print sysroot)/lib:$LD_LIBRARY_PATH
 fi
 
-if [ -d "$HOME/.pyenv" ]; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/shims:$PATH"
-    eval "$(pyenv init -)"
-fi
-
 if [[ "$(< /proc/sys/kernel/osrelease)" == *microsoft* ]]; then 
     export LIBGL_ALWAYS_INDIRECT=1
     export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
@@ -45,6 +39,12 @@ fi
 
 if [ -d "/home/linuxbrew" ]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
+if [ -d "$HOME/.pyenv" ]; then
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/shims:$PATH"
+    eval "$(pyenv init -)"
 fi
 
 if [ -d "$HOME/dotfiles" ]; then
