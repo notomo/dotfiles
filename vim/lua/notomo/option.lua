@@ -105,3 +105,4 @@ if vim.fn.has("win32") ~= 1 then
   opt.shell = "zsh"
 end
 opt.laststatus = 3
+opt.mousescroll = "ver:2,hor:6"
