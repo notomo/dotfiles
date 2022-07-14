@@ -13,3 +13,4 @@
       - cscope
       - ripgrep
       - gron
+      - fd

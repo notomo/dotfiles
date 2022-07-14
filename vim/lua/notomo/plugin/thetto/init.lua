@@ -19,7 +19,7 @@ local colors = {
   { always = true, pattern = "", chunks = { { " ", "ThettoColorLabelOthers" } } },
 }
 
-local file_recursive, directory_recursive
+local file_recursive, directory_recursive, modify_path
 if vim.fn.has("win32") == 0 then
   file_recursive = function(path, max_depth)
     return {
@@ -34,16 +34,11 @@ if vim.fn.has("win32") == 0 then
     }
   end
 
-  local ignore_dirs = { ".git", "node_modules", ".mypy_cache" }
-  local cmds = {}
-  for _, name in ipairs(ignore_dirs) do
-    vim.list_extend(cmds, { "-type", "d", "-name", name, "-prune", "-o" })
-  end
-  vim.list_extend(cmds, { "-type", "d", "-print" })
   directory_recursive = function(path, max_depth)
-    local cmd = { "find", "-L", path, "-maxdepth", max_depth }
-    vim.list_extend(cmd, cmds)
-    return cmd
+    return { "fd", "--hidden", "--color=never", "--exclude", ".git", "-L", "--max-depth", max_depth, "-t", "d", ".", path }
+  end
+  modify_path = function(path)
+    return path
   end
 end
 
@@ -210,7 +205,7 @@ require("thetto").setup({
       global_opts = { auto = "preview" },
     },
     ["file/directory/recursive"] = {
-      opts = { get_command = directory_recursive },
+      opts = { get_command = directory_recursive, modify_path = modify_path },
       sorters = { "length" },
       global_opts = { auto = "preview" },
     },
