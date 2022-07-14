@@ -26,6 +26,8 @@ build_release_with_deb_info: reset_build_type
 	cd ${NVIM_DIR}; LUAC_PRG=luac5.1 make CMAKE_BUILD_TYPE=RelWithDebInfo
 	cd ${NVIM_DIR}; make install CMAKE_INSTALL_PREFIX=${HOME}/.local/nvim
 	nvim --version
+	$(MAKE) -C ./../../vim test
+	$(MAKE) -C ./../../vim profile
 .PHONY: build_release_with_deb_info
 
 reset_build_type:
