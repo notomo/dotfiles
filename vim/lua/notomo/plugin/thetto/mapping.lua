@@ -90,6 +90,18 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "<C-n>", [[<Cmd>lua require("thetto").execute("go_to_next_page")<CR>]], { buffer = true })
     vim.keymap.set("n", "<C-p>", [[<Cmd>lua require("thetto").execute("go_to_previous_page")<CR>]], { buffer = true })
 
+    vim.keymap.set("n", "usg", function()
+      require("thetto").start("file/recursive", {
+        opts = { cwd = require("thetto.util").cwd.project(nil, require("thetto").get()[1].path) },
+      })
+    end, { buffer = true })
+
+    vim.keymap.set("n", "usf", function()
+      require("thetto").start("file/recursive", {
+        opts = { cwd = require("thetto.util").cwd.dir(require("thetto").get()[1].path) },
+      })
+    end, { buffer = true })
+
     -- custom
     vim.keymap.set("n", "<Leader>rp", [[<Cmd>lua require("thetto").execute("qfreplace")<CR>]], { buffer = true })
     vim.keymap.set("n", "O", [[<Cmd>lua require("thetto").execute("search")<CR>]], { buffer = true })
