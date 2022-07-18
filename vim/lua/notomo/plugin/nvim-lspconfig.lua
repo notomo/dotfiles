@@ -47,6 +47,11 @@ setup_ls(lspconfig.sumneko_lua, {
           "missing-parameter", -- HACK: for expand()
           "redundant-parameter", -- HACK: return function
           "need-check-nil", -- HACK: return tbl, err
+          "assign-type-mismatch", -- HACK: vim.fn, ...
+          "param-type-mismatch",
+          "cast-type-mismatch",
+          "return-type-mismatch",
+          "cast-local-type",
         },
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
