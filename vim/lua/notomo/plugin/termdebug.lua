@@ -32,7 +32,7 @@ function M.start()
   vim.keymap.set("n", "[term]n", [[<Cmd>Over<CR>]])
   vim.keymap.set("n", "[term]c", [[<Cmd>Continue<CR>]])
   vim.keymap.set("n", "[term]f", [[<Cmd>Finish<CR>]])
-  vim.keymap.set("n", "[keyword]e", [[:Evaluate<CR>]])
+  vim.keymap.set("n", "[keyword]E", [[:Evaluate<CR>]])
 end
 
 function M.quit()

@@ -598,7 +598,7 @@ optpack.add("mfussenegger/nvim-dap", {
       vim.keymap.set("n", "[term]n", [[<Cmd>lua require("dap").step_over()<CR>]])
       vim.keymap.set("n", "[term]c", [[<Cmd>lua require("dap").continue()<CR>]])
       vim.keymap.set("n", "[term]f", [[<Cmd>lua require("dap").terminate()<CR>]])
-      vim.keymap.set("n", "[keyword]e", [[<Cmd>lua require('dap.ui.widgets').hover()<CR>]])
+      vim.keymap.set("n", "[keyword]E", [[<Cmd>lua require('dap.ui.widgets').hover()<CR>]])
     end,
     pre_load = function()
       vim.api.nvim_create_augroup("dap_setting", {})

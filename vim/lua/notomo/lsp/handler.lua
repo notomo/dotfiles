@@ -51,7 +51,6 @@ vim.api.nvim_create_autocmd({ "User" }, {
 })
 
 require("notomo.mapping.util").set_prefix({ "n" }, "lc", "<Leader>f")
-vim.keymap.set("n", "[lc]k", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]D", [[<Cmd>lua vim.lsp.buf.type_definition()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]K", [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]s", [[<Cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>]], { silent = true })
@@ -59,6 +58,7 @@ vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent 
 vim.keymap.set("n", "[exec]gf", [[<Cmd>lua vim.lsp.buf.format({async = true})<CR>]])
 vim.keymap.set("n", "[keyword]c", [[<Cmd>lua vim.lsp.buf.code_action()<CR>]], { silent = true })
 vim.keymap.set("x", "[keyword]c", [[:lua vim.lsp.buf.range_code_action()<CR>]], { silent = true })
+vim.keymap.set("n", "[keyword]e", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], { buffer = true })
 
 local original_select = vim.ui.select
 vim.ui.select = function(items, opts, on_choice)
