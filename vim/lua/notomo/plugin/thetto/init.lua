@@ -249,6 +249,10 @@ require("thetto").setup({
 
     ["vim/lsp/references"] = {
       global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
+      filters = {
+        "substring:path",
+        "-substring:path",
+      },
     },
     ["vim/lsp/workspace_symbol"] = {
       filters = {
