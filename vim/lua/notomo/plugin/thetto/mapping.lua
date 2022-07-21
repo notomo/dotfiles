@@ -363,18 +363,18 @@ end)
 vim.keymap.set("n", "[finder]w", [[<Cmd>lua require("thetto").start("vim/lsp/workspace_symbol")<CR>]])
 vim.keymap.set("n", "[exec]gr", [[<Cmd>lua require("thetto").start("vim/lsp/references")<CR>]])
 vim.keymap.set("n", "[keyword]n", function()
+  vim.lsp.buf.clear_references()
+  vim.lsp.buf.document_highlight()
+
   local current_row = vim.fn.line(".")
   local path = vim.api.nvim_buf_get_name(0)
-  vim.lsp.buf.document_highlight()
   require("thetto").start("vim/lsp/references", {
     opts = {
-      immediately = true,
       insert = false,
       action = "open",
       search_offset = function(item)
         return item.path == path and item.row == current_row
       end,
-      input_lines = { path },
     },
   })
 end)
