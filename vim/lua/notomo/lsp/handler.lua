@@ -1,6 +1,15 @@
 local M = {}
 
+local ignored_diagnostic = {
+  -- diagnostic.source = {diagnostic.code = true}
+  deno = { ["import-map-remap"] = true },
+}
+
 function M.publish_diagnostics(err, result, ctx, config)
+  result.diagnostics = vim.tbl_filter(function(e)
+    return not vim.tbl_get(ignored_diagnostic, e.source, e.code)
+  end, result.diagnostics)
+
   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
   vim.diagnostic.setloclist({
     open = false,
@@ -16,10 +25,10 @@ function M.dart_publish_flutter_outline(_, result, ctx)
   vim.api.nvim_buf_set_var(ctx.bufnr or 0, "_thetto_flutter_outline", result)
 end
 
-M.ignore_progress = { "null-ls" }
+M.ignored_progress = { "null-ls" }
 function M.progress()
   local messages = vim.tbl_filter(function(msg)
-    return not vim.tbl_contains(M.ignore_progress, msg.name)
+    return not vim.tbl_contains(M.ignored_progress, msg.name)
   end, vim.lsp.util.get_progress_messages())
   for _, msg in ipairs(messages) do
     if msg.done and not msg.message then
