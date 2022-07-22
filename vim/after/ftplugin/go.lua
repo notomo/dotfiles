@@ -30,11 +30,9 @@ vim.keymap.set("n", "sgp", function()
   require("notomo.edit").jump(test_pattern, "Wb")
 end, { buffer = true })
 
-vim.cmd([[
-syntax keyword goKeywords nil iota true false
-highlight link goKeywords Boolean
-]])
+vim.cmd.syntax({ args = { "keyword", "goKeywords", "nil", "iota", "true", "false" } })
+vim.api.nvim_set_hl(0, "goKeywords", { link = "Boolean" })
 
-vim.cmd([[inoreabbrev <buffer> ~= !=]])
+vim.cmd.inoreabbrev({ args = { "<buffer>", "~=", "!=" } })
 
 require("notomo.plugin.treesitter").text_object_mapping()

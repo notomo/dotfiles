@@ -13,9 +13,9 @@ function M.diff(...)
     paths = vim.list_slice(args, 2)
   end
 
-  vim.cmd("tabedit " .. tab_target)
+  vim.cmd.tabedit(tab_target)
   for _, path in ipairs(paths) do
-    vim.cmd("rightbelow vertical diffsplit " .. path)
+    vim.cmd.diffsplit({ mods = { split = "belowright", vertical = true }, args = { path } })
   end
 end
 

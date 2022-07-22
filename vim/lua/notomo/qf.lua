@@ -9,10 +9,10 @@ function M.open()
     return
   end
   if typ == TYPE_QUICKFIX then
-    return vim.cmd("copen")
+    return vim.cmd.copen()
   end
   if typ == TYPE_LOCLIST then
-    return vim.cmd("lopen")
+    return vim.cmd.lopen()
   end
 end
 

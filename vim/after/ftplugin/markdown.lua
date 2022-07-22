@@ -7,7 +7,7 @@ if vim.b.docfilter then
   vim.keymap.set("n", "<CR>", function()
     require("docfilter").navigate({
       open = function(bufnr)
-        vim.cmd([[buffer ]] .. bufnr)
+        vim.cmd.buffer({ count = bufnr })
       end,
     })
   end, { buffer = true })

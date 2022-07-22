@@ -14,7 +14,7 @@ local execute = function(items, args)
     return "--tags=" .. item.value
   end, items)
 
-  vim.cmd([[tabedit]])
+  vim.cmd.tabedit()
 
   local cmd = { "ansible-playbook", playbook }
   vim.list_extend(cmd, tags)

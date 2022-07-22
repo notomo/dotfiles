@@ -16,14 +16,14 @@ function M.update_plugins()
       echo = { enabled = true },
     },
     on_finished = function()
-      vim.cmd([[quitall!]])
+      vim.cmd.quitall({ bang = true })
     end,
   })
 end
 
 function M.generate_help_tags()
   M.load_plugins()
-  vim.cmd([[helptags ALL]])
+  vim.cmd.helptags([[ALL]])
   M.schedule([[message | quitall!]])
 end
 
@@ -63,7 +63,7 @@ function M._test()
     { opts = { cwd = "~/dotfiles/vim/lua/notomo", input_lines = { "option.lua" } } }
   )
   require("thetto").execute()
-  assert(vim.bo.filetype == "lua")
+  assert(vim.bo.filetype == "lua", "filetype")
 
   vim.fn.feedkeys("tt", "mx")
   assert(vim.fn.tabpagenr("$") == 2, "tab count")

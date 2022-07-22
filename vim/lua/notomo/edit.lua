@@ -2,10 +2,10 @@ local M = {}
 
 function M.exchange()
   local pos = vim.api.nvim_win_get_cursor(0)
-  vim.cmd("s/\\v%#(\\_.)(\\_.)/\\2\\1/g")
+  vim.cmd.substitute([[/\v%#(\_.)(\_.)/\2\1/g]])
   vim.api.nvim_win_set_cursor(0, pos)
-  vim.cmd("normal! l")
-  vim.cmd("nohlsearch")
+  vim.cmd.normal({ args = { "l" }, bang = true })
+  vim.cmd.nohlsearch()
 end
 
 function M.to_next_syntax(pattern, column, offset)
@@ -71,9 +71,13 @@ end
 
 function M.jq()
   local tmp = vim.fn.getreg("+")
-  vim.cmd("normal! ]}v%y")
-  vim.cmd("tabedit | setlocal buftype=nofile noswapfile fileformat=unix")
-  vim.cmd("put | %join!")
+  vim.cmd.normal({ args = { "]}v%y" }, bang = true })
+  vim.cmd.tabedit()
+  vim.bo.buftype = "nofile"
+  vim.bo.swapfile = false
+  vim.bo.fileformat = "unix"
+  vim.cmd.put()
+  vim.cmd("%join!")
   vim.fn.setreg("+", tmp)
   vim.cmd("%!jq '.'")
 end
@@ -90,8 +94,8 @@ function M.scratch(name, filetype)
     vim.fn.mkdir(dir_path, "p")
   end
   local file_path = table.concat({ dir_path, name }, "/")
-  vim.cmd("tab drop " .. file_path)
-  vim.cmd("lcd " .. dir_path)
+  vim.cmd.drop({ mods = { tab = 0 }, args = { file_path } })
+  vim.cmd.lcd(dir_path)
 end
 
 function M.note()
@@ -106,17 +110,17 @@ function M.note()
   end
 
   local before_tab_num = vim.fn.tabpagenr()
-  vim.cmd("tab drop " .. file_path)
-  vim.cmd("lcd " .. dir_path)
+  vim.cmd.drop({ mods = { tab = 0 }, args = { file_path } })
+  vim.cmd.lcd(dir_path)
 
   local note_tab_num = vim.fn.tabpagenr()
   local offset = before_tab_num - note_tab_num
   if offset > 0 then
-    vim.cmd("tabmove +" .. offset)
+    vim.cmd.tabmove("+" .. offset)
   elseif offset < -1 then
-    vim.cmd("tabmove " .. (offset + 1))
+    vim.cmd.tabmove({ count = offset + 1 })
   end
-  vim.cmd("normal! G")
+  vim.cmd.normal({ args = { "G" }, bang = true })
 end
 
 local prev_port = 49152
@@ -141,14 +145,16 @@ function M.mkup(open_current)
 
   local cd_cmd = ("cd %s"):format(document_root)
   local server_cmd = ("mkup -http:%s"):format(port)
-  vim.cmd("tabedit | terminal")
+  vim.cmd.tabedit()
+  vim.cmd.terminal()
   local cmd = ("%s\n%s\n"):format(cd_cmd, server_cmd)
   vim.fn.jobsend(vim.b.terminal_job_id, cmd)
 
   local host = vim.g["local#var#host"] or "localhost"
   local url = ("http://%s:%s/%s"):format(host, port, path)
-  vim.cmd("OpenBrowser " .. url)
-  vim.cmd("tabprevious | +tabclose")
+  vim.cmd.OpenBrowser(url)
+  vim.cmd.tabprevious()
+  vim.cmd("+tabclose")
 end
 
 function M.rotate_file()
@@ -159,9 +165,9 @@ function M.rotate_file()
   for i = 1, 10000 do
     local name = ("%03d_%s"):format(i, origin)
     if vim.fn.filereadable(name) ~= 1 and vim.fn.bufexists(name) ~= 1 then
-      vim.cmd("file " .. name)
-      vim.cmd("write")
-      vim.cmd("edit " .. origin)
+      vim.cmd.file(name)
+      vim.cmd.write()
+      vim.cmd.edit(origin)
       return
     end
   end
@@ -179,7 +185,7 @@ function M.set_term_title(prompt_pattern, max_length)
   cmd = vim.fn.substitute(cmd, "/", [[\]], "g")
 
   vim.api.nvim_buf_set_name(0, ("%s:%s"):format(term_path, cmd))
-  vim.cmd([[redrawtabline]])
+  vim.cmd.redrawtabline()
 end
 
 function M.inc_or_dec(is_inc)
@@ -253,7 +259,7 @@ function M.jump(pattern, search_flag)
     return vim.api.nvim_win_set_cursor(0, old)
   end
 
-  vim.cmd("normal! m'")
+  vim.cmd.normal({ args = { "m'" }, bang = true })
   vim.api.nvim_win_set_cursor(0, pos)
 end
 

@@ -8,8 +8,8 @@ end)
 
 aliaser.register_factory("buffer", function(aliases)
   aliases:set("reverse", function()
-    vim.cmd([[g/^/m0]])
-    vim.cmd("nohlsearch")
+    vim.cmd.global([[/^/m0]])
+    vim.cmd.nohlsearch()
   end)
 end)
 
@@ -22,7 +22,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
       "lua",
       "go",
     }) do
-      vim.cmd([[TSInstall ]] .. language)
+      vim.cmd.TSInstall(language)
     end
   end)
 end)
@@ -44,9 +44,9 @@ aliaser.register_factory("vim", function(aliases)
   aliases:set("check_health", "checkhealth")
   aliases:set("reload_vimrc", function()
     if vim.env.MYVIMRC and vim.env.MYVIMRC ~= "" then
-      vim.cmd("source " .. vim.env.MYVIMRC)
+      vim.cmd.source(vim.env.MYVIMRC)
     end
-    vim.cmd("nohlsearch")
+    vim.cmd.nohlsearch()
   end)
 
   aliases:set("diff", function(...)
@@ -72,9 +72,9 @@ aliaser.register_factory("vim", function(aliases)
   end)
 
   aliases:set("test_highlight", function()
-    vim.cmd([[tabedit]])
-    vim.cmd([[source $VIMRUNTIME/syntax/hitest.vim]])
-    vim.cmd([[only]])
+    vim.cmd.tabedit()
+    vim.cmd.source([[$VIMRUNTIME/syntax/hitest.vim]])
+    vim.cmd.only()
   end)
 
   aliases:set("show_highlight_under_cursor", function()
@@ -82,7 +82,7 @@ aliaser.register_factory("vim", function(aliases)
     if hl_group ~= "" then
       vim.api.nvim_echo({ { "" } }, false, {})
       print(hl_group)
-      vim.cmd([[highlight ]] .. hl_group)
+      vim.cmd.highlight(hl_group)
     else
       print("no hl_group")
     end
@@ -105,11 +105,13 @@ aliaser.register_factory("other", function(aliases)
   end)
 
   local open_line = function()
-    vim.cmd([[!code -r -g ]] .. vim.fn.expand("%:p") .. ":" .. vim.fn.line(".") .. ":" .. vim.fn.col("."))
+    local path = vim.fn.expand("%:p") .. ":" .. vim.fn.line(".") .. ":" .. vim.fn.col(".")
+    vim.cmd["!"]({ args = { "code", "-r", "-g", path } })
   end
   aliases:set("open_line_in_vscode", open_line)
   aliases:set("open_repo_in_vscode", function()
-    vim.cmd([[!code -r ]] .. vim.fn.fnamemodify(vim.fn.finddir(".git", ".;"), ":h"))
+    local path = vim.fn.fnamemodify(vim.fn.finddir(".git", ".;"), ":h")
+    vim.cmd["!"]({ args = { "code", "-r", path } })
     open_line()
   end)
 end)

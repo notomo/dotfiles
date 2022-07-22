@@ -21,7 +21,7 @@ end
 function M.text_object_mapping()
   local set = function(lhs, query)
     vim.keymap.set("o", lhs, function()
-      vim.cmd([[TSTextobjectSelect ]] .. query)
+      vim.cmd.TSTextobjectSelect(query)
     end, { buffer = true })
     vim.keymap.set("x", lhs, function()
       -- HACK
@@ -53,14 +53,14 @@ function M.prev_no_indent_function()
   M._move("TSTextobjectGotoPreviousStart", "@function.outer")
 end
 
-function M._move(cmd, query_string)
+function M._move(cmd_name, query_string)
   local origin_pos = vim.api.nvim_win_get_cursor(0)
   local view = vim.fn.winsaveview()
 
   local next_pos = origin_pos
   while true do
     local prev_pos = vim.api.nvim_win_get_cursor(0)
-    vim.cmd(cmd .. " " .. query_string)
+    vim.cmd[cmd_name](query_string)
     local pos = vim.api.nvim_win_get_cursor(0)
     if prev_pos[1] == pos[1] then
       break
@@ -75,7 +75,7 @@ function M._move(cmd, query_string)
   if next_pos == origin_pos then
     return
   end
-  vim.cmd("normal! m'")
+  vim.cmd.normal({ args = { "m" }, bang = true })
   vim.api.nvim_win_set_cursor(0, next_pos)
 end
 

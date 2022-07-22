@@ -16,14 +16,14 @@ function M.watch(scheme_name, plugin_name)
   end
 
   on_change = function()
-    vim.cmd([[checktime]])
+    vim.cmd.checktime()
 
     event:stop()
 
     vim.api.nvim_clear_autocmds({ event = "ColorScheme", group = "notomo_setting" })
     require("lreload").refresh(scheme_name)
-    vim.cmd([[colorscheme ]] .. scheme_name)
-    vim.cmd([[redraw!]])
+    vim.cmd.colorscheme(scheme_name)
+    vim.cmd.redraw({ bang = true })
 
     start()
   end

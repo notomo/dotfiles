@@ -12,7 +12,7 @@ vim.keymap.set(
 )
 require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
 require("notomo.lsp.autocmd").setup()
-vim.cmd([[inoreabbrev <buffer> != ~=]])
+vim.cmd.inoreabbrev({ args = { "<buffer>", "!=", "~=" } })
 
 vim.keymap.set(
   "n",

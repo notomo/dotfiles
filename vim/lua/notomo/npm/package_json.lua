@@ -3,7 +3,7 @@ local M = {}
 function M.update(path)
   path = vim.fn.fnamemodify(path, ":p")
   local dir = vim.fn.fnamemodify(path, ":p:h")
-  vim.cmd([[lcd ]] .. dir)
+  vim.cmd.lcd(dir)
 
   local lines = vim.fn.systemlist({ "npm", "outdated" })
   lines = vim.list_slice(lines, 2)
@@ -20,7 +20,7 @@ function M.update(path)
   end
   print(vim.inspect(latests))
 
-  vim.cmd([[tabedit ]] .. path)
+  vim.cmd.tabedit(path)
   for _, latest in ipairs(latests) do
     local target_pattern = ([[\v\s+"%s": "]]):format(vim.fn.escape(latest.name, "@"))
     local found_lnum = vim.fn.search(target_pattern)

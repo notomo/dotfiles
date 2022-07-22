@@ -3,7 +3,7 @@ local M = {}
 vim.g._debug_args = {}
 vim.g._debug_watched = {}
 function M.start()
-  vim.cmd([[packadd termdebug]])
+  vim.cmd.packadd([[termdebug]])
 
   local path = vim.fn.expand("~/workspace/neovim/")
   local nvim = path .. "build/bin/nvim"
@@ -12,14 +12,15 @@ function M.start()
   local current = vim.fn.expand("%:p")
   local in_repo = vim.startswith(current, path)
   if not in_repo then
-    vim.cmd([[tabedit | tcd ]] .. path)
+    vim.cmd.tabedit()
+    vim.cmd.tcd(path)
   end
 
   local args = table.concat(vim.g._debug_args, " ")
-  vim.cmd(("TermdebugCommand %s %s -u %s"):format(nvim, args, rc))
-  vim.cmd([[Source]])
+  vim.cmd.TermdebugCommand({ args = { nvim, args, "-u", rc } })
+  vim.cmd.Source()
   if in_repo then
-    vim.cmd([[Break]])
+    vim.cmd.Break()
   end
   for _, v in ipairs(vim.g._debug_watched) do
     vim.fn.TermDebugSendCommand("watch " .. v)

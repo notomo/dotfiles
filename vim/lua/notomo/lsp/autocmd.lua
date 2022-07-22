@@ -24,7 +24,7 @@ local _format = function(client, bufnr)
     local handler = client.handlers[method] or vim.lsp.handlers[method]
     handler(...)
     vim.api.nvim_buf_call(bufnr, function()
-      return vim.cmd([[silent noautocmd update]])
+      return vim.cmd.update({ mods = { silent = true, noautocmd = true } })
     end)
   end, bufnr)
 end

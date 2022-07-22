@@ -28,12 +28,12 @@ end
 
 function M.toggle_buffer(cmd, filetype)
   if vim.bo.filetype ~= filetype then
-    return vim.cmd("Gina " .. cmd)
+    return vim.cmd.Gina(cmd)
   end
   if #vim.fn.tabpagebuflist(vim.fn.tabpagenr()) == 1 then
-    return vim.cmd("edit #")
+    return vim.cmd.edit("#")
   end
-  vim.cmd("quit")
+  vim.cmd.quit()
 end
 
 function M.push_cmd()
@@ -43,12 +43,12 @@ end
 
 function M.fixup()
   local revision = M._revision()
-  vim.cmd("Gina! commit --fixup=" .. revision)
+  vim.cmd.Gina({ args = { "commit", "--fixup=" .. revision }, bang = true })
 end
 
 function M.rebase_i()
   local revision = M._revision()
-  vim.cmd("terminal")
+  vim.cmd.terminal()
   vim.fn.jobsend(
     vim.b.terminal_job_id,
     "git rebase -i --autosquash " .. revision .. "~" .. vim.api.nvim_eval([["\<CR>"]])
@@ -57,7 +57,7 @@ end
 
 function M.stash_file()
   local path = M._path()
-  vim.cmd("Gina! stash -- " .. path)
+  vim.cmd.Gina({ args = { "stash", "--", path }, bang = true })
 end
 
 function M.yank_rev()
@@ -99,14 +99,14 @@ function M.edit(action)
 
   if action == "edit:tab" then
     local window_id = vim.api.nvim_get_current_win()
-    vim.cmd("tabnew")
+    vim.cmd.tabnew()
     vim.api.nvim_win_close(window_id, true)
   end
   if vim.fn.isdirectory(path) == 0 then
-    return vim.cmd([[Gina edit ]] .. file_part)
+    return vim.cmd.Gina({ args = { "edit", file_part } })
   end
 
-  vim.cmd("lcd " .. path)
+  vim.cmd.lcd(path)
   require("kivi").open()
 end
 

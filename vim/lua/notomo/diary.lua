@@ -7,8 +7,8 @@ function M.open()
   end
 
   local diary_path = dir_path .. "/" .. vim.fn.strftime("%Y%m%d.txt")
-  vim.cmd("tab drop " .. diary_path)
-  vim.cmd("lcd " .. dir_path)
+  vim.cmd.drop({ mods = { tab = 0 }, args = { diary_path } })
+  vim.cmd.lcd(dir_path)
   vim.opt_local.filetype = "mydiary"
 
   local current_content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")
@@ -16,7 +16,7 @@ function M.open()
     return
   end
 
-  vim.cmd("write")
+  vim.cmd.write()
 
   local dir = vim.fn.reverse(vim.fn.readdir("."))
   local others = vim.list_slice(dir, 2)
@@ -29,7 +29,7 @@ function M.open()
   local content = f:read("*a")
   f:close()
   vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(content, "\n"))
-  vim.cmd("write")
+  vim.cmd.write()
 end
 
 return M

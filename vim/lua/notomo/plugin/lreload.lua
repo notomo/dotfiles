@@ -30,7 +30,7 @@ local hooks = {
     dofile(args.match)
   end,
   ultramarine = function()
-    vim.cmd([[colorscheme ultramarine]])
+    vim.cmd.colorscheme([[ultramarine]])
     vim.api.nvim_exec_autocmds("ColorScheme", {})
   end,
 }

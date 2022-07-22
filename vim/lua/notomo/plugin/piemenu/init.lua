@@ -101,7 +101,7 @@ piemenu.register("lsp", {
     {
       text = "📝 paste",
       action = function()
-        vim.cmd("normal! p")
+        vim.cmd.normal({ args = { "p" }, bang = true })
       end,
     },
   },

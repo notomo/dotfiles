@@ -37,11 +37,11 @@ function M.setup(opts)
 
   vim.keymap.set("n", "[keyword]o", M.go_to_definition, { buffer = true })
   vim.keymap.set("n", "[keyword]v", function()
-    vim.cmd([[vsplit]])
+    vim.cmd.vsplit()
     M.go_to_definition()
   end, { buffer = true })
   vim.keymap.set("n", "[keyword]h", function()
-    vim.cmd([[split]])
+    vim.cmd.split()
     M.go_to_definition()
   end, { buffer = true })
   vim.keymap.set("n", "[keyword]t", function()
@@ -50,7 +50,7 @@ function M.setup(opts)
   end, { buffer = true })
 
   vim.keymap.set("n", "sl", function()
-    vim.cmd([[nohlsearch]])
+    vim.cmd.nohlsearch()
     vim.lsp.buf.document_highlight()
     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
       buffer = 0,

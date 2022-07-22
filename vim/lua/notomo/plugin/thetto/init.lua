@@ -87,8 +87,7 @@ require("thetto").setup({
       action_tab_open = function(_, items)
         local cursor = vim.api.nvim_win_get_cursor(0)
         for _, item in ipairs(items) do
-          local cmd = ("Gina show %s:%%:p --opener=tabedit"):format(item.value)
-          vim.cmd(cmd)
+          vim.cmd.Gina({ args = { "show", item.value .. ":%:p", "--opener=tabedit" } })
           require("misclib.cursor").set(cursor)
         end
       end,
@@ -97,16 +96,14 @@ require("thetto").setup({
         if item == nil then
           return
         end
-        local cmd = ("Gina compare %s:"):format(item.value)
-        vim.cmd(cmd)
+        vim.cmd.Gina({ args = { "compare", item.value .. ":" } })
       end,
       action_diff = function(_, items)
         local item = items[1]
         if item == nil then
           return
         end
-        local cmd = ("Gina diff %s:"):format(item.value)
-        vim.cmd(cmd)
+        vim.cmd.Gina({ args = { "diff", item.value } })
       end,
     },
 
@@ -123,10 +120,10 @@ require("thetto").setup({
         if #qflist == 0 then
           return
         end
-        vim.cmd("tabnew")
+        vim.cmd.tabnew()
         vim.fn.setqflist(qflist)
-        vim.cmd("Qfreplace")
-        vim.cmd("only")
+        vim.cmd.Qfreplace()
+        vim.cmd.only()
       end,
       action_system = run_without_focus("url", "path"),
     },
@@ -138,7 +135,7 @@ require("thetto").setup({
           return
         end
         require("cmdbuf").split_open(vim.o.cmdwinheight, { line = "let " .. item.value })
-        vim.cmd("normal! $")
+        vim.cmd.normal({ args = { "$" }, bang = true })
       end,
     },
 
@@ -149,7 +146,7 @@ require("thetto").setup({
           return
         end
         require("cmdbuf").split_open(vim.o.cmdwinheight, { line = "setlocal " .. item.value })
-        vim.cmd("normal! $")
+        vim.cmd.normal({ args = { "$" }, bang = true })
       end,
     },
 
@@ -160,14 +157,14 @@ require("thetto").setup({
           return
         end
         require("cmdbuf").split_open(vim.o.cmdwinheight, { line = item.value })
-        vim.cmd("normal! $")
+        vim.cmd.normal({ args = { "$" }, bang = true })
       end,
     },
 
     ["url"] = {
       action_open_browser = function(_, items)
         for _, item in ipairs(items) do
-          vim.cmd("OpenBrowser " .. item.url)
+          vim.cmd.OpenBrowser(item.url)
         end
       end,
       action_docfilter = function(_, items)
@@ -225,7 +222,7 @@ require("thetto").setup({
         "substring:path:relative",
         "-substring:path:relative",
       },
-  },
+    },
 
     ["file/grep"] = {
       opts = {
@@ -367,7 +364,7 @@ require("thetto").setup({
     ["url/bookmark"] = {
       action_browser_open = function(_, items)
         for _, item in ipairs(items) do
-          vim.cmd("OpenBrowser " .. item.url)
+          vim.cmd.OpenBrowser(item.url)
         end
       end,
       action_docfilter = function(_, items)

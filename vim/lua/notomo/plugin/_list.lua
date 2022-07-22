@@ -1,4 +1,4 @@
-vim.cmd([[packadd optpack.nvim]])
+vim.cmd.packadd([[optpack.nvim]])
 local optpack = require("optpack")
 
 local with_trace = function(f)
@@ -12,7 +12,7 @@ end
 
 local luafile = function(path)
   return with_trace(function()
-    vim.cmd("luafile " .. path)
+    vim.cmd.luafile(path)
   end)
 end
 
@@ -251,7 +251,7 @@ optpack.add("hrsh7th/nvim-cmp", {
   load_on = { modules = { "cmp" }, events = { "InsertEnter" } },
   hooks = {
     post_load = vim.schedule_wrap(function()
-      vim.cmd([[runtime! after/plugin/cmp_*.lua]])
+      vim.cmd.runtime({ args = { "after/plugin/cmp_*.lua" }, bang = true })
       require("notomo.plugin.cmp").setup()
     end),
   },
@@ -359,7 +359,7 @@ optpack.add("neovim/nvim-lspconfig", {
     post_load = function()
       require("notomo.lsp.handler")
       luafile("~/dotfiles/vim/lua/notomo/plugin/nvim-lspconfig.lua")()
-      vim.cmd([[silent! edit]]) -- restart
+      vim.cmd.edit({ mods = { silent = true, emsg_silent = true } }) -- restart
     end,
   },
 })
@@ -459,7 +459,7 @@ optpack.add("Shougo/neosnippet.vim", {
   hooks = {
     pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/neosnippet.lua"),
     post_load = function()
-      vim.cmd([[runtime ftdetect/neosnippet.vim]])
+      vim.cmd.runtime([[ftdetect/neosnippet.vim]])
     end,
   },
 })
@@ -487,7 +487,7 @@ optpack.add("kana/vim-operator-replace", {
 
       _G._notomo_search = function()
         local tmp = vim.fn.getreg('"')
-        vim.cmd([[normal! gv""y]])
+        vim.cmd.normal({ args = { [[gv""y]] }, bang = true })
         local text = vim.fn.escape(vim.fn.getreg('"'), [[\/]])
         vim.fn.setreg('"', tmp)
         return [[\V]] .. vim.fn.substitute(text, "\n", [[\\n]], "g")

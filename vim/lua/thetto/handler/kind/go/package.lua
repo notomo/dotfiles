@@ -12,7 +12,7 @@ end
 
 function M.action_search(_, items)
   for _, item in ipairs(items) do
-    vim.cmd([[OpenBrowserSearch -go ]] .. item.value)
+    vim.cmd.OpenBrowserSearch({ args = { "-go", item.value } })
   end
 end
 

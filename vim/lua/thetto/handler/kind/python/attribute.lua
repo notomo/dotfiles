@@ -42,7 +42,8 @@ function M.action_show(_, items)
 
   local bufnr = vim.api.nvim_create_buf(false, true)
   vim.bo[bufnr].bufhidden = "wipe"
-  vim.cmd([[tabedit | buffer ]] .. bufnr)
+  vim.cmd.tabedit()
+  vim.cmd.buffer({ count = bufnr })
   vim.opt_local.list = false
 
   return M.help(bufnr, item)
