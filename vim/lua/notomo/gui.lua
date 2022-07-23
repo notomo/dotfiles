@@ -1,7 +1,7 @@
 local M = {}
 
 function M.init()
-  vim.cmd.GuiTabline({ args = { "MeiryoKe_Gothic:h14" }, bang = true })
+  vim.cmd.Guifont({ args = { "MeiryoKe_Gothic:h14" }, bang = true })
   vim.cmd.GuiTabline("0")
   vim.cmd.GuiPopupmenu("0")
   vim.fn.GuiWindowMaximized(1)
