@@ -314,6 +314,7 @@ require("thetto").setup({
       opts = {
         pattern_groups = {
           { "%_test.go", "%.go" },
+          { "%_test.ts", "%.ts" },
           { "%/spec/lua/%_spec.lua", "%/lua/%.lua" },
           { "%/test/lua/%_spec.lua", "%/lua/%.lua" },
           { "%.c", "%.h" },
