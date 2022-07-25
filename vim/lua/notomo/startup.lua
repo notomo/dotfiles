@@ -71,7 +71,7 @@ function M._test()
   vim.fn.feedkeys("th", "mx")
   assert(vim.fn.tabpagenr() == 1, "tab current")
 
-  vim.cmd([[silent lua require("notomo.startup")._search()]])
+  vim.cmd.lua({ args = { [[require("notomo.startup")._search()]] }, mods = { silent = true } })
 
   vim.fn.feedkeys("tt", "mx")
   vim.fn.feedkeys("idate", "ix")
