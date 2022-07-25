@@ -118,7 +118,7 @@ function M.note()
   if offset > 0 then
     vim.cmd.tabmove("+" .. offset)
   elseif offset < -1 then
-    vim.cmd.tabmove({ count = offset + 1 })
+    vim.cmd.tabmove({ args = { tostring(offset + 1) } })
   end
   vim.cmd.normal({ args = { "G" }, bang = true })
 end
