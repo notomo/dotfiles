@@ -8,5 +8,6 @@
     "window.zoomLevel": 0,
     "breadcrumbs.enabled": false,
     "workbench.activityBar.visible": false,
+    "workbench.list.automaticKeyboardNavigation": false,
     "vscode-neovim.neovimExecutablePaths.win32": "C:/Users/tmno3/app/nvim-win64/bin/nvim.exe"
 }
