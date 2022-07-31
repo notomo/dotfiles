@@ -19,4 +19,5 @@ vim.g.openbrowser_search_engines = {
   github_api = [[https://docs.github.com/en?query={query}]],
   ansible = [[https://docs.ansible.com/ansible/latest/index.html#stq={query}]],
   git = [[http://git-scm.com/search/results?search={query}]],
+  deno = [[https://deno.land/x?query={query}]],
 }
