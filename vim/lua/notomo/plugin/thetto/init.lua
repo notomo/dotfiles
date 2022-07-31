@@ -360,6 +360,22 @@ require("thetto").setup({
         local name = require("filetypext").detect({ filetype = filetype })[1]
         require("notomo.edit").scratch(name, filetype)
       end,
+      action_search = function(_, items)
+        local item = items[1]
+        if item == nil then
+          return
+        end
+        require("thetto").start("file/recursive", {
+          opts = {
+            cwd = vim.fn.expand("~/dotfiles"),
+            insert = false,
+            action = "tab_open",
+            immediately = true,
+            input_lines = { "/ftplugin/" .. item.value .. ".lua" },
+            sorters = { "length" }
+          },
+        })
+      end,
     },
 
     ["url/bookmark"] = {
