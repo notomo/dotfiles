@@ -5,8 +5,13 @@ local surround = function(s)
   return ("[%s]"):format(s)
 end
 
+local escape = function(s)
+  s = s:gsub("%%", "%%%%")
+  return s
+end
+
 local path = function()
-  return fn.expand("%:p:~")
+  return escape(fn.expand("%:p:~"))
 end
 
 local filetype = function()
@@ -146,10 +151,11 @@ local set_tabline = function()
                   FileType({
                     ["kivi-file"] = function(ctx)
                       local tab_number = api.nvim_tabpage_get_number(tab_id)
-                      return fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
+                      local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
+                      return escape(name)
                     end,
                   }, function(ctx)
-                    return tab_label(tab_id, ctx.window_id)
+                    return escape(tab_label(tab_id, ctx.window_id))
                   end),
                   {
                     max_width = function()
