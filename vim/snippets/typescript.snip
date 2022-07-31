@@ -233,3 +233,14 @@ options word
 
 snippet decorator
 	@${0:Name}
+
+
+snippet deno_test
+	Deno.test("${1:name}", async (t) => {
+		${0:TARGET}
+	})
+
+snippet step
+	await t.step("${1:name}", () => {
+		${0:TARGET}
+	})
