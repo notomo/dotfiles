@@ -125,6 +125,7 @@ local set_tabline = function()
   local Highlight = stlparts.component("highlight")
   local DefaultHighlight = stlparts.component("default_highlight")
   local Tab = stlparts.component("tab")
+  local TrancateLeft = stlparts.component("trancate_left")
 
   stlparts.set(
     "tabline",
@@ -141,14 +142,21 @@ local set_tabline = function()
               tab_id,
               Highlight(
                 hl_group,
-                Padding(FileType({
-                  ["kivi-file"] = function(_, ctx)
-                    local tab_number = api.nvim_tabpage_get_number(tab_id)
-                    return fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
-                  end,
-                }, function(_, ctx)
-                  return tab_label(tab_id, ctx.window_id)
-                end))
+                Padding(TrancateLeft(
+                  FileType({
+                    ["kivi-file"] = function(_, ctx)
+                      local tab_number = api.nvim_tabpage_get_number(tab_id)
+                      return fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
+                    end,
+                  }, function(_, ctx)
+                    return tab_label(tab_id, ctx.window_id)
+                  end),
+                  {
+                    max_width = function()
+                      return 30
+                    end,
+                  }
+                ))
               )
             )
           end, tab_ids),
