@@ -144,11 +144,11 @@ local set_tabline = function()
                 hl_group,
                 Padding(TrancateLeft(
                   FileType({
-                    ["kivi-file"] = function(_, ctx)
+                    ["kivi-file"] = function(ctx)
                       local tab_number = api.nvim_tabpage_get_number(tab_id)
                       return fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
                     end,
-                  }, function(_, ctx)
+                  }, function(ctx)
                     return tab_label(tab_id, ctx.window_id)
                   end),
                   {
