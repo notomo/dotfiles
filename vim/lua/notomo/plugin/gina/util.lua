@@ -81,6 +81,12 @@ function M.yank_rev_with_repo()
   require("notomo.edit").yank(name_with_rev)
 end
 
+function M.yank_commit_message()
+  local revision = M._revision()
+  local message = vim.fn.systemlist({ "git", "log", "--format=%B", "-n", "1", revision })[1]
+  require("notomo.edit").yank(message)
+end
+
 function M.browse_yank()
   vim.fn["gina#action#call"]("browse:yank")
   vim.api.nvim_echo({ { vim.fn.getreg("+") } }, true, {})

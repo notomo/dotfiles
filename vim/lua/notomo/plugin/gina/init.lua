@@ -153,6 +153,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       [[:lua require("notomo.plugin.gina.util").yank_rev_with_repo()<CR>]],
       { buffer = true, silent = true }
     )
+    vim.keymap.set(
+      { "n" },
+      "ym",
+      [[<Cmd>lua require("notomo.plugin.gina.util").yank_commit_message()<CR>]],
+      { buffer = true, silent = true }
+    )
 
     vim.keymap.set(
       { "n" },
