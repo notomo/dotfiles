@@ -1,5 +1,6 @@
 NVIM_DIR := ${HOME}/workspace/neovim
-NVIM := VIMRUNTIME=${NVIM_DIR}/runtime ${NVIM_DIR}/build/bin/nvim
+NVIM := ${NVIM_DIR}/build/bin/nvim
+NVIM_WITH_RUNTIME := VIMRUNTIME=${NVIM_DIR}/runtime ${NVIM}
 # NVIM := nvim
 ASAN_NVIM := ./bin/asan_nvim
 # NVIM := ./bin/asan_nvim
@@ -17,7 +18,7 @@ all:
 
 build_with_asan: reset_build_type
 	cd ${NVIM_DIR}; make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
-	cp ${NVIM} ${ASAN_NVIM}
+	cp ${NVIM_WITH_RUNTIME} ${ASAN_NVIM}
 .PHONY: build_with_asan
 
 build_release_with_deb_info: reset_build_type
@@ -71,7 +72,7 @@ run:
 .PHONY: run
 
 version:
-	${NVIM} --version
+	${NVIM_WITH_RUNTIME} --version
 .PHONY: version
 
 gdb:
@@ -79,20 +80,20 @@ gdb:
 .PHONY: gdb
 
 headless:
-	${NVIM} --headless --clean +"luafile ./minimal.lua" +"quitall!"
+	${NVIM_WITH_RUNTIME} --headless --clean +"luafile ./minimal.lua" +"quitall!"
 .PHONY: headless
 
 start: _run
 .PHONY: start
 
 _run:
-	# ${NVIM} --clean +"luafile ./minimal.lua"
-	# ${NVIM} --clean +"luafile ./minimal.lua" +"quitall!"
-	${NVIM} --clean --headless +"luafile ./minimal.lua" +"quitall!"
-	# ${NVIM} --clean --headless +"source ./minimal.vim" +"quitall!"
-	# ${NVIM} --clean +"source ./minimal.vim" +"quitall!"
-	# ${NVIM} --clean +"source ./minimal.vim"
-	# ${NVIM}
+	# ${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua"
+	# ${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua" +"quitall!"
+	${NVIM_WITH_RUNTIME} --clean --headless +"luafile ./minimal.lua" +"quitall!"
+	# ${NVIM_WITH_RUNTIME} --clean --headless +"source ./minimal.vim" +"quitall!"
+	# ${NVIM_WITH_RUNTIME} --clean +"source ./minimal.vim" +"quitall!"
+	# ${NVIM_WITH_RUNTIME} --clean +"source ./minimal.vim"
+	# ${NVIM_WITH_RUNTIME}
 .PHONY: _run
 
 ISSUE := issue.md
@@ -155,7 +156,7 @@ issue:
 .PHONY: issue
 
 event:
-	${NVIM} --headless --clean +"luafile ./event.lua"
+	${NVIM_WITH_RUNTIME} --headless --clean +"luafile ./event.lua"
 .PHONY: event
 
 # clang:
