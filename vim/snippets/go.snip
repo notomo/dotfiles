@@ -181,7 +181,7 @@ alias if
 
 snippet iferr
 	if err != nil {
-		return err
+		return err${0}
 	}
 
 snippet error_is
@@ -207,7 +207,7 @@ snippet if_has_key
 	}
 
 snippet panic
-	panic(err)
+	panic(err${0})
 
 snippet else
 	else {
@@ -419,3 +419,10 @@ snippet error_def
 	func (e *$1) Error() string {
 		return ${1:fmt.Sprintf("message")}
 	}
+
+snippet read_file
+	b, err := os.ReadFile(${1:path})
+	if err != nil {
+		return err
+	}
+	s := string(b)
