@@ -32,4 +32,11 @@ function M.view_repo(target)
   require("notomo.job").run(cmd)
 end
 
+function M.create_issue()
+  vim.cmd.tabedit()
+  vim.cmd.terminal()
+  vim.fn.chansend(vim.bo.channel, "gh issue create\n")
+  vim.cmd.startinsert({ bang = true })
+end
+
 return M
