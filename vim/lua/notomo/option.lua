@@ -106,3 +106,8 @@ if vim.fn.has("win32") ~= 1 then
 end
 opt.laststatus = 3
 opt.mousescroll = "ver:2,hor:6"
+
+if vim.fn.filereadable(vim.fn.expand("~/.deno/bin/waitevent")) then
+  vim.env.GIT_EDITOR =
+    [=[waitevent -- nvim --server "$NVIM" --remote-expr "luaeval('require([[notomo.waitevent]]).setup([[{serverAddress}]], [[{argument}]])')"]=]
+end
