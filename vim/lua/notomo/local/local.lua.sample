@@ -58,6 +58,5 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
         },
       })
     end, { buffer = true })
-    return
   end,
 })

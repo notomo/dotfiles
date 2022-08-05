@@ -241,6 +241,6 @@ snippet deno_test
 	})
 
 snippet step
-	await t.step("${1:name}", () => {
+	await t.step("${1:name}", async () => {
 		${0:TARGET}
 	})
