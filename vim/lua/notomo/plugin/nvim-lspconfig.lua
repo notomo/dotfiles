@@ -73,7 +73,7 @@ setup_ls(lspconfig.clangd, {})
 setup_ls(lspconfig.eslint, {
   filetypes = { "javascript" },
 })
-local deno_pattern = { "deno.json", "deno.jsonc", "denops", "import_map.json", "mod.ts" }
+local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
 setup_ls(lspconfig.tsserver, {
   root_dir = function(fname)
     if fname:find("deno:") then
