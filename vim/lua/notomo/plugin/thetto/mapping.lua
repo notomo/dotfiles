@@ -288,6 +288,7 @@ vim.keymap.set("n", "[finder]gL", function()
     },
   })
 end)
+
 vim.keymap.set("n", "[file]f", [[<Cmd>lua require("thetto").start("file/alter")<CR>]])
 vim.keymap.set("n", "[file]l", [[<Cmd>lua require("thetto").start("file/alter", {opts = {action = "tab_open"}})<CR>]])
 vim.keymap.set(
@@ -295,6 +296,19 @@ vim.keymap.set(
   "[file]t",
   [[<Cmd>lua require("thetto").start("file/alter", {source_opts = {allow_new = true}})<CR>]]
 )
+vim.keymap.set("n", "[file];", function()
+  local function_name = require("notomo.treesitter").get_near_function_name()
+  require("thetto").start("file/alter"):next(function()
+    require("thetto").start("test", {
+      opts = {
+        immediately = true,
+        insert = false,
+        input_lines = { function_name },
+      },
+    })
+  end)
+end)
+
 vim.keymap.set(
   "n",
   "[finder]T",
