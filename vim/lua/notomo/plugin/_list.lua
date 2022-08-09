@@ -244,8 +244,6 @@ mypack.add("notomo/lreload.nvim", {
   },
 })
 
-optpack.add("nanotee/luv-vimdocs")
-
 optpack.add("hrsh7th/nvim-cmp", {
   load_on = { modules = { "cmp" }, events = { "InsertEnter" } },
   hooks = {
