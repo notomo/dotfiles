@@ -1,10 +1,26 @@
 #Warn All, StdOut
 #SingleInstance
 
+#Include "send.ahk"
+
 EDITOR := "WSL"
 BROWSER := "ahk_exe chrome.exe"
 
 ; https://lexikos.github.io/v2/docs/Hotkeys.htm#Symbols
+
+; ^ = Control
+; # = Win
+; + = Shift
+
+^#h::
+{
+    SendToAllWindows("#+{Left}")
+}
+
+^#l::
+{
+    SendToAllWindows("#+{Right}")
+}
 
 #HotIf WinActive(EDITOR)
 ^#j::
