@@ -350,6 +350,21 @@ require("thetto").setup({
 
   source_actions = {
 
+    ["file/recursive"] = {
+      -- HACK
+      action_go_install_latest = function(_, items)
+        local item = items[1]
+        if item == nil then
+          return
+        end
+        local package_path = require("notomo.go").to_package(item.path)
+        if not package_path then
+          return nil, "no package_path: " .. item.path
+        end
+        require("notomo.job").run({ "go", "install", package_path .. "@latest" })
+      end,
+    },
+
     ["vim/filetype"] = {
       action_open_scratch = function(_, items)
         local item = items[1]

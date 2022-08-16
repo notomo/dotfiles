@@ -154,3 +154,15 @@ aliaser.register_factory("format", function(aliases)
     vim.b.notomo_lsp_format_disabled = not disabled
   end)
 end)
+
+aliaser.register_factory("go", function(aliases)
+  aliases:set("list_bin", function()
+    require("thetto").start("file/recursive", {
+      opts = {
+        cwd = (vim.env.GOBIN or vim.env.GOPATH) .. "/bin",
+        action = "go_install_latest",
+        auto = "",
+      },
+    })
+  end)
+end)

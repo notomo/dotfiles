@@ -4,7 +4,9 @@ function M.run(cmd)
   local cmd_name = table.concat(cmd, " ")
   local prefix = ("[%s]: "):format(cmd_name)
   vim.fn.jobstart(cmd, {
-    on_exit = function() end,
+    on_exit = function(_, code)
+      vim.api.nvim_echo({ { prefix .. ("exit: %d"):format(code) } }, true, {})
+    end,
     on_stdout = function(_, data, _)
       data = vim.tbl_filter(function(v)
         return v ~= ""
