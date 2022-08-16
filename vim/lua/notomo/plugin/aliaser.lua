@@ -1,5 +1,7 @@
 local aliaser = require("aliaser")
 
+aliaser.clear_all()
+
 aliaser.register_factory("thetto", function(aliases)
   aliases:set("assigned_issues", function()
     require("thetto").start("github/issue", { source_opts = { assignee = "me" } })
