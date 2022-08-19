@@ -173,6 +173,19 @@ require("thetto").setup({
         end
       end,
     },
+
+    ["github/repository"] = {
+      action_temporary_clone = function(_, items)
+        local item = items[1]
+        if not item then
+          return
+        end
+        local dir = vim.fn.expand("~/workspace/memo/tmp")
+        vim.fn.mkdir(dir, "p")
+        require("notomo.job").run({ "gh", "repo", "clone", item.value }, { cwd = dir })
+      end,
+    },
+
   },
 
   source = {

@@ -1,9 +1,9 @@
 local M = {}
 
-function M.run(cmd)
+function M.run(cmd, raw_opts)
   local cmd_name = table.concat(cmd, " ")
   local prefix = ("[%s]: "):format(cmd_name)
-  vim.fn.jobstart(cmd, {
+  local opts = {
     on_exit = function(_, code)
       vim.api.nvim_echo({ { prefix .. ("exit: %d"):format(code) } }, true, {})
     end,
@@ -25,7 +25,9 @@ function M.run(cmd)
     end,
     stderr_buffered = true,
     stdout_buffered = true,
-  })
+  }
+  opts = vim.tbl_deep_extend("force", opts, raw_opts or {})
+  vim.fn.jobstart(cmd, opts)
 end
 
 return M
