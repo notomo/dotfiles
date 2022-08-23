@@ -34,7 +34,8 @@ function M.progress()
     if msg.done and not msg.message then
       msg.message = "done"
     end
-    print(("[%s] %s: %s"):format(msg.name, msg.title, msg.message))
+    local text = ("[%s] %s: %s"):format(msg.name, msg.title, msg.message)
+    vim.api.nvim_echo({ { text } }, msg.done, {})
   end
 end
 
