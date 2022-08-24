@@ -16,6 +16,7 @@ local setup_ls = function(ls, config, ...)
 end
 
 setup_ls(lspconfig.rls, {})
+
 setup_ls(lspconfig.gopls, {
   init_options = {
     staticcheck = true,
@@ -24,6 +25,7 @@ setup_ls(lspconfig.gopls, {
     -- codelenses = {test = true},
   },
 })
+
 setup_ls(lspconfig.sumneko_lua, {
   settings = {
     Lua = {
@@ -73,6 +75,7 @@ setup_ls(lspconfig.clangd, {})
 setup_ls(lspconfig.eslint, {
   filetypes = { "javascript" },
 })
+
 local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
 setup_ls(lspconfig.tsserver, {
   root_dir = function(fname)
@@ -88,6 +91,7 @@ setup_ls(lspconfig.tsserver, {
       or vim.loop.cwd()
   end,
 })
+
 setup_ls(lspconfig.denols, {
   root_dir = require("lspconfig/util").root_pattern(unpack(deno_pattern)),
   before_init = function(config)
@@ -98,8 +102,10 @@ setup_ls(lspconfig.denols, {
     config.initializationOptions["importMap"] = import_map
   end,
 }, "mac", "win32")
+
 setup_ls(lspconfig.vimls, {}, "mac", "win32")
 setup_ls(lspconfig.cssls, {}, "mac", "win32")
+
 setup_ls(lspconfig.dartls, {
   root_dir = require("lspconfig/util").root_pattern("pubspec.yaml", ".git"),
   cmd = {
@@ -109,6 +115,7 @@ setup_ls(lspconfig.dartls, {
   },
   init_options = { flutterOutline = true, outline = true },
 }, "mac", "win32")
+
 setup_ls(lspconfig.efm, {
   cmd = { "efm-langserver", "-logfile=/tmp/efm.log" },
   -- filetypes = {"vim", "python", "lua", "sh", "typescript.tsx", "typescript"};
@@ -121,6 +128,7 @@ setup_ls(lspconfig.efm, {
     client.server_capabilities.text_document_save_include_text = true
   end,
 })
+
 setup_ls(lspconfig.yamlls, {})
 setup_ls(lspconfig.autohotkey2, {}, "unix")
 
