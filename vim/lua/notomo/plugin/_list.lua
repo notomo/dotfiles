@@ -192,8 +192,8 @@ optpack.add("osyo-manga/vim-textobj-from_regexp", {
 optpack.add("haya14busa/vim-edgemotion", {
   load_on = {
     keymaps = function(vim)
-      vim.keymap.set({ "n", "x", "o" }, "gJ", "<Plug>(edgemotion-j)")
-      vim.keymap.set({ "n", "x", "o" }, "gK", "<Plug>(edgemotion-k)")
+      vim.keymap.set({ "n", "x", "o" }, "gJ", "<Cmd>normal! m'<CR><Plug>(edgemotion-j)")
+      vim.keymap.set({ "n", "x", "o" }, "gK", "<Cmd>normal! m'<CR><Plug>(edgemotion-k)")
     end,
   },
 })
