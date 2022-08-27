@@ -1,6 +1,6 @@
 local M = {}
 
-function M.action_preview(self, items, ctx)
+function M.action_preview(_, items, ctx)
   local item = items[1]
   if not item then
     return nil
@@ -13,7 +13,7 @@ function M.action_preview(self, items, ctx)
   local symbol = ("%s.%s"):format(item.package_name, item.method_or_field)
   local cmd = { "go", "doc", symbol }
 
-  local job = self.jobs.new(cmd, {
+  local job = require("thetto.lib.job").new(cmd, {
     on_exit = function(job_self)
       if not vim.api.nvim_buf_is_valid(bufnr) then
         return
@@ -21,7 +21,7 @@ function M.action_preview(self, items, ctx)
       local lines = job_self:get_output()
       vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
     end,
-    on_stderr = self.jobs.print_stderr,
+    on_stderr = require("thetto.lib.job").print_stderr,
   })
   local err = job:start()
   if err ~= nil then
