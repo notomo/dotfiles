@@ -7,17 +7,6 @@ vim.api.nvim_set_hl(0, "ThettoColorLabelPythonBlue", { bg = "#3333dd" })
 vim.api.nvim_set_hl(0, "ThettoColorLabelPythonYellow", { bg = "#fedf81" })
 vim.api.nvim_set_hl(0, "ThettoColorLabelDir", { bg = "#a9dd9d" })
 
-local colors = {
-  { pattern = ".lua$", chunks = { { " ", "ThettoColorLabelLua" } } },
-  { pattern = ".go$", chunks = { { " ", "ThettoColorLabelGo" } } },
-  { pattern = ".vim$", chunks = { { " ", "ThettoColorLabelVim" } } },
-  {
-    pattern = ".py$",
-    chunks = { { " ", "ThettoColorLabelPythonYellow" }, { " ", "ThettoColorLabelPythonBlue" } },
-  },
-  { pattern = "/$", chunks = { { " ", "ThettoColorLabelDir" } } },
-  { always = true, pattern = "", chunks = { { " ", "ThettoColorLabelOthers" } } },
-}
 
 local file_recursive, directory_recursive, modify_path
 if vim.fn.has("win32") == 0 then
@@ -206,10 +195,9 @@ require("thetto").setup({
 
     ["git/branch"] = { sorters = { "length" } },
 
-    ["file/in_dir"] = { colors = colors, global_opts = { auto = "preview" } },
-    ["file/mru"] = { colors = colors, global_opts = { auto = "preview" } },
+    ["file/in_dir"] = { global_opts = { auto = "preview" } },
+    ["file/mru"] = { global_opts = { auto = "preview" } },
     ["file/recursive"] = {
-      colors = colors,
       opts = { get_command = file_recursive },
       sorters = { "length" },
       global_opts = { auto = "preview" },
@@ -253,7 +241,6 @@ require("thetto").setup({
         separator = "",
       },
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-      colors = colors,
       global_opts = { auto = "preview" },
     },
 
