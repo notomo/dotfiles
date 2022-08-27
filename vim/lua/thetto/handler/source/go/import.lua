@@ -2,7 +2,7 @@ local M = {}
 
 function M.collect(_, source_ctx)
   local cmd = { "go", "list", "-f", [[{{ join .Deps "\n" }}{{"\n"}}{{ join .TestImports "\n" }}]], "./..." }
-  return require("thetto.util").job.run(cmd, source_ctx, function(output)
+  return require("thetto.util.job").run(cmd, source_ctx, function(output)
     return {
       value = output,
     }

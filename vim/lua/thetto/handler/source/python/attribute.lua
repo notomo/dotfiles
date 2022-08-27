@@ -11,7 +11,7 @@ function M.collect(self, source_ctx)
     vim.fn.expand("~/dotfiles/vim/lua/thetto/handler/source/python/attribute.py"),
     package_name,
   }
-  return require("thetto.util").job.start(cmd, source_ctx, function(output)
+  return require("thetto.util.job").start(cmd, source_ctx, function(output)
     local value
     if package_name ~= "" then
       value = ("%s.%s"):format(package_name, output)

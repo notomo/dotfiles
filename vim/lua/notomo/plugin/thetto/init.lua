@@ -258,7 +258,7 @@ require("thetto").setup({
     },
 
     ["vim/lsp/references"] = {
-      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
       filters = {
         "substring:path",
         "-substring:path",
@@ -273,21 +273,21 @@ require("thetto").setup({
         "substring:path:relative",
         "-substring:path:relative",
       },
-      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
     },
     ["vim/lsp/document_symbol"] = {
-      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
     },
     ["vim/lsp/implementation"] = {
-      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
     },
     ["vim/lsp/incoming_calls"] = {
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
     },
     ["vim/lsp/outgoing_calls"] = {
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-      global_opts = { cwd = require("thetto.util").cwd.project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
     },
 
     ["file/bookmark"] = {
@@ -339,7 +339,7 @@ require("thetto").setup({
 
     ["cmd/zsh/history"] = {
       sorters = { "length" },
-      global_opts = { cwd = require("thetto.util").cwd.upward({ "Makefile" }) },
+      global_opts = { cwd = require("thetto.util.cwd").upward({ "Makefile" }) },
     },
 
     ["go/package"] = { global_opts = { auto = "preview" } },

@@ -6,7 +6,7 @@ function M.collect(_, source_ctx)
   local deps_path = splitted[#splitted] .. "/deps"
 
   local cmd = { "find", deps_path, "-name", "*.metadata.json" }
-  return require("thetto.util").job.start(cmd, source_ctx, function(path)
+  return require("thetto.util.job").start(cmd, source_ctx, function(path)
     local f = io.open(path, "r")
     local url = vim.json.decode(f:read("*a")).url
     f:close()

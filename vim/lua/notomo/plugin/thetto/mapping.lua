@@ -92,13 +92,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
     vim.keymap.set("n", "usg", function()
       require("thetto").start("file/recursive", {
-        opts = { cwd = require("thetto.util").cwd.project(nil, require("thetto").get()[1].path) },
+        opts = { cwd = require("thetto.util.cwd").project(nil, require("thetto").get()[1].path) },
       })
     end, { buffer = true })
 
     vim.keymap.set("n", "usf", function()
       require("thetto").start("file/recursive", {
-        opts = { cwd = require("thetto.util").cwd.dir(require("thetto").get()[1].path) },
+        opts = { cwd = require("thetto.util.cwd").dir(require("thetto").get()[1].path) },
       })
     end, { buffer = true })
 
@@ -174,7 +174,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.keymap.set("n", "[finder]R", [[<Cmd>lua require("thetto").start("vim/runtimepath")<CR>]])
 vim.keymap.set("n", "<Space>ur", function()
-  require("thetto").start("file/mru", { opts = { cwd = require("thetto.util").cwd.project() } })
+  require("thetto").start("file/mru", { opts = { cwd = require("thetto.util.cwd").project() } })
 end)
 vim.keymap.set("n", "[finder]<CR>", [[<Cmd>lua require("thetto").resume()<CR>]])
 vim.keymap.set("n", "<Space>usf", [[<Cmd>lua require("thetto").start("file/recursive")<CR>]])
@@ -182,7 +182,7 @@ vim.keymap.set("n", "[finder]f", [[<Cmd>lua require("thetto").start("file/in_dir
 vim.keymap.set("n", "[finder]h", [[<Cmd>lua require("thetto").start("vim/help")<CR>]])
 vim.keymap.set("n", "[finder]l", [[<Cmd>lua require("thetto").start("line")<CR>]])
 vim.keymap.set("n", "[finder]r", function()
-  require("thetto").start("file/directory/recursive", { opts = { cwd = require("thetto.util").cwd.project() } })
+  require("thetto").start("file/directory/recursive", { opts = { cwd = require("thetto.util.cwd").project() } })
 end)
 vim.keymap.set("n", "<Space>usd", [[<Cmd>lua require("thetto").start("file/directory/recursive")<CR>]])
 
@@ -199,7 +199,7 @@ if vim.fn.has("win32") == 1 then
 end
 vim.keymap.set("n", "<Space>usg", function()
   require("thetto").start("file/recursive", {
-    opts = { cwd = require("thetto.util").cwd.project() },
+    opts = { cwd = require("thetto.util.cwd").project() },
     source_opts = ls_opts,
   })
 end)
@@ -230,7 +230,7 @@ vim.keymap.set(
 vim.keymap.set("n", "[keyword]gg", function()
   require("thetto").start("file/grep", {
     opts = {
-      cwd = require("thetto.util").cwd.project(),
+      cwd = require("thetto.util.cwd").project(),
       pattern = function()
         return vim.fn.expand("<cword>")
       end,
@@ -239,7 +239,7 @@ vim.keymap.set("n", "[keyword]gg", function()
 end)
 vim.keymap.set("n", "[finder]gl", [[<Cmd>lua require("thetto").start("file/grep")<CR>]], { silent = true })
 vim.keymap.set("n", "[finder]gg", function()
-  require("thetto").start("file/grep", { opts = { cwd = require("thetto.util").cwd.project() } })
+  require("thetto").start("file/grep", { opts = { cwd = require("thetto.util.cwd").project() } })
 end, { silent = true })
 vim.keymap.set("n", "[finder]P", [[<Cmd>lua require("thetto").start("env/process")<CR>]])
 vim.keymap.set("n", "[finder]A", [[<Cmd>lua require("thetto").start("vim/autocmd")<CR>]])
@@ -249,34 +249,34 @@ vim.keymap.set("n", "[finder]N", [[<Cmd>lua require("thetto").resume_execute({op
 vim.keymap.set("n", "[finder]m", [[<Cmd>lua require("thetto").start("keymap")<CR>]])
 vim.keymap.set("n", "[finder]o", [[<Cmd>lua require("thetto").start("cmd/ctags")<CR>]])
 vim.keymap.set("n", "[finder],", function()
-  require("thetto").start("cmd/make/target", { opts = { cwd = require("thetto.util").cwd.project() } })
+  require("thetto").start("cmd/make/target", { opts = { cwd = require("thetto.util.cwd").project() } })
 end)
 vim.keymap.set("n", "[exec],", function()
   require("thetto").start(
     "cmd/make/target",
-    { opts = { cwd = require("thetto.util").cwd.upward({ "Makefile" }), insert = false } }
+    { opts = { cwd = require("thetto.util.cwd").upward({ "Makefile" }), insert = false } }
   )
 end)
 vim.keymap.set("n", "[finder]S", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
 vim.keymap.set("x", "[finder]s", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
 vim.keymap.set("n", "[finder]gs", function()
-  require("thetto").start("git/status", { opts = { cwd = require("thetto.util").cwd.project() } })
+  require("thetto").start("git/status", { opts = { cwd = require("thetto.util.cwd").project() } })
 end)
 vim.keymap.set("n", "[finder]gd", function()
-  require("thetto").start("git/diff", { opts = { cwd = require("thetto.util").cwd.project() } })
+  require("thetto").start("git/diff", { opts = { cwd = require("thetto.util.cwd").project() } })
 end)
 vim.keymap.set("n", "[finder]gr", function()
   require("thetto").start(
     "git/diff",
-    { opts = { cwd = require("thetto.util").cwd.project() }, source_opts = { expr = "%:p" } }
+    { opts = { cwd = require("thetto.util.cwd").project() }, source_opts = { expr = "%:p" } }
   )
 end)
 vim.keymap.set("n", "[finder]G", function()
   require("thetto").start("file/grep", {
     opts = {
-      cwd = require("thetto.util").cwd.project(),
+      cwd = require("thetto.util.cwd").project(),
       debounce_ms = 100,
-      filters = require("thetto.util").filter.prepend("interactive"),
+      filters = require("thetto.util.filter").prepend("interactive"),
     },
   })
 end)
@@ -284,7 +284,7 @@ vim.keymap.set("n", "[finder]gL", function()
   require("thetto").start("file/grep", {
     opts = {
       debounce_ms = 100,
-      filters = require("thetto.util").filter.prepend("interactive"),
+      filters = require("thetto.util.filter").prepend("interactive"),
     },
   })
 end)
@@ -328,7 +328,7 @@ vim.keymap.set("n", "[finder]J", [[<Cmd>lua require("thetto").start("vim/jump")<
 vim.keymap.set("n", "[finder]c", [[<Cmd>lua require("thetto").start("vim/command")<CR>]])
 vim.keymap.set("n", "[finder]M", [[<Cmd>lua require("thetto").start("env/manual")<CR>]])
 vim.keymap.set("n", "[finder]q", function()
-  require("thetto").start("cmd/jq", { opts = { filters = require("thetto.util").filter.prepend("interactive") } })
+  require("thetto").start("cmd/jq", { opts = { filters = require("thetto.util.filter").prepend("interactive") } })
 end)
 vim.keymap.set("n", "[finder]gR", [[<Cmd>lua require("thetto").start("cmd/gron")<CR>]])
 vim.keymap.set(
@@ -372,7 +372,7 @@ vim.keymap.set("n", "[finder]a", [[<Cmd>lua require("thetto").start("aliaser")<C
 vim.keymap.set("n", "[finder]d", [[<Cmd>lua require("thetto").start("vim/diagnostic")<CR>]])
 vim.keymap.set("n", "[finder]D", function()
   require("thetto").start("vim/diagnostic", {
-    opts = { cwd = require("thetto.util").cwd.project() },
+    opts = { cwd = require("thetto.util.cwd").project() },
     source_opts = { args = {} },
   })
 end)

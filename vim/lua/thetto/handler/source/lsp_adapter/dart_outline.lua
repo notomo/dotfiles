@@ -93,7 +93,7 @@ function M._to_items(self, item, parent, current_path)
   return items
 end
 
-M.highlight = require("thetto.util").highlight.columns({
+M.highlight = require("thetto.util.highlight").columns({
   {
     group = "Comment",
     end_key = "value",
