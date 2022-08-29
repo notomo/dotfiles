@@ -22,7 +22,12 @@ null_ls.setup({
       },
     }),
     null_ls.builtins.formatting.shfmt,
-    null_ls.builtins.formatting.fixjson,
+    null_ls.builtins.formatting.fixjson.with({
+      filetypes = {
+        "json",
+        "jsonc",
+      },
+    }),
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.dart_format,
     null_ls.builtins.formatting.stylua.with({
