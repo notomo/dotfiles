@@ -2,12 +2,6 @@ local aliaser = require("aliaser")
 
 aliaser.clear_all()
 
-aliaser.register_factory("thetto", function(aliases)
-  aliases:set("assigned_issues", function()
-    require("thetto").start("github/issue", { source_opts = { assignee = "me" } })
-  end)
-end)
-
 aliaser.register_factory("buffer", function(aliases)
   aliases:set("reverse", function()
     vim.cmd.global([[/^/m0]])
@@ -154,17 +148,5 @@ aliaser.register_factory("format", function(aliases)
   aliases:set("toggle", function()
     local disabled = vim.b.notomo_lsp_format_disabled
     vim.b.notomo_lsp_format_disabled = not disabled
-  end)
-end)
-
-aliaser.register_factory("go", function(aliases)
-  aliases:set("list_bin", function()
-    require("thetto").start("file/recursive", {
-      opts = {
-        cwd = (vim.env.GOBIN or vim.env.GOPATH) .. "/bin",
-        action = "go_install_latest",
-        auto = "",
-      },
-    })
   end)
 end)

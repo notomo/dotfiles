@@ -1,13 +1,5 @@
 require("thetto").setup_store("file/mru")
 
-vim.api.nvim_set_hl(0, "ThettoColorLabelLua", { bg = "#7098e6" })
-vim.api.nvim_set_hl(0, "ThettoColorLabelVim", { bg = "#33aa77" })
-vim.api.nvim_set_hl(0, "ThettoColorLabelGo", { bg = "#70ffe6" })
-vim.api.nvim_set_hl(0, "ThettoColorLabelPythonBlue", { bg = "#3333dd" })
-vim.api.nvim_set_hl(0, "ThettoColorLabelPythonYellow", { bg = "#fedf81" })
-vim.api.nvim_set_hl(0, "ThettoColorLabelDir", { bg = "#a9dd9d" })
-
-
 local file_recursive, directory_recursive, modify_path
 if vim.fn.has("win32") == 0 then
   file_recursive = function(path, max_depth)
@@ -346,6 +338,15 @@ require("thetto").setup({
     ["cmd/zsh/completion"] = {
       filters = { "interactive", "substring", "-substring" },
     },
+
+    ["go/bin"] = {
+      alias_to = "file/recursive",
+      global_opts = {
+        cwd = (vim.env.GOBIN or vim.env.GOPATH) .. "/bin",
+        action = "go_install_latest",
+        auto = "",
+      },
+    }
   },
 
   source_actions = {
