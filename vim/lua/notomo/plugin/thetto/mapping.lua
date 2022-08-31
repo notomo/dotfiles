@@ -344,15 +344,11 @@ vim.keymap.set(
   [[<Cmd>lua require("thetto").start("github/issue", {source_opts = {assignee = "me"}})<CR>]]
 )
 vim.keymap.set("n", "[finder]gP", [[<Cmd>lua require("thetto").start("github/pull_request")<CR>]])
-vim.keymap.set(
-  "n",
-  "[finder]to",
-  [[<Cmd>lua require("thetto").start("test", {opts = {action = "execute", auto = "preview"}})<CR>]]
-)
+vim.keymap.set("n", "[finder]to", [[<Cmd>lua require("thetto").start("test", {opts = {action = "execute"}})<CR>]])
 vim.keymap.set(
   "n",
   "[finder]ts",
-  [[<Cmd>lua require("thetto").start("test", {source_opts = {scoped = true}, opts = {action = "execute", auto = "preview"}})<CR>]]
+  [[<Cmd>lua require("thetto").start("test", {source_opts = {scoped = true}, opts = {action = "execute"}})<CR>]]
 )
 vim.keymap.set(
   "n",

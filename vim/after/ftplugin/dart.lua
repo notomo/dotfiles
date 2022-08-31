@@ -25,7 +25,7 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "[finder]o",
-  [[<Cmd>lua require("thetto").start("lsp_adapter/dart_outline", {opts = {auto = "preview"}})<CR>]],
+  [[<Cmd>lua require("thetto").start("lsp_adapter/dart_outline")<CR>]],
   { buffer = true }
 )
 

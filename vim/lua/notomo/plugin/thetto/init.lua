@@ -173,42 +173,30 @@ require("thetto").setup({
 
     line = {
       filters = { "regex", "-regex", "substring", "-substring" },
-      global_opts = { auto = "preview" },
     },
 
-    ["keymap"] = { global_opts = { auto = "preview" } },
-
-    ["vim/jump"] = { global_opts = { auto = "preview" } },
-    ["vim/substitute"] = { global_opts = { auto = "preview" } },
     ["vim/filetype"] = { sorters = { "length" } },
 
-    ["plugin"] = { sorters = { "alphabet" }, global_opts = { auto = "preview" } },
-    ["thetto/source"] = { sorters = { "length" } },
+    ["plugin"] = { sorters = { "alphabet" } },
+    ["thetto/source"] = { sorters = { "length" }, global_opts = { auto = "" } },
 
     ["git/branch"] = { sorters = { "length" } },
 
-    ["file/in_dir"] = { global_opts = { auto = "preview" } },
-    ["file/mru"] = { global_opts = { auto = "preview" } },
     ["file/recursive"] = {
       opts = { get_command = file_recursive },
       sorters = { "length" },
-      global_opts = { auto = "preview" },
     },
     ["file/directory/recursive"] = {
       opts = { get_command = directory_recursive, modify_path = modify_path },
       sorters = { "length" },
-      global_opts = { auto = "preview" },
     },
 
-    ["vim/help"] = { sorters = { "length" }, global_opts = { auto = "preview" } },
-    ["vim/buffer"] = { global_opts = { auto = "preview" } },
+    ["vim/help"] = { sorters = { "length" } },
 
-    ["cmdhndlr/executed"] = { global_opts = { auto = "preview" } },
     ["cmdhndlr/runner"] = { global_opts = { action = "execute" } },
 
     ["vendor_target"] = { global_opts = { action = "add" } },
     ["vim/diagnostic"] = {
-      global_opts = { auto = "preview" },
       filters = {
         "substring",
         "-substring",
@@ -233,11 +221,10 @@ require("thetto").setup({
         separator = "",
       },
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-      global_opts = { auto = "preview" },
     },
 
     ["vim/lsp/references"] = {
-      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project() },
       filters = {
         "substring:path",
         "-substring:path",
@@ -252,21 +239,21 @@ require("thetto").setup({
         "substring:path:relative",
         "-substring:path:relative",
       },
-      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project() },
     },
     ["vim/lsp/document_symbol"] = {
-      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project() },
     },
     ["vim/lsp/implementation"] = {
-      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project() },
     },
     ["vim/lsp/incoming_calls"] = {
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project() },
     },
     ["vim/lsp/outgoing_calls"] = {
       filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-      global_opts = { cwd = require("thetto.util.cwd").project(), auto = "preview" },
+      global_opts = { cwd = require("thetto.util.cwd").project() },
     },
 
     ["file/bookmark"] = {
@@ -285,24 +272,17 @@ require("thetto").setup({
           vim.fn.stdpath("log") .. "/*",
         },
       },
-      global_opts = { auto = "preview" },
     },
 
     ["cmd/ctags"] = {
       opts = { ignore = { "member", "package", "packageName", "anonMember", "constant" } },
-      global_opts = { auto = "preview" },
       filters = { "regex", "-regex" },
     },
-
-    ["cmd/make/target"] = { global_opts = { auto = "preview" } },
-
-    ["git/diff"] = { global_opts = { auto = "preview" } },
-    ["git/log"] = { global_opts = { auto = "preview" } },
 
     ["env/manual"] = { sorters = { "length" } },
 
     ["file/alter"] = {
-      global_opts = { auto = "preview", immediately = true, insert = false },
+      global_opts = { immediately = true, insert = false },
       opts = {
         pattern_groups = {
           { "%_test.go", "%.go" },
@@ -320,11 +300,6 @@ require("thetto").setup({
       sorters = { "length" },
       global_opts = { cwd = require("thetto.util.cwd").upward({ "Makefile" }) },
     },
-
-    ["go/package"] = { global_opts = { auto = "preview" } },
-    ["go/document"] = { global_opts = { auto = "preview" } },
-    ["python/attribute"] = { global_opts = { auto = "preview" } },
-    ["lua/luarocks"] = { global_opts = { auto = "preview" } },
 
     ["github/user"] = {
       filters = { "interactive", "regex", "-regex" },
