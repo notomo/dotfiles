@@ -9,5 +9,6 @@ function M.collect()
 end
 
 M.kind_name = "word"
+M.default_action = "execute"
 
 return M

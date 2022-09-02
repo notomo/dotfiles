@@ -193,9 +193,6 @@ require("thetto").setup({
 
     ["vim/help"] = { sorters = { "length" } },
 
-    ["cmdhndlr/runner"] = { global_opts = { action = "execute" } },
-
-    ["vendor_target"] = { global_opts = { action = "add" } },
     ["vim/diagnostic"] = {
       filters = {
         "substring",

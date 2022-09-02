@@ -38,5 +38,6 @@ function M.collect()
 end
 
 M.kind_name = "file"
+M.default_action = "add"
 
 return M
