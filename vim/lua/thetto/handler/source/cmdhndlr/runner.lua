@@ -11,4 +11,14 @@ end
 M.kind_name = "word"
 M.default_action = "execute"
 
+M.actions = {
+  action_execute = function(_, items)
+    local item = items[1]
+    if item == nil then
+      return
+    end
+    require("cmdhndlr").execute(item.value)
+  end,
+}
+
 return M

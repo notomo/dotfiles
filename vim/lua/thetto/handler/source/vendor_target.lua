@@ -40,4 +40,15 @@ end
 M.kind_name = "file"
 M.default_action = "add"
 
+M.actions = {
+  action_add = function(_, items)
+    require("vendorlib").add(
+      vim.tbl_map(function(item)
+        return item.value
+      end, items),
+      { path = "spec/lua/%s/vendorlib.lua" }
+    )
+  end,
+}
+
 return M

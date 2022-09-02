@@ -177,7 +177,6 @@ require("thetto").setup({
 
     ["vim/filetype"] = { sorters = { "length" } },
 
-    ["plugin"] = { sorters = { "alphabet" } },
     ["thetto/source"] = { sorters = { "length" }, global_opts = { auto = "" } },
 
     ["git/branch"] = { sorters = { "length" } },
@@ -391,68 +390,6 @@ require("thetto").setup({
       },
     },
 
-    ["test"] = {
-      action_execute = function(_, items)
-        local window_id = vim.api.nvim_get_current_win()
-        for _, item in ipairs(items) do
-          vim.api.nvim_set_current_win(window_id)
-          require("cmdhndlr").test({ filter = item.value, is_leaf = item.is_leaf, layout = { type = "tab" } })
-        end
-      end,
-    },
-
-    ["cmdhndlr/runner"] = {
-      action_execute = function(_, items)
-        local item = items[1]
-        if item == nil then
-          return
-        end
-        require("cmdhndlr").execute(item.value)
-      end,
-    },
-
-    ["vendor_target"] = {
-      action_add = function(_, items)
-        require("vendorlib").add(
-          vim.tbl_map(function(item)
-            return item.value
-          end, items),
-          { path = "spec/lua/%s/vendorlib.lua" }
-        )
-      end,
-    },
-
-    ["plugin"] = {
-      action_search = function(_, items)
-        local item = items[1]
-        if item == nil then
-          return
-        end
-        local bufnr = vim.fn.bufadd(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/_list.lua"))
-        vim.fn.bufload(bufnr)
-        require("thetto").start("line", {
-          opts = {
-            input_lines = { [[add("]] .. item.value },
-            immediately = true,
-            insert = false,
-            can_resume = false,
-          },
-          source_opts = { bufnr = bufnr },
-        })
-      end,
-      action_enable_hot_reloading = function(_, items)
-        for _, item in ipairs(items) do
-          local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
-          require("lreload").enable(name)
-        end
-      end,
-      action_disable_hot_reloading = function(_, items)
-        for _, item in ipairs(items) do
-          local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
-          require("lreload").disable(name)
-        end
-      end,
-    },
   },
 
   global_opts = { display_limit = 500 },
