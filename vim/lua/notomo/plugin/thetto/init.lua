@@ -118,6 +118,7 @@ require("thetto").setup({
         require("cmdbuf").split_open(vim.o.cmdwinheight, { line = "let " .. item.value })
         vim.cmd.normal({ args = { "$" }, bang = true })
       end,
+      default_action = "edit",
     },
 
     ["vim/option"] = {
@@ -289,8 +290,6 @@ require("thetto").setup({
         },
       },
     },
-
-    ["vim/variable"] = { global_opts = { action = "edit" } },
 
     ["cmd/zsh/history"] = {
       sorters = { "length" },
