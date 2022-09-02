@@ -60,6 +60,19 @@ local run_without_focus = function(...)
   end
 end
 
+local url_actions = {
+  action_open_browser = function(_, items)
+    for _, item in ipairs(items) do
+      vim.cmd.OpenBrowser(item.url)
+    end
+  end,
+  action_docfilter = function(_, items)
+    for _, item in ipairs(items) do
+      require("docfilter").open(item.url)
+    end
+  end,
+}
+
 require("thetto").setup({
 
   kind_actions = {
@@ -143,18 +156,7 @@ require("thetto").setup({
       end,
     },
 
-    ["url"] = {
-      action_open_browser = function(_, items)
-        for _, item in ipairs(items) do
-          vim.cmd.OpenBrowser(item.url)
-        end
-      end,
-      action_docfilter = function(_, items)
-        for _, item in ipairs(items) do
-          require("docfilter").open(item.url)
-        end
-      end,
-    },
+    ["url"] = url_actions,
 
     ["github/repository"] = {
       action_temporary_clone = function(_, items)
@@ -356,19 +358,7 @@ require("thetto").setup({
       end,
     },
 
-    ["url/bookmark"] = {
-      action_browser_open = function(_, items)
-        for _, item in ipairs(items) do
-          vim.cmd.OpenBrowser(item.url)
-        end
-      end,
-      action_docfilter = function(_, items)
-        for _, item in ipairs(items) do
-          require("docfilter").open(item.url)
-        end
-      end,
-      opts = { yank = { key = "url" } },
-    },
+    ["url/bookmark"] = url_actions,
 
     ["cmd/make/target"] = {
       opts = {
