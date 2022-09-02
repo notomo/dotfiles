@@ -2,7 +2,7 @@ local M = {}
 
 function M.help(bufnr, item)
   local cmd = { "python", "-c", ([[help('%s')]]):format(item.value) }
-  local job = require("thetto.lib.job").new(cmd, {
+  return require("thetto.util.job").execute(cmd, {
     on_exit = function(job_self)
       local lines = job_self:get_stdout()
       if not vim.api.nvim_buf_is_valid(bufnr) then
@@ -10,14 +10,8 @@ function M.help(bufnr, item)
       end
       vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
     end,
-    on_stderr = require("thetto.lib.job").print_stderr,
     env = { PAGER = "cat" },
   })
-  local err = job:start()
-  if err ~= nil then
-    return nil, err
-  end
-  return job, nil
 end
 
 function M.action_preview(_, items, ctx)
