@@ -176,11 +176,7 @@ require("thetto").setup({
       filters = { "regex", "-regex", "substring", "-substring" },
     },
 
-    ["vim/filetype"] = { sorters = { "length" } },
-
-    ["thetto/source"] = { sorters = { "length" }, global_opts = { auto = "" } },
-
-    ["git/branch"] = { sorters = { "length" } },
+    ["thetto/source"] = { global_opts = { auto = "" } },
 
     ["file/recursive"] = {
       opts = { get_command = file_recursive },
@@ -190,8 +186,6 @@ require("thetto").setup({
       opts = { get_command = directory_recursive, modify_path = modify_path },
       sorters = { "length" },
     },
-
-    ["vim/help"] = { sorters = { "length" } },
 
     ["vim/diagnostic"] = {
       filters = {
@@ -275,8 +269,6 @@ require("thetto").setup({
       opts = { ignore = { "member", "package", "packageName", "anonMember", "constant" } },
       filters = { "regex", "-regex" },
     },
-
-    ["env/manual"] = { sorters = { "length" } },
 
     ["file/alter"] = {
       global_opts = { immediately = true, insert = false },
