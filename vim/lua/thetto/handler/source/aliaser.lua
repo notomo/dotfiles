@@ -13,6 +13,20 @@ function M.collect()
   return items
 end
 
-M.kind_name = "aliaser"
+M.kind_name = "file"
+M.default_action = "call"
+
+M.actions = {
+  action_call = function(_, items)
+    for _, item in ipairs(items) do
+      local alias = item.alias
+      if alias:need_args() then
+        local line = require("aliaser").to_string(alias)
+        return require("cmdbuf").split_open(vim.o.cmdwinheight, { line = line, type = "lua/cmd" })
+      end
+      alias:call()
+    end
+  end,
+}
 
 return M
