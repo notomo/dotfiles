@@ -2,11 +2,11 @@ local M = {}
 
 M.opts = { scoped = false }
 
-function M.collect(self)
+function M.collect(source_ctx)
   local items = {}
   local path = vim.fn.expand("%:p")
   local tests, err
-  if self.opts.scoped then
+  if source_ctx.opts.scoped then
     tests, err = require("gettest").scope_root_leaves(vim.fn.line("."))
   else
     tests, err = require("gettest").all_leaves()

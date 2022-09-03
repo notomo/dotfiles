@@ -4,8 +4,8 @@ M.opts = {
   package_name = "",
 }
 
-function M.collect(self, source_ctx)
-  local package_name = self.opts.package_name
+function M.collect(source_ctx)
+  local package_name = source_ctx.opts.package_name
   local cmd = {
     "python",
     vim.fn.expand("~/dotfiles/vim/lua/thetto/handler/source/python/attribute.py"),

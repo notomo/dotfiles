@@ -1,6 +1,6 @@
 local M = {}
 
-function M.collect(_, source_ctx)
+function M.collect(source_ctx)
   local info = vim.fn.systemlist("deno info")[1]
   local splitted = vim.split(info, "%s+")
   local deps_path = splitted[#splitted] .. "/deps"

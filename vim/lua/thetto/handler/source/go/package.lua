@@ -1,6 +1,6 @@
 local M = {}
 
-function M.collect(_, source_ctx)
+function M.collect(source_ctx)
   local cmd = { "go", "list", "-f", "{{.ImportPath}} {{.Dir}}", "std" }
   return require("thetto.util.job").start(cmd, source_ctx, function(output)
     local package_name, dir = unpack(vim.split(output, " ", true))

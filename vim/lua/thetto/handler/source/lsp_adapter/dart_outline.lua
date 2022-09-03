@@ -2,20 +2,22 @@ local util = require("thetto.util.lsp")
 
 local M = {}
 
-M._element_key = "element"
-M._result_key = "_thetto_dart_outline"
+M.opts = {
+  element_key = "element",
+  result_key = "_thetto_dart_outline",
+}
 
-function M.collect(self)
+function M.collect(sourc_ctx)
   local current_path = vim.fn.expand("%:p")
   local items = {}
-  local result = vim.b[self._result_key] or { outline = { children = {} } }
+  local result = vim.b[sourc_ctx.opts.result_key] or { outline = { children = {} } }
   for _, v in ipairs(result.outline.children) do
-    vim.list_extend(items, M._to_items(self, v, nil, current_path))
+    vim.list_extend(items, M._to_items(sourc_ctx, v, nil, current_path))
   end
   return items
 end
 
-function M._to_items(self, item, parent, current_path)
+function M._to_items(sourc_ctx, item, parent, current_path)
   if item.kind == "NEW_INSTANCE" then
     return {}
   end
@@ -25,7 +27,7 @@ function M._to_items(self, item, parent, current_path)
   local desc = nil
   local pre_desc = ""
   local next_parent = nil
-  local element = item[self._element_key]
+  local element = item[sourc_ctx.opts.element_key]
   if element then
     if element.kind == "FUNCTION" then
       pre_desc = ("%s "):format(element.returnType)
@@ -87,7 +89,7 @@ function M._to_items(self, item, parent, current_path)
   })
 
   for _, v in ipairs(item.children or {}) do
-    vim.list_extend(items, M._to_items(self, v, next_parent, current_path))
+    vim.list_extend(items, M._to_items(sourc_ctx, v, next_parent, current_path))
   end
 
   return items
