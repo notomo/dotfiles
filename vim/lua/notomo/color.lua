@@ -29,3 +29,7 @@ vim.api.nvim_set_hl(0, "SpellCap", { link = "NONE" })
 if vim.fn.has("mac") == 1 then
   vim.api.nvim_set_hl(0, "Cursor", { bg = "#bbbbba" })
 end
+
+vim.api.nvim_set_hl(0, "OptpackGitCommitLog", { link = "Normal" })
+vim.api.nvim_set_hl(0, "OptpackGitCommitRevision", { link = "Label" })
+vim.api.nvim_set_hl(0, "OptpackUpdatedRevisionRange", { link = "Label" })
