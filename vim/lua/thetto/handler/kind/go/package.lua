@@ -1,6 +1,6 @@
 local M = {}
 
-function M.action_list_children(_, items)
+function M.action_list_children(items)
   local item = items[1]
   if item == nil then
     return
@@ -10,7 +10,7 @@ function M.action_list_children(_, items)
   })
 end
 
-function M.action_search(_, items)
+function M.action_search(items)
   for _, item in ipairs(items) do
     vim.cmd.OpenBrowserSearch({ args = { "-go", item.value } })
   end

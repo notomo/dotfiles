@@ -3,21 +3,21 @@ local source_actions = {}
 local kind_actions = {}
 
 kind_actions["git/branch"] = {
-  action_tab_open = function(_, items)
+  action_tab_open = function(items)
     local cursor = vim.api.nvim_win_get_cursor(0)
     for _, item in ipairs(items) do
       vim.cmd.Gina({ args = { "show", item.value .. ":%:p", "--opener=tabedit" } })
       require("misclib.cursor").set(cursor)
     end
   end,
-  action_compare = function(_, items)
+  action_compare = function(items)
     local item = items[1]
     if item == nil then
       return
     end
     vim.cmd.Gina({ args = { "compare", item.value .. ":" } })
   end,
-  action_diff = function(_, items)
+  action_diff = function(items)
     local item = items[1]
     if item == nil then
       return
@@ -28,7 +28,7 @@ kind_actions["git/branch"] = {
 
 local run_without_focus = function(...)
   local keys = { ... }
-  return function(_, items)
+  return function(items)
     local targets = vim.tbl_map(function(item)
       for _, key in ipairs(keys) do
         local v = item[key]
@@ -41,7 +41,7 @@ local run_without_focus = function(...)
   end
 end
 kind_actions["file"] = {
-  action_qfreplace = function(_, items)
+  action_qfreplace = function(items)
     local qflist = {}
     for _, item in ipairs(items) do
       if item.row == nil or item.path == nil then
@@ -62,7 +62,7 @@ kind_actions["file"] = {
 }
 
 kind_actions["vim/variable"] = {
-  action_edit = function(_, items)
+  action_edit = function(items)
     local item = items[1]
     if item == nil then
       return
@@ -75,7 +75,7 @@ kind_actions["vim/variable"] = {
 
 
 kind_actions["vim/option"] = {
-  action_edit = function(_, items)
+  action_edit = function(items)
     local item = items[1]
     if item == nil then
       return
@@ -86,7 +86,7 @@ kind_actions["vim/option"] = {
 }
 
 kind_actions["vim/command"] = {
-  action_open = function(_, items)
+  action_open = function(items)
     local item = items[1]
     if item == nil then
       return
@@ -97,12 +97,12 @@ kind_actions["vim/command"] = {
 }
 
 local url_actions = {
-  action_open_browser = function(_, items)
+  action_open_browser = function(items)
     for _, item in ipairs(items) do
       vim.cmd.OpenBrowser(item.url)
     end
   end,
-  action_docfilter = function(_, items)
+  action_docfilter = function(items)
     for _, item in ipairs(items) do
       require("docfilter").open(item.url)
     end
@@ -112,7 +112,7 @@ kind_actions["url"] = url_actions
 source_actions["url/bookmark"] = url_actions
 
 kind_actions["github/repository"] = {
-  action_temporary_clone = function(_, items)
+  action_temporary_clone = function(items)
     local item = items[1]
     if not item then
       return
@@ -283,7 +283,7 @@ source_config["go/bin"] = {
 }
 source_actions["file/recursive"] = {
   -- HACK
-  action_go_install_latest = function(_, items)
+  action_go_install_latest = function(items)
     local item = items[1]
     if item == nil then
       return
@@ -297,7 +297,7 @@ source_actions["file/recursive"] = {
 }
 
 source_actions["vim/filetype"] = {
-  action_open_scratch = function(_, items)
+  action_open_scratch = function(items)
     local item = items[1]
     if item == nil then
       return
@@ -306,7 +306,7 @@ source_actions["vim/filetype"] = {
     local name = require("filetypext").detect({ filetype = filetype })[1]
     require("notomo.edit").scratch(name, filetype)
   end,
-  action_search = function(_, items)
+  action_search = function(items)
     local item = items[1]
     if item == nil then
       return

@@ -1,6 +1,6 @@
 local M = {}
 
-function M.action_show(_, items)
+function M.action_show(items)
   local item = items[1]
   if item == nil then
     return
@@ -17,13 +17,13 @@ end
 
 M.action_tab_open = M.action_show
 
-function M.action_search(_, items)
+function M.action_search(items)
   for _, item in ipairs(items) do
     vim.cmd.OpenBrowserSearch({ "-python", item.value })
   end
 end
 
-function M.action_list_children(_, items)
+function M.action_list_children(items)
   local item = items[1]
   if item == nil then
     return

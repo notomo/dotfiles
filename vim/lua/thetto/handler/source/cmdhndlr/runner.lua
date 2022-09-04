@@ -12,7 +12,7 @@ M.kind_name = "word"
 M.default_action = "execute"
 
 M.actions = {
-  action_execute = function(_, items)
+  action_execute = function(items)
     local item = items[1]
     if item == nil then
       return

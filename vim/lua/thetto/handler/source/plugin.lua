@@ -14,7 +14,7 @@ M.sorters = { "alphabet" }
 M.kind_name = "file/directory"
 
 M.actions = {
-  action_search = function(_, items)
+  action_search = function(items)
     local item = items[1]
     if item == nil then
       return
@@ -32,14 +32,14 @@ M.actions = {
     })
   end,
 
-  action_enable_hot_reloading = function(_, items)
+  action_enable_hot_reloading = function(items)
     for _, item in ipairs(items) do
       local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
       require("lreload").enable(name)
     end
   end,
 
-  action_disable_hot_reloading = function(_, items)
+  action_disable_hot_reloading = function(items)
     for _, item in ipairs(items) do
       local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
       require("lreload").disable(name)

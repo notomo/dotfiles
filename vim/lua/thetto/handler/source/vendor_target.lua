@@ -41,7 +41,7 @@ M.kind_name = "file"
 M.default_action = "add"
 
 M.actions = {
-  action_add = function(_, items)
+  action_add = function(items)
     require("vendorlib").add(
       vim.tbl_map(function(item)
         return item.value

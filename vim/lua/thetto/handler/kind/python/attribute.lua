@@ -14,7 +14,7 @@ function M.help(bufnr, item)
   })
 end
 
-function M.action_preview(_, items, ctx)
+function M.action_preview(items, _, ctx)
   local item = items[1]
   if item == nil then
     return
@@ -28,7 +28,7 @@ function M.action_preview(_, items, ctx)
   return M.help(bufnr, item)
 end
 
-function M.action_show(_, items)
+function M.action_show(items)
   local item = items[1]
   if item == nil then
     return

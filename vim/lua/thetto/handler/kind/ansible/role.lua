@@ -27,11 +27,11 @@ local execute = function(items, args)
   })
 end
 
-function M.action_execute(_, items)
+function M.action_execute(items)
   execute(items)
 end
 
-function M.action_execute_with_become(_, items)
+function M.action_execute_with_become(items)
   execute(items, { "--ask-become-pass" })
 end
 

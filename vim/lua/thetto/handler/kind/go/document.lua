@@ -1,6 +1,6 @@
 local M = {}
 
-function M.action_preview(_, items, ctx)
+function M.action_preview(items, _, ctx)
   local item = items[1]
   if not item then
     return nil
@@ -29,7 +29,7 @@ function M.action_preview(_, items, ctx)
   ctx.ui:open_preview(item, { raw_bufnr = bufnr })
 end
 
-function M.action_open(_, items)
+function M.action_open(items)
   local item = items[1]
   if not item then
     return nil

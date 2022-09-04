@@ -28,7 +28,7 @@ end
 M.kind_name = "file"
 
 M.actions = {
-  action_execute = function(_, items)
+  action_execute = function(items)
     local window_id = vim.api.nvim_get_current_win()
     for _, item in ipairs(items) do
       vim.api.nvim_set_current_win(window_id)

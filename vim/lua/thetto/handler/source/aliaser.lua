@@ -17,7 +17,7 @@ M.kind_name = "file"
 M.default_action = "call"
 
 M.actions = {
-  action_call = function(_, items)
+  action_call = function(items)
     for _, item in ipairs(items) do
       local alias = item.alias
       if alias:need_args() then
