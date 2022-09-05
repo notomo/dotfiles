@@ -82,5 +82,4 @@ gesture.register({
   action = function(ctx)
     require("piemenu").start("default", { position = ctx.last_position })
   end,
-  nowait = true,
 })
