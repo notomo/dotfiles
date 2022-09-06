@@ -350,11 +350,7 @@ vim.keymap.set(
   "[finder]ts",
   [[<Cmd>lua require("thetto").start("test", {source_opts = {scoped = true}, opts = {action = "execute"}})<CR>]]
 )
-vim.keymap.set(
-  "n",
-  "[finder]b",
-  [[<Cmd>lua require("thetto").start("url/bookmark", {opts = {action = "browser_open"}})<CR>]]
-)
+vim.keymap.set("n", "[finder]b", [[<Cmd>lua require("thetto").start("url/bookmark")<CR>]])
 
 -- custom source
 vim.keymap.set("n", "[finder]p", [[<Cmd>lua require("thetto").start("plugin")<CR>]])
