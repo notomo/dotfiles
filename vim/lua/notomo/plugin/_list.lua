@@ -635,6 +635,10 @@ mypack.add("notomo/ultramarine.nvim", {
   load_on = { events = { "ColorSchemePre" } },
 })
 
+mypack.add("notomo/hlmsg.nvim", {
+  load_on = { modules = { "hlmsg" } },
+})
+
 optpack.add("norcalli/nvim-colorizer.lua", {
   load_on = { modules = { "colorizer" } },
 })
