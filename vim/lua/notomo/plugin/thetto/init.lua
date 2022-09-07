@@ -266,6 +266,13 @@ source_config["github/user"] = {
 source_config["github/search_repository"] = {
   filters = interactive_filters
 }
+source_config["github/assigned_issue"] = {
+  alias_to = "github/issue",
+  opts = {
+    repo_with_owner = "",
+    extra_args = { "--assignee=@me" }
+  }
+}
 source_config["github/issue"] = {
   filters = interactive_filters
 }
