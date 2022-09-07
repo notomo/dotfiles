@@ -275,7 +275,6 @@ vim.keymap.set("n", "[finder]G", function()
   require("thetto").start("file/grep", {
     opts = {
       cwd = require("thetto.util.cwd").project(),
-      debounce_ms = 300,
       filters = require("thetto.util.filter").prepend("interactive"),
     },
   })
@@ -283,7 +282,6 @@ end)
 vim.keymap.set("n", "[finder]gL", function()
   require("thetto").start("file/grep", {
     opts = {
-      debounce_ms = 300,
       filters = require("thetto.util.filter").prepend("interactive"),
     },
   })
