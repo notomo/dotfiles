@@ -15,8 +15,8 @@ aliaser.register_factory("tree_sitter", function(aliases)
   end)
   aliases:set("ready_parser", function()
     for _, language in ipairs({
-      "lua",
       "go",
+      "typescript",
     }) do
       vim.cmd.TSInstall(language)
     end
