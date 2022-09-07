@@ -94,7 +94,7 @@ aliaser.register_factory("vim", function(aliases)
 end)
 
 aliaser.register_factory("dev", function(aliases)
-  local colorscheme = "ultramarine"
+  local colorscheme = vim.g.notomo_colorscheme
   aliases:set("watch_" .. colorscheme, function()
     require("notomo.colorscheme").watch(colorscheme, colorscheme .. ".nvim")
   end)

@@ -9,15 +9,14 @@ end
 
 vim.cmd.luafile([[~/dotfiles/vim/lua/notomo/plugin/_list.lua]])
 
-local scheme_name = "ultramarine"
 if initializing then
   require("optpack").update({
     on_finished = function()
-      vim.cmd.colorscheme(scheme_name)
+      vim.cmd.colorscheme(vim.g.notomo_colorscheme)
     end,
   })
 else
   vim.schedule(function()
-    vim.cmd.colorscheme(scheme_name)
+    vim.cmd.colorscheme(vim.g.notomo_colorscheme)
   end)
 end
