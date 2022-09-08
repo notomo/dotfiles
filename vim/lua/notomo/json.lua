@@ -1,20 +1,25 @@
 local M = {}
 
 function M.next()
-  M._search("")
+  vim.cmd.normal({ args = { "%" }, bang = true })
+
+  local line = vim.trim(vim.fn.getline("."))
+  if line == "}," then
+    return vim.cmd.normal({ args = { "j" }, bang = true })
+  end
+
+  vim.cmd.normal({ args = { "j^%j$" }, bang = true })
 end
 
 function M.prev()
-  M._search("b")
-end
+  vim.cmd.normal({ args = { "k" }, bang = true })
 
-function M._search(flag)
-  local indent_size = vim.fn.indent(".")
-  if indent_size >= 4 then
-    indent_size = 2
+  local line = vim.trim(vim.fn.getline("."))
+  if line == "}," then
+    return vim.cmd.normal({ args = { "%" }, bang = true })
   end
-  local pattern = [[\v^]] .. (" "):rep(indent_size) .. [[\{]]
-  vim.fn.search(pattern, flag)
+
+  vim.cmd.normal({ args = { "$%k$%" }, bang = true })
 end
 
 return M
