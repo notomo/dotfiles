@@ -99,7 +99,7 @@ vim.ui.input = function(opts, on_confirm)
   })
   local prompt = opts.prompt or ""
   vim.wo[window_id].winbar = " " .. prompt
-  vim.wo[window_id].winhighlight = "SignColumn:Normal"
+  vim.wo[window_id].winhighlight = "Normal:Normal,SignColumn:Normal"
   vim.wo[window_id].signcolumn = "yes:1"
   vim.cmd.normal({ args = { "$" }, bang = true })
 
