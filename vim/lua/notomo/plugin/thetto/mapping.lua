@@ -246,6 +246,8 @@ vim.keymap.set("n", "[finder]A", [[<Cmd>lua require("thetto").start("vim/autocmd
 vim.keymap.set("n", "[finder]s", [[<Cmd>lua require("thetto").start("thetto/source")<CR>]])
 vim.keymap.set("n", "[finder]n", [[<Cmd>lua require("thetto").resume_execute({opts = {offset = 1}})<CR>]])
 vim.keymap.set("n", "[finder]N", [[<Cmd>lua require("thetto").resume_execute({opts = {offset = -1}})<CR>]])
+vim.keymap.set("n", "[finder]gn", [[<Cmd>lua require("thetto").resume_execute({opts = {offset = 100000}})<CR>]])
+vim.keymap.set("n", "[finder]gN", [[<Cmd>lua require("thetto").resume_execute({opts = {offset = -100000}})<CR>]])
 vim.keymap.set("n", "[finder]m", [[<Cmd>lua require("thetto").start("keymap")<CR>]])
 vim.keymap.set("n", "[finder]o", [[<Cmd>lua require("thetto").start("cmd/ctags")<CR>]])
 vim.keymap.set("n", "[finder],", function()
