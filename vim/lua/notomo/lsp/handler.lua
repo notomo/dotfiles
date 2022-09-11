@@ -81,7 +81,7 @@ end
 
 vim.ui.input = function(opts, on_confirm)
   local bufnr = vim.api.nvim_create_buf(false, true)
-  local default_line = opts.default
+  local default_line = opts.default or ""
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { default_line })
   vim.bo[bufnr].bufhidden = "wipe"
 
