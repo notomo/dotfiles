@@ -21,7 +21,7 @@ M.actions = {
     end
     local bufnr = vim.fn.bufadd(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/_list.lua"))
     vim.fn.bufload(bufnr)
-    require("thetto").start("line", {
+    return require("thetto").start("line", {
       opts = {
         input_lines = { [[add("]] .. item.value },
         immediately = true,

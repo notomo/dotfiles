@@ -28,7 +28,7 @@ function M.action_list_children(items)
   if item == nil then
     return
   end
-  require("thetto").start("python/attribute", {
+  return require("thetto").start("python/attribute", {
     source_opts = { package_name = item.value },
   })
 end

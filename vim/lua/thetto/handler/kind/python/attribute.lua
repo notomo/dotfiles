@@ -2,7 +2,7 @@ local M = {}
 
 function M.help(bufnr, item)
   local cmd = { "python", "-c", ([[help('%s')]]):format(item.value) }
-  return require("thetto.util.job").execute(cmd, {
+  return require("thetto.util.job").promise(cmd, {
     on_exit = function(job_self)
       local lines = job_self:get_stdout()
       if not vim.api.nvim_buf_is_valid(bufnr) then

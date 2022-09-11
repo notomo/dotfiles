@@ -318,7 +318,7 @@ source_actions["vim/filetype"] = {
     if item == nil then
       return
     end
-    require("thetto").start("file/recursive", {
+    return require("thetto").start("file/recursive", {
       opts = {
         cwd = vim.fn.expand("~/dotfiles"),
         insert = false,
