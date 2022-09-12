@@ -539,7 +539,7 @@ mypack.add("notomo/promise.nvim", {
 optpack.add("nvim-lua/plenary.nvim", { load_on = { modules = { "plenary" } } })
 optpack.add("jose-elias-alvarez/null-ls.nvim", {
   depends = { "plenary.nvim" },
-  load_on = { filetypes = { "yaml" }, modules = { "null-ls" } },
+  load_on = { events = { "FileType" }, modules = { "null-ls" } },
   hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/null-ls.lua") },
 })
 

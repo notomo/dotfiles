@@ -19,6 +19,7 @@ null_ls.setup({
         "css",
         "scss",
         "html",
+        "graphql",
       },
     }),
     null_ls.builtins.formatting.shfmt,
