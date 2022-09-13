@@ -4,3 +4,5 @@ if vim.fn.bufname("%") == "package.json" then
   require("notomo.npm").mapping()
 end
 require("notomo.lsp.autocmd").setup()
+vim.opt_local.tabstop = 2
+vim.opt_local.softtabstop = 2
