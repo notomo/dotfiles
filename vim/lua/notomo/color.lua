@@ -33,3 +33,6 @@ end
 vim.api.nvim_set_hl(0, "OptpackGitCommitLog", { link = "Normal" })
 vim.api.nvim_set_hl(0, "OptpackGitCommitRevision", { link = "Label" })
 vim.api.nvim_set_hl(0, "OptpackUpdatedRevisionRange", { link = "Label" })
+
+vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { bg = pallet.blue, nocombine = true })
+vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { bg = pallet.dark_blue, nocombine = true })
