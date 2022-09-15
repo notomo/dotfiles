@@ -26,6 +26,13 @@ end)
 aliaser.register_factory("vim", function(aliases)
   aliases:set("clear_messages", "messages clear")
 
+  aliases:set("hlmsg", function()
+    local bufnr = vim.api.nvim_create_buf(false, true)
+    require("hlmsg").render(bufnr)
+    vim.cmd.tabedit()
+    vim.cmd.buffer({ count = bufnr })
+  end)
+
   aliases:set("cmdline_window_for_excmd", function()
     vim.fn.feedkeys("q:", "n")
   end)
