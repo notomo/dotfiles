@@ -316,11 +316,6 @@ vim.keymap.set(
 )
 vim.keymap.set(
   "n",
-  "[exec]cm",
-  [[<Cmd>lua require("thetto").start("vim/execute", {opts = {display_limit = 1000, insert = false, offset = 1000}, source_opts = {cmd = "messages"}})<CR>]]
-)
-vim.keymap.set(
-  "n",
   "[exec]cv",
   [[<Cmd>lua require("thetto").start("vim/execute", {source_opts = {cmd = "version"}})<CR>]]
 )

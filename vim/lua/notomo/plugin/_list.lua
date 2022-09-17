@@ -642,6 +642,19 @@ mypack.add("notomo/ultramarine.nvim", {
 
 mypack.add("notomo/hlmsg.nvim", {
   load_on = { modules = { "hlmsg" } },
+  hooks = {
+    post_add = function()
+      vim.keymap.set("n", "[exec]cm", function()
+        local bufnr = vim.api.nvim_create_buf(false, true)
+        require("hlmsg").render(bufnr)
+        vim.cmd.tabedit()
+        vim.cmd.buffer({ count = bufnr })
+        vim.schedule(function()
+          require("misclib.cursor").to_bottom()
+        end)
+      end)
+    end,
+  },
 })
 
 optpack.add("norcalli/nvim-colorizer.lua", {

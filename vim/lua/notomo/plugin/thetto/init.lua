@@ -303,6 +303,18 @@ source_actions["file/recursive"] = {
   end,
 }
 
+source_config["message"] = {
+  alias_to = "vim/execute",
+  global_opts = {
+    display_limit = 1000,
+    insert = false,
+    offset = 1000
+  },
+  source_opts = {
+    cmd = "messages"
+  }
+}
+
 source_actions["vim/filetype"] = {
   action_open_scratch = function(items)
     local item = items[1]
