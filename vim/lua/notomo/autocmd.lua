@@ -119,3 +119,16 @@ vim.api.nvim_create_autocmd({ "UIEnter" }, {
     end
   end,
 })
+
+if vim.fn.has("wsl") == 1 or vim.fn.has("win32") == 1 then
+  vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+    group = group_name,
+    pattern = { "*" },
+    callback = function()
+      require("notomo.job").run({ "zenhan.exe", "0" }, {
+        on_exit = function() end,
+        on_stdout = function() end,
+      })
+    end,
+  })
+end
