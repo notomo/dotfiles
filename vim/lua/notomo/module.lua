@@ -8,6 +8,7 @@ function M.path()
     return ""
   end
   module_path = module_path:gsub("%.lua$", "")
+  module_path = module_path:gsub("/init$", "")
   module_path = module_path:gsub("/", ".")
   return module_path
 end

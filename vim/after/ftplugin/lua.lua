@@ -27,4 +27,14 @@ vim.keymap.set(
   { buffer = true }
 )
 
+vim.keymap.set("n", "[finder]I", function()
+  require("thetto").start("file/grep", {
+    opts = {
+      cwd = require("thetto.util.cwd").project(),
+      filters = require("thetto.util.filter").prepend("interactive"),
+      input_lines = { ('"%s"'):format(require("notomo.module").path()), "require(" },
+    },
+  })
+end)
+
 require("notomo.plugin.treesitter").text_object_mapping()

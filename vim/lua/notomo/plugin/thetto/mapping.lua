@@ -333,11 +333,6 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "[finder]z", [[<Cmd>lua require("thetto").start("cmd/zsh/history")<CR>]])
 vim.keymap.set("n", "[finder]Q", [[<Cmd>lua require("thetto").start("vim/history/command")<CR>]])
-vim.keymap.set(
-  "n",
-  "[finder]I",
-  [[<Cmd>lua require("thetto").start("github/issue", {source_opts = {assignee = "me"}})<CR>]]
-)
 vim.keymap.set("n", "[finder]gP", [[<Cmd>lua require("thetto").start("github/pull_request")<CR>]])
 vim.keymap.set("n", "[finder]to", [[<Cmd>lua require("thetto").start("test", {opts = {action = "execute"}})<CR>]])
 vim.keymap.set(
