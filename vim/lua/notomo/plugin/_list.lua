@@ -543,15 +543,6 @@ optpack.add("jose-elias-alvarez/null-ls.nvim", {
   hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/null-ls.lua") },
 })
 
-mypack.add("notomo/docfilter.nvim", {
-  load_on = { modules = { "docfilter" } },
-  hooks = {
-    post_add = function()
-      vim.keymap.set("n", "[exec]o", [[:<C-u>lua require("docfilter").open("<C-r>+")]])
-    end,
-  },
-})
-
 mypack.add("notomo/stlparts.nvim", {
   load_on = { events = { "VimEnter" } },
   hooks = {

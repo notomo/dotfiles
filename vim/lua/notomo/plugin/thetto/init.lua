@@ -102,11 +102,6 @@ local url_actions = {
       vim.cmd.OpenBrowser(item.url)
     end
   end,
-  action_docfilter = function(items)
-    for _, item in ipairs(items) do
-      require("docfilter").open(item.url)
-    end
-  end,
 }
 kind_actions["url"] = url_actions
 source_actions["url/bookmark"] = url_actions
