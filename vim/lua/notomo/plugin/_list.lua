@@ -1,19 +1,10 @@
 vim.cmd.packadd([[optpack.nvim]])
 local optpack = require("optpack")
 
-local with_trace = function(f)
-  return function()
-    local ok, result = xpcall(f, debug.traceback)
-    if not ok then
-      error(result)
-    end
-  end
-end
-
 local luafile = function(path)
-  return with_trace(function()
+  return function()
     vim.cmd.luafile(path)
-  end)
+  end
 end
 
 local mypack = {
