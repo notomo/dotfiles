@@ -636,13 +636,13 @@ mypack.add("notomo/hlmsg.nvim", {
   hooks = {
     post_add = function()
       vim.keymap.set("n", "[exec]cm", function()
-        local bufnr = vim.api.nvim_create_buf(false, true)
-        require("hlmsg").render(bufnr)
-        vim.cmd.tabedit()
-        vim.cmd.buffer({ count = bufnr })
-        vim.schedule(function()
-          require("misclib.cursor").to_bottom()
-        end)
+        require("thetto").start("hlmsg", {
+          opts = {
+            display_limit = 1000,
+            insert = false,
+            offset = 1000,
+          },
+        })
       end)
     end,
   },
