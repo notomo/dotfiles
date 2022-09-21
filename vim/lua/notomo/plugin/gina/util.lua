@@ -87,9 +87,10 @@ function M.yank_commit_message()
   require("notomo.edit").yank(message)
 end
 
-function M.browse_yank()
-  vim.fn["gina#action#call"]("browse:yank")
-  vim.api.nvim_echo({ { vim.fn.getreg("+") } }, true, {})
+function M.yank_commit_url()
+  vim.fn["gina#action#call"]("browse:yank:exact")
+  local url = vim.fn.getreg("+"):gsub("/tree/", "/commit/")
+  require("notomo.edit").yank(url)
 end
 
 function M.edit(action)

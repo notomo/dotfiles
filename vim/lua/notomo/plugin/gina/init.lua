@@ -159,17 +159,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       [[<Cmd>lua require("notomo.plugin.gina.util").yank_commit_message()<CR>]],
       { buffer = true, silent = true }
     )
+    vim.keymap.set(
+      { "n" },
+      "yu",
+      [[<Cmd>lua require("notomo.plugin.gina.util").yank_commit_url()<CR>]],
+      { buffer = true, silent = true }
+    )
 
     vim.keymap.set(
       { "n" },
       "cp",
       [[:call gina#action#call("commit:cherry-pick")<CR>]],
-      { buffer = true, silent = true }
-    )
-    vim.keymap.set(
-      { "n" },
-      "yu",
-      [[:lua require("notomo.plugin.gina.util").browse_yank()<CR>]],
       { buffer = true, silent = true }
     )
 
