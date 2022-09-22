@@ -1,36 +1,22 @@
 local M = {}
 
 function M.collect()
-  local items = {}
-  for _, chunk in ipairs(require("hlmsg").get()) do
-    local texts = {}
-    local highlights = {}
-    local start_col = 0
-    for _, pair in ipairs(chunk) do
-      local text, hl_group = unpack(pair)
-      local end_col = start_col + #text
-      table.insert(texts, text)
-      table.insert(highlights, {
-        group = hl_group or "Normal",
-        start_col = start_col,
-        end_col = end_col,
-      })
-    end
-    local value = table.concat(texts, "")
-    table.insert(items, {
-      value = value,
-      highlights = highlights,
-    })
-  end
-  return items
+  local messages = require("hlmsg").get()
+  return vim.tbl_map(function(message)
+    return {
+      value = message.line,
+      chunks = message.chunks,
+      message_kind = message.kind,
+    }
+  end, messages)
 end
 
 M.kind_name = "word"
 
-function M.highlight(highlighter, items, first_line)
+function M.highlight(decorator, items, first_line)
   for i, item in ipairs(items) do
-    for _, highlight in ipairs(item.highlights) do
-      highlighter:highlight(highlight.group, first_line + i - 1, highlight.start_col, highlight.end_col)
+    for _, chunk in ipairs(item.chunks) do
+      decorator:highlight(chunk.hl_group, first_line + i - 1, chunk.start_col, chunk.end_col)
     end
   end
 end
