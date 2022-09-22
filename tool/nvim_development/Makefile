@@ -25,6 +25,7 @@ build_release_with_deb_info: reset_build_type
 	nvim --version
 	# cd ${NVIM_DIR}; make distclean
 	cd ${NVIM_DIR}; LUAC_PRG=luac5.1 make CMAKE_BUILD_TYPE=RelWithDebInfo
+	rm -rf ${HOME}/.local/nvim/share/nvim/runtime
 	cd ${NVIM_DIR}; make install CMAKE_INSTALL_PREFIX=${HOME}/.local/nvim
 	nvim --version
 	$(MAKE) -C ./../../vim test
