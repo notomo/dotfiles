@@ -143,6 +143,10 @@ end
 source_config["file/recursive"] = {
   opts = { get_command = file_recursive },
   sorters = { "length" },
+  filters = {
+    "regex",
+    "-regex",
+  },
 }
 source_config["file/directory/recursive"] = {
   opts = { get_command = directory_recursive, modify_path = modify_path },
