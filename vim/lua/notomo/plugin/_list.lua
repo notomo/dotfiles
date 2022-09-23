@@ -666,3 +666,7 @@ optpack.add("lukas-reineke/indent-blankline.nvim", {
     end,
   },
 })
+
+mypack.add("notomo/assertlib.nvim", {
+  load_on = { modules = { "assertlib" } },
+})

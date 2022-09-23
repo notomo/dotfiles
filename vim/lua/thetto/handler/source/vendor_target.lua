@@ -31,6 +31,7 @@ function M.collect()
   for _, name in ipairs({
     "notomo/promise.nvim",
     "notomo/misclib.nvim",
+    "notomo/assertlib.nvim",
   }) do
     vim.list_extend(items, collect_one(name))
   end
