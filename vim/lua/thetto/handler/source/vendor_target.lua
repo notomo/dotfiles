@@ -13,7 +13,7 @@ local collect_one = function(full_name)
 
   local paths = vim.fn.glob(pattern, false, true)
   paths = vim.tbl_filter(function(path)
-    return not path:find("/test/helper%.lua")
+    return not path:find("/vendor/") and not path:find("/test/helper%.lua")
   end, paths)
 
   return vim.tbl_map(function(path)
