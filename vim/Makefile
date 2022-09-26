@@ -17,10 +17,23 @@ test_plugins:
 format:
 	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _format TARGET_PATH={}
 	$(MAKE) --no-print-directory _format TARGET_PATH=${HOME}/dotfiles
-
 _format:
 	@echo
 	zsh -f -c 'stylua --config-path ~/dotfiles/tool/stylua.toml -- ${TARGET_PATH}/**/*.lua'
+
+commit:
+	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _commit TARGET_PATH={}
+_commit:
+	@echo
+	test '${MESSAGE}'
+	test '${TARGET_PATH}'
+	git -C ${TARGET_PATH} add .
+	git -C ${TARGET_PATH} commit -m '${MESSAGE}'
+
+PUSH:
+	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _PUSH TARGET_PATH={}
+_PUSH:
+	git -C ${TARGET_PATH} push
 
 update_plugins:
 	nvim --headless +"lua require('notomo.startup').update_plugins()"
@@ -31,7 +44,6 @@ vendor_plugins:
 
 vendor_plugins_status:
 	nvim --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _status TARGET_PATH={}
-
 _status:
 	@echo
 	git --no-pager -C ${TARGET_PATH} status
