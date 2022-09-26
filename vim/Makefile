@@ -14,6 +14,14 @@ profile:
 test_plugins:
 	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} make test -C {}
 
+format:
+	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _format TARGET_PATH={}
+	$(MAKE) --no-print-directory _format TARGET_PATH=${HOME}/dotfiles
+
+_format:
+	@echo
+	zsh -f -c 'stylua --config-path ~/dotfiles/tool/stylua.toml -- ${TARGET_PATH}/**/*.lua'
+
 update_plugins:
 	nvim --headless +"lua require('notomo.startup').update_plugins()"
 
