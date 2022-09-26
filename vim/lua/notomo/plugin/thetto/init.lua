@@ -73,7 +73,6 @@ kind_actions["vim/variable"] = {
   default_action = "edit",
 }
 
-
 kind_actions["vim/option"] = {
   action_edit = function(items)
     local item = items[1]
@@ -134,7 +133,20 @@ if vim.fn.has("win32") == 0 then
   end
 
   directory_recursive = function(path, max_depth)
-    return { "fd", "--hidden", "--color=never", "--exclude", ".git", "-L", "--max-depth", max_depth, "-t", "d", ".", path }
+    return {
+      "fd",
+      "--hidden",
+      "--color=never",
+      "--exclude",
+      ".git",
+      "-L",
+      "--max-depth",
+      max_depth,
+      "-t",
+      "d",
+      ".",
+      path,
+    }
   end
   modify_path = function(path)
     return path
@@ -260,23 +272,23 @@ source_config["cmd/zsh/history"] = {
 
 local interactive_filters = { "interactive", "regex", "-regex" }
 source_config["github/user"] = {
-  filters = interactive_filters
+  filters = interactive_filters,
 }
 source_config["github/search_repository"] = {
-  filters = interactive_filters
+  filters = interactive_filters,
 }
 source_config["github/assigned_issue"] = {
   alias_to = "github/issue",
   opts = {
     repo_with_owner = "",
-    extra_args = { "--assignee=@me" }
-  }
+    extra_args = { "--assignee=@me" },
+  },
 }
 source_config["github/issue"] = {
-  filters = interactive_filters
+  filters = interactive_filters,
 }
 source_config["cmd/zsh/completion"] = {
-  filters = interactive_filters
+  filters = interactive_filters,
 }
 
 source_config["go/bin"] = {
@@ -307,11 +319,11 @@ source_config["message"] = {
   global_opts = {
     display_limit = 1000,
     insert = false,
-    offset = 1000
+    offset = 1000,
   },
   source_opts = {
-    cmd = "messages"
-  }
+    cmd = "messages",
+  },
 }
 
 source_actions["vim/filetype"] = {
@@ -336,7 +348,7 @@ source_actions["vim/filetype"] = {
         action = "tab_open",
         immediately = true,
         input_lines = { "/ftplugin/" .. item.value .. ".lua" },
-        sorters = { "length" }
+        sorters = { "length" },
       },
     })
   end,
@@ -363,11 +375,11 @@ source_actions["cmd/npm/script"] = runner_actions
 
 require("thetto").setup({
   global_opts = {
-    display_limit = 500
+    display_limit = 500,
   },
   filters = {
     "substring",
-    "-substring"
+    "-substring",
   },
   source = source_config,
   source_actions = source_actions,
