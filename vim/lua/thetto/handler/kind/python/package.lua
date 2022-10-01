@@ -9,7 +9,7 @@ function M.action_show(items)
   local bufnr = vim.api.nvim_create_buf(false, true)
   vim.bo[bufnr].bufhidden = "wipe"
   vim.cmd.tabedit()
-  vim.cmd.buffer({ count = bufnr })
+  vim.cmd.buffer(bufnr)
   vim.opt_local.list = false
 
   return require("thetto.handler.kind.python.symbol").help(bufnr, item)
