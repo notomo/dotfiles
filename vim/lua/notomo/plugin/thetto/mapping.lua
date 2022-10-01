@@ -103,6 +103,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end, { buffer = true })
 
     vim.keymap.set("n", "M", [[<Cmd>lua require("thetto").execute("change_display_limit")<CR>]], { buffer = true })
+    vim.keymap.set("n", "R", [[<Cmd>lua require("thetto").execute("reverse")<CR>]], { buffer = true })
 
     -- custom
     vim.keymap.set("n", "<Leader>rp", [[<Cmd>lua require("thetto").execute("qfreplace")<CR>]], { buffer = true })
