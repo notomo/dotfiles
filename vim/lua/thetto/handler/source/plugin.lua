@@ -4,7 +4,11 @@ function M.collect()
   local items = {}
   local plugins = require("optpack").list()
   for _, plugin in ipairs(plugins) do
-    table.insert(items, { value = plugin.full_name, path = plugin.directory })
+    table.insert(items, {
+      value = plugin.full_name,
+      name = plugin.name,
+      path = plugin.directory,
+    })
   end
   return items
 end
@@ -44,6 +48,14 @@ M.actions = {
       local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
       require("lreload").disable(name)
     end
+  end,
+
+  action_update = function(items)
+    local names = vim.tbl_map(function(item)
+      return ("(%s)"):format(item.name)
+    end, items)
+    local pattern = "\\v" .. table.concat(names, "|")
+    require("optpack").update({ pattern = pattern })
   end,
 }
 
