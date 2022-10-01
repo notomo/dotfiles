@@ -32,7 +32,21 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       return require("kivi").execute("open")
     end, { buffer = true })
     vim.keymap.set("n", "c", [[<Cmd>lua require("kivi").execute("close_all_tree")<CR>]], { buffer = true })
-    vim.keymap.set("n", "<2-LeftMouse>", [[<Cmd>lua require("kivi").execute("child")<CR>]], { buffer = true })
+
+    vim.keymap.set("n", "<2-LeftMouse>", function()
+      require("kivi").execute("child")
+      -- workaround?
+      vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+        group = vim.api.nvim_create_augroup("kivi_mouse", {}),
+        pattern = { "*:v" },
+        callback = function()
+          local ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+          vim.cmd.normal({ args = { ESC }, bang = true })
+        end,
+        once = true,
+      })
+    end, { buffer = true })
+
     vim.keymap.set("n", "sm", [[<Cmd>lua require("kivi").execute("toggle_selection")<CR>j]], { buffer = true })
     vim.keymap.set("x", "sm", [[<Cmd>lua require("kivi").execute("toggle_selection")<CR>]], { buffer = true })
     vim.keymap.set("n", "O", [[<Cmd>lua require("kivi").execute("expand_parent")<CR>]], { buffer = true })
