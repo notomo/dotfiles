@@ -28,7 +28,10 @@ end
 M.ignored_progress = { "null-ls" }
 function M.progress()
   local messages = vim.tbl_filter(function(msg)
-    return not vim.tbl_contains(M.ignored_progress, msg.name)
+    if vim.tbl_contains(M.ignored_progress, msg.name) then
+      return false
+    end
+    return msg.done or not msg.percentage
   end, vim.lsp.util.get_progress_messages())
   for _, msg in ipairs(messages) do
     if msg.done and not msg.message then
@@ -66,8 +69,7 @@ vim.keymap.set("n", "[lc]K", [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], { si
 vim.keymap.set("n", "[lc]s", [[<Cmd>lua vim.lsp.stop_client(vim.lsp.get_active_clients())<CR>]], { silent = true })
 vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true })
 vim.keymap.set("n", "[exec]gf", [[<Cmd>lua vim.lsp.buf.format({async = true})<CR>]])
-vim.keymap.set("n", "[keyword]c", [[<Cmd>lua vim.lsp.buf.code_action()<CR>]], { silent = true })
-vim.keymap.set("x", "[keyword]c", [[:lua vim.lsp.buf.range_code_action()<CR>]], { silent = true })
+vim.keymap.set({ "n", "x" }, "[keyword]c", [[:lua vim.lsp.buf.code_action()<CR>]], { silent = true })
 vim.keymap.set("n", "[keyword]e", [[<Cmd>lua vim.lsp.buf.hover()<CR>]])
 
 local original_select = vim.ui.select
