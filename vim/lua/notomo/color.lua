@@ -23,6 +23,8 @@ vim.api.nvim_set_hl(0, "AnsiColor2", { ctermfg = 2, fg = "#aaddaa" })
 vim.api.nvim_set_hl(0, "LspReferenceText", { link = "Search" })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "Search" })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "Todo" })
+vim.api.nvim_set_hl(0, "LspCodeLens", { link = "Comment" })
+vim.api.nvim_set_hl(0, "LspCodeLensSeparator", { link = "Comment" })
 
 vim.api.nvim_set_hl(0, "SpellCap", { link = "NONE" })
 
