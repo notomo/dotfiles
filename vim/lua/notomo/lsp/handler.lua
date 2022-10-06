@@ -72,13 +72,20 @@ vim.keymap.set("n", "[exec]gf", [[<Cmd>lua vim.lsp.buf.format({async = true})<CR
 vim.keymap.set({ "n", "x" }, "[keyword]c", [[:lua vim.lsp.buf.code_action()<CR>]], { silent = true })
 vim.keymap.set("n", "[keyword]e", [[<Cmd>lua vim.lsp.buf.hover()<CR>]])
 
-local original_select = vim.ui.select
 vim.ui.select = function(items, opts, on_choice)
   if opts.kind == "codeaction" and #items == 1 and items[1][2].kind == "refactor.extract" then
     require("misclib.message").info("Executed: " .. items[1][2].title, "Title")
     return on_choice(items[1])
   end
-  original_select(items, opts, on_choice)
+
+  require("thetto").start("vim/select", {
+    source_opts = {
+      items = items,
+      prompt = opts.prompt,
+      format_item = opts.format_item,
+      on_choice = on_choice,
+    },
+  })
 end
 
 vim.ui.input = function(opts, on_confirm)
