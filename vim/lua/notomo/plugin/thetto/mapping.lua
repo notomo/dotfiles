@@ -116,7 +116,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "thetto-input" },
   callback = function()
     vim.keymap.set("n", "<CR>", [[<Cmd>lua require("thetto").execute()<CR>]], { buffer = true })
-    vim.keymap.set("n", "<CR>", [[<Esc>:lua require("thetto").execute()<CR>]], { buffer = true })
+    vim.keymap.set("i", "<CR>", [[<Esc>:lua require("thetto").execute()<CR>]], { buffer = true })
     vim.keymap.set("i", "jq", [[<Cmd>lua require("thetto").execute("quit")<CR><ESC>]], {
       buffer = true,
       silent = true,
