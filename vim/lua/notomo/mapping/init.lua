@@ -467,7 +467,6 @@ vim.keymap.set("n", "[term]g", function()
   vim.fn.termopen(vim.opt.shell:get(), { cwd = project_path })
   vim.cmd.lcd(project_path)
 end, silent)
-vim.keymap.set("t", "<CR>", [[<Cmd>lua require("notomo.edit").set_term_title('^\\$ ', 24)<CR><CR>]])
 vim.keymap.set(
   "n",
   "[yank]ud",

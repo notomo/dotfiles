@@ -670,3 +670,10 @@ optpack.add("lukas-reineke/indent-blankline.nvim", {
 mypack.add("notomo/assertlib.nvim", {
   load_on = { modules = { "assertlib" } },
 })
+
+mypack.add("notomo/termnavi.nvim", {
+  load_on = { modules = { "termnavi" }, events = { { "BufReadPre", "*/*" } } },
+  hooks = {
+    pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/termnavi.lua"),
+  },
+})
