@@ -189,11 +189,6 @@ optpack.add("haya14busa/vim-edgemotion", {
   },
 })
 
-optpack.add("mhinz/vim-signify", {
-  load_on = { events = { { "BufReadPre", "*/*" } } },
-  hooks = { pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/signify.lua") },
-})
-
 optpack.add("junegunn/vim-emoji", { load_on = { modules = { "thetto" } } })
 
 optpack.add("lambdalisue/suda.vim", {
@@ -675,5 +670,12 @@ mypack.add("notomo/termnavi.nvim", {
   load_on = { modules = { "termnavi" }, events = { { "BufReadPre", "*/*" } } },
   hooks = {
     pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/termnavi.lua"),
+  },
+})
+
+optpack.add("lewis6991/gitsigns.nvim", {
+  load_on = { modules = { "gitsigns" }, events = { { "BufReadPre", "*/*" } } },
+  hooks = {
+    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/gitsigns.lua"),
   },
 })

@@ -48,9 +48,9 @@ function M.test()
     local ok, result = pcall(M._test)
     if not ok then
       vim.api.nvim_echo({ { result, "Error" } }, true, {})
-      M.schedule([[message | cquit!]])
+      vim.cmd([[message | cquit!]])
     else
-      M.schedule([[message | quitall!]])
+      vim.cmd([[message | quitall!]])
     end
   end)
 end
