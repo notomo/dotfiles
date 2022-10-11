@@ -234,10 +234,13 @@ mypack.add("notomo/lreload.nvim", {
 optpack.add("hrsh7th/nvim-cmp", {
   load_on = { modules = { "cmp" }, events = { "InsertEnter" } },
   hooks = {
-    post_load = vim.schedule_wrap(function()
-      vim.cmd.runtime({ args = { "after/plugin/cmp_*.lua" }, bang = true })
-      require("notomo.plugin.cmp").setup()
-    end),
+    post_load = require("notomo.once").new(
+      vim.schedule_wrap(function()
+        vim.cmd.runtime({ args = { "after/plugin/cmp_*.lua" }, bang = true })
+        require("notomo.plugin.cmp").setup()
+      end),
+      "cmp_setup"
+    ),
   },
 })
 optpack.add("hrsh7th/cmp-nvim-lsp", { load_on = { events = { "InsertEnter" }, modules = { "cmp_nvim_lsp" } } })
