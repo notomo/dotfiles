@@ -682,3 +682,7 @@ optpack.add("lewis6991/gitsigns.nvim", {
     post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/gitsigns.lua"),
   },
 })
+
+optpack.add("mracos/mermaid.vim", {
+  load_on = { filetypes = { "markdown" } },
+})
