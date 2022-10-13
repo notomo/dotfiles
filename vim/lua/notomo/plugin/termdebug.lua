@@ -3,6 +3,7 @@ local M = {}
 vim.g._debug_args = {}
 vim.g._debug_watched = {}
 function M.start()
+  vim.g.termdebug_map_K = 0
   vim.cmd.packadd([[termdebug]])
 
   local path = vim.fn.expand("~/workspace/neovim/")
@@ -16,8 +17,10 @@ function M.start()
     vim.cmd.tcd(path)
   end
 
-  local args = table.concat(vim.g._debug_args, " ")
-  vim.cmd.TermdebugCommand({ args = { nvim, args, "-u", rc } })
+  local args = { nvim }
+  vim.list_extend(args, vim.g._debug_args)
+  vim.list_extend(args, { "-u", rc })
+  vim.cmd.TermdebugCommand({ args = args })
   vim.cmd.Source()
   if in_repo then
     vim.cmd.Break()
