@@ -686,3 +686,16 @@ optpack.add("lewis6991/gitsigns.nvim", {
 optpack.add("mracos/mermaid.vim", {
   load_on = { filetypes = { "markdown" } },
 })
+
+optpack.add("previm/previm", {
+  depends = { "open-browser.vim" },
+  load_on = { filetypes = { "markdown" } },
+  hooks = {
+    pre_load = function()
+      if vim.fn.has("wsl") == 1 then
+        vim.g.previm_open_cmd = "wslview"
+      end
+      vim.g.previm_enable_realtime = 1
+    end,
+  },
+})
