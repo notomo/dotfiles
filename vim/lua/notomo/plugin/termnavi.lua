@@ -8,8 +8,8 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
         prompt_pattern = [=[\v^\[.*\]$\_.^\$]=],
         extmark_opts = {
           hl_eol = true,
-          hl_group = "CursorLine",
-          number_hl_group = "CursorLine",
+          hl_group = "TermnaviLine",
+          number_hl_group = "TermnaviLine",
         },
       })
       return "<CR>"
