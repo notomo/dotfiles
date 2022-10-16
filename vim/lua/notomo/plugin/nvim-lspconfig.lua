@@ -9,9 +9,8 @@ local setup_ls = function(ls, config, ...)
   config = config or {}
   config.flags = config.flags or {}
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
-  config.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities(), {
-    snippetSupport = false,
-  })
+  config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+  config.capabilities.snippetSupport = false
   ls.setup(config)
 end
 
