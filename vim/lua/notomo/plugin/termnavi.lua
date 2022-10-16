@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
         },
       })
       return "<CR>"
-    end, { expr = true })
+    end, { expr = true, buffer = true })
 
     vim.keymap.set("n", "[finder]o", [[<Cmd>lua require("thetto").start("termnavi")<CR>]], { buffer = true })
 
