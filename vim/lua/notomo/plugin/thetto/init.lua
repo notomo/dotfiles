@@ -199,8 +199,8 @@ source_config["file/grep"] = {
 source_config["vim/lsp/references"] = {
   global_opts = { cwd = require("thetto.util.cwd").project() },
   filters = {
-    "substring:path",
-    "-substring:path",
+    "substring:path:relative",
+    "-substring:path:relative",
   },
 }
 source_config["vim/lsp/workspace_symbol"] = {
