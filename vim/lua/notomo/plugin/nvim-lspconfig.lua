@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+require("neodev").setup({})
 
 local setup_ls = function(ls, config, ...)
   for _, disabled_feature in ipairs({ ... }) do
@@ -28,7 +29,6 @@ setup_ls(lspconfig.gopls, {
 setup_ls(lspconfig.sumneko_lua, {
   settings = {
     Lua = {
-      runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
       diagnostics = {
         enable = true,
         globals = {
@@ -56,15 +56,6 @@ setup_ls(lspconfig.sumneko_lua, {
         },
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
-      workspace = {
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-          [require("optpack").get("coc-sumneko-lua").directory .. "/nvim_lua_types"] = true,
-        },
-        maxPreload = 2000,
-        preloadFileSize = 50000,
-      },
       telemetry = { enable = false },
     },
   },

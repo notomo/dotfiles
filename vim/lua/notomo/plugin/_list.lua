@@ -249,7 +249,6 @@ optpack.add("hrsh7th/cmp-path", { load_on = { events = { "InsertEnter" } } })
 optpack.add("hrsh7th/cmp-nvim-lua", { load_on = { events = { "InsertEnter" } } })
 mypack.add("notomo/cmp-neosnippet", { load_on = { events = { "InsertEnter" } } })
 optpack.add("ray-x/lsp_signature.nvim", { load_on = { modules = { "lsp_signature" }, events = { "InsertEnter" } } })
-optpack.add("xiyaowong/coc-sumneko-lua") -- for types
 
 mypack.add("notomo/searcho.nvim", {
   load_on = { modules = { "searcho" } },
@@ -340,6 +339,9 @@ mypack.add("notomo/thetto.nvim", {
   },
 })
 
+optpack.add("folke/neodev.nvim", {
+  load_on = { modules = { "neodev" } },
+})
 optpack.add("neovim/nvim-lspconfig", {
   load_on = { events = { "FileType" } },
   hooks = {
