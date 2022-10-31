@@ -117,7 +117,7 @@ vim.ui.input = function(opts, on_confirm)
     if vim.api.nvim_win_is_valid(window_id) then
       vim.api.nvim_win_close(window_id, true)
     end
-    vim.api.nvim_echo({ { "Canceled: " .. prompt .. default_line } }, false, {})
+    vim.api.nvim_echo({ { "Canceled: " .. prompt .. default_line } }, true, {})
   end
 
   local group = vim.api.nvim_create_augroup("notomo_ui_input", {})
