@@ -42,6 +42,9 @@ vendor_plugins:
 	nvim --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} make vendor -C {}
 	$(MAKE) vendor_plugins_status
 
+gen_doc_plugins:
+	nvim --headless +"lua require('notomo.startup').has_doc_plugins()" +quitall! | xargs -I{} make doc -C {}
+
 vendor_plugins_status:
 	nvim --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _status TARGET_PATH={}
 _status:
