@@ -23,6 +23,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
     vim.bo.buftype = "nofile"
     vim.bo.swapfile = false
     vim.bo.fileformat = "unix"
+    vim.bo.bufhidden = "wipe"
   end,
 })
 
