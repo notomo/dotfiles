@@ -7,8 +7,8 @@ function M.collect(source_ctx)
       value = output,
     }
   end, {
-    to_outputs = function(job)
-      local outputs = job:get_stdout()
+    to_outputs = function(output)
+      local outputs = require("thetto.util.job.parse").output(output)
       table.sort(outputs, function(a, b)
         return a < b
       end)
