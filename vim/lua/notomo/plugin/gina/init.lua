@@ -4,8 +4,6 @@ vim.g["gina#command#grep#use_default_aliases"] = 0
 vim.g["gina#command#log#use_default_aliases"] = 0
 vim.g["gina#command#ls#use_default_aliases"] = 0
 vim.g["gina#command#reflog#use_default_aliases"] = 0
-vim.g["gina#command#stash#use_default_aliases"] = 0
-vim.g["gina#command#stash#show#use_default_aliases"] = 0
 vim.g["gina#command#status#use_default_aliases"] = 0
 
 vim.fn["gina#custom#command#option"]("show", "--group", "show")
@@ -147,29 +145,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.fn["gina#custom#command#alias"]("stash", "stash_for_list")
-vim.fn["gina#custom#command#option"]([[/\%(stash_for_list\)]], "--opener", "topleft split")
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "gina_setting",
-  pattern = { "gina-stash-list" },
-  callback = function()
-    vim.keymap.set({ "n", "v" }, "dr", [[<Plug>(gina-stash-drop)]], { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "AP", [[<Plug>(gina-stash-apply)]], { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "pop", "<Plug>(gina-stash-pop)", { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "o", ':call gina#action#call("stash:show")<CR>', { buffer = true, silent = true })
-    vim.keymap.set(
-      { "n" },
-      "t<Space>",
-      ':call gina#action#call("stash:show:tab")<CR>',
-      { buffer = true, silent = true }
-    )
-    vim.keymap.set({ "n" }, "sv", ':call gina#action#call("stash:show:rightest")<CR>', { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "sh", ':call gina#action#call("stash:show:bottom")<CR>', { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "<CR>", ':call gina#action#call("stash:show:tab")<CR>', { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "q", ":quit<CR>", { buffer = true, silent = true })
-  end,
-})
-
 vim.g["gina#command#blame#formatter#format"] = "%su%=on %ti by %au %ma%in"
 vim.g["gina#command#blame#formatter#timestamp_format1"] = "%Y-%m-%d"
 vim.g["gina#command#blame#formatter#timestamp_format2"] = "%Y-%m-%d"
@@ -221,7 +196,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-log", "gina-stash-list", "gina-blame" },
+  pattern = { "gina-log", "gina-blame" },
   callback = function()
     vim.keymap.set({ "n" }, "dd", [[:call gina#action#call("compare")<CR>]], { buffer = true, silent = true })
   end,
@@ -229,7 +204,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-status", "gina-log", "gina-stash-list", "gina-blame" },
+  pattern = { "gina-status", "gina-log", "gina-blame" },
   callback = function()
     vim.keymap.set({ "n" }, "D", [[:call gina#action#call("diff")<CR>]], { buffer = true, silent = true })
   end,

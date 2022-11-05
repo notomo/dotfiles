@@ -13,13 +13,6 @@ function M.setup()
   vim.keymap.set("n", "[git]rl", [[<Cmd>Gina reflog<CR>]])
   vim.keymap.set("n", "[git]ls", [[<Cmd>Gina ls<CR>]])
   vim.keymap.set("n", "[git]c", [[<Cmd>Gina commit<CR>]])
-  vim.keymap.set(
-    "n",
-    "[git]xl",
-    [[<Cmd>lua require("notomo.plugin.gina.util").toggle_buffer('stash_for_list list', 'gina-stash-list')<CR>]]
-  )
-  vim.keymap.set("n", "[git]xs", [[:<C-u>Gina stash save ""<Left>]])
-  vim.keymap.set("n", "[git]xc", [[<Cmd>Gina stash show<CR>]])
   vim.keymap.set("n", "[git]P", function()
     return ":<C-u>Gina! push "
       .. require("notomo.plugin.gina.util").remote()
