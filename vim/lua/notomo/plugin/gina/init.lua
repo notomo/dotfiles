@@ -1,5 +1,4 @@
 vim.g["gina#command#blame#use_default_aliases"] = 0
-vim.g["gina#command#branch#use_default_aliases"] = 0
 vim.g["gina#command#changes#use_default_aliases"] = 0
 vim.g["gina#command#grep#use_default_aliases"] = 0
 vim.g["gina#command#log#use_default_aliases"] = 0
@@ -83,39 +82,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.fn["gina#custom#command#option"]("branch", "-v", "v")
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "gina_setting",
-  pattern = { "gina-branch" },
-  callback = function()
-    vim.keymap.set({ "n" }, "rn", [[<Plug>(gina-branch-move)]], { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "rf", [[<Plug>(gina-branch-reflesh)]], { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "C", [[<Plug>(gina-branch-new)]], { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "MA", [[:call gina#action#call('commit:merge')<CR>]], { buffer = true, silent = true })
-
-    vim.keymap.set(
-      { "n" },
-      "cp",
-      [[:call gina#action#call("commit:cherry-pick")<CR>]],
-      { buffer = true, silent = true }
-    )
-    vim.keymap.set(
-      { "n" },
-      "yu",
-      [[:lua require("notomo.plugin.gina.util").browse_yank()<CR>]],
-      { buffer = true, silent = true }
-    )
-    vim.keymap.set(
-      { "n" },
-      "yr",
-      [[:lua require("notomo.plugin.gina.util").yank_rev()<CR>]],
-      { buffer = true, silent = true }
-    )
-
-    vim.keymap.set({ "n" }, "q", ":quit<CR>", { buffer = true, silent = true })
-  end,
-})
-
 vim.g["gina#command#log#use_default_mappings"] = 0
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
@@ -183,7 +149,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.fn["gina#custom#command#alias"]("stash", "stash_for_list")
-vim.fn["gina#custom#command#option"]([[/\%(stash_for_list\|branch\)]], "--opener", "topleft split")
+vim.fn["gina#custom#command#option"]([[/\%(stash_for_list\)]], "--opener", "topleft split")
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
   pattern = { "gina-stash-list" },
@@ -205,7 +171,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.fn["gina#custom#command#option"]("branch", "-v", "v")
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
   pattern = { "gina-tag" },
@@ -268,7 +233,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-log", "gina-blame", "gina-branch", "gina-tag" },
+  pattern = { "gina-log", "gina-blame", "gina-tag" },
   callback = function()
     vim.keymap.set(
       { "n" },
@@ -297,7 +262,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-log", "gina-ls", "gina-blame", "gina-changes", "gina-tag", "gina-branch" },
+  pattern = { "gina-log", "gina-ls", "gina-blame", "gina-changes", "gina-tag" },
   callback = function()
     vim.keymap.set({ "n" }, "o", [[:call gina#action#call("show")<CR>]], { buffer = true, silent = true })
     vim.keymap.set({ "n" }, "t<Space>", [[:call gina#action#call("show:tab")<CR>]], { buffer = true, silent = true })

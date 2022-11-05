@@ -176,6 +176,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 local source_specific = {
   ["git/branch"] = function(list_bufnr)
     vim.keymap.set("n", "C", [[<Cmd>lua require("thetto").execute("create")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "yr", function()
+      require("notomo.edit").yank(require("thetto").get()[1].commit_hash)
+    end, { buffer = list_bufnr })
   end,
   ["cmd/make/target"] = function(list_bufnr)
     vim.keymap.set("n", "P", [[<Cmd>lua require("thetto").execute("dry_run")<CR>]], { buffer = list_bufnr })

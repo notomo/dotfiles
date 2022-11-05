@@ -8,12 +8,6 @@ function M.setup()
     { silent = true }
   )
   vim.keymap.set("n", "[git]D", [[<Cmd>Gina diff<CR>]])
-  vim.keymap.set(
-    "n",
-    "[git]b",
-    [[<Cmd>lua require("notomo.plugin.gina.util").toggle_buffer('branch', 'gina-branch')<CR>]],
-    { silent = true }
-  )
   vim.keymap.set("n", "[git]L", [[<Cmd>Gina log master...HEAD<CR>]])
   vim.keymap.set("n", "[git]ll", [[<Cmd>Gina log<CR>]])
   vim.keymap.set("n", "[git]rl", [[<Cmd>Gina reflog<CR>]])
