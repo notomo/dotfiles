@@ -12,7 +12,6 @@ function M.setup()
   vim.keymap.set("n", "[git]ll", [[<Cmd>Gina log<CR>]])
   vim.keymap.set("n", "[git]rl", [[<Cmd>Gina reflog<CR>]])
   vim.keymap.set("n", "[git]ls", [[<Cmd>Gina ls<CR>]])
-  vim.keymap.set("n", "[git]T", [[<Cmd>Gina tag<CR>]])
   vim.keymap.set("n", "[git]c", [[<Cmd>Gina commit<CR>]])
   vim.keymap.set(
     "n",

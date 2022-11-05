@@ -7,7 +7,6 @@ vim.g["gina#command#reflog#use_default_aliases"] = 0
 vim.g["gina#command#stash#use_default_aliases"] = 0
 vim.g["gina#command#stash#show#use_default_aliases"] = 0
 vim.g["gina#command#status#use_default_aliases"] = 0
-vim.g["gina#command#tag#use_default_aliases"] = 0
 
 vim.fn["gina#custom#command#option"]("show", "--group", "show")
 vim.fn["gina#custom#command#option"]("changes", "--group", "changes")
@@ -171,30 +170,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "gina_setting",
-  pattern = { "gina-tag" },
-  callback = function()
-    vim.keymap.set({ "n" }, "DD", [[:call gina#action#call('tag:delete')<CR>]], { buffer = true, silent = true })
-    vim.keymap.set(
-      { "n" },
-      "C",
-      [[:call gina#action#call('tag:new:lightweight')<CR>]],
-      { buffer = true, silent = true }
-    )
-    vim.keymap.set({ "n" }, "P", function()
-      return require([[notomo.plugin.gina.util]]).push_cmd()
-    end, { buffer = true, silent = true, expr = true })
-
-    vim.keymap.set(
-      { "n" },
-      "yr",
-      [[:lua require("notomo.plugin.gina.util").yank_rev()<CR>]],
-      { buffer = true, silent = true }
-    )
-  end,
-})
-
 vim.g["gina#command#blame#formatter#format"] = "%su%=on %ti by %au %ma%in"
 vim.g["gina#command#blame#formatter#timestamp_format1"] = "%Y-%m-%d"
 vim.g["gina#command#blame#formatter#timestamp_format2"] = "%Y-%m-%d"
@@ -233,7 +208,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-log", "gina-blame", "gina-tag" },
+  pattern = { "gina-log", "gina-blame" },
   callback = function()
     vim.keymap.set(
       { "n" },
@@ -262,7 +237,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-log", "gina-ls", "gina-blame", "gina-changes", "gina-tag" },
+  pattern = { "gina-log", "gina-ls", "gina-blame", "gina-changes" },
   callback = function()
     vim.keymap.set({ "n" }, "o", [[:call gina#action#call("show")<CR>]], { buffer = true, silent = true })
     vim.keymap.set({ "n" }, "t<Space>", [[:call gina#action#call("show:tab")<CR>]], { buffer = true, silent = true })
@@ -272,7 +247,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-ls", "gina-blame", "gina-changes", "gina-tag", "gina-status" },
+  pattern = { "gina-ls", "gina-blame", "gina-changes", "gina-status" },
   callback = function()
     vim.keymap.set({ "n" }, "<CR>", [[:call gina#action#call("show:tab")<CR>]], { buffer = true, silent = true })
   end,
