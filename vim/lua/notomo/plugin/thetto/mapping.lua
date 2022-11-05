@@ -78,7 +78,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       { buffer = true }
     )
     vim.keymap.set("n", "p", [[<Cmd>lua require("thetto").execute("toggle_preview")<CR>]], { buffer = true })
-    vim.keymap.set("n", "P", [[<Cmd>lua require("thetto").execute("dry_run")<CR>]], { buffer = true })
     vim.keymap.set(
       "n",
       "[finder]<CR>",
@@ -170,7 +169,26 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("i", "<C-n>", [[<Cmd>lua require("thetto").execute("recall_next_history")<CR>]], { buffer = true })
 
     -- custom
-    vim.keymap.set("n", "<C-u>", [[<Cmd>lua require('notomo.edit').delete_prev()<CR>]], { buffer = true })
+    vim.keymap.set("i", "<C-u>", [[<Cmd>lua require('notomo.edit').delete_prev()<CR>]], { buffer = true })
+  end,
+})
+
+local source_specific = {
+  ["git/branch"] = function(list_bufnr)
+    vim.keymap.set("n", "C", [[<Cmd>lua require("thetto").execute("create")<CR>]], { buffer = list_bufnr })
+  end,
+  ["cmd/make/target"] = function(list_bufnr)
+    vim.keymap.set("n", "P", [[<Cmd>lua require("thetto").execute("dry_run")<CR>]], { buffer = list_bufnr })
+  end,
+}
+vim.api.nvim_create_autocmd({ "User" }, {
+  group = "thetto_setting",
+  pattern = { "ThettoOpened" },
+  callback = function(args)
+    local f = source_specific[args.data.source_name]
+    if f then
+      f(args.data.list_bufnr)
+    end
   end,
 })
 
