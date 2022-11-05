@@ -1,9 +1,6 @@
 vim.g["gina#command#blame#use_default_aliases"] = 0
 vim.g["gina#command#changes#use_default_aliases"] = 0
-vim.g["gina#command#grep#use_default_aliases"] = 0
 vim.g["gina#command#log#use_default_aliases"] = 0
-vim.g["gina#command#ls#use_default_aliases"] = 0
-vim.g["gina#command#reflog#use_default_aliases"] = 0
 vim.g["gina#command#status#use_default_aliases"] = 0
 
 vim.fn["gina#custom#command#option"]("show", "--group", "show")

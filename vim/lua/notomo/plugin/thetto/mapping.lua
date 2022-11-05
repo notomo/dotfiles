@@ -251,6 +251,11 @@ vim.keymap.set(
   [[<Cmd>lua require("thetto").start("file/directory/recursive", {opts = {cwd = "$GOPATH/src"}, source_opts = {max_depth = 3}})<CR>]]
 )
 vim.keymap.set("n", "[git]xl", [[<Cmd>lua require("thetto").start("git/stash")<CR>]])
+vim.keymap.set("n", "[git]xs", function()
+  require("thetto").start("git/stash"):next(function()
+    require("thetto").execute("create")
+  end)
+end)
 vim.keymap.set("n", "[keyword]gg", function()
   require("thetto").start("file/grep", {
     opts = {

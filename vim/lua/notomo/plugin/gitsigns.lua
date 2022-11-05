@@ -22,10 +22,4 @@ require("gitsigns").setup({
       return "<Ignore>"
     end, { expr = true, buffer = bufnr })
   end,
-  -- attach_to_untracked = false,
-  -- watch_gitdir = {
-  --   enable = false,
-  --   interval = 1000,
-  --   follow_files = false,
-  -- },
 })
