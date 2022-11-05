@@ -15,7 +15,14 @@ local setup_ls = function(ls, config, ...)
   ls.setup(config)
 end
 
-setup_ls(lspconfig.rls, {})
+setup_ls(lspconfig.rust_analyzer, {
+  cmd = {
+    "rustup",
+    "run",
+    "nightly",
+    "rust-analyzer",
+  },
+})
 
 setup_ls(lspconfig.gopls, {
   init_options = {
