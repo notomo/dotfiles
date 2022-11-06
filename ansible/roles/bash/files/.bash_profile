@@ -4,6 +4,7 @@ fi
 
 export PATH=$HOME/.local/nvim/bin:$HOME/.local/bin:$PATH:$HOME/bin:$HOME/.cargo/bin
 export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=$HOME/.luarocks/bin:$PATH
 export PATH=$PATH:$HOME/.vim/packages/pack/mypack/opt/vimonga/target/debug/
 
 export GOPATH=$HOME/go
