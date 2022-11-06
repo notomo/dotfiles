@@ -6,7 +6,6 @@
   with_items:
     - golang.org/x/tools/cmd/goimports
     - github.com/mattn/mkup
-    - github.com/pocke/lemonade
     - golang.org/x/tools/gopls
     # - github.com/k0kubun/pp
     - github.com/fatih/motion

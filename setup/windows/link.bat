@@ -36,7 +36,6 @@ mkdir %USERPROFILE%"\workspace" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
 cd %USERPROFILE%"\.config"
-copy %USERPROFILE%"\dotfiles\setup\windows\lemonade.toml" "lemonade.toml" /Y
 
 mkdir %APPDATA%"\Code\User" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
