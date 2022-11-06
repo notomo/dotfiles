@@ -47,6 +47,7 @@ RUN <<EOF
     --tags lua \
     --tags node \
     --tags deno \
+    --tags wslu \
     --tags gitconfig
 EOF
 

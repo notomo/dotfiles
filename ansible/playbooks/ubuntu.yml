@@ -15,6 +15,7 @@
     - { role: 'ctags', tags: ['ctags'] }
     - { role: 'xvfb', tags: ['xvfb'] }
     - { role: 'rust', tags: ['rust'] }
+    - { role: 'wslu', tags: ['wslu'] }
     - { role: 'aws', tags: ['aws'] }
     - { role: 'gh', tags: ['gh'] }
     - { role: 'sqlite3', tags: ['sqlite3'] }
