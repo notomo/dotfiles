@@ -16,6 +16,7 @@
     - { role: 'git', tags: ['git'] }
     - { role: 'ctags', tags: ['ctags'] }
     - { role: 'golang', tags: ['golang'] }
+    - { role: 'aws', tags: ['aws'] }
     - { role: 'gh', tags: ['gh'] }
     - { role: 'default_shell', tags: ['default_shell'] }
     - { role: 'gitconfig', tags: ['gitconfig'] }
