@@ -10,7 +10,6 @@
       vim/ftdetect: .vim/ftdetect
       vim/lua/notomo/init.lua: .config/nvim/init.lua
       lint/python/setup.cfg: setup.cfg
-      lint/efm/config.yaml: .config/efm-langserver/config.yaml
       git/.gitignore_global: .gitignore_global
 
 - name: mkdir
@@ -24,7 +23,6 @@
     - .vim/tmp/swap
     - .vim/reference
     - .config
-    - .config/efm-langserver
 
 - name: mkdir for karabiner
   file:

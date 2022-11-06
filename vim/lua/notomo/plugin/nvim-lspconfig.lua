@@ -113,19 +113,6 @@ setup_ls(lspconfig.dartls, {
   init_options = { flutterOutline = true, outline = true },
 }, "mac", "win32")
 
-setup_ls(lspconfig.efm, {
-  cmd = { "efm-langserver", "-logfile=/tmp/efm.log" },
-  -- filetypes = {"vim", "python", "lua", "sh", "typescript.tsx", "typescript"};
-  filetypes = { "python", "sh" },
-  root_dir = function(fname)
-    return require("lspconfig/util").find_git_ancestor(fname) or vim.loop.cwd()
-  end,
-  on_attach = function(client)
-    client.server_capabilities.text_document_save = true
-    client.server_capabilities.text_document_save_include_text = true
-  end,
-})
-
 setup_ls(lspconfig.yamlls, {})
 setup_ls(lspconfig.autohotkey2, {}, "unix")
 
