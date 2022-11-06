@@ -9,6 +9,14 @@
     dest: "{{ wslu_dir }}"
   when: is_ubuntu
 
+- name: wslu make all
+  make:
+    target: all
+    chdir: "{{ wslu_dir }}"
+    params:
+      PREFIX: ""
+  when: is_ubuntu
+
 - name: wslu make install
   make:
     target: install
