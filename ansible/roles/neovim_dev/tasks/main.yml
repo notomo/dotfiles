@@ -28,3 +28,16 @@
     dest: "{{ neovim_source_dir }}"
     version: master
   when: not neovim_source.stat.exists
+
+- name: apt get for debug
+  apt:
+    name:
+      - systemd-coredump
+  when: is_ubuntu
+  become: yes
+
+- name: install with homebrew
+  homebrew:
+    name:
+      - llvm
+      - gdb

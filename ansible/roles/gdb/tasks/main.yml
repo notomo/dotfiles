@@ -1,7 +1,0 @@
-- name: install gdb with apt
-  apt:
-    name:
-      - systemd-coredump
-      - gdb
-  when: is_ubuntu
-  become: yes

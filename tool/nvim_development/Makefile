@@ -5,7 +5,7 @@ NVIM_WITH_RUNTIME := VIMRUNTIME=${NVIM_DIR}/runtime ${NVIM}
 ASAN_NVIM := ./bin/asan_nvim
 # NVIM := ./bin/asan_nvim
 
-CC := clang-11
+CC := clang
 unexport LUA_PATH
 unexport LUA_CPATH
 
