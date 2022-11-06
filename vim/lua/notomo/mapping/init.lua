@@ -413,6 +413,7 @@ vim.keymap.set("n", "[exec]l", [[':' .. getline('.') .. '<CR>']], expr)
 vim.keymap.set("n", "[exec]do", [[<Cmd>tab drop ~/.local/.mytodo<CR>]])
 vim.keymap.set("n", "[exec]q", [[<Cmd>lua require("notomo.edit").jq()<CR>]])
 vim.keymap.set("n", "[exec]N", [[<Cmd>lua require("notomo.edit").note()<CR>]])
+vim.keymap.set("n", "[exec]O", [[<Cmd>lua require("notomo.github").view_repo()<CR>]])
 
 vim.keymap.set("n", "[qf]o", [[<Cmd>lua require("notomo.qf").open()<CR>]])
 vim.keymap.set("n", "[qf]n", [[<Cmd>lua require("notomo.qf").next()<CR>]])
