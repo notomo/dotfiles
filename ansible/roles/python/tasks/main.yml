@@ -10,7 +10,6 @@
       - isort
       - black
       - python-lsp-server[all]
-      - httpie
     pyenv_python_version: 3.10.5
 
 - shell: pyenv install --skip-existing {{ pyenv_python_version }}

@@ -12,8 +12,8 @@
   shell: rustup default nightly-2020-02-06
   when: not rust_installed.stat.exists
 
-- name: install rls
-  shell: rustup component add rls rust-analysis rust-src
+- name: install ls
+  shell: rustup component add rust-analyzer rust-src
   when: not rls_installed.stat.exists
 
 - name: install rustfmt
