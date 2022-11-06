@@ -252,9 +252,7 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "[git]xl", [[<Cmd>lua require("thetto").start("git/stash")<CR>]])
 vim.keymap.set("n", "[git]xs", function()
-  require("thetto").start("git/stash"):next(function()
-    require("thetto").execute("create")
-  end)
+  require("thetto").start("git/stash", { opts = { immediately = true, action = "create" } })
 end)
 vim.keymap.set("n", "[keyword]gg", function()
   require("thetto").start("file/grep", {
