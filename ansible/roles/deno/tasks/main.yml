@@ -2,3 +2,13 @@
   homebrew:
     name:
       - deno
+
+- name: git clone deno_waitevent
+  git:
+    repo: https://github.com/notomo/deno_waitevent.git
+    dest: "{{ home_dir }}/workspace/deno_waitevent"
+
+- name: make install deno_waitevent
+  make:
+    target: install
+    chdir: "{{ home_dir }}/workspace/deno_waitevent"
