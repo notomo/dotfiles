@@ -5,7 +5,6 @@
   shell: bash -lc "IGNORE_LOCAL_FILE=1 go install {{ item }}@latest"
   with_items:
     - golang.org/x/tools/cmd/goimports
-    - github.com/mattn/mkup
     - golang.org/x/tools/gopls
     # - github.com/k0kubun/pp
     - github.com/fatih/motion

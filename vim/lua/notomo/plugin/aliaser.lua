@@ -109,13 +109,6 @@ aliaser.register_factory("dev", function(aliases)
 end)
 
 aliaser.register_factory("other", function(aliases)
-  aliases:set("mkup_document_root", function()
-    require("notomo.edit").mkup(false)
-  end)
-  aliases:set("mkup_current", function()
-    require("notomo.edit").mkup(true)
-  end)
-
   local open_line = function()
     local path = vim.fn.expand("%:p") .. ":" .. vim.fn.line(".") .. ":" .. vim.fn.col(".")
     vim.cmd["!"]({ args = { "code", "-r", "-g", path } })

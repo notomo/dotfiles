@@ -123,40 +123,6 @@ function M.note()
   vim.cmd.normal({ args = { "G" }, bang = true })
 end
 
-local prev_port = 49152
-function M.mkup(open_current)
-  if vim.fn.executable("mkup") ~= 1 then
-    return vim.api.nvim_echo({ { "not found mkup", "WarningMsg" } }, true, {})
-  end
-
-  prev_port = prev_port + 1
-  local port = vim.g["local#var#port"] or prev_port
-  local document_root, path
-  if vim.g["local#var#document_root"] and not open_current then
-    document_root = vim.fn.expand(vim.g["local#var#document_root"])
-    path = ""
-  else
-    document_root = vim.fn.getcwd()
-    path = vim.fn.filereadable(vim.fn.expand("%:p")) == 1 and vim.fn.expand("%") or ""
-  end
-  if vim.fn.isdirectory(document_root) ~= 1 then
-    return vim.api.nvim_echo({ { document_root .. " is not directory", "WarningMsg" } }, true, {})
-  end
-
-  local cd_cmd = ("cd %s"):format(document_root)
-  local server_cmd = ("mkup -http:%s"):format(port)
-  vim.cmd.tabedit()
-  vim.cmd.terminal()
-  local cmd = ("%s\n%s\n"):format(cd_cmd, server_cmd)
-  vim.fn.jobsend(vim.b.terminal_job_id, cmd)
-
-  local host = vim.g["local#var#host"] or "localhost"
-  local url = ("http://%s:%s/%s"):format(host, port, path)
-  vim.cmd.OpenBrowser(url)
-  vim.cmd.tabprevious()
-  vim.cmd("+tabclose")
-end
-
 function M.rotate_file()
   local origin = vim.fn.expand("%")
   if origin == "" then
