@@ -1,32 +1,30 @@
 - name: apt get for development
   apt:
     name:
-      - libcurl4
       - ninja-build
       - gettext
       - libtool
-      - libtool-bin
       - autoconf
       - automake
       - cmake
       - g++
       - pkg-config
       - unzip
-      - lua-check
-      - clang-tools-8
+      - curl
   when: is_ubuntu
   become: yes
 
-# TODO
-# sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-# sudo apt update
-# sudo apt install -y g++-8
+- name: set variables
+  set_fact:
+    neovim_source_dir: "{{ home_dir }}/workspace/neovim"
 
-- name: update-alternatives
-  alternatives:
-    name: clangd
-    link: /usr/bin/clangd
-    path: /usr/bin/clangd-8
-    priority: 100
-  when: is_ubuntu
-  become: yes
+- name: check if neovim source exists
+  stat: path={{ neovim_source_dir }}
+  register: neovim_source
+
+- name: git clone
+  git:
+    repo: https://github.com/neovim/neovim.git
+    dest: "{{ neovim_source_dir }}"
+    version: master
+  when: not neovim_source.stat.exists
