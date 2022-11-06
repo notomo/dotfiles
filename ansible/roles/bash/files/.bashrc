@@ -23,7 +23,7 @@ function kill_process() {
     pkill -KILL -f "$1"
 }
 
-if [ ! -v "${IGNORE_LOCAL_FILE}" ] && [ -f "$HOME/.local/.bashrc" ]; then
+if [ -f "$HOME/.local/.bashrc" ]; then
     source "$HOME/.local/.bashrc"
 fi
 

@@ -2,11 +2,10 @@
 - homebrew: name=golang
 
 - name: go install
-  shell: bash -lc "IGNORE_LOCAL_FILE=1 go install {{ item }}@latest"
+  shell: go install {{ item }}@latest
   with_items:
     - golang.org/x/tools/cmd/goimports
     - golang.org/x/tools/gopls
-    # - github.com/k0kubun/pp
     - github.com/fatih/motion
     - github.com/go-delve/delve/cmd/dlv
   environment:
