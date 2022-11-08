@@ -237,12 +237,21 @@ vim.keymap.set("n", "[finder]O", [[<Cmd>lua require("thetto").start("vim/option"
 vim.keymap.set("n", "[finder]H", [[<Cmd>lua require("thetto").start("vim/highlight_group")<CR>]])
 vim.keymap.set("n", "[finder]B", [[<Cmd>lua require("thetto").start("vim/buffer")<CR>]])
 vim.keymap.set("n", "[finder]y", [[<Cmd>lua require("thetto").start("file/bookmark")<CR>]])
-vim.keymap.set("n", "[finder]ga", [[<Cmd>lua require("thetto").start("git/branch")<CR>]])
-vim.keymap.set(
-  "n",
-  "[finder]gA",
-  [[<Cmd>lua require("thetto").start("git/branch", {source_opts = {all = true}, action_opts = {track = true}})<CR>]]
-)
+
+vim.keymap.set("n", "[finder]ga", function()
+  require("thetto").start("git/branch", { opts = { sorters = { "length" } } })
+end)
+vim.keymap.set("n", "[finder]gA", function()
+  require("thetto").start("git/branch", {
+    opts = { sorters = { "length" } },
+    source_opts = { all = true },
+    action_opts = { track = true },
+  })
+end)
+vim.keymap.set("n", "[git]b", function()
+  require("thetto").start("git/branch", { opts = { insert = false } })
+end)
+
 vim.keymap.set("n", "[finder]gt", [[<Cmd>lua require("thetto").start("git/tag")<CR>]])
 vim.keymap.set("n", "[finder]gT", [[<Cmd>lua require("thetto").start("git/tag", {source_opts = {merged = true}})<CR>]])
 vim.keymap.set(

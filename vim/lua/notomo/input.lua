@@ -4,6 +4,17 @@ return function(opts, on_confirm)
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { default_line })
   vim.bo[bufnr].bufhidden = "wipe"
 
+  vim.api.nvim_buf_attach(bufnr, false, {
+    on_lines = function()
+      if vim.api.nvim_buf_line_count(bufnr) == 1 then
+        return
+      end
+      vim.schedule(function()
+        vim.api.nvim_buf_set_lines(bufnr, 1, -1, false, {})
+      end)
+    end,
+  })
+
   vim.api.nvim_echo({ { "" } }, false, {})
 
   local window_id = vim.api.nvim_open_win(bufnr, true, {
