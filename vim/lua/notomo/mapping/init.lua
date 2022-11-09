@@ -41,8 +41,20 @@ vim.keymap.set({ "n", "x" }, "[edit]h", [[gU]])
 vim.keymap.set({ "n", "x" }, "[edit]l", [[gu]])
 vim.keymap.set("n", "[edit]t", [[viwo<ESC>g~l]])
 vim.keymap.set("n", "[edit]m", [[i<C-@>]])
-vim.keymap.set("n", "[edit]j", [[<Cmd>join<CR>]])
+
+vim.keymap.set("n", "[edit]j", function()
+  local search_pattern = [[/\v\n\s*<CR>]]
+  local delete_next = [["_dgn]]
+  local disable_highlight = ":nohlsearch<CR>"
+  local current_column = vim.fn.col(".")
+  local last_column = vim.fn.col("$")
+  if current_column == last_column - 1 or current_column == last_column then
+    return search_pattern .. "N" .. delete_next .. disable_highlight
+  end
+  return search_pattern .. delete_next .. disable_highlight
+end, { expr = true })
 vim.keymap.set("x", "[edit]j", [[:join<CR>]])
+
 vim.keymap.set("n", "[edit]d", [[*N"_cgn]])
 vim.keymap.set("n", "[edit]a", [[*``cgn<C-r>"]])
 vim.keymap.set("n", "[edit]p", [[[p]])
