@@ -14,8 +14,12 @@ RUN <<EOF
   echo $USERNAME:$PASSWORD | chpasswd
   echo "[user]\ndefault=$USERNAME" > /etc/wsl.conf
   DEBIAN_FRONTEND=noninteractive apt install tzdata
+  apt install locales
+  locale-gen en_US.UTF-8
+  yes | unminimize
+  apt install -y man
 EOF
-ENV TZ=Asia/Tokyo
+ENV TZ=Asia/Tokyo LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # install brew
 RUN <<EOF
@@ -32,7 +36,7 @@ RUN <<EOF
   brew install python
 EOF
 
-COPY ansible /_ansible
+COPY --chown=$USERNAME:$USERNAME ansible /_ansible
 RUN <<EOF
   cd /_ansible
   ANSIBLE_CONFIG=$(pwd) ansible-playbook playbooks/ubuntu.yml \
