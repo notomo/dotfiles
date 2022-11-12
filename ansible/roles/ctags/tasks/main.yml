@@ -3,3 +3,4 @@
   homebrew:
     name: universal-ctags/universal-ctags/universal-ctags
     state: head
+  ignore_errors: yes # because head only
