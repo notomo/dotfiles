@@ -2,7 +2,6 @@
 - homebrew:
     name:
       - python3
-      - pyenv
 
 - name: set variables
   set_fact:
@@ -10,19 +9,21 @@
       - isort
       - black
       - python-lsp-server[all]
-    pyenv_python_version: 3.10.5
 
-- shell: pyenv install --skip-existing {{ pyenv_python_version }}
-  register: pyenv_install
-  changed_when: pyenv_install.stdout != ''
+- name: create python symbolic link
+  file:
+    src: "/home/linuxbrew/.linuxbrew/bin/python3"
+    dest: "{{ home_dir }}/.local/bin/python"
+    state: link
+  when: is_ubuntu
 
-- shell: pyenv global {{ pyenv_python_version }}
-  changed_when: False
-
-- shell: pyenv which pip
-  register: pyenv_which_pip
-  changed_when: False
+- name: create pip symbolic link
+  file:
+    src: "/home/linuxbrew/.linuxbrew/bin/pip3"
+    dest: "{{ home_dir }}/.local/bin/pip"
+    state: link
+  when: is_ubuntu
 
 - pip:
     name: "{{ python3_packages }}"
-    executable: "{{ pyenv_which_pip.stdout }}"
+    executable: "/home/linuxbrew/.linuxbrew/bin/pip3"
