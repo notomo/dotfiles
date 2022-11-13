@@ -290,6 +290,9 @@ source_config["github/issue"] = {
 source_config["cmd/zsh/completion"] = {
   filters = interactive_filters,
 }
+source_config["cmd/whereis"] = {
+  filters = interactive_filters,
+}
 
 source_config["go/bin"] = {
   alias_to = "file/recursive",

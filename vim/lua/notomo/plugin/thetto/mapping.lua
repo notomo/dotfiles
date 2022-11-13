@@ -196,6 +196,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 })
 
 vim.keymap.set("n", "[finder]R", [[<Cmd>lua require("thetto").start("vim/runtimepath")<CR>]])
+vim.keymap.set("n", "[finder]W", [[<Cmd>lua require("thetto").start("cmd/whereis")<CR>]])
 vim.keymap.set("n", "<Space>ur", function()
   require("thetto").start("file/mru", { opts = { cwd = require("thetto.util.cwd").project() } })
 end)
