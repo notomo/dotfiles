@@ -180,6 +180,17 @@ local source_specific = {
       require("notomo.edit").yank(require("thetto").get()[1].commit_hash)
     end, { buffer = list_bufnr })
   end,
+  ["git/status"] = function(list_bufnr)
+    vim.keymap.set("n", "[git]a", [[<Cmd>lua require("thetto").execute("toggle_stage")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "U", [[<Cmd>lua require("thetto").execute("discard")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "S", [[<Cmd>lua require("thetto").execute("stash")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "cc", [[<Cmd>lua require("thetto").execute("commit")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "ca", [[<Cmd>lua require("thetto").execute("commit_amend")<CR>]], { buffer = list_bufnr })
+  end,
+  ["git/stash"] = function(list_bufnr)
+    vim.keymap.set("n", "pop", [[<Cmd>lua require("thetto").execute("pop")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "AP", [[<Cmd>lua require("thetto").execute("apply")<CR>]], { buffer = list_bufnr })
+  end,
   ["cmd/make/target"] = function(list_bufnr)
     vim.keymap.set("n", "P", [[<Cmd>lua require("thetto").execute("dry_run")<CR>]], { buffer = list_bufnr })
   end,
@@ -260,7 +271,7 @@ vim.keymap.set(
   "[finder]go",
   [[<Cmd>lua require("thetto").start("file/directory/recursive", {opts = {cwd = "$GOPATH/src"}, source_opts = {max_depth = 3}})<CR>]]
 )
-vim.keymap.set("n", "[git]xl", [[<Cmd>lua require("thetto").start("git/stash")<CR>]])
+vim.keymap.set("n", "[git]xl", [[<Cmd>lua require("thetto").start("git/stash", { opts = { insert = false }})<CR>]])
 vim.keymap.set("n", "[git]xs", function()
   require("thetto").start("git/stash", { opts = { immediately = true, action = "create" } })
 end)

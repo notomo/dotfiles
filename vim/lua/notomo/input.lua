@@ -4,6 +4,10 @@ return function(opts, on_confirm)
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { default_line })
   vim.bo[bufnr].bufhidden = "wipe"
 
+  if default_line == "" then
+    vim.cmd.startinsert()
+  end
+
   vim.api.nvim_buf_attach(bufnr, false, {
     on_lines = function()
       if vim.api.nvim_buf_line_count(bufnr) == 1 then
