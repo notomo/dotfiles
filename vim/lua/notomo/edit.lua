@@ -149,6 +149,9 @@ function M.set_term_title(prompt_pattern, max_length)
   local prompt = vim.fn.matchstr(prompt_line, prompt_pattern)
   local cmd = prompt_line:sub(vim.fn.strlen(prompt), max_length)
   cmd = vim.fn.substitute(cmd, "/", [[\]], "g")
+  if vim.trim(cmd) == "" then
+    return
+  end
 
   vim.api.nvim_buf_set_name(0, ("%s:%s"):format(term_path, cmd))
   vim.cmd.redrawtabline()
