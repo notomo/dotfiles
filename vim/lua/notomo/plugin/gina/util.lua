@@ -1,15 +1,5 @@
 local M = {}
 
-function M.remote()
-  local branch = vim.fn["gina#component#repo#branch"]()
-  local tracking = vim.fn["gina#component#repo#track"]()
-  local remote_name = tracking:sub(1, #tracking - #branch - 1)
-  if remote_name == "" then
-    return "origin"
-  end
-  return remote_name
-end
-
 function M._revision()
   local tmp = vim.fn.getreg("+")
   vim.fn["gina#action#call"]("yank:rev")
@@ -34,11 +24,6 @@ function M.toggle_buffer(cmd, filetype)
     return vim.cmd.edit("#")
   end
   vim.cmd.quit()
-end
-
-function M.push_cmd()
-  local revision = M._revision()
-  return "Gina! push origin " .. revision
 end
 
 function M.fixup()
