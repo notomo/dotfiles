@@ -181,9 +181,14 @@ local source_specific = {
     end, { buffer = list_bufnr })
   end,
   ["git/status"] = function(list_bufnr)
-    vim.keymap.set("n", "[git]a", [[<Cmd>lua require("thetto").execute("toggle_stage")<CR>]], { buffer = list_bufnr })
-    vim.keymap.set("n", "U", [[<Cmd>lua require("thetto").execute("discard")<CR>]], { buffer = list_bufnr })
-    vim.keymap.set("n", "S", [[<Cmd>lua require("thetto").execute("stash")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set(
+      { "n", "x" },
+      "[git]a",
+      [[<Cmd>lua require("thetto").execute("toggle_stage")<CR>]],
+      { buffer = list_bufnr }
+    )
+    vim.keymap.set({ "n", "x" }, "U", [[<Cmd>lua require("thetto").execute("discard")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set({ "n", "x" }, "S", [[<Cmd>lua require("thetto").execute("stash")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "cc", [[<Cmd>lua require("thetto").execute("commit")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "ca", [[<Cmd>lua require("thetto").execute("commit_amend")<CR>]], { buffer = list_bufnr })
   end,
