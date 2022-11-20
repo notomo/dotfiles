@@ -8,14 +8,6 @@ function M._revision()
   return revision
 end
 
-function M._path()
-  local tmp = vim.fn.getreg("+")
-  vim.fn["gina#action#call"]("yank:path")
-  local path = vim.fn.getreg("+")
-  vim.fn.setreg("+", tmp)
-  return path
-end
-
 function M.fixup()
   local revision = M._revision()
   vim.cmd.Gina({ args = { "commit", "--fixup=" .. revision }, bang = true })
@@ -28,11 +20,6 @@ function M.rebase_i()
     vim.b.terminal_job_id,
     "git rebase -i --autosquash " .. revision .. "~" .. vim.api.nvim_eval([["\<CR>"]])
   )
-end
-
-function M.stash_file()
-  local path = M._path()
-  vim.cmd.Gina({ args = { "stash", "--", path }, bang = true })
 end
 
 function M.yank_rev()
@@ -66,30 +53,6 @@ function M.yank_commit_url()
   vim.fn["gina#action#call"]("browse:yank:exact")
   local url = vim.fn.getreg("+"):gsub("/tree/", "/commit/")
   require("notomo.edit").yank(url)
-end
-
-function M.edit(action)
-  local splitted = vim.split(vim.fn.getline("."), " ")
-  if #splitted == 0 then
-    return
-  end
-  local file_part = splitted[#splitted]
-  file_part = vim.fn.substitute(file_part, "\\v(\\t\\e[31m|\\e\\[m)", "", "g")
-  local git = vim.fn["gina#core#get_or_fail"]()
-  local abspath = vim.fn["gina#core#repo#abspath"](git, "")
-  local path = abspath .. file_part
-
-  if action == "edit:tab" then
-    local window_id = vim.api.nvim_get_current_win()
-    vim.cmd.tabnew()
-    vim.api.nvim_win_close(window_id, true)
-  end
-  if vim.fn.isdirectory(path) == 0 then
-    return vim.cmd.Gina({ args = { "edit", file_part } })
-  end
-
-  vim.cmd.lcd(path)
-  require("kivi").open()
 end
 
 function M.relpath()
