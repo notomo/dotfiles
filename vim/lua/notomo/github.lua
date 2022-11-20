@@ -39,4 +39,18 @@ function M.create_issue()
   vim.cmd.startinsert({ bang = true })
 end
 
+function M.yank_revision_with_repo(revision)
+  local name = vim.fn.systemlist({
+    "gh",
+    "repo",
+    "view",
+    "--json",
+    "nameWithOwner",
+    "--template",
+    "{{.nameWithOwner}}",
+  })[1]
+  local name_with_reivision = ("%s@%s"):format(name, revision)
+  require("notomo.edit").yank(name_with_reivision)
+end
+
 return M

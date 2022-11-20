@@ -174,6 +174,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 local source_specific = {
+  ["git/log"] = function(list_bufnr)
+    vim.keymap.set("n", "yr", function()
+      require("notomo.edit").yank(require("thetto").get()[1].commit_hash)
+    end, { buffer = list_bufnr })
+    vim.keymap.set("n", "yR", function()
+      require("notomo.github").yank_revision_with_repo(require("thetto").get()[1].commit_hash)
+    end, { buffer = list_bufnr })
+    vim.keymap.set("n", "ym", function()
+      require("notomo.git").yank_commit_message(require("thetto").get()[1].commit_hash)
+    end, { buffer = list_bufnr })
+  end,
   ["git/branch"] = function(list_bufnr)
     vim.keymap.set("n", "C", [[<Cmd>lua require("thetto").execute("create")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "yr", function()

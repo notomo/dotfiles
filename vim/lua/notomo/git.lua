@@ -60,4 +60,9 @@ function M._current_branch()
   return branch
 end
 
+function M.yank_commit_message(revision)
+  local message = vim.fn.systemlist({ "git", "log", "--format=%B", "-n", "1", revision })[1]
+  require("notomo.edit").yank(message)
+end
+
 return M

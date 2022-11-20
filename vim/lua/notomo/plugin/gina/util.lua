@@ -29,24 +29,13 @@ end
 
 function M.yank_rev_with_repo()
   vim.fn["gina#action#call"]("yank:rev")
-  local name = vim.fn.systemlist({
-    "gh",
-    "repo",
-    "view",
-    "--json",
-    "nameWithOwner",
-    "--template",
-    "{{.nameWithOwner}}",
-  })[1]
-  local rev = vim.fn.getreg("+")
-  local name_with_rev = ("%s@%s"):format(name, rev)
-  require("notomo.edit").yank(name_with_rev)
+  local revision = vim.fn.getreg("+")
+  require("notomo.github").yank_revision_with_repo(revision)
 end
 
 function M.yank_commit_message()
   local revision = M._revision()
-  local message = vim.fn.systemlist({ "git", "log", "--format=%B", "-n", "1", revision })[1]
-  require("notomo.edit").yank(message)
+  require("notomo.github").yank_commit_message(revision)
 end
 
 function M.yank_commit_url()

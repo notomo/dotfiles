@@ -11,7 +11,6 @@ function M.setup()
   vim.keymap.set("n", "[yank]U", [[<Cmd>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>]])
   vim.keymap.set("x", "[yank]U", [[:Gina browse : --yank --exact<CR>:echomsg 'yank ' . @+<CR>]])
 
-  vim.keymap.set("n", "[exec]gu", [[<Cmd>Gina browse :<CR>]])
   vim.keymap.set("n", "[git]B", function()
     return ":<C-u>Gina blame :" .. require("notomo.plugin.gina.util").relpath() .. "<CR>"
   end, { expr = true })
