@@ -1,12 +1,6 @@
 local M = {}
 
 function M.setup()
-  vim.keymap.set(
-    "n",
-    "[git]s",
-    [[<Cmd>lua require("notomo.plugin.gina.util").toggle_buffer('status', 'gina-status')<CR>]],
-    { silent = true }
-  )
   vim.keymap.set("n", "[git]D", [[<Cmd>Gina diff<CR>]])
   vim.keymap.set("n", "[git]L", [[<Cmd>Gina log master...HEAD<CR>]])
   vim.keymap.set("n", "[git]ll", [[<Cmd>Gina log<CR>]])

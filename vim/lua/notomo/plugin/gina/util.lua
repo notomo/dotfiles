@@ -16,16 +16,6 @@ function M._path()
   return path
 end
 
-function M.toggle_buffer(cmd, filetype)
-  if vim.bo.filetype ~= filetype then
-    return vim.cmd.Gina(cmd)
-  end
-  if #vim.fn.tabpagebuflist(vim.fn.tabpagenr()) == 1 then
-    return vim.cmd.edit("#")
-  end
-  vim.cmd.quit()
-end
-
 function M.fixup()
   local revision = M._revision()
   vim.cmd.Gina({ args = { "commit", "--fixup=" .. revision }, bang = true })

@@ -190,7 +190,14 @@ local source_specific = {
     vim.keymap.set({ "n", "x" }, "U", [[<Cmd>lua require("thetto").execute("discard")<CR>]], { buffer = list_bufnr })
     vim.keymap.set({ "n", "x" }, "S", [[<Cmd>lua require("thetto").execute("stash")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "cc", [[<Cmd>lua require("thetto").execute("commit")<CR>]], { buffer = list_bufnr })
-    vim.keymap.set("n", "ca", [[<Cmd>lua require("thetto").execute("commit_amend")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set(
+      "n",
+      "ca",
+      [[<Cmd>lua require("thetto").execute("commit_amend", {allow_no_items = true})<CR>]],
+      { buffer = list_bufnr }
+    )
+    vim.keymap.set("n", "dd", [[<Cmd>lua require("thetto").execute("compare")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "D", [[<Cmd>lua require("thetto").execute("diff")<CR>]], { buffer = list_bufnr })
   end,
   ["git/stash"] = function(list_bufnr)
     vim.keymap.set("n", "pop", [[<Cmd>lua require("thetto").execute("pop")<CR>]], { buffer = list_bufnr })
@@ -314,8 +321,8 @@ vim.keymap.set("n", "[exec],", function()
 end)
 vim.keymap.set("n", "[finder]S", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
 vim.keymap.set("x", "[finder]s", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
-vim.keymap.set("n", "[finder]gs", function()
-  require("thetto").start("git/status", { opts = { cwd = require("thetto.util.cwd").project() } })
+vim.keymap.set("n", "[git]s", function()
+  require("thetto").start("git/status", { opts = { cwd = require("thetto.util.cwd").project(), insert = false } })
 end)
 vim.keymap.set("n", "[finder]gd", function()
   require("thetto").start("git/diff", { opts = { cwd = require("thetto.util.cwd").project() } })

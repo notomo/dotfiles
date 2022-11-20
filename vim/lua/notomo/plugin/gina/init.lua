@@ -1,80 +1,17 @@
 vim.g["gina#command#blame#use_default_aliases"] = 0
 vim.g["gina#command#changes#use_default_aliases"] = 0
 vim.g["gina#command#log#use_default_aliases"] = 0
-vim.g["gina#command#status#use_default_aliases"] = 0
 
 vim.fn["gina#custom#command#option"]("show", "--group", "show")
 vim.fn["gina#custom#command#option"]("changes", "--group", "changes")
-vim.fn["gina#custom#command#option"]("status", "--group", "short")
 vim.fn["gina#custom#command#option"]("commit", "--group", "short")
 
-vim.fn["gina#custom#command#option"]([[/\%(status\|changes\|ls\|commit\)]], "--opener", "botright split")
+vim.fn["gina#custom#command#option"]([[/\%(changes\|ls\|commit\)]], "--opener", "botright split")
 vim.fn["gina#custom#command#option"]([[/\%(diff\|blame\|compare\|patch\|log\)]], "--opener", "tabedit")
 
 vim.g["gina#core#console#enable_message_history"] = 1
 
 vim.api.nvim_create_augroup("gina_setting", {})
-
-vim.g["gina#command#status#use_default_mappings"] = 0
-vim.g["gina#action#index#discard_directories"] = 1
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "gina_setting",
-  pattern = { "gina-status" },
-  callback = function()
-    vim.keymap.set({ "n", "v" }, "[git]a", [[<Plug>(gina-index-toggle)]], { buffer = true, silent = true })
-    vim.keymap.set({ "n", "v" }, "[git]u", [[<Plug>(gina-index-unstage)]], { buffer = true, silent = true })
-    vim.keymap.set({ "n", "v" }, "U", [[<Plug>(gina-index-discard)]], { buffer = true, silent = true })
-
-    vim.keymap.set({ "n" }, "cc", [[<Cmd>Gina commit<CR>]], { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "ca", [[<Cmd>Gina commit --amend<CR>]], { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "cs", [[:call gina#action#call('chaperon:tab')<CR>]], { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "pp", [[:call gina#action#call("patch:tab")<CR>]], { buffer = true, silent = true })
-    vim.keymap.set(
-      { "n", "v" },
-      "S",
-      [[:lua require("notomo.plugin.gina.util").stash_file()<CR>]],
-      { buffer = true, silent = true }
-    )
-
-    vim.keymap.set("n", "o", function()
-      require("notomo.plugin.gina.util").edit("edit")
-    end, { buffer = true, silent = true })
-    vim.keymap.set("n", "t<Space>", function()
-      require("notomo.plugin.gina.util").edit("edit:tab")
-    end, { buffer = true, silent = true })
-    vim.keymap.set("n", "<CR>", function()
-      require("notomo.plugin.gina.util").edit("edit:tab")
-    end, { buffer = true, silent = true })
-
-    vim.keymap.set(
-      { "n" },
-      "j",
-      [=[:lua require("notomo.edit").to_next_syntax([[\vAnsi+]], 10, 0)<CR>]=],
-      { buffer = true, silent = true }
-    )
-    vim.keymap.set(
-      { "n" },
-      "k",
-      [=[:lua require("notomo.edit").to_prev_syntax([[\vAnsi+]], 10, 0)<CR>]=],
-      { buffer = true, silent = true }
-    )
-    vim.keymap.set(
-      { "n" },
-      "gg",
-      [=[gg:lua require("notomo.edit").to_next_syntax([[\vAnsi+]], 10, 0)<CR>]=],
-      { buffer = true, silent = true }
-    )
-    vim.keymap.set(
-      { "n" },
-      "G",
-      [=[G:lua require("notomo.edit").to_prev_syntax([[\vAnsi+]], 10, 0)<CR>]=],
-      { buffer = true, silent = true }
-    )
-
-    vim.keymap.set({ "n" }, "dd", ':call gina#action#call("patch:oneside:tab")<CR>', { buffer = true, silent = true })
-    vim.keymap.set({ "n" }, "q", ":quit<CR>", { buffer = true, silent = true })
-  end,
-})
 
 vim.g["gina#command#log#use_default_mappings"] = 0
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -201,7 +138,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-status", "gina-log", "gina-blame" },
+  pattern = { "gina-log", "gina-blame" },
   callback = function()
     vim.keymap.set({ "n" }, "D", [[:call gina#action#call("diff")<CR>]], { buffer = true, silent = true })
   end,
@@ -219,7 +156,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "gina_setting",
-  pattern = { "gina-ls", "gina-blame", "gina-changes", "gina-status" },
+  pattern = { "gina-ls", "gina-blame", "gina-changes" },
   callback = function()
     vim.keymap.set({ "n" }, "<CR>", [[:call gina#action#call("show:tab")<CR>]], { buffer = true, silent = true })
   end,
