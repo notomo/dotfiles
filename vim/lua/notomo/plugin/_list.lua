@@ -325,11 +325,6 @@ mypack.add("notomo/gesture.nvim", {
   },
 })
 
-mypack.add("notomo/flompt.nvim", {
-  load_on = { modules = { "flompt" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/flompt.lua") },
-})
-
 mypack.add("notomo/thetto.nvim", {
   depends = { "nvim-treesitter" },
   load_on = { modules = { "thetto" }, events = { { "BufReadPost", "*/*" } } },
