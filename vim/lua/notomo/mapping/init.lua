@@ -263,7 +263,7 @@ vim.keymap.set("n", "[yank]i", [[<Cmd>lua require("notomo.edit").yank(vim.fn.get
 vim.keymap.set(
   "n",
   "[yank]b",
-  [[<Cmd>lua require("notomo.edit").yank(vim.fn["gina#component#repo#branch"]())<CR>]],
+  [[<Cmd>lua require("notomo.edit").yank(require("notomo.git").current_branch())<CR>]],
   silent
 )
 vim.keymap.set("n", "[yank]l", [[<Cmd>lua require("notomo.edit").yank(vim.fn.line('.'))<CR>]], silent)

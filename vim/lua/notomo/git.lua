@@ -7,13 +7,13 @@ end, { nargs = "+" })
 
 function M.pull()
   local remote = M._remote()
-  local branch = M._current_branch()
+  local branch = M.current_branch()
   return (":<C-u>Git pull %s %s"):format(remote, branch)
 end
 
 function M.push()
   local remote = M._remote()
-  local branch = M._current_branch()
+  local branch = M.current_branch()
   return (":<C-u>Git push %s %s"):format(remote, branch)
 end
 
@@ -35,7 +35,7 @@ function M._remote()
   return "origin"
 end
 
-function M._current_branch()
+function M.current_branch()
   local git_root
   for dir in vim.fs.parents(vim.api.nvim_buf_get_name(0)) do
     if vim.fn.isdirectory(dir .. "/.git") == 1 then
