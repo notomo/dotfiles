@@ -1,12 +1,38 @@
-return function(opts, on_confirm)
+local M = {}
+
+local create_cancel = function(on_confirm, close)
+  local canceled = false
+  return function()
+    if canceled then
+      return
+    end
+    canceled = true
+    on_confirm()
+    close()
+  end
+end
+
+local group = vim.api.nvim_create_augroup("notomo_ui_input", {})
+local create_confirm = function(on_confirm, cancel, close, default_line)
+  return function()
+    vim.cmd.stopinsert()
+
+    local line = vim.fn.getline(".")
+    if line == default_line then
+      return cancel()
+    end
+
+    on_confirm(line)
+
+    vim.api.nvim_clear_autocmds({ group = group })
+    close()
+  end
+end
+
+local create_inputter_buffer = function(default_line)
   local bufnr = vim.api.nvim_create_buf(false, true)
-  local default_line = opts.default or ""
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { default_line })
   vim.bo[bufnr].bufhidden = "wipe"
-
-  if default_line == "" then
-    vim.cmd.startinsert()
-  end
 
   vim.api.nvim_buf_attach(bufnr, false, {
     on_lines = function()
@@ -18,12 +44,13 @@ return function(opts, on_confirm)
       end)
     end,
   })
+  return bufnr
+end
 
-  vim.api.nvim_echo({ { "" } }, false, {})
-
+local open_inputter = function(bufnr)
   local window_id = vim.api.nvim_open_win(bufnr, true, {
     width = vim.o.columns,
-    height = 2,
+    height = 1,
     relative = "editor",
     row = vim.o.lines - vim.o.cmdheight,
     col = 0,
@@ -31,21 +58,62 @@ return function(opts, on_confirm)
     style = "minimal",
     zindex = 200,
   })
-  local prompt = opts.prompt or ""
-  vim.wo[window_id].winbar = " " .. prompt
   vim.wo[window_id].winhighlight = "Normal:Normal,SignColumn:Normal"
   vim.wo[window_id].signcolumn = "yes:1"
-  vim.cmd.normal({ args = { "$" }, bang = true })
+  return window_id
+end
 
-  local cancel = function()
-    on_confirm()
+local open_prompt = function(prompt, base_window_id)
+  local prompt_line = prompt or ""
+  local bufnr = vim.api.nvim_create_buf(false, true)
+  local lines = vim.split(prompt_line, "\n", true)
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+  vim.bo[bufnr].bufhidden = "wipe"
+  local window_id = vim.api.nvim_open_win(bufnr, false, {
+    relative = "win",
+    win = base_window_id,
+    width = vim.o.columns,
+    height = #lines,
+    row = 0,
+    col = 0,
+    anchor = "SW",
+    external = false,
+    focusable = false,
+    style = "minimal",
+    zindex = 200,
+  })
+  vim.wo[window_id].winhighlight = "Normal:StatusLine,SignColumn:StatusLine"
+  vim.wo[window_id].signcolumn = "yes:1"
+  return window_id
+end
+
+local create_close = function(window_id, prompt_window_id)
+  return function()
     if vim.api.nvim_win_is_valid(window_id) then
       vim.api.nvim_win_close(window_id, true)
     end
-    vim.api.nvim_echo({ { "Canceled: " .. prompt .. default_line } }, true, {})
+    if vim.api.nvim_win_is_valid(prompt_window_id) then
+      vim.api.nvim_win_close(prompt_window_id, true)
+    end
   end
+end
 
-  local group = vim.api.nvim_create_augroup("notomo_ui_input", {})
+function M.open(opts, on_confirm)
+  local default_line = opts.default or ""
+  local bufnr = create_inputter_buffer(default_line)
+  local window_id = open_inputter(bufnr)
+  local prompt_window_id = open_prompt(opts.prompt, window_id)
+
+  if default_line == "" then
+    vim.cmd.startinsert()
+  end
+  vim.cmd.normal({ args = { "$" }, bang = true })
+  vim.api.nvim_echo({ { "" } }, false, {})
+
+  local close = create_close(window_id, prompt_window_id)
+  local cancel = create_cancel(on_confirm, close)
+  local confirm = create_confirm(on_confirm, cancel, close, default_line)
+
   vim.api.nvim_create_autocmd({ "WinClosed", "WinLeave", "TabLeave", "BufLeave", "BufWipeout" }, {
     group = group,
     buffer = bufnr,
@@ -53,24 +121,9 @@ return function(opts, on_confirm)
     once = true,
   })
   vim.keymap.set("n", "q", cancel)
-
-  local confirm = function()
-    vim.cmd.stopinsert()
-
-    local line = vim.fn.getline(".")
-    if line == default_line then
-      return cancel()
-    end
-
-    on_confirm(line)
-
-    vim.api.nvim_clear_autocmds({ group = group })
-    if vim.api.nvim_win_is_valid(window_id) then
-      vim.api.nvim_win_close(window_id, true)
-    end
-  end
-
   vim.keymap.set({ "n", "i" }, "<CR>", confirm, { buffer = bufnr })
   vim.keymap.set({ "i" }, "<C-m>", confirm, { buffer = bufnr })
   vim.keymap.set("n", "[file]w", confirm, { buffer = bufnr })
 end
+
+return M
