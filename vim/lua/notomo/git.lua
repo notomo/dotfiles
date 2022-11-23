@@ -1,3 +1,5 @@
+local vim = vim
+
 local M = {}
 
 vim.api.nvim_create_user_command("Git", function(command)
@@ -35,7 +37,7 @@ function M._remote()
   return "origin"
 end
 
-function M.current_branch()
+function M._head_file_path()
   local git_root
   for dir in vim.fs.parents(vim.api.nvim_buf_get_name(0)) do
     if vim.fn.isdirectory(dir .. "/.git") == 1 then
@@ -44,10 +46,16 @@ function M.current_branch()
     end
   end
   if not git_root then
+    return nil
+  end
+  return git_root .. "/.git/HEAD"
+end
+
+function M.current_branch()
+  local head = M._head_file_path()
+  if not head then
     return ""
   end
-
-  local head = git_root .. "/.git/HEAD"
   local f = io.open(head)
   if not f then
     return ""
@@ -57,6 +65,42 @@ function M.current_branch()
 
   local ref = vim.split(content, " ", true)[2]
   local branch = ref:sub(#"refs/heads/" + 1)
+  return branch
+end
+
+local watchers = {}
+local buffer_cache = {}
+function M.branch_component()
+  local bufnr = vim.fn.bufnr("%")
+  local buffer_cached = buffer_cache[bufnr]
+  if buffer_cached then
+    return buffer_cached
+  end
+
+  local head = M._head_file_path()
+  if not head then
+    buffer_cache[bufnr] = ""
+    return ""
+  end
+
+  local cached = watchers[head]
+  if cached then
+    buffer_cache[bufnr] = cached.branch
+    return cached.branch
+  end
+
+  local branch = M.current_branch()
+  local watcher = {
+    event = vim.loop.new_fs_event(),
+    branch = branch,
+  }
+  watchers[head] = watcher
+  buffer_cache[bufnr] = branch
+  watcher.event:start(head, {}, function()
+    watcher.event:close()
+    watchers[head] = nil
+    buffer_cache = {}
+  end)
   return branch
 end
 

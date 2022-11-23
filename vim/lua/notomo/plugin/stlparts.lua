@@ -19,10 +19,7 @@ local filetype = function()
 end
 
 local branch = function()
-  if fn.exists("*gina#component#repo#branch") == 0 then
-    return ""
-  end
-  local ok, name = pcall(fn["gina#component#repo#branch"])
+  local ok, name = pcall(require("notomo.git").branch_component)
   if not ok then
     return ""
   end
