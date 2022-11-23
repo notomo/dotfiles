@@ -511,13 +511,6 @@ optpack.add("rhysd/vim-operator-surround", {
   hooks = { pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/operator-surround.lua") },
 })
 
-optpack.add("tpope/vim-repeat")
-optpack.add("tyru/caw.vim", {
-  depends = { "vim-operator-user", "vim-repeat" },
-  load_on = { events = { "FileType" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/caw.lua") },
-})
-
 mypack.add("notomo/promise.nvim", {
   load_on = { modules = { "promise" } },
 })
@@ -693,6 +686,22 @@ optpack.add("previm/previm", {
         vim.g.previm_open_cmd = "wslview"
       end
       vim.g.previm_enable_realtime = 1
+    end,
+  },
+})
+
+optpack.add("numToStr/Comment.nvim", {
+  load_on = { events = { "FileType" } },
+  hooks = {
+    post_load = function()
+      require("Comment").setup({
+        mappings = {
+          basic = false,
+          extra = false,
+        },
+      })
+      vim.keymap.set("n", "<Space>c", "<Plug>(comment_toggle_linewise)_")
+      vim.keymap.set("x", "<Space>c", "<Plug>(comment_toggle_linewise_visual)")
     end,
   },
 })
