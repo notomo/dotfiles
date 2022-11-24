@@ -63,7 +63,12 @@ function M.current_branch()
   local content = vim.trim(f:read("*a"))
   f:close()
 
-  local ref = vim.split(content, " ", true)[2]
+  local splitted = vim.split(content, " ", true)
+  if #splitted == 1 then
+    return splitted[1]
+  end
+
+  local ref = splitted[2]
   local branch = ref:sub(#"refs/heads/" + 1)
   return branch
 end
