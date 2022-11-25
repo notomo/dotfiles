@@ -35,7 +35,7 @@ end
 
 function M.yank_commit_message()
   local revision = M._revision()
-  require("notomo.github").yank_commit_message(revision)
+  require("notomo.git").yank_commit_message(revision)
 end
 
 function M.yank_commit_url()

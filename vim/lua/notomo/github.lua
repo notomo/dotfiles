@@ -53,4 +53,14 @@ function M.yank_revision_with_repo(revision)
   require("notomo.edit").yank(name_with_reivision)
 end
 
+function M.yank_commit_url(revision)
+  local url = vim.fn.systemlist({
+    "gh",
+    "browse",
+    "--no-browser",
+    revision,
+  })[1]
+  require("notomo.edit").yank(url)
+end
+
 return M

@@ -184,6 +184,22 @@ local source_specific = {
     vim.keymap.set("n", "ym", function()
       require("notomo.git").yank_commit_message(require("thetto").get()[1].commit_hash)
     end, { buffer = list_bufnr })
+    vim.keymap.set("n", "yu", function()
+      require("notomo.github").yank_commit_url(require("thetto").get()[1].commit_hash)
+    end, { buffer = list_bufnr })
+    vim.keymap.set("n", "ch", [[<Cmd>lua require("thetto").execute("checkout")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "D", [[<Cmd>lua require("thetto").execute("diff")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "RS", [[<Cmd>lua require("thetto").execute("reset")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "F", [[<Cmd>lua require("thetto").execute("fixup")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set(
+      "n",
+      "I",
+      [[<Cmd>lua require("thetto").execute("rebase_interactively")<CR>]],
+      { buffer = list_bufnr }
+    )
+  end,
+  ["git/change"] = function(list_bufnr)
+    vim.keymap.set("n", "dd", [[<Cmd>lua require("thetto").execute("compare")<CR>]], { buffer = list_bufnr })
   end,
   ["git/branch"] = function(list_bufnr)
     vim.keymap.set("n", "C", [[<Cmd>lua require("thetto").execute("create")<CR>]], { buffer = list_bufnr })
