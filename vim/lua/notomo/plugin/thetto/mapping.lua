@@ -225,6 +225,14 @@ local source_specific = {
     )
     vim.keymap.set("n", "dd", [[<Cmd>lua require("thetto").execute("compare")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "D", [[<Cmd>lua require("thetto").execute("diff")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "j", function()
+      vim.fn.search("^    ", "w")
+      vim.cmd.nohlsearch()
+    end, { buffer = list_bufnr })
+    vim.keymap.set("n", "k", function()
+      vim.fn.search("^    ", "bw")
+      vim.cmd.nohlsearch()
+    end, { buffer = list_bufnr })
   end,
   ["git/stash"] = function(list_bufnr)
     vim.keymap.set("n", "pop", [[<Cmd>lua require("thetto").execute("pop")<CR>]], { buffer = list_bufnr })
@@ -355,7 +363,15 @@ vim.keymap.set("n", "[git]fl", function()
   require("thetto").start("git/file_log", { opts = { insert = false } })
 end)
 vim.keymap.set("n", "[git]s", function()
-  require("thetto").start("git/status", { opts = { cwd = require("thetto.util.cwd").project(), insert = false } })
+  require("thetto").start("git/status", {
+    opts = {
+      cwd = require("thetto.util.cwd").project(),
+      insert = false,
+      search_offset = function(item)
+        return item.path ~= nil
+      end,
+    },
+  })
 end)
 vim.keymap.set("n", "[finder]gd", function()
   require("thetto").start("git/diff", { opts = { cwd = require("thetto.util.cwd").project() } })
