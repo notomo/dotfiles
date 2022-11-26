@@ -39,7 +39,7 @@ end
 
 function M._head_file_path()
   local git_root
-  for dir in vim.fs.parents(vim.api.nvim_buf_get_name(0)) do
+  for dir in vim.fs.parents(vim.fn.getcwd()) do
     if vim.fn.isdirectory(dir .. "/.git") == 1 then
       git_root = dir
       break

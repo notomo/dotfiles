@@ -225,13 +225,19 @@ local source_specific = {
     )
     vim.keymap.set("n", "dd", [[<Cmd>lua require("thetto").execute("compare")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "D", [[<Cmd>lua require("thetto").execute("diff")<CR>]], { buffer = list_bufnr })
-    vim.keymap.set("n", "j", function()
-      vim.fn.search("^    ", "w")
+
+    local move = function(flag, fallback_key)
+      local result = vim.fn.search("^    ", flag)
+      if result == 0 then
+        vim.cmd.normal({ args = { fallback_key }, bang = true })
+      end
       vim.cmd.nohlsearch()
+    end
+    vim.keymap.set("n", "j", function()
+      move("w", "j")
     end, { buffer = list_bufnr })
     vim.keymap.set("n", "k", function()
-      vim.fn.search("^    ", "bw")
-      vim.cmd.nohlsearch()
+      move("bw", "k")
     end, { buffer = list_bufnr })
   end,
   ["git/stash"] = function(list_bufnr)
