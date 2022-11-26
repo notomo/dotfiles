@@ -15,9 +15,6 @@ function M.setup()
   vim.keymap.set("n", "[git]B", function()
     return ":<C-u>Gina blame :" .. relpath() .. "<CR>"
   end, { expr = true })
-  vim.keymap.set("n", "[git]dd", function()
-    return ":<C-u>Gina compare :" .. relpath() .. "<CR>"
-  end, { expr = true })
 end
 
 return M

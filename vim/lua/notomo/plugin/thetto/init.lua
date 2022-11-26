@@ -10,13 +10,6 @@ kind_actions["git/branch"] = {
       require("misclib.cursor").set(cursor)
     end
   end,
-  action_compare = function(items)
-    local item = items[1]
-    if item == nil then
-      return
-    end
-    vim.cmd.Gina({ args = { "compare", item.value .. ":" } })
-  end,
 }
 
 local run_without_focus = function(...)

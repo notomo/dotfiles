@@ -504,6 +504,10 @@ vim.keymap.set("n", "[git]D", function()
     vim.cmd.buffer(bufnr)
   end)
 end)
+vim.keymap.set("n", "[git]dd", function()
+  local path = vim.api.nvim_buf_get_name(0)
+  require("thetto.util.git").compare(path, "HEAD", path)
+end)
 
 -- custom action
 vim.keymap.set(
