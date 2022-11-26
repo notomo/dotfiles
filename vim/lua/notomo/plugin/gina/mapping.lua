@@ -1,8 +1,6 @@
 local M = {}
 
 function M.setup()
-  vim.keymap.set("n", "[git]D", [[<Cmd>Gina diff<CR>]])
-
   vim.keymap.set("n", "[git]dl", [[<Cmd>Gina log --diff-filter=D --summary<CR> " deleted file log]])
 
   vim.keymap.set("n", "[yank]U", [[<Cmd>Gina browse : --yank<CR>:echomsg 'yank ' . @+<CR>]])
@@ -19,9 +17,6 @@ function M.setup()
   end, { expr = true })
   vim.keymap.set("n", "[git]dd", function()
     return ":<C-u>Gina compare :" .. relpath() .. "<CR>"
-  end, { expr = true })
-  vim.keymap.set("n", "[git]df", function()
-    return ":<C-u>Gina diff :" .. relpath() .. "<CR>"
   end, { expr = true })
 end
 

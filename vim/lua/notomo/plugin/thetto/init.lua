@@ -17,13 +17,6 @@ kind_actions["git/branch"] = {
     end
     vim.cmd.Gina({ args = { "compare", item.value .. ":" } })
   end,
-  action_diff = function(items)
-    local item = items[1]
-    if item == nil then
-      return
-    end
-    vim.cmd.Gina({ args = { "diff", item.value } })
-  end,
 }
 
 local run_without_focus = function(...)

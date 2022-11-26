@@ -227,11 +227,14 @@ local source_specific = {
     vim.keymap.set("n", "D", [[<Cmd>lua require("thetto").execute("diff")<CR>]], { buffer = list_bufnr })
 
     local move = function(flag, fallback_key)
+      local _, column = unpack(vim.api.nvim_win_get_cursor(0))
+      vim.cmd.normal({ args = { "0" }, bang = true })
       local result = vim.fn.search("^    ", flag)
       if result == 0 then
         vim.cmd.normal({ args = { fallback_key }, bang = true })
       end
       vim.cmd.nohlsearch()
+      vim.api.nvim_win_set_cursor(0, { vim.fn.line("."), column })
     end
     vim.keymap.set("n", "j", function()
       move("w", "j")
@@ -493,6 +496,14 @@ vim.keymap.set("n", "[keyword]n", function()
 end)
 vim.keymap.set("n", "[keyword]O", [[<Cmd>lua require("thetto").start("vim/lsp/outgoing_calls")<CR>]])
 vim.keymap.set("n", "[keyword]I", [[<Cmd>lua require("thetto").start("vim/lsp/incoming_calls")<CR>]])
+
+vim.keymap.set("n", "[git]D", function()
+  local bufnr = require("thetto.util.git").diff_buffer()
+  require("thetto.util.git").diff(bufnr):next(function()
+    require("thetto.lib.buffer").open_scratch_tab()
+    vim.cmd.buffer(bufnr)
+  end)
+end)
 
 -- custom action
 vim.keymap.set(
