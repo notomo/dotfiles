@@ -37,9 +37,17 @@ function M._remote()
   return "origin"
 end
 
+function M._to_head(git_root)
+  return git_root .. "/.git/HEAD"
+end
+
 function M._head_file_path()
   local git_root
-  for dir in vim.fs.parents(vim.fn.getcwd()) do
+  local current_dir = vim.fn.getcwd()
+  if vim.fn.isdirectory(current_dir .. "/.git") == 1 then
+    return M._to_head(current_dir)
+  end
+  for dir in vim.fs.parents(current_dir) do
     if vim.fn.isdirectory(dir .. "/.git") == 1 then
       git_root = dir
       break
@@ -48,7 +56,7 @@ function M._head_file_path()
   if not git_root then
     return nil
   end
-  return git_root .. "/.git/HEAD"
+  return M._to_head(git_root)
 end
 
 function M.current_branch()
