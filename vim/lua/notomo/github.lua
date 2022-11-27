@@ -63,4 +63,33 @@ function M.yank_commit_url(revision)
   require("notomo.edit").yank(url)
 end
 
+function M.yank()
+  local git_root = require("notomo.git").root()
+  if not git_root then
+    return require("misclib.message").warn("no .git")
+  end
+
+  local root_url = vim.fn.systemlist({
+    "gh",
+    "browse",
+    "--no-browser",
+  })[1]
+
+  local state = require("thetto.util.git").state() or {}
+  local revision = state.revision or require("notomo.git").current_branch()
+
+  local full_path = state.path or vim.api.nvim_buf_get_name(0)
+  local path = full_path:sub(#git_root + 2)
+
+  local range_part = ""
+  local range = require("misclib.visual_mode").row_range()
+  if range then
+    range_part = ("#L%d-%d"):format(range.first, range.last)
+    revision = vim.fn.systemlist({ "git", "rev-parse", revision })[1]
+  end
+
+  local url = ("%s/blob/%s/%s%s"):format(root_url, revision, path, range_part)
+  require("notomo.edit").yank(url)
+end
+
 return M

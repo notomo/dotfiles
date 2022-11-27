@@ -2,16 +2,6 @@ local source_config = {}
 local source_actions = {}
 local kind_actions = {}
 
-kind_actions["git/branch"] = {
-  action_tab_open = function(items)
-    local cursor = vim.api.nvim_win_get_cursor(0)
-    for _, item in ipairs(items) do
-      vim.cmd.Gina({ args = { "show", item.value .. ":%:p", "--opener=tabedit" } })
-      require("misclib.cursor").set(cursor)
-    end
-  end,
-}
-
 local run_without_focus = function(...)
   local keys = { ... }
   return function(items)

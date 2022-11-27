@@ -1,4 +1,3 @@
-vim.fn["gina#custom#command#option"]("show", "--group", "show")
 vim.g["gina#core#console#enable_message_history"] = 1
 
 vim.api.nvim_create_augroup("gina_setting", {})
