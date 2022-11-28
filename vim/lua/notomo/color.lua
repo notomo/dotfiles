@@ -16,10 +16,6 @@ vim.api.nvim_set_hl(0, "diffFile", { fg = pallet.red })
 vim.api.nvim_set_hl(0, "diffAdded", { fg = pallet.light_green })
 vim.api.nvim_set_hl(0, "diffRemoved", { fg = pallet.red })
 
---for gina status
-vim.api.nvim_set_hl(0, "AnsiColor1", { ctermfg = 1, fg = "#ffaaaa" })
-vim.api.nvim_set_hl(0, "AnsiColor2", { ctermfg = 2, fg = "#aaddaa" })
-
 vim.api.nvim_set_hl(0, "LspReferenceText", { link = "Search" })
 vim.api.nvim_set_hl(0, "LspReferenceRead", { link = "Search" })
 vim.api.nvim_set_hl(0, "LspReferenceWrite", { link = "Todo" })

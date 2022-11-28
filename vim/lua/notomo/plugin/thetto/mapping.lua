@@ -385,6 +385,19 @@ vim.keymap.set("n", "[git]s", function()
     },
   })
 end)
+vim.keymap.set("n", "[git]B", function()
+  local row = vim.fn.line(".")
+  require("thetto").start("git/blame", {
+    opts = {
+      insert = false,
+      display_limit = row + 100,
+      search_offset = function(item)
+        return item.row == row
+      end,
+    },
+  })
+end)
+
 vim.keymap.set("n", "[finder]gd", function()
   require("thetto").start("git/diff", { opts = { cwd = require("thetto.util.cwd").project() } })
 end)

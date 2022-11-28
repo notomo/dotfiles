@@ -116,14 +116,6 @@ optpack.add("kana/vim-smartword", {
   },
 })
 
-optpack.add("lambdalisue/gina.vim", {
-  load_on = { cmds = { "Gina*" }, events = { { "BufReadPre", "*/*" } } },
-  hooks = {
-    post_add = require("notomo.plugin.gina.mapping").setup,
-    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/gina/init.lua"),
-  },
-})
-
 optpack.add("kana/vim-textobj-entire", {
   depends = { "vim-textobj-user" },
   load_on = {
