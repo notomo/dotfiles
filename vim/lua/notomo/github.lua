@@ -84,7 +84,7 @@ function M.yank()
   local range_part = ""
   local range = require("misclib.visual_mode").row_range()
   if range then
-    range_part = ("#L%d-%d"):format(range.first, range.last)
+    range_part = ("#L%d-L%d"):format(range.first, range.last)
     revision = vim.fn.systemlist({ "git", "rev-parse", revision })[1]
   end
 
