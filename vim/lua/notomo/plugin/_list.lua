@@ -658,6 +658,10 @@ mypack.add("notomo/termnavi.nvim", {
   },
 })
 
+mypack.add("notomo/listdefined.nvim", {
+  load_on = { modules = { "listdefined" } },
+})
+
 optpack.add("lewis6991/gitsigns.nvim", {
   load_on = { modules = { "gitsigns" }, events = { { "BufReadPre", "*/*" } } },
   hooks = {
