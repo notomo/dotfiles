@@ -8,46 +8,6 @@ function M.exchange()
   vim.cmd.nohlsearch()
 end
 
-function M.to_next_syntax(pattern, column, offset)
-  M._to_syntax(pattern, vim.fn.line("."), column, offset, false, true)
-end
-
-function M.to_prev_syntax(pattern, column, offset)
-  M._to_syntax(pattern, vim.fn.line("."), column, offset, true, true)
-end
-
-function M._to_syntax(pattern, start_row, column, offset, go_backword, wrap)
-  local is_limited, limit_row, move_row, wrap_row
-  if go_backword then
-    is_limited = function(row, limit)
-      return row > limit
-    end
-    limit_row = 0
-    move_row = -1
-    wrap_row = vim.fn.line("$")
-  else
-    is_limited = function(row, limit)
-      return row < limit
-    end
-    limit_row = vim.fn.line("$")
-    move_row = 1
-    wrap_row = 0
-  end
-  local row = start_row + move_row
-  while is_limited(row, limit_row) do
-    local syntax = vim.fn.synIDattr(vim.fn.synID(row, column, 1), "name")
-    if vim.fn.match(syntax, pattern) ~= -1 then
-      vim.fn.setpos(".", { vim.fn.bufnr("%"), row + offset, 1, 0 })
-      return
-    end
-    row = row + move_row
-  end
-  if not wrap then
-    return
-  end
-  M._to_syntax(pattern, wrap_row, column, offset, go_backword, false)
-end
-
 function M.to_multiline()
   local col = vim.fn.col(".")
   local char = vim.fn.getline("."):sub(col)
