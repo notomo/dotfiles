@@ -11,7 +11,7 @@ end)
 
 aliaser.register_factory("tree_sitter", function(aliases)
   aliases:set("query", function()
-    require("nvimtool").tree.query()
+    vim.cmd.TSPlaygroundToggle()
   end)
   aliases:set("ready_parser", function()
     for _, language in ipairs({
@@ -90,14 +90,7 @@ aliaser.register_factory("vim", function(aliases)
   end)
 
   aliases:set("show_highlight_under_cursor", function()
-    local hl_group = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.synID(vim.fn.line("."), vim.fn.col("."), 1)), "name")
-    if hl_group ~= "" then
-      vim.api.nvim_echo({ { "" } }, false, {})
-      print(hl_group)
-      vim.cmd.highlight(hl_group)
-    else
-      print("no hl_group")
-    end
+    vim.cmd.TSHighlightCapturesUnderCursor()
   end)
 end)
 

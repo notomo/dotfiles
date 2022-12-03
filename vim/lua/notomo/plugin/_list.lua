@@ -292,11 +292,6 @@ mypack.add("notomo/curstr.nvim", {
   },
 })
 
-mypack.add("notomo/nvimtool", {
-  depends = { "nvim-treesitter" },
-  load_on = { modules = { "nvimtool" } },
-})
-
 mypack.add("notomo/piemenu.nvim", {
   load_on = { modules = { "piemenu" } },
   hooks = {
@@ -318,7 +313,6 @@ mypack.add("notomo/gesture.nvim", {
 })
 
 mypack.add("notomo/thetto.nvim", {
-  depends = { "nvim-treesitter" },
   load_on = { modules = { "thetto" }, events = { { "BufReadPost", "*/*" } } },
   hooks = {
     post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/thetto/mapping.lua"),
@@ -698,6 +692,31 @@ optpack.add("numToStr/Comment.nvim", {
       })
       vim.keymap.set("n", "<Space>c", "<Plug>(comment_toggle_linewise)_")
       vim.keymap.set("x", "<Space>c", "<Plug>(comment_toggle_linewise_visual)")
+    end,
+  },
+})
+
+optpack.add("nvim-treesitter/playground", {
+  depends = { "nvim-treesitter" },
+  load_on = { cmds = { "TSPlayground*", "TSHighlightCapturesUnderCursor" } },
+  hooks = {
+    post_load = function()
+      require("nvim-treesitter.configs").setup({
+        playground = {
+          enable = true,
+          disable = {},
+          updatetime = 25,
+          persist_queries = false,
+          keybindings = {
+            toggle_injected_languages = "T",
+          },
+        },
+        query_linter = {
+          enable = true,
+          use_virtual_text = true,
+          lint_events = { "BufWrite", "CursorHold" },
+        },
+      })
     end,
   },
 })
