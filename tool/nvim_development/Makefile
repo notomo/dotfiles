@@ -5,7 +5,7 @@ NVIM_WITH_RUNTIME := VIMRUNTIME=${NVIM_DIR}/runtime ${NVIM}
 ASAN_NVIM := ./bin/asan_nvim
 # NVIM := ./bin/asan_nvim
 
-CC := clang
+export CC=clang
 unexport LUA_PATH
 unexport LUA_CPATH
 
@@ -14,6 +14,11 @@ all:
 	# cd ${NVIM_DIR}; make clean
 	${MAKE} build
 	# ${MAKE} build_with_asan
+.PHONY: all
+
+clean:
+	cd ${NVIM_DIR}; make distclean
+	cd ${NVIM_DIR}; make clean
 .PHONY: all
 
 build_with_asan: reset_build_type
@@ -44,8 +49,6 @@ build:
 # sudo ln -s /usr/bin/llvm-symbolizer-6.0 /usr/bin/llvm-symbolizer
 LOG_DIR := ${HOME}/logs
 NVIM_LOG_FILE := ${NVIM_DIR}/build/.nvimlog
-ASAN_OPTIONS := detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan
-UBSAN_OPTIONS := print_stacktrace=1
 test:
 	rm -rf ${LOG_DIR} ${NVIM_DIR}/build/.nvimlog
 	mkdir -p ${LOG_DIR}
@@ -87,10 +90,13 @@ headless:
 start: _run
 .PHONY: start
 
+ASAN_OPTIONS := detect_leaks=1:check_initialization_order=1:log_path=${LOG_DIR}/asan
+UBSAN_OPTIONS := print_stacktrace=1
 _run:
 	# ${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua"
 	# ${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua" +"quitall!"
-	${NVIM_WITH_RUNTIME} --clean --headless +"luafile ./minimal.lua" +"quitall!"
+	# ASAN_OPTIONS=${ASAN_OPTIONS} UBSAN_OPTIONS=${UBSAN_OPTIONS} ${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua" +"quitall!"
+	${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua" +"quitall!"
 	# ${NVIM_WITH_RUNTIME} --clean --headless +"source ./minimal.vim" +"quitall!"
 	# ${NVIM_WITH_RUNTIME} --clean +"source ./minimal.vim" +"quitall!"
 	# ${NVIM_WITH_RUNTIME} --clean +"source ./minimal.vim"
@@ -105,6 +111,8 @@ ifeq (${EXTENSION},lua)
 else
 	REPRODUCE_CMD:=source minimal.${EXTENSION}
 endif
+OS_NAME=`cat /etc/os-release | grep "^NAME=" | cut -d = -f 2 | tr -d '"'`
+OS_VERSION_ID=`cat /etc/os-release | grep "^VERSION_ID=" | cut -d = -f 2 | tr -d '"'`
 issue:
 	rm -f ${ISSUE}
 	echo "TITLE: Segmentation fault ❗TODO❗" >> ${ISSUE}
@@ -117,7 +125,7 @@ issue:
 	echo \`\`\` >> ${ISSUE}
 	${VIM} --version >> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
-	echo "- Operating system/version: `lsb_release -i -s` `lsb_release -r -s`" >> ${ISSUE}
+	echo "- Operating system/version: ${OS_NAME} ${OS_VERSION_ID}" >> ${ISSUE}
 	echo "- Terminal name/version: wsltty" >> ${ISSUE}
 	echo "- ``\$$TERM``: ${TERM}" >> ${ISSUE}
 	echo "- Installation: build from repo" >> ${ISSUE}
