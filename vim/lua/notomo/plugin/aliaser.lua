@@ -11,12 +11,19 @@ end)
 
 aliaser.register_factory("tree_sitter", function(aliases)
   aliases:set("query", function()
+    local runtime_dir = vim.fn.stdpath("cache") .. "/notomo"
+    local dir = runtime_dir .. "/queries/" .. vim.bo.filetype
+    local query_path = dir .. "/scratch.scm"
+    vim.fn.writefile({}, query_path, "p")
+    vim.opt.runtimepath:append(runtime_dir)
     vim.cmd.TSPlaygroundToggle()
+    require("notomo.treesitter.query").open(query_path)
   end)
   aliases:set("ready_parser", function()
     for _, language in ipairs({
       "go",
       "typescript",
+      "query",
     }) do
       vim.cmd.TSInstall(language)
     end
