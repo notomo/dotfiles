@@ -2,13 +2,9 @@ local M = {}
 
 function M.open()
   local dir_path = vim.fn.expand("~/workspace/diary")
-  if vim.fn.isdirectory(dir_path) ~= 1 then
-    vim.fn.mkdir(dir_path, "p")
-  end
 
   local diary_path = dir_path .. "/" .. vim.fn.strftime("%Y%m%d.txt")
   vim.cmd.drop({ mods = { tab = 0 }, args = { diary_path } })
-  vim.cmd.lcd(dir_path)
   vim.opt_local.filetype = "mydiary"
 
   local current_content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")
@@ -16,7 +12,8 @@ function M.open()
     return
   end
 
-  vim.cmd.write()
+  vim.fn.writefile({}, diary_path, "p")
+  vim.cmd.lcd(dir_path)
 
   local dir = vim.fn.reverse(vim.fn.readdir("."))
   local others = vim.list_slice(dir, 2)

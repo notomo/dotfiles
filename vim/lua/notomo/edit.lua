@@ -60,13 +60,9 @@ end
 
 function M.note()
   local dir_path = vim.fn.expand("~/workspace/memo")
-  if vim.fn.isdirectory(dir_path) ~= 1 then
-    vim.fn.mkdir(dir_path, "p")
-  end
-
   local file_path = table.concat({ dir_path, "note.md" }, "/")
   if vim.fn.filereadable(file_path) ~= 1 then
-    io.open(file_path, "w"):close()
+    vim.fn.writefile({}, file_path, "p")
   end
 
   local before_tab_num = vim.fn.tabpagenr()
