@@ -424,6 +424,16 @@ vim.keymap.set("n", "[finder]gL", function()
 end)
 
 vim.keymap.set("n", "[file]f", [[<Cmd>lua require("thetto").start("file/alter")<CR>]])
+vim.keymap.set("n", "[file]F", function()
+  require("thetto").start("file/alter", {
+    opts = { action = "tab_open" },
+    source_opts = {
+      pattern_groups = {
+        { "%/lua/thetto/handler/source/%.lua", "%/lua/thetto/handler/kind/%.lua" },
+      },
+    },
+  })
+end)
 vim.keymap.set("n", "[file]l", [[<Cmd>lua require("thetto").start("file/alter", {opts = {action = "tab_open"}})<CR>]])
 vim.keymap.set(
   "n",
@@ -514,15 +524,23 @@ vim.keymap.set("n", "[keyword]O", [[<Cmd>lua require("thetto").start("vim/lsp/ou
 vim.keymap.set("n", "[keyword]I", [[<Cmd>lua require("thetto").start("vim/lsp/incoming_calls")<CR>]])
 
 vim.keymap.set("n", "[git]D", function()
+  local git_root, err = require("thetto.util.git").root()
+  if err then
+    return require("misclib.message").warn(err)
+  end
   local bufnr = require("thetto.util.git").diff_buffer()
-  require("thetto.util.git").diff(bufnr):next(function()
+  require("thetto.util.git").diff(git_root, bufnr):next(function()
     require("thetto.lib.buffer").open_scratch_tab()
     vim.cmd.buffer(bufnr)
   end)
 end)
 vim.keymap.set("n", "[git]dd", function()
+  local git_root, err = require("thetto.util.git").root()
+  if err then
+    return require("misclib.message").warn(err)
+  end
   local path = vim.api.nvim_buf_get_name(0)
-  require("thetto.util.git").compare(path, "HEAD", path)
+  require("thetto.util.git").compare(git_root, path, "HEAD", path)
 end)
 
 -- custom action
