@@ -12,7 +12,7 @@ function M.open()
     return
   end
 
-  vim.fn.writefile({}, diary_path, "p")
+  vim.cmd([[write ++p]])
   vim.cmd.lcd(dir_path)
 
   local dir = vim.fn.reverse(vim.fn.readdir("."))
