@@ -5,24 +5,48 @@ NVIM := nvim
 test:
 	${NVIM} --headless +"lua require('notomo.startup').test()"
 
+update:
+	${NVIM} --headless +"lua require('notomo.startup').update_plugins()"
+
 profile:
 	rm -f log
 	${NVIM} --startuptime log +"lua require('notomo.startup').schedule('quitall!')"
 	cat log
 	rm -f log
 
-test_plugins:
-	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} make test -C {}
+help_tags:
+	${NVIM} --headless +"lua require('notomo.startup').generate_help_tags()"
+
+version:
+	${NVIM} --version
+
+# plugin development
+
+test_all:
+	${NVIM} --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} make test -C {}
 
 format:
-	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _format TARGET_PATH={}
+	${NVIM} --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _format TARGET_PATH={}
 	$(MAKE) --no-print-directory _format TARGET_PATH=${HOME}/dotfiles
 _format:
 	@echo
 	zsh -f -c 'stylua --config-path ~/dotfiles/tool/stylua.toml -- ${TARGET_PATH}/**/*.lua'
 
+vendor:
+	${NVIM} --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} make vendor -C {}
+	$(MAKE) status
+
+doc:
+	${NVIM} --headless +"lua require('notomo.startup').has_doc_plugins()" +quitall! | xargs -I{} make doc -C {}
+
+status:
+	${NVIM} --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _status TARGET_PATH={}
+_status:
+	@echo
+	git --no-pager -C ${TARGET_PATH} status
+
 commit:
-	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _commit TARGET_PATH={}
+	${NVIM} --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _commit TARGET_PATH={}
 _commit:
 	@echo
 	test '${MESSAGE}'
@@ -31,34 +55,6 @@ _commit:
 	git -C ${TARGET_PATH} commit -m '${MESSAGE}'
 
 PUSH:
-	nvim --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _PUSH TARGET_PATH={}
+	${NVIM} --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _PUSH TARGET_PATH={}
 _PUSH:
 	git -C ${TARGET_PATH} push
-
-update_plugins:
-	nvim --headless +"lua require('notomo.startup').update_plugins()"
-
-vendor_plugins:
-	nvim --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} make vendor -C {}
-	$(MAKE) vendor_plugins_status
-
-gen_doc_plugins:
-	nvim --headless +"lua require('notomo.startup').has_doc_plugins()" +quitall! | xargs -I{} make doc -C {}
-
-vendor_plugins_status:
-	nvim --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _status TARGET_PATH={}
-_status:
-	@echo
-	git --no-pager -C ${TARGET_PATH} status
-
-test_vendor_plugins:
-	nvim --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} make test -C {}
-
-list_vendor_plugins:
-	nvim --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall!
-
-help_tags:
-	nvim --headless +"lua require('notomo.startup').generate_help_tags()"
-
-version:
-	${NVIM} --version
