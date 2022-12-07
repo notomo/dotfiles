@@ -5,14 +5,14 @@ NVIM := nvim
 test:
 	${NVIM} --headless +"lua require('notomo.startup').test()"
 
-update:
-	${NVIM} --headless +"lua require('notomo.startup').update_plugins()"
-
 profile:
 	rm -f log
 	${NVIM} --startuptime log +"lua require('notomo.startup').schedule('quitall!')"
 	cat log
 	rm -f log
+
+update:
+	${NVIM} --headless +"lua require('notomo.startup').update_plugins()"
 
 help_tags:
 	${NVIM} --headless +"lua require('notomo.startup').generate_help_tags()"
@@ -44,6 +44,12 @@ status:
 _status:
 	@echo
 	git --no-pager -C ${TARGET_PATH} status
+
+diff:
+	${NVIM} --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _diff TARGET_PATH={}
+_diff:
+	@echo
+	git --no-pager -C ${TARGET_PATH} diff
 
 commit:
 	${NVIM} --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _commit TARGET_PATH={}
