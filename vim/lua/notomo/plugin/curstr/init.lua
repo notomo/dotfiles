@@ -94,7 +94,7 @@ require("curstr").setup({
       filetypes = { "vim", "python", "lua" },
     },
     ["vim/lua"] = {
-      filetypes = { "vim", "lua", "cmdhndlr" },
+      filetypes = { "vim", "lua", "cmdhndlr", "make" },
     },
   },
 })
