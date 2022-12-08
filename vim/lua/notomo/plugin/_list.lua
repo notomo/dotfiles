@@ -517,7 +517,7 @@ mypack.add("notomo/stlparts.nvim", {
   },
 })
 
-optpack.add("romgrk/nvim-treesitter-context", {
+optpack.add("nvim-treesitter/nvim-treesitter-context", {
   depends = { "nvim-treesitter" },
   load_on = { cmds = { "TSContext*" } },
   hooks = {
