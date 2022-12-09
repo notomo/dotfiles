@@ -1,6 +1,10 @@
 local lspconfig = require("lspconfig")
 require("neodev").setup({})
 
+local on_attach = function(client, _)
+  client.server_capabilities.semanticTokensProvider = nil
+end
+
 local setup_ls = function(ls, config, ...)
   for _, disabled_feature in ipairs({ ... }) do
     if vim.fn.has(disabled_feature) == 1 then
@@ -12,6 +16,7 @@ local setup_ls = function(ls, config, ...)
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
   config.capabilities = require("cmp_nvim_lsp").default_capabilities()
   config.capabilities.snippetSupport = false
+  config.on_attach = on_attach
   ls.setup(config)
 end
 
