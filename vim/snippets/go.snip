@@ -426,3 +426,7 @@ snippet read_file
 		return err
 	}
 	s := string(b)
+
+snippet flag
+	v := flag.String("${1:name}", "${2:default}", "${3:description}")
+	flag.Parse()
