@@ -1,4 +1,5 @@
 IMAGE_NAME:=notomo_dev
+TARGET:=${IMAGE_NAME}2
 
 DEP_DIR:=./tmp
 $(DEP_DIR):
@@ -21,8 +22,8 @@ build: $(DEP_DIR)/ansible $(DEP_DIR)/.ssh $(DEP_DIR)/thetto.nvim
 start:
 	docker run --rm -it ${IMAGE_NAME} bash
 
-VHDX_DIR:=/mnt/c/wsl/${IMAGE_NAME}
-TAR_FILE_NAME:=${IMAGE_NAME}.tar.gz
+VHDX_DIR:=/mnt/c/wsl/${TARGET}
+TAR_FILE_NAME:=${TARGET}.tar.gz
 TAR_PATH:=${VHDX_DIR}/${TAR_FILE_NAME}
 vhdx_dir:
 	mkdir -p ${VHDX_DIR}
@@ -34,11 +35,11 @@ tar: vhdx_dir
 	docker rm -f ${TMP_CONTAINER_NAME}
 
 import: vhdx_dir
-	cd ${VHDX_DIR}; wsl.exe --import ${IMAGE_NAME} . ./${TAR_FILE_NAME}
+	cd ${VHDX_DIR}; wsl.exe --import ${TARGET} . ./${TAR_FILE_NAME}
 
 unregister:
-	wsl.exe --unregister ${IMAGE_NAME}
+	wsl.exe --unregister ${TARGET}
 list:
 	wsl.exe --list
 terminate:
-	wsl.exe --terminate ${IMAGE_NAME}
+	wsl.exe --terminate ${TARGET}
