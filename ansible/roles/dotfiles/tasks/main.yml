@@ -21,7 +21,6 @@
     - .vim/tmp/undo
     - .vim/tmp/view
     - .vim/tmp/swap
-    - .vim/reference
     - .config
 
 - name: mkdir for karabiner
