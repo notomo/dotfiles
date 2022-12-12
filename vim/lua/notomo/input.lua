@@ -13,15 +13,11 @@ local create_cancel = function(on_confirm, close)
 end
 
 local group = vim.api.nvim_create_augroup("notomo_ui_input", {})
-local create_confirm = function(on_confirm, cancel, close, default_line)
+local create_confirm = function(on_confirm, close)
   return function()
     vim.cmd.stopinsert()
 
     local line = vim.fn.getline(".")
-    if line == default_line then
-      return cancel()
-    end
-
     on_confirm(line)
 
     vim.api.nvim_clear_autocmds({ group = group })
@@ -112,7 +108,7 @@ function M.open(opts, on_confirm)
 
   local close = create_close(window_id, prompt_window_id)
   local cancel = create_cancel(on_confirm, close)
-  local confirm = create_confirm(on_confirm, cancel, close, default_line)
+  local confirm = create_confirm(on_confirm, close)
 
   vim.api.nvim_create_autocmd({ "WinClosed", "WinLeave", "TabLeave", "BufLeave", "BufWipeout" }, {
     group = group,
