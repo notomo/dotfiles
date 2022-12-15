@@ -352,6 +352,21 @@ local runner_actions = {
 source_actions["cmd/make/target"] = runner_actions
 source_actions["cmd/npm/script"] = runner_actions
 
+local listdefined_names = {
+  "keymap",
+  "autocmd",
+  "autocmd_group",
+  "highlight",
+}
+for _, name in ipairs(listdefined_names) do
+  source_config["listdefined/" .. name] = {
+    alias_to = "listdefined",
+    opts = {
+      name = name,
+    },
+  }
+end
+
 require("thetto").setup({
   global_opts = {
     display_limit = 500,
