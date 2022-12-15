@@ -1,8 +1,7 @@
-local group_name = "notomo_setting"
-vim.api.nvim_create_augroup(group_name, {})
+local group = vim.api.nvim_create_augroup("notomo_setting", {})
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     pcall(vim.cmd, [[lcd `=expand('%:p:h')`]])
@@ -10,7 +9,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 })
 
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     if vim.fn.bufname("%") ~= "" then
@@ -27,7 +26,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 })
 
 vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/color.lua"))
@@ -35,7 +34,7 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     vim.opt.iminsert = 0
@@ -43,14 +42,14 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 })
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     vim.opt_local.cursorline = false
   end,
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     vim.opt_local.cursorline = true
@@ -58,14 +57,14 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
 })
 
 vim.api.nvim_create_autocmd({ "WinEnter" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     vim.opt_local.cursorline = true
   end,
 })
 vim.api.nvim_create_autocmd({ "WinLeave" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     vim.opt_local.cursorline = false
@@ -73,14 +72,14 @@ vim.api.nvim_create_autocmd({ "WinLeave" }, {
 })
 
 vim.api.nvim_create_autocmd({ "OptionSet" }, {
-  group = group_name,
+  group = group,
   pattern = { "diff" },
   callback = function()
     vim.opt_local.cursorline = false
   end,
 })
 vim.api.nvim_create_autocmd({ "WinEnter", "InsertLeave" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     if vim.opt_local.diff:get() then
@@ -90,28 +89,28 @@ vim.api.nvim_create_autocmd({ "WinEnter", "InsertLeave" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  group = group_name,
+  group = group,
   pattern = { "*/roles/*.yml", "*/playbooks/*.yml" },
   callback = function()
     vim.opt_local.filetype = "yaml.ansible"
   end,
 })
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = group_name,
+  group = group,
   pattern = { "typescriptreact" },
   callback = function()
     vim.opt_local.filetype = "typescript.tsx"
   end,
 })
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     vim.highlight.on_yank({ higroup = "Flashy", timeout = 200, on_macro = true, on_visual = true })
   end,
 })
 vim.api.nvim_create_autocmd({ "UIEnter" }, {
-  group = group_name,
+  group = group,
   pattern = { "*" },
   callback = function()
     if vim.g.GuiLoaded then
@@ -122,7 +121,7 @@ vim.api.nvim_create_autocmd({ "UIEnter" }, {
 
 if vim.fn.has("wsl") == 1 or vim.fn.has("win32") == 1 then
   vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-    group = group_name,
+    group = group,
     pattern = { "*" },
     callback = function()
       require("notomo.job").run({ "zenhan.exe", "0" }, {
