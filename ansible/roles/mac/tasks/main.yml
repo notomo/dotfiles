@@ -49,11 +49,6 @@
     state: present
   notify: restart dock
 
-# - name: tap homebrew
-#   homebrew_tap: name={{ item }}
-#   with_items:
-#     - caskroom/homebrew-drivers
-
 - name: install with homebrew_cask
   homebrew_cask: name={{ item }}
   with_items:
@@ -61,7 +56,6 @@
     - alfred
     - google-japanese-ime
     - logitech-unifying
-    # - logitech-options
     - keepassx
   ignore_errors: yes
 
@@ -129,34 +123,3 @@
     key: kDim
     type: bool
     value: false
-
-- name: check dock apps
-  shell: defaults read com.apple.dock
-  register: dock_defaults
-  changed_when: false
-
-- name: remove default apps in dock
-  osx_defaults:
-    domain: com.apple.dock
-    key: persistent-apps
-    type: array
-    value: []
-  when: dock_defaults.stdout.find("iTerm") == -1
-  notify: restart dock
-
-- name: add apps to dock
-  osx_defaults:
-    domain: com.apple.dock
-    key: persistent-apps
-    array_add: true
-    type: array
-    value: ['<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/{{ item }}.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>']
-  with_items:
-    - Launchpad
-    - iTerm
-    - "Google Chrome"
-    - Firefox
-    - VirtualBox
-    - keepassx
-  when: dock_defaults.stdout.find(item) == -1
-  notify: restart dock
