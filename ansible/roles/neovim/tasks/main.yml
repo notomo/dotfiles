@@ -22,7 +22,9 @@
   when: is_ubuntu and not nvim_installed.stat.exists
 
 - name: download nvim on mac
-  action: command wget https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz -O {{ app_dir }}/nvim.tar.gz
+  get_url:
+    url: https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
+    dest: "{{ app_dir }}/nvim.tar.gz"
   when: is_macos and not nvim_installed.stat.exists and not nvim_installed.stat.exists
 
 - name: unarchive nvim
