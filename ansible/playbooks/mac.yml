@@ -18,6 +18,7 @@
     - { role: 'golang', tags: ['golang'] }
     - { role: 'aws', tags: ['aws'] }
     - { role: 'gh', tags: ['gh'] }
+    - { role: 'deno', tags: ['deno'] }
     - { role: 'default_shell', tags: ['default_shell'] }
     - { role: 'gitconfig', tags: ['gitconfig'] }
   vars_files:
