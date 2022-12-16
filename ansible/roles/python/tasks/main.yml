@@ -10,20 +10,32 @@
       - black
       - python-lsp-server[all]
 
+- name: set python3_bin_path
+  set_fact:
+    python3_bin_path: "/home/linuxbrew/.linuxbrew/bin/python3"
+    pip3_bin_path: "/home/linuxbrew/.linuxbrew/bin/pip3"
+  when: is_ubuntu
+
+- name: set python3_bin_path
+  set_fact:
+    python3_bin_path: "/usr/bin/python3"
+    pip3_bin_path: "pip3"
+  when: is_macos
+
 - name: create python symbolic link
   file:
-    src: "/home/linuxbrew/.linuxbrew/bin/python3"
+    src: "{{ python3_bin_path }}"
     dest: "{{ home_dir }}/.local/bin/python"
     state: link
-  when: is_ubuntu
+  when: is_macos or is_ubuntu
 
 - name: create pip symbolic link
   file:
-    src: "/home/linuxbrew/.linuxbrew/bin/pip3"
+    src: "{{ pip3_bin_path }}"
     dest: "{{ home_dir }}/.local/bin/pip"
     state: link
   when: is_ubuntu
 
 - pip:
     name: "{{ python3_packages }}"
-    executable: "/home/linuxbrew/.linuxbrew/bin/pip3"
+    executable: "{{ pip3_bin_path }}"
