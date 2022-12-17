@@ -76,6 +76,10 @@ vim.api.nvim_create_autocmd({ "OptionSet" }, {
   pattern = { "diff" },
   callback = function()
     vim.opt_local.cursorline = false
+    vim.keymap.set("n", "q", [[<Cmd>tabclose<CR>]], {
+      buffer = true,
+      nowait = true,
+    })
   end,
 })
 vim.api.nvim_create_autocmd({ "WinEnter", "InsertLeave" }, {
