@@ -81,6 +81,19 @@ local url_actions = {
 kind_actions["url"] = url_actions
 source_actions["url/bookmark"] = url_actions
 
+local ignore_patterns = {}
+vim.list_extend(ignore_patterns, vim.g.notomo_thetto_ignore_pattenrs or {})
+kind_actions["file"] = {
+  opts = {
+    preview = { ignore_patterns = ignore_patterns },
+  },
+}
+kind_actions["git/status/file"] = {
+  opts = {
+    preview = { ignore_patterns = ignore_patterns },
+  },
+}
+
 kind_actions["github/repository"] = {
   action_temporary_clone = function(items)
     local item = items[1]
