@@ -13,7 +13,7 @@
     pushInsteadOf = https://github.com/
 
 [alias]
-    pushfff = push --force-with-lease
+    pushfff = push --force-with-lease --force-if-includes
     rc = rebase --continue
     rs = rebase --skip
 [init]
