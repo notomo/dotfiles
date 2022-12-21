@@ -49,6 +49,12 @@ kind_actions["git/status/file"] = {
   },
 }
 
+source_config["git/status"] = {
+  global_opts = {
+    display_limit = 10000,
+  },
+}
+
 kind_actions["vim/variable"] = {
   action_edit = function(items)
     local item = items[1]
