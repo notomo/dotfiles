@@ -1,0 +1,20 @@
+[[columns]]
+kind = "Pid"
+style = "BrightYellow|Yellow"
+
+[[columns]]
+kind = "User"
+style = "BrightWhite|Black"
+
+[[columns]]
+kind = "ElapsedTime"
+
+[[columns]]
+kind = "VmRss"
+
+[[columns]]
+kind = "Command"
+style = "BrightWhite|Black"
+
+[display]
+show_thread_in_tree = false

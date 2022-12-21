@@ -16,3 +16,11 @@
       - fd
       - httpie
       - lsof
+      - procs
+
+- name: create .procs.toml link
+  file:
+    src: "{{ role_path }}/files/.procs.toml"
+    dest: "{{ home_dir }}/.procs.toml"
+    state: link
+  when: is_ubuntu or is_macos

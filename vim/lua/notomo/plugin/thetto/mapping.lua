@@ -348,7 +348,7 @@ vim.keymap.set("n", "[finder]gl", [[<Cmd>lua require("thetto").start("file/grep"
 vim.keymap.set("n", "[finder]gg", function()
   require("thetto").start("file/grep", { opts = { cwd = require("thetto.util.cwd").project() } })
 end, { silent = true })
-vim.keymap.set("n", "[finder]P", [[<Cmd>lua require("thetto").start("env/process")<CR>]])
+vim.keymap.set("n", "[finder]P", [[<Cmd>lua require("thetto").start("cmd/procs")<CR>]])
 vim.keymap.set("n", "[finder]A", [[<Cmd>lua require("thetto").start("vim/autocmd")<CR>]])
 vim.keymap.set("n", "[finder]s", [[<Cmd>lua require("thetto").start("thetto/source")<CR>]])
 vim.keymap.set("n", "[finder]n", [[<Cmd>lua require("thetto").resume_execute({opts = {offset = 1}})<CR>]])
