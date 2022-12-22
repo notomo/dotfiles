@@ -15,7 +15,8 @@ export PATH=${HOME}/app/flutter/bin/cache/dart-sdk/bin:$PATH
 
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 
-if [[ "$(< /proc/sys/kernel/osrelease)" == *microsoft* ]]; then 
+osrelease=/proc/sys/kernel/osrelease
+if [[ -f ${osrelease} && "$(< ${osrelease})" == *microsoft* ]]; then 
     export LIBGL_ALWAYS_INDIRECT=1
     export WSL_HOST=$(tail -1 /etc/resolv.conf | cut -d' ' -f2)
     export DISPLAY=$WSL_HOST:0
