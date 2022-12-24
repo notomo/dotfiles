@@ -68,7 +68,9 @@ setup_ls(lspconfig.sumneko_lua, {
         },
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
+      semantic = { enable = false },
       telemetry = { enable = false },
+      workspace = { checkThirdParty = false },
     },
   },
 }, "mac", "win32")
