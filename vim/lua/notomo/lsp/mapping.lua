@@ -19,12 +19,12 @@ function M.go_to_definition()
     end
 
     if vim.tbl_islist(result) then
-      util.jump_to_location(result[1], client.offset_encoding)
+      util.jump_to_location(result[1], client.offset_encoding, false)
       if #result > 1 then
-        vim.fn.setloclist(0, util.locations_to_items(result))
+        vim.fn.setloclist(0, util.locations_to_items(result, client.offset_encoding))
       end
     else
-      util.jump_to_location(result, client.offset_encoding)
+      util.jump_to_location(result, client.offset_encoding, false)
     end
   end)
 end

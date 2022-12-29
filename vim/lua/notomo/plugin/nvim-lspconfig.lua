@@ -1,7 +1,8 @@
 local lspconfig = require("lspconfig")
 require("neodev").setup({})
 
-local on_attach = function(client, _)
+local on_attach = function(client, bufnr)
+  vim.lsp.semantic_tokens.stop(bufnr, client.id)
   client.server_capabilities.semanticTokensProvider = nil
 end
 
@@ -57,10 +58,7 @@ setup_ls(lspconfig.sumneko_lua, {
           "newproxy",
         },
         disable = {
-          "missing-parameter", -- HACK: for expand()
-          "redundant-parameter", -- HACK: return function
           "need-check-nil", -- HACK: return tbl, err
-          "assign-type-mismatch", -- HACK: vim.fn, ...
           "param-type-mismatch",
           "cast-type-mismatch",
           "return-type-mismatch",

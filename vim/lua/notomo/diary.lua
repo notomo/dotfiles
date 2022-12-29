@@ -5,7 +5,7 @@ function M.open()
 
   local diary_path = dir_path .. "/" .. vim.fn.strftime("%Y%m%d.txt")
   vim.cmd.drop({ mods = { tab = 0 }, args = { diary_path } })
-  vim.opt_local.filetype = "mydiary"
+  vim.bo.filetype = "mydiary"
 
   local current_content = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "")
   if current_content ~= "" then
