@@ -287,6 +287,9 @@ source_config["cmd/zsh/completion"] = {
 source_config["cmd/whereis"] = {
   filters = interactive_filters,
 }
+source_config["importgraph"] = {
+  filters = interactive_filters,
+}
 
 source_config["go/bin"] = {
   alias_to = "file/recursive",
