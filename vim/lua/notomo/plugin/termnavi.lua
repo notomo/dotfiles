@@ -2,7 +2,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   group = vim.api.nvim_create_augroup("termnavi_setting", {}),
   pattern = { "*" },
   callback = function()
-    vim.keymap.set("t", "<CR>", function()
+    local enter = function()
       require("notomo.edit").set_term_title("^\\$ ", 24)
       require("termnavi").mark({
         prompt_pattern = [=[\v^\[.*\]$\_.^\$]=],
@@ -13,7 +13,10 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
         },
       })
       return "<CR>"
-    end, { expr = true, buffer = true })
+    end
+    vim.keymap.set("t", "<CR>", enter, { expr = true, buffer = true })
+    vim.keymap.set("t", "<C-CR>", enter, { expr = true, buffer = true })
+    vim.keymap.set("t", "<S-CR>", enter, { expr = true, buffer = true })
 
     vim.keymap.set("t", "<C-l>", function()
       require("termnavi").clear()
