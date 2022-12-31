@@ -45,14 +45,14 @@ vim.api.nvim_create_autocmd({ "InsertEnter" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    vim.opt_local.cursorline = false
+    vim.wo.cursorline = false
   end,
 })
 vim.api.nvim_create_autocmd({ "InsertLeave" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    vim.opt_local.cursorline = true
+    vim.wo.cursorline = true
   end,
 })
 
@@ -60,14 +60,14 @@ vim.api.nvim_create_autocmd({ "WinEnter" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    vim.opt_local.cursorline = true
+    vim.wo.cursorline = true
   end,
 })
 vim.api.nvim_create_autocmd({ "WinLeave" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    vim.opt_local.cursorline = false
+    vim.wo.cursorline = false
   end,
 })
 
@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd({ "OptionSet" }, {
   group = group,
   pattern = { "diff" },
   callback = function()
-    vim.opt_local.cursorline = false
+    vim.wo.cursorline = false
     vim.keymap.set("n", "q", [[<Cmd>tabclose<CR>]], {
       buffer = true,
       nowait = true,
@@ -86,8 +86,8 @@ vim.api.nvim_create_autocmd({ "WinEnter", "InsertLeave" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    if vim.opt_local.diff:get() then
-      vim.opt_local.cursorline = false
+    if vim.wo.diff then
+      vim.wo.cursorline = false
     end
   end,
 })
@@ -96,14 +96,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = group,
   pattern = { "*/roles/*.yml", "*/playbooks/*.yml" },
   callback = function()
-    vim.opt_local.filetype = "yaml.ansible"
+    vim.bo.filetype = "yaml.ansible"
   end,
 })
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
   pattern = { "typescriptreact" },
   callback = function()
-    vim.opt_local.filetype = "typescript.tsx"
+    vim.bo.filetype = "typescript.tsx"
   end,
 })
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {

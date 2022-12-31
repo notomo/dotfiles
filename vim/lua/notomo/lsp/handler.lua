@@ -68,7 +68,7 @@ vim.keymap.set("n", "[lc]D", [[<Cmd>lua vim.lsp.buf.type_definition()<CR>]], { s
 vim.keymap.set("n", "[lc]K", [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]s", function()
   vim.diagnostic.hide()
-  vim.lsp.stop_client(vim.lsp.get_active_clients(), true)
+  vim.lsp.stop_client(vim.lsp.get_active_clients(), false)
 end, { silent = true })
 vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true })
 vim.keymap.set("n", "[exec]gf", [[<Cmd>lua vim.lsp.buf.format({async = true})<CR>]])
