@@ -1,7 +1,10 @@
 local M = {}
 
 function M.collect(source_ctx)
-  local pattern = source_ctx.pattern or ""
+  local pattern, subscriber = require("thetto.util.source").get_input(source_ctx)
+  if not pattern then
+    return subscriber
+  end
 
   local filters = vim.tbl_map(function(p)
     if vim.startswith(p, "!") then
