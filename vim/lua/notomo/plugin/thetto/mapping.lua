@@ -466,9 +466,7 @@ vim.keymap.set(
 vim.keymap.set("n", "[finder]J", [[<Cmd>lua require("thetto").start("vim/jump")<CR>]])
 vim.keymap.set("n", "[finder]c", [[<Cmd>lua require("thetto").start("vim/command")<CR>]])
 vim.keymap.set("n", "[finder]M", [[<Cmd>lua require("thetto").start("env/manual")<CR>]])
-vim.keymap.set("n", "[finder]q", function()
-  require("thetto").start("cmd/jq", { opts = { filters = require("thetto.util.filter").prepend("interactive") } })
-end)
+vim.keymap.set("n", "[finder]q", [[<Cmd>lua require("thetto").start("cmd/jq")<CR>]])
 vim.keymap.set("n", "[finder]gR", [[<Cmd>lua require("thetto").start("cmd/gron")<CR>]])
 vim.keymap.set(
   "n",

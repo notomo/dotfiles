@@ -43,4 +43,6 @@ end
 
 M.kind_name = "word"
 
+M.filters = require("thetto.util.filter").prepend("interactive")
+
 return M

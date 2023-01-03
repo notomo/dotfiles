@@ -264,31 +264,12 @@ source_config["cmd/zsh/history"] = {
   global_opts = { cwd = require("thetto.util.cwd").upward({ "Makefile" }) },
 }
 
-local interactive_filters = { "interactive", "regex", "-regex" }
-source_config["github/user"] = {
-  filters = interactive_filters,
-}
-source_config["github/search_repository"] = {
-  filters = interactive_filters,
-}
 source_config["github/assigned_issue"] = {
   alias_to = "github/issue",
   opts = {
     repo_with_owner = "",
     extra_args = { "--assignee=@me" },
   },
-}
-source_config["github/issue"] = {
-  filters = interactive_filters,
-}
-source_config["cmd/zsh/completion"] = {
-  filters = interactive_filters,
-}
-source_config["cmd/whereis"] = {
-  filters = interactive_filters,
-}
-source_config["importgraph"] = {
-  filters = interactive_filters,
 }
 
 source_config["go/bin"] = {
