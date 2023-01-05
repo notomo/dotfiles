@@ -42,3 +42,4 @@
       - llvm
       - gdb
       - uncrustify
+      - doxygen # to gen doc
