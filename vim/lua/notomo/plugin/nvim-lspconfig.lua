@@ -108,16 +108,6 @@ setup_ls(lspconfig.denols, {
 setup_ls(lspconfig.vimls, {}, "mac", "win32")
 setup_ls(lspconfig.cssls, {}, "mac", "win32")
 
-setup_ls(lspconfig.dartls, {
-  root_dir = require("lspconfig/util").root_pattern("pubspec.yaml", ".git"),
-  cmd = {
-    "dart",
-    vim.fn.expand("~/app/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot"),
-    "--lsp",
-  },
-  init_options = { flutterOutline = true, outline = true },
-}, "mac", "win32")
-
 setup_ls(lspconfig.yamlls, {})
 setup_ls(lspconfig.autohotkey2, {}, "unix")
 

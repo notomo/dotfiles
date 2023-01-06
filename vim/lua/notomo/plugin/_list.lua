@@ -349,8 +349,6 @@ mypack.add("notomo/reacher.nvim", {
   hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/reacher.lua") },
 })
 
-optpack.add("dart-lang/dart-vim-plugin", { load_on = { filetypes = { "dart" } } })
-
 mypack.add("notomo/cmdbuf.nvim", {
   load_on = { modules = { "cmdbuf" } },
   hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/cmdbuf.lua") },

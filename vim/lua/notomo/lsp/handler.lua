@@ -17,14 +17,6 @@ function M.publish_diagnostics(err, result, ctx, config)
   })
 end
 
-function M.dart_publish_outline(_, result, ctx)
-  vim.api.nvim_buf_set_var(ctx.bufnr or 0, "_thetto_dart_outline", result)
-end
-
-function M.dart_publish_flutter_outline(_, result, ctx)
-  vim.api.nvim_buf_set_var(ctx.bufnr or 0, "_thetto_flutter_outline", result)
-end
-
 M.ignored_progress = { "null-ls" }
 function M.progress()
   local messages = vim.tbl_filter(function(msg)
@@ -46,12 +38,6 @@ vim.lsp.set_log_level("error")
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
   require("notomo.lsp.handler").publish_diagnostics(...)
-end
-vim.lsp.handlers["dart/textDocument/publishOutline"] = function(...)
-  require("notomo.lsp.handler").dart_publish_outline(...)
-end
-vim.lsp.handlers["dart/textDocument/publishFlutterOutline"] = function(...)
-  require("notomo.lsp.handler").dart_publish_flutter_outline(...)
 end
 
 vim.api.nvim_create_augroup("notomo_lsp_progress", {})

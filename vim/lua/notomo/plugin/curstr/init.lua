@@ -65,15 +65,6 @@ require("curstr").setup({
       },
       filetypes = { "lua" },
     },
-    print_dart = {
-      names = { "togglable/pattern" },
-      opts = {
-        patterns = {
-          { "\\v^(\\s*)(var\\s+|const\\s+|final\\s+)?([^=[:space:],:]*).*$", "\\1print(\\3);" },
-        },
-      },
-      filetypes = { "dart" },
-    },
     print = {
       names = {
         "print_vim",
@@ -83,7 +74,6 @@ require("curstr").setup({
         "print_ts",
         "print_rust",
         "print_lua",
-        "print_dart",
       },
       opts = { is_line = true },
     },

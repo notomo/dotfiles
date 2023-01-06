@@ -29,7 +29,6 @@ null_ls.setup({
       },
     }),
     null_ls.builtins.formatting.terraform_fmt,
-    null_ls.builtins.formatting.dart_format,
     null_ls.builtins.formatting.stylua.with({
       extra_args = function(params)
         local config = vim.fn.expand("~/dotfiles/tool/stylua.toml")

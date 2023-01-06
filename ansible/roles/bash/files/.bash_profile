@@ -10,9 +10,6 @@ export PATH=$PATH:$HOME/.vim/packages/pack/mypack/opt/vimonga/target/debug/
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin:$HOME/.local/go/bin
 
-export PATH=${HOME}/app/flutter/bin:$PATH
-export PATH=${HOME}/app/flutter/bin/cache/dart-sdk/bin:$PATH
-
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 
 osrelease=/proc/sys/kernel/osrelease
