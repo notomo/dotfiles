@@ -6,7 +6,6 @@
 - name: set variables
   set_fact:
     python3_packages:
-      - isort
       - black
       - python-lsp-server[all]
 

@@ -9,7 +9,6 @@
       vim/syntax: .vim/syntax
       vim/ftdetect: .vim/ftdetect
       vim/lua/notomo/init.lua: .config/nvim/init.lua
-      lint/python/setup.cfg: setup.cfg
       git/.gitignore_global: .gitignore_global
 
 - name: mkdir
