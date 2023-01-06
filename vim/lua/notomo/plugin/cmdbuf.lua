@@ -25,7 +25,7 @@ vim.api.nvim_create_augroup("cmdbuf_setting", {})
 vim.api.nvim_create_autocmd({ "User" }, {
   group = "cmdbuf_setting",
   pattern = { "CmdbufNew" },
-  callback = function()
+  callback = function(args)
     vim.bo.bufhidden = "wipe"
     vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
     vim.keymap.set("n", "dd", [[<Cmd>lua require('cmdbuf').delete()<CR>]], { buffer = true })
@@ -35,5 +35,11 @@ vim.api.nvim_create_autocmd({ "User" }, {
       [[:lua require('cmdbuf').delete({vim.api.nvim_buf_get_mark(0, "<")[1], vim.api.nvim_buf_get_mark(0, ">")[1]})<CR>]],
       { buffer = true }
     )
+
+    local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
+    lines = vim.tbl_filter(function(line)
+      return not line:match("^Git push")
+    end, lines)
+    vim.api.nvim_buf_set_lines(args.buf, 0, -1, false, lines)
   end,
 })
