@@ -2,6 +2,16 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     null_ls.builtins.diagnostics.actionlint,
+    null_ls.builtins.diagnostics.ltrs.with({
+      filetypes = {
+        "text",
+      },
+      -- needs `ltrs docker start`
+      args = { "--hostname", "http://localhost", "-p", "8010", "check", "-l", "en", "-m", "-r", "--text", "$TEXT" },
+      runtime_condition = function(params)
+        return vim.startswith(params.bufname, vim.fn.expand("~/workspace/scratch/text/scratch.txt"))
+      end,
+    }),
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.rustfmt,
