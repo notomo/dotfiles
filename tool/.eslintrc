@@ -6,5 +6,9 @@
     "node": true
   },
   "extends": "eslint:recommended",
-  "rules": {}
+  "rules": {},
+  "globals": {
+    "db": true,
+    "ObjectId": true
+  }
 }
