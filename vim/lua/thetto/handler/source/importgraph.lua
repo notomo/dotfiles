@@ -25,8 +25,18 @@ function M.collect(source_ctx)
     return true
   end
 
+  local languages = {
+    gomod = "go",
+  }
+  local filetype = vim.bo[source_ctx.bufnr].filetype
+  local language = languages[filetype] or filetype
+  if vim.bo[source_ctx.bufnr].buftype == "nofile" then
+    language = nil
+  end
+
   local graph = require("importgraph").render({
     collector = {
+      language = language,
       path_filter = filter,
       imported_target_filter = filter,
       working_dir = source_ctx.cwd,

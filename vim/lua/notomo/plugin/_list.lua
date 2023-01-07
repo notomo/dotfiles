@@ -582,6 +582,7 @@ mypack.add("notomo/misclib.nvim", {
 })
 
 mypack.add("notomo/importgraph.nvim", {
+  depends = { "nvim-treesitter" },
   load_on = { modules = { "importgraph" } },
 })
 
