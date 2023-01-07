@@ -111,6 +111,8 @@ setup_ls(lspconfig.cssls, {}, "mac", "win32")
 setup_ls(lspconfig.yamlls, {})
 setup_ls(lspconfig.autohotkey2, {}, "unix")
 
+setup_ls(lspconfig.ocamllsp, {}, "mac", "win32")
+
 require("lsp_signature").setup({
   bind = true,
   handler_opts = {

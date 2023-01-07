@@ -1,5 +1,6 @@
 local null_ls = require("null-ls")
 null_ls.setup({
+  debug = false,
   sources = {
     null_ls.builtins.diagnostics.actionlint,
     null_ls.builtins.diagnostics.ltrs.with({
@@ -11,6 +12,9 @@ null_ls.setup({
       runtime_condition = function(params)
         return vim.startswith(params.bufname, vim.fn.expand("~/workspace/scratch/text/scratch.txt"))
       end,
+    }),
+    null_ls.builtins.formatting.ocamlformat.with({
+      args = { "--enable-outside-detected-project", "--impl", "-" },
     }),
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.goimports,
