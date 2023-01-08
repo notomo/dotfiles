@@ -31,8 +31,7 @@ function M.remove_indent(str)
   return table.concat(lines, " ")
 end
 
-function M.get_near_function_name()
-  local bufnr = 0
+function M._get_near_function_node(bufnr)
   local language = vim.bo[bufnr].filetype
 
   local root, err = require("notomo.treesitter").get_first_tree_root(bufnr, language)
@@ -41,6 +40,8 @@ function M.get_near_function_name()
   end
 
   local row = unpack(vim.api.nvim_win_get_cursor(0))
+
+  require("nvim-treesitter")
   local query = vim.treesitter.get_query(language, "locals")
 
   local last_node
@@ -55,11 +56,36 @@ function M.get_near_function_name()
     end
   end
   if not last_node then
-    return nil
+    return nil, "not found near function node"
   end
+  return last_node
+end
 
-  local text = vim.treesitter.query.get_node_text(last_node, bufnr):gsub('"', ""):gsub("'", "")
+function M.get_near_function_name()
+  local bufnr = 0
+  local node, err = M._get_near_function_node(bufnr)
+  if err then
+    return nil, err
+  end
+  local text = vim.treesitter.query.get_node_text(node, bufnr):gsub('"', ""):gsub("'", "")
   return text
+end
+
+function M.get_current_function_range()
+  local bufnr = 0
+  local node, err = M._get_near_function_node(bufnr)
+  if err then
+    return nil, err
+  end
+  local range_node = node
+  for _ = 0, 2, 1 do
+    range_node = range_node:parent()
+    local s, _, e, _ = range_node:range()
+    if s ~= e then
+      return { s, e }
+    end
+  end
+  return nil, "not found"
 end
 
 return M

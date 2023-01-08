@@ -272,6 +272,18 @@ vim.keymap.set("n", "<Space>usf", [[<Cmd>lua require("thetto").start("file/recur
 vim.keymap.set("n", "[finder]f", [[<Cmd>lua require("thetto").start("file/in_dir")<CR>]])
 vim.keymap.set("n", "[finder]h", [[<Cmd>lua require("thetto").start("vim/help")<CR>]])
 vim.keymap.set("n", "[finder]l", [[<Cmd>lua require("thetto").start("line")<CR>]])
+vim.keymap.set("n", "[finder]L", function()
+  local row_range, err = require("notomo.treesitter").get_current_function_range()
+  if err then
+    error(err)
+  end
+  require("thetto").start("line", {
+    source_opts = {
+      start_row = row_range[1],
+      end_row = row_range[2] + 1,
+    },
+  })
+end)
 vim.keymap.set("n", "[finder]r", function()
   require("thetto").start("file/directory/recursive", { opts = { cwd = require("thetto.util.cwd").project() } })
 end)
