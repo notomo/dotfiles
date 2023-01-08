@@ -295,6 +295,13 @@ source_actions["file/recursive"] = {
   end,
 }
 
+source_config["vim/buffer_autocmd"] = {
+  alias_to = "vim/autocmd",
+  opts = {
+    buffer = 0,
+  },
+}
+
 source_config["message"] = {
   alias_to = "vim/execute",
   global_opts = {
@@ -302,7 +309,7 @@ source_config["message"] = {
     insert = false,
     offset = 1000,
   },
-  source_opts = {
+  opts = {
     cmd = "messages",
   },
 }
