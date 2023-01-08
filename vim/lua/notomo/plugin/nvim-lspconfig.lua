@@ -6,12 +6,15 @@ local on_attach = function(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
 end
 
-local setup_ls = function(ls, config, ...)
-  for _, disabled_feature in ipairs({ ... }) do
-    if vim.fn.has(disabled_feature) == 1 then
-      return
-    end
+local setup_ls = function(ls, config, enable_features)
+  enable_features = enable_features or { "linux" }
+  local ok = #vim.tbl_filter(function(feature)
+    return vim.fn.has(feature) == 1
+  end, enable_features) > 0
+  if not ok then
+    return
   end
+
   config = config or {}
   config.flags = config.flags or {}
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
@@ -37,7 +40,7 @@ setup_ls(lspconfig.gopls, {
     analyses = { ST1000 = false },
     -- codelenses = {test = true},
   },
-})
+}, { "unix" })
 
 setup_ls(lspconfig.sumneko_lua, {
   settings = {
@@ -71,12 +74,12 @@ setup_ls(lspconfig.sumneko_lua, {
       workspace = { checkThirdParty = false },
     },
   },
-}, "mac", "win32")
-setup_ls(lspconfig.pylsp, {})
-setup_ls(lspconfig.clangd, {})
+})
+setup_ls(lspconfig.pylsp, {}, { "unix" })
+setup_ls(lspconfig.clangd)
 setup_ls(lspconfig.eslint, {
   filetypes = { "javascript" },
-})
+}, { "unix" })
 
 local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
 setup_ls(lspconfig.tsserver, {
@@ -92,7 +95,7 @@ setup_ls(lspconfig.tsserver, {
       or require("lspconfig/util").root_pattern("package.json", "jsconfig.json", ".git")(fname)
       or vim.loop.cwd()
   end,
-})
+}, { "unix" })
 
 setup_ls(lspconfig.denols, {
   root_dir = require("lspconfig/util").root_pattern(unpack(deno_pattern)),
@@ -103,15 +106,13 @@ setup_ls(lspconfig.denols, {
     end
     config.initializationOptions["importMap"] = import_map
   end,
-}, "mac", "win32")
+}, { "unix" })
 
-setup_ls(lspconfig.vimls, {}, "mac", "win32")
-setup_ls(lspconfig.cssls, {}, "mac", "win32")
-
-setup_ls(lspconfig.yamlls, {})
-setup_ls(lspconfig.autohotkey2, {}, "unix")
-
-setup_ls(lspconfig.ocamllsp, {}, "mac", "win32")
+setup_ls(lspconfig.vimls)
+setup_ls(lspconfig.cssls)
+setup_ls(lspconfig.yamlls)
+setup_ls(lspconfig.autohotkey2, {}, { "win32" })
+setup_ls(lspconfig.ocamllsp)
 
 require("lsp_signature").setup({
   bind = true,
