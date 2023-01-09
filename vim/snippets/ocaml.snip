@@ -1,0 +1,22 @@
+snippet let
+	let ${0:name}
+
+snippet rec
+	rec ${0:name}
+
+snippet in
+	in ${0:expr}
+
+snippet match
+	match ${1:expr} with
+	  ${2:pattern} -> ${0:expr}
+
+snippet function
+	function
+	  ${0:TARGET}
+
+snippet pattern
+	| ${1:pattern} -> ${0:expr}
+
+snippet if
+	if ${1:condition} then ${2:expr} else ${0:TARGET}
