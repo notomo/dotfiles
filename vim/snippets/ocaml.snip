@@ -20,3 +20,15 @@ snippet pattern
 
 snippet if
 	if ${1:condition} then ${2:expr} else ${0:TARGET}
+
+snippet type
+	type ${1:name} = ${1:type}
+
+snippet of
+	of ${0:type}
+
+snippet failwith
+	failwith ${0:message}
+
+snippet closure
+	(fun (${1:args}) -> ${0:expr})
