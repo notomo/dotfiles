@@ -14,7 +14,7 @@ null_ls.setup({
       end,
     }),
     null_ls.builtins.formatting.ocamlformat.with({
-      args = { "--enable-outside-detected-project", "--impl", "--break-cases=all", "-" },
+      args = { "--enable-outside-detected-project", "--impl", "-" },
     }),
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.goimports,
