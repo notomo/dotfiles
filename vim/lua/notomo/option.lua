@@ -53,7 +53,7 @@ opt.ruler = false
 opt.number = true
 opt.whichwrap = "b,s,h,l,<,>,[,]"
 opt.cursorline = true
-opt.listchars = [[tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%]]
+opt.listchars = { tab = "»-", trail = "-", eol = "↲", extends = "»", precedes = "«", nbsp = "%" }
 opt.list = true
 opt.cmdheight = 2
 opt.scrolloff = 8
@@ -75,7 +75,7 @@ opt.diffopt:append("hiddenoff")
 opt.diffopt:append("algorithm:histogram")
 opt.mouse = "a"
 opt.grepprg = [[git\ grep\ -n\ $*]]
-opt.backupdir = vim.fn.expand("~/.vim/tmp/backup/")
+opt.backupdir = { vim.fn.expand("~/.vim/tmp/backup/") }
 opt.swapfile = false
 opt.expandtab = true
 opt.foldlevel = 3
