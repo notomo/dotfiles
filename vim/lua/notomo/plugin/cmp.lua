@@ -56,6 +56,12 @@ function M.setup()
   vim.keymap.set({ "i", "s" }, "<Tab>", function()
     return require("notomo.plugin.cmp").tab()
   end, { expr = true, remap = true })
+
+  local documentation = cmp.config.window.bordered()
+  documentation.zindex = 999
+  documentation.border = "solid"
+  documentation.winhighlight = "Normal:NormalFloat,NormalFloat:NormalFloat,FloatBorder:NormalFloat"
+
   cmp.setup({
     snippet = {
       expand = function(_) end,
@@ -69,6 +75,9 @@ function M.setup()
       return not vim.tbl_contains({ "thetto-input", "reacher", "searcho" }, vim.bo.filetype)
     end,
     preselect = cmp.PreselectMode.None,
+    window = {
+      documentation = documentation,
+    },
     sources = {
       { name = "neosnippet" },
       { name = "nvim_lsp" },
