@@ -1,0 +1,5 @@
+
+- name: install with homebrew
+  homebrew:
+    name:
+      - opam

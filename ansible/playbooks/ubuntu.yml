@@ -18,6 +18,7 @@
     - { role: 'wslu', tags: ['wslu'] }
     - { role: 'aws', tags: ['aws'] }
     - { role: 'gh', tags: ['gh'] }
+    - { role: 'ocaml', tags: ['ocaml'] }
     - { role: 'sqlite3', tags: ['sqlite3'] }
     - { role: 'lua', tags: ['lua'] }
     - { role: 'default_shell', tags: ['default_shell'] }
