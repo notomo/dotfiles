@@ -53,9 +53,9 @@ function M.scratch(name, filetype)
   if vim.fn.isdirectory(dir_path) ~= 1 then
     vim.fn.mkdir(dir_path, "p")
   end
+  vim.cmd.lcd(dir_path)
   local file_path = table.concat({ dir_path, name }, "/")
   vim.cmd.drop({ mods = { tab = 0 }, args = { file_path } })
-  vim.cmd.lcd(dir_path)
 end
 
 function M.note()
