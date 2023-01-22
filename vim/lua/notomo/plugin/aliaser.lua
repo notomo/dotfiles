@@ -99,6 +99,10 @@ aliaser.register_factory("vim", function(aliases)
   aliases:set("show_highlight_under_cursor", function()
     vim.cmd.TSHighlightCapturesUnderCursor()
   end)
+
+  aliases:set("inspect", function()
+    vim.cmd.Inspect({ bang = true })
+  end)
 end)
 
 aliaser.register_factory("dev", function(aliases)
