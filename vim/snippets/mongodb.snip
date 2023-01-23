@@ -29,8 +29,19 @@ snippet update_one
 		{ $set: { ${0:update} }}
 	)
 
+snippet update_many
+	db.${1:collName}.updateMany(
+		{ ${2:filter} },
+		{ $set: { ${0:update} }}
+	)
+
 snippet delete_one
 	db.${1:collName}.deleteOne(
+		{ ${0:filter} }
+	)
+
+snippet delete_one
+	db.${1:collName}.deleteMany(
 		{ ${0:filter} }
 	)
 

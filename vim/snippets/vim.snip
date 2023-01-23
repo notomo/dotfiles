@@ -101,13 +101,6 @@ snippet lets
 snippet return 
 	return ${0:expr}
 
-snippet themis_log
-alias log
-	call themis#log(${0:message})
-
-snippet assert
-	call s:assert.equals(${1:result}, ${0:expected})
-
 snippet lambda
 options word
 	{${1:key}, ${2:var} -> ${0:result}}
@@ -129,18 +122,6 @@ snippet regex_not_match
 snippet highlight_link
 	highlight ${1:#:default }link ${2:Name} ${1:ToGroupName}
 
-snippet new
-	function! `substitute(matchstr(neosnippet#util#expand('%:p:r'), '/autoload/\zs.*$'), '/', '#', 'g')`#new(${1:args}) abort
-		let `neosnippet#util#expand('%:r')` = {
-			\ '': '',
-		\ }
-
-		function! `neosnippet#util#expand('%:r')`.${2:name}() abort
-		endfunction
-
-		return `neosnippet#util#expand('%:r')`
-	endfunction
-
 snippet method
 	function! `neosnippet#util#expand('%:r')`.${1:name}() abort
 		${0:TARGET}
@@ -158,58 +139,6 @@ snippet if_has_key
 
 snippet doautocmd
 	doautocmd ${1:User} ${0:pattern}
-
-snippet test
-	let s:suite = themis#suite(${1:name})
-	let s:assert = themis#helper('assert')
-
-	function! s:suite.before_each()
-	endfunction
-
-	function! s:suite.after_each()
-	endfunction
-
-	function! s:suite.${2:name}()
-		${0:TARGET}
-	endfunction
-
-snippet nested_test
-	function! s:suite.__${1:name}__() abort
-		let suite = themis#suite('${2:name}')
-
-		function! suite.before_each()
-		endfunction
-
-		function! suite.after_each()
-		endfunction
-
-		function! suite.${3:name}()
-			${0:TARGET}
-		endfunction
-
-	endfunction
-
-snippet jobstart
-	function! s:handle_stderr(job_id, data, event) abort dict
-		echomsg '[stderr] ' . string(a:data)
-	endfunction
-
-	function! s:handle_stdout(job_id, data, event) abort dict
-		echomsg '[stdout] ' . string(a:data)
-	endfunction
-
-	function! s:handle_exit(job_id, exit_code, event) abort dict
-		echomsg '[exit_code] ' . string(a:exit_code)
-	endfunction
-
-	let s:options = {
-		\ 'on_exit': function('s:handle_exit'),
-		\ 'on_stdout': function('s:handle_stdout'),
-		\ 'on_stderr': function('s:handle_stderr'),
-	\ }
-	let s:cmd = ['${0:TARGET}']
-	let s:id = jobstart(s:cmd, s:options)
-	echomsg '[id] ' . string(s:id)
 
 snippet lua_heredoc
 	lua << EOF
