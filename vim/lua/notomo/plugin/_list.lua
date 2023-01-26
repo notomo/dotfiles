@@ -737,3 +737,16 @@ optpack.add("nvim-treesitter/playground", {
     end,
   },
 })
+
+optpack.add("Wansmer/treesj", {
+  depends = { "nvim-treesitter" },
+  load_on = { filetypes = { "go" } },
+  hooks = {
+    post_load = function()
+      require("treesj").setup({
+        use_default_keymaps = false,
+      })
+      vim.keymap.set("n", "[exec]J", [[<Cmd>TSJSplit<CR>]])
+    end,
+  },
+})
