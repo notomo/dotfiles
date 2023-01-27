@@ -66,6 +66,7 @@ setup_ls(lspconfig.sumneko_lua, {
           "cast-type-mismatch",
           "return-type-mismatch",
           "cast-local-type",
+          "duplicate-set-field", -- HACK: for vim.ui.select etc.
         },
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
