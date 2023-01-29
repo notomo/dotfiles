@@ -43,3 +43,4 @@
       - gdb
       - uncrustify
       - doxygen # to gen doc
+      - ccache # to build faster
