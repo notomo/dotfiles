@@ -496,7 +496,7 @@ vim.keymap.set(
 vim.keymap.set(
   "n",
   "[yank]M",
-  [[<Cmd>lua require("notomo.edit").yank(vim.fn.trim(vim.fn.system('mongo --eval "(new ObjectId()).str" --quiet')))<CR>]]
+  [[<Cmd>lua require("notomo.edit").yank(vim.fn.trim(vim.fn.system('mongosh --norc --nodb --quiet --eval "(new ObjectId()).toString()"')))<CR>]]
 )
 vim.keymap.set("n", "[term]S", [[<Cmd>lua require("notomo.plugin.termdebug").start()<CR>]])
 vim.keymap.set("n", "[term]q", [[<Cmd>lua require("notomo.plugin.termdebug").quit()<CR>]])
