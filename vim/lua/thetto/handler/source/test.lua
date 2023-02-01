@@ -1,26 +1,37 @@
 local M = {}
 
-M.opts = { scoped = false }
+M.opts = { scope = "all" }
+
+local to_item = function(test, path)
+  return {
+    value = test.full_name,
+    is_leaf = #test.children == 0,
+    row = test.scope_node:start() + 1,
+    path = path,
+  }
+end
+
+function M._collect(test, path)
+  local items = { to_item(test, path) }
+  for _, child in ipairs(test.children) do
+    vim.list_extend(items, M._collect(child, path))
+  end
+  return items
+end
 
 function M.collect(source_ctx)
-  local items = {}
-  local path = vim.fn.expand("%:p")
-  local tests, err
-  if source_ctx.opts.scoped then
-    tests, err = require("gettest").scope_root_leaves(vim.fn.line("."))
-  else
-    tests, err = require("gettest").all_leaves()
-  end
+  local tests, err = require("gettest").nodes({
+    scope = source_ctx.opts.scope,
+    target = { row = vim.fn.line(".") },
+  })
   if err then
     return nil, err
   end
+
+  local path = vim.fn.expand("%:p")
+  local items = {}
   for _, test in ipairs(tests) do
-    table.insert(items, {
-      value = test.name,
-      is_leaf = test.is_leaf,
-      row = test.scope_node:start() + 1,
-      path = path,
-    })
+    vim.list_extend(items, M._collect(test, path))
   end
   return items
 end
@@ -36,5 +47,7 @@ M.actions = {
     end
   end,
 }
+
+M.default_action = "execute"
 
 return M

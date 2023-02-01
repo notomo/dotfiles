@@ -488,11 +488,11 @@ vim.keymap.set(
 vim.keymap.set("n", "[finder]z", [[<Cmd>lua require("thetto").start("cmd/zsh/history")<CR>]])
 vim.keymap.set("n", "[finder]Q", [[<Cmd>lua require("thetto").start("vim/history/command")<CR>]])
 vim.keymap.set("n", "[finder]gP", [[<Cmd>lua require("thetto").start("github/pull_request")<CR>]])
-vim.keymap.set("n", "[finder]to", [[<Cmd>lua require("thetto").start("test", {opts = {action = "execute"}})<CR>]])
+vim.keymap.set("n", "[finder]to", [[<Cmd>lua require("thetto").start("test")<CR>]])
 vim.keymap.set(
   "n",
   "[finder]ts",
-  [[<Cmd>lua require("thetto").start("test", {source_opts = {scoped = true}, opts = {action = "execute"}})<CR>]]
+  [[<Cmd>lua require("thetto").start("test", {source_opts = {scope = "largest_ancestor"}})<CR>]]
 )
 vim.keymap.set("n", "[finder]b", [[<Cmd>lua require("thetto").start("url/bookmark")<CR>]])
 

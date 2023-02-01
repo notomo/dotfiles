@@ -12,14 +12,20 @@ vim.keymap.set("n", "[exec]bL", [[<Cmd>lua require("cmdhndlr").build()<CR>]])
 
 vim.keymap.set("n", "[test]f", [[<Cmd>lua require("cmdhndlr").test({layout = {type = "tab"}})<CR>]])
 vim.keymap.set("n", "[test]n", function()
-  local test = require("gettest").one_node(vim.fn.line("."))
-  test = test or {}
-  require("cmdhndlr").test({ filter = test.name, is_leaf = test.is_leaf })
+  local test = require("gettest").nodes({
+    scope = "nearest_ancestor",
+    target = { row = vim.fn.line(".") },
+  })[1]
+  test = test or { children = {} }
+  require("cmdhndlr").test({ filter = test.full_name, is_leaf = #test.children == 0 })
 end)
 vim.keymap.set("n", "[test]N", function()
-  local test = require("gettest").scope_root_node(vim.fn.line("."))
-  test = test or {}
-  require("cmdhndlr").test({ filter = test.name, is_leaf = test.is_leaf })
+  local test = require("gettest").nodes({
+    scope = "largest_ancestor",
+    target = { row = vim.fn.line(".") },
+  })[1]
+  test = test or { children = {} }
+  require("cmdhndlr").test({ filter = test.full_name, is_leaf = #test.children == 0 })
 end)
 
 vim.api.nvim_create_augroup("cmdhndlr_setting", {})
