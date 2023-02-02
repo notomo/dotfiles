@@ -292,16 +292,6 @@ optpack.add("tyru/open-browser.vim", {
   hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/open-browser.lua") },
 })
 
-mypack.add("notomo/vimonga", {
-  load_on = { cmds = { "Vimonga*" } },
-  hooks = {
-    post_add = function()
-      vim.keymap.set("n", "[exec]v", [[<Cmd>Vimonga database.list -open=tab<CR>]])
-    end,
-    pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/vimonga.lua"),
-  },
-})
-
 mypack.add("notomo/curstr.nvim", {
   load_on = { modules = { "curstr" } },
   hooks = {
