@@ -13,7 +13,7 @@ vim.keymap.set("n", "[exec]bL", [[<Cmd>lua require("cmdhndlr").build()<CR>]])
 vim.keymap.set("n", "[test]f", [[<Cmd>lua require("cmdhndlr").test({layout = {type = "tab"}})<CR>]])
 vim.keymap.set("n", "[test]n", function()
   local test = require("gettest").nodes({
-    scope = "nearest_ancestor",
+    scope = "smallest_ancestor",
     target = { row = vim.fn.line(".") },
   })[1]
   test = test or { children = {} }

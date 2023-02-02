@@ -8,6 +8,9 @@ local to_item = function(test, path)
     is_leaf = #test.children == 0,
     row = test.scope_node:start() + 1,
     path = path,
+    column_offsets = {
+      name = #test.full_name - #test.name,
+    },
   }
 end
 
@@ -35,6 +38,13 @@ function M.collect(source_ctx)
   end
   return items
 end
+
+M.highlight = require("thetto.util.highlight").columns({
+  {
+    group = "Comment",
+    end_key = "name",
+  },
+})
 
 M.kind_name = "file"
 
