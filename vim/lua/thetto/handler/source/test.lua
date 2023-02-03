@@ -3,10 +3,13 @@ local M = {}
 M.opts = { scope = "all" }
 
 local to_item = function(test, path)
+  local name_node = test.name_nodes[#test.name_nodes]
+  local row, column = name_node:start()
   return {
     value = test.full_name,
     is_leaf = #test.children == 0,
-    row = test.scope_node:start() + 1,
+    row = row + 1,
+    column = column,
     path = path,
     column_offsets = {
       name = #test.full_name - #test.name,
