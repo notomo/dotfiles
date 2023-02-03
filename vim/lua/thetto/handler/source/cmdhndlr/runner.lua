@@ -3,12 +3,15 @@ local M = {}
 function M.collect()
   local items = {}
   for _, runner in ipairs(require("cmdhndlr").runners()) do
-    table.insert(items, { value = runner.name })
+    table.insert(items, {
+      value = runner.name,
+      path = runner.path,
+    })
   end
   return items
 end
 
-M.kind_name = "word"
+M.kind_name = "file"
 M.default_action = "execute"
 
 M.actions = {
