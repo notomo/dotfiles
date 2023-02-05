@@ -9,7 +9,7 @@
   when: not rust_installed.stat.exists
 
 - name: rustup toolchain
-  shell: rustup default nightly-2020-02-06
+  shell: rustup default nightly
   when: not rust_installed.stat.exists
 
 - name: install ls
