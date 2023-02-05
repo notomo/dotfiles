@@ -49,12 +49,6 @@ kind_actions["git/status/file"] = {
   },
 }
 
-source_config["git/status"] = {
-  global_opts = {
-    display_limit = 10000,
-  },
-}
-
 kind_actions["vim/variable"] = {
   action_edit = function(items)
     local item = items[1]
@@ -191,7 +185,6 @@ source_config["file/grep"] = {
 }
 
 source_config["vim/lsp/references"] = {
-  global_opts = { cwd = require("thetto.util.cwd").project() },
   filters = {
     "substring:path:relative",
     "-substring:path:relative",
@@ -206,21 +199,12 @@ source_config["vim/lsp/workspace_symbol"] = {
     "substring:path:relative",
     "-substring:path:relative",
   },
-  global_opts = { cwd = require("thetto.util.cwd").project() },
-}
-source_config["vim/lsp/document_symbol"] = {
-  global_opts = { cwd = require("thetto.util.cwd").project() },
-}
-source_config["vim/lsp/implementation"] = {
-  global_opts = { cwd = require("thetto.util.cwd").project() },
 }
 source_config["vim/lsp/incoming_calls"] = {
   filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-  global_opts = { cwd = require("thetto.util.cwd").project() },
 }
 source_config["vim/lsp/outgoing_calls"] = {
   filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-  global_opts = { cwd = require("thetto.util.cwd").project() },
 }
 
 source_config["file/bookmark"] = {
@@ -247,7 +231,6 @@ source_config["cmd/ctags"] = {
 }
 
 source_config["file/alter"] = {
-  global_opts = { immediately = true, insert = false },
   opts = {
     pattern_groups = {
       { "%_test.go", "%.go" },
