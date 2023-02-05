@@ -1,5 +1,12 @@
 vim.api.nvim_create_augroup("thetto_setting", {})
 
+local starter = function(...)
+  local args = { ... }
+  return function()
+    require("thetto").start(unpack(args))
+  end
+end
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "thetto_setting",
   pattern = { "thetto" },
@@ -48,13 +55,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       [[<Cmd>lua require("thetto").execute()<CR><ESC>]],
       { buffer = true, silent = true }
     )
-    vim.keymap.set("n", "<Tab>", [[<Cmd>lua require("thetto").start("thetto/action")<CR>]], { buffer = true })
+    vim.keymap.set("n", "<Tab>", starter("thetto/action"), { buffer = true })
     vim.keymap.set("n", "<RightMouse>", [[<Nop>]], { buffer = true })
     vim.keymap.set("n", "<RightDrag>", [[<Nop>]], { buffer = true })
     vim.keymap.set(
       "n",
       "<2-RightMouse>",
-      [[<Cmd>lua require("thetto").start("thetto/action", {opts = {insert = false, input_lines = {"open"}}})<CR>]],
+      starter("thetto/action", { opts = { insert = false, input_lines = { "open" } } }),
       { buffer = true }
     )
     vim.keymap.set("n", "<C-w>", [[<Cmd>lua require("thetto").execute("quit")<CR>]], { buffer = true })
@@ -262,16 +269,16 @@ vim.api.nvim_create_autocmd({ "User" }, {
   end,
 })
 
-vim.keymap.set("n", "[finder]R", [[<Cmd>lua require("thetto").start("vim/runtimepath")<CR>]])
-vim.keymap.set("n", "[finder]W", [[<Cmd>lua require("thetto").start("cmd/whereis")<CR>]])
-vim.keymap.set("n", "<Space>ur", function()
-  require("thetto").start("file/mru", { opts = { cwd = require("thetto.util.cwd").project() } })
+vim.keymap.set("n", "[finder]R", starter("vim/runtimepath"))
+vim.keymap.set("n", "[finder]W", starter("cmd/whereis"))
+vim.keymap.set("n", "<Space>ur", starter("file/mru", { opts = { cwd = require("thetto.util.cwd").project() } }))
+vim.keymap.set("n", "[finder]<CR>", function()
+  require("thetto").resume()
 end)
-vim.keymap.set("n", "[finder]<CR>", [[<Cmd>lua require("thetto").resume()<CR>]])
-vim.keymap.set("n", "<Space>usf", [[<Cmd>lua require("thetto").start("file/recursive")<CR>]])
-vim.keymap.set("n", "[finder]f", [[<Cmd>lua require("thetto").start("file/in_dir")<CR>]])
-vim.keymap.set("n", "[finder]h", [[<Cmd>lua require("thetto").start("vim/help")<CR>]])
-vim.keymap.set("n", "[finder]l", [[<Cmd>lua require("thetto").start("line")<CR>]])
+vim.keymap.set("n", "<Space>usf", starter("file/recursive"))
+vim.keymap.set("n", "[finder]f", starter("file/in_dir"))
+vim.keymap.set("n", "[finder]h", starter("vim/help"))
+vim.keymap.set("n", "[finder]l", starter("line"))
 vim.keymap.set("n", "[finder]L", function()
   local row_range, err = require("notomo.treesitter").get_current_function_range()
   if err then
@@ -284,10 +291,12 @@ vim.keymap.set("n", "[finder]L", function()
     },
   })
 end)
-vim.keymap.set("n", "[finder]r", function()
-  require("thetto").start("file/directory/recursive", { opts = { cwd = require("thetto.util.cwd").project() } })
-end)
-vim.keymap.set("n", "<Space>usd", [[<Cmd>lua require("thetto").start("file/directory/recursive")<CR>]])
+vim.keymap.set(
+  "n",
+  "[finder]r",
+  starter("file/directory/recursive", { opts = { cwd = require("thetto.util.cwd").project() } })
+)
+vim.keymap.set("n", "<Space>usd", starter("file/directory/recursive"))
 
 local ls_opts = {}
 if vim.fn.has("win32") == 1 then
@@ -300,54 +309,54 @@ if vim.fn.has("win32") == 1 then
     end,
   }
 end
-vim.keymap.set("n", "<Space>usg", function()
-  require("thetto").start("file/recursive", {
+vim.keymap.set(
+  "n",
+  "<Space>usg",
+  starter("file/recursive", {
     opts = { cwd = require("thetto.util.cwd").project() },
     source_opts = ls_opts,
   })
-end)
-vim.keymap.set("n", "[finder]v", function()
-  require("thetto").start("file/recursive", {
+)
+vim.keymap.set(
+  "n",
+  "[finder]v",
+  starter("file/recursive", {
     opts = { cwd = "~/dotfiles" },
     source_opts = ls_opts,
   })
-end)
+)
 
-vim.keymap.set("n", "[finder]O", [[<Cmd>lua require("thetto").start("vim/option")<CR>]])
-vim.keymap.set("n", "[finder]H", [[<Cmd>lua require("thetto").start("vim/highlight_group")<CR>]])
-vim.keymap.set("n", "[finder]B", [[<Cmd>lua require("thetto").start("vim/buffer")<CR>]])
-vim.keymap.set("n", "[finder]y", [[<Cmd>lua require("thetto").start("file/bookmark")<CR>]])
+vim.keymap.set("n", "[finder]O", starter("vim/option"))
+vim.keymap.set("n", "[finder]H", starter("vim/highlight_group"))
+vim.keymap.set("n", "[finder]B", starter("vim/buffer"))
+vim.keymap.set("n", "[finder]y", starter("file/bookmark"))
 
-vim.keymap.set("n", "[finder]ga", function()
-  require("thetto").start("git/branch", { opts = { sorters = { "length" } } })
-end)
-vim.keymap.set("n", "[finder]gA", function()
-  require("thetto").start("git/branch", {
+vim.keymap.set("n", "[finder]ga", starter("git/branch", { opts = { sorters = { "length" } } }))
+vim.keymap.set(
+  "n",
+  "[finder]gA",
+  starter("git/branch", {
     opts = { sorters = { "length" } },
     source_opts = { all = true },
     action_opts = { track = true },
   })
-end)
-vim.keymap.set("n", "[git]b", function()
-  require("thetto").start("git/branch")
-end)
-vim.keymap.set("n", "[git]dl", function()
-  require("thetto").start("git/deleted_file")
-end)
+)
+vim.keymap.set("n", "[git]b", starter("git/branch"))
+vim.keymap.set("n", "[git]dl", starter("git/deleted_file"))
 
-vim.keymap.set("n", "[finder]gt", [[<Cmd>lua require("thetto").start("git/tag")<CR>]])
-vim.keymap.set("n", "[finder]gT", [[<Cmd>lua require("thetto").start("git/tag", {source_opts = {merged = true}})<CR>]])
+vim.keymap.set("n", "[finder]gt", starter("git/tag"))
+vim.keymap.set("n", "[finder]gT", starter("git/tag", { source_opts = { merged = true } }))
 vim.keymap.set(
   "n",
   "[finder]go",
-  [[<Cmd>lua require("thetto").start("file/directory/recursive", {opts = {cwd = "$GOPATH/src"}, source_opts = {max_depth = 3}})<CR>]]
+  starter("file/directory/recursive", { opts = { cwd = "$GOPATH/src" }, source_opts = { max_depth = 3 } })
 )
-vim.keymap.set("n", "[git]xl", [[<Cmd>lua require("thetto").start("git/stash")<CR>]])
-vim.keymap.set("n", "[git]xs", function()
-  require("thetto").start("git/stash", { opts = { immediately = true, action = "create" } })
-end)
-vim.keymap.set("n", "[keyword]gg", function()
-  require("thetto").start("file/grep", {
+vim.keymap.set("n", "[git]xl", starter("git/stash"))
+vim.keymap.set("n", "[git]xs", starter("git/stash", { opts = { immediately = true, action = "create" } }))
+vim.keymap.set(
+  "n",
+  "[keyword]gg",
+  starter("file/grep", {
     opts = {
       cwd = require("thetto.util.cwd").project(),
       pattern = function()
@@ -355,31 +364,36 @@ vim.keymap.set("n", "[keyword]gg", function()
       end,
     },
   })
+)
+vim.keymap.set("n", "[finder]gl", starter("file/grep"), { silent = true })
+vim.keymap.set(
+  "n",
+  "[finder]gg",
+  starter("file/grep", { opts = { cwd = require("thetto.util.cwd").project() } }),
+  { silent = true }
+)
+vim.keymap.set("n", "[finder]P", starter("cmd/procs"))
+vim.keymap.set("n", "[finder]A", starter("vim/autocmd"))
+vim.keymap.set("n", "[finder]s", starter("thetto/source"))
+vim.keymap.set("n", "[finder]n", function()
+  require("thetto").resume_execute({ opts = { offset = 1 } })
 end)
-vim.keymap.set("n", "[finder]gl", [[<Cmd>lua require("thetto").start("file/grep")<CR>]], { silent = true })
-vim.keymap.set("n", "[finder]gg", function()
-  require("thetto").start("file/grep", { opts = { cwd = require("thetto.util.cwd").project() } })
-end, { silent = true })
-vim.keymap.set("n", "[finder]P", [[<Cmd>lua require("thetto").start("cmd/procs")<CR>]])
-vim.keymap.set("n", "[finder]A", [[<Cmd>lua require("thetto").start("vim/autocmd")<CR>]])
-vim.keymap.set("n", "[finder]s", [[<Cmd>lua require("thetto").start("thetto/source")<CR>]])
-vim.keymap.set("n", "[finder]n", [[<Cmd>lua require("thetto").resume_execute({opts = {offset = 1}})<CR>]])
-vim.keymap.set("n", "[finder]N", [[<Cmd>lua require("thetto").resume_execute({opts = {offset = -1}})<CR>]])
-vim.keymap.set("n", "[finder]gn", [[<Cmd>lua require("thetto").resume_execute({opts = {offset = 100000}})<CR>]])
-vim.keymap.set("n", "[finder]gN", [[<Cmd>lua require("thetto").resume_execute({opts = {offset = -100000}})<CR>]])
-vim.keymap.set("n", "[finder]m", [[<Cmd>lua require("thetto").start("listdefined/keymap")<CR>]])
-vim.keymap.set("n", "[finder]o", [[<Cmd>lua require("thetto").start("cmd/ctags")<CR>]])
-vim.keymap.set("n", "[exec],", function()
-  require("thetto").start("cmd/make/target")
+vim.keymap.set("n", "[finder]N", function()
+  require("thetto").resume_execute({ opts = { offset = -1 } })
 end)
-vim.keymap.set("n", "[finder]S", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
-vim.keymap.set("x", "[finder]s", [[<Cmd>lua require("thetto").start("vim/substitute")<CR>]])
-vim.keymap.set("n", "[git]ll", function()
-  require("thetto").start("git/log")
+vim.keymap.set("n", "[finder]gn", function()
+  require("thetto").resume_execute({ opts = { offset = 100000 } })
 end)
-vim.keymap.set("n", "[git]fl", function()
-  require("thetto").start("git/file_log")
+vim.keymap.set("n", "[finder]gN", function()
+  require("thetto").resume_execute({ opts = { offset = -100000 } })
 end)
+vim.keymap.set("n", "[finder]m", starter("listdefined/keymap"))
+vim.keymap.set("n", "[finder]o", starter("cmd/ctags"))
+vim.keymap.set("n", "[exec],", starter("cmd/make/target"))
+vim.keymap.set("n", "[finder]S", starter("vim/substitute"))
+vim.keymap.set("x", "[finder]s", starter("vim/substitute"))
+vim.keymap.set("n", "[git]ll", starter("git/log"))
+vim.keymap.set("n", "[git]fl", starter("git/file_log"))
 vim.keymap.set("n", "[git]s", function()
   require("thetto").start("git/status", {
     opts = {
@@ -402,29 +416,29 @@ vim.keymap.set("n", "[git]B", function()
   })
 end)
 
-vim.keymap.set("n", "[finder]gd", function()
-  require("thetto").start("git/diff")
-end)
-vim.keymap.set("n", "[finder]gr", function()
-  require("thetto").start("git/diff", { source_opts = { expr = "%:p" } })
-end)
-vim.keymap.set("n", "[finder]G", function()
-  require("thetto").start("file/grep", {
+vim.keymap.set("n", "[finder]gd", starter("git/diff"))
+vim.keymap.set("n", "[finder]gr", starter("git/diff", { source_opts = { expr = "%:p" } }))
+vim.keymap.set(
+  "n",
+  "[finder]G",
+  starter("file/grep", {
     opts = {
       cwd = require("thetto.util.cwd").project(),
       filters = require("thetto.util.filter").prepend("interactive"),
     },
   })
-end)
-vim.keymap.set("n", "[finder]gL", function()
-  require("thetto").start("file/grep", {
+)
+vim.keymap.set(
+  "n",
+  "[finder]gL",
+  starter("file/grep", {
     opts = {
       filters = require("thetto.util.filter").prepend("interactive"),
     },
   })
-end)
+)
 
-vim.keymap.set("n", "[file]f", [[<Cmd>lua require("thetto").start("file/alter")<CR>]])
+vim.keymap.set("n", "[file]f", starter("file/alter"))
 vim.keymap.set("n", "[file]F", function()
   require("thetto").start("file/alter", {
     opts = { action = "tab_open" },
@@ -435,12 +449,8 @@ vim.keymap.set("n", "[file]F", function()
     },
   })
 end)
-vim.keymap.set("n", "[file]l", [[<Cmd>lua require("thetto").start("file/alter", {opts = {action = "tab_open"}})<CR>]])
-vim.keymap.set(
-  "n",
-  "[file]t",
-  [[<Cmd>lua require("thetto").start("file/alter", {source_opts = {allow_new = true}})<CR>]]
-)
+vim.keymap.set("n", "[file]l", starter("file/alter", { opts = { action = "tab_open" } }))
+vim.keymap.set("n", "[file]t", starter("file/alter", { source_opts = { allow_new = true } }))
 vim.keymap.set("n", "[file];", function()
   local function_name = require("notomo.treesitter").get_near_function_name()
   require("thetto").start("file/alter"):next(function()
@@ -454,51 +464,37 @@ vim.keymap.set("n", "[file];", function()
   end)
 end)
 
-vim.keymap.set(
-  "n",
-  "[finder]T",
-  [[<Cmd>lua require("thetto").start("vim/buffer", {source_opts = {buftype = "terminal"}})<CR>]]
-)
-vim.keymap.set(
-  "n",
-  "[exec]cv",
-  [[<Cmd>lua require("thetto").start("vim/execute", {source_opts = {cmd = "version"}})<CR>]]
-)
-vim.keymap.set("n", "[finder]J", [[<Cmd>lua require("thetto").start("vim/jump")<CR>]])
-vim.keymap.set("n", "[finder]c", [[<Cmd>lua require("thetto").start("vim/command")<CR>]])
-vim.keymap.set("n", "[finder]M", [[<Cmd>lua require("thetto").start("env/manual")<CR>]])
-vim.keymap.set("n", "[finder]q", [[<Cmd>lua require("thetto").start("cmd/jq")<CR>]])
-vim.keymap.set("n", "[finder]gR", [[<Cmd>lua require("thetto").start("cmd/gron")<CR>]])
-vim.keymap.set(
-  "n",
-  "[finder]jl",
-  [[<Cmd>lua require("thetto").start("vim/jump", {source_opts = {per_file = true}})<CR>]]
-)
-vim.keymap.set("n", "[finder]z", [[<Cmd>lua require("thetto").start("cmd/zsh/history")<CR>]])
-vim.keymap.set("n", "[finder]Q", [[<Cmd>lua require("thetto").start("vim/history/command")<CR>]])
-vim.keymap.set("n", "[finder]gP", [[<Cmd>lua require("thetto").start("github/pull_request")<CR>]])
-vim.keymap.set("n", "[finder]to", [[<Cmd>lua require("thetto").start("test")<CR>]])
-vim.keymap.set(
-  "n",
-  "[finder]ts",
-  [[<Cmd>lua require("thetto").start("test", {source_opts = {scope = "largest_ancestor"}})<CR>]]
-)
-vim.keymap.set("n", "[finder]b", [[<Cmd>lua require("thetto").start("url/bookmark")<CR>]])
+vim.keymap.set("n", "[finder]T", starter("vim/buffer", { source_opts = { buftype = "terminal" } }))
+vim.keymap.set("n", "[exec]cv", starter("vim/execute", { source_opts = { cmd = "version" } }))
+vim.keymap.set("n", "[finder]J", starter("vim/jump"))
+vim.keymap.set("n", "[finder]c", starter("vim/command"))
+vim.keymap.set("n", "[finder]M", starter("env/manual"))
+vim.keymap.set("n", "[finder]q", starter("cmd/jq"))
+vim.keymap.set("n", "[finder]gR", starter("cmd/gron"))
+vim.keymap.set("n", "[finder]jl", starter("vim/jump", { source_opts = { per_file = true } }))
+vim.keymap.set("n", "[finder]z", starter("cmd/zsh/history"))
+vim.keymap.set("n", "[finder]Q", starter("vim/history/command"))
+vim.keymap.set("n", "[finder]gP", starter("github/pull_request"))
+vim.keymap.set("n", "[finder]to", starter("test"))
+vim.keymap.set("n", "[finder]ts", starter("test", { source_opts = { scope = "largest_ancestor" } }))
+vim.keymap.set("n", "[finder]b", starter("url/bookmark"))
 
 -- custom source
-vim.keymap.set("n", "[finder]p", [[<Cmd>lua require("thetto").start("plugin")<CR>]])
-vim.keymap.set("n", "[finder]e", [[<Cmd>lua require("thetto").start("emoji")<CR>]])
-vim.keymap.set("n", "[finder]gp", [[<Cmd>lua require("thetto").start("go/package")<CR>]])
-vim.keymap.set("n", "[finder]a", [[<Cmd>lua require("thetto").start("aliaser")<CR>]])
-vim.keymap.set("n", "[finder]d", [[<Cmd>lua require("thetto").start("vim/diagnostic")<CR>]])
-vim.keymap.set("n", "[finder]D", function()
-  require("thetto").start("vim/diagnostic", {
+vim.keymap.set("n", "[finder]p", starter("plugin"))
+vim.keymap.set("n", "[finder]e", starter("emoji"))
+vim.keymap.set("n", "[finder]gp", starter("go/package"))
+vim.keymap.set("n", "[finder]a", starter("aliaser"))
+vim.keymap.set("n", "[finder]d", starter("vim/diagnostic"))
+vim.keymap.set(
+  "n",
+  "[finder]D",
+  starter("vim/diagnostic", {
     opts = { cwd = require("thetto.util.cwd").project() },
     source_opts = { args = {} },
   })
-end)
-vim.keymap.set("n", "[finder]w", [[<Cmd>lua require("thetto").start("vim/lsp/workspace_symbol")<CR>]])
-vim.keymap.set("n", "[exec]gr", [[<Cmd>lua require("thetto").start("vim/lsp/references")<CR>]])
+)
+vim.keymap.set("n", "[finder]w", starter("vim/lsp/workspace_symbol"))
+vim.keymap.set("n", "[exec]gr", starter("vim/lsp/references"))
 vim.keymap.set("n", "[keyword]n", function()
   vim.lsp.buf.clear_references()
   vim.lsp.buf.document_highlight()
@@ -515,8 +511,8 @@ vim.keymap.set("n", "[keyword]n", function()
     },
   })
 end)
-vim.keymap.set("n", "[keyword]O", [[<Cmd>lua require("thetto").start("vim/lsp/outgoing_calls")<CR>]])
-vim.keymap.set("n", "[keyword]I", [[<Cmd>lua require("thetto").start("vim/lsp/incoming_calls")<CR>]])
+vim.keymap.set("n", "[keyword]O", starter("vim/lsp/outgoing_calls"))
+vim.keymap.set("n", "[keyword]I", starter("vim/lsp/incoming_calls"))
 
 vim.keymap.set("n", "[git]D", function()
   local git_root, err = require("thetto.util.git").root()
@@ -539,8 +535,4 @@ vim.keymap.set("n", "[git]dd", function()
 end)
 
 -- custom action
-vim.keymap.set(
-  "n",
-  "[finder];",
-  [[<Cmd>lua require("thetto").start("vim/filetype", {opts = {action = "open_scratch"}})<CR>]]
-)
+vim.keymap.set("n", "[finder];", starter("vim/filetype", { opts = { action = "open_scratch" } }))
