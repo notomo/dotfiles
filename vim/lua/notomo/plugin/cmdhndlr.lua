@@ -27,6 +27,18 @@ vim.keymap.set("n", "[test]N", function()
   test = test or { children = {} }
   require("cmdhndlr").test({ filter = test.full_name, is_leaf = #test.children == 0 })
 end)
+vim.keymap.set("x", "[test]N", function()
+  local selected_text = require("notomo.edit").get_selected_text()
+
+  local tests, info = require("gettest").nodes({
+    scope = "smallest_ancestor",
+    target = { row = vim.fn.line(".") },
+  })
+  local test = tests[1]
+  test = test or { children = {} }
+
+  require("cmdhndlr").test({ filter = test.full_name .. info.separator .. selected_text })
+end)
 
 vim.api.nvim_create_augroup("cmdhndlr_setting", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {

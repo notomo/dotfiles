@@ -194,4 +194,20 @@ function M.delete_prev()
   vim.api.nvim_win_set_cursor(0, { row, 0 })
 end
 
+function M.get_selected_text()
+  local mode = vim.api.nvim_get_mode().mode
+  if not vim.tbl_contains({ "v", "V", vim.api.nvim_eval('"\\<C-v>"') }, mode) then
+    return ""
+  end
+
+  local tmp = vim.fn.getreginfo("t")
+
+  vim.cmd.normal({ args = { [["tygv]] }, bang = true, mods = { noautocmd = true } })
+  local selected_text = vim.fn.getreg("t")
+
+  vim.fn.setreg("t", tmp)
+
+  return selected_text
+end
+
 return M
