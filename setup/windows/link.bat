@@ -18,7 +18,6 @@ if ERRORLEVEL 1 cmd /c exit 0
 
 cd %USERPROFILE%
 mklink /D %USERPROFILE%"\AppData\Local\nvim" %USERPROFILE%"\.vim"
-mklink ".gitignore_global" %USERPROFILE%"\dotfiles\git\.gitignore_global"
 mklink ".wslconfig" %USERPROFILE%"\dotfiles\setup\windows\.wslconfig"
 
 mkdir %USERPROFILE%"\app" > NUL 2>&1
