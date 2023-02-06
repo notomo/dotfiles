@@ -1,5 +1,5 @@
 {
-    "vscode-neovim.neovimInitVimPaths.win32": "~/dotfiles/vscode/neovim.vim",
+    "vscode-neovim.neovimInitVimPaths.win32": "~/dotfiles/tool/vscode/neovim.vim",
     "vscode-neovim.logOutputToConsole": true,
     "editor.minimap.enabled": false,
     "explorer.openEditors.visible": 0,

@@ -38,8 +38,8 @@ mklink "wezterm.lua" %USERPROFILE%"\dotfiles\tool\wezterm.lua"
 mkdir %APPDATA%"\Code\User" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
-mklink %APPDATA%"\Code\User\keybindings.json" %USERPROFILE%"\dotfiles\vscode\keybindings.json"
-mklink %APPDATA%"\Code\User\settings.json" %USERPROFILE%"\dotfiles\vscode\settings.json"
+mklink %APPDATA%"\Code\User\keybindings.json" %USERPROFILE%"\dotfiles\tool\vscode\keybindings.json"
+mklink %APPDATA%"\Code\User\settings.json" %USERPROFILE%"\dotfiles\tool\vscode\settings.json"
 
 mklink %APPDATA%"\Microsoft\Windows\Start Menu\Programs\Startup\hotkey.ahk" %USERPROFILE%"\dotfiles\tool\autohotkey\hotkey.ahk"
 
