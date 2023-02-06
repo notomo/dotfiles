@@ -41,6 +41,6 @@ if ERRORLEVEL 1 cmd /c exit 0
 mklink %APPDATA%"\Code\User\keybindings.json" %USERPROFILE%"\dotfiles\vscode\keybindings.json"
 mklink %APPDATA%"\Code\User\settings.json" %USERPROFILE%"\dotfiles\vscode\settings.json"
 
-mklink %APPDATA%"\Microsoft\Windows\Start Menu\Programs\Startup\hotkey.ahk" %USERPROFILE%"\dotfiles\autohotkey\hotkey.ahk"
+mklink %APPDATA%"\Microsoft\Windows\Start Menu\Programs\Startup\hotkey.ahk" %USERPROFILE%"\dotfiles\tool\autohotkey\hotkey.ahk"
 
 pause
