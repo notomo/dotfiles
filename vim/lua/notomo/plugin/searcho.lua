@@ -1,23 +1,21 @@
-vim.keymap.set("n", "/", [[<Cmd>lua require("searcho").forward("\\v")<CR>]])
-vim.keymap.set("n", "?", [[<Cmd>lua require("searcho").backward("\\v")<CR>]])
-vim.keymap.set("n", "sj", [[<Cmd>lua require("searcho").forward_word()<CR>]])
+vim.keymap.set({ "n", "x" }, "/", [[<Cmd>lua require("searcho").forward("\\v")<CR>]])
+vim.keymap.set({ "n", "x" }, "?", [[<Cmd>lua require("searcho").backward("\\v")<CR>]])
+vim.keymap.set({ "n", "x" }, "sj", [[<Cmd>lua require("searcho").forward_word()<CR>]])
 vim.keymap.set(
-  "n",
+  { "n", "x" },
   "sJ",
   [=[<Cmd>lua require("searcho").forward_word({left = "\\v(^|[^[:alnum:]])\\zs", right = "\\ze([^[:alnum:]]|$)"})<CR>]=]
 )
-vim.keymap.set("n", "sk", [[<Cmd>lua require("searcho").backward_word()<CR>]])
+vim.keymap.set({ "n", "x" }, "sk", [[<Cmd>lua require("searcho").backward_word()<CR>]])
 vim.keymap.set(
-  "n",
+  { "n", "x" },
   "sK",
   [=[<Cmd>lua require("searcho").backward_word({left = "\\v(^|[^[:alnum:]])\\zs", right = "\\ze([^[:alnum:]]|$)"})<CR>]=]
 )
-vim.keymap.set("n", "s<Space>j", [[<Cmd>lua require("searcho").forward("\\v" .. vim.fn.getreg('"'))<CR>]])
-vim.keymap.set("n", "s<Space>k", [[<Cmd>lua require("searcho").backward("\\v" .. vim.fn.getreg('"'))<CR>]])
-vim.keymap.set("n", "n", [[<Cmd>lua require("searcho").next()<CR>]])
-vim.keymap.set("x", "n", [[<Cmd>lua require("searcho").next()<CR>]])
-vim.keymap.set("n", "N", [[<Cmd>lua require("searcho").previous()<CR>]])
-vim.keymap.set("x", "N", [[<Cmd>lua require("searcho").previous()<CR>]])
+vim.keymap.set({ "n", "x" }, "s<Space>j", [[<Cmd>lua require("searcho").forward("\\v" .. vim.fn.getreg('"'))<CR>]])
+vim.keymap.set({ "n", "x" }, "s<Space>k", [[<Cmd>lua require("searcho").backward("\\v" .. vim.fn.getreg('"'))<CR>]])
+vim.keymap.set({ "n", "x" }, "n", [[<Cmd>lua require("searcho").next()<CR>]])
+vim.keymap.set({ "n", "x" }, "N", [[<Cmd>lua require("searcho").previous()<CR>]])
 
 vim.api.nvim_create_augroup("searcho_setting", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {

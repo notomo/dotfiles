@@ -26,7 +26,7 @@ function M._collect(test, path)
 end
 
 function M.collect(source_ctx)
-  local tests, err = require("gettest").nodes({
+  local tests, _, err = require("gettest").nodes({
     scope = source_ctx.opts.scope,
     target = { row = vim.fn.line(".") },
   })
