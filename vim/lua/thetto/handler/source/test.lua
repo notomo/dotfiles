@@ -1,6 +1,11 @@
 local M = {}
 
-M.opts = { scope = "all" }
+M.opts = {
+  scope = "all",
+  get_paths = function()
+    return { vim.fn.expand("%:p") }
+  end,
+}
 
 local to_item = function(test, path)
   local name_node = test.name_nodes[#test.name_nodes]
@@ -26,18 +31,22 @@ function M._collect(test, path)
 end
 
 function M.collect(source_ctx)
-  local tests, _, err = require("gettest").nodes({
-    scope = source_ctx.opts.scope,
-    target = { row = vim.fn.line(".") },
-  })
-  if err then
-    return nil, err
-  end
-
-  local path = vim.fn.expand("%:p")
   local items = {}
-  for _, test in ipairs(tests) do
-    vim.list_extend(items, M._collect(test, path))
+  local paths = source_ctx.opts.get_paths()
+  for _, path in ipairs(paths) do
+    local tests, _, err = require("gettest").nodes({
+      scope = source_ctx.opts.scope,
+      target = {
+        path = path,
+        row = vim.fn.line("."),
+      },
+    })
+    if err then
+      return nil, err
+    end
+    for _, test in ipairs(tests) do
+      vim.list_extend(items, M._collect(test, path))
+    end
   end
   return items
 end

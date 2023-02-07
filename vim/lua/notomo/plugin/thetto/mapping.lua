@@ -462,6 +462,23 @@ vim.keymap.set("n", "[finder]z", starter("cmd/zsh/history"))
 vim.keymap.set("n", "[finder]gP", starter("github/pull_request"))
 vim.keymap.set("n", "[finder]to", starter("test"))
 vim.keymap.set("n", "[finder]ts", starter("test", { source_opts = { scope = "largest_ancestor" } }))
+vim.keymap.set(
+  "n",
+  "[finder]tl",
+  starter("test", {
+    source_opts = {
+      get_paths = function()
+        local regex = vim.regex([[\v(_spec.lua|_test.go)$]])
+        return vim.fs.find(function(name)
+          return regex:match_str(name)
+        end, {
+          type = "file",
+          limit = math.huge,
+        })
+      end,
+    },
+  })
+)
 vim.keymap.set("n", "[finder]b", starter("url/bookmark"))
 
 -- custom source
