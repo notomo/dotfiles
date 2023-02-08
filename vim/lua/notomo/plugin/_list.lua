@@ -22,13 +22,24 @@ local mypack = {
 mypack.add("notomo/optpack.nvim", {
   hooks = {
     post_add = function()
-      vim.keymap.set("n", "[exec]U", function()
-        require("optpack").update({
+      require("optpack").set_default({
+        install_or_update = {
           outputters = {
             echo = { enabled = true },
             log = { enabled = true },
+            buffer = {
+              open = function(bufnr)
+                vim.cmd.tabedit()
+                vim.bo.buftype = "nofile"
+                vim.bo.bufhidden = "wipe"
+                vim.cmd.buffer(bufnr)
+              end,
+            },
           },
-        })
+        },
+      })
+      vim.keymap.set("n", "[exec]U", function()
+        require("optpack").update()
       end)
     end,
   },

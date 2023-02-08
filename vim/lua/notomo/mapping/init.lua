@@ -447,7 +447,6 @@ vim.keymap.set("n", "[win]e", [[<C-w>=]])
 
 vim.keymap.set("n", "[tab]o", [[<Cmd>silent tabonly<CR>]], silent)
 vim.keymap.set("x", "[tab]o", [[<Esc><Cmd>silent tabonly<CR>]], silent)
-vim.keymap.set("n", "[tab]O", [[<Cmd>qall<CR>]], silent)
 vim.keymap.set("n", "[tab]t", [[<Plug>(new_tab)]], remap)
 vim.keymap.set("n", "<C-Tab>", [[gt]])
 vim.keymap.set("n", "<C-S-Tab>", [[gT]])
