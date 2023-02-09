@@ -10,8 +10,9 @@ M.opts = {
 local to_item = function(test, path)
   local name_node = test.name_nodes[#test.name_nodes]
   local row, column = name_node:start()
+  local full_name = test.full_name:gsub("\n", " ")
   return {
-    value = test.full_name,
+    value = full_name,
     is_leaf = #test.children == 0,
     row = row + 1,
     column = column,
