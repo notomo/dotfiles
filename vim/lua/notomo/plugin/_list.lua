@@ -619,13 +619,7 @@ mypack.add("notomo/hlmsg.nvim", {
   hooks = {
     post_add = function()
       vim.keymap.set("n", "[exec]cm", function()
-        require("thetto").start("hlmsg", {
-          opts = {
-            display_limit = 1000,
-            insert = false,
-            offset = 1000,
-          },
-        })
+        require("thetto").start("hlmsg")
       end)
     end,
   },

@@ -21,4 +21,10 @@ function M.highlight(decorator, items, first_line)
   end
 end
 
+M.behaviors = {
+  insert = false,
+  display_limit = 10000,
+  offset = 10000,
+}
+
 return M
