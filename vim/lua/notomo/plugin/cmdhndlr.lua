@@ -37,7 +37,7 @@ vim.keymap.set("x", "[test]N", function()
   local test = tests[1]
   test = test or { children = {} }
 
-  require("cmdhndlr").test({ filter = test.full_name .. info.separator .. selected_text })
+  require("cmdhndlr").test({ filter = test.full_name .. info.tool.separator .. selected_text })
 end)
 
 vim.api.nvim_create_augroup("cmdhndlr_setting", {})
