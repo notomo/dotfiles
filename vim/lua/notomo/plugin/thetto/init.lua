@@ -2,21 +2,6 @@ local source_config = {}
 local source_actions = {}
 local kind_actions = {}
 
-local run_without_focus = function(...)
-  local keys = { ... }
-  return function(items)
-    local targets = vim.tbl_map(function(item)
-      for _, key in ipairs(keys) do
-        local v = item[key]
-        if v then
-          return v
-        end
-      end
-    end, items)
-    require("notomo.autohotkey").run_without_focus(targets)
-  end
-end
-
 local ignore_patterns = {}
 vim.list_extend(ignore_patterns, vim.g.notomo_thetto_ignore_pattenrs or {})
 
@@ -38,7 +23,6 @@ kind_actions["file"] = {
     vim.cmd.Qfreplace()
     vim.cmd.only()
   end,
-  action_system = run_without_focus("url", "path"),
   opts = {
     preview = { ignore_patterns = ignore_patterns },
   },
