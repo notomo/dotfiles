@@ -39,6 +39,25 @@ vim.keymap.set("x", "[test]N", function()
 
   require("cmdhndlr").test({ filter = test.full_name .. info.tool.separator .. selected_text })
 end)
+vim.keymap.set("n", "[test]d", function()
+  local test = require("gettest").nodes({
+    scope = "smallest_ancestor",
+    target = { row = vim.fn.line(".") },
+  })[1]
+  if not test then
+    require("misclib.message").warn("not found test")
+    return nil
+  end
+
+  require("dap").run({
+    type = "go",
+    name = test.full_name,
+    request = "launch",
+    mode = "test",
+    program = "${relativeFileDirname}",
+    args = { "-test.run", test.full_name },
+  })
+end)
 
 vim.api.nvim_create_augroup("cmdhndlr_setting", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
