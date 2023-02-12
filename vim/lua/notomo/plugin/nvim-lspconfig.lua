@@ -42,7 +42,7 @@ setup_ls(lspconfig.gopls, {
   },
 }, { "unix" })
 
-setup_ls(lspconfig.sumneko_lua, {
+setup_ls(lspconfig.lua_ls, {
   settings = {
     Lua = {
       diagnostics = {
