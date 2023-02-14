@@ -332,6 +332,7 @@ mypack.add("notomo/gesture.nvim", {
 })
 
 mypack.add("notomo/thetto.nvim", {
+  depends = { "waitevent.nvim" },
   load_on = { modules = { "thetto" }, events = { { "BufReadPost", "*/*" } } },
   hooks = {
     post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/thetto/mapping.lua"),
@@ -743,6 +744,19 @@ optpack.add("Wansmer/treesj", {
         use_default_keymaps = false,
       })
       vim.keymap.set("n", "[exec]J", [[<Cmd>TSJSplit<CR>]])
+    end,
+  },
+})
+
+mypack.add("notomo/waitevent.nvim", {
+  load_on = {
+    modules = { "waitevent" },
+  },
+  hooks = {
+    post_load = function()
+      local editor = require("waitevent").editor()
+      vim.env.GIT_EDITOR = editor
+      vim.env.PERITODO_EDITOR = editor
     end,
   },
 })

@@ -107,10 +107,3 @@ end
 opt.laststatus = 3
 opt.mousescroll = "ver:2,hor:6"
 opt.mousemodel = "extend" -- to disable default popup
-
-if vim.fn.filereadable(vim.fn.expand("~/.deno/bin/waitevent")) then
-  local base = [=[waitevent -- nvim --server ]=] .. vim.v.servername .. " --remote-expr "
-  local evaled = [=[require([[notomo.waitevent]]).setup([[{serverAddress}]],[[{argument}]])]=]
-  vim.env.GIT_EDITOR = base .. [=["luaeval(\"]=] .. evaled .. [=[\")"]=]
-  vim.env.PERITODO_EDITOR = base .. [=[luaeval("]=] .. evaled .. [=[")]=]
-end
