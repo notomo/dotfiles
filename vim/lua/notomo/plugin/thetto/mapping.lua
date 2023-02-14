@@ -327,6 +327,7 @@ vim.keymap.set("n", "[finder]O", thetto_starter("vim/option"))
 vim.keymap.set("n", "[finder]H", thetto_starter("vim/highlight_group"))
 vim.keymap.set("n", "[finder]B", thetto_starter("vim/buffer"))
 vim.keymap.set("n", "[finder]y", thetto_starter("file/bookmark"))
+vim.keymap.set("n", "[finder]E", thetto_starter("env/variable"))
 
 vim.keymap.set(
   "n",
