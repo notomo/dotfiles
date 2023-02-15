@@ -18,4 +18,5 @@ vim.g.openbrowser_search_engines = {
   ansible = [[https://docs.ansible.com/ansible/latest/index.html#stq={query}]],
   git = [[http://git-scm.com/search/results?search={query}]],
   deno = [[https://deno.land/x?query={query}]],
+  google = [[https://google.com/search?q={query}]],
 }
