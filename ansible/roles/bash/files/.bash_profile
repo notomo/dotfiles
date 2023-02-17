@@ -2,6 +2,8 @@ if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
+export EDITOR=nvim
+
 export PATH=$HOME/.local/nvim/bin:$HOME/.local/bin:$PATH:$HOME/bin:$HOME/.cargo/bin
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.luarocks/bin:$PATH

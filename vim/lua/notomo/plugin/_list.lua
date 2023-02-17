@@ -332,7 +332,6 @@ mypack.add("notomo/gesture.nvim", {
 })
 
 mypack.add("notomo/thetto.nvim", {
-  depends = { "waitevent.nvim" },
   load_on = { modules = { "thetto" }, events = { { "BufReadPost", "*/*" } } },
   hooks = {
     post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/thetto/mapping.lua"),
@@ -751,12 +750,18 @@ optpack.add("Wansmer/treesj", {
 mypack.add("notomo/waitevent.nvim", {
   load_on = {
     modules = { "waitevent" },
+    events = { "BufNew" },
   },
   hooks = {
     post_load = function()
       local editor = require("waitevent").editor()
       vim.env.GIT_EDITOR = editor
       vim.env.PERITODO_EDITOR = editor
+
+      vim.env.EDITOR = require("waitevent").editor({
+        done_events = {},
+        cancel_events = {},
+      })
     end,
   },
 })
