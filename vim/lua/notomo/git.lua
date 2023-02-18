@@ -37,10 +37,6 @@ function M._remote()
   return "origin"
 end
 
-function M._to_head(git_root)
-  return git_root .. "/.git/HEAD"
-end
-
 function M.root()
   local current_dir = vim.fn.getcwd()
   if vim.fn.isdirectory(current_dir .. "/.git") == 1 then
@@ -54,70 +50,14 @@ function M.root()
   return nil
 end
 
-function M._head_file_path()
-  local git_root = M.root()
-  if not git_root then
-    return nil
-  end
-  return M._to_head(git_root)
-end
-
 function M.current_branch()
-  local head = M._head_file_path()
-  if not head then
-    return ""
+  if vim.b.gitsigns_head then
+    return vim.b.gitsigns_head
   end
-  local f = io.open(head)
-  if not f then
-    return ""
+  if vim.bo.filetype == "kivi-file" and vim.g.gitsigns_head then
+    return vim.g.gitsigns_head
   end
-  local content = vim.trim(f:read("*a"))
-  f:close()
-
-  local splitted = vim.split(content, " ", true)
-  if #splitted == 1 then
-    return splitted[1]
-  end
-
-  local ref = splitted[2]
-  local branch = ref:sub(#"refs/heads/" + 1)
-  return branch
-end
-
-local watchers = {}
-local buffer_cache = {}
-function M.branch_component()
-  local bufnr = vim.fn.bufnr("%")
-  local buffer_cached = buffer_cache[bufnr]
-  if buffer_cached then
-    return buffer_cached
-  end
-
-  local head = M._head_file_path()
-  if not head then
-    buffer_cache[bufnr] = ""
-    return ""
-  end
-
-  local cached = watchers[head]
-  if cached then
-    buffer_cache[bufnr] = cached.branch
-    return cached.branch
-  end
-
-  local branch = M.current_branch()
-  local watcher = {
-    event = vim.loop.new_fs_event(),
-    branch = branch,
-  }
-  watchers[head] = watcher
-  buffer_cache[bufnr] = branch
-  watcher.event:start(head, {}, function()
-    watcher.event:close()
-    watchers[head] = nil
-    buffer_cache = {}
-  end)
-  return branch
+  return ""
 end
 
 function M.yank_commit_message(revision)

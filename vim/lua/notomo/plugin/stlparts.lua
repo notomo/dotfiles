@@ -19,7 +19,7 @@ local filetype = function()
 end
 
 local branch = function()
-  local ok, name = pcall(require("notomo.git").branch_component)
+  local ok, name = pcall(require("notomo.git").current_branch)
   if not ok then
     return ""
   end
