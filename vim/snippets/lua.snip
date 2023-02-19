@@ -8,6 +8,9 @@ snippet local_func
 		${0:TARGET}
 	end
 
+snippet return
+	return ${1:nil}
+
 snippet require
 options word
 	require("${1:name}")
@@ -17,9 +20,6 @@ snippet import
 
 snippet dofile
 	dofile(${1:file_path})
-
-snippet return
-	return ${1:nil}
 
 snippet function
 	function ${1:name}(${2:args})
@@ -405,3 +405,9 @@ snippet doc_param
 
 snippet doc_return
 	--- @return ${1:type}: ${0:description}
+
+snippet doc_class
+	--- @class ${1:name}
+
+snippet doc_field
+	--- @field ${1:name} ${1:type} ${1:description}
