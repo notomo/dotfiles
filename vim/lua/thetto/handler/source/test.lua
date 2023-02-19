@@ -33,7 +33,7 @@ end
 
 function M.collect(source_ctx)
   local items = {}
-  local paths = source_ctx.opts.get_paths()
+  local paths = source_ctx.opts.get_paths(source_ctx.cwd)
   for _, path in ipairs(paths) do
     local tests, _, err = require("gettest").nodes({
       scope = source_ctx.opts.scope,

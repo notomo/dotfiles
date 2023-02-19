@@ -475,23 +475,33 @@ vim.keymap.set("n", "[finder]z", thetto_starter("cmd/zsh/history"))
 vim.keymap.set("n", "[finder]gP", thetto_starter("github/pull_request"))
 vim.keymap.set("n", "[finder]to", thetto_starter("test"))
 vim.keymap.set("n", "[finder]ts", thetto_starter("test", { source_opts = { scope = "largest_ancestor" } }))
+local get_paths = function(cwd)
+  local regex = vim.regex([[\v(_spec.lua|_test.go)$]])
+  return vim.fs.find(function(name)
+    return regex:match_str(name)
+  end, {
+    type = "file",
+    limit = math.huge,
+    path = cwd,
+  })
+end
 vim.keymap.set(
   "n",
   "[finder]tl",
   thetto_starter("test", {
     source_opts = {
-      get_paths = function()
-        local regex = vim.regex([[\v(_spec.lua|_test.go)$]])
-        return vim.fs.find(function(name)
-          return regex:match_str(name)
-        end, {
-          type = "file",
-          limit = math.huge,
-        })
-      end,
+      get_paths = get_paths,
     },
   })
 )
+vim.keymap.set("n", "[finder]tL", function()
+  require("thetto").start("test", {
+    opts = { cwd = require("thetto.util.cwd").project() },
+    source_opts = {
+      get_paths = get_paths,
+    },
+  })
+end)
 vim.keymap.set("n", "[finder]b", thetto_starter("url/bookmark"))
 
 -- custom source
