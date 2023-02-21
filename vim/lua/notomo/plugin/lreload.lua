@@ -2,27 +2,6 @@ local hooks = {
   optpack = function()
     dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/_list.lua"))
   end,
-  stlparts = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/stlparts.lua"))
-  end,
-  thetto = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/thetto/init.lua"))
-  end,
-  curstr = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/curstr/init.lua"))
-  end,
-  piemenu = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/piemenu/init.lua"))
-  end,
-  aliaser = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/aliaser.lua"))
-  end,
-  gesture = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/gesture.lua"))
-  end,
-  lreload = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/lreload.lua"))
-  end,
   notomo = function(args)
     if not args then
       return
@@ -39,13 +18,22 @@ local plugins = vim.tbl_filter(function(plugin)
   return plugin.full_name:match("^notomo/.+%.nvim$")
 end, require("optpack").list())
 
-local names = vim.tbl_map(function(plugin)
-  return plugin.name:gsub([[%.nvim$]], "")
+local settings = vim.tbl_map(function(plugin)
+  return {
+    name = plugin.name:gsub([[%.nvim$]], ""),
+    hook = function()
+      plugin.opts.hooks.post_add(plugin)
+      plugin.opts.hooks.pre_load(plugin)
+      plugin.opts.hooks.post_load(plugin)
+    end,
+  }
 end, plugins)
-table.insert(names, "notomo")
+table.insert(settings, { name = "notomo" })
 
-for _, name in ipairs(names) do
-  require("lreload").enable(name, { post_hook = hooks[name] })
+for _, setting in ipairs(settings) do
+  require("lreload").enable(setting.name, { post_hook = hooks[setting.name] or setting.hook })
 end
 
-return names
+return vim.tbl_map(function(setting)
+  return setting.name
+end, settings)
