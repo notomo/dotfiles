@@ -246,9 +246,7 @@ mypack.add("notomo/wintablib.nvim", {
 mypack.add("notomo/lreload.nvim", {
   load_on = { modules = { "lreload" }, events = { "BufWritePre" } },
   hooks = {
-    post_load = function()
-      dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/lreload.lua"))
-    end,
+    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/lreload.lua"),
   },
 })
 
@@ -528,9 +526,7 @@ optpack.add("jose-elias-alvarez/null-ls.nvim", {
 mypack.add("notomo/stlparts.nvim", {
   load_on = { events = { "VimEnter" } },
   hooks = {
-    post_load = function()
-      dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/stlparts.lua"))
-    end,
+    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/stlparts.lua"),
   },
 })
 
