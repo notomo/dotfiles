@@ -56,7 +56,6 @@ end
 
 local stlparts = require("stlparts")
 
-local List = stlparts.component("list")
 local Padding = stlparts.component("padding")
 local FileType = stlparts.component("file_type")
 
@@ -69,8 +68,8 @@ local set_statusline = function()
     TrancateLeft(
       Padding(
         FileType(
-          { ["kivi-file"] = List({ cwd, branch }) },
-          Separate(List({ path, branch }), List({ column, filetype, mode }))
+          { ["kivi-file"] = { cwd, " ", branch } },
+          Separate({ path, " ", branch }, { column, " ", filetype, " ", mode })
         )
       )
     )
@@ -136,35 +135,32 @@ local set_tabline = function()
       Builder(function()
         local tab_ids = api.nvim_list_tabpages()
         local current = api.nvim_get_current_tabpage()
-        return List(
-          vim.tbl_map(function(tab_id)
-            local is_current = tab_id == current
-            local hl_group = is_current and "TabLineSel" or "TabLine"
-            return Tab(
-              tab_id,
-              Highlight(
-                hl_group,
-                Padding(TrancateLeft(
-                  FileType({
-                    ["kivi-file"] = function(ctx)
-                      local tab_number = api.nvim_tabpage_get_number(tab_id)
-                      local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
-                      return escape(name)
-                    end,
-                  }, function(ctx)
-                    return escape(tab_label(tab_id, ctx.window_id))
-                  end),
-                  {
-                    max_width = function()
-                      return 30
-                    end,
-                  }
-                ))
-              )
+        return vim.tbl_map(function(tab_id)
+          local is_current = tab_id == current
+          local hl_group = is_current and "TabLineSel" or "TabLine"
+          return Tab(
+            tab_id,
+            Highlight(
+              hl_group,
+              Padding(TrancateLeft(
+                FileType({
+                  ["kivi-file"] = function(ctx)
+                    local tab_number = api.nvim_tabpage_get_number(tab_id)
+                    local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
+                    return escape(name)
+                  end,
+                }, function(ctx)
+                  return escape(tab_label(tab_id, ctx.window_id))
+                end),
+                {
+                  max_width = function()
+                    return 30
+                  end,
+                }
+              ))
             )
-          end, tab_ids),
-          { separator = "" }
-        )
+          )
+        end, tab_ids)
       end)
     )
   )
