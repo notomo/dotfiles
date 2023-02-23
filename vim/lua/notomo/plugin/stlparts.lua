@@ -1,81 +1,75 @@
 local api = vim.api
 local fn = vim.fn
 
-local surround = function(s)
-  return ("[%s]"):format(s)
-end
-
 local escape = function(s)
   s = s:gsub("%%", "%%%%")
   return s
 end
 
-local path = function()
-  return escape(fn.expand("%:p:~"))
-end
-
-local filetype = function()
-  return surround(vim.bo.filetype)
-end
-
-local branch = function()
-  local ok, name = pcall(require("notomo.git").current_branch)
-  if not ok then
-    return ""
-  end
-  if #name == 0 then
-    return ""
-  end
-  return surround(name)
-end
-
-local column = function()
-  return surround(fn.col("."))
-end
-
-local modes = {
-  n = "N",
-  i = "I",
-  R = "R",
-  v = "V",
-  V = "V",
-  [api.nvim_eval('"\\<C-v>"')] = "V",
-  c = "C",
-  s = "S",
-  [api.nvim_eval('"\\<C-s>"')] = "S",
-  t = "T",
-}
-local mode = function()
-  local mode = fn.mode()
-  return modes[mode] or ""
-end
-
-local cwd = function()
-  return fn.getcwd()
-end
-
 local stlparts = require("stlparts")
 
-local Padding = stlparts.component("padding")
-local FileType = stlparts.component("file_type")
+local get_filetype = function(ctx)
+  local bufnr = vim.api.nvim_win_get_buf(ctx.window_id)
+  return vim.bo[bufnr].filetype
+end
+local Switch = stlparts.component("switch")
 
 local set_statusline = function()
   local TrancateLeft = stlparts.component("trancate_left")
   local Separate = stlparts.component("separate")
 
+  local modes = {
+    n = "N",
+    i = "I",
+    R = "R",
+    v = "V",
+    V = "V",
+    [api.nvim_eval('"\\<C-v>"')] = "V",
+    c = "C",
+    s = "S",
+    [api.nvim_eval('"\\<C-s>"')] = "S",
+    t = "T",
+  }
+  local mode = function()
+    local mode = fn.mode()
+    return modes[mode] or ""
+  end
+  local surround = function(s)
+    return ("[%s]"):format(s)
+  end
+  local cwd = function()
+    return fn.getcwd()
+  end
+  local filetype = function(ctx)
+    return surround(get_filetype(ctx))
+  end
+  local column = function()
+    return surround(fn.col("."))
+  end
+  local path = function()
+    return escape(fn.expand("%:p:~"))
+  end
+  local branch = function()
+    local name = require("notomo.git").current_branch()
+    if #name == 0 then
+      return ""
+    end
+    return surround(name)
+  end
+
   stlparts.set(
-    "default",
-    TrancateLeft(
-      Padding(
-        FileType(
-          { ["kivi-file"] = { cwd, " ", branch } },
-          Separate({ path, " ", branch }, { column, " ", filetype, " ", mode })
-        )
-      )
-    )
+    "statusline",
+    TrancateLeft({
+      " ",
+      Switch(get_filetype, {
+        ["kivi-file"] = { cwd, " ", branch },
+        _ = Separate({ path, " ", branch }, { column, " ", filetype, " ", mode }),
+      }),
+      " ",
+    })
   )
 
-  vim.opt.statusline = [[%!v:lua.require("stlparts").build("default")]]
+  vim.opt.statusline = [[%!v:lua.require("stlparts").build("statusline")]]
 end
 set_statusline()
 
@@ -140,25 +134,23 @@ local set_tabline = function()
           local hl_group = is_current and "TabLineSel" or "TabLine"
           return Tab(
             tab_id,
-            Highlight(
-              hl_group,
-              Padding(TrancateLeft(
-                FileType({
+            Highlight(hl_group, {
+              " ",
+              TrancateLeft(
+                Switch(get_filetype, {
                   ["kivi-file"] = function(ctx)
                     local tab_number = api.nvim_tabpage_get_number(tab_id)
                     local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
                     return escape(name)
                   end,
-                }, function(ctx)
-                  return escape(tab_label(tab_id, ctx.window_id))
-                end),
-                {
-                  max_width = function()
-                    return 30
+                  _ = function(ctx)
+                    return escape(tab_label(tab_id, ctx.window_id))
                   end,
-                }
-              ))
-            )
+                }),
+                { max_width = 30 }
+              ),
+              " ",
+            })
           )
         end, tab_ids)
       end)
