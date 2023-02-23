@@ -14,6 +14,14 @@ if initializing then
     on_finished = function()
       vim.cmd.colorscheme(vim.g.notomo_colorscheme)
     end,
+    outputters = {
+      buffer = {
+        open = function(bufnr)
+          vim.cmd.split()
+          vim.cmd.buffer(bufnr)
+        end,
+      },
+    },
   })
 else
   vim.schedule(function()
