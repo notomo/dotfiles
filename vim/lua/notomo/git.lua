@@ -54,7 +54,7 @@ function M.current_branch()
   if vim.b.gitsigns_head then
     return vim.b.gitsigns_head
   end
-  if vim.bo.filetype == "kivi-file" and vim.g.gitsigns_head then
+  if (vim.bo.filetype == "kivi-file" or vim.bo.buftype == "terminal") and vim.g.gitsigns_head then
     return vim.g.gitsigns_head
   end
   return ""
