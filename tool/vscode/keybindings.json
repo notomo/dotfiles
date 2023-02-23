@@ -4,5 +4,31 @@
         "key": "j",
         "when": "neovim.mode == insert && editorTextFocus",
         "args": "j"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "type",
+        "args": {"text": "\n"},
+        "when": "textInputFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "deleteRight",
+        "when": "neovim.mode == insert && textInputFocus"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "deleteLeft",
+        "when": "neovim.mode == insert && textInputFocus"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "cursorLeft",
+        "when": "neovim.mode == insert && textInputFocus"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "cursorRight",
+        "when": "neovim.mode == insert && textInputFocus"
     }
 ]

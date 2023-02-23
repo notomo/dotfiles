@@ -16,7 +16,7 @@ set_prefix({ "n", "x" }, "arith", "<Space>a")
 set_prefix({ "n", "x" }, "yank", "<Space>y")
 set_prefix({ "n" }, "newline", "o")
 
-vim.keymap.set("n", "[exec]r", [[<Cmd>source ~/dotfiles/vscode/neovim.vim<CR><Cmd>echomsg 'reloaded'<CR>]])
+vim.keymap.set("n", "[exec]r", [[<Cmd>source ~/dotfiles/tool/vscode/neovim.vim<CR><Cmd>echomsg 'reloaded'<CR>]])
 vim.keymap.set("n", "[exec]R", [[<Cmd>call VSCodeNotify("workbench.action.reloadWindow")<CR>]])
 vim.keymap.set("n", "[exec]f", [[<Cmd>call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>]])
 vim.keymap.set("n", "[exec]m", [[<Cmd>call VSCodeNotify("markdown.showPreviewToSide")<CR>]])
@@ -24,6 +24,7 @@ vim.keymap.set("n", "[exec]n", [[<Cmd>nohlsearch<CR>]])
 vim.keymap.set("n", "[exec]ljo", [[<Cmd>call VSCodeNotify("liveshare.join")<CR>]])
 vim.keymap.set("n", "[exec]ls", [[<Cmd>call VSCodeNotify("liveshare.start")<CR>]])
 vim.keymap.set("n", "[exec]o", [[<Cmd>call VSCodeNotify("workbench.explorer.fileView.focus")<CR>]])
+vim.keymap.set("n", "[exec]N", [[<Cmd>lua require("notomo.edit").note()<CR>]])
 
 vim.keymap.set("n", "k", [[gk]])
 vim.keymap.set("n", "j", [[gj]])
@@ -79,12 +80,17 @@ vim.keymap.set("n", "<S-l>", [[<Cmd>keepjumps normal %<CR>]])
 vim.keymap.set("n", "<S-j>", [[<Cmd>keepjumps normal! }<CR>]])
 vim.keymap.set("n", "<S-k>", [[<Cmd>keepjumps normal! {<CR>]])
 
-vim.keymap.set("n", "[newline]o", [[<Cmd>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>]])
-vim.keymap.set(
-  "n",
-  "[newline]j",
-  [[<Cmd>for i in range(v:count1) \| call append(line('.'), '') \| execute 'normal! j' \| endfor<CR>]]
-)
+vim.keymap.set("n", "[newline]o", function()
+  for _ in ipairs(vim.fn.range(vim.v.count1)) do
+    vim.fn.append(vim.fn.line("."), "")
+  end
+end, { silent = true })
+vim.keymap.set("n", "[newline]j", function()
+  for _ in ipairs(vim.fn.range(vim.v.count1)) do
+    vim.fn.append(vim.fn.line("."), "")
+    vim.cmd.normal({ args = { "j" }, bang = true })
+  end
+end, { silent = true })
 
 vim.keymap.set("n", "[arith]j", function()
   return require("notomo.edit").inc_or_dec(false)
@@ -156,6 +162,7 @@ vim.keymap.set("n", "[tab]q", [[<Cmd>call VSCodeNotify("workbench.action.closeAc
 vim.keymap.set("n", "[tab]o", [[<Cmd>call VSCodeNotify("workbench.action.closeOtherEditors")<CR>]])
 vim.keymap.set("n", "[tab]l", [[<Cmd>call VSCodeNotify("workbench.action.nextEditorInGroup")<CR>]])
 vim.keymap.set("n", "[tab]a", [[<Cmd>call VSCodeNotify("workbench.action.previousEditorInGroup")<CR>]])
+vim.keymap.set("n", "[tab]t", [[<Cmd>call VSCodeNotify("workbench.action.files.newUntitledFile")<CR>]])
 
 vim.keymap.set("n", "[keyword]o", [[<Cmd>call VSCodeNotify("editor.action.revealDefinition")<CR>]])
 vim.keymap.set("n", "[keyword]k", [[<Cmd>call VSCodeNotify("editor.action.showHover")<CR>]])
@@ -163,6 +170,7 @@ vim.keymap.set("n", "[keyword]k", [[<Cmd>call VSCodeNotify("editor.action.showHo
 vim.keymap.set("n", "[finder];", [[<Cmd>call VSCodeNotify("workbench.action.showCommands")<CR>]])
 vim.keymap.set("n", "[finder]k", [[<Cmd>call VSCodeNotify("workbench.action.openGlobalKeybindings")<CR>]])
 vim.keymap.set("n", "[finder]G", [[<Cmd>call VSCodeNotify("workbench.action.findInFiles")<CR>]])
+vim.keymap.set("n", "<Space>ur", [[<Cmd>call VSCodeNotify("workbench.action.quickOpen")<CR>]])
 
 vim.keymap.set("n", "[qf]n", [[<Cmd>call VSCodeNotify("editor.action.marker.next")<CR>]])
 vim.keymap.set("n", "[qf]p", [[<Cmd>call VSCodeNotify("editor.action.marker.prev")<CR>]])
@@ -172,8 +180,6 @@ vim.keymap.set("n", "[qf]o", [[<Cmd>call VSCodeNotify("workbench.action.problems
 
 vim.keymap.set("n", "<Space>c", [[<Cmd>VSCodeCommentary<CR>]])
 vim.keymap.set("x", "<Space>c", [[:VSCodeCommentary<CR>]])
-
-vim.keymap.set("n", "Y", [[y$]])
 
 vim.keymap.set(
   "n",
@@ -202,6 +208,7 @@ vim.opt.packpath:prepend(pack_dir)
 
 vim.cmd.packadd([[vim-textobj-user]])
 vim.cmd.packadd([[vim-operator-user]])
+vim.cmd.packadd([[misclib.nvim]])
 
 vim.cmd.packadd([[CamelCaseMotion]])
 vim.keymap.set({ "n", "x", "o" }, "<Leader>w", "<Plug>CamelCaseMotion_w")

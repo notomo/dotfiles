@@ -58,7 +58,10 @@ local format = function(bufnr)
 end
 
 function M.setup()
-  require("null-ls") -- to lazy load
+  local ok = pcall(require, "null-ls")
+  if not ok then
+    return require("misclib.message").warn("no null-ls")
+  end
   local group = vim.api.nvim_create_augroup("notomo_lsp_format", { clear = false })
   local events = { "BufWritePost" }
   vim.api.nvim_clear_autocmds({ buffer = 0, group = group })
