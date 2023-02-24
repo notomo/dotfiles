@@ -35,16 +35,13 @@ function M.collect(source_ctx)
   local items = {}
   local paths = source_ctx.opts.get_paths(source_ctx.cwd)
   for _, path in ipairs(paths) do
-    local tests, _, err = require("gettest").nodes({
+    local tests = require("gettest").nodes({
       scope = source_ctx.opts.scope,
       target = {
         path = path,
         row = vim.fn.line("."),
       },
     })
-    if err then
-      return nil, err
-    end
     for _, test in ipairs(tests) do
       vim.list_extend(items, M._collect(test, path))
     end
