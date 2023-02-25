@@ -16,6 +16,10 @@ end
 function M.push()
   local remote = M._remote()
   local branch = M.current_branch()
+  if branch == "" then
+    require("misclib.message").warn("no specific branch")
+    return ""
+  end
   return (":<C-u>Git push %s %s"):format(remote, branch)
 end
 
