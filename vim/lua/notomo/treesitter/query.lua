@@ -48,7 +48,7 @@ function M._update(decorator, target_bufnr, query_bufnr)
 
   local language = vim.bo[target_bufnr].filetype
   local query = vim.treesitter.parse_query(language, query_str)
-  local root = require("notomo.treesitter").get_first_tree_root(target_bufnr, language)
+  local root = require("misclib.treesitter").get_first_tree_root(target_bufnr, language)
 
   decorator:clear()
 

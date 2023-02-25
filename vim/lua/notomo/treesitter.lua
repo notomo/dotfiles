@@ -1,28 +1,5 @@
 local M = {}
 
-function M.get_first_tree_root(source, language)
-  local parser
-  if type(source) == "string" then
-    parser = vim.treesitter.get_string_parser(source, language, { injections = { [language] = "" } })
-  else
-    parser = vim.treesitter.get_parser(source, language, { injections = { [language] = "" } })
-  end
-  local trees = parser:parse()
-  return trees[1]:root()
-end
-
-function M.get_captures(match, query, handlers)
-  local captures = {}
-  for id, node in pairs(match) do
-    local captured = query.captures[id]
-    local f = handlers[captured]
-    if f then
-      f(captures, node)
-    end
-  end
-  return captures
-end
-
 function M.remove_indent(str)
   local lines = vim.split(str, "\n", true)
   lines = vim.tbl_map(function(line)
@@ -34,7 +11,7 @@ end
 function M._get_near_function_node(bufnr)
   local language = vim.bo[bufnr].filetype
 
-  local root, err = require("notomo.treesitter").get_first_tree_root(bufnr, language)
+  local root, err = require("misclib.treesitter").get_first_tree_root(bufnr, language)
   if err then
     return nil, err
   end
@@ -42,7 +19,7 @@ function M._get_near_function_node(bufnr)
   local row = unpack(vim.api.nvim_win_get_cursor(0))
 
   require("nvim-treesitter")
-  local query = vim.treesitter.get_query(language, "locals")
+  local query = vim.treesitter.query.get_query(language, "locals")
 
   local last_node
   for id, node, _ in query:iter_captures(root, bufnr, 0, -1) do
