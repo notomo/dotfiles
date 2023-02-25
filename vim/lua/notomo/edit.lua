@@ -121,7 +121,8 @@ function M.inc_or_dec(is_inc)
   local pattern = [=[\v\d+\ze[^[:digit:]]*$]=]
   if vim.fn.matchend(line:sub(index + 1), pattern) == -1 then
     local idx = vim.fn.matchend(line:sub(1, index), pattern)
-    if idx ~= -1 then
+    local count = col - idx
+    if idx ~= -1 and count > 0 then
       return ("%dh%s"):format(col - idx, key)
     end
   end
