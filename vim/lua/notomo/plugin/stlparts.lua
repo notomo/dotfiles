@@ -13,6 +13,9 @@ local get_filetype = function(ctx)
   return vim.bo[bufnr].filetype
 end
 local Switch = stlparts.component("switch")
+local SwitchByFiletype = function(...)
+  return Switch(get_filetype, ...)
+end
 
 local set_statusline = function()
   local TrancateLeft = stlparts.component("trancate_left")
@@ -57,17 +60,17 @@ local set_statusline = function()
     return surround(name)
   end
 
-  stlparts.set(
-    "statusline",
-    TrancateLeft({
-      " ",
-      Switch(get_filetype, {
-        ["kivi-file"] = { cwd, " ", branch },
-        _ = Separate({ path, " ", branch }, { column, " ", filetype, " ", mode }),
+  stlparts.set("statusline", {
+    " ",
+    TrancateLeft(SwitchByFiletype({
+      ["kivi-file"] = { cwd, " ", branch },
+      _ = Separate({
+        { path, " ", branch },
+        { column, " ", filetype, " ", mode },
       }),
-      " ",
-    })
-  )
+    })),
+    " ",
+  })
 
   vim.opt.statusline = [[%!v:lua.require("stlparts").build("statusline")]]
 end
@@ -137,7 +140,7 @@ local set_tabline = function()
             Highlight(hl_group, {
               " ",
               TrancateLeft(
-                Switch(get_filetype, {
+                SwitchByFiletype({
                   ["kivi-file"] = function(ctx)
                     local tab_number = api.nvim_tabpage_get_number(tab_id)
                     local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
