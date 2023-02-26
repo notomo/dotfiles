@@ -6,6 +6,6 @@ require("notomo.npm").mapping()
 require("notomo.lsp.mapping").setup()
 require("notomo.lsp.autocmd").setup()
 
-if vim.endswith(vim.fn.bufname("%"), ".mjs") then
+if vim.endswith(vim.fn.bufname(), ".mjs") then
   vim.b.cmdhndlr = { normal_runner = "javascript/zx" }
 end

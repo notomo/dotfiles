@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    if vim.fn.bufname("%") ~= "" then
+    if vim.fn.bufname() ~= "" then
       return
     end
     local byte = vim.fn.line2byte(vim.fn.line("$") + 1)

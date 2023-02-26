@@ -29,7 +29,7 @@ function M.fetch()
 end
 
 function M.apply()
-  local path = vim.fn.fnamemodify(vim.fn.bufname("%"), ":p")
+  local path = vim.fn.fnamemodify(vim.fn.bufname(), ":p")
   return (":<C-u>Git apply %s"):format(path)
 end
 

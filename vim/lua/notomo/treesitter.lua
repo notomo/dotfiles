@@ -1,7 +1,7 @@
 local M = {}
 
 function M.remove_indent(str)
-  local lines = vim.split(str, "\n", true)
+  local lines = vim.split(str, "\n", { plain = true })
   lines = vim.tbl_map(function(line)
     return line:gsub("^%s+", "")
   end, lines)

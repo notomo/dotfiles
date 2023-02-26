@@ -605,7 +605,7 @@ mypack.add("notomo/importgraph.nvim", {
 mypack.add("notomo/ultramarine.nvim", {
   hooks = {
     post_add = function(plugin)
-      vim.g.notomo_colorscheme = vim.split(plugin.name, ".", true)[1]
+      vim.g.notomo_colorscheme = vim.split(plugin.name, ".", { plain = true })[1]
     end,
   },
   load_on = { events = { "ColorSchemePre" } },

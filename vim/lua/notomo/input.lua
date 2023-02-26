@@ -62,7 +62,7 @@ end
 local open_prompt = function(prompt, base_window_id)
   local prompt_line = prompt or ""
   local bufnr = vim.api.nvim_create_buf(false, true)
-  local lines = vim.split(prompt_line, "\n", true)
+  local lines = vim.split(prompt_line, "\n", { plain = true })
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
   vim.bo[bufnr].bufhidden = "wipe"
   local window_id = vim.api.nvim_open_win(bufnr, false, {

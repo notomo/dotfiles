@@ -38,14 +38,14 @@ M.actions = {
 
   action_enable_hot_reloading = function(items)
     for _, item in ipairs(items) do
-      local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
+      local name = vim.split(item.value, "/", { plain = true })[2]:gsub("%.nvim$", "")
       require("lreload").enable(name)
     end
   end,
 
   action_disable_hot_reloading = function(items)
     for _, item in ipairs(items) do
-      local name = vim.split(item.value, "/", true)[2]:gsub("%.nvim$", "")
+      local name = vim.split(item.value, "/", { plain = true })[2]:gsub("%.nvim$", "")
       require("lreload").disable(name)
     end
   end,

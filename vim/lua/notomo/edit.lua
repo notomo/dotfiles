@@ -98,7 +98,7 @@ end
 
 function M.set_term_title(prompt_pattern, max_length)
   local path = vim.api.nvim_buf_get_name(0)
-  local shell = vim.split(vim.fn.fnamemodify(path, ":t"), ":", true)[1]
+  local shell = vim.split(vim.fn.fnamemodify(path, ":t"), ":", { plain = true })[1]
   local term_path = ("%s/%s"):format(vim.fn.fnamemodify(path, ":h"), shell)
 
   local prompt_line = vim.fn.getline(vim.fn.search(prompt_pattern, "nbcW"))

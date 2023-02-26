@@ -66,6 +66,8 @@ setup_ls(lspconfig.lua_ls, {
           "cast-type-mismatch",
           "return-type-mismatch",
           "cast-local-type",
+          "redundant-return-value", -- HACK: for vim.wait()
+          "undefined-field", -- HACK: for str:sub()
           "duplicate-set-field", -- HACK: for vim.ui.select etc.
         },
       },
