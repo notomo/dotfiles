@@ -1,5 +1,15 @@
+require("neodev").setup({
+  override = function(root_dir, library)
+    library.enabled = true
+    if not root_dir:match("/dotfiles/") then
+      library.plugins = false
+      return
+    end
+    library.plugins = true
+  end,
+})
+
 local lspconfig = require("lspconfig")
-require("neodev").setup({})
 
 local on_attach = function(client, bufnr)
   vim.lsp.semantic_tokens.stop(bufnr, client.id)
@@ -19,7 +29,7 @@ local setup_ls = function(ls, config, enable_features)
   config.flags = config.flags or {}
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
   config.capabilities = require("cmp_nvim_lsp").default_capabilities()
-  config.capabilities.snippetSupport = false
+  config.capabilities.textDocument.completion.completionItem.snippetSupport = false
   config.on_attach = on_attach
   ls.setup(config)
 end
@@ -90,18 +100,18 @@ setup_ls(lspconfig.tsserver, {
     if fname:find("deno:") then
       return nil
     end
-    local is_deno = require("lspconfig/util").root_pattern(unpack(deno_pattern))(fname)
+    local is_deno = require("lspconfig.util").root_pattern(unpack(deno_pattern))(fname)
     if is_deno then
       return nil
     end
-    return require("lspconfig/util").root_pattern("tsconfig.json")(fname)
-      or require("lspconfig/util").root_pattern("package.json", "jsconfig.json", ".git")(fname)
+    return require("lspconfig.util").root_pattern("tsconfig.json")(fname)
+      or require("lspconfig.util").root_pattern("package.json", "jsconfig.json", ".git")(fname)
       or vim.loop.cwd()
   end,
 }, { "unix" })
 
 setup_ls(lspconfig.denols, {
-  root_dir = require("lspconfig/util").root_pattern(unpack(deno_pattern)),
+  root_dir = require("lspconfig.util").root_pattern(unpack(deno_pattern)),
   before_init = function(config)
     local import_map = config.rootPath .. "/import_map.json"
     if vim.fn.filereadable(import_map) ~= 1 then
@@ -116,7 +126,7 @@ setup_ls(lspconfig.cssls)
 setup_ls(lspconfig.yamlls)
 setup_ls(lspconfig.autohotkey2, {}, { "win32" })
 setup_ls(lspconfig.ocamllsp, {
-  root_dir = require("lspconfig/util").root_pattern("*.opam", ".git", "dune-project", ".opam-switch"),
+  root_dir = require("lspconfig.util").root_pattern("*.opam", ".git", "dune-project", ".opam-switch"),
 })
 
 require("lsp_signature").setup({
