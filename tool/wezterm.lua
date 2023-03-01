@@ -11,6 +11,7 @@ local config = {
   color_scheme = "Adventure",
 
   font_size = 14.0,
+  harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 
   use_ime = true,
 
