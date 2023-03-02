@@ -1,25 +1,25 @@
 local api = vim.api
 local fn = vim.fn
+local stlparts = require("stlparts")
+local C = stlparts.component
 
 local escape = function(s)
   s = s:gsub("%%", "%%%%")
   return s
 end
 
-local stlparts = require("stlparts")
-
 local get_filetype = function(ctx)
   local bufnr = vim.api.nvim_win_get_buf(ctx.window_id)
   return vim.bo[bufnr].filetype
 end
-local Switch = stlparts.component("switch")
+local Switch = C.switch
 local SwitchByFiletype = function(...)
   return Switch(get_filetype, ...)
 end
 
 local set_statusline = function()
-  local TrancateLeft = stlparts.component("trancate_left")
-  local Separate = stlparts.component("separate")
+  local TrancateLeft = C.trancate_left
+  local Separate = C.separate
 
   local modes = {
     n = "N",
@@ -119,11 +119,11 @@ local tab_label = function(tab_id, window_id)
 end
 
 local set_tabline = function()
-  local Builder = stlparts.component("builder")
-  local Highlight = stlparts.component("highlight")
-  local DefaultHighlight = stlparts.component("default_highlight")
-  local Tab = stlparts.component("tab")
-  local TrancateLeft = stlparts.component("trancate_left")
+  local Builder = C.builder
+  local Highlight = C.highlight
+  local DefaultHighlight = C.default_highlight
+  local Tab = C.tab
+  local TrancateLeft = C.trancate_left
 
   stlparts.set(
     "tabline",
