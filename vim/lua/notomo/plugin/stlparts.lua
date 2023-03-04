@@ -18,9 +18,6 @@ local SwitchByFiletype = function(...)
 end
 
 local set_statusline = function()
-  local TrancateLeft = C.trancate_left
-  local Separate = C.separate
-
   local modes = {
     n = "N",
     i = "I",
@@ -60,15 +57,25 @@ local set_statusline = function()
     return surround(name)
   end
 
+  local TruncateLeft = C.truncate_left
+  local Truncate = function(component)
+    return TruncateLeft(component, {
+      max_width = function(ctx)
+        return ctx:width() * 0.8
+      end,
+    })
+  end
+  local Separate = C.separate
+
   stlparts.set("statusline", {
     " ",
-    TrancateLeft(SwitchByFiletype({
-      ["kivi-file"] = { cwd, " ", branch },
+    SwitchByFiletype({
+      ["kivi-file"] = Truncate({ cwd, " ", branch }),
       _ = Separate({
-        { path, " ", branch },
+        Truncate({ path, " ", branch }),
         { column, " ", filetype, " ", mode },
       }),
-    })),
+    }),
     " ",
   })
 
@@ -123,7 +130,7 @@ local set_tabline = function()
   local Highlight = C.highlight
   local DefaultHighlight = C.default_highlight
   local Tab = C.tab
-  local TrancateLeft = C.trancate_left
+  local TruncateLeft = C.truncate_left
 
   stlparts.set(
     "tabline",
@@ -139,7 +146,7 @@ local set_tabline = function()
             tab_id,
             Highlight(hl_group, {
               " ",
-              TrancateLeft(
+              TruncateLeft(
                 SwitchByFiletype({
                   ["kivi-file"] = function(ctx)
                     local tab_number = api.nvim_tabpage_get_number(tab_id)
