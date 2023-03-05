@@ -33,6 +33,16 @@ mypack.add("notomo/optpack.nvim", {
                 vim.bo.buftype = "nofile"
                 vim.bo.bufhidden = "wipe"
                 vim.cmd.buffer(bufnr)
+                vim.keymap.set("n", "[finder]gl", function()
+                  local update = vim.b[bufnr].optpack_updates[tostring(vim.fn.line("."))]
+                  if not update then
+                    return
+                  end
+                  require("thetto").start("git/log", {
+                    source_opts = { args = { update.revision_range } },
+                    opts = { cwd = update.directory },
+                  })
+                end, { buffer = bufnr })
               end,
             },
           },
