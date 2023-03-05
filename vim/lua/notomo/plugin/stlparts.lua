@@ -1,3 +1,4 @@
+local vim = vim
 local api = vim.api
 local fn = vim.fn
 local stlparts = require("stlparts")
@@ -38,7 +39,7 @@ local set_statusline = function()
     return ("[%s]"):format(s)
   end
   local cwd = function()
-    return fn.getcwd()
+    return escape(fn.getcwd())
   end
   local filetype = function(ctx)
     return surround(get_filetype(ctx))
