@@ -86,6 +86,10 @@ aliaser.register_factory("vim", function(aliases)
     require("optpack").install()
   end)
 
+  aliases:set("preview", function()
+    vim.cmd.PrevimOpen()
+  end)
+
   aliases:set("start_debug", function()
     require("osv").run_this()
   end)
