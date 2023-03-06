@@ -4,15 +4,29 @@
     "cpus": 2
   },
   "waitFor": "onCreateCommand",
-  "onCreateCommand": "./setup/devcontainer.sh",
+  "onCreateCommand": "./.devcontainer/setup.sh",
   "updateContentCommand": "",
   "postCreateCommand": "",
+  "remoteEnv": {
+    "EDITOR": "nvim"
+  },
   "customizations": {
     "codespaces": {
       "openFiles": []
     },
     "vscode": {
-      "extensions": []
+      "extensions": [],
+      "settings": {
+        "editor.minimap.enabled": false,
+        "breadcrumbs.enabled": false,
+        "workbench.activityBar.visible": false,
+        "workbench.statusBar.visible": false,
+        "explorer.openEditors.visible": 0,
+        "extensions.ignoreRecommendations": true,
+        "workbench.editor.untitled.hint": "hidden",
+        "terminal.integrated.fontSize": 14,
+        "terminal.integrated.defaultLocation": "editor"
+      }
     }
   }
 }
