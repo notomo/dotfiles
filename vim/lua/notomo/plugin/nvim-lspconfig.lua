@@ -11,11 +11,6 @@ require("neodev").setup({
 
 local lspconfig = require("lspconfig")
 
-local on_attach = function(client, bufnr)
-  vim.lsp.semantic_tokens.stop(bufnr, client.id)
-  client.server_capabilities.semanticTokensProvider = nil
-end
-
 local setup_ls = function(ls, config, enable_features)
   enable_features = enable_features or { "linux" }
   local ok = #vim.tbl_filter(function(feature)
@@ -30,7 +25,6 @@ local setup_ls = function(ls, config, enable_features)
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
   config.capabilities = require("cmp_nvim_lsp").default_capabilities()
   config.capabilities.textDocument.completion.completionItem.snippetSupport = false
-  config.on_attach = on_attach
   ls.setup(config)
 end
 
