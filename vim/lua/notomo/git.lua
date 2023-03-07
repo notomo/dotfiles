@@ -62,10 +62,51 @@ function M.current_branch()
   if vim.b.gitsigns_head then
     return vim.b.gitsigns_head
   end
-  if (vim.bo.filetype == "kivi-file" or vim.bo.buftype == "terminal") and vim.g.gitsigns_head then
-    return vim.g.gitsigns_head
+
+  if vim.b.notomo_git_branch then
+    return vim.b.notomo_git_branch
   end
-  return ""
+
+  local branch = M._current_branch()
+  vim.api.nvim_create_autocmd({ "BufRead", "BufReadCmd" }, {
+    buffer = 0,
+    callback = function()
+      vim.b.notomo_git_branch = nil
+    end,
+    once = true,
+  })
+  vim.b.notomo_git_branch = branch
+  return branch
+end
+
+function M._current_branch()
+  local head = M._head_file_path()
+  if not head then
+    return ""
+  end
+  local f = io.open(head)
+  if not f then
+    return ""
+  end
+  local content = vim.trim(f:read("*a"))
+  f:close()
+
+  local splitted = vim.split(content, " ", true)
+  if #splitted == 1 then
+    return splitted[1]
+  end
+
+  local ref = splitted[2]
+  local branch = ref:sub(#"refs/heads/" + 1)
+  return branch
+end
+
+function M._head_file_path()
+  local git_root = M.root()
+  if not git_root then
+    return nil
+  end
+  return git_root .. "/.git/HEAD"
 end
 
 function M.yank_commit_message(revision)
