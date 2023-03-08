@@ -68,7 +68,8 @@ function M.current_branch()
   end
 
   local branch = M._current_branch()
-  vim.api.nvim_create_autocmd({ "BufRead", "BufReadCmd" }, {
+  local events = vim.tbl_contains({ "kivi-file" }, vim.bo.filetype) and { "BufReadCmd" } or { "BufRead" }
+  vim.api.nvim_create_autocmd(events, {
     buffer = 0,
     callback = function()
       vim.b.notomo_git_branch = nil

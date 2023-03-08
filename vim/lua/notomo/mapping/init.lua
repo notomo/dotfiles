@@ -461,6 +461,15 @@ vim.keymap.set("n", "<C-t>", [[<Plug>(new_tab)]], silent)
 vim.keymap.set("t", "jj", [[<C-\><C-n>]])
 vim.keymap.set("t", "<C-p>", [[<Up>]])
 vim.keymap.set("t", "<C-n>", [[<Down>]])
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
+  group = vim.api.nvim_create_augroup("notomo_terminal_mapping", {}),
+  pattern = { "*" },
+  callback = function()
+    vim.keymap.set("n", "[file]rl", function()
+      vim.api.nvim_exec_autocmds("BufRead", { buffer = 0, modeline = false })
+    end, { buffer = true })
+  end,
+})
 
 if vim.fn.has("win32") == 1 then
   vim.keymap.set("t", "<C-u>", [[<C-Home>]])
