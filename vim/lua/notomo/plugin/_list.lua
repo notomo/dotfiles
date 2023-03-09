@@ -1,9 +1,9 @@
 vim.cmd.packadd([[optpack.nvim]])
 local optpack = require("optpack")
 
-local luafile = function(path)
+local require_fn = function(name)
   return function()
-    vim.cmd.luafile(path)
+    require(name)
   end
 end
 
@@ -259,13 +259,13 @@ optpack.add("voldikss/vim-translator", {
 
 mypack.add("notomo/wintablib.nvim", {
   load_on = { modules = { "wintablib" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/wintablib.lua") },
+  hooks = { post_add = require_fn("notomo.plugin.wintablib") },
 })
 
 mypack.add("notomo/lreload.nvim", {
   load_on = { modules = { "lreload" }, events = { "BufWritePre" } },
   hooks = {
-    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/lreload.lua"),
+    post_load = require_fn("notomo.plugin.lreload"),
   },
 })
 
@@ -290,7 +290,7 @@ optpack.add("ray-x/lsp_signature.nvim", { load_on = { modules = { "lsp_signature
 
 mypack.add("notomo/searcho.nvim", {
   load_on = { modules = { "searcho" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/searcho.lua") },
+  hooks = { post_add = require_fn("notomo.plugin.searcho") },
 })
 
 optpack.add("AndrewRadev/linediff.vim", {
@@ -317,22 +317,22 @@ optpack.add("thinca/vim-qfreplace", { load_on = { cmds = { "Qfreplace" } } })
 
 optpack.add("tyru/open-browser.vim", {
   load_on = { cmds = { "OpenBrowser*" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/open-browser.lua") },
+  hooks = { post_add = require_fn("notomo.plugin.open-browser") },
 })
 
 mypack.add("notomo/curstr.nvim", {
   load_on = { modules = { "curstr" } },
   hooks = {
-    post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/curstr/mapping.lua"),
-    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/curstr/init.lua"),
+    post_add = require_fn("notomo.plugin.curstr.mapping"),
+    post_load = require_fn("notomo.plugin.curstr"),
   },
 })
 
 mypack.add("notomo/piemenu.nvim", {
   load_on = { modules = { "piemenu" } },
   hooks = {
-    post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/piemenu/mapping.lua"),
-    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/piemenu/init.lua"),
+    post_add = require_fn("notomo.plugin.piemenu.mapping"),
+    post_load = require_fn("notomo.plugin.piemenu"),
   },
 })
 
@@ -344,15 +344,15 @@ mypack.add("notomo/gesture.nvim", {
       vim.keymap.set("i", "<LeftDrag>", [[<ESC><Cmd>lua require("gesture").draw()<CR>]], { silent = true })
       vim.keymap.set("n", "<LeftRelease>", [[<Cmd>lua require("gesture").finish()<CR>]], { silent = true })
     end,
-    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/gesture.lua"),
+    post_load = require_fn("notomo.plugin.gesture"),
   },
 })
 
 mypack.add("notomo/thetto.nvim", {
   load_on = { modules = { "thetto" }, events = { { "BufReadPost", "*/*" } } },
   hooks = {
-    post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/thetto/mapping.lua"),
-    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/thetto/init.lua"),
+    post_add = require_fn("notomo.plugin.thetto.mapping"),
+    post_load = require_fn("notomo.plugin.thetto"),
   },
 })
 
@@ -376,18 +376,18 @@ mypack.add("notomo/kivi.nvim", {
     post_add = function()
       vim.keymap.set("n", "[exec]f", [[<Cmd>lua require("kivi").open({layout = {type = "vertical"}})<CR>]])
     end,
-    pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/kivi.lua"),
+    pre_load = require_fn("notomo.plugin.kivi"),
   },
 })
 
 mypack.add("notomo/reacher.nvim", {
   load_on = { modules = { "reacher" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/reacher.lua") },
+  hooks = { post_add = require_fn("notomo.plugin.reacher") },
 })
 
 mypack.add("notomo/cmdbuf.nvim", {
   load_on = { modules = { "cmdbuf" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/cmdbuf.lua") },
+  hooks = { post_add = require_fn("notomo.plugin.cmdbuf") },
 })
 
 mypack.add("notomo/filetypext.nvim", {
@@ -406,12 +406,12 @@ mypack.add("notomo/filetypext.nvim", {
 
 mypack.add("notomo/cmdhndlr.nvim", {
   load_on = { modules = { "cmdhndlr" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/cmdhndlr.lua") },
+  hooks = { post_add = require_fn("notomo.plugin.cmdhndlr") },
 })
 
 mypack.add("notomo/suball.nvim", {
   load_on = { modules = { "suball" } },
-  hooks = { post_add = luafile("~/dotfiles/vim/lua/notomo/plugin/suball.lua") },
+  hooks = { post_add = require_fn("notomo.plugin.suball") },
 })
 
 optpack.add("nvim-treesitter/nvim-treesitter", {
@@ -429,7 +429,7 @@ optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
 
 mypack.add("notomo/aliaser.nvim", {
   load_on = { modules = { "aliaser" } },
-  hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/aliaser.lua") },
+  hooks = { post_load = require_fn("notomo.plugin.aliaser") },
 })
 
 optpack.add("kana/vim-operator-user")
@@ -461,7 +461,7 @@ optpack.add("osyo-manga/vim-textobj-multiblock", {
 optpack.add("Shougo/neosnippet.vim", {
   load_on = { events = { "InsertEnter" } },
   hooks = {
-    pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/neosnippet.lua"),
+    pre_load = require_fn("notomo.plugin.neosnippet"),
     post_load = function()
       vim.cmd.runtime([[ftdetect/neosnippet.vim]])
     end,
@@ -528,7 +528,7 @@ optpack.add("rhysd/vim-operator-surround", {
       vim.keymap.set("x", "[surround]r", [[<Plug>(operator-surround-replace)]], { silent = true })
     end,
   },
-  hooks = { pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/operator-surround.lua") },
+  hooks = { pre_load = require_fn("notomo.plugin.operator-surround") },
 })
 
 mypack.add("notomo/promise.nvim", {
@@ -539,13 +539,13 @@ optpack.add("nvim-lua/plenary.nvim", { load_on = { modules = { "plenary" } } })
 optpack.add("jose-elias-alvarez/null-ls.nvim", {
   depends = { "plenary.nvim" },
   load_on = { events = { "FileType" }, modules = { "null-ls" } },
-  hooks = { post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/null-ls.lua") },
+  hooks = { post_load = require_fn("notomo.plugin.null-ls") },
 })
 
 mypack.add("notomo/stlparts.nvim", {
   load_on = { events = { "VimEnter" } },
   hooks = {
-    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/stlparts.lua"),
+    post_load = require_fn("notomo.plugin.stlparts"),
   },
 })
 
@@ -589,7 +589,7 @@ optpack.add("mfussenegger/nvim-dap", {
       end)
       vim.keymap.set("n", "[keyword]E", [[<Cmd>lua require('dap.ui.widgets').hover()<CR>]])
     end,
-    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/nvim-dap.lua"),
+    post_load = require_fn("notomo.plugin.nvim-dap"),
   },
 })
 optpack.add("theHamsta/nvim-dap-virtual-text", {
@@ -600,7 +600,7 @@ optpack.add("jbyuki/one-small-step-for-vimkind", {
   depends = { "nvim-dap" },
   load_on = { modules = { "osv" } },
   hooks = {
-    pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/one-small-step-for-vimkind.lua"),
+    pre_load = require_fn("notomo.plugin.one-small-step-for-vimkind"),
   },
 })
 
@@ -676,7 +676,7 @@ mypack.add("notomo/assertlib.nvim", {
 mypack.add("notomo/termnavi.nvim", {
   load_on = { modules = { "termnavi" }, events = { { "BufReadPre", "*/*" } } },
   hooks = {
-    pre_load = luafile("~/dotfiles/vim/lua/notomo/plugin/termnavi.lua"),
+    pre_load = require_fn("notomo.plugin.termnavi"),
   },
 })
 
@@ -687,7 +687,7 @@ mypack.add("notomo/listdefined.nvim", {
 optpack.add("lewis6991/gitsigns.nvim", {
   load_on = { modules = { "gitsigns" }, events = { { "BufReadPre", "*/*" } } },
   hooks = {
-    post_load = luafile("~/dotfiles/vim/lua/notomo/plugin/gitsigns.lua"),
+    post_load = require_fn("notomo.plugin.gitsigns"),
   },
 })
 

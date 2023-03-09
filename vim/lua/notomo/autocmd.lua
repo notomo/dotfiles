@@ -29,7 +29,8 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    dofile(vim.fn.expand("~/dotfiles/vim/lua/notomo/color.lua"))
+    package.loaded["notomo.color"] = nil
+    require("notomo.color")
   end,
 })
 

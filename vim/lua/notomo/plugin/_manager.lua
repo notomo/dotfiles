@@ -7,7 +7,7 @@ if initializing then
   vim.cmd["!"]({ args = { "git", "clone", "https://github.com/notomo/optpack.nvim", manager_dir } })
 end
 
-vim.cmd.luafile([[~/dotfiles/vim/lua/notomo/plugin/_list.lua]])
+require("notomo.plugin._list")
 
 if initializing then
   require("optpack").update({

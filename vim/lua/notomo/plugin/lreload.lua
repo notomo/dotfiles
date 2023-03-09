@@ -19,9 +19,13 @@ local plugins = vim.tbl_filter(function(plugin)
 end, require("optpack").list())
 
 local settings = vim.tbl_map(function(plugin)
+  local name = plugin.name:gsub([[%.nvim$]], "")
   return {
-    name = plugin.name:gsub([[%.nvim$]], ""),
-    hook = function()
+    name = name,
+    hook = function(args)
+      if args then
+        require("lreload").refresh("notomo.plugin." .. name)
+      end
       plugin.opts.hooks.post_add(plugin)
       plugin.opts.hooks.pre_load(plugin)
       plugin.opts.hooks.post_load(plugin)
