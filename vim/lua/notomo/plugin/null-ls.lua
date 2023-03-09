@@ -17,6 +17,7 @@ null_ls.setup({
       args = { "--enable-outside-detected-project", "--impl", "-" },
     }),
     null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.yamlfmt,
     null_ls.builtins.formatting.goimports,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.deno_fmt.with({

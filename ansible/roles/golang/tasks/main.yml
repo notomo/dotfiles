@@ -8,5 +8,6 @@
     - golang.org/x/tools/gopls
     - github.com/fatih/motion
     - github.com/go-delve/delve/cmd/dlv
+    - github.com/google/yamlfmt/cmd/yamlfmt
   environment:
     GOBIN: "{{ home_dir }}/go/bin"
