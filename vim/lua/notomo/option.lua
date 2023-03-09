@@ -2,7 +2,7 @@ local vim = vim
 local opt = vim.opt
 local g = vim.g
 
-vim.env.LANG = "en_US.UTF-8"
+vim.cmd.language("en_US.UTF-8")
 
 g.no_plugin_maps = 1
 g.plugin_dicwin_disable = 1
