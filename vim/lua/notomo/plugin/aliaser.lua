@@ -76,7 +76,7 @@ aliaser.register_factory("vim", function(aliases)
     require("cmdhndlr").run({
       name = "make/make",
       working_dir_marker = function()
-        return vim.fn.expand("~/dotfiles/vim/Makefile")
+        return vim.fn.expand("$DOTFILES/vim/Makefile")
       end,
       runner_opts = { target = "help_tags" },
     })

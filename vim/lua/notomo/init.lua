@@ -12,6 +12,8 @@ local safe_require = function(name)
   end
 end
 
+vim.env.DOTFILES = vim.env.DOTFILES or vim.fn.expand("~/dotfiles")
+
 safe_cmd([[runtime! lua/notomo/local/*.lua]])
 safe_require("notomo.option")
 safe_require("notomo.autocmd")

@@ -30,7 +30,7 @@ format:
 	$(MAKE) --no-print-directory _format TARGET_PATH=${HOME}/dotfiles
 _format:
 	@echo
-	zsh -f -c 'stylua --config-path ~/dotfiles/tool/stylua.toml -- ${TARGET_PATH}/**/*.lua'
+	zsh -f -c 'stylua --config-path ${DOTFILES}/tool/stylua.toml -- ${TARGET_PATH}/**/*.lua'
 
 vendor:
 	${NVIM} --headless +"lua require('notomo.startup').vendorlib_used_plugins()" +quitall! | xargs -I{} make vendor -C {}

@@ -1,5 +1,9 @@
 export EDITOR=nvim
 
+if [ -z "${DOTFILES}" ]; then
+    export DOTFILES="${HOME}/dotfiles"
+fi
+
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
@@ -36,8 +40,8 @@ if [ -d "$HOME/.pyenv" ]; then
     eval "$(pyenv init -)"
 fi
 
-if [ -d "$HOME/dotfiles" ]; then
-    cd ~/dotfiles
+if [ -d "${DOTFILES}" ]; then
+    cd ${DOTFILES}
 fi
 
 if [ -f "$HOME/.local/.bash_profile" ]; then

@@ -30,7 +30,7 @@ end
 function M.test()
   M.load_plugins()
 
-  local dir = vim.fn.expand("~/dotfiles/vim/after/ftplugin/")
+  local dir = vim.fn.expand("$DOTFILES/vim/after/ftplugin/")
   local pattern = dir .. "**/*.lua"
   local paths = vim.fn.glob(pattern, false, true)
   for _, path in ipairs(paths) do
@@ -60,7 +60,7 @@ function M._test()
 
   require("thetto").start(
     "file/in_dir",
-    { opts = { cwd = "~/dotfiles/vim/lua/notomo", input_lines = { "option.lua" } } }
+    { opts = { cwd = vim.fn.expand("$DOTFILES/vim/lua/notomo"), input_lines = { "option.lua" } } }
   )
   require("thetto").execute()
   assert(vim.bo.filetype == "lua", "filetype")

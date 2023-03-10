@@ -16,7 +16,7 @@ set_prefix({ "n", "x" }, "arith", "<Space>a")
 set_prefix({ "n", "x" }, "yank", "<Space>y")
 set_prefix({ "n" }, "newline", "o")
 
-vim.keymap.set("n", "[exec]r", [[<Cmd>source ~/dotfiles/tool/vscode/neovim.vim<CR><Cmd>echomsg 'reloaded'<CR>]])
+vim.keymap.set("n", "[exec]r", [[<Cmd>source $DOTFILES/tool/vscode/neovim.vim<CR><Cmd>echomsg 'reloaded'<CR>]])
 vim.keymap.set("n", "[exec]R", [[<Cmd>call VSCodeNotify("workbench.action.reloadWindow")<CR>]])
 vim.keymap.set("n", "[exec]f", [[<Cmd>call VSCodeNotify("workbench.action.toggleSidebarVisibility")<CR>]])
 vim.keymap.set("n", "[exec]m", [[<Cmd>call VSCodeNotify("markdown.showPreviewToSide")<CR>]])

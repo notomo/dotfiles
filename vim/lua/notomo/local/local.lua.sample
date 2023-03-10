@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
       require("cmdhndlr").test({
         name = "make/make",
         working_dir_marker = function()
-          return vim.fn.expand("~/dotfiles/tool/nvim_development/Makefile")
+          return vim.fn.expand("$DOTFILES/tool/nvim_development/Makefile")
         end,
         layout = { type = "tab" },
         env = {
@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
       require("cmdhndlr").build({
         name = "make/make",
         working_dir_marker = function()
-          return vim.fn.expand("~/dotfiles/tool/nvim_development/Makefile")
+          return vim.fn.expand("$DOTFILES/tool/nvim_development/Makefile")
         end,
       })
     end, { buffer = true })
@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
         name = "make/make",
         runner_opts = { target = "build_release_with_deb_info" },
         working_dir_marker = function()
-          return vim.fn.expand("~/dotfiles/tool/nvim_development/Makefile")
+          return vim.fn.expand("$DOTFILES/tool/nvim_development/Makefile")
         end,
         layout = { type = "tab" },
       })

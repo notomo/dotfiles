@@ -8,7 +8,7 @@ function M.start()
 
   local path = vim.fn.expand("~/workspace/neovim/")
   local nvim = path .. "build/bin/nvim"
-  local rc = vim.fn.expand("~/dotfiles/tool/nvim_development/debugrc.vim")
+  local rc = vim.fn.expand("$DOTFILES/tool/nvim_development/debugrc.vim")
 
   local current = vim.fn.expand("%:p")
   local in_repo = vim.startswith(current, path)

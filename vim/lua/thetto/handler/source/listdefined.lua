@@ -5,7 +5,7 @@ M.opts = {
 }
 
 function M.collect(source_ctx)
-  local paths = vim.fn.glob("~/dotfiles/vim/**/*.lua", false, true)
+  local paths = vim.fn.glob("$DOTFILES/vim/**/*.lua", false, true)
   local elements, err = require("listdefined")[source_ctx.opts.name](paths)
   if err then
     return nil, err

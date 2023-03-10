@@ -318,7 +318,7 @@ vim.keymap.set(
   "n",
   "[finder]v",
   thetto_starter("file/recursive", {
-    opts = { cwd = "~/dotfiles" },
+    opts = { cwd = "$DOTFILES" },
     source_opts = ls_opts,
   })
 )

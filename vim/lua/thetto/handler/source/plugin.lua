@@ -23,7 +23,7 @@ M.actions = {
     if item == nil then
       return
     end
-    local bufnr = vim.fn.bufadd(vim.fn.expand("~/dotfiles/vim/lua/notomo/plugin/_list.lua"))
+    local bufnr = vim.fn.bufadd(vim.fn.expand("$DOTFILES/vim/lua/notomo/plugin/_list.lua"))
     vim.fn.bufload(bufnr)
     return require("thetto").start("line", {
       opts = {

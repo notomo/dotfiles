@@ -20,7 +20,7 @@ local execute = function(items, args)
   vim.list_extend(cmd, tags)
   vim.list_extend(cmd, args or {})
 
-  local cwd = vim.fn.expand("~/dotfiles/ansible")
+  local cwd = vim.fn.expand("$DOTFILES/ansible")
   vim.fn.termopen(cmd, {
     env = { ANSIBLE_CONFIG = cwd },
     cwd = cwd,

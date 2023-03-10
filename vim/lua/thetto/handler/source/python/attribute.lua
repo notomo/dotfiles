@@ -8,7 +8,7 @@ function M.collect(source_ctx)
   local package_name = source_ctx.opts.package_name
   local cmd = {
     "python",
-    vim.fn.expand("~/dotfiles/vim/lua/thetto/handler/source/python/attribute.py"),
+    vim.fn.expand("$DOTFILES/vim/lua/thetto/handler/source/python/attribute.py"),
     package_name,
   }
   return require("thetto.util.job").start(cmd, source_ctx, function(output)

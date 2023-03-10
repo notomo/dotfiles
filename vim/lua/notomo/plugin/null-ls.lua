@@ -46,7 +46,7 @@ null_ls.setup({
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.stylua.with({
       extra_args = function(params)
-        local config = vim.fn.expand("~/dotfiles/tool/stylua.toml")
+        local config = vim.fn.expand("$DOTFILES/tool/stylua.toml")
         if vim.startswith(params.bufname, vim.fn.expand("~/workspace/neovim/")) then
           config = vim.fn.expand("~/workspace/neovim/.stylua.toml")
         end

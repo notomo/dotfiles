@@ -194,7 +194,7 @@ source_config["vim/lsp/outgoing_calls"] = {
 source_config["file/bookmark"] = {
   opts = {
     default_paths = {
-      "~/dotfiles/vim/rc/local/local.vim",
+      vim.fn.expand("$DOTFILES/vim/rc/local/local.vim"),
       "~/.local/.bashrc",
       "~/.bashrc",
       "~/.local/.bash_profile",
@@ -286,7 +286,7 @@ source_actions["vim/filetype"] = {
     end
     return require("thetto").start("file/recursive", {
       opts = {
-        cwd = vim.fn.expand("~/dotfiles"),
+        cwd = vim.fn.expand("$DOTFILES"),
         insert = false,
         action = "tab_open",
         immediately = true,
