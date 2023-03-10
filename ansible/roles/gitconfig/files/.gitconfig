@@ -1,6 +1,5 @@
 
 [core]
-    excludesfile = ~/dotfiles/ansible/roles/gitconfig/files/.gitignore_global
     editor = nvim
     quotepath = false
 

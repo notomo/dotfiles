@@ -10,6 +10,12 @@
     dest: "{{ home_dir }}/.gitconfig"
   when: not gitconfig_file.stat.exists
 
+- name: set git excludesfile
+  git_config:
+    name: core.excludesfile
+    scope: global
+    value: "{{ dotfiles_dir }}/ansible/roles/gitconfig/files/.gitignore_global"
+
 - name: set variables
   set_fact:
     env_user: "{{ lookup('env', 'USER') }}"

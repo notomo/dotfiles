@@ -1,7 +1,6 @@
 
 - name: set variables
   set_fact:
-    dotfiles_dir: "{{ home_dir }}/dotfiles"
     link_dict:
       vim/lua: .vim/lua
       vim/snippets: .vim/snippets
