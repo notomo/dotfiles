@@ -16,5 +16,9 @@
     pushfff = push --force-with-lease --force-if-includes
     rc = rebase --continue
     rs = rebase --skip
+
 [init]
     defaultBranch = main
+
+[merge]
+    conflictStyle = zdiff3
