@@ -75,18 +75,3 @@
     dest: "{{ home_dir }}/.zprofile"
     content: |
       {{ lookup('file', '.zprofile') }}
-
-- name: clone zsh-capture-completion
-  git:
-    repo: https://github.com/Valodim/zsh-capture-completion.git
-    dest: "{{ app_dir }}/zsh-capture-completion"
-
-- name: copy capture.zsh
-  copy:
-    src: "{{ app_dir }}/zsh-capture-completion/capture.zsh"
-    dest: "{{ home_dir }}/.local/bin/capture.zsh"
-
-- name: capture.zsh chmod 755
-  file:
-    dest: "{{ home_dir }}/.local/bin/capture.zsh"
-    mode: 0755
