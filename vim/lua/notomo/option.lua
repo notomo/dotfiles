@@ -75,7 +75,6 @@ opt.diffopt:append("hiddenoff")
 opt.diffopt:append("algorithm:histogram")
 opt.mouse = "a"
 opt.grepprg = [[git\ grep\ -n\ $*]]
-opt.backupdir = { vim.fn.expand("~/.vim/tmp/backup/") }
 opt.swapfile = false
 opt.expandtab = true
 opt.foldlevel = 3

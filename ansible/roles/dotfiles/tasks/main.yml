@@ -12,10 +12,6 @@
     path: "{{ home_dir }}/{{ item }}"
     state: directory
   with_items:
-    - .vim/tmp/backup
-    - .vim/tmp/undo
-    - .vim/tmp/view
-    - .vim/tmp/swap
     - .config
 
 - name: mkdir for karabiner

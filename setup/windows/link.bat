@@ -8,9 +8,6 @@ mklink /D %USERPROFILE%"\.vim\snippets" %USERPROFILE%"\dotfiles\vim\snippets"
 mklink /D %USERPROFILE%"\.vim\after" %USERPROFILE%"\dotfiles\vim\after"
 mklink %USERPROFILE%"\.vim\init.lua" %USERPROFILE%"\dotfiles\vim\lua\notomo\init.lua"
 
-mkdir %USERPROFILE%"\.vim\tmp" > NUL 2>&1
-if ERRORLEVEL 1 cmd /c exit 0
-
 mkdir %USERPROFILE%"\.config" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
