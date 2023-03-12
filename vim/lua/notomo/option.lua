@@ -107,3 +107,12 @@ end
 opt.laststatus = 3
 opt.mousescroll = "ver:2,hor:6"
 opt.mousemodel = "extend" -- to disable default popup
+
+vim.filetype.add({
+  filename = {
+    ["supervisord.conf"] = "dosini",
+  },
+  pattern = {
+    ["*.mk.*"] = "make",
+  },
+})

@@ -780,3 +780,17 @@ mypack.add("notomo/waitevent.nvim", {
     end,
   },
 })
+
+mypack.add("notomo/runtimetable.nvim", {
+  load_on = {
+    modules = { "runtimetable" },
+    keymaps = function(vim)
+      vim.keymap.set("n", "[exec]do", [[<Cmd>tab drop ~/.local/.mytodo<CR>]])
+    end,
+  },
+  hooks = {
+    post_add = require_fn("notomo.plugin.runtimetable"),
+    post_install = require_fn("notomo.plugin.runtimetable.mytodo"),
+    post_udpate = require_fn("notomo.plugin.runtimetable.mytodo"),
+  },
+})

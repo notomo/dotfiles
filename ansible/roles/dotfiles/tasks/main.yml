@@ -5,8 +5,6 @@
       vim/lua: .vim/lua
       vim/snippets: .vim/snippets
       vim/after: .vim/after
-      vim/syntax: .vim/syntax
-      vim/ftdetect: .vim/ftdetect
       vim/lua/notomo/init.lua: .config/nvim/init.lua
 
 - name: mkdir

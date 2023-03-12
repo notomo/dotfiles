@@ -6,8 +6,6 @@ if ERRORLEVEL 1 cmd /c exit 0
 mklink /D %USERPROFILE%"\.vim\lua" %USERPROFILE%"\dotfiles\vim\lua"
 mklink /D %USERPROFILE%"\.vim\snippets" %USERPROFILE%"\dotfiles\vim\snippets"
 mklink /D %USERPROFILE%"\.vim\after" %USERPROFILE%"\dotfiles\vim\after"
-mklink /D %USERPROFILE%"\.vim\syntax" %USERPROFILE%"\dotfiles\vim\syntax"
-mklink /D %USERPROFILE%"\.vim\ftdetect" %USERPROFILE%"\dotfiles\vim\ftdetect"
 mklink %USERPROFILE%"\.vim\init.lua" %USERPROFILE%"\dotfiles\vim\lua\notomo\init.lua"
 
 mkdir %USERPROFILE%"\.vim\tmp" > NUL 2>&1
