@@ -2,9 +2,9 @@
 - name: set variables
   set_fact:
     link_dict:
-      vim/lua: .vim/lua
-      vim/snippets: .vim/snippets
-      vim/after: .vim/after
+      vim/lua: .config/nvim/lua
+      vim/snippets: .config/nvim/snippets
+      vim/after: .config/nvim/after
       vim/lua/notomo/init.lua: .config/nvim/init.lua
 
 - name: mkdir
@@ -36,12 +36,6 @@
     dest: "{{ dotfiles_dir }}"
     version: master
   when: not dotfiles_exists.stat.exists
-
-- name: create symbolic link for neovim
-  file:
-    src: "{{ home_dir }}/.vim"
-    dest: "{{ home_dir }}/.config/nvim"
-    state: link
 
 - name: create symbolic link
   file:

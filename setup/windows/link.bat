@@ -1,18 +1,14 @@
 cd %USERPROFILE%
 
-mkdir %USERPROFILE%"\.vim" > NUL 2>&1
-if ERRORLEVEL 1 cmd /c exit 0
-
-mklink /D %USERPROFILE%"\.vim\lua" %USERPROFILE%"\dotfiles\vim\lua"
-mklink /D %USERPROFILE%"\.vim\snippets" %USERPROFILE%"\dotfiles\vim\snippets"
-mklink /D %USERPROFILE%"\.vim\after" %USERPROFILE%"\dotfiles\vim\after"
-mklink %USERPROFILE%"\.vim\init.lua" %USERPROFILE%"\dotfiles\vim\lua\notomo\init.lua"
-
 mkdir %USERPROFILE%"\.config" > NUL 2>&1
 if ERRORLEVEL 1 cmd /c exit 0
 
 cd %USERPROFILE%
-mklink /D %USERPROFILE%"\AppData\Local\nvim" %USERPROFILE%"\.vim"
+mklink /D %USERPROFILE%"\AppData\Local\nvim\lua" %USERPROFILE%"\dotfiles\vim\lua"
+mklink /D %USERPROFILE%"\AppData\Local\nvim\snippets" %USERPROFILE%"\dotfiles\vim\snippets"
+mklink /D %USERPROFILE%"\AppData\Local\nvim\after" %USERPROFILE%"\dotfiles\vim\after"
+mklink %USERPROFILE%"\AppData\Local\nvim\init.lua" %USERPROFILE%"\dotfiles\vim\lua\notomo\init.lua"
+
 mklink ".wslconfig" %USERPROFILE%"\dotfiles\setup\windows\.wslconfig"
 
 mkdir %USERPROFILE%"\app" > NUL 2>&1

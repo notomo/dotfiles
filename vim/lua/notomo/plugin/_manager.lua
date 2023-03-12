@@ -1,4 +1,4 @@
-local pack_dir = vim.fn.expand("~/.vim/packages")
+local pack_dir = vim.fn.stdpath("config") .. "/packages"
 vim.opt.packpath:prepend(pack_dir)
 
 local manager_dir = pack_dir .. "/pack/mypack/opt/optpack.nvim"

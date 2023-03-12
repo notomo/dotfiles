@@ -203,7 +203,7 @@ vim.keymap.set("n", "sk", [[#N]])
 -- escape
 -- substitute
 
-local pack_dir = vim.fn.expand("~/.vim/packages")
+local pack_dir = vim.fn.stdpath("config") .. "/packages"
 vim.opt.packpath:prepend(pack_dir)
 
 vim.cmd.packadd([[vim-textobj-user]])
