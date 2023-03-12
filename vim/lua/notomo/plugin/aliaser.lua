@@ -23,7 +23,6 @@ aliaser.register_factory("tree_sitter", function(aliases)
     for _, language in ipairs({
       "go",
       "typescript",
-      "query",
     }) do
       vim.cmd.TSInstall(language)
     end
