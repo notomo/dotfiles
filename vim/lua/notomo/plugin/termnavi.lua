@@ -3,15 +3,20 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   pattern = { "*" },
   callback = function()
     local enter = function()
-      require("notomo.edit").set_term_title("^\\$ ", 24)
-      require("termnavi").mark({
-        prompt_pattern = [=[\v^\[.*\]$\_.^\$]=],
-        extmark_opts = {
-          hl_eol = true,
-          hl_group = "TermnaviLine",
-          number_hl_group = "TermnaviLine",
-        },
-      })
+      local ok, err = pcall(function()
+        require("notomo.edit").set_term_title("^\\$ ", 24)
+        require("termnavi").mark({
+          prompt_pattern = [=[\v^\[.*\]$\_.^\$]=],
+          extmark_opts = {
+            hl_eol = true,
+            hl_group = "TermnaviLine",
+            number_hl_group = "TermnaviLine",
+          },
+        })
+      end)
+      if not ok then
+        require("misclib.message").warn(err)
+      end
       return "<CR>"
     end
     vim.keymap.set("t", "<CR>", enter, { expr = true, buffer = true })
