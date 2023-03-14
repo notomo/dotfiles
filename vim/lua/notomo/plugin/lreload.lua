@@ -1,6 +1,7 @@
 local hooks = {
   optpack = function()
-    vim.cmd.luafile("$DOTFILES/vim/lua/notomo/plugin/_list.lua")
+    package.loaded["notomo.plugin._list"] = nil
+    require("notomo.plugin._list")
   end,
   notomo = function(args)
     if not args then
