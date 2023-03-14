@@ -115,7 +115,6 @@ setup_ls(lspconfig.denols, {
   end,
 }, { "unix" })
 
-setup_ls(lspconfig.vimls)
 setup_ls(lspconfig.cssls)
 setup_ls(lspconfig.yamlls)
 setup_ls(lspconfig.autohotkey2, {}, { "win32" })
