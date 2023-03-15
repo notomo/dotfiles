@@ -16,4 +16,4 @@ runtime.after.ftplugin["mytodo.lua"] = function()
   vim.keymap.set("n", "[file]f", [[<Cmd>tab drop ~/workspace/todo/todo.tsv<CR>]], { buffer = true })
 end
 
-require("runtimetable").save(runtime)
+require("runtimetable").save(runtime, { as_binary = true })
