@@ -30,15 +30,7 @@ end
 function M.test()
   M.load_plugins()
 
-  local dir = vim.fn.expand("$DOTFILES/vim/after/ftplugin/")
-  local pattern = dir .. "**/*.lua"
-  local paths = vim.fn.glob(pattern, false, true)
-  for _, path in ipairs(paths) do
-    local ok, result = pcall(dofile, path)
-    if not ok then
-      print(result)
-    end
-  end
+  vim.cmd.runtime({ args = { "after/ftplugin/*.lua" }, bang = true })
 
   for _, name in ipairs(require("notomo.plugin.lreload")) do
     require("lreload").refresh(name)

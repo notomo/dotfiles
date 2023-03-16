@@ -6,7 +6,6 @@ if ERRORLEVEL 1 cmd /c exit 0
 cd %USERPROFILE%
 mklink /D %USERPROFILE%"\AppData\Local\nvim\lua" %USERPROFILE%"\dotfiles\vim\lua"
 mklink /D %USERPROFILE%"\AppData\Local\nvim\snippets" %USERPROFILE%"\dotfiles\vim\snippets"
-mklink /D %USERPROFILE%"\AppData\Local\nvim\after" %USERPROFILE%"\dotfiles\vim\after"
 mklink %USERPROFILE%"\AppData\Local\nvim\init.lua" %USERPROFILE%"\dotfiles\vim\lua\notomo\init.lua"
 
 mklink ".wslconfig" %USERPROFILE%"\dotfiles\setup\windows\.wslconfig"

@@ -4,7 +4,6 @@
     link_dict:
       vim/lua: .config/nvim/lua
       vim/snippets: .config/nvim/snippets
-      vim/after: .config/nvim/after
       vim/lua/notomo/init.lua: .config/nvim/init.lua
 
 - name: mkdir

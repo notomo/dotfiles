@@ -790,7 +790,13 @@ mypack.add("notomo/runtimetable.nvim", {
   },
   hooks = {
     post_add = require_fn("notomo.plugin.runtimetable"),
-    post_install = require_fn("notomo.plugin.runtimetable.mytodo"),
-    post_udpate = require_fn("notomo.plugin.runtimetable.mytodo"),
+    post_install = function()
+      require("notomo.plugin.runtimetable.mytodo")
+      require("notomo.plugin.runtimetable.filetype")
+    end,
+    post_update = function()
+      require("notomo.plugin.runtimetable.mytodo")
+      require("notomo.plugin.runtimetable.filetype")
+    end,
   },
 })

@@ -284,15 +284,16 @@ source_actions["vim/filetype"] = {
     if item == nil then
       return
     end
-    return require("thetto").start("file/recursive", {
+    local bufnr = vim.fn.bufadd(vim.fn.expand("$DOTFILES/vim/lua/notomo/plugin/runtimetable/filetype.lua"))
+    vim.fn.bufload(bufnr)
+    return require("thetto").start("line", {
       opts = {
-        cwd = vim.fn.expand("$DOTFILES"),
-        insert = false,
-        action = "tab_open",
+        input_lines = { ([["%s.lua"]]):format(item.value) },
         immediately = true,
-        input_lines = { "/ftplugin/" .. item.value .. ".lua" },
-        sorters = { "length" },
+        insert = false,
+        can_resume = false,
       },
+      source_opts = { bufnr = bufnr },
     })
   end,
 }
