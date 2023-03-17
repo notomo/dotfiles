@@ -309,7 +309,7 @@ runtime.after.ftplugin["xml.lua"] = function()
 end
 
 runtime.after.ftplugin["yaml.lua"] = function()
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
 end
 
 require("runtimetable").save(runtime, { as_binary = true })
