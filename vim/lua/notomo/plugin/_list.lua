@@ -724,31 +724,6 @@ optpack.add("numToStr/Comment.nvim", {
   },
 })
 
-optpack.add("nvim-treesitter/playground", {
-  depends = { "nvim-treesitter" },
-  load_on = { cmds = { "TSPlayground*", "TSHighlightCapturesUnderCursor" } },
-  hooks = {
-    post_load = function()
-      require("nvim-treesitter.configs").setup({
-        playground = {
-          enable = true,
-          disable = {},
-          updatetime = 25,
-          persist_queries = false,
-          keybindings = {
-            toggle_injected_languages = "T",
-          },
-        },
-        query_linter = {
-          enable = true,
-          use_virtual_text = true,
-          lint_events = { "BufWrite", "CursorHold" },
-        },
-      })
-    end,
-  },
-})
-
 optpack.add("Wansmer/treesj", {
   depends = { "nvim-treesitter" },
   load_on = { filetypes = { "go" } },

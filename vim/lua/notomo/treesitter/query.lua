@@ -3,8 +3,8 @@ local M = {}
 local group = vim.api.nvim_create_augroup("notomo.treesitter.query", {})
 local ns = vim.api.nvim_create_namespace("notomo.treesitter.query")
 
-function M.open(query_path)
-  local target_bufnr = vim.api.nvim_get_current_buf()
+function M.open(query_path, target_bufnr)
+  target_bufnr = target_bufnr or vim.api.nvim_get_current_buf()
   vim.cmd.split({ args = { query_path }, mods = { split = "belowright" } })
   local query_bufnr = vim.api.nvim_get_current_buf()
 

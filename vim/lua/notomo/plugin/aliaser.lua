@@ -16,8 +16,11 @@ aliaser.register_factory("tree_sitter", function(aliases)
     local query_path = dir .. "/scratch.scm"
     vim.fn.writefile({}, query_path, "p")
     vim.opt.runtimepath:append(runtime_dir)
-    vim.cmd.TSPlaygroundToggle()
-    require("notomo.treesitter.query").open(query_path)
+    local target_bufnr = vim.api.nvim_get_current_buf()
+    vim.treesitter.inspect_tree()
+    vim.cmd.wincmd("r")
+    vim.cmd.wincmd("=")
+    require("notomo.treesitter.query").open(query_path, target_bufnr)
   end)
   aliases:set("ready_parser", function()
     for _, language in ipairs({
