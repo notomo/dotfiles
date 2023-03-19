@@ -20,7 +20,6 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
       return
     end
     vim.bo.buftype = "nofile"
-    vim.bo.swapfile = false
     vim.bo.bufhidden = "wipe"
   end,
 })
@@ -42,33 +41,20 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   group = group,
   pattern = { "*" },
   callback = function()
     vim.wo.cursorline = false
   end,
 })
-vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    vim.wo.cursorline = true
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "WinEnter" }, {
-  group = group,
-  pattern = { "*" },
-  callback = function()
-    vim.wo.cursorline = true
-  end,
-})
-vim.api.nvim_create_autocmd({ "WinLeave" }, {
-  group = group,
-  pattern = { "*" },
-  callback = function()
-    vim.wo.cursorline = false
+    if not vim.wo.diff then
+      vim.wo.cursorline = true
+    end
   end,
 })
 
@@ -83,30 +69,7 @@ vim.api.nvim_create_autocmd({ "OptionSet" }, {
     })
   end,
 })
-vim.api.nvim_create_autocmd({ "WinEnter", "InsertLeave" }, {
-  group = group,
-  pattern = { "*" },
-  callback = function()
-    if vim.wo.diff then
-      vim.wo.cursorline = false
-    end
-  end,
-})
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  group = group,
-  pattern = { "*/roles/*.yml", "*/playbooks/*.yml" },
-  callback = function()
-    vim.bo.filetype = "yaml.ansible"
-  end,
-})
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = group,
-  pattern = { "typescriptreact" },
-  callback = function()
-    vim.bo.filetype = "typescript.tsx"
-  end,
-})
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = group,
   pattern = { "*" },
@@ -114,6 +77,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     vim.highlight.on_yank({ higroup = "Flashy", timeout = 200, on_macro = true, on_visual = true })
   end,
 })
+
 vim.api.nvim_create_autocmd({ "UIEnter" }, {
   group = group,
   pattern = { "*" },
