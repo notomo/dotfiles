@@ -759,9 +759,6 @@ mypack.add("notomo/waitevent.nvim", {
 mypack.add("notomo/runtimetable.nvim", {
   load_on = {
     modules = { "runtimetable" },
-    keymaps = function(vim)
-      vim.keymap.set("n", "[exec]do", [[<Cmd>tab drop ~/.local/.mytodo<CR>]])
-    end,
   },
   hooks = {
     post_add = require_fn("notomo.plugin.runtimetable"),
