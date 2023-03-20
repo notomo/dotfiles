@@ -313,4 +313,4 @@ runtime.after.ftplugin["yaml.lua"] = function()
   require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
 end
 
-require("runtimetable").save(runtime, { as_binary = true })
+require("runtimetable").save(runtime, { as_binary = vim.fn.has("win32") ~= 1 })
