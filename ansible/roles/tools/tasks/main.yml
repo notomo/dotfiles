@@ -17,6 +17,7 @@
       - httpie
       - lsof
       - procs
+      - zip
 
 - name: create .procs.toml link
   file:
