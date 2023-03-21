@@ -1,6 +1,6 @@
 local M = {}
 
-function M.load_plugins()
+function M._load_plugins()
   local optpack = require("optpack")
   local plugins = optpack.list()
   for _, plugin in ipairs(plugins) do
@@ -22,13 +22,13 @@ function M.update_plugins()
 end
 
 function M.generate_help_tags()
-  M.load_plugins()
+  M._load_plugins()
   vim.cmd.helptags([[ALL]])
   M.schedule([[message | quitall!]])
 end
 
 function M.test()
-  M.load_plugins()
+  M._load_plugins()
 
   vim.cmd.runtime({ args = { "after/ftplugin/*.lua" }, bang = true })
 
@@ -85,60 +85,27 @@ function M.schedule(cmd)
 end
 
 function M.plugins()
-  local optpack = require("optpack")
-  local plugins = optpack.list()
-
-  local dirs = {}
-  for _, plugin in ipairs(plugins) do
-    if not plugin.full_name:find("notomo/") then
-      goto continue
-    end
-
-    local lua_dir = plugin.directory .. "/lua"
-    if vim.fn.isdirectory(lua_dir) == 0 then
-      goto continue
-    end
-
+  return M._output_plugin_dirs(function(plugin)
     local makefile = plugin.directory .. "/Makefile"
-    if vim.fn.filereadable(makefile) == 0 then
-      goto continue
-    end
-
-    table.insert(dirs, plugin.directory)
-    ::continue::
-  end
-
-  io.stdout:write(table.concat(dirs, "\n"))
+    return vim.fn.filereadable(makefile) == 1
+  end)
 end
 
 function M.vendorlib_used_plugins()
-  local optpack = require("optpack")
-  local plugins = optpack.list()
-
-  local dirs = {}
-  for _, plugin in ipairs(plugins) do
-    if not plugin.full_name:find("notomo/") then
-      goto continue
-    end
-
-    local lua_dir = plugin.directory .. "/lua"
-    if vim.fn.isdirectory(lua_dir) == 0 then
-      goto continue
-    end
-
+  return M._output_plugin_dirs(function(plugin)
     local vendor_spec = vim.fn.glob(plugin.directory .. "**/vendorlib.lua")
-    if vim.fn.filereadable(vendor_spec) == 0 then
-      goto continue
-    end
-
-    table.insert(dirs, plugin.directory)
-    ::continue::
-  end
-
-  io.stdout:write(table.concat(dirs, "\n"))
+    return vim.fn.filereadable(vendor_spec) == 1
+  end)
 end
 
 function M.has_doc_plugins()
+  return M._output_plugin_dirs(function(plugin)
+    local doc_script = vim.fn.glob(plugin.directory .. "**/spec/lua/*/doc.lua")
+    return vim.fn.filereadable(doc_script) == 1
+  end)
+end
+
+function M._output_plugin_dirs(filter)
   local optpack = require("optpack")
   local plugins = optpack.list()
 
@@ -153,8 +120,7 @@ function M.has_doc_plugins()
       goto continue
     end
 
-    local doc_script = vim.fn.glob(plugin.directory .. "**/spec/lua/*/doc.lua")
-    if vim.fn.filereadable(doc_script) == 0 then
+    if not filter(plugin) then
       goto continue
     end
 
