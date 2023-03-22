@@ -27,7 +27,7 @@ kind_actions["file"] = {
     preview = { ignore_patterns = ignore_patterns },
   },
 }
-kind_actions["git/status/file"] = {
+kind_actions["git/status"] = {
   opts = {
     preview = { ignore_patterns = ignore_patterns },
   },
