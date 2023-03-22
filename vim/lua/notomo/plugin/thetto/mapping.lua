@@ -509,6 +509,7 @@ vim.keymap.set("n", "[finder]p", thetto_starter("plugin"))
 vim.keymap.set("n", "[finder]e", thetto_starter("emoji"))
 vim.keymap.set("n", "[finder]gp", thetto_starter("go/package"))
 vim.keymap.set("n", "[finder]a", thetto_starter("aliaser"))
+
 vim.keymap.set("n", "[finder]d", thetto_starter("vim/diagnostic"))
 vim.keymap.set("n", "[finder]D", function()
   require("thetto").start("vim/diagnostic", {
@@ -516,6 +517,36 @@ vim.keymap.set("n", "[finder]D", function()
     source_opts = { args = {} },
   })
 end)
+vim.keymap.set("n", "<Space>qn", function()
+  local current_row = vim.fn.line(".")
+  local path = vim.api.nvim_buf_get_name(0)
+  require("thetto").start("vim/diagnostic", {
+    opts = {
+      insert = false,
+      immediately = true,
+      action = "open",
+      search_offset = function(item)
+        return item.path == path and item.row > current_row
+      end,
+    },
+  })
+end)
+vim.keymap.set("n", "<Space>qp", function()
+  local current_row = vim.fn.line(".")
+  local path = vim.api.nvim_buf_get_name(0)
+  require("thetto").start("vim/diagnostic", {
+    opts = {
+      insert = false,
+      immediately = true,
+      action = "open",
+      search_offset = function(item)
+        return item.path == path and item.row < current_row
+      end,
+      sorters = { "-row" },
+    },
+  })
+end)
+
 vim.keymap.set("n", "[exec]gr", thetto_starter("vim/lsp/references"))
 vim.keymap.set("n", "[keyword]n", function()
   vim.lsp.buf.clear_references()
