@@ -19,7 +19,7 @@ function M._get_near_function_node(bufnr)
   local row = unpack(vim.api.nvim_win_get_cursor(0))
 
   require("nvim-treesitter")
-  local query = vim.treesitter.query.get_query(language, "locals")
+  local query = vim.treesitter.query.get(language, "locals")
 
   local last_node
   for id, node, _ in query:iter_captures(root, bufnr, 0, -1) do
@@ -44,7 +44,7 @@ function M.get_near_function_name()
   if err then
     return nil, err
   end
-  local text = vim.treesitter.query.get_node_text(node, bufnr):gsub('"', ""):gsub("'", "")
+  local text = vim.treesitter.get_node_text(node, bufnr):gsub('"', ""):gsub("'", "")
   return text
 end
 
