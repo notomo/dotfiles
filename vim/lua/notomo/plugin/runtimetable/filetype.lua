@@ -144,8 +144,26 @@ runtime.after.ftplugin["javascript.lua"] = function()
 end
 
 runtime.after.ftplugin["json.lua"] = function()
-  vim.keymap.set({ "n", "x" }, "J", [[<Cmd>lua require("notomo.json").next()<CR>]], { buffer = true })
-  vim.keymap.set({ "n", "x" }, "K", [[<Cmd>lua require("notomo.json").prev()<CR>]], { buffer = true })
+  vim.keymap.set({ "n", "x" }, "J", function()
+    vim.cmd.normal({ args = { "%" }, bang = true })
+
+    local line = vim.trim(vim.fn.getline("."))
+    if line == "}," then
+      return vim.cmd.normal({ args = { "j" }, bang = true })
+    end
+
+    vim.cmd.normal({ args = { "j^%j$" }, bang = true })
+  end, { buffer = true })
+  vim.keymap.set({ "n", "x" }, "K", function()
+    vim.cmd.normal({ args = { "k" }, bang = true })
+
+    local line = vim.trim(vim.fn.getline("."))
+    if line == "}," then
+      return vim.cmd.normal({ args = { "%" }, bang = true })
+    end
+
+    vim.cmd.normal({ args = { "$%k$%" }, bang = true })
+  end, { buffer = true })
   if vim.fn.bufname() == "package.json" then
     require("notomo.npm").mapping()
   end
