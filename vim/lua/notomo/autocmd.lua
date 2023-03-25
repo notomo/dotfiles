@@ -82,9 +82,19 @@ vim.api.nvim_create_autocmd({ "UIEnter" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    if vim.g.GuiLoaded then
-      require("notomo.gui").init()
+    if not vim.g.GuiLoaded then
+      return
     end
+
+    vim.cmd.Guifont({ args = { "MeiryoKe_Gothic:h14" }, bang = true })
+    vim.cmd.GuiTabline("0")
+    vim.cmd.GuiPopupmenu("0")
+    vim.fn.GuiWindowMaximized(1)
+
+    vim.keymap.set("n", "<Space>R", function()
+      vim.fn.jobstart("nvim-qt.exe", { detach = true })
+      vim.cmd.quitall()
+    end)
   end,
 })
 
