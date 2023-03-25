@@ -85,27 +85,41 @@ function M.schedule(cmd)
 end
 
 function M.plugins()
-  return M._output_plugin_dirs(function(plugin)
+  local dirs = M._get_plugin_dirs(function(plugin)
     local makefile = plugin.directory .. "/Makefile"
     return vim.fn.filereadable(makefile) == 1
   end)
+  io.stdout:write(table.concat(dirs, "\n"))
 end
 
 function M.vendorlib_used_plugins()
-  return M._output_plugin_dirs(function(plugin)
+  local dirs = M._get_plugin_dirs(function(plugin)
     local vendor_spec = vim.fn.glob(plugin.directory .. "**/vendorlib.lua")
     return vim.fn.filereadable(vendor_spec) == 1
   end)
+  io.stdout:write(table.concat(dirs, "\n"))
 end
 
 function M.has_doc_plugins()
-  return M._output_plugin_dirs(function(plugin)
+  local dirs = M._get_plugin_dirs(function(plugin)
     local doc_script = vim.fn.glob(plugin.directory .. "**/spec/lua/*/doc.lua")
     return vim.fn.filereadable(doc_script) == 1
   end)
+  io.stdout:write(table.concat(dirs, "\n"))
 end
 
-function M._output_plugin_dirs(filter)
+function M.plugin_shared_dirs()
+  local dirs = M._get_plugin_dirs(function(plugin)
+    local shared_dir = vim.fn.glob(plugin.directory .. "**/spec/.shared")
+    return vim.fn.isdirectory(shared_dir) == 1
+  end)
+  local shared_dirs = vim.tbl_map(function(dir)
+    return require("misclib.path").join(dir, "spec/.shared")
+  end, dirs)
+  io.stdout:write(table.concat(shared_dirs, "\n"))
+end
+
+function M._get_plugin_dirs(filter)
   local optpack = require("optpack")
   local plugins = optpack.list()
 
@@ -127,8 +141,7 @@ function M._output_plugin_dirs(filter)
     table.insert(dirs, plugin.directory)
     ::continue::
   end
-
-  io.stdout:write(table.concat(dirs, "\n"))
+  return dirs
 end
 
 return M
