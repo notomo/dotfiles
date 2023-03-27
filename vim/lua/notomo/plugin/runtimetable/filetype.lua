@@ -183,12 +183,9 @@ runtime.after.ftplugin["lua.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.keymap.set("n", "[exec]s", [[<Cmd>luafile %<CR>]], { buffer = true })
   vim.keymap.set("n", "[exec]l", [[':lua ' . getline('.') . '<CR>']], { expr = true, buffer = true })
-  vim.keymap.set(
-    "n",
-    "[yank]I",
-    [[<Cmd>lua require("notomo.edit").yank(require("notomo.module").path())<CR>]],
-    { buffer = true }
-  )
+  vim.keymap.set("n", "[yank]I", function()
+    require("notomo.edit").yank(require("misclib.module.path").detect(vim.fn.expand("%:p")))
+  end, { buffer = true })
   require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
   require("notomo.lsp.autocmd").setup()
   vim.cmd.inoreabbrev({ args = { "<buffer>", "!=", "~=" } })
@@ -211,7 +208,7 @@ runtime.after.ftplugin["lua.lua"] = function()
       opts = {
         cwd = require("thetto.util.cwd").project(),
         filters = require("thetto.util.filter").prepend("interactive"),
-        input_lines = { ('"%s"'):format(require("notomo.module").path()), "require(" },
+        input_lines = { ('"%s"'):format(require("misclib.module.path").detect(vim.fn.expand("%:p"))), "require(" },
       },
     })
   end)
