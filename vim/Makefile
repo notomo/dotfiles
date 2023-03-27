@@ -66,4 +66,7 @@ _commit:
 PUSH:
 	${NVIM} --headless +"lua require('notomo.startup').plugins()" +quitall! | xargs -I{} $(MAKE) --no-print-directory _PUSH TARGET_PATH={}
 _PUSH:
-	git -C ${TARGET_PATH} push
+	if [ -n "$$(git -C ${TARGET_PATH} log --pretty=format:1 @{u}..)" ]; \
+	then \
+	  git -C ${TARGET_PATH} push; \
+	fi
