@@ -19,7 +19,7 @@ M.actions = {
     if not item then
       return
     end
-    require("notomo.treesitter.query").open(item.path)
+    require("notomo.lib.treesitter.query").open(item.path)
   end,
 }
 

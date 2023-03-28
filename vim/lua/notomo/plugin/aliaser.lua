@@ -20,7 +20,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
     vim.treesitter.inspect_tree()
     vim.cmd.wincmd("r")
     vim.cmd.wincmd("=")
-    require("notomo.treesitter.query").open(query_path, target_bufnr)
+    require("notomo.lib.treesitter.query").open(query_path, target_bufnr)
   end)
   aliases:set("ready_parser", function()
     for _, language in ipairs({

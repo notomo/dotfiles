@@ -14,7 +14,7 @@ function M.collect(source_ctx)
     return {
       path = e.path,
       row = e.start_row,
-      value = require("notomo.treesitter").remove_indent(e.text),
+      value = require("notomo.lib.treesitter").remove_indent(e.text),
     }
   end, elements)
 end

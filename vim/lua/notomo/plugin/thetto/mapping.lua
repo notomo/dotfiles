@@ -281,7 +281,7 @@ vim.keymap.set("n", "[finder]f", thetto_starter("file/in_dir"))
 vim.keymap.set("n", "[finder]h", thetto_starter("vim/help"))
 vim.keymap.set("n", "[finder]l", thetto_starter("line"))
 vim.keymap.set("n", "[finder]L", function()
-  local row_range, err = require("notomo.treesitter").get_current_function_range()
+  local row_range, err = require("notomo.lib.treesitter").get_current_function_range()
   if err then
     error(err)
   end
@@ -453,7 +453,7 @@ end)
 vim.keymap.set("n", "[file]l", thetto_starter("file/alter", { opts = { action = "tab_open" } }))
 vim.keymap.set("n", "[file]t", thetto_starter("file/alter", { source_opts = { allow_new = true } }))
 vim.keymap.set("n", "[file];", function()
-  local function_name = require("notomo.treesitter").get_near_function_name()
+  local function_name = require("notomo.lib.treesitter").get_near_function_name()
   require("thetto").start("file/alter"):next(function()
     require("thetto").start("test", {
       opts = {
