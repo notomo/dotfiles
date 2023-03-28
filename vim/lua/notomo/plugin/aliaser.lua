@@ -111,13 +111,6 @@ aliaser.register_factory("vim", function(aliases)
   end)
 end)
 
-aliaser.register_factory("dev", function(aliases)
-  local colorscheme = vim.g.notomo_colorscheme
-  aliases:set("watch_" .. colorscheme, function()
-    require("notomo.colorscheme").watch(colorscheme, colorscheme .. ".nvim")
-  end)
-end)
-
 aliaser.register_factory("other", function(aliases)
   local open_line = function()
     local path = vim.fn.expand("%:p") .. ":" .. vim.fn.line(".") .. ":" .. vim.fn.col(".")
