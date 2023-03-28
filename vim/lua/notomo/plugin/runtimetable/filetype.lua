@@ -301,7 +301,7 @@ runtime.after.ftplugin["typescript.lua"] = function()
   vim.opt_local.expandtab = true
   require("notomo.lsp.mapping").setup()
   require("notomo.lsp.autocmd").setup()
-  vim.keymap.set("n", "[finder]i", [[<Cmd>lua require('thetto').start("deno/deps")<CR>]])
+  vim.keymap.set("n", "[finder]i", [[<Cmd>lua require("thetto").start("deno/deps")<CR>]])
 end
 
 runtime.after.ftplugin["vim.lua"] = function()

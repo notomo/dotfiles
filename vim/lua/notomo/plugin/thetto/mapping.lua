@@ -176,7 +176,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("i", "<C-n>", [[<Cmd>lua require("thetto").execute("recall_next_history")<CR>]], { buffer = true })
 
     -- custom
-    vim.keymap.set("i", "<C-u>", [[<Cmd>lua require('notomo.edit').delete_prev()<CR>]], { buffer = true })
+    vim.keymap.set("i", "<C-u>", [[<Cmd>lua require("notomo.edit").delete_prev()<CR>]], { buffer = true })
   end,
 })
 

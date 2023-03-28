@@ -588,7 +588,7 @@ optpack.add("mfussenegger/nvim-dap", {
         require("dap").disconnect()
         require("dap").close()
       end)
-      vim.keymap.set("n", "[keyword]E", [[<Cmd>lua require('dap.ui.widgets').hover()<CR>]])
+      vim.keymap.set("n", "[keyword]E", [[<Cmd>lua require("dap.ui.widgets").hover()<CR>]])
     end,
     post_load = require_fn("notomo.plugin.nvim-dap"),
   },

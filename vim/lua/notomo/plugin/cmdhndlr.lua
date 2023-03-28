@@ -64,6 +64,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "cmdhndlr_setting",
   pattern = { "cmdhndlr" },
   callback = function()
-    vim.keymap.set("n", "[file]rl", [[<Cmd>lua require('cmdhndlr').retry()<CR>]], { buffer = true })
+    vim.keymap.set("n", "[file]rl", [[<Cmd>lua require("cmdhndlr").retry()<CR>]], { buffer = true })
   end,
 })

@@ -61,7 +61,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       name = "go to the parent",
       buffer = "%",
       inputs = { gesture.up() },
-      action = "lua require('kivi').execute('parent')",
+      action = function()
+        require("kivi").execute("parent")
+      end,
     })
 
     vim.keymap.set("n", "<RightMouse>", [[<LeftMouse><Cmd>lua require("piemenu").start("kivi")<CR>]], {

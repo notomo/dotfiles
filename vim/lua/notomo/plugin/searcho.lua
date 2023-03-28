@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set(
       "i",
       "<CR>",
-      [[<Cmd>lua require("searcho").finish()<CR><Cmd>lua require('reacher').start({input = vim.fn.getreg('/')})<CR><ESC>]],
+      [[<Cmd>lua require("searcho").finish()<CR><Cmd>lua require("reacher").start({input = vim.fn.getreg('/')})<CR><ESC>]],
       { buffer = true }
     )
     vim.keymap.set("i", "<C-Space>", [[<Space>]], { buffer = true })

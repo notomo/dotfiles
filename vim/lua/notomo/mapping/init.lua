@@ -486,13 +486,13 @@ end, silent)
 vim.keymap.set(
   "n",
   "[yank]ud",
-  [[<Cmd>lua require("notomo.edit").yank(require('misclib.url').decode(vim.fn.expand('<cWORD>')))<CR>]],
+  [[<Cmd>lua require("notomo.edit").yank(require("misclib.url").decode(vim.fn.expand('<cWORD>')))<CR>]],
   silent
 )
 vim.keymap.set(
   "n",
   "[yank]ue",
-  [[<Cmd>lua require("notomo.edit").yank(require('misclib.url').encode(vim.fn.expand('<cWORD>')))<CR>]],
+  [[<Cmd>lua require("notomo.edit").yank(require("misclib.url").encode(vim.fn.expand('<cWORD>')))<CR>]],
   silent
 )
 vim.keymap.set(

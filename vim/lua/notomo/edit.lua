@@ -159,7 +159,7 @@ function M.prev_file()
       return ("<C-o>"):rep(count)
     end
   end
-  return [[<Cmd>lua require('misclib.message').warn("no prev file")<CR>]]
+  return [[<Cmd>lua require("misclib.message").warn("no prev file")<CR>]]
 end
 
 function M.next_file()
@@ -173,7 +173,7 @@ function M.next_file()
       return ("<C-i>"):rep(count)
     end
   end
-  return [[<Cmd>lua require('misclib.message').warn("no next file")<CR>]]
+  return [[<Cmd>lua require("misclib.message").warn("no next file")<CR>]]
 end
 
 function M.jump(pattern, search_flag)
