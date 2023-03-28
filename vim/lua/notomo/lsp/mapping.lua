@@ -14,8 +14,9 @@ function M.go_to_definition()
 
     local client = vim.lsp.get_client_by_id(ctx.client_id)
     local handlers = client.handlers or {}
-    if handlers["textDocument/definition"] then
-      return handlers["textDocument/definition"](err, result, ctx)
+    local handler = handlers["textDocument/definition"]
+    if handler then
+      return handler(err, result, ctx)
     end
 
     if vim.tbl_islist(result) then
@@ -35,18 +36,30 @@ function M.setup(opts)
   }
   opts = vim.tbl_deep_extend("force", default, opts or {})
 
-  vim.keymap.set("n", "[keyword]o", M.go_to_definition, { buffer = true })
+  vim.keymap.set("n", "<Leader>fs", function()
+    vim.diagnostic.hide()
+    vim.cmd.LspRestart()
+  end, { silent = true, buffer = true })
+
+  vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true, buffer = true })
+
+  vim.keymap.set({ "n", "x" }, "[keyword]c", [[:lua vim.lsp.buf.code_action()<CR>]], { silent = true, buffer = true })
+  vim.keymap.set("n", "[keyword]e", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], { buffer = true })
+
+  vim.keymap.set("n", "[keyword]o", function()
+    require("notomo.lsp.mapping").go_to_definition()
+  end, { buffer = true })
   vim.keymap.set("n", "[keyword]v", function()
     vim.cmd.vsplit()
-    M.go_to_definition()
+    require("notomo.lsp.mapping").go_to_definition()
   end, { buffer = true })
   vim.keymap.set("n", "[keyword]h", function()
     vim.cmd.split()
-    M.go_to_definition()
+    require("notomo.lsp.mapping").go_to_definition()
   end, { buffer = true })
   vim.keymap.set("n", "[keyword]t", function()
     require("wintablib.window").duplicate_as_right_tab()
-    M.go_to_definition()
+    require("notomo.lsp.mapping").go_to_definition()
   end, { buffer = true })
 
   vim.keymap.set("n", "sl", function()

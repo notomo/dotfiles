@@ -4,7 +4,6 @@ local ignored_diagnostic = {
   -- diagnostic.source = {diagnostic.code = true}
   deno = { ["import-map-remap"] = true },
 }
-
 function M.publish_diagnostics(err, result, ctx, config)
   result.diagnostics = vim.tbl_filter(function(e)
     return not vim.tbl_get(ignored_diagnostic, e.source, e.code)
@@ -15,6 +14,10 @@ function M.publish_diagnostics(err, result, ctx, config)
     open = false,
     namespace = vim.lsp.diagnostic.get_namespace(ctx.client_id),
   })
+end
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
+  require("notomo.lsp.handler").publish_diagnostics(...)
 end
 
 M.ignored_progress = { "null-ls" }
@@ -34,32 +37,13 @@ function M.progress()
   end
 end
 
-vim.lsp.set_log_level("error")
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
-  require("notomo.lsp.handler").publish_diagnostics(...)
-end
-
-vim.api.nvim_create_augroup("notomo_lsp_progress", {})
 vim.api.nvim_create_autocmd({ "User" }, {
-  group = "notomo_lsp_progress",
+  group = vim.api.nvim_create_augroup("notomo_lsp_progress", {}),
   pattern = { "LspProgressUpdate" },
   callback = function()
     require("notomo.lsp.handler").progress()
   end,
 })
-
-require("notomo.lib.mapping").set_prefix({ "n" }, "lc", "<Leader>f")
-vim.keymap.set("n", "[lc]D", [[<Cmd>lua vim.lsp.buf.type_definition()<CR>]], { silent = true })
-vim.keymap.set("n", "[lc]K", [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], { silent = true })
-vim.keymap.set("n", "[lc]s", function()
-  vim.diagnostic.hide()
-  vim.cmd.LspRestart()
-end, { silent = true })
-vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true })
-vim.keymap.set("n", "[exec]gf", [[<Cmd>lua vim.lsp.buf.format({async = true})<CR>]])
-vim.keymap.set({ "n", "x" }, "[keyword]c", [[:lua vim.lsp.buf.code_action()<CR>]], { silent = true })
-vim.keymap.set("n", "[keyword]e", [[<Cmd>lua vim.lsp.buf.hover()<CR>]])
 
 vim.ui.select = function(items, opts, on_choice)
   if opts.kind == "codeaction" and #items == 1 and items[1][2].kind == "refactor.extract" then
@@ -78,5 +62,7 @@ vim.ui.select = function(items, opts, on_choice)
 end
 
 vim.ui.input = require("notomo.lib.input").open
+
+vim.lsp.set_log_level("error")
 
 return M
