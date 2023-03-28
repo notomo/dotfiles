@@ -1,4 +1,4 @@
-require("notomo.mapping.util").set_prefix({ "n" }, "cmdbuf", "<Space>q")
+require("notomo.lib.mapping").set_prefix({ "n" }, "cmdbuf", "<Space>q")
 
 vim.keymap.set("n", "Q", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight)<CR>]])
 vim.keymap.set("n", "[cmdbuf]l", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "lua/cmd"})<CR>]])

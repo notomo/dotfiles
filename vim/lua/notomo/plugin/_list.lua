@@ -510,7 +510,7 @@ optpack.add("rhysd/vim-operator-surround", {
   depends = { "vim-operator-user", "vim-textobj-multiblock" },
   load_on = {
     keymaps = function(vim)
-      require("notomo.mapping.util").set_prefix({ "n", "x" }, "surround", "s")
+      require("notomo.lib.mapping").set_prefix({ "n", "x" }, "surround", "s")
 
       vim.keymap.set({ "n", "x" }, "[surround]a", [[<Plug>(operator-surround-append)]], { silent = true })
       vim.keymap.set(

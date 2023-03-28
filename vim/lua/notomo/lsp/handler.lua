@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
   end,
 })
 
-require("notomo.mapping.util").set_prefix({ "n" }, "lc", "<Leader>f")
+require("notomo.lib.mapping").set_prefix({ "n" }, "lc", "<Leader>f")
 vim.keymap.set("n", "[lc]D", [[<Cmd>lua vim.lsp.buf.type_definition()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]K", [[<Cmd>lua vim.lsp.buf.signature_help()<CR>]], { silent = true })
 vim.keymap.set("n", "[lc]s", function()
