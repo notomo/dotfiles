@@ -51,7 +51,7 @@ local set_statusline = function()
     return escape(fn.expand("%:p:~"))
   end
   local branch = function()
-    local name = require("notomo.git").current_branch()
+    local name = require("notomo.lib.git").current_branch()
     if #name == 0 then
       return ""
     end

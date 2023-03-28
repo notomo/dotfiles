@@ -85,7 +85,7 @@ kind_actions["github/repository"] = {
     end
     local dir = vim.fn.expand("~/workspace/memo/tmp")
     vim.fn.mkdir(dir, "p")
-    require("notomo.job").run({ "gh", "repo", "clone", item.value }, { cwd = dir })
+    require("notomo.lib.job").run({ "gh", "repo", "clone", item.value }, { cwd = dir })
   end,
 }
 
@@ -254,11 +254,11 @@ source_actions["file/recursive"] = {
     if item == nil then
       return
     end
-    local package_path = require("notomo.go").to_package(item.path)
+    local package_path = require("notomo.lib.go").to_package(item.path)
     if not package_path then
       return nil, "no package_path: " .. item.path
     end
-    require("notomo.job").run({ "go", "install", package_path .. "@latest" })
+    require("notomo.lib.job").run({ "go", "install", package_path .. "@latest" })
   end,
 }
 
@@ -277,7 +277,7 @@ source_actions["vim/filetype"] = {
     end
     local filetype = item.value
     local name = require("filetypext").detect({ filetype = filetype })[1]
-    require("notomo.edit").scratch(name, filetype)
+    require("notomo.lib.edit").scratch(name, filetype)
   end,
   action_search = function(items)
     local item = items[1]

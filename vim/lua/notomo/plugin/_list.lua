@@ -273,7 +273,7 @@ mypack.add("notomo/lreload.nvim", {
 optpack.add("hrsh7th/nvim-cmp", {
   load_on = { modules = { "cmp" }, events = { "InsertEnter" } },
   hooks = {
-    post_load = require("notomo.once").new(
+    post_load = require("notomo.lib.once").new(
       vim.schedule_wrap(function()
         vim.cmd.runtime({ args = { "after/plugin/cmp_*.lua" }, bang = true })
         require("notomo.plugin.cmp").setup()
@@ -396,7 +396,7 @@ mypack.add("notomo/filetypext.nvim", {
   hooks = {
     post_add = function()
       vim.keymap.set("n", "[exec];", function()
-        require("notomo.edit").scratch(
+        require("notomo.lib.edit").scratch(
           require("filetypext").detect({ bufnr = 0 })[1],
           vim.bo.filetype ~= "" and vim.bo.filetype or "markdown"
         )

@@ -63,7 +63,7 @@ runtime.after.ftplugin["go.lua"] = function()
   vim.keymap.set(
     "n",
     "[yank]I",
-    [[<Cmd>lua require("notomo.edit").yank(vim.fn.trim(vim.fn.system('go list -f "{{.ImportPath}}" ./')))<CR>]],
+    [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.trim(vim.fn.system('go list -f "{{.ImportPath}}" ./')))<CR>]],
     { buffer = true }
   )
   vim.keymap.set(
@@ -81,10 +81,10 @@ runtime.after.ftplugin["go.lua"] = function()
 
   local test_pattern = [[\v^(func Test|\s*t\.Run)]]
   vim.keymap.set("n", "sgn", function()
-    require("notomo.edit").jump(test_pattern, "W")
+    require("notomo.lib.edit").jump(test_pattern, "W")
   end, { buffer = true })
   vim.keymap.set("n", "sgp", function()
-    require("notomo.edit").jump(test_pattern, "Wb")
+    require("notomo.lib.edit").jump(test_pattern, "Wb")
   end, { buffer = true })
 
   vim.cmd.syntax({ args = { "keyword", "goKeywords", "nil", "iota", "true", "false" } })
@@ -184,7 +184,7 @@ runtime.after.ftplugin["lua.lua"] = function()
   vim.keymap.set("n", "[exec]s", [[<Cmd>luafile %<CR>]], { buffer = true })
   vim.keymap.set("n", "[exec]l", [[':lua ' . getline('.') . '<CR>']], { expr = true, buffer = true })
   vim.keymap.set("n", "[yank]I", function()
-    require("notomo.edit").yank(require("misclib.module.path").detect(vim.fn.expand("%:p")))
+    require("notomo.lib.edit").yank(require("misclib.module.path").detect(vim.fn.expand("%:p")))
   end, { buffer = true })
   require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
   require("notomo.lsp.autocmd").setup()

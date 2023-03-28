@@ -176,23 +176,23 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("i", "<C-n>", [[<Cmd>lua require("thetto").execute("recall_next_history")<CR>]], { buffer = true })
 
     -- custom
-    vim.keymap.set("i", "<C-u>", [[<Cmd>lua require("notomo.edit").delete_prev()<CR>]], { buffer = true })
+    vim.keymap.set("i", "<C-u>", [[<Cmd>lua require("notomo.lib.edit").delete_prev()<CR>]], { buffer = true })
   end,
 })
 
 local source_specific = {
   ["git/log"] = function(list_bufnr)
     vim.keymap.set("n", "yr", function()
-      require("notomo.edit").yank(require("thetto").get()[1].commit_hash)
+      require("notomo.lib.edit").yank(require("thetto").get()[1].commit_hash)
     end, { buffer = list_bufnr })
     vim.keymap.set("n", "yR", function()
-      require("notomo.github").yank_revision_with_repo(require("thetto").get()[1].commit_hash)
+      require("notomo.lib.github").yank_revision_with_repo(require("thetto").get()[1].commit_hash)
     end, { buffer = list_bufnr })
     vim.keymap.set("n", "ym", function()
-      require("notomo.git").yank_commit_message(require("thetto").get()[1].commit_hash)
+      require("notomo.lib.git").yank_commit_message(require("thetto").get()[1].commit_hash)
     end, { buffer = list_bufnr })
     vim.keymap.set("n", "yu", function()
-      require("notomo.github").yank_commit_url(require("thetto").get()[1].commit_hash)
+      require("notomo.lib.github").yank_commit_url(require("thetto").get()[1].commit_hash)
     end, { buffer = list_bufnr })
     vim.keymap.set("n", "ch", [[<Cmd>lua require("thetto").execute("checkout")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "D", [[<Cmd>lua require("thetto").execute("diff")<CR>]], { buffer = list_bufnr })
@@ -211,7 +211,7 @@ local source_specific = {
   ["git/branch"] = function(list_bufnr)
     vim.keymap.set("n", "C", [[<Cmd>lua require("thetto").execute("create")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "yr", function()
-      require("notomo.edit").yank(require("thetto").get()[1].commit_hash)
+      require("notomo.lib.edit").yank(require("thetto").get()[1].commit_hash)
     end, { buffer = list_bufnr })
   end,
   ["git/status"] = function(list_bufnr)

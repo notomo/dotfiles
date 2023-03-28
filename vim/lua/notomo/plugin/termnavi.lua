@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   callback = function()
     local enter = function()
       local ok, err = pcall(function()
-        require("notomo.edit").set_term_title("^\\$ ", 24)
+        require("notomo.lib.edit").set_term_title("^\\$ ", 24)
         require("termnavi").mark({
           prompt_pattern = [=[\v^\[.*\]$\_.^\$]=],
           extmark_opts = {

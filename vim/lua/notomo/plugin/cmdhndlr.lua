@@ -28,7 +28,7 @@ vim.keymap.set("n", "[test]N", function()
   require("cmdhndlr").test({ filter = test.full_name, is_leaf = #test.children == 0 })
 end)
 vim.keymap.set("x", "[test]N", function()
-  local selected_text = require("notomo.edit").get_selected_text()
+  local selected_text = require("notomo.lib.edit").get_selected_text()
 
   local tests, info = require("gettest").nodes({
     scope = "smallest_ancestor",

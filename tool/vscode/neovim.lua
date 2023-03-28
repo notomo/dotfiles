@@ -24,7 +24,7 @@ vim.keymap.set("n", "[exec]n", [[<Cmd>nohlsearch<CR>]])
 vim.keymap.set("n", "[exec]ljo", [[<Cmd>call VSCodeNotify("liveshare.join")<CR>]])
 vim.keymap.set("n", "[exec]ls", [[<Cmd>call VSCodeNotify("liveshare.start")<CR>]])
 vim.keymap.set("n", "[exec]o", [[<Cmd>call VSCodeNotify("workbench.explorer.fileView.focus")<CR>]])
-vim.keymap.set("n", "[exec]N", [[<Cmd>lua require("notomo.edit").note()<CR>]])
+vim.keymap.set("n", "[exec]N", [[<Cmd>lua require("notomo.lib.edit").note()<CR>]])
 
 vim.keymap.set("n", "k", [[gk]])
 vim.keymap.set("n", "j", [[gj]])
@@ -93,10 +93,10 @@ vim.keymap.set("n", "[newline]j", function()
 end, { silent = true })
 
 vim.keymap.set("n", "[arith]j", function()
-  return require("notomo.edit").inc_or_dec(false)
+  return require("notomo.lib.edit").inc_or_dec(false)
 end, { expr = true })
 vim.keymap.set("n", "[arith]k", function()
-  return require("notomo.edit").inc_or_dec(true)
+  return require("notomo.lib.edit").inc_or_dec(true)
 end, { expr = true })
 vim.keymap.set("x", "[arith]j", [[<C-x>gv]])
 vim.keymap.set("x", "[arith]k", [[<C-a>gv]])
@@ -184,13 +184,13 @@ vim.keymap.set("x", "<Space>c", [[:VSCodeCommentary<CR>]])
 vim.keymap.set(
   "n",
   "[yank]d",
-  [[<Cmd>lua require("notomo.edit").yank(vim.fn.strftime('%Y-%m-%d'))<CR>]],
+  [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.strftime('%Y-%m-%d'))<CR>]],
   { silent = true }
 )
 vim.keymap.set(
   "n",
   "[yank]w",
-  [[<Cmd>lua require("notomo.edit").yank(vim.fn.expand('%:p:h:t'))<CR>]],
+  [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.expand('%:p:h:t'))<CR>]],
   { silent = true }
 )
 

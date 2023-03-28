@@ -4,7 +4,7 @@ piemenu.register("default", {
     {
       text = "📖 note",
       action = function()
-        require("notomo.edit").note()
+        require("notomo.lib.edit").note()
       end,
     },
     {

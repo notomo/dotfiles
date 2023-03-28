@@ -4,7 +4,7 @@ local M = {}
 
 vim.api.nvim_create_user_command("Git", function(command)
   local args = command.fargs
-  require("notomo.job").run({ "git", unpack(args) })
+  require("notomo.lib.job").run({ "git", unpack(args) })
 end, { nargs = "+" })
 
 function M.pull()
@@ -112,7 +112,7 @@ end
 
 function M.yank_commit_message(revision)
   local message = vim.fn.systemlist({ "git", "log", "--format=%B", "-n", "1", revision })[1]
-  require("notomo.edit").yank(message)
+  require("notomo.lib.edit").yank(message)
 end
 
 return M

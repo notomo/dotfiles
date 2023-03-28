@@ -7,7 +7,7 @@ function M.view_issue(target)
   if repo then
     table.insert(cmd, "--repo=" .. repo)
   end
-  require("notomo.job").run(cmd)
+  require("notomo.lib.job").run(cmd)
 end
 
 function M.view_pr()
@@ -17,7 +17,7 @@ function M.view_pr()
   if id ~= "" then
     table.insert(cmd, id)
   end
-  require("notomo.job").run(cmd)
+  require("notomo.lib.job").run(cmd)
 end
 
 function M.view_repo(target)
@@ -29,7 +29,7 @@ function M.view_repo(target)
   if target ~= "" then
     table.insert(cmd, target)
   end
-  require("notomo.job").run(cmd)
+  require("notomo.lib.job").run(cmd)
 end
 
 function M.create_issue()
@@ -50,7 +50,7 @@ function M.yank_revision_with_repo(revision)
     "{{.nameWithOwner}}",
   })[1]
   local name_with_reivision = ("%s@%s"):format(name, revision)
-  require("notomo.edit").yank(name_with_reivision)
+  require("notomo.lib.edit").yank(name_with_reivision)
 end
 
 function M.yank_commit_url(revision)
@@ -60,11 +60,11 @@ function M.yank_commit_url(revision)
     "--no-browser",
     revision,
   })[1]
-  require("notomo.edit").yank(url)
+  require("notomo.lib.edit").yank(url)
 end
 
 function M.yank()
-  local git_root = require("notomo.git").root()
+  local git_root = require("notomo.lib.git").root()
   if not git_root then
     return require("misclib.message").warn("no .git")
   end
@@ -76,7 +76,7 @@ function M.yank()
   })[1]
 
   local state = require("thetto.util.git").state() or {}
-  local revision = state.revision or require("notomo.git").current_branch()
+  local revision = state.revision or require("notomo.lib.git").current_branch()
 
   local full_path = state.path or vim.api.nvim_buf_get_name(0)
   local path = full_path:sub(#git_root + 2)
@@ -89,7 +89,7 @@ function M.yank()
   end
 
   local url = ("%s/blob/%s/%s%s"):format(root_url, revision, path, range_part)
-  require("notomo.edit").yank(url)
+  require("notomo.lib.edit").yank(url)
 end
 
 return M

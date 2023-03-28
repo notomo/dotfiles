@@ -77,6 +77,6 @@ vim.ui.select = function(items, opts, on_choice)
   })
 end
 
-vim.ui.input = require("notomo.input").open
+vim.ui.input = require("notomo.lib.input").open
 
 return M
