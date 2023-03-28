@@ -11,4 +11,7 @@ vim.filetype.add({
 
 return {
   path = path,
+  save = function(runtime)
+    require("runtimetable").save(runtime, { as_binary = vim.fn.has("win32") ~= 1 })
+  end,
 }
