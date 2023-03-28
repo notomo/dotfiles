@@ -134,7 +134,7 @@ runtime.after.ftplugin["javascript.lua"] = function()
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
-  require("notomo.npm").mapping()
+  require("notomo.lib.npm").mapping()
   require("notomo.lsp.mapping").setup()
   require("notomo.lsp.autocmd").setup()
 
@@ -165,7 +165,7 @@ runtime.after.ftplugin["json.lua"] = function()
     vim.cmd.normal({ args = { "$%k$%" }, bang = true })
   end, { buffer = true })
   if vim.fn.bufname() == "package.json" then
-    require("notomo.npm").mapping()
+    require("notomo.lib.npm").mapping()
   end
   require("notomo.lsp.autocmd").setup()
   vim.opt_local.tabstop = 2
