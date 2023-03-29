@@ -35,4 +35,6 @@ vim.api.nvim_set_hl(0, "OptpackUpdatedRevisionRange", { link = "Label" })
 vim.api.nvim_set_hl(0, "IndentBlanklineIndent1", { bg = pallet.blue, nocombine = true })
 vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { bg = pallet.dark_blue, nocombine = true })
 
+vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "Keyword" })
+
 vim.api.nvim_set_hl(0, "TermnaviLine", { bg = "#002b6f", bold = true })
