@@ -80,7 +80,7 @@ runtime.after.ftplugin["go.lua"] = function()
 
   vim.cmd.inoreabbrev({ args = { "<buffer>", "~=", "!=" } })
 
-  require("notomo.plugin.treesitter").mapping()
+  require("notomo.plugin.nvim-treesitter").mapping()
 end
 
 runtime.after.ftplugin["gomod.lua"] = function()
@@ -188,7 +188,7 @@ runtime.after.ftplugin["lua.lua"] = function()
     })
   end)
 
-  require("notomo.plugin.treesitter").mapping()
+  require("notomo.plugin.nvim-treesitter").mapping()
 end
 
 runtime.after.ftplugin["markdown.lua"] = function()

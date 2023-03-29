@@ -49,16 +49,16 @@ function M.mapping()
   vim.keymap.set(
     "n",
     "sgj",
-    [[<Cmd>lua require("notomo.plugin.treesitter").next_no_indent_function()<CR>]],
+    [[<Cmd>lua require("notomo.plugin.nvim-treesitter").next_no_indent_function()<CR>]],
     { buffer = true }
   )
   vim.keymap.set(
     "n",
     "sgk",
-    [[<Cmd>lua require("notomo.plugin.treesitter").prev_no_indent_function()<CR>]],
+    [[<Cmd>lua require("notomo.plugin.nvim-treesitter").prev_no_indent_function()<CR>]],
     { buffer = true }
   )
-  require("notomo.plugin.treesitter").text_object_mapping()
+  require("notomo.plugin.nvim-treesitter").text_object_mapping()
 end
 
 function M.next_no_indent_function()
