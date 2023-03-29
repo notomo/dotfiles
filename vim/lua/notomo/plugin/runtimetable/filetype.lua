@@ -66,18 +66,6 @@ runtime.after.ftplugin["go.lua"] = function()
     [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.trim(vim.fn.system('go list -f "{{.ImportPath}}" ./')))<CR>]],
     { buffer = true }
   )
-  vim.keymap.set(
-    "n",
-    "sgj",
-    [[<Cmd>lua require("notomo.plugin.treesitter").next_no_indent_function()<CR>]],
-    { buffer = true }
-  )
-  vim.keymap.set(
-    "n",
-    "sgk",
-    [[<Cmd>lua require("notomo.plugin.treesitter").prev_no_indent_function()<CR>]],
-    { buffer = true }
-  )
 
   local test_pattern = [[\v^(func Test|\s*t\.Run)]]
   vim.keymap.set("n", "sgn", function()
@@ -92,7 +80,7 @@ runtime.after.ftplugin["go.lua"] = function()
 
   vim.cmd.inoreabbrev({ args = { "<buffer>", "~=", "!=" } })
 
-  require("notomo.plugin.treesitter").text_object_mapping()
+  require("notomo.plugin.treesitter").mapping()
 end
 
 runtime.after.ftplugin["gomod.lua"] = function()
@@ -190,19 +178,6 @@ runtime.after.ftplugin["lua.lua"] = function()
   require("notomo.lsp.autocmd").setup()
   vim.cmd.inoreabbrev({ args = { "<buffer>", "!=", "~=" } })
 
-  vim.keymap.set(
-    "n",
-    "sgj",
-    [[<Cmd>lua require("notomo.plugin.treesitter").next_no_indent_function()<CR>]],
-    { buffer = true }
-  )
-  vim.keymap.set(
-    "n",
-    "sgk",
-    [[<Cmd>lua require("notomo.plugin.treesitter").prev_no_indent_function()<CR>]],
-    { buffer = true }
-  )
-
   vim.keymap.set("n", "[finder]I", function()
     require("thetto").start("file/grep", {
       opts = {
@@ -213,7 +188,7 @@ runtime.after.ftplugin["lua.lua"] = function()
     })
   end)
 
-  require("notomo.plugin.treesitter").text_object_mapping()
+  require("notomo.plugin.treesitter").mapping()
 end
 
 runtime.after.ftplugin["markdown.lua"] = function()

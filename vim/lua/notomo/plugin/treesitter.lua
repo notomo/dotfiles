@@ -45,6 +45,22 @@ function M.text_object_mapping()
   set("as", "@statement.outer")
 end
 
+function M.mapping()
+  vim.keymap.set(
+    "n",
+    "sgj",
+    [[<Cmd>lua require("notomo.plugin.treesitter").next_no_indent_function()<CR>]],
+    { buffer = true }
+  )
+  vim.keymap.set(
+    "n",
+    "sgk",
+    [[<Cmd>lua require("notomo.plugin.treesitter").prev_no_indent_function()<CR>]],
+    { buffer = true }
+  )
+  require("notomo.plugin.treesitter").text_object_mapping()
+end
+
 function M.next_no_indent_function()
   M._move("TSTextobjectGotoNextStart", "@function.outer")
 end
