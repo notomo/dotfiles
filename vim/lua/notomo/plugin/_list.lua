@@ -84,8 +84,8 @@ optpack.add("tbastos/vim-lua", {
 optpack.add("kana/vim-textobj-user", {
   load_on = {
     keymaps = function(vim)
-      vim.keymap.set({ "o", "x" }, "ab", [[<Plug>(textobj-codeblock-a)]])
-      vim.keymap.set({ "o", "x" }, "ib", [[<Plug>(textobj-codeblock-i)]])
+      vim.keymap.set({ "o", "x" }, "aB", [[<Plug>(textobj-codeblock-a)]])
+      vim.keymap.set({ "o", "x" }, "iB", [[<Plug>(textobj-codeblock-i)]])
     end,
   },
   hooks = {
@@ -93,8 +93,8 @@ optpack.add("kana/vim-textobj-user", {
       vim.fn["textobj#user#plugin"]("codeblock", {
         ["-"] = {
           pattern = { [[\v^\s*```\s?\w*$\n\ze.]], [[\v^\s*```]] },
-          ["select-a"] = "ab",
-          ["select-i"] = "ib",
+          ["select-a"] = "aB",
+          ["select-i"] = "iB",
         },
       })
     end,

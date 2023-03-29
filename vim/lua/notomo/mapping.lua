@@ -293,6 +293,7 @@ set_ia_xo("w", '"')
 set_ia_xo("q", "'")
 set_ia_xo("d", "}")
 set_ia_xo("b", "`")
+set_ia_xo("<CR>", "B")
 
 vim.keymap.set("o", ";", [[iw]])
 vim.keymap.set("i", "<C-n>", [[<Down>]])
