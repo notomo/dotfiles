@@ -55,7 +55,7 @@ function M.scratch(name, filetype)
   end
   vim.cmd.lcd(dir_path)
   local file_path = table.concat({ dir_path, name }, "/")
-  vim.cmd.drop({ mods = { tab = 0 }, args = { file_path } })
+  vim.cmd.drop({ mods = { tab = vim.fn.tabpagenr() }, args = { file_path } })
 end
 
 function M.note()
