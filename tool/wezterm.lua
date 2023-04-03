@@ -70,6 +70,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     label = "Powershell",
     args = { "powershell.exe" },
   })
+elseif wezterm.target_triple:match("apple") then
+  config.font_size = 17.0
 end
 
 return config
