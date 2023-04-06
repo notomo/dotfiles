@@ -61,7 +61,15 @@ vim.keymap.set("n", "[edit]P", [[[P]])
 vim.keymap.set("n", "い", [[i]])
 vim.keymap.set("n", "あ", [[a]])
 vim.keymap.set("n", "[file]w", [[<Cmd>write<CR>]])
-vim.keymap.set("n", "[file]rl", [[:<C-u>edit!<CR>]])
+vim.keymap.set("n", "[file]rl", function()
+  local view = vim.fn.winsaveview()
+  local ok, err = pcall(vim.cmd.edit, { bang = true })
+  if not ok and not err:match("No file name") then
+    error(err)
+  end
+  vim.api.nvim_echo({ { "reloaded" } }, false, {})
+  vim.fn.winrestview(view)
+end)
 vim.keymap.set("n", "[file]R", [[<Cmd>lua require("notomo.lib.edit").rotate_file()<CR>]])
 
 vim.keymap.set("n", "[buf]a", [[<C-^>]])
