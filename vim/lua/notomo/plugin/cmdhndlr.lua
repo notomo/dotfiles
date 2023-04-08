@@ -51,7 +51,7 @@ vim.keymap.set("n", "[test]d", function()
   end
 
   require("dap").run({
-    type = "go",
+    type = vim.bo.filetype,
     name = test.full_name,
     request = "launch",
     mode = "test",
@@ -76,13 +76,32 @@ vim.keymap.set("x", "[test]d", function()
 
   local name = test.full_name .. info.tool.separator .. selected_text
   require("dap").run({
-    type = "go",
+    type = vim.bo.filetype,
     name = name,
     request = "launch",
     mode = "test",
     program = "${relativeFileDirname}",
     args = { "-test.run", name },
   })
+end)
+
+vim.keymap.set("n", "<Leader>D", function()
+  vim.ui.input({ prompt = "Debug args: " }, function(input)
+    if not input then
+      require("misclib.message").info("Canceled debug.")
+      return
+    end
+    local args = vim.split(input, "%s+", { trimempty = true })
+    vim.schedule(function()
+      require("dap").run({
+        type = vim.bo.filetype,
+        name = "Debug",
+        request = "launch",
+        program = "${file}",
+        args = args,
+      })
+    end)
+  end)
 end)
 
 vim.api.nvim_create_augroup("cmdhndlr_setting", {})
