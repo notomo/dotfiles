@@ -34,6 +34,10 @@ local settings = vim.tbl_map(function(plugin)
   }
 end, plugins)
 table.insert(settings, { name = "notomo" })
+table.insert(settings, {
+  name = "notomo.color",
+  hook = hooks.ultramarine,
+})
 
 for _, setting in ipairs(settings) do
   require("lreload").enable(setting.name, { post_hook = hooks[setting.name] or setting.hook })
