@@ -580,15 +580,30 @@ optpack.add("mfussenegger/nvim-dap", {
   hooks = {
     post_add = function()
       vim.keymap.set("n", "[term]s", [[<Cmd>lua require("dap").step_into()<CR>]])
+      vim.keymap.set("n", "[term]S", [[<Cmd>lua require("dap").step_out()<CR>]])
       vim.keymap.set("n", "[term]b", [[<Cmd>lua require("dap").toggle_breakpoint()<CR>]])
-      vim.keymap.set("n", "[term]B", [[<Cmd>lua require("dap").clear_breakpoints()<CR>]])
+      vim.keymap.set("n", "[term]B", function()
+        vim.ui.input({
+          prompt = "Break point condition expr: ",
+        }, function(condition)
+          if not condition then
+            return
+          end
+          vim.schedule(function()
+            require("dap").set_breakpoint(condition)
+          end)
+        end)
+      end)
       vim.keymap.set("n", "[term]n", [[<Cmd>lua require("dap").step_over()<CR>]])
       vim.keymap.set("n", "[term]c", [[<Cmd>lua require("dap").continue()<CR>]])
+      vim.keymap.set("n", "[term]C", [[<Cmd>lua require("dap").run_to_cursor()<CR>]])
       vim.keymap.set("n", "[term]f", function()
         require("dap").disconnect()
         require("dap").close()
+        require("nvim-dap-virtual-text").refresh()
       end)
-      vim.keymap.set("n", "[keyword]E", [[<Cmd>lua require("dap.ui.widgets").hover()<CR>]])
+      vim.keymap.set("n", "[term]F", [[<Cmd>lua require("dap").clear_breakpoints()<CR>]])
+      vim.keymap.set("n", "<CR>", [[<Cmd>lua require("dap.ui.widgets").hover()<CR>]])
     end,
     post_load = require_fn("notomo.plugin.nvim-dap"),
   },

@@ -11,6 +11,12 @@ local dap = require("dap")
 
 dap.defaults.fallback.switchbuf = "uselast"
 
+local on_finished = function(session, _)
+  print("Finished:", vim.inspect(session.config, { newline = " ", indent = " " }))
+end
+dap.listeners.before["event_exited"]["notomo"] = on_finished
+dap.listeners.before["event_terminated"]["notomo"] = on_finished
+
 dap.adapters.go = {
   type = "server",
   port = "${port}",

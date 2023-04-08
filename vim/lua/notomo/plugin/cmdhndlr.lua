@@ -39,6 +39,7 @@ vim.keymap.set("x", "[test]N", function()
 
   require("cmdhndlr").test({ filter = test.full_name .. info.tool.separator .. selected_text })
 end)
+
 vim.keymap.set("n", "[test]d", function()
   local test = require("gettest").nodes({
     scope = "smallest_ancestor",
@@ -56,6 +57,31 @@ vim.keymap.set("n", "[test]d", function()
     mode = "test",
     program = "${relativeFileDirname}",
     args = { "-test.run", test.full_name },
+  })
+end)
+
+vim.keymap.set("x", "[test]d", function()
+  local selected_text = require("notomo.lib.edit").get_selected_text()
+
+  local tests, info = require("gettest").nodes({
+    scope = "smallest_ancestor",
+    target = { row = vim.fn.line(".") },
+  })
+  local test = tests[1]
+  if not test then
+    require("misclib.message").warn("not found test")
+    return nil
+  end
+  require("misclib.visual_mode").leave()
+
+  local name = test.full_name .. info.tool.separator .. selected_text
+  require("dap").run({
+    type = "go",
+    name = name,
+    request = "launch",
+    mode = "test",
+    program = "${relativeFileDirname}",
+    args = { "-test.run", name },
   })
 end)
 
