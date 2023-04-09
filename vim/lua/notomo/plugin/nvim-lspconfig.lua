@@ -25,6 +25,9 @@ local setup_ls = function(ls, config, enable_features)
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
   config.capabilities = require("cmp_nvim_lsp").default_capabilities()
   config.capabilities.textDocument.completion.completionItem.snippetSupport = false
+  config.on_attach = function(client, bufnr)
+    vim.lsp.semantic_tokens.stop(bufnr, client.id)
+  end
   ls.setup(config)
 end
 
@@ -102,6 +105,7 @@ setup_ls(lspconfig.tsserver, {
       or require("lspconfig.util").root_pattern("package.json", "jsconfig.json", ".git")(fname)
       or vim.loop.cwd()
   end,
+  single_file_support = false,
 }, { "unix" })
 
 setup_ls(lspconfig.denols, {
