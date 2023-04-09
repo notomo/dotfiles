@@ -3,6 +3,7 @@ local optpack = require("optpack")
 
 local require_fn = function(name)
   return function()
+    package.loaded[name] = nil
     require(name)
   end
 end
