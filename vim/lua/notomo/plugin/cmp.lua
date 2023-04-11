@@ -22,6 +22,15 @@ function M.complete()
     return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, true, true), "n", true)
   end
 
+  if not cmp.visible() then
+    vim.schedule(function()
+      cmp.complete({
+        config = { sources = { { name = "nvim_lsp" } } },
+      })
+    end)
+    return ""
+  end
+
   -- NOTE: select by <C-n> and then close and expand
   vim.schedule(function()
     cmp.close()
@@ -56,6 +65,7 @@ function M.setup()
   vim.keymap.set({ "i", "s" }, "<Tab>", function()
     return require("notomo.plugin.cmp").tab()
   end, { expr = true, remap = true })
+  vim.keymap.set("i", "<C-x><C-o>", [[<Cmd>lua require("cmp").complete()<CR>]])
 
   local documentation = cmp.config.window.bordered()
   documentation.zindex = 999
