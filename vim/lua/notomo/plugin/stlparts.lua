@@ -51,11 +51,11 @@ local set_statusline = function()
     return escape(fn.expand("%:p:~"))
   end
   local branch = function()
-    local name = require("notomo.lib.git").current_branch()
-    if #name == 0 then
+    local branch_name = require("notomo.lib.git").branch_component()
+    if #branch_name == 0 then
       return ""
     end
-    return surround(name)
+    return surround(branch_name)
   end
 
   local TruncateLeft = C.truncate_left

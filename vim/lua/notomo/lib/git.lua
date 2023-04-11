@@ -58,7 +58,7 @@ function M.root()
   return nil
 end
 
-function M.current_branch()
+function M.branch_component()
   if vim.b.gitsigns_head then
     return vim.b.gitsigns_head
   end
@@ -78,6 +78,12 @@ function M.current_branch()
   })
   vim.b.notomo_git_branch = branch
   return branch
+end
+
+function M.current_branch()
+  vim.b.notomo_git_branch = nil
+  vim.cmd.redrawstatus()
+  return M.branch_component()
 end
 
 function M._current_branch()
