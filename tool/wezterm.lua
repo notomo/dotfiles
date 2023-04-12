@@ -71,6 +71,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     args = { "powershell.exe" },
   })
 elseif wezterm.target_triple:match("apple") then
+  config.font = wezterm.font("Source Han Code JP", { weight = "Regular", stretch = "Normal", style = "Normal" })
   config.font_size = 17.0
 end
 
