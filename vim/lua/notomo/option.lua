@@ -2,7 +2,9 @@ local vim = vim
 local opt = vim.opt
 local g = vim.g
 
-vim.cmd.language("en_US.UTF-8")
+if vim.fn.has("mac") ~= 1 then
+  vim.cmd.language("en_US.UTF-8")
+end
 
 g.no_plugin_maps = 1
 g.plugin_dicwin_disable = 1
