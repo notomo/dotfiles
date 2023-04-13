@@ -29,7 +29,7 @@
   shell: grep "ANSIBLE MANAGED BLOCK" -- {{ home_dir }}/.zshrc
   register: exists_ansible_managed_block
   changed_when: False
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: remove default .zshrc
   file:
@@ -54,7 +54,7 @@
   shell: grep "ANSIBLE MANAGED BLOCK" -- {{ home_dir }}/.zprofile
   register: exists_ansible_managed_block
   changed_when: False
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: remove default .zprofile
   file:

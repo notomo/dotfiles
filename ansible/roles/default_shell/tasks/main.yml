@@ -1,5 +1,5 @@
 - name: change default shell
-  become: yes
+  become: true
   user:
     name: "{{ ansible_env.USER }}"
     shell: /home/linuxbrew/.linuxbrew/bin/zsh

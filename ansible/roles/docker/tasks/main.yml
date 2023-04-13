@@ -9,13 +9,13 @@
 - name: Add docker apt gpg key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
-  become: yes
+  become: true
   when: is_ubuntu
 
 - name: add apt repository for docker
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
-  become: yes
+  become: true
   when: is_ubuntu
 
 - name: install docker with apt
@@ -24,38 +24,38 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
-  become: yes
+  become: true
   when: is_ubuntu
 
 - name: mkdir /etc/docker
   file:
     path: "/etc/docker"
     state: directory
-  become: yes
+  become: true
   when: is_linux
 
 - name: copy daemon.json
   copy:
     src: daemon.json
     dest: "/etc/docker/daemon.json"
-  become: yes
+  become: true
   when: is_linux
 
 - name: add user to docker group
   user:
     name: "{{ ansible_env.USER }}"
     groups: docker
-    append: yes
-  become: yes
+    append: true
+  become: true
   when: is_linux
 
 - name: cgroupfs mount
   shell: cgroupfs-mount
-  become: yes
+  become: true
   when: is_ubuntu
 
 - name: start docker service
   shell: service docker start
-  become: yes
+  become: true
   when: is_ubuntu
   changed_when: False

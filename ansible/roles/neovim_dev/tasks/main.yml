@@ -9,7 +9,7 @@
       - unzip
       - curl
   when: is_ubuntu
-  become: yes
+  become: true
 
 - name: set variables
   set_fact:
@@ -31,7 +31,7 @@
     name:
       - systemd-coredump
   when: is_ubuntu
-  become: yes
+  become: true
 
 - name: install with homebrew
   homebrew:

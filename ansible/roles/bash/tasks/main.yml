@@ -4,7 +4,7 @@
   register: exists_ansible_managed_block
   when: is_linux
   changed_when: False
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: remove default .bashrc
   file:
@@ -17,7 +17,7 @@
   register: exists_ansible_managed_block
   when: is_linux
   changed_when: False
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: remove default .bash_profile
   file:

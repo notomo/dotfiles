@@ -15,5 +15,5 @@
 - name: install node.js package globally
   npm:
     name: "{{ item }}"
-    global: yes
+    global: true
   with_items: "{{ node_packages }}"

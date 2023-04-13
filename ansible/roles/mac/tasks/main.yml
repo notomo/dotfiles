@@ -57,7 +57,7 @@
     - google-japanese-ime
     - logitech-unifying
     - keepassx
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: disable .DS_Store creation
   osx_defaults:

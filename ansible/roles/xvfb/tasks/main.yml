@@ -3,7 +3,7 @@
     name:
       - xvfb
       - "libxrandr2:i386"
-  become: yes
+  become: true
   when: is_ubuntu
 
 - name: add .bashrc content for clipboard
