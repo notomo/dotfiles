@@ -35,7 +35,7 @@ mypack.add("notomo/optpack.nvim", {
         group = vim.api.nvim_create_augroup("optpack_mapping", {}),
         pattern = { "optpack" },
         callback = function()
-          vim.keymap.set("n", "[finder]gl", function()
+          vim.keymap.set("n", "<CR>", function()
             local update = vim.b.optpack_updates[tostring(vim.fn.line("."))]
             if not update then
               return
