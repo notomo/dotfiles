@@ -78,25 +78,23 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "UIEnter" }, {
-  group = group,
-  pattern = { "*" },
-  callback = function()
-    if not vim.g.GuiLoaded then
-      return
-    end
+if vim.fn.has("gui_running") == 1 then
+  vim.api.nvim_create_autocmd({ "UIEnter" }, {
+    group = group,
+    pattern = { "*" },
+    callback = function()
+      vim.cmd.Guifont({ args = { "MeiryoKe_Gothic:h14" }, bang = true })
+      vim.cmd.GuiTabline("0")
+      vim.cmd.GuiPopupmenu("0")
+      vim.fn.GuiWindowMaximized(1)
 
-    vim.cmd.Guifont({ args = { "MeiryoKe_Gothic:h14" }, bang = true })
-    vim.cmd.GuiTabline("0")
-    vim.cmd.GuiPopupmenu("0")
-    vim.fn.GuiWindowMaximized(1)
-
-    vim.keymap.set("n", "<Space>R", function()
-      vim.fn.jobstart("nvim-qt.exe", { detach = true })
-      vim.cmd.quitall()
-    end)
-  end,
-})
+      vim.keymap.set("n", "<Space>R", function()
+        vim.fn.jobstart("nvim-qt.exe", { detach = true })
+        vim.cmd.quitall()
+      end)
+    end,
+  })
+end
 
 if vim.fn.has("wsl") == 1 or vim.fn.has("win32") == 1 then
   vim.api.nvim_create_autocmd({ "InsertLeave" }, {
