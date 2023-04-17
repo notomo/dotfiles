@@ -205,6 +205,22 @@ local source_specific = {
       { buffer = list_bufnr }
     )
   end,
+  ["git/file_log"] = function(list_bufnr)
+    vim.keymap.set("n", "yr", function()
+      require("notomo.lib.edit").yank(require("thetto").get()[1].commit_hash)
+    end, { buffer = list_bufnr })
+    vim.keymap.set("n", "yR", function()
+      require("notomo.lib.github").yank_revision_with_repo(require("thetto").get()[1].commit_hash)
+    end, { buffer = list_bufnr })
+    vim.keymap.set("n", "ym", function()
+      require("notomo.lib.git").yank_commit_message(require("thetto").get()[1].commit_hash)
+    end, { buffer = list_bufnr })
+    vim.keymap.set("n", "yu", function()
+      require("notomo.lib.github").yank_commit_url(require("thetto").get()[1].commit_hash)
+    end, { buffer = list_bufnr })
+    vim.keymap.set("n", "ch", [[<Cmd>lua require("thetto").execute("checkout")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "D", [[<Cmd>lua require("thetto").execute("diff")<CR>]], { buffer = list_bufnr })
+  end,
   ["git/change"] = function(list_bufnr)
     vim.keymap.set("n", "dd", [[<Cmd>lua require("thetto").execute("compare")<CR>]], { buffer = list_bufnr })
   end,
