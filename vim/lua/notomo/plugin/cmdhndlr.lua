@@ -1,6 +1,34 @@
 vim.keymap.set("n", "<Leader>Q", [[<Cmd>lua require("cmdhndlr").run()<CR>]])
 vim.keymap.set("x", "<Leader>Q", [[<Cmd>lua require("cmdhndlr").run()<CR>]])
 
+local build_cmd = function(default_cmd, callback)
+  local cmd
+  if type(default_cmd) == "table" then
+    cmd = table.concat(default_cmd, " ")
+  else
+    cmd = default_cmd
+  end
+
+  vim.ui.input({ prompt = ("Run args (%s):"):format(cmd) }, function(input)
+    if not input then
+      return callback()
+    end
+    vim.schedule(function()
+      callback(cmd .. " " .. input)
+    end)
+  end)
+end
+
+vim.keymap.set("n", "<Leader>qr", function()
+  require("cmdhndlr").run({ build_cmd = build_cmd })
+end)
+vim.keymap.set("n", "<Leader>qt", function()
+  require("cmdhndlr").test({ build_cmd = build_cmd })
+end)
+vim.keymap.set("n", "<Leader>qb", function()
+  require("cmdhndlr").build({ build_cmd = build_cmd })
+end)
+
 vim.keymap.set("n", "[test]t", [[<Cmd>lua require("cmdhndlr").test({name = 'make/make', layout = {type = "tab"}})<CR>]])
 vim.keymap.set(
   "n",
