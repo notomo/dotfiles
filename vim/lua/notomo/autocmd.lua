@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    pcall(vim.cmd, [[lcd `=expand('%:p:h')`]])
+    pcall(vim.cmd.lcd, [[`=expand('%:p:h')`]])
   end,
 })
 
