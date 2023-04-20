@@ -7,8 +7,8 @@ local create_cancel = function(on_confirm, close)
       return
     end
     canceled = true
-    on_confirm()
     close()
+    on_confirm()
   end
 end
 
@@ -18,10 +18,8 @@ local create_confirm = function(on_confirm, close)
     vim.cmd.stopinsert()
 
     local line = vim.fn.getline(".")
-    on_confirm(line)
-
-    vim.api.nvim_clear_autocmds({ group = group })
     close()
+    on_confirm(line)
   end
 end
 
@@ -85,6 +83,7 @@ end
 
 local create_close = function(window_id, prompt_window_id)
   return function()
+    vim.api.nvim_clear_autocmds({ group = group })
     if vim.api.nvim_win_is_valid(window_id) then
       vim.api.nvim_win_close(window_id, true)
     end
