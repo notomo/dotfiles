@@ -470,6 +470,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   callback = function()
     vim.keymap.set("n", "[file]rl", function()
       vim.api.nvim_exec_autocmds("BufRead", { buffer = 0, modeline = false })
+      vim.bo.filetype = ""
     end, { buffer = true })
   end,
 })
