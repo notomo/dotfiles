@@ -9,12 +9,15 @@ local build_cmd = function(default_cmd, callback)
     cmd = default_cmd
   end
 
-  vim.ui.input({ prompt = ("Run args (%s):"):format(cmd) }, function(input)
+  vim.ui.input({
+    prompt = "Command:",
+    default = cmd .. " ",
+  }, function(input)
     if not input then
       return callback()
     end
     vim.schedule(function()
-      callback(cmd .. " " .. input)
+      callback(input)
     end)
   end)
 end
