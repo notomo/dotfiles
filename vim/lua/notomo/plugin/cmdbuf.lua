@@ -23,6 +23,11 @@ vim.keymap.set(
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "lua/variable/global"})<CR>]]
 )
 vim.keymap.set(
+  "n",
+  "[cmdbuf]i",
+  [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/input"})<CR>]]
+)
+vim.keymap.set(
   "c",
   "<C-q>",
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {line = vim.fn.getcmdline(), column = vim.fn.getcmdpos()})<CR><C-c>]]
