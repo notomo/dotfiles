@@ -106,45 +106,25 @@ function M.open(opts, on_confirm)
   vim.cmd.normal({ args = { "$" }, bang = true })
   vim.api.nvim_echo({ { "" } }, false, {})
 
+  local history_store = require("misclib.history").new("input", {
+    filter = function(history)
+      return history ~= ""
+    end,
+  })
+
   local save_history = function()
-    local input_line = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)[1]
-    if input_line == "" then
-      return
-    end
-    vim.fn.histadd("input", input_line)
+    local current_line = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)[1]
+    history_store:save(current_line)
   end
 
-  local history_offset = 0
   local recall_history = function(offset)
-    if history_offset == 0 then
-      save_history()
-      history_offset = -1
+    local current_line = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)[1]
+    local history = history_store:recall(offset, current_line)
+
+    if history then
+      vim.api.nvim_buf_set_lines(bufnr, 0, -1, true, { vim.split(history, "\n", { plain = true })[1] })
+      require("misclib.cursor").set_column(#history)
     end
-
-    local min = -vim.fn.histnr("input")
-    local max = 0
-    local line = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)[1]
-    local next_index = history_offset
-    local index = history_offset
-    for _ = 0, vim.fn.histnr("input"), 1 do
-      index = index + offset
-      index = math.min(index, max)
-      index = math.max(index, min)
-      local history = vim.fn.histget("input", index)
-      if history ~= "" then
-        line = history
-        next_index = index
-        break
-      end
-      if index <= min or index >= max then
-        break
-      end
-    end
-
-    vim.api.nvim_buf_set_lines(bufnr, 0, -1, true, { vim.split(line, "\n", { plain = true })[1] })
-    require("misclib.cursor").set_column(#line)
-
-    history_offset = next_index
   end
 
   local close = create_close(window_id, prompt_window_id, save_history)
