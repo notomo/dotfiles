@@ -2,11 +2,6 @@ local wezterm = require("wezterm")
 local mux = wezterm.mux
 local act = wezterm.action
 
-wezterm.on("gui-startup", function(cmd)
-  local _, _, window = mux.spawn_window(cmd or {})
-  window:gui_window():maximize()
-end)
-
 local config = {
   color_scheme = "Adventure",
 
@@ -54,6 +49,32 @@ local config = {
     },
   },
 }
+
+local specified_position = false
+local gui_info = wezterm.procinfo.get_info_for_pid(wezterm.procinfo.pid())
+local info = wezterm.procinfo.get_info_for_pid(gui_info.ppid)
+for _, arg in ipairs(info.argv) do
+  if arg == "--position" then
+    specified_position = true
+    config.initial_rows = 20
+    break
+  end
+end
+
+wezterm.on("gui-startup", function(cmd)
+  local _, _, window = mux.spawn_window(cmd or {})
+  local gui_window = window:gui_window()
+  if specified_position then
+    local width = gui_window:get_dimensions().pixel_width
+    local height = gui_window:get_dimensions().pixel_height
+    local active_screen = wezterm.gui.screens().active
+    local x = active_screen.width - width * 1.05
+    local y = active_screen.height - height * 1.2
+    gui_window:set_position(x, y)
+  else
+    gui_window:maximize()
+  end
+end)
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   -- wezterm ls-fonts --list-system

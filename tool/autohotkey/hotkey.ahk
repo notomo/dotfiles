@@ -12,6 +12,11 @@ BROWSER := "ahk_exe chrome.exe"
 ; # = Win
 ; + = Shift
 
+^#n::
+{
+    Run("wezterm.exe start --position 0,0 nvim", , "Hide")
+}
+
 ^#h::
 {
     SendToAllWindows("#+{Left}")
