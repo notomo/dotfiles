@@ -30,6 +30,38 @@ function M.go_to_definition()
   end)
 end
 
+function M.yank_function_arg_labels()
+  local params = vim.lsp.util.make_position_params()
+  return vim.lsp.buf_request(0, "textDocument/signatureHelp", params, function(err, result)
+    if err then
+      error(err)
+    end
+
+    local signatures = result.signatures
+    table.sort(signatures, function(a, b)
+      return #a.parameters > #b.parameters
+    end)
+
+    local signature = result.signatures[1] or {}
+    local parameters = signature.parameters or {}
+
+    local name_pattern = "[a-zA-Z_]+"
+    local labels = vim.tbl_map(function(param)
+      if type(param.label) == "string" then
+        return param.label:match(name_pattern)
+      end
+      local s = param.label[1] + 1
+      local e = param.label[2]
+      local label = signature.label:sub(s, e)
+      local name = label:match(name_pattern)
+      return name
+    end, parameters)
+
+    local str = table.concat(labels, ", ")
+    require("notomo.lib.edit").yank(str)
+  end)
+end
+
 function M.setup(opts)
   local default = {
     symbol_source = "vim/lsp/document_symbol",
@@ -76,6 +108,10 @@ function M.setup(opts)
 
   vim.keymap.set("n", "[finder]o", function()
     require("thetto").start(opts.symbol_source)
+  end, { buffer = true })
+
+  vim.keymap.set("n", "[yank]a", function()
+    require("notomo.lsp.mapping").yank_function_arg_labels()
   end, { buffer = true })
 end
 
