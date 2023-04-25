@@ -52,8 +52,8 @@ local config = {
 
 local specified_position = false
 local gui_info = wezterm.procinfo.get_info_for_pid(wezterm.procinfo.pid())
-local info = wezterm.procinfo.get_info_for_pid(gui_info.ppid)
-for _, arg in ipairs(info.argv) do
+local info = wezterm.procinfo.get_info_for_pid(gui_info.ppid) or {}
+for _, arg in ipairs(info.argv or {}) do
   if arg == "--position" then
     specified_position = true
     config.initial_rows = 20
@@ -71,6 +71,7 @@ wezterm.on("gui-startup", function(cmd)
     local x = active_screen.width - width * 1.05
     local y = active_screen.height - height * 1.2
     gui_window:set_position(x, y)
+    gui_window:focus()
   else
     gui_window:maximize()
   end
