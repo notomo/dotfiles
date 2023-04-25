@@ -3,6 +3,14 @@ null_ls.setup({
   debug = false,
   sources = {
     null_ls.builtins.diagnostics.actionlint,
+    null_ls.builtins.diagnostics.staticcheck.with({
+      extra_args = { "-checks", "SA1019" },
+      diagnostics_postprocess = function(diagnostic)
+        if diagnostic.code == "SA1019" then
+          diagnostic.severity = vim.diagnostic.severity.WARN
+        end
+      end,
+    }),
     null_ls.builtins.diagnostics.ltrs.with({
       filetypes = {
         "text",
