@@ -67,7 +67,7 @@ function M._test()
 
   vim.fn.feedkeys("tt", "mx")
   vim.fn.feedkeys("idate", "ix")
-  vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>(neosnippet_expand)", true, true, true), "ixm")
+  vim.fn.feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "ixm")
   assert(vim.fn.getline(".") ~= "date", "snippet expand")
 end
 

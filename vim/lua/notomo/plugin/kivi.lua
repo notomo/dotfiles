@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         group = vim.api.nvim_create_augroup("kivi_mouse", {}),
         pattern = { "*:v" },
         callback = function()
-          local ESC = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+          local ESC = vim.keycode("<ESC>")
           vim.cmd.normal({ args = { ESC }, bang = true })
         end,
         once = true,

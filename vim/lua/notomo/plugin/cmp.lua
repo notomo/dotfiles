@@ -8,7 +8,7 @@ function M.complete()
       cmp.close()
     end)
     return vim.api.nvim_feedkeys(
-      vim.api.nvim_replace_termcodes("<Plug>(neosnippet_expand)", true, true, true),
+      vim.keycode("<Plug>(neosnippet_expand)"),
       "m",
       true
     )
@@ -19,7 +19,7 @@ function M.complete()
     vim.schedule(function()
       cmp.close()
     end)
-    return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-y>", true, true, true), "n", true)
+    return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "n", true)
   end
 
   if not cmp.visible() then
@@ -36,13 +36,13 @@ function M.complete()
     cmp.close()
     if vim.fn["neosnippet#expandable"]() ~= 0 then
       return vim.api.nvim_feedkeys(
-        vim.api.nvim_replace_termcodes("<Plug>(neosnippet_expand)", true, true, true),
+        vim.keycode("<Plug>(neosnippet_expand)"),
         "m",
         true
       )
     end
   end)
-  return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-n>", true, true, true), "m", true)
+  return vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "m", true)
 end
 
 function M.tab()
@@ -50,7 +50,7 @@ function M.tab()
     vim.schedule(function()
       cmp.close()
     end)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Plug>(neosnippet_jump)", true, true, true), "m", true)
+    vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_jump)"), "m", true)
     return ""
   end
   if cmp.visible() then
