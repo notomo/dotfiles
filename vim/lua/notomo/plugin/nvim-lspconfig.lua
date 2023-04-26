@@ -25,6 +25,13 @@ local setup_ls = function(ls, config, enable_features)
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
   config.capabilities = require("cmp_nvim_lsp").default_capabilities()
   config.capabilities.textDocument.completion.completionItem.snippetSupport = false
+  vim.tbl_deep_extend("force", config.capabilities, {
+    workspace = {
+      didChangeWatchedFiles = {
+        dynamicRegistration = false,
+      },
+    },
+  })
   config.on_attach = function(client, bufnr)
     vim.lsp.semantic_tokens.stop(bufnr, client.id)
   end
