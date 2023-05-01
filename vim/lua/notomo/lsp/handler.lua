@@ -51,12 +51,34 @@ vim.ui.select = function(items, opts, on_choice)
     return on_choice(items[1])
   end
 
+  local search_offset, get_range
+  if opts.kind == "codeaction" then
+    local current_row = vim.fn.line(".")
+    search_offset = function(item)
+      if not item.range then
+        return false
+      end
+      return item.range.s.row == current_row or item.range.e.row == current_row
+    end
+    get_range = function(item)
+      local range = vim.tbl_get(item[2], "command", "arguments", 1, "Range") -- gopls
+      if not range then
+        return nil
+      end
+      return require("thetto.util.lsp").range(range)
+    end
+  end
+
   require("thetto").start("vim/select", {
+    opts = {
+      search_offset = search_offset,
+    },
     source_opts = {
       items = items,
       prompt = opts.prompt,
       format_item = opts.format_item,
       on_choice = on_choice,
+      get_range = get_range,
     },
   })
 end
