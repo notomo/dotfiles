@@ -417,7 +417,11 @@ mypack.add("notomo/suball.nvim", {
 })
 
 optpack.add("nvim-treesitter/nvim-treesitter", {
-  load_on = { cmds = { "TS*" }, modules = { "nvim-treesitter" } },
+  load_on = {
+    cmds = { "TS*" },
+    modules = { "nvim-treesitter" },
+    filetypes = { "terraform" },
+  },
 })
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
   depends = { "nvim-treesitter" },
@@ -630,10 +634,6 @@ optpack.add("jbyuki/one-small-step-for-vimkind", {
   },
 })
 
-optpack.add("hashivim/vim-terraform", {
-  load_on = { filetypes = { "terraform" } },
-})
-
 mypack.add("notomo/vendorlib.nvim", {
   load_on = { modules = { "vendorlib" } },
 })
@@ -715,10 +715,6 @@ optpack.add("lewis6991/gitsigns.nvim", {
   hooks = {
     post_load = require_fn("notomo.plugin.gitsigns"),
   },
-})
-
-optpack.add("mracos/mermaid.vim", {
-  load_on = { filetypes = { "markdown" } },
 })
 
 optpack.add("previm/previm", {

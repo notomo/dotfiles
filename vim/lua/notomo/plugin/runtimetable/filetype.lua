@@ -266,6 +266,9 @@ end
 
 runtime.after.ftplugin["terraform.lua"] = function()
   require("notomo.lsp.autocmd").setup()
+  vim.schedule(function()
+    vim.treesitter.start()
+  end)
 end
 
 runtime.after.ftplugin["typescript.lua"] = function()
