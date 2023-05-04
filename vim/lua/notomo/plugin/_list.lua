@@ -72,16 +72,6 @@ mypack.add("notomo/genvdoc", {
   load_on = { modules = { "genvdoc" } },
 })
 
-optpack.add("tbastos/vim-lua", {
-  load_on = { filetypes = { "lua" } },
-  hooks = {
-    post_load = function(plugin)
-      vim.opt.runtimepath:remove(plugin.directory)
-      vim.opt.runtimepath:prepend(plugin.directory)
-    end,
-  },
-})
-
 optpack.add("kana/vim-textobj-user", {
   load_on = {
     keymaps = function(vim)

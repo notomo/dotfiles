@@ -189,7 +189,14 @@ runtime.after.ftplugin["lua.lua"] = function()
   end)
 
   require("notomo.plugin.nvim-treesitter").mapping()
+
+  vim.treesitter.start()
 end
+
+runtime.after.queries.lua["highlights.scm"] = [=[
+;; extends
+"local" @local
+]=]
 
 runtime.after.ftplugin["markdown.lua"] = function()
   vim.opt_local.tabstop = 4

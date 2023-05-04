@@ -30,8 +30,6 @@ end
 function M.test()
   M._load_plugins()
 
-  vim.cmd.runtime({ args = { "after/ftplugin/*.lua" }, bang = true })
-
   for _, name in ipairs(require("notomo.plugin.lreload")) do
     require("lreload").refresh(name)
   end

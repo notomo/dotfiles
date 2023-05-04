@@ -38,3 +38,16 @@ vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { bg = pallet.dark_blue, nocomb
 vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "Keyword" })
 
 vim.api.nvim_set_hl(0, "TermnaviLine", { bg = "#002b6f", bold = true })
+
+vim.api.nvim_set_hl(0, "@variable.lua", {})
+vim.api.nvim_set_hl(0, "@parameter.lua", {})
+vim.api.nvim_set_hl(0, "@field.lua", {})
+vim.api.nvim_set_hl(0, "@punctuation.delimiter.lua", {})
+vim.api.nvim_set_hl(0, "@punctuation.bracket.lua", {})
+vim.api.nvim_set_hl(0, "@function.builtin.lua", { link = "Function" })
+vim.api.nvim_set_hl(0, "@keyword.return.lua", { link = "Statement" })
+vim.api.nvim_set_hl(0, "@constant.builtin.lua", { link = "Constant" })
+vim.api.nvim_set_hl(0, "@constant.lua", {})
+vim.api.nvim_set_hl(0, "@keyword.lua", { link = "Conditional" })
+vim.api.nvim_set_hl(0, "@local.lua", { link = "Keyword" })
+vim.api.nvim_set_hl(0, "@keyword.operator.lua", { link = "Operator" })
