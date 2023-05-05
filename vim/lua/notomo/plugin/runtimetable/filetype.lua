@@ -198,6 +198,25 @@ runtime.after.queries.lua["highlights.scm"] = [=[
 "local" @local
 ]=]
 
+runtime.after.queries.lua["injections.scm"] = [=[
+;; extends
+(
+  (assignment_statement
+    (variable_list
+      name: (_) @_runtimetable (#lua-match? @_runtimetable "^runtime.after.queries")
+    )
+    (expression_list
+      value: (string content: _ @query)
+    )
+  )
+)
+]=]
+
+runtime.after.ftplugin["query.lua"] = function()
+  vim.opt_local.tabstop = 2
+  vim.opt_local.softtabstop = 2
+end
+
 runtime.after.ftplugin["markdown.lua"] = function()
   vim.opt_local.tabstop = 4
   vim.opt_local.softtabstop = 4
