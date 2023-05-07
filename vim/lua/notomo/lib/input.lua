@@ -113,6 +113,9 @@ function M.open(opts, on_confirm)
   })
 
   local save_history = function()
+    if not vim.api.nvim_buf_is_valid(bufnr) then
+      return
+    end
     local current_line = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)[1]
     history_store:save(current_line)
   end
