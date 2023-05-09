@@ -782,3 +782,9 @@ mypack.add("notomo/runtimetable.nvim", {
     end,
   },
 })
+
+mypack.add("notomo/unionbuf.nvim", {
+  load_on = {
+    modules = { "unionbuf" },
+  },
+})

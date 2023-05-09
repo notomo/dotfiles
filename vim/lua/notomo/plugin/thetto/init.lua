@@ -23,6 +23,21 @@ kind_actions["file"] = {
     vim.cmd.Qfreplace()
     vim.cmd.only()
   end,
+  action_unionbuf = function(items)
+    local entries = vim
+      .iter(items)
+      :map(function(item)
+        if not item.row or not item.path then
+          return nil
+        end
+        return {
+          path = item.path,
+          start_row = item.row - 1,
+        }
+      end)
+      :totable()
+    require("unionbuf").open(entries)
+  end,
   opts = {
     preview = { ignore_patterns = ignore_patterns },
   },
