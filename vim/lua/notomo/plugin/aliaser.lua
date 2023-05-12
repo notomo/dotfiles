@@ -103,6 +103,10 @@ aliaser.register_factory("vim", function(aliases)
     vim.cmd.only()
   end)
 
+  aliases:set("toggle_color", function()
+    vim.cmd.CccHighlighterToggle()
+  end)
+
   aliases:set("inspect", function()
     vim.cmd.Inspect({ bang = true })
   end)

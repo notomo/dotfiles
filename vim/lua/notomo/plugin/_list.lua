@@ -648,10 +648,6 @@ mypack.add("notomo/hlmsg.nvim", {
   },
 })
 
-optpack.add("norcalli/nvim-colorizer.lua", {
-  load_on = { modules = { "colorizer" } },
-})
-
 local indent_blankline_filetype = { "yaml" }
 optpack.add("lukas-reineke/indent-blankline.nvim", {
   load_on = { filetypes = indent_blankline_filetype, modules = { "indent_blankline" } },
@@ -778,4 +774,8 @@ mypack.add("notomo/unionbuf.nvim", {
   load_on = {
     modules = { "unionbuf" },
   },
+})
+
+optpack.add("uga-rosa/ccc.nvim", {
+  load_on = { modules = { "ccc" }, cmds = { "Ccc*" } },
 })
