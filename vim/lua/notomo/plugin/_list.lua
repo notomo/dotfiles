@@ -125,15 +125,6 @@ optpack.add("kana/vim-submode", {
   },
 })
 
-optpack.add("thinca/vim-zenspace", {
-  load_on = { events = { { "BufReadPre", "*/*" } } },
-  hooks = {
-    pre_load = function()
-      vim.g["zenspace#default_mode"] = "on"
-    end,
-  },
-})
-
 optpack.add("LeafCage/yankround.vim", {
   load_on = {
     keymaps = function(vim)

@@ -51,3 +51,34 @@ vim.api.nvim_set_hl(0, "@constant.lua", {})
 vim.api.nvim_set_hl(0, "@keyword.lua", { link = "Conditional" })
 vim.api.nvim_set_hl(0, "@local.lua", { link = "Keyword" })
 vim.api.nvim_set_hl(0, "@keyword.operator.lua", { link = "Operator" })
+
+local Decorator = require("misclib.decorator")
+local decorators = {}
+local ns = vim.api.nvim_create_namespace("notomo_whitespace")
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  group = vim.api.nvim_create_augroup("notomo_whitespace", {}),
+  pattern = { "*" },
+  callback = function(args)
+    decorators[args.buf] = Decorator.new(ns, args.buf, true)
+  end,
+})
+local regex = vim.regex([[\v　+]])
+vim.api.nvim_set_decoration_provider(ns, {})
+vim.api.nvim_set_decoration_provider(ns, {
+  on_win = function(_, _, bufnr)
+    return decorators[bufnr] ~= nil
+  end,
+  on_line = function(_, _, bufnr, row)
+    local index = 0
+    for _ = 0, 100, 1 do
+      local s, e = regex:match_line(bufnr, row, index)
+      if not s then
+        return true
+      end
+      local decorator = decorators[bufnr]
+      decorator:highlight("Todo", row, index + s, index + e)
+      index = index + e
+    end
+    return true
+  end,
+})
