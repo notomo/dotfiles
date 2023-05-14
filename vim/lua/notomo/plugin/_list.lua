@@ -296,8 +296,6 @@ optpack.add("tmhedberg/matchit", {
   },
 })
 
-optpack.add("thinca/vim-qfreplace", { load_on = { cmds = { "Qfreplace" } } })
-
 optpack.add("tyru/open-browser.vim", {
   load_on = { cmds = { "OpenBrowser*" } },
   hooks = { post_add = require_fn("notomo.plugin.open-browser") },

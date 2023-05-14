@@ -254,10 +254,6 @@ runtime.after.ftplugin["python.lua"] = function()
   vim.keymap.set("n", "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
 end
 
-runtime.after.ftplugin["qfreplace.lua"] = function()
-  vim.opt_local.modeline = false
-end
-
 runtime.after.ftplugin["requirements.lua"] = function()
   vim.bo.commentstring = "#%s"
 end

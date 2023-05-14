@@ -6,23 +6,6 @@ local ignore_patterns = {}
 vim.list_extend(ignore_patterns, vim.g.notomo_thetto_ignore_pattenrs or {})
 
 kind_actions["file"] = {
-  action_qfreplace = function(items)
-    local qflist = {}
-    for _, item in ipairs(items) do
-      if item.row == nil or item.path == nil then
-        goto continue
-      end
-      table.insert(qflist, { filename = item.path, lnum = item.row, text = item.value })
-      ::continue::
-    end
-    if #qflist == 0 then
-      return
-    end
-    vim.cmd.tabnew()
-    vim.fn.setqflist(qflist)
-    vim.cmd.Qfreplace()
-    vim.cmd.only()
-  end,
   action_unionbuf = function(items)
     local entries = vim
       .iter(items)

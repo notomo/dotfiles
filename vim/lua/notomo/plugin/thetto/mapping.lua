@@ -113,7 +113,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "rn", [[<Cmd>lua require("thetto").execute("rename")<CR>]], { buffer = true })
 
     -- custom
-    vim.keymap.set("n", "<Leader>rp", [[<Cmd>lua require("thetto").execute("qfreplace")<CR>]], { buffer = true })
+    vim.keymap.set("n", "<Leader>rp", [[<Cmd>lua require("thetto").execute("unionbuf")<CR>]], { buffer = true })
     vim.keymap.set("n", "O", [[<Cmd>lua require("thetto").execute("search")<CR>]], { buffer = true })
   end,
 })
