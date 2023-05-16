@@ -81,6 +81,11 @@ runtime.after.ftplugin["go.lua"] = function()
   vim.cmd.inoreabbrev({ args = { "<buffer>", "~=", "!=" } })
 
   require("notomo.plugin.nvim-treesitter").mapping()
+
+  local window_id = vim.api.nvim_get_current_win()
+  if not require("misclib.window").is_floating(window_id) then
+    vim.wo[window_id].winbar = [[%!v:lua.require("stlparts").build("navic")]]
+  end
 end
 
 runtime.after.ftplugin["gomod.lua"] = function()

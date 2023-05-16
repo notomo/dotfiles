@@ -171,3 +171,43 @@ local set_tabline = function()
   vim.opt.tabline = [[%!v:lua.require("stlparts").build("tabline")]]
 end
 set_tabline()
+
+local set_winbar = function()
+  local Builder = C.builder
+  local Highlight = C.highlight
+  local DefaultHighlight = C.default_highlight
+
+  local no_scope = Highlight("Comment", "(no scope)")
+  local separator = Highlight("Comment", " > ")
+
+  local ignore_types = {
+    "Variable",
+  }
+  stlparts.set("navic", {
+    DefaultHighlight("Normal", {
+      Highlight("Comment", " > "),
+      Builder(function()
+        local navic = require("nvim-navic")
+        if not navic.is_available() then
+          return ""
+        end
+        local data = navic.get_data()
+        if not data or #data == 0 then
+          return no_scope
+        end
+        local names = vim
+          .iter(data)
+          :filter(function(d)
+            return not vim.tbl_contains(ignore_types, d.type)
+          end)
+          :map(function(d)
+            return Highlight("WinbarNavic", d.name)
+          end)
+          :totable()
+        return require("misclib.collection.list").join_by(names, separator)
+      end),
+      " ",
+    }),
+  })
+end
+set_winbar()

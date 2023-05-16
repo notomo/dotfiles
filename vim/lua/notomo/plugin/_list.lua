@@ -777,3 +777,8 @@ mypack.add("notomo/unionbuf.nvim", {
 optpack.add("uga-rosa/ccc.nvim", {
   load_on = { modules = { "ccc" }, cmds = { "Ccc*" } },
 })
+
+optpack.add("SmiteshP/nvim-navic", {
+  depends = { "nvim-lspconfig" },
+  load_on = { modules = { "nvim-navic" } },
+})

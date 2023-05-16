@@ -1,7 +1,6 @@
 local pallet = require("ultramarine").pallet
 vim.api.nvim_set_hl(0, "Flashy", { bold = true, fg = pallet.black, bg = pallet.lightest_blue })
 vim.api.nvim_set_hl(0, "YankRoundRegion", { fg = pallet.black, bg = pallet.yellow })
-vim.api.nvim_set_hl(0, "ZenSpace", { underline = true, bg = pallet.red })
 
 vim.api.nvim_set_hl(0, "markdownCode", { fg = pallet.yellow })
 vim.api.nvim_set_hl(0, "markdownUrl", { fg = pallet.lightest_blue })
@@ -38,6 +37,7 @@ vim.api.nvim_set_hl(0, "IndentBlanklineIndent2", { bg = pallet.dark_blue, nocomb
 vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "Keyword" })
 
 vim.api.nvim_set_hl(0, "TermnaviLine", { bg = "#002b6f", bold = true })
+vim.api.nvim_set_hl(0, "WinbarNavic", { bg = pallet.blue, fg = "#d1d1f0", underline = true })
 
 vim.api.nvim_set_hl(0, "@variable.lua", {})
 vim.api.nvim_set_hl(0, "@parameter.lua", {})

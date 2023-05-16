@@ -34,6 +34,13 @@ local setup_ls = function(ls, config, enable_features)
   })
   config.on_attach = function(client, bufnr)
     vim.lsp.semantic_tokens.stop(bufnr, client.id)
+    local enable_navic = {
+      go = true,
+    }
+    local filetype = vim.bo[bufnr].filetype
+    if enable_navic[filetype] and client.server_capabilities.documentSymbolProvider then
+      require("nvim-navic").attach(client, bufnr)
+    end
   end
   ls.setup(config)
 end
