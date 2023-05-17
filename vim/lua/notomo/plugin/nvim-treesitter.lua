@@ -25,7 +25,9 @@ function M.text_object_mapping()
     end, { buffer = true })
     vim.keymap.set("x", lhs, function()
       -- HACK
-      return ([[:lua require("nvim-treesitter.textobjects.select").select_textobject("%s", "x")<CR>]]):format(query)
+      return ([[:lua require("nvim-treesitter.textobjects.select").select_textobject("%s", nil, "x")<CR>]]):format(
+        query
+      )
     end, { silent = true, buffer = true, expr = true })
   end
 
