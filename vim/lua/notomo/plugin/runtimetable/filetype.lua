@@ -86,7 +86,14 @@ runtime.after.ftplugin["go.lua"] = function()
   if not require("misclib.window").is_floating(window_id) then
     vim.wo[window_id].winbar = [[%!v:lua.require("stlparts").build("navic")]]
   end
+
+  vim.treesitter.start()
 end
+
+runtime.after.queries.go["highlights.scm"] = [=[
+;; extends
+"range" @repeat.go
+]=]
 
 runtime.after.ftplugin["gomod.lua"] = function()
   vim.bo.commentstring = "//%s"
