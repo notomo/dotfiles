@@ -87,7 +87,10 @@ runtime.after.ftplugin["go.lua"] = function()
     vim.wo[window_id].winbar = [[%!v:lua.require("stlparts").build("navic")]]
   end
 
-  vim.treesitter.start()
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.schedule(function()
+    vim.treesitter.start(bufnr)
+  end)
 end
 
 runtime.after.queries.go["highlights.scm"] = [=[

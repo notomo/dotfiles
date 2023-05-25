@@ -399,7 +399,10 @@ optpack.add("nvim-treesitter/nvim-treesitter", {
   load_on = {
     cmds = { "TS*" },
     modules = { "nvim-treesitter" },
-    filetypes = { "terraform" },
+    filetypes = {
+      "go",
+      "terraform",
+    },
   },
 })
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
