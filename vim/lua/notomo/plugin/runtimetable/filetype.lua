@@ -87,10 +87,7 @@ runtime.after.ftplugin["go.lua"] = function()
     vim.wo[window_id].winbar = [[%!v:lua.require("stlparts").build("navic")]]
   end
 
-  local bufnr = vim.api.nvim_get_current_buf()
-  vim.schedule(function()
-    vim.treesitter.start(bufnr)
-  end)
+  require("notomo.lib.treesitter").start()
 end
 
 runtime.after.queries.go["highlights.scm"] = [=[
@@ -204,8 +201,7 @@ runtime.after.ftplugin["lua.lua"] = function()
   end)
 
   require("notomo.plugin.nvim-treesitter").mapping()
-
-  vim.treesitter.start()
+  require("notomo.lib.treesitter").start()
 end
 
 runtime.after.queries.lua["highlights.scm"] = [=[
@@ -303,9 +299,7 @@ end
 
 runtime.after.ftplugin["terraform.lua"] = function()
   require("notomo.lsp.autocmd").setup()
-  vim.schedule(function()
-    vim.treesitter.start()
-  end)
+  require("notomo.lib.treesitter").start()
 end
 
 runtime.after.ftplugin["typescript.lua"] = function()

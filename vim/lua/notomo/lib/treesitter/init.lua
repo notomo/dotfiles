@@ -65,4 +65,14 @@ function M.get_current_function_range()
   return nil, "not found"
 end
 
+function M.start()
+  local bufnr = vim.api.nvim_get_current_buf()
+  vim.schedule(function()
+    if not vim.api.nvim_buf_is_valid(bufnr) then
+      return
+    end
+    vim.treesitter.start(bufnr)
+  end)
+end
+
 return M
