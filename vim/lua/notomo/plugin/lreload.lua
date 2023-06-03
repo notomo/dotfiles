@@ -16,7 +16,7 @@ local hooks = {
 }
 
 local plugins = vim.tbl_filter(function(plugin)
-  return plugin.full_name:match("^notomo/.+%.nvim$")
+  return plugin.full_name:match("^notomo/")
 end, require("optpack").list())
 
 local settings = vim.tbl_map(function(plugin)
