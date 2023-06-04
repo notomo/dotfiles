@@ -114,6 +114,23 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
     -- custom
     vim.keymap.set("n", "<Leader>rp", [[<Cmd>lua require("thetto").execute("unionbuf")<CR>]], { buffer = true })
+    vim.keymap.set("n", "<Leader>rP", function()
+      require("thetto").execute("unionbuf", {
+        action_opts = {
+          convert = function(item)
+            local bufnr = vim.fn.bufadd(item.path)
+            vim.fn.bufload(bufnr)
+            local s, e =
+              require("notomo.lib.treesitter").get_expanded_row_range(bufnr, item.range.s.row, item.range.s.column)
+            return {
+              bufnr = bufnr,
+              start_row = s,
+              end_row = e,
+            }
+          end,
+        },
+      })
+    end, { buffer = true })
     vim.keymap.set("n", "O", [[<Cmd>lua require("thetto").execute("search")<CR>]], { buffer = true })
   end,
 })

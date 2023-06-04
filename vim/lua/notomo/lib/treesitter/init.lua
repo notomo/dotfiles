@@ -75,4 +75,24 @@ function M.start()
   end)
 end
 
+function M.get_expanded_row_range(bufnr, row, column)
+  local lang = vim.treesitter.language.get_lang(vim.bo[bufnr].filetype)
+  if not lang then
+    return row, row
+  end
+
+  local node = vim.treesitter.get_node({
+    bufnr = bufnr,
+    pos = { row, column },
+  })
+  if not node then
+    return row, row
+  end
+
+  local expanded = node:parent():parent()
+  local start_row = expanded:start()
+  local end_row = expanded:end_()
+  return start_row, end_row
+end
+
 return M

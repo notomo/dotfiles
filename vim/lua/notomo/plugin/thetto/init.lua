@@ -6,10 +6,13 @@ local ignore_patterns = {}
 vim.list_extend(ignore_patterns, vim.g.notomo_thetto_ignore_pattenrs or {})
 
 kind_actions["file"] = {
-  action_unionbuf = function(items)
-    local entries = vim
-      .iter(items)
-      :map(function(item)
+  action_unionbuf = function(items, action_ctx)
+    local entries = vim.iter(items):map(action_ctx.opts.convert):totable()
+    require("unionbuf").open(entries)
+  end,
+  opts = {
+    unionbuf = {
+      convert = function(item)
         if not item.row or not item.path then
           return nil
         end
@@ -17,11 +20,8 @@ kind_actions["file"] = {
           path = item.path,
           start_row = item.row - 1,
         }
-      end)
-      :totable()
-    require("unionbuf").open(entries)
-  end,
-  opts = {
+      end,
+    },
     preview = { ignore_patterns = ignore_patterns },
   },
 }
