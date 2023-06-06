@@ -254,16 +254,20 @@ vim.keymap.set(
   silent
 )
 vim.keymap.set("n", "[yank]N", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.expand('%'))<CR>]], silent)
-vim.keymap.set(
-  "n",
-  "[yank]p",
-  [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.substitute(vim.fn.substitute(vim.fn.expand('%:p'), vim.fn.substitute(vim.fn.expand('$HOME'), '\\', '\\\\', 'g'), '~', ''), '\\', '/', 'g'))<CR>]]
-)
-vim.keymap.set(
-  "n",
-  "[yank]P",
-  [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.substitute(vim.fn.expand('%:p'), '\\', '/', 'g'))<CR>]]
-)
+vim.keymap.set("n", "[yank]p", function()
+  local home = vim.fs.normalize("$HOME")
+  local path = vim.fs.normalize(vim.fn.expand("%:p"))
+  path = vim.fn.substitute(path, "^" .. home, "~", "")
+  require("notomo.lib.edit").yank(path)
+end)
+vim.keymap.set("n", "[yank]g", function()
+  local git = vim.fs.find(".git", { upward = true, type = "directory" })[1]
+  local git_root = vim.fs.dirname(git)
+  local path = vim.fs.normalize(vim.fn.expand("%:p"))
+  path = vim.fn.substitute(path, "^" .. git_root, ".", "")
+  require("notomo.lib.edit").yank(path)
+end)
+vim.keymap.set("n", "[yank]P", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fs.normalize(vim.fn.expand('%:p')))<CR>]])
 vim.keymap.set("n", "[yank];", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg(":"))<CR>]], silent)
 vim.keymap.set("n", "[yank]/", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg("/"))<CR>]], silent)
 vim.keymap.set("n", "[yank]i", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg("."))<CR>]], silent)
