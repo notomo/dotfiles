@@ -31,6 +31,7 @@ dap.adapters.go = {
 
 require("nvim-dap-virtual-text").setup({
   commented = true,
+  virt_text_pos = "eol",
 })
 
 local highlightlib = require("misclib.highlight")
