@@ -20,28 +20,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
   require("notomo.lsp.handler").publish_diagnostics(...)
 end
 
-M.ignored_progress = { "null-ls" }
-function M.progress()
-  local messages = vim.tbl_filter(function(msg)
-    if vim.tbl_contains(M.ignored_progress, msg.name) then
-      return false
-    end
-    return msg.done or not msg.percentage
-  end, vim.lsp.util.get_progress_messages())
-  for _, msg in ipairs(messages) do
-    if msg.done and not msg.message then
-      msg.message = "done"
-    end
-    local text = ("[%s] %s: %s"):format(msg.name, msg.title, msg.message)
-    vim.api.nvim_echo({ { text } }, msg.done, {})
-  end
-end
-
 vim.api.nvim_create_autocmd({ "User" }, {
   group = vim.api.nvim_create_augroup("notomo_lsp_progress", {}),
   pattern = { "LspProgressUpdate" },
   callback = function()
-    require("notomo.lsp.handler").progress()
+    vim.cmd.redrawstatus()
   end,
 })
 

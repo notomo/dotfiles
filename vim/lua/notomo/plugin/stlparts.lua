@@ -57,6 +57,26 @@ local set_statusline = function()
     end
     return surround(branch_name)
   end
+  local active_ls_names = function()
+    local names = vim
+      .iter(vim.lsp.get_active_clients({ bufnr = 0 }))
+      :map(function(client)
+        if client:is_stopped() then
+          return nil
+        end
+
+        local done = vim.iter(client.messages.progress):any(function(_, v)
+          return v and v.done
+        end)
+        if not done then
+          return nil
+        end
+
+        return client.name
+      end)
+      :totable()
+    return surround(table.concat(names, ", "))
+  end
 
   local TruncateLeft = C.truncate_left
   local Truncate = function(component)
@@ -74,7 +94,7 @@ local set_statusline = function()
       ["kivi-file"] = Truncate({ cwd, " ", branch }),
       _ = Separate({
         Truncate({ path, " ", branch }),
-        { column, " ", filetype, " ", mode },
+        { column, " ", active_ls_names, " ", filetype, " ", mode },
       }),
     }),
     " ",
