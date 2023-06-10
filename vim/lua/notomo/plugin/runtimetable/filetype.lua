@@ -78,7 +78,7 @@ runtime.after.ftplugin["go.lua"] = function()
   vim.cmd.syntax({ args = { "keyword", "goKeywords", "nil", "iota", "true", "false" } })
   vim.api.nvim_set_hl(0, "goKeywords", { link = "Boolean" })
 
-  vim.cmd.inoreabbrev({ args = { "<buffer>", "~=", "!=" } })
+  vim.keymap.set("ia", "~=", [[!=]], { buffer = true })
 
   require("notomo.plugin.nvim-treesitter").mapping()
 
@@ -188,7 +188,8 @@ runtime.after.ftplugin["lua.lua"] = function()
   end, { buffer = true })
   require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
   require("notomo.lsp.autocmd").setup()
-  vim.cmd.inoreabbrev({ args = { "<buffer>", "!=", "~=" } })
+
+  vim.keymap.set("ia", "!=", [[~=]], { buffer = true })
 
   vim.keymap.set("n", "[finder]I", function()
     require("thetto").start("file/grep", {
