@@ -20,10 +20,13 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
   require("notomo.lsp.handler").publish_diagnostics(...)
 end
 
-vim.api.nvim_create_autocmd({ "User" }, {
+vim.api.nvim_create_autocmd({ "LspProgress" }, {
   group = vim.api.nvim_create_augroup("notomo_lsp_progress", {}),
-  pattern = { "LspProgressUpdate" },
-  callback = function()
+  pattern = { "end" },
+  callback = function(args)
+    local done_clients = vim.g.notomo_done_clients or {}
+    done_clients[tostring(args.data.client_id)] = true
+    vim.g.notomo_done_clients = done_clients
     vim.cmd.redrawstatus()
   end,
 })

@@ -3,15 +3,18 @@ local api = vim.api
 local fn = vim.fn
 local stlparts = require("stlparts")
 local C = stlparts.component
+local join_by = require("misclib.collection.list").join_by
 
 local escape = function(s)
   s = s:gsub("%%", "%%%%")
   return s
 end
 
+local get_bufnr = function(ctx)
+  return vim.api.nvim_win_get_buf(ctx.window_id)
+end
 local get_filetype = function(ctx)
-  local bufnr = vim.api.nvim_win_get_buf(ctx.window_id)
-  return vim.bo[bufnr].filetype
+  return vim.bo[get_bufnr(ctx)].filetype
 end
 local Switch = C.switch
 local SwitchByFiletype = function(...)
@@ -57,18 +60,20 @@ local set_statusline = function()
     end
     return surround(branch_name)
   end
-  local active_ls_names = function()
+  local active_ls_names = function(ctx)
+    local bufnr = get_bufnr(ctx)
+    if vim.bo[bufnr].filetype == "" then
+      return surround("")
+    end
     local names = vim
-      .iter(vim.lsp.get_active_clients({ bufnr = 0 }))
+      .iter(vim.lsp.get_active_clients({ bufnr = bufnr }))
       :map(function(client)
         if client:is_stopped() then
           return nil
         end
 
-        local done = vim.iter(client.messages.progress):any(function(_, v)
-          return v and v.done
-        end)
-        if not done then
+        local done_clients = vim.g.notomo_done_clients or {}
+        if not done_clients[tostring(client.id)] then
           return nil
         end
 
@@ -91,10 +96,10 @@ local set_statusline = function()
   stlparts.set("statusline", {
     " ",
     SwitchByFiletype({
-      ["kivi-file"] = Truncate({ cwd, " ", branch }),
+      ["kivi-file"] = Truncate(join_by({ cwd, branch }, " ")),
       _ = Separate({
-        Truncate({ path, " ", branch }),
-        { column, " ", active_ls_names, " ", filetype, " ", mode },
+        Truncate(join_by({ path, branch }, " ")),
+        join_by({ column, active_ls_names, filetype, mode }, " "),
       }),
     }),
     " ",
@@ -224,7 +229,7 @@ local set_winbar = function()
             return Highlight("WinbarNavic", d.name)
           end)
           :totable()
-        return require("misclib.collection.list").join_by(names, separator)
+        return join_by(names, separator)
       end),
       " ",
     }),
