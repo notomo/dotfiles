@@ -104,6 +104,7 @@ runtime.after.ftplugin["graphql.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
   require("notomo.lsp.autocmd").setup()
+  require("notomo.lib.treesitter").start()
 end
 
 runtime.after.ftplugin["groovy.lua"] = function()
