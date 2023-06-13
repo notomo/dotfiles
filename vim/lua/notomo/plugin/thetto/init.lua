@@ -87,6 +87,21 @@ kind_actions["github/repository"] = {
   end,
 }
 
+source_actions["github/project"] = {
+  action_list_children = function(items)
+    local item = items[1]
+    if not item then
+      return
+    end
+    return require("thetto").start("github/project/item", {
+      source_opts = {
+        project_url = item.url,
+        query = vim.g.notomo_gh_project_item_query,
+      },
+    })
+  end,
+}
+
 local file_recursive, directory_recursive, modify_path
 if vim.fn.has("win32") == 0 then
   file_recursive = function(path, max_depth)

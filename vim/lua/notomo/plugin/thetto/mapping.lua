@@ -506,6 +506,14 @@ vim.keymap.set("n", "[finder]q", thetto_starter("cmd/jq"))
 vim.keymap.set("n", "[finder]jl", thetto_starter("vim/jump", { source_opts = { per_file = true } }))
 vim.keymap.set("n", "[finder]z", thetto_starter("cmd/zsh/history"))
 vim.keymap.set("n", "[finder]gP", thetto_starter("github/pull_request"))
+vim.keymap.set("n", "[finder]gI", function()
+  require("thetto").start("github/project/item", {
+    source_opts = {
+      project_url = vim.g.notomo_gh_project_url,
+      query = vim.g.notomo_gh_project_item_query,
+    },
+  })
+end)
 vim.keymap.set("n", "[finder]to", thetto_starter("test"))
 vim.keymap.set("n", "[finder]ts", thetto_starter("test", { source_opts = { scope = "largest_ancestor" } }))
 local get_paths = function(cwd)
