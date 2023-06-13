@@ -211,12 +211,13 @@ local set_winbar = function()
   stlparts.set("navic", {
     DefaultHighlight("Normal", {
       Highlight("Comment", " > "),
-      Builder(function()
+      Builder(function(ctx)
+        local bufnr = get_bufnr(ctx)
         local navic = require("nvim-navic")
-        if not navic.is_available() then
+        if not navic.is_available(bufnr) then
           return ""
         end
-        local data = navic.get_data()
+        local data = navic.get_data(bufnr)
         if not data or #data == 0 then
           return no_scope
         end
