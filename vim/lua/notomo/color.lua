@@ -72,6 +72,8 @@ vim.api.nvim_set_hl(0, "@keyword.lua", { link = "Conditional" })
 vim.api.nvim_set_hl(0, "@local.lua", { link = "Keyword" })
 vim.api.nvim_set_hl(0, "@keyword.operator.lua", { link = "Operator" })
 
+vim.api.nvim_set_hl(0, "@text.note", { link = "Todo" })
+
 local Decorator = require("misclib.decorator")
 local decorators = {}
 local ns = vim.api.nvim_create_namespace("notomo_whitespace")
