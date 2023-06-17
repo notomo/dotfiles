@@ -61,17 +61,10 @@ function M._test()
   vim.fn.feedkeys("th", "mx")
   assert(vim.fn.tabpagenr() == 1, "tab current")
 
-  vim.cmd.lua({ args = { [[require("notomo.lib.startup")._search()]] }, mods = { silent = true } })
-
   vim.fn.feedkeys("tt", "mx")
   vim.fn.feedkeys("idate", "ix")
   vim.fn.feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "ixm")
   assert(vim.fn.getline(".") ~= "date", "snippet expand")
-end
-
-function M._search()
-  require("searcho").forward("opt")
-  require("searcho").finish()
 end
 
 function M.schedule(cmd)

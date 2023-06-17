@@ -272,8 +272,34 @@ mypack.add("notomo/cmp-neosnippet", { load_on = { events = { "InsertEnter" } } }
 optpack.add("ray-x/lsp_signature.nvim", { load_on = { modules = { "lsp_signature" }, events = { "InsertEnter" } } })
 
 mypack.add("notomo/searcho.nvim", {
-  load_on = { modules = { "searcho" } },
-  hooks = { post_add = require_fn("notomo.plugin.searcho") },
+  load_on = {
+    modules = { "searcho" },
+    keymaps = function(vim)
+      vim.keymap.set({ "n", "x" }, "/", [[/\v]])
+      vim.keymap.set({ "n", "x" }, "?", [[?\v]])
+    end,
+  },
+  hooks = {
+    post_add = function()
+      vim.keymap.set({ "n", "x" }, "n", function()
+        return require("searcho").normal("n")
+      end, { expr = true })
+      vim.keymap.set({ "n", "x" }, "N", function()
+        return require("searcho").normal("N")
+      end, { expr = true })
+
+      vim.keymap.set({ "n", "x" }, "sj", [[<Cmd>lua require("searcho").word_forward()<CR>]])
+      vim.keymap.set({ "n", "x" }, "sk", [[<Cmd>lua require("searcho").word_backward()<CR>]])
+
+      vim.keymap.set({ "n", "x" }, "s<Space>j", function()
+        return [[/\v]] .. vim.fn.getreg([["]])
+      end, { expr = true })
+      vim.keymap.set({ "n", "x" }, "s<Space>k", function()
+        return [[?\v]] .. vim.fn.getreg([["]])
+      end, { expr = true })
+    end,
+    post_load = require_fn("notomo.plugin.searcho"),
+  },
 })
 
 optpack.add("AndrewRadev/linediff.vim", {
