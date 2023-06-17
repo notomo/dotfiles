@@ -290,6 +290,17 @@ mypack.add("notomo/searcho.nvim", {
 
       vim.keymap.set({ "n", "x" }, "sj", [[<Cmd>lua require("searcho").word_forward()<CR>]])
       vim.keymap.set({ "n", "x" }, "sk", [[<Cmd>lua require("searcho").word_backward()<CR>]])
+      local opts = {
+        convert = function(word)
+          return "<" .. word .. ">" .. vim.keycode("<Left>")
+        end,
+      }
+      vim.keymap.set({ "n", "x" }, "sJ", function()
+        require("searcho").word_forward(opts)
+      end)
+      vim.keymap.set({ "n", "x" }, "sK", function()
+        require("searcho").word_backward(opts)
+      end)
 
       vim.keymap.set({ "n", "x" }, "s<Space>j", function()
         return [[/\v]] .. vim.fn.getreg([["]])
