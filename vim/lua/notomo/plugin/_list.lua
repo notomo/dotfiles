@@ -226,12 +226,13 @@ optpack.add("lambdalisue/suda.vim", {
 
 optpack.add("voldikss/vim-translator", {
   load_on = {
-    keymaps = function(vim)
-      vim.keymap.set("n", "[keyword]T", [[<Cmd>Translate<CR>]])
-      vim.keymap.set("x", "T", [[<Plug>TranslateV]])
-    end,
+    cmds = { "Translate*" },
   },
   hooks = {
+    post_add = function()
+      vim.keymap.set("x", "T", [[:Translate --source_lang=en --target_lang=ja<CR>]])
+      vim.keymap.set("x", "<Leader>T", [[:Translate --source_lang=ja --target_lang=en<CR>]])
+    end,
     pre_load = function()
       vim.g.translator_target_lang = "ja"
       vim.g.translator_default_engines = { "google" }
