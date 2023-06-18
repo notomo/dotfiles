@@ -343,4 +343,16 @@ runtime.after.ftplugin["yaml.lua"] = function()
   require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
 end
 
+runtime.after.ftplugin["unionbuf.lua"] = function()
+  vim.keymap.set("n", "t<Space>", function()
+    local entry = require("unionbuf").get_entry()
+    if not entry then
+      return
+    end
+    vim.cmd.tabedit()
+    vim.cmd.buffer(entry.bufnr)
+    vim.cmd.normal({ args = { tostring(entry.start_row + 1) .. "gg" }, bang = true })
+  end, { buffer = true })
+end
+
 require("notomo.plugin.runtimetable").save(runtime)
