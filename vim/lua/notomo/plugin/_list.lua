@@ -510,6 +510,7 @@ optpack.add("kana/vim-operator-replace", {
       vim.keymap.set("o", "<Plug>(builtin-gn)", [[gn]])
       vim.keymap.set("n", "<Plug>(builtin-/)", [[/]])
       vim.keymap.set("n", "<Plug>(builtin-N)", [[N]])
+      vim.keymap.set("c", "<Plug>(builtin-CR)", [[<CR>]])
       vim.keymap.set("n", "[edit]n", [[*<Plug>(builtin-N)<Plug>(operator-replace)<Plug>(builtin-gn)]], { remap = true })
 
       _G._notomo_search = function()
@@ -521,7 +522,7 @@ optpack.add("kana/vim-operator-replace", {
       end
 
       vim.keymap.set("x", "[edit]n", function()
-        return [[<ESC><Plug>(builtin-/)<C-r>=v:lua._notomo_search()<CR><CR><Plug>(builtin-N)<Plug>(operator-replace)<Plug>(builtin-gn)]]
+        return [[<ESC><Plug>(builtin-/)<C-r>=v:lua._notomo_search()<Plug>(builtin-CR)<Plug>(builtin-CR)<Plug>(builtin-N)<Plug>(operator-replace)<Plug>(builtin-gn)]]
       end, { expr = true, remap = true })
       vim.keymap.set("x", "[edit]d", [["<ESC>/<C-r>=v:lua._notomo_search()<CR><CR>N\"_cgn"]], { expr = true })
     end,
