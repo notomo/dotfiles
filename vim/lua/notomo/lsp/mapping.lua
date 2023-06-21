@@ -94,6 +94,10 @@ function M.setup(opts)
     require("notomo.lsp.mapping").go_to_definition()
   end, { buffer = true })
 
+  vim.keymap.set("n", "[keyword]O", function()
+    vim.lsp.buf.type_definition()
+  end, { buffer = true })
+
   vim.keymap.set("n", "sl", function()
     vim.cmd.nohlsearch()
     vim.lsp.buf.document_highlight()

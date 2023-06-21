@@ -605,8 +605,6 @@ vim.keymap.set("n", "[keyword]n", function()
     },
   })
 end)
-vim.keymap.set("n", "[keyword]O", thetto_starter("vim/lsp/outgoing_calls"))
-vim.keymap.set("n", "[keyword]I", thetto_starter("vim/lsp/incoming_calls"))
 
 vim.keymap.set("n", "[git]D", function()
   local git_root, err = require("thetto.util.git").root()
