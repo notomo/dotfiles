@@ -106,6 +106,10 @@ function M.setup(opts)
     })
   end, { buffer = true })
 
+  vim.keymap.set("n", "si", function()
+    vim.lsp.buf.inlay_hint(0)
+  end, { buffer = true })
+
   vim.keymap.set("n", "[finder]o", function()
     require("thetto").start(opts.symbol_source)
   end, { buffer = true })

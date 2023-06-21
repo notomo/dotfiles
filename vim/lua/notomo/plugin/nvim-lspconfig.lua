@@ -61,6 +61,19 @@ setup_ls(lspconfig.gopls, {
     analyses = { ST1000 = false },
     -- codelenses = {test = true},
   },
+  settings = {
+    gopls = {
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
 }, { "unix" })
 
 setup_ls(lspconfig.lua_ls, {
@@ -94,6 +107,7 @@ setup_ls(lspconfig.lua_ls, {
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
       semantic = { enable = false },
+      hint = { enable = true },
       telemetry = { enable = false },
       workspace = { checkThirdParty = false },
     },
