@@ -1,4 +1,5 @@
 local gesture = require("gesture")
+gesture.clear()
 gesture.register({
   name = "scroll to bottom",
   inputs = { gesture.up(), gesture.down() },
@@ -24,8 +25,16 @@ gesture.register({
   inputs = { gesture.down(), gesture.right(), gesture.up() },
   action = "normal [win]v",
 })
-gesture.register({ name = "new tab", inputs = { gesture.up() }, action = "normal [tab]t" })
-gesture.register({ name = "new tab", inputs = { gesture.down() }, action = "normal [tab]t" })
+gesture.register({
+  name = "new tab",
+  inputs = { gesture.up() },
+  action = "normal [tab]t",
+})
+gesture.register({
+  name = "new tab",
+  inputs = { gesture.down() },
+  action = "normal [tab]t",
+})
 gesture.register({
   name = "next tab",
   inputs = { gesture.right({ max_length = 40 }) },
