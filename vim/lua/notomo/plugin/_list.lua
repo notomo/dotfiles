@@ -278,6 +278,13 @@ mypack.add("notomo/searcho.nvim", {
     keymaps = function(vim)
       vim.keymap.set({ "n", "x" }, "/", [[/\v]])
       vim.keymap.set({ "n", "x" }, "?", [[?\v]])
+
+      vim.keymap.set({ "n", "x" }, "s<Space>j", function()
+        return [[/\v]] .. vim.fn.getreg([["]])
+      end, { expr = true })
+      vim.keymap.set({ "n", "x" }, "s<Space>k", function()
+        return [[?\v]] .. vim.fn.getreg([["]])
+      end, { expr = true })
     end,
   },
   hooks = {
@@ -289,25 +296,25 @@ mypack.add("notomo/searcho.nvim", {
         return require("searcho").normal("N")
       end, { expr = true })
 
-      vim.keymap.set({ "n", "x" }, "sj", [[<Cmd>lua require("searcho").word_forward()<CR>]])
-      vim.keymap.set({ "n", "x" }, "sk", [[<Cmd>lua require("searcho").word_backward()<CR>]])
-      local opts = {
-        convert = function(word)
-          return "<" .. word .. ">" .. vim.keycode("<Left>")
-        end,
-      }
-      vim.keymap.set({ "n", "x" }, "sJ", function()
-        require("searcho").word_forward(opts)
-      end)
-      vim.keymap.set({ "n", "x" }, "sK", function()
-        require("searcho").word_backward(opts)
-      end)
-
-      vim.keymap.set({ "n", "x" }, "s<Space>j", function()
-        return [[/\v]] .. vim.fn.getreg([["]])
+      vim.keymap.set({ "n", "x" }, "sj", function()
+        local pattern = [[\v]] .. vim.fn.expand("<cword>")
+        return require("searcho").forward() .. pattern
       end, { expr = true })
-      vim.keymap.set({ "n", "x" }, "s<Space>k", function()
-        return [[?\v]] .. vim.fn.getreg([["]])
+      vim.keymap.set({ "n", "x" }, "sk", function()
+        local pattern = [[\v]] .. vim.fn.expand("<cword>")
+        return require("searcho").backward() .. pattern
+      end, { expr = true })
+
+      local convert = function(word)
+        return [[\v<]] .. word .. ">" .. vim.keycode("<Left>")
+      end
+      vim.keymap.set({ "n", "x" }, "sJ", function()
+        local pattern = convert(vim.fn.expand("<cword>"))
+        return require("searcho").forward() .. pattern
+      end, { expr = true })
+      vim.keymap.set({ "n", "x" }, "sK", function()
+        local pattern = convert(vim.fn.expand("<cword>"))
+        return require("searcho").backward() .. pattern
       end, { expr = true })
     end,
     post_load = require_fn("notomo.plugin.searcho"),
