@@ -111,7 +111,7 @@ function M.setup(opts)
   end, { buffer = true })
 
   vim.keymap.set("n", "si", function()
-    vim.lsp.buf.inlay_hint(0)
+    vim.lsp.inlay_hint(0)
   end, { buffer = true })
 
   vim.keymap.set("n", "[finder]o", function()
