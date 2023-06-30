@@ -244,6 +244,7 @@ vim.keymap.set("n", "[substitute]de", substitute([[:g!/{cursor}/d]], false), exp
 vim.keymap.set("x", "[substitute]de", substitute([[:g!/{cursor}/d]], false), expr)
 vim.keymap.set("n", "[substitute]di", substitute([[:g/{cursor}/d]], false), expr)
 vim.keymap.set("x", "[substitute]di", substitute([[:g/{cursor}/d]], false), expr)
+vim.keymap.set("n", "[substitute]do", substitute([[:%s/\v(.{-}({cursor}).*|^.*\n)/\2/g]], false), expr)
 
 vim.keymap.set("n", "[yank]d", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.strftime('%Y-%m-%d'))<CR>]], silent)
 vim.keymap.set("n", "[yank]D", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.strftime('%Y-%m-%d %T'))<CR>]], silent)
