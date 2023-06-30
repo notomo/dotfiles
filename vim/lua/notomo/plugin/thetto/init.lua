@@ -227,6 +227,14 @@ source_config["cmd/ctags"] = {
   filters = { "regex", "-regex" },
 }
 
+source_config["github/issue"] = {
+  filters = {
+    "interactive",
+    "regex",
+    "-regex",
+  },
+}
+
 source_config["file/alter"] = {
   opts = {
     pattern_groups = {
