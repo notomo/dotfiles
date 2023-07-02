@@ -306,16 +306,16 @@ mypack.add("notomo/searcho.nvim", {
       end, { expr = true })
 
       local convert = function(word)
-        return [[\v<]] .. word .. ">" .. vim.keycode("<Left>")
+        return [[\v<]] .. word .. ">" .. vim.keycode("<Left><Space><BS>")
       end
       vim.keymap.set({ "n", "x" }, "sJ", function()
         local pattern = convert(vim.fn.expand("<cword>"))
         return require("searcho").forward() .. pattern
-      end, { expr = true })
+      end, { expr = true, replace_keycodes = false })
       vim.keymap.set({ "n", "x" }, "sK", function()
         local pattern = convert(vim.fn.expand("<cword>"))
         return require("searcho").backward() .. pattern
-      end, { expr = true })
+      end, { expr = true, replace_keycodes = false })
     end,
     post_load = require_fn("notomo.plugin.searcho"),
   },
