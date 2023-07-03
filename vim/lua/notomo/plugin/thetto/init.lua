@@ -367,3 +367,19 @@ require("thetto").setup({
 })
 
 require("thetto").setup_store("file/mru")
+
+vim.api.nvim_create_autocmd({ "User" }, {
+  group = vim.api.nvim_create_augroup("notomo_thetto_to_kivi", {}),
+  pattern = { "ThettoDirectoryOpened" },
+  callback = function(args)
+    local layout
+    if args.data.bufnr then
+      layout = { type = "hide" }
+    end
+    require("kivi").open({
+      path = args.data.path,
+      bufnr = args.data.bufnr,
+      layout = layout,
+    })
+  end,
+})
