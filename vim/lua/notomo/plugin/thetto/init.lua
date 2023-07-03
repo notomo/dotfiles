@@ -367,14 +367,3 @@ require("thetto").setup({
 })
 
 require("thetto").setup_store("file/mru")
-
--- TODO move to setup
-require("thetto.handler.kind.file.directory").after = function(path, is_preview)
-  local bufnr, layout
-  if is_preview then
-    bufnr = vim.api.nvim_create_buf(false, true)
-    layout = { type = "hide" }
-  end
-  require("kivi").open({ path = path, bufnr = bufnr, layout = layout })
-  return bufnr
-end
