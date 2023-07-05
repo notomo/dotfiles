@@ -565,6 +565,7 @@ vim.keymap.set("n", "<Space>qn", function()
     opts = {
       insert = false,
       immediately = true,
+      can_resume = false,
       action = "open",
       search_offset = function(item)
         return item.path == path and item.row > current_row
@@ -579,6 +580,7 @@ vim.keymap.set("n", "<Space>qp", function()
     opts = {
       insert = false,
       immediately = true,
+      can_resume = false,
       action = "open",
       search_offset = function(item)
         return item.path == path and item.row < current_row
