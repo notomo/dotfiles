@@ -41,10 +41,10 @@ vim.ui.select = function(items, opts, on_choice)
   if opts.kind == "codeaction" then
     local current_row = vim.fn.line(".")
     search_offset = function(item)
-      if not item.range then
+      if not (item.row and item.end_row) then
         return false
       end
-      return item.range.s.row == current_row or item.range.e.row == current_row
+      return item.row == current_row or item.end_row == current_row
     end
     get_range = function(item)
       local range = vim.tbl_get(item[2], "command", "arguments", 1, "Range") -- gopls
