@@ -2,16 +2,18 @@ local M = {}
 
 function M.help(bufnr, item)
   local cmd = { "python", "-c", ([[help('%s')]]):format(item.value) }
-  return require("thetto.util.job").promise(cmd, {
-    on_exit = function(job_self)
-      local lines = job_self:get_stdout()
+  return require("thetto.util.job")
+    .promise(cmd, {
+      env = { PAGER = "cat" },
+      on_exit = function() end,
+    })
+    :next(function(output)
+      local lines = vim.split(output, "\n", { plain = true })
       if not vim.api.nvim_buf_is_valid(bufnr) then
         return
       end
       vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
-    end,
-    env = { PAGER = "cat" },
-  })
+    end)
 end
 
 function M.action_preview(items, _, ctx)
