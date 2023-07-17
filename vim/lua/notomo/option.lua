@@ -69,6 +69,7 @@ opt.softtabstop = 4
 opt.tabstop = 4
 opt.clipboard = "unnamed,unnamedplus"
 opt.showmode = false
+opt.nrformats:append("unsigned")
 opt.shortmess:append("I")
 opt.shortmess:remove("S")
 opt.diffopt:append("vertical")
