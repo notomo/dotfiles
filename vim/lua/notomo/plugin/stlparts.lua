@@ -22,22 +22,6 @@ local SwitchByFiletype = function(...)
 end
 
 local set_statusline = function()
-  local modes = {
-    n = "N",
-    i = "I",
-    R = "R",
-    v = "V",
-    V = "V",
-    [api.nvim_eval('"\\<C-v>"')] = "V",
-    c = "C",
-    s = "S",
-    [api.nvim_eval('"\\<C-s>"')] = "S",
-    t = "T",
-  }
-  local mode = function()
-    local mode = fn.mode()
-    return modes[mode] or ""
-  end
   local surround = function(s)
     return ("[%s]"):format(s)
   end
@@ -99,7 +83,7 @@ local set_statusline = function()
       ["kivi-file"] = Truncate(join_by({ cwd, branch }, " ")),
       _ = Separate({
         Truncate(join_by({ path, branch }, " ")),
-        join_by({ column, active_ls_names, filetype, mode }, " "),
+        join_by({ column, active_ls_names, filetype }, " "),
       }),
     }),
     " ",
