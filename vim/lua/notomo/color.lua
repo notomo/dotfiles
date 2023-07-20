@@ -106,43 +106,22 @@ vim.api.nvim_set_decoration_provider(ns, {
   end,
 })
 
-vim.api.nvim_set_hl(0, "CursorLineNrDeep", { fg = pallet.yellow, bg = pallet.black, bold = true })
-local cursor_line_nrs = {
-  "CursorLineNr",
-  "CursorLineNrDeep",
-}
-vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-  group = vim.api.nvim_create_augroup("notomo_cursor_depth", {}),
-  pattern = { "*" },
-  callback = require("misclib.debounce").wrap(
-    100,
-    vim.schedule_wrap(function(args)
-      local bufnr = tonumber(args.buf)
-      if not vim.api.nvim_buf_is_valid(bufnr) then
-        return
-      end
+local hl_groups = require("ultramarine").highlight_groups
+vim.api.nvim_set_hl(0, "NormalCursorLineNr", hl_groups.CursorLineNr)
+vim.api.nvim_set_hl(0, "VisualCursorLineNr", { fg = pallet.white, bg = pallet.green, bold = true })
 
-      local window_id = vim.api.nvim_get_current_win()
-      if not vim.api.nvim_win_is_valid(window_id) or vim.api.nvim_win_get_buf(window_id) ~= bufnr then
-        return
-      end
-
-      if not (vim.wo[window_id].number and vim.wo[window_id].cursorline) then
-        return
-      end
-
-      local line_count = vim.api.nvim_buf_line_count(bufnr)
-      if line_count < 100 then
-        vim.wo[window_id].winhighlight = "CursorLineNr:" .. cursor_line_nrs[1]
-        return
-      end
-
-      local row = vim.api.nvim_win_get_cursor(window_id)[1]
-      local index = math.floor(row / line_count * #cursor_line_nrs) + 1
-      index = math.min(index, #cursor_line_nrs)
-
-      local hl_group = cursor_line_nrs[index]
-      vim.wo[window_id].winhighlight = "CursorLineNr:" .. hl_group
-    end)
-  ),
+local group = vim.api.nvim_create_augroup("notomo_mode_color", {})
+vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+  group = group,
+  pattern = { [=[*:[vV\x16]]=] },
+  callback = function()
+    vim.api.nvim_set_hl(0, "CursorLineNr", { link = "VisualCursorLineNr" })
+  end,
+})
+vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+  group = group,
+  pattern = { [=[*:n]=] },
+  callback = function()
+    vim.api.nvim_set_hl(0, "CursorLineNr", { link = "NormalCursorLineNr" })
+  end,
 })
