@@ -93,6 +93,10 @@ vim.api.nvim_set_decoration_provider(ns, {
   end,
   on_line = function(_, _, bufnr, row)
     local index = 0
+    local max_row = vim.api.nvim_buf_line_count(bufnr) - 1
+    if max_row < row then
+      return true
+    end
     for _ = 0, 100, 1 do
       local s, e = regex:match_line(bufnr, row, index)
       if not s then
