@@ -50,7 +50,7 @@ local set_statusline = function()
       return surround("")
     end
     local names = vim
-      .iter(vim.lsp.get_active_clients({ bufnr = bufnr }))
+      .iter(vim.lsp.get_clients({ bufnr = bufnr }))
       :map(function(client)
         if client:is_stopped() then
           return nil

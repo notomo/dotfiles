@@ -31,7 +31,7 @@ end
 
 function M.format(bufnr)
   -- don't specify buffer to reuse client
-  local client = vim.lsp.get_active_clients({ name = "null-ls" })[1]
+  local client = vim.lsp.get_clients({ name = "null-ls" })[1]
   if not client then
     return require("misclib.message").warn("no null-ls client")
   end
@@ -47,7 +47,7 @@ function M.format(bufnr)
     group = group,
     buffer = bufnr,
     callback = function()
-      local c = vim.lsp.get_active_clients({ name = "null-ls" })[1]
+      local c = vim.lsp.get_clients({ name = "null-ls" })[1]
       if not c then
         return require("misclib.message").warn("no null-ls client")
       end
