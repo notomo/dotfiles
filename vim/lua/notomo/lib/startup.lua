@@ -111,28 +111,25 @@ function M.plugin_shared_dirs()
 end
 
 function M._get_plugin_dirs(filter)
-  local optpack = require("optpack")
-  local plugins = optpack.list()
+  return vim
+    .iter(require("optpack").list())
+    :map(function(plugin)
+      if not plugin.full_name:find("notomo/") then
+        return
+      end
 
-  local dirs = {}
-  for _, plugin in ipairs(plugins) do
-    if not plugin.full_name:find("notomo/") then
-      goto continue
-    end
+      local lua_dir = plugin.directory .. "/lua"
+      if vim.fn.isdirectory(lua_dir) == 0 then
+        return
+      end
 
-    local lua_dir = plugin.directory .. "/lua"
-    if vim.fn.isdirectory(lua_dir) == 0 then
-      goto continue
-    end
+      if not filter(plugin) then
+        return
+      end
 
-    if not filter(plugin) then
-      goto continue
-    end
-
-    table.insert(dirs, plugin.directory)
-    ::continue::
-  end
-  return dirs
+      return plugin.directory
+    end)
+    :totable()
 end
 
 return M
