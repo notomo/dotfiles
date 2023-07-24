@@ -124,7 +124,7 @@ vim.api.nvim_create_autocmd({ "ModeChanged" }, {
 })
 vim.api.nvim_create_autocmd({ "ModeChanged" }, {
   group = group,
-  pattern = { [=[*:n]=] },
+  pattern = { [=[*:n]=], [=[*:nt]=] },
   callback = function()
     vim.api.nvim_set_hl(0, "CursorLineNr", { link = "NormalCursorLineNr" })
   end,
