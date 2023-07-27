@@ -11,7 +11,7 @@ function M.collect(source_ctx)
   end
   return require("thetto.util.job").run(cmd, source_ctx, function(output)
     local label = table.concat(output.label_names, ", ")
-    local value = ("%s %s %s"):format(output._type, output.title, label)
+    local value = ("%s %s %s %s"):format(output.created_at, output._type, output.title, label)
     return {
       value = value,
       url = output.url,
@@ -30,8 +30,17 @@ function M.collect(source_ctx)
       end)
 
       local outputs = {}
-      vim.list_extend(outputs, decoded.closed_issues)
-      vim.list_extend(outputs, decoded.reported_issues)
+
+      local closed_or_reported = {}
+      vim.list_extend(closed_or_reported, decoded.closed_issues)
+      vim.list_extend(closed_or_reported, decoded.reported_issues)
+
+      vim.list_extend(
+        outputs,
+        require("misclib.collection.list").unique(closed_or_reported, function(x)
+          return x.url
+        end)
+      )
       vim.list_extend(outputs, decoded.merged_pull_requests)
       vim.list_extend(outputs, decoded.reviewed_pull_requests)
       return outputs
@@ -40,5 +49,7 @@ function M.collect(source_ctx)
 end
 
 M.kind_name = "url"
+
+M.sorters = { "-numeric:retrospect.created_at" }
 
 return M
