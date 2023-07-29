@@ -29,7 +29,7 @@ end
 
 function M.fetch()
   local remote = M._remote()
-  return (":<C-u>Git fetch %s --prune"):format(remote)
+  return (":<C-u>Git fetch %s"):format(remote)
 end
 
 function M.apply()
