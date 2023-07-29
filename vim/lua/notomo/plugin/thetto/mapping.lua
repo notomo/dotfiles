@@ -215,6 +215,7 @@ local source_specific = {
     vim.keymap.set("n", "D", [[<Cmd>lua require("thetto").execute("diff")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "RS", [[<Cmd>lua require("thetto").execute("reset")<CR>]], { buffer = list_bufnr })
     vim.keymap.set("n", "F", [[<Cmd>lua require("thetto").execute("fixup")<CR>]], { buffer = list_bufnr })
+    vim.keymap.set("n", "rw", [[<Cmd>lua require("thetto").execute("reword")<CR>]], { buffer = list_bufnr })
     vim.keymap.set(
       "n",
       "I",
