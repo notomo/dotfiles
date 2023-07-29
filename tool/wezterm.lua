@@ -10,7 +10,7 @@ local config = {
 
   use_ime = true,
 
-  hide_mouse_cursor_when_typing = false,
+  hide_mouse_cursor_when_typing = true,
   hide_tab_bar_if_only_one_tab = true,
   adjust_window_size_when_changing_font_size = false,
   window_padding = {
@@ -81,7 +81,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   -- wezterm ls-fonts --list-system
   config.font = wezterm.font("MeiryoKe_Gothic", { weight = "Regular", stretch = "Normal", style = "Normal" })
 
-  local wsl = { "wsl.exe", "--distribution", "notomo_dev2", "--exec", "/bin/bash", "-l" }
+  local wsl = { "wsl.exe", "--distribution", "notomo_dev", "--exec", "/bin/bash", "-l" }
   config.default_prog = wsl
 
   table.insert(config.launch_menu, {
