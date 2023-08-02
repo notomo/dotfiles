@@ -3,24 +3,6 @@ null_ls.setup({
   debug = false,
   sources = {
     null_ls.builtins.diagnostics.actionlint,
-    null_ls.builtins.diagnostics.staticcheck.with({
-      extra_args = { "-checks", "SA1019" },
-      diagnostics_postprocess = function(diagnostic)
-        if diagnostic.code == "SA1019" then
-          diagnostic.severity = vim.diagnostic.severity.WARN
-        end
-      end,
-    }),
-    null_ls.builtins.diagnostics.ltrs.with({
-      filetypes = {
-        "text",
-      },
-      -- needs `ltrs docker start`
-      args = { "--hostname", "http://localhost", "-p", "8010", "check", "-l", "en", "-m", "-r", "--text", "$TEXT" },
-      runtime_condition = function(params)
-        return vim.startswith(params.bufname, vim.fn.expand("~/workspace/scratch/text/scratch.txt"))
-      end,
-    }),
     null_ls.builtins.formatting.ocamlformat.with({
       args = { "--enable-outside-detected-project", "--impl", "-" },
     }),
