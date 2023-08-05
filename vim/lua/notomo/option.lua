@@ -57,7 +57,7 @@ opt.whichwrap = "b,s,h,l,<,>,[,]"
 opt.cursorline = true
 opt.listchars = { tab = "»-", trail = "-", eol = "↲", extends = "»", precedes = "«", nbsp = "%" }
 opt.list = true
-opt.cmdheight = 2
+opt.cmdheight = 1
 opt.scrolloff = 8
 opt.sidescrolloff = 24
 opt.showmatch = true
