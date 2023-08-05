@@ -81,6 +81,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   -- wezterm ls-fonts --list-system
   config.font = wezterm.font("MeiryoKe_Gothic", { weight = "Regular", stretch = "Normal", style = "Normal" })
 
+  config.window_decorations = "RESIZE" -- disable title bar
+
   local wsl = { "wsl.exe", "--distribution", "notomo_dev", "--exec", "/bin/bash", "-l" }
   config.default_prog = wsl
 
