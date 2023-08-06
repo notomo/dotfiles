@@ -94,6 +94,12 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     label = "Powershell",
     args = { "powershell.exe" },
   })
+
+  table.insert(config.mouse_bindings, {
+    event = { Down = { streak = 1, button = "Middle" } },
+    mods = "NONE",
+    action = act.Hide,
+  })
 elseif wezterm.target_triple:match("apple") then
   config.font = wezterm.font("Source Han Code JP", { weight = "Regular", stretch = "Normal", style = "Normal" })
   config.font_size = 17.0
