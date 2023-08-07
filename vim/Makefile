@@ -39,8 +39,15 @@ vendor:
 doc:
 	${NVIM} --headless +'lua require("notomo.lib.startup").has_doc_plugins()' +quitall! | xargs -I{} make doc -C {}
 
+sync_config:
+	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} make sync_config -C {}
+
 pull_shared:
 	${NVIM} --headless +'lua require("notomo.lib.startup").plugin_shared_dirs()' +quitall! | xargs -I{} git --no-pager -C {} pull origin
+
+reset:
+	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} git --no-pager -C {} add .
+	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} git --no-pager -C {} reset --hard
 
 status:
 	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} $(MAKE) --no-print-directory _status TARGET_PATH={}
