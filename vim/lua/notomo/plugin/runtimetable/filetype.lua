@@ -305,6 +305,7 @@ end
 
 runtime.after.ftplugin["terraform.lua"] = function()
   require("notomo.lsp.autocmd").setup()
+  require("notomo.lsp.mapping").setup()
   require("notomo.lib.treesitter").start()
 end
 

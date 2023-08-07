@@ -20,6 +20,7 @@
     - { role: 'gh', tags: ['gh'] }
     - { role: 'ocaml', tags: ['ocaml'] }
     - { role: 'sqlite3', tags: ['sqlite3'] }
+    - { role: 'terraform', tags: ['terraform'] }
     - { role: 'lua', tags: ['lua'] }
     - { role: 'default_shell', tags: ['default_shell'] }
     - { role: 'gitconfig', tags: ['gitconfig'] }
