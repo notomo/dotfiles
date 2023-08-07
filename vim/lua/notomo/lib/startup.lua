@@ -105,7 +105,7 @@ function M.plugin_shared_dirs()
     return vim.fn.isdirectory(shared_dir) == 1
   end)
   local shared_dirs = vim.tbl_map(function(dir)
-    return require("misclib.path").join(dir, "spec/.shared")
+    return vim.fs.joinpath(dir, "spec/.shared")
   end, dirs)
   io.stdout:write(table.concat(shared_dirs, "\n"))
 end
