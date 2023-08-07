@@ -37,9 +37,18 @@ null_ls.setup({
     null_ls.builtins.formatting.stylua.with({
       extra_args = function(params)
         local config = vim.fn.expand("$DOTFILES/tool/stylua.toml")
-        if vim.startswith(params.bufname, vim.fn.expand("~/workspace/neovim/")) then
-          config = vim.fn.expand("~/workspace/neovim/.stylua.toml")
+
+        local upward = vim.fs.find("stylua.toml", {
+          upward = true,
+          stop = vim.uv.os_homedir(),
+          path = vim.fs.dirname(params.bufname),
+          type = "file",
+          limit = 1,
+        })[1]
+        if upward then
+          config = upward
         end
+
         return { "--config-path", config }
       end,
     }),
