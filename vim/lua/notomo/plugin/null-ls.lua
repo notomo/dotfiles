@@ -36,8 +36,6 @@ null_ls.setup({
     null_ls.builtins.formatting.terraform_fmt,
     null_ls.builtins.formatting.stylua.with({
       extra_args = function(params)
-        local config = vim.fn.expand("$DOTFILES/tool/stylua.toml")
-
         local upward = vim.fs.find("stylua.toml", {
           upward = true,
           stop = vim.uv.os_homedir(),
@@ -46,10 +44,12 @@ null_ls.setup({
           limit = 1,
         })[1]
         if upward then
-          config = upward
+          return { "--config-path", upward }
         end
 
-        return { "--config-path", config }
+        local workflow = require("optpack").get("workflow")
+        local default = vim.fs.joinpath(workflow.directory, "stylua.toml")
+        return { "--config-path", default }
       end,
     }),
     null_ls.builtins.formatting.uncrustify.with({
