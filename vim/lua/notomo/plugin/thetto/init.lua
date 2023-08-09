@@ -65,16 +65,6 @@ kind_actions["vim/command"] = {
   end,
 }
 
-local url_actions = {
-  action_open_browser = function(items)
-    for _, item in ipairs(items) do
-      vim.cmd.OpenBrowser(item.url)
-    end
-  end,
-}
-kind_actions["url"] = url_actions
-source_actions["url/bookmark"] = url_actions
-
 kind_actions["github/repository"] = {
   action_temporary_clone = function(items)
     local item = items[1]

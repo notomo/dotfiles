@@ -341,11 +341,6 @@ optpack.add("tmhedberg/matchit", {
   },
 })
 
-optpack.add("tyru/open-browser.vim", {
-  load_on = { cmds = { "OpenBrowser*" } },
-  hooks = { post_add = require_fn("notomo.plugin.open-browser") },
-})
-
 mypack.add("notomo/curstr.nvim", {
   load_on = { modules = { "curstr" } },
   hooks = {
@@ -726,12 +721,13 @@ optpack.add("lewis6991/gitsigns.nvim", {
 })
 
 optpack.add("previm/previm", {
-  depends = { "open-browser.vim" },
   load_on = { filetypes = { "markdown" } },
   hooks = {
     pre_load = function()
       if vim.fn.has("wsl") == 1 then
         vim.g.previm_open_cmd = "wslview"
+      elseif vim.fn.has("mac") == 1 then
+        vim.g.previm_open_cmd = "open -a Google\\ Chrome"
       end
       vim.g.previm_enable_realtime = 1
     end,
