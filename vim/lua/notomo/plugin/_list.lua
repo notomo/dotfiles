@@ -426,7 +426,10 @@ mypack.add("notomo/filetypext.nvim", {
 })
 
 mypack.add("notomo/cmdhndlr.nvim", {
-  load_on = { modules = { "cmdhndlr" } },
+  load_on = {
+    modules = { "cmdhndlr" },
+    events = { "BufWritePre" },
+  },
   hooks = { post_add = require_fn("notomo.plugin.cmdhndlr") },
 })
 
@@ -559,13 +562,6 @@ optpack.add("rhysd/vim-operator-surround", {
 
 mypack.add("notomo/promise.nvim", {
   load_on = { modules = { "promise" } },
-})
-
-optpack.add("nvim-lua/plenary.nvim", { load_on = { modules = { "plenary" } } })
-optpack.add("jose-elias-alvarez/null-ls.nvim", {
-  depends = { "plenary.nvim" },
-  load_on = { events = { "FileType" }, modules = { "null-ls" } },
-  hooks = { post_load = require_fn("notomo.plugin.null-ls") },
 })
 
 mypack.add("notomo/stlparts.nvim", {

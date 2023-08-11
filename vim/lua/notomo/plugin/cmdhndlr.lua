@@ -41,6 +41,60 @@ vim.keymap.set(
 vim.keymap.set("n", "[exec]bl", [[<Cmd>lua require("cmdhndlr").build({name = 'make/make'})<CR>]])
 vim.keymap.set("n", "[exec]bL", [[<Cmd>lua require("cmdhndlr").build()<CR>]])
 
+vim.keymap.set("n", "<Leader>F", [[<Cmd>lua require("cmdhndlr").format()<CR>]])
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  group = vim.api.nvim_create_augroup("cmdhndlr_format_setting", {}),
+  pattern = { "*" },
+  callback = function(args)
+    local bufnr = args.buf
+    if vim.b[bufnr].notomo_format_disabled then
+      return
+    end
+    if not require("cmdhndlr").enabled("format_runner") then
+      return
+    end
+
+    require("cmdhndlr").setup({
+      opts = {
+        format_runner = {
+          ["lua/stylua"] = {
+            build_cmd = function(cmd, callback, ctx)
+              local upward = vim.fs.find("stylua.toml", {
+                upward = true,
+                stop = vim.uv.os_homedir(),
+                path = vim.fs.dirname(vim.api.nvim_buf_get_name(ctx.bufnr)),
+                type = "file",
+                limit = 1,
+              })[1]
+              if upward then
+                vim.list_extend(cmd, { "--config-path", upward })
+                callback(cmd)
+                return
+              end
+
+              local workflow = require("optpack").get("workflow")
+              local default = vim.fs.joinpath(workflow.directory, "stylua.toml")
+              vim.list_extend(cmd, { "--config-path", default })
+              callback(cmd)
+            end,
+          },
+        },
+      },
+    })
+
+    require("cmdhndlr").format({
+      hooks = {
+        success = function()
+          vim.api.nvim_buf_call(bufnr, function()
+            return vim.cmd.update({ mods = { silent = true, noautocmd = true } })
+          end)
+        end,
+        pre_execute = function() end,
+      },
+    })
+  end,
+})
+
 vim.keymap.set("n", "[test]f", [[<Cmd>lua require("cmdhndlr").test({layout = {type = "tab"}})<CR>]])
 vim.keymap.set("n", "[test]n", function()
   local test = require("gettest").nodes({

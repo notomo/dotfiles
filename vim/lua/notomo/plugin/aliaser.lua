@@ -153,7 +153,7 @@ end)
 
 aliaser.register_factory("format", function(aliases)
   aliases:set("toggle", function()
-    local disabled = vim.b.notomo_lsp_format_disabled
-    vim.b.notomo_lsp_format_disabled = not disabled
+    local disabled = vim.b.notomo_format_disabled
+    vim.b.notomo_format_disabled = not disabled
   end)
 end)
