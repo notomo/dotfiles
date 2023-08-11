@@ -14,7 +14,6 @@
 
 - name: install ls
   shell: rustup component add rust-analyzer rust-src
-  when: not rls_installed.stat.exists
 
 - name: install rustfmt
   shell: rustup component add rustfmt
