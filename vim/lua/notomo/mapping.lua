@@ -550,4 +550,9 @@ end)
 vim.keymap.set("n", "[browser]y", function()
   require("notomo.lib.browser").open(vim.fn.getreg("+"))
 end)
+
+vim.api.nvim_create_user_command("SearchEngine", function(command)
+  local query = command.fargs[1]
+  require("notomo.lib.browser").open([[https://google.com/search?q=]] .. query)
+end, { nargs = 1 })
 vim.keymap.set("n", "[browser]i", [[:<C-u>SearchEngine ]])
