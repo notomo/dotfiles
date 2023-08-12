@@ -246,13 +246,6 @@ mypack.add("notomo/wintablib.nvim", {
   hooks = { post_add = require_fn("notomo.plugin.wintablib") },
 })
 
-mypack.add("notomo/lreload.nvim", {
-  load_on = { modules = { "lreload" }, events = { "BufWritePre" } },
-  hooks = {
-    post_load = require_fn("notomo.plugin.lreload"),
-  },
-})
-
 optpack.add("hrsh7th/nvim-cmp", {
   load_on = { modules = { "cmp" }, events = { "InsertEnter" } },
   hooks = {
@@ -431,6 +424,14 @@ mypack.add("notomo/cmdhndlr.nvim", {
     events = { "BufWritePre" },
   },
   hooks = { post_add = require_fn("notomo.plugin.cmdhndlr") },
+})
+
+-- should load after cmdhndlr not to clear format autocmd
+mypack.add("notomo/lreload.nvim", {
+  load_on = { modules = { "lreload" }, events = { "BufWritePre" } },
+  hooks = {
+    post_load = require_fn("notomo.plugin.lreload"),
+  },
 })
 
 mypack.add("notomo/suball.nvim", {
