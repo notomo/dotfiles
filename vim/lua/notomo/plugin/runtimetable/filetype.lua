@@ -214,7 +214,7 @@ runtime.after.queries.lua["injections.scm"] = [=[
       name: (_) @_runtimetable (#lua-match? @_runtimetable "^runtime.after.queries")
     )
     (expression_list
-      value: (string content: _ @query)
+      value: (string content: _ @injection.content (#set! injection.language "query"))
     )
   )
 )
