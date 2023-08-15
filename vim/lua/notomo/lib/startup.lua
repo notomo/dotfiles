@@ -132,4 +132,16 @@ function M._get_plugin_dirs(filter)
     :totable()
 end
 
+function M.quit_after_start()
+  vim.api.nvim_create_autocmd({ "UIEnter" }, {
+    group = vim.api.nvim_create_augroup("notomo_startup", {}),
+    pattern = { "*" },
+    callback = function()
+      vim.schedule(function()
+        vim.cmd.quit()
+      end)
+    end,
+  })
+end
+
 return M

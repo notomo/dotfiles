@@ -7,7 +7,7 @@ test:
 
 profile:
 	rm -f log
-	${NVIM} --startuptime log +'lua require("notomo.lib.startup").schedule("quitall!")'
+	${NVIM} --startuptime log +'lua require("notomo.lib.startup").quit_after_start()'
 	cat log
 	rm -f log
 
