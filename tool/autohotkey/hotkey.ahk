@@ -3,7 +3,7 @@
 
 #Include "send.ahk"
 
-EDITOR := "WSL"
+EDITOR := "ahk_exe wezterm-gui.exe"
 BROWSER := "ahk_exe chrome.exe"
 
 ; https://lexikos.github.io/v2/docs/Hotkeys.htm#Symbols
@@ -56,11 +56,17 @@ BROWSER := "ahk_exe chrome.exe"
     Send "{Left}"
 }
 
-; #HotIf WinActive(BROWSER)
-; ^f::
-; {
-;     Send "{Right}"
-; }
+#HotIf WinActive(BROWSER)
+!a::
+{
+    Send "{Home}"
+}
+
+#HotIf WinActive(BROWSER)
+!f::
+{
+    Send "{Right}"
+}
 
 #HotIf WinActive(BROWSER)
 ^u::
