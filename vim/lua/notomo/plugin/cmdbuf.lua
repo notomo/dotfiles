@@ -27,6 +27,7 @@ vim.keymap.set(
   "[cmdbuf]i",
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/input"})<CR>]]
 )
+vim.keymap.set("n", "[cmdbuf]e", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/env"})<CR>]])
 vim.keymap.set(
   "c",
   "<C-q>",
