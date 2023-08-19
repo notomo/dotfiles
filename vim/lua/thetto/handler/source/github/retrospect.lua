@@ -1,7 +1,8 @@
 local M = {}
 
+local default_days = 14
 M.opts = {
-  from = nil,
+  from = tostring(-default_days * 24) .. "h",
 }
 
 function M.collect(source_ctx)
