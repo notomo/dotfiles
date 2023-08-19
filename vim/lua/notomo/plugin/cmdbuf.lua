@@ -1,33 +1,31 @@
-require("notomo.lib.mapping").set_prefix({ "n" }, "cmdbuf", "<Space>q")
-
 vim.keymap.set("n", "Q", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight)<CR>]])
-vim.keymap.set("n", "[cmdbuf]l", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "lua/cmd"})<CR>]])
+vim.keymap.set("n", "<Space>ql", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "lua/cmd"})<CR>]])
 vim.keymap.set(
   "n",
-  "[cmdbuf]/",
+  "<Space>q/",
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/search/forward"})<CR>]]
 )
 vim.keymap.set(
   "n",
-  "[cmdbuf],",
+  "<Space>q,",
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/search/backward"})<CR>]]
 )
 vim.keymap.set(
   "n",
-  "[cmdbuf]b",
+  "<Space>qb",
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "lua/variable/buffer"})<CR>]]
 )
 vim.keymap.set(
   "n",
-  "[cmdbuf]g",
+  "<Space>qg",
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "lua/variable/global"})<CR>]]
 )
 vim.keymap.set(
   "n",
-  "[cmdbuf]i",
+  "<Space>qi",
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/input"})<CR>]]
 )
-vim.keymap.set("n", "[cmdbuf]e", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/env"})<CR>]])
+vim.keymap.set("n", "<Space>qe", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/env"})<CR>]])
 vim.keymap.set(
   "c",
   "<C-q>",

@@ -629,5 +629,49 @@ vim.keymap.set("n", "[git]dd", function()
   require("thetto.util.git").compare(git_root, path, "HEAD", path)
 end)
 
+vim.keymap.set("n", "[git]j", function()
+  if vim.wo.diff then
+    vim.api.nvim_feedkeys(vim.keycode("]c"), "", true)
+    return
+  end
+
+  local current_row = vim.fn.line(".")
+  local path = vim.api.nvim_buf_get_name(0)
+  require("thetto").start("git/diff", {
+    opts = {
+      insert = false,
+      immediately = true,
+      can_resume = false,
+      action = "open",
+      search_offset = function(item)
+        return item.path == path and item.row > current_row
+      end,
+    },
+    source_opts = { expr = path },
+  })
+end)
+vim.keymap.set("n", "[git]k", function()
+  if vim.wo.diff then
+    vim.api.nvim_feedkeys(vim.keycode("[c"), "", true)
+    return
+  end
+
+  local current_row = vim.fn.line(".")
+  local path = vim.api.nvim_buf_get_name(0)
+  require("thetto").start("git/diff", {
+    opts = {
+      insert = false,
+      immediately = true,
+      can_resume = false,
+      action = "open",
+      search_offset = function(item)
+        return item.path == path and item.row < current_row
+      end,
+      sorters = { "-row" },
+    },
+    source_opts = { expr = path },
+  })
+end)
+
 -- custom action
 vim.keymap.set("n", "[finder];", thetto_starter("vim/filetype", { opts = { action = "open_scratch" } }))
