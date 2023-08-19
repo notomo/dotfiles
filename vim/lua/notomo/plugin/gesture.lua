@@ -92,3 +92,18 @@ gesture.register({
     require("piemenu").start("default", { position = ctx.last_position })
   end,
 })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = vim.api.nvim_create_augroup("gesture_setting", {}),
+  pattern = { "gesture" },
+  callback = function()
+    vim.o.mousemoveevent = true
+    vim.api.nvim_create_autocmd({ "BufWipeout" }, {
+      buffer = 0,
+      once = true,
+      callback = function()
+        vim.o.mousemoveevent = false
+      end,
+    })
+  end,
+})
