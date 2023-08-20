@@ -13,6 +13,15 @@ local hooks = {
     vim.cmd.colorscheme([[ultramarine]])
     vim.api.nvim_exec_autocmds("ColorScheme", {})
   end,
+  cmdhndlr = function()
+    local plugin = require("optpack").get("cmdhndlr.nvim")
+    vim.schedule(function() -- to execute cmdhndlr format autocmd before refresh
+      require("lreload").refresh("notomo.plugin.cmdhndlr")
+      plugin.opts.hooks.post_add(plugin)
+      plugin.opts.hooks.pre_load(plugin)
+      plugin.opts.hooks.post_load(plugin)
+    end)
+  end,
 }
 
 local plugins = vim.tbl_filter(function(plugin)
