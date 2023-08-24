@@ -10,7 +10,7 @@ function M.collect(source_ctx)
         return
       end
       return {
-        value = runner.name,
+        value = runner.full_name,
         bufnr = runner.bufnr,
         is_running = runner.is_running,
       }

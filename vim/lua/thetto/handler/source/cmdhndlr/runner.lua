@@ -4,7 +4,7 @@ function M.collect()
   local items = {}
   for _, runner in ipairs(require("cmdhndlr").runners()) do
     table.insert(items, {
-      value = runner.name,
+      value = runner.full_name,
       path = runner.path,
     })
   end
