@@ -343,6 +343,13 @@ runtime.after.ftplugin["unionbuf.lua"] = function()
     vim.cmd.buffer(entry.bufnr)
     vim.cmd.normal({ args = { tostring(entry.start_row + 1) .. "gg" }, bang = true })
   end, { buffer = true })
+
+  vim.keymap.set("n", "J", function()
+    require("unionbuf").shift({ end_row = 1 })
+  end, { buffer = true })
+  vim.keymap.set("n", "K", function()
+    require("unionbuf").shift({ start_row = -1 })
+  end, { buffer = true })
 end
 
 require("notomo.plugin.runtimetable").save(runtime)
