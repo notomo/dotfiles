@@ -12,3 +12,11 @@ require("gitsigns").setup({
     vim.keymap.set("n", "[git]t", gs.toggle_current_line_blame)
   end,
 })
+
+vim.api.nvim_create_autocmd({ "User" }, {
+  group = vim.api.nvim_create_augroup("gitsigns_refresh_setting", {}),
+  pattern = { "NotomoReloaded" },
+  callback = function()
+    require("gitsigns").refresh()
+  end,
+})

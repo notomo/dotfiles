@@ -69,6 +69,8 @@ vim.keymap.set("n", "[file]rl", function()
   end
   vim.api.nvim_echo({ { "reloaded" } }, false, {})
   vim.fn.winrestview(view)
+
+  vim.api.nvim_exec_autocmds("User", { pattern = "NotomoReloaded", modeline = false })
 end)
 vim.keymap.set("n", "[file]R", [[<Cmd>lua require("notomo.lib.edit").rotate_file()<CR>]])
 
