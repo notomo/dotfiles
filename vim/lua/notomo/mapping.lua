@@ -475,6 +475,10 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   group = vim.api.nvim_create_augroup("notomo_terminal_mapping", {}),
   pattern = { "*" },
   callback = function()
+    local path = vim.api.nvim_buf_get_name(0)
+    if not vim.endswith(path, vim.o.shell) then
+      return
+    end
     vim.keymap.set("n", "[file]rl", function()
       vim.api.nvim_exec_autocmds("BufRead", { buffer = 0, modeline = false })
       vim.bo.filetype = ""
