@@ -14,7 +14,14 @@ require("curstr").setup({
       filetypes = { "yaml" },
     },
     openable = { names = { "vim/function", "lua", "file", "directory", "swagger", "vim/runtime" } },
-    bool = { names = { "togglable/word" }, opts = { words = { "true", "false" }, normalized = true } },
+    bool = {
+      names = { "togglable/word" },
+      opts = {
+        words = { "true", "false" },
+        normalized = true,
+        char_pattern = "[:alnum:]",
+      },
+    },
     camel_snake = {
       names = { "togglable/pattern" },
       opts = { patterns = { { "\\v_(.)", "\\u\\1" }, { "\\v\\C([A-Z])", "_\\l\\1" } } },
