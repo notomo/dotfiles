@@ -10,6 +10,11 @@ local escape = function(s)
   return s
 end
 
+local alter_path = function()
+  local path = api.nvim_buf_get_name(fn.bufnr("#"))
+  return fn.fnamemodify(path, ":~")
+end
+
 local get_bufnr = function(ctx)
   return vim.api.nvim_win_get_buf(ctx.window_id)
 end
@@ -77,14 +82,20 @@ local set_statusline = function()
   end
   local Separate = C.separate
 
+  local Base = function(path_component)
+    return Separate({
+      Truncate(join_by({ path_component, branch }, " ")),
+      join_by({ column, active_ls_names, filetype }, " "),
+    })
+  end
+
   stlparts.set("statusline", {
     " ",
     SwitchByFiletype({
       ["kivi-file"] = Truncate(join_by({ cwd, branch }, " ")),
-      _ = Separate({
-        Truncate(join_by({ path, branch }, " ")),
-        join_by({ column, active_ls_names, filetype }, " "),
-      }),
+      ["thetto"] = Base(alter_path),
+      ["thetto-input"] = Base(alter_path),
+      _ = Base(path),
     }),
     " ",
   })
@@ -120,8 +131,7 @@ local modified = function(current_bufnr, window_ids)
   return ""
 end
 
-local tab_label = function(tab_id, window_id)
-  local bufnr = api.nvim_win_get_buf(window_id)
+local tab_label = function(tab_id, bufnr)
   local name = fn.fnamemodify(api.nvim_buf_get_name(bufnr), ":t")
   if name == "" then
     name = "[Scratch]"
@@ -133,6 +143,16 @@ local tab_label = function(tab_id, window_id)
     return name
   end
   return ("%s[%s]"):format(name, opt)
+end
+
+local current_tab_label = function(tab_id, window_id)
+  local bufnr = api.nvim_win_get_buf(window_id)
+  return tab_label(tab_id, bufnr)
+end
+
+local alter_tab_label = function(tab_id, _)
+  local bufnr = fn.bufnr("#")
+  return tab_label(tab_id, bufnr)
 end
 
 local set_tabline = function()
@@ -163,8 +183,14 @@ local set_tabline = function()
                     local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
                     return escape(name)
                   end,
+                  ["thetto"] = function(ctx)
+                    return escape(alter_tab_label(tab_id, ctx.window_id))
+                  end,
+                  ["thetto-input"] = function(ctx)
+                    return escape(alter_tab_label(tab_id, ctx.window_id))
+                  end,
                   _ = function(ctx)
-                    return escape(tab_label(tab_id, ctx.window_id))
+                    return escape(current_tab_label(tab_id, ctx.window_id))
                   end,
                 }),
                 { max_width = 30 }
