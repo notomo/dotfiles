@@ -800,6 +800,12 @@ mypack.add("notomo/unionbuf.nvim", {
   },
 })
 
+mypack.add("notomo/pluginbuf.nvim", {
+  load_on = {
+    modules = { "pluginbuf" },
+  },
+})
+
 optpack.add("uga-rosa/ccc.nvim", {
   load_on = { modules = { "ccc" }, cmds = { "Ccc*" } },
 })
