@@ -45,6 +45,28 @@ function M.text_object_mapping()
 
   set("is", "@statement.outer")
   set("as", "@statement.outer")
+
+  vim.keymap.set("n", "so", function()
+    local tmp = vim.fn.getreg("9")
+
+    local cursor = vim.api.nvim_win_get_cursor(0)
+    vim.cmd.TSTextobjectSelect("@call.outer")
+    vim.cmd.normal({ args = { [[vh]] }, bang = true })
+
+    vim.cmd.TSTextobjectSelect("@call.inner")
+    vim.cmd.normal({ args = { [["9y]] }, bang = true })
+
+    vim.api.nvim_win_set_cursor(0, cursor)
+    vim.cmd.TSTextobjectSelect("@call.outer")
+    vim.cmd.normal({ args = { [["9p]] }, bang = true })
+
+    local after_moved = vim.api.nvim_win_get_cursor(0)
+    if cursor[1] == after_moved[1] and cursor[2] < after_moved[2] then
+      vim.api.nvim_win_set_cursor(0, cursor)
+    end
+
+    vim.fn.setreg("9", tmp)
+  end)
 end
 
 function M.mapping()
