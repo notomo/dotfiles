@@ -21,6 +21,7 @@
     - { role: 'ocaml', tags: ['ocaml'] }
     - { role: 'sqlite3', tags: ['sqlite3'] }
     - { role: 'terraform', tags: ['terraform'] }
+    - { role: 'gcloud', tags: ['gcloud'] }
     - { role: 'lua', tags: ['lua'] }
     - { role: 'default_shell', tags: ['default_shell'] }
     - { role: 'gitconfig', tags: ['gitconfig'] }
