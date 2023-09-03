@@ -333,6 +333,7 @@ local listdefined_names = {
   "autocmd",
   "autocmd_group",
   "highlight",
+  "command",
 }
 for _, name in ipairs(listdefined_names) do
   source_config["listdefined/" .. name] = {
