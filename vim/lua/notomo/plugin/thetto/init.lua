@@ -92,6 +92,13 @@ source_actions["github/project"] = {
   end,
 }
 
+source_config["github/pull_request_review"] = {
+  alias_to = "github/pull_request",
+  opts = {
+    extra_args = { "--review-requested=@me" },
+  },
+}
+
 local file_recursive, directory_recursive, modify_path
 if vim.fn.has("win32") == 0 then
   file_recursive = function(path, max_depth)
