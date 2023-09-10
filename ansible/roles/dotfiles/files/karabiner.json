@@ -168,6 +168,14 @@
                     "to": {
                         "key_code": "japanese_eisuu"
                     }
+                },
+                {
+                    "from": {
+                        "key_code": "right_control"
+                    },
+                    "to": {
+                        "key_code": "left_option"
+                    }
                 }
             ],
             "virtual_hid_keyboard": {
