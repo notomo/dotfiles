@@ -150,8 +150,11 @@ local current_tab_label = function(tab_id, window_id)
   return tab_label(tab_id, bufnr)
 end
 
-local alter_tab_label = function(tab_id, _)
+local alter_tab_label = function(tab_id, window_id)
   local bufnr = fn.bufnr("#")
+  if bufnr == -1 then
+    return current_tab_label(tab_id, window_id)
+  end
   return tab_label(tab_id, bufnr)
 end
 
