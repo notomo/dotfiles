@@ -14,6 +14,8 @@ clean:
 
 build:
 	cd ${NVIM_DIR}; make CMAKE_BUILD_TYPE=Debug
+	mkdir -p ./build/bin
+	cp -f ${NVIM} ./build/bin/nvim
 .PHONY: build
 
 build_with_asan:
@@ -89,7 +91,7 @@ issue:
 	${VIM} --version >> ${ISSUE}
 	echo \`\`\` >> ${ISSUE}
 	echo "- Operating system/version: ${OS_NAME} ${OS_VERSION_ID}" >> ${ISSUE}
-	echo "- Terminal name/version: wsltty" >> ${ISSUE}
+	echo "- Terminal name/version: wezterm" >> ${ISSUE}
 	echo "- ``\$$TERM``: ${TERM}" >> ${ISSUE}
 	echo "- Installation: build from repo" >> ${ISSUE}
 	echo>> ${ISSUE}
