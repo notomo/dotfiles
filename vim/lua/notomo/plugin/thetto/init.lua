@@ -231,6 +231,22 @@ source_config["github/issue"] = {
     "-regex",
   },
 }
+kind_actions["github/issue"] = {
+  action_edit_body = function(items)
+    local item = items[1]
+    if item == nil then
+      return
+    end
+    require("notomo.lib.github").edit_issue(item.url, "body")
+  end,
+  action_edit_title = function(items)
+    local item = items[1]
+    if item == nil then
+      return
+    end
+    require("notomo.lib.github").edit_issue(item.url, "title")
+  end,
+}
 
 source_config["file/alter"] = {
   opts = {

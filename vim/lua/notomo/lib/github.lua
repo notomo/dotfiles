@@ -92,4 +92,20 @@ function M.yank()
   require("notomo.lib.edit").yank(url)
 end
 
+function M.edit_issue(url, field)
+  local util = require("pluginbuf.util")
+  require("pluginbuf").register("gh-repo-issue", {
+    {
+      path = "/" .. field,
+      read = function(ctx)
+        return util.cmd_output({ "gh", "issue", "view", url, "--json=" .. field, "--jq=." .. field })(ctx)
+      end,
+      write = function(ctx)
+        return util.cmd_input({ "gh", "issue", "edit", url, "--" .. field, "-" })(ctx)
+      end,
+    },
+  })
+  vim.cmd.tabedit("gh-repo-issue://" .. field)
+end
+
 return M
