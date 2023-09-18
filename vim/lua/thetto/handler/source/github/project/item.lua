@@ -39,7 +39,7 @@ function M.collect(source_ctx)
   })
 end
 
-M.kind_name = "url"
+M.kind_name = "github/issue"
 
 M.highlight = require("thetto.util.highlight").columns({
   {

@@ -257,6 +257,14 @@ source_config["github/assigned_issue"] = {
   },
 }
 
+source_config["github/authored_issue"] = {
+  alias_to = "github/issue",
+  opts = {
+    repo_with_owner = "",
+    extra_args = { "--author=@me", "--sort=created" },
+  },
+}
+
 source_config["go/bin"] = {
   alias_to = "file/recursive",
   global_opts = {
