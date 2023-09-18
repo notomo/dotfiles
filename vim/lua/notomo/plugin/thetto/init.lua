@@ -92,6 +92,14 @@ source_actions["github/project"] = {
   end,
 }
 
+source_config["github/project/item_with_close"] = {
+  alias_to = "github/project/item",
+  opts = {
+    project_url = vim.g.notomo_gh_project_url,
+    query = [[.[] | select((.fieldValues.nodes|any(.field.name == "Iteration")))]],
+  },
+}
+
 source_config["github/pull_request_review"] = {
   alias_to = "github/pull_request",
   opts = {
