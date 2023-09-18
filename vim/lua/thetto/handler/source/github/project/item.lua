@@ -2,7 +2,7 @@ local M = {}
 
 M.opts = {
   project_url = "",
-  limit = 50,
+  limit = 30,
   page_limit = 1,
   query = [[.[] | select(.fieldValues.nodes|any(.field.name == "Status" and .name == "Todo"))]],
 }
@@ -17,10 +17,20 @@ function M.collect(source_ctx)
     "-jq=" .. source_ctx.opts.query,
   }
   return require("thetto.util.job").run(cmd, source_ctx, function(item)
-    local value = item.content.title
+    local mark = "O"
+    local is_opened = item.content.state ~= "CLOSED"
+    if not is_opened then
+      mark = "C"
+    end
+
+    local value = ("%s %s"):format(mark, item.content.title)
     return {
       value = value,
       url = item.content.url,
+      content = {
+        is_opened = is_opened,
+        updated_at = item.content.updatedAt,
+      },
     }
   end, {
     to_outputs = function(output)
@@ -30,5 +40,18 @@ function M.collect(source_ctx)
 end
 
 M.kind_name = "url"
+
+M.highlight = require("thetto.util.highlight").columns({
+  {
+    group = "Character",
+    else_group = "Boolean",
+    end_column = 1,
+    filter = function(item)
+      return item.content.is_opened
+    end,
+  },
+})
+
+M.sorters = { "-boolean:content.is_opened", "-numeric:content.updated_at" }
 
 return M
