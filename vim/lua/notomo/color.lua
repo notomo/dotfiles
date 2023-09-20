@@ -72,6 +72,8 @@ vim.api.nvim_set_hl(0, "@constant.lua", {})
 vim.api.nvim_set_hl(0, "@keyword.lua", { link = "Conditional" })
 vim.api.nvim_set_hl(0, "@local.lua", { link = "Keyword" })
 vim.api.nvim_set_hl(0, "@keyword.operator.lua", { link = "Operator" })
+vim.api.nvim_set_hl(0, "@text.literal.block.markdown", {})
+vim.api.nvim_set_hl(0, "@text.literal.markdown_inline", { link = "Conditional" })
 
 vim.api.nvim_set_hl(0, "@text.note", { link = "Todo" })
 
