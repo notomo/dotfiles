@@ -151,7 +151,9 @@ local current_tab_label = function(tab_id, window_id)
 end
 
 local alter_tab_label = function(tab_id, window_id)
-  local bufnr = fn.bufnr("#")
+  local bufnr = vim.api.nvim_win_call(window_id, function()
+    return fn.bufnr("#")
+  end)
   if bufnr == -1 then
     return current_tab_label(tab_id, window_id)
   end
