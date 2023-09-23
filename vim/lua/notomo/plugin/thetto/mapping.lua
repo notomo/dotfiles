@@ -626,7 +626,10 @@ vim.keymap.set("n", "[git]dd", function()
     return require("misclib.message").warn(err)
   end
   local path = vim.api.nvim_buf_get_name(0)
-  require("thetto.util.git").compare(git_root, path, "HEAD", path)
+  local original_cursor = vim.api.nvim_win_get_cursor(0)
+  require("thetto.util.git").compare(git_root, path, "HEAD", path):next(function()
+    vim.api.nvim_win_set_cursor(0, original_cursor)
+  end)
 end)
 
 vim.keymap.set("n", "[git]j", function()
