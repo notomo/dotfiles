@@ -30,15 +30,16 @@ function M.yank(value)
 end
 
 function M.jq()
-  local tmp = vim.fn.getreg("+")
-  vim.cmd.normal({ args = { "]}v%y" }, bang = true })
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local lines = vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], false)
+
   vim.cmd.tabedit()
   vim.bo.buftype = "nofile"
   vim.bo.swapfile = false
   vim.bo.fileformat = "unix"
-  vim.cmd.put()
+
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
   vim.cmd("%join!")
-  vim.fn.setreg("+", tmp)
   vim.cmd("%!jq '.'")
 end
 
