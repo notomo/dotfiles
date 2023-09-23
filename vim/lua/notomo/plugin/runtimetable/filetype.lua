@@ -50,6 +50,7 @@ end
 
 runtime.after.ftplugin["gitcommit.lua"] = function()
   vim.opt_local.spell = true
+  vim.opt_local.textwidth = 0
   vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
 end
 
