@@ -37,6 +37,8 @@ function M.jq()
   vim.bo.buftype = "nofile"
   vim.bo.swapfile = false
   vim.bo.fileformat = "unix"
+  vim.bo.bufhidden = "wipe"
+  vim.bo.filetype = "json"
 
   vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
   vim.cmd("%join!")
