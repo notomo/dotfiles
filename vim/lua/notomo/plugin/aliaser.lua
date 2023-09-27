@@ -7,6 +7,17 @@ aliaser.register_factory("buffer", function(aliases)
     vim.cmd.global([[/^/m0]])
     vim.cmd.nohlsearch()
   end)
+
+  aliases:set("expand_line", function()
+    local line = vim.fn.getline("."):gsub("\\n", "\n"):gsub("\\t", "  ")
+
+    vim.cmd.tabedit()
+    vim.bo.buftype = "nofile"
+    vim.bo.bufhidden = "wipe"
+
+    local lines = vim.split(line, "\n", { plan = true })
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+  end)
 end)
 
 aliaser.register_factory("tree_sitter", function(aliases)
