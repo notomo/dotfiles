@@ -671,30 +671,6 @@ mypack.add("notomo/hlmsg.nvim", {
   },
 })
 
-local indent_blankline_filetype = { "yaml" }
-optpack.add("lukas-reineke/indent-blankline.nvim", {
-  load_on = { filetypes = indent_blankline_filetype, modules = { "indent_blankline" } },
-  hooks = {
-    post_load = function()
-      require("indent_blankline").setup({
-        char = "",
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        },
-        space_char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        },
-        show_trailing_blankline_indent = false,
-        show_current_context = false,
-        show_current_context_start = false,
-      })
-      vim.g.indent_blankline_filetype = indent_blankline_filetype
-    end,
-  },
-})
-
 mypack.add("notomo/assertlib.nvim", {
   load_on = { modules = { "assertlib" } },
 })
