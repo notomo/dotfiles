@@ -149,6 +149,7 @@ setup_ls(lspconfig.denols, {
 
 setup_ls(lspconfig.cssls)
 setup_ls(lspconfig.yamlls, {}, { "unix" })
+setup_ls(lspconfig.flux_lsp, {}, { "unix" })
 setup_ls(lspconfig.autohotkey2, {}, { "win32" })
 setup_ls(lspconfig.graphql, {}, { "unix" })
 setup_ls(lspconfig.ocamllsp, {

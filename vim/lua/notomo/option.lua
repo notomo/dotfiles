@@ -115,7 +115,7 @@ vim.filetype.add({
   filename = {
     ["supervisord.conf"] = "dosini",
   },
-  pattern = {
-    ["*.mk.*"] = "make",
+  extension = {
+    flux = "flux",
   },
 })

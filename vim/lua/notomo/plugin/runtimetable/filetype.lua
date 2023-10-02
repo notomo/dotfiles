@@ -300,6 +300,10 @@ runtime.after.ftplugin["terraform.lua"] = function()
   require("notomo.lib.treesitter").start()
 end
 
+runtime.after.ftplugin["flux.lua"] = function()
+  require("notomo.lsp.mapping").setup()
+end
+
 runtime.after.ftplugin["typescript.lua"] = function()
   vim.opt_local.modeline = false
   vim.opt_local.completeopt:remove("preview")
