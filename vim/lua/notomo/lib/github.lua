@@ -96,7 +96,7 @@ function M.edit_issue(url, field)
   local util = require("pluginbuf.util")
   require("pluginbuf").register("gh-repo-issue", {
     {
-      path = field,
+      path = util.path(field),
       read = function(ctx)
         return util.cmd_output({ "gh", "issue", "view", url, "--json=" .. field, "--jq=." .. field })(ctx)
       end,
