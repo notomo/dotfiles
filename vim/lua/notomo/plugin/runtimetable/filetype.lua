@@ -349,11 +349,31 @@ runtime.after.ftplugin["unionbuf.lua"] = function()
     vim.cmd.normal({ args = { tostring(entry.start_row + 1) .. "gg" }, bang = true })
   end, { buffer = true })
 
+  local visual_range = function()
+    local rows = {
+      vim.fn.line(".") - 1,
+      vim.fn.line("v") - 1,
+    }
+    table.sort(rows, function(a, b)
+      return a < b
+    end)
+    return {
+      start_row = rows[1],
+      end_row = rows[2],
+    }
+  end
+
   vim.keymap.set("n", "J", function()
     require("unionbuf").shift({ end_row = 1 })
   end, { buffer = true })
+  vim.keymap.set("x", "J", function()
+    require("unionbuf").shift({ end_row = 1 }, visual_range())
+  end, { buffer = true })
   vim.keymap.set("n", "K", function()
     require("unionbuf").shift({ start_row = -1 })
+  end, { buffer = true })
+  vim.keymap.set("x", "K", function()
+    require("unionbuf").shift({ start_row = -1 }, visual_range())
   end, { buffer = true })
 end
 
