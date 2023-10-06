@@ -559,6 +559,9 @@ end)
 
 vim.api.nvim_create_user_command("SearchEngine", function(command)
   local query = command.fargs[1]
-  require("notomo.lib.browser").open([[https://google.com/search?q=]] .. require("misclib.url").encode(query))
+  local url = [[https://google.com/search?q=]] .. require("misclib.url").encode(query)
+  vim.notify("Open: " .. url)
+  require("notomo.lib.browser").open(url)
 end, { nargs = 1 })
 vim.keymap.set("n", "[browser]i", [[:<C-u>SearchEngine ]])
+vim.keymap.set("n", "[browser]s", [[:<C-u>SearchEngine <C-r>=expand('<cword>')<CR><CR>]])
