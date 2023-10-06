@@ -383,6 +383,16 @@ for _, name in ipairs(listdefined_names) do
   }
 end
 
+local ignored_file_names = { "COMMIT_EDITMSG" }
+source_config["file/mru"] = {
+  opts = {
+    filter = function(path)
+      local file_name = vim.fs.basename(path)
+      return not vim.tbl_contains(ignored_file_names, file_name)
+    end,
+  },
+}
+
 require("thetto").setup({
   global_opts = {
     display_limit = 500,
