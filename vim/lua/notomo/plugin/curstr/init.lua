@@ -68,7 +68,7 @@ require("curstr").setup({
     print_lua = {
       names = { "togglable/pattern" },
       opts = {
-        patterns = { { "\\v^(\\s*)(local\\s+)?([^=[:space:],]*).*$", "\\1print(vim.inspect(\\3))" } },
+        patterns = { { "\\v^(\\s*)(local\\s+)?([^=[:space:],]*).*$", "\\1vim.print(\\3)" } },
       },
       filetypes = { "lua" },
     },
