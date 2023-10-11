@@ -1,4 +1,3 @@
-vim.keymap.set("n", "[win]O", [[<Cmd>lua require("wintablib.window").close_floating()<CR>]])
 vim.keymap.set("n", "[win]H", [[<Cmd>lua require("wintablib.window").from_left_tab()<CR>]])
 vim.keymap.set("n", "[win]L", [[<Cmd>lua require("wintablib.window").from_right_tab()<CR>]])
 vim.keymap.set("n", "[win]l", [[<Cmd>lua require("wintablib.window").to_right_tab()<CR>]])
