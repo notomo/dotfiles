@@ -165,7 +165,9 @@ vim.keymap.set("n", "[tab]a", [[<Cmd>call VSCodeNotify("workbench.action.previou
 vim.keymap.set("n", "[tab]t", [[<Cmd>call VSCodeNotify("workbench.action.files.newUntitledFile")<CR>]])
 
 vim.keymap.set("n", "[keyword]o", [[<Cmd>call VSCodeNotify("editor.action.revealDefinition")<CR>]])
-vim.keymap.set("n", "[keyword]k", [[<Cmd>call VSCodeNotify("editor.action.showHover")<CR>]])
+vim.keymap.set("n", "[keyword]e", [[<Cmd>call VSCodeNotify("editor.action.showHover")<CR>]])
+vim.keymap.set("n", "[exec]gr", [[<Cmd>call VSCodeNotify("editor.action.goToReferences")<CR>]])
+vim.keymap.set("n", "[exec]gn", [[<Cmd>call VSCodeNotify("editor.action.rename")<CR>]])
 
 vim.keymap.set("n", "[finder];", [[<Cmd>call VSCodeNotify("workbench.action.showCommands")<CR>]])
 vim.keymap.set("n", "[finder]k", [[<Cmd>call VSCodeNotify("workbench.action.openGlobalKeybindings")<CR>]])

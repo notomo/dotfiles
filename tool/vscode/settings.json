@@ -13,5 +13,10 @@
     "editor.formatOnSave": true,
     "security.allowedUNCHosts": [
         "wsl.localhost"
-    ]
+    ],
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "git.openRepositoryInParentFolders": "always",
+    "workbench.editor.empty.hint": "hidden"
 }
