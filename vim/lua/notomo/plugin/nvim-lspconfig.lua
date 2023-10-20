@@ -96,13 +96,9 @@ setup_ls(lspconfig.lua_ls, {
         },
         disable = {
           "need-check-nil", -- HACK: return tbl, err
-          "param-type-mismatch",
-          "cast-type-mismatch",
-          "return-type-mismatch",
-          "cast-local-type",
-          "redundant-return-value", -- HACK: for vim.wait()
-          "undefined-field", -- HACK: for str:sub()
-          "duplicate-set-field", -- HACK: for vim.ui.select etc.
+          "param-type-mismatch", -- HACK: vim.fn.getline("."):sub()
+          "undefined-field", -- HACK: str:sub()
+          "duplicate-set-field", -- HACK: vim.ui.select etc.
         },
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },

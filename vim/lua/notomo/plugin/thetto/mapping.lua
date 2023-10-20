@@ -520,7 +520,7 @@ vim.keymap.set("n", "[finder]ts", thetto_starter("test", { source_opts = { scope
 local get_paths = function(cwd)
   local regex = vim.regex([[\v(_spec.lua|_test.go)$]])
   return vim.fs.find(function(name)
-    return regex:match_str(name)
+    return regex:match_str(name) ~= nil
   end, {
     type = "file",
     limit = math.huge,
