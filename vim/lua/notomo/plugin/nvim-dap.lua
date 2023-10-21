@@ -36,8 +36,8 @@ require("nvim-dap-virtual-text").setup({
 
 local highlightlib = require("misclib.highlight")
 highlightlib.define("DapStopped", {
-  bg = vim.api.nvim_get_hl_by_name("CursorLine", true).background,
-  fg = vim.api.nvim_get_hl_by_name("CursorLineNr", true).foreground,
+  bg = vim.api.nvim_get_hl(0, { name = "CursorLine", link = false }).bg,
+  fg = vim.api.nvim_get_hl(0, { name = "CursorLineNr", link = false }).fg,
   bold = true,
 })
 vim.fn.sign_define("DapStopped", { text = "→", texthl = "DapStopped", linehl = "DapStopped", numhl = "DapStopped" })
