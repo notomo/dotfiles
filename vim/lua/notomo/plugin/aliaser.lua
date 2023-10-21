@@ -27,7 +27,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
     local query_path = dir .. "/scratch.scm"
     vim.fn.writefile({}, query_path, "p")
     vim.opt.runtimepath:append(runtime_dir)
-    vim.treesitter.preview_query()
+    vim.treesitter.query.edit()
     vim.cmd.stopinsert()
     vim.cmd.wincmd("r")
     vim.cmd.wincmd("=")
