@@ -260,6 +260,7 @@ vim.keymap.set("n", "[yank]N", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn
 vim.keymap.set("n", "[yank]p", function()
   local home = vim.fs.normalize("$HOME")
   local path = vim.fs.normalize(vim.fn.expand("%:p"))
+  ---@diagnostic disable-next-line: cast-local-type
   path = vim.fn.substitute(path, "^" .. home, "~", "")
   require("notomo.lib.edit").yank(path)
 end)
@@ -267,6 +268,7 @@ vim.keymap.set("n", "[yank]g", function()
   local git = vim.fs.find(".git", { upward = true, type = "directory" })[1]
   local git_root = vim.fs.dirname(git)
   local path = vim.fs.normalize(vim.fn.expand("%:p"))
+  ---@diagnostic disable-next-line: cast-local-type
   path = vim.fn.substitute(path, "^" .. git_root, ".", "")
   require("notomo.lib.edit").yank(path)
 end)
@@ -501,6 +503,7 @@ vim.keymap.set("n", "[term]g", function()
   local path = vim.fn.finddir(".git", ",;")
   local project_path = "."
   if path ~= "" then
+    ---@diagnostic disable-next-line: cast-local-type
     project_path = vim.fn.fnamemodify(path, ":p:h:h")
   end
   vim.cmd.tabedit()
