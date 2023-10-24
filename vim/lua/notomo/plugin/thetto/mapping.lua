@@ -507,6 +507,12 @@ vim.keymap.set("n", "[finder]q", thetto_starter("cmd/jq"))
 vim.keymap.set("n", "[finder]jl", thetto_starter("vim/jump", { source_opts = { per_file = true } }))
 vim.keymap.set("n", "[finder]z", thetto_starter("cmd/zsh/history"))
 vim.keymap.set("n", "[finder]gP", thetto_starter("github/pull_request"))
+vim.keymap.set("n", "[finder]gp", function()
+  require("thetto").start("github/pull_request", { source_opts = { url = vim.fn.expand("<cWORD>") } })
+end)
+vim.keymap.set("n", "[finder]gi", function()
+  require("thetto").start("github/issue", { source_opts = { url = vim.fn.expand("<cWORD>") } })
+end)
 vim.keymap.set("n", "[finder]gI", function()
   require("thetto").start("github/project/item", {
     source_opts = {
@@ -549,7 +555,6 @@ vim.keymap.set("n", "[finder]b", thetto_starter("url/bookmark"))
 -- custom source
 vim.keymap.set("n", "[finder]p", thetto_starter("plugin"))
 vim.keymap.set("n", "[finder]e", thetto_starter("emoji"))
-vim.keymap.set("n", "[finder]gp", thetto_starter("go/package"))
 vim.keymap.set("n", "[finder]a", thetto_starter("aliaser"))
 
 vim.keymap.set("n", "[finder]d", thetto_starter("vim/diagnostic"))
