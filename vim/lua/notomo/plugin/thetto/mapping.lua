@@ -639,7 +639,7 @@ end)
 
 vim.keymap.set("n", "[git]j", function()
   if vim.wo.diff then
-    vim.api.nvim_feedkeys(vim.keycode("]c"), "", true)
+    vim.api.nvim_feedkeys(vim.keycode("]c"), "m", true)
     return
   end
 
@@ -660,7 +660,7 @@ vim.keymap.set("n", "[git]j", function()
 end)
 vim.keymap.set("n", "[git]k", function()
   if vim.wo.diff then
-    vim.api.nvim_feedkeys(vim.keycode("[c"), "", true)
+    vim.api.nvim_feedkeys(vim.keycode("[c"), "m", true)
     return
   end
 

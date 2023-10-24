@@ -7,11 +7,7 @@ function M.complete()
     vim.schedule(function()
       cmp.close()
     end)
-    return vim.api.nvim_feedkeys(
-      vim.keycode("<Plug>(neosnippet_expand)"),
-      "m",
-      true
-    )
+    return vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
   end
 
   local selected = cmp.get_selected_entry()
@@ -19,7 +15,7 @@ function M.complete()
     vim.schedule(function()
       cmp.close()
     end)
-    return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "n", true)
+    return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
   end
 
   if not cmp.visible() then
@@ -35,11 +31,7 @@ function M.complete()
   vim.schedule(function()
     cmp.close()
     if vim.fn["neosnippet#expandable"]() ~= 0 then
-      return vim.api.nvim_feedkeys(
-        vim.keycode("<Plug>(neosnippet_expand)"),
-        "m",
-        true
-      )
+      return vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
     end
   end)
   return vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "m", true)
