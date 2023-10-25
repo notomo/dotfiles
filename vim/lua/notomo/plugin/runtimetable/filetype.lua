@@ -314,6 +314,15 @@ runtime.after.ftplugin["typescript.lua"] = function()
   vim.keymap.set("n", "[finder]i", [[<Cmd>lua require("thetto").start("deno/deps")<CR>]])
 end
 
+runtime.after.ftplugin["typescriptreact.lua"] = function()
+  vim.opt_local.modeline = false
+  vim.opt_local.completeopt:remove("preview")
+  vim.opt_local.tabstop = 2
+  vim.opt_local.softtabstop = 2
+  vim.opt_local.expandtab = true
+  require("notomo.lsp.mapping").setup()
+end
+
 runtime.after.ftplugin["vim.lua"] = function()
   vim.opt_local.foldmethod = "marker"
   vim.b.match_words =
