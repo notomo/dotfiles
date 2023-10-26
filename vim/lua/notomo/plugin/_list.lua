@@ -246,12 +246,17 @@ mypack.add("notomo/wintablib.nvim", {
   hooks = { post_add = require_fn("notomo.plugin.wintablib") },
 })
 
+local enabled_copilot = vim.fn.has("mac") == 1
+
 optpack.add("hrsh7th/nvim-cmp", {
   load_on = { modules = { "cmp" }, events = { "InsertEnter" } },
   hooks = {
     post_load = require("notomo.lib.once").new(
       vim.schedule_wrap(function()
         vim.cmd.runtime({ args = { "after/plugin/cmp_*.lua" }, bang = true })
+        if enabled_copilot then
+          require("copilot_cmp").setup()
+        end
         require("notomo.plugin.cmp").setup()
       end),
       "cmp_setup"
@@ -264,6 +269,31 @@ optpack.add("hrsh7th/cmp-path", { load_on = { events = { "InsertEnter" } } })
 optpack.add("hrsh7th/cmp-nvim-lua", { load_on = { events = { "InsertEnter" } } })
 mypack.add("notomo/cmp-neosnippet", { load_on = { events = { "InsertEnter" } } })
 optpack.add("ray-x/lsp_signature.nvim", { load_on = { modules = { "lsp_signature" }, events = { "InsertEnter" } } })
+
+optpack.add("zbirenbaum/copilot.lua", {
+  enabled = enabled_copilot,
+  load_on = { events = { "InsertEnter" } },
+})
+optpack.add("zbirenbaum/copilot-cmp", {
+  enabled = enabled_copilot,
+  depends = { "copilot.lua" },
+  load_on = { events = { "VimEnter" }, modules = { "copilot_cmp" } },
+  hooks = {
+    post_load = function()
+      require("copilot").setup({
+        filetypes = {
+          go = true,
+          terraform = true,
+          yaml = true,
+          typescript = true,
+          typescriptreact = true,
+          ["."] = false,
+        },
+      })
+      vim.cmd.Copilot("enable")
+    end,
+  },
+})
 
 mypack.add("notomo/searcho.nvim", {
   load_on = {

@@ -83,6 +83,7 @@ function M.setup()
     sources = {
       { name = "neosnippet" },
       { name = "nvim_lsp" },
+      { name = "copilot" },
       { name = "nvim_lua" },
       { name = "path" },
       {
