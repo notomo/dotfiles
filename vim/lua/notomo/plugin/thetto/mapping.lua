@@ -525,13 +525,18 @@ vim.keymap.set("n", "[finder]to", thetto_starter("test"))
 vim.keymap.set("n", "[finder]ts", thetto_starter("test", { source_opts = { scope = "largest_ancestor" } }))
 local get_paths = function(cwd)
   local regex = vim.regex([[\v(_spec.lua|_test.go)$]])
-  return vim.fs.find(function(name)
-    return regex:match_str(name) ~= nil
-  end, {
-    type = "file",
-    limit = math.huge,
-    path = cwd,
-  })
+  return vim
+    .iter(vim.fs.find(function(name)
+      return regex:match_str(name) ~= nil
+    end, {
+      type = "file",
+      limit = math.huge,
+      path = cwd,
+    }))
+    :filter(function(path)
+      return path:find("%.shared") == nil
+    end)
+    :totable()
 end
 vim.keymap.set(
   "n",
