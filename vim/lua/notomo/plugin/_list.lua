@@ -812,6 +812,12 @@ mypack.add("notomo/pluginbuf.nvim", {
   },
 })
 
+mypack.add("notomo/obhook.nvim", {
+  load_on = {
+    modules = { "obhook" },
+  },
+})
+
 optpack.add("uga-rosa/ccc.nvim", {
   load_on = { modules = { "ccc" }, cmds = { "Ccc*" } },
 })
