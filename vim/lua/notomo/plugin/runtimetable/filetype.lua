@@ -386,4 +386,20 @@ runtime.after.ftplugin["unionbuf.lua"] = function()
   end, { buffer = true })
 end
 
+runtime.after.ftplugin["prisma.lua"] = function()
+  vim.opt_local.tabstop = 2
+  vim.opt_local.softtabstop = 2
+  vim.opt_local.expandtab = true
+
+  require("notomo.lsp.mapping").setup()
+  vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+    buffer = 0,
+    callback = function()
+      vim.lsp.buf.format({ timeout_ms = 3000 })
+    end,
+  })
+
+  require("notomo.lib.treesitter").start()
+end
+
 require("notomo.plugin.runtimetable").save(runtime)

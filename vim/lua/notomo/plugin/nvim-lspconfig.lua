@@ -152,6 +152,7 @@ setup_ls(lspconfig.ocamllsp, {
   root_dir = require("lspconfig.util").root_pattern("*.opam", ".git", "dune-project", ".opam-switch"),
 })
 setup_ls(lspconfig.terraformls, {}, { "unix" })
+setup_ls(lspconfig.prismals, {}, { "unix" })
 
 require("lsp_signature").setup({
   bind = true,

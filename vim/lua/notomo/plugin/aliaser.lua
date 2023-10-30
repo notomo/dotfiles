@@ -43,6 +43,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
       "terraform",
       "graphql",
       "comment",
+      "prisma",
     }) do
       vim.cmd.TSInstall(language)
     end
