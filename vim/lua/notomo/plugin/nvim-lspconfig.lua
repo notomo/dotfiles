@@ -32,8 +32,12 @@ local setup_ls = function(ls, config, enable_features)
       },
     },
   })
+  config.capabilities.textDocument.semanticTokens = {
+    dynamicRegistration = false,
+    tokenTypes = {},
+    tokenModifiers = {},
+  }
   config.on_attach = function(client, bufnr)
-    vim.lsp.semantic_tokens.stop(bufnr, client.id)
     local enable_navic = {
       go = true,
     }
