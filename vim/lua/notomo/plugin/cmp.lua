@@ -80,10 +80,12 @@ function M.setup()
     window = {
       documentation = documentation,
     },
+    sorting = {
+      priority_weight = 200.0,
+    },
     sources = {
       { name = "neosnippet" },
       { name = "nvim_lsp" },
-      { name = "copilot" },
       { name = "nvim_lua" },
       { name = "path" },
       {
@@ -99,6 +101,7 @@ function M.setup()
           end,
         },
       },
+      { name = "copilot" },
     },
   })
 end
