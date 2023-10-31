@@ -38,13 +38,7 @@ local setup_ls = function(ls, config, enable_features)
     tokenModifiers = {},
   }
   config.on_attach = function(client, bufnr)
-    local enable_navic = {
-      go = true,
-    }
-    local filetype = vim.bo[bufnr].filetype
-    if enable_navic[filetype] and client.server_capabilities.documentSymbolProvider then
-      require("nvim-navic").attach(client, bufnr)
-    end
+    require("notomo.lsp.navigation").attach(client, bufnr)
   end
   ls.setup(config)
 end

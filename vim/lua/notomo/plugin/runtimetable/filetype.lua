@@ -12,7 +12,7 @@ runtime.after.ftplugin["ansible.lua"] = function()
 end
 
 runtime.after.ftplugin["autohotkey.lua"] = function()
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     buffer = 0,
     callback = function()
@@ -25,13 +25,13 @@ runtime.after.ftplugin["c.lua"] = function()
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
   vim.keymap.set("n", "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
   vim.keymap.set("n", "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
 end
 
 runtime.after.ftplugin["cpp.lua"] = function()
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
 end
 
 runtime.after.ftplugin["cs.lua"] = function()
@@ -57,7 +57,7 @@ end
 runtime.after.ftplugin["go.lua"] = function()
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.expandtab = false
-  require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
+  require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
 
   vim.keymap.set(
     "n",
@@ -80,12 +80,6 @@ runtime.after.ftplugin["go.lua"] = function()
   vim.keymap.set("ia", "~=", [[!=]], { buffer = true })
 
   require("notomo.plugin.nvim-treesitter").mapping()
-
-  local window_id = vim.api.nvim_get_current_win()
-  if not require("misclib.window").is_floating(window_id) then
-    vim.wo[window_id].winbar = [[%!v:lua.require("stlparts").build("navic")]]
-  end
-
   require("notomo.lib.treesitter").start()
 end
 
@@ -102,7 +96,7 @@ runtime.after.ftplugin["graphql.lua"] = function()
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
   require("notomo.lib.treesitter").start()
 end
 
@@ -135,7 +129,7 @@ runtime.after.ftplugin["javascript.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
   require("notomo.lib.npm").mapping()
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
 
   if vim.endswith(vim.fn.bufname(), ".mjs") then
     vim.b.cmdhndlr = { normal_runner = "javascript/zx" }
@@ -184,7 +178,7 @@ runtime.after.ftplugin["lua.lua"] = function()
   vim.keymap.set("n", "[yank]I", function()
     require("notomo.lib.edit").yank(require("misclib.module.path").detect(vim.fn.expand("%:p")))
   end, { buffer = true })
-  require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
+  require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
 
   vim.keymap.set("ia", "!=", [[~=]], { buffer = true })
 
@@ -243,7 +237,7 @@ runtime.after.ftplugin["neosnippet.lua"] = function()
 end
 
 runtime.after.ftplugin["ocaml.lua"] = function()
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
   vim.schedule(function()
     vim.opt_local.indentkeys = ""
   end)
@@ -258,7 +252,7 @@ runtime.after.ftplugin["python.lua"] = function()
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.modeline = false
   vim.b.cursorword = 0
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
 
   vim.keymap.set("n", "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
   vim.keymap.set("n", "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
@@ -276,7 +270,7 @@ end
 runtime.after.ftplugin["rust.lua"] = function()
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.modeline = false
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
 
   vim.keymap.set("n", "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
   vim.keymap.set("n", "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
@@ -296,12 +290,12 @@ runtime.after.ftplugin["sql.lua"] = function()
 end
 
 runtime.after.ftplugin["terraform.lua"] = function()
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
   require("notomo.lib.treesitter").start()
 end
 
 runtime.after.ftplugin["flux.lua"] = function()
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
 end
 
 runtime.after.ftplugin["typescript.lua"] = function()
@@ -310,7 +304,7 @@ runtime.after.ftplugin["typescript.lua"] = function()
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
   vim.keymap.set("n", "[finder]i", [[<Cmd>lua require("thetto").start("deno/deps")<CR>]])
 end
 
@@ -320,7 +314,7 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
 end
 
 runtime.after.ftplugin["vim.lua"] = function()
@@ -330,7 +324,7 @@ runtime.after.ftplugin["vim.lua"] = function()
   vim.opt_local.iskeyword:remove("#")
 
   vim.keymap.set("n", "[exec]s", [[<Cmd>source %<CR>]], { buffer = true })
-  require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
+  require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
 end
 
 runtime.after.ftplugin["vue.lua"] = function()
@@ -344,7 +338,7 @@ runtime.after.ftplugin["xml.lua"] = function()
 end
 
 runtime.after.ftplugin["yaml.lua"] = function()
-  require("notomo.lsp.mapping").setup({ symbol_source = "cmd/ctags" })
+  require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
 end
 
 runtime.after.ftplugin["unionbuf.lua"] = function()
@@ -391,7 +385,7 @@ runtime.after.ftplugin["prisma.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
 
-  require("notomo.lsp.mapping").setup()
+  require("notomo.lsp").setup()
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     buffer = 0,
     callback = function()
