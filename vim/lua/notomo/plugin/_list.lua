@@ -287,7 +287,7 @@ optpack.add("zbirenbaum/copilot-cmp", {
           yaml = true,
           typescript = true,
           typescriptreact = true,
-          ["."] = false,
+          ["*"] = false,
         },
       })
       vim.cmd.Copilot("enable")
