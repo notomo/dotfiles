@@ -319,6 +319,13 @@ source_config["vim/buffer_autocmd"] = {
   },
 }
 
+source_config["vim/modified_buffer"] = {
+  alias_to = "vim/buffer",
+  opts = {
+    modified = true,
+  },
+}
+
 source_actions["vim/filetype"] = {
   action_open_scratch = function(items)
     local item = items[1]
