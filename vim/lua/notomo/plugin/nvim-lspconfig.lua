@@ -109,9 +109,7 @@ setup_ls(lspconfig.lua_ls, {
 })
 setup_ls(lspconfig.pylsp, {}, { "unix" })
 setup_ls(lspconfig.clangd)
-setup_ls(lspconfig.eslint, {
-  filetypes = { "javascript" },
-}, { "unix" })
+setup_ls(lspconfig.eslint, {}, { "unix" })
 
 local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
 setup_ls(lspconfig.tsserver, {
