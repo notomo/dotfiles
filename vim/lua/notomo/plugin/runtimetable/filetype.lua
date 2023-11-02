@@ -396,4 +396,12 @@ runtime.after.ftplugin["prisma.lua"] = function()
   require("notomo.lib.treesitter").start()
 end
 
+runtime.after.ftplugin["css.lua"] = function()
+  vim.opt_local.tabstop = 2
+  vim.opt_local.softtabstop = 2
+  vim.opt_local.expandtab = true
+
+  require("notomo.lsp").setup()
+end
+
 require("notomo.plugin.runtimetable").save(runtime)

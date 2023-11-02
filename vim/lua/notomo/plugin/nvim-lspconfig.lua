@@ -24,7 +24,6 @@ local setup_ls = function(ls, config, enable_features)
   config.flags = config.flags or {}
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
   config.capabilities = require("cmp_nvim_lsp").default_capabilities()
-  config.capabilities.textDocument.completion.completionItem.snippetSupport = false
   config.capabilities = vim.tbl_deep_extend("force", config.capabilities, {
     workspace = {
       didChangeWatchedFiles = {
