@@ -167,6 +167,9 @@ aliaser.register_factory("package_json", function(aliases)
 end)
 
 aliaser.register_factory("format", function(aliases)
+  aliases:set("do", function()
+    vim.lsp.buf.format({ async = true })
+  end)
   aliases:set("toggle", function()
     local disabled = vim.b.notomo_format_disabled
     vim.b.notomo_format_disabled = not disabled
