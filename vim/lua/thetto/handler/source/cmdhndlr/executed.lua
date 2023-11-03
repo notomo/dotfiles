@@ -1,14 +1,9 @@
 local M = {}
 
-M.opts = { is_running = nil }
-
-function M.collect(source_ctx)
+function M.collect()
   return vim
     .iter(require("cmdhndlr").executed_runners())
     :map(function(runner)
-      if source_ctx.opts.is_running and not runner.is_running then
-        return
-      end
       return {
         value = runner.full_name,
         bufnr = runner.bufnr,

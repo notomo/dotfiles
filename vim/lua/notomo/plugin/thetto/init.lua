@@ -209,6 +209,15 @@ source_config["vim/lsp/outgoing_calls"] = {
   filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
 }
 
+local ignored_symbol_kind = { "variable", "field" }
+source_config["vim/lsp/document_symbol"] = {
+  global_opts = {
+    filter = function(item)
+      return not vim.tbl_contains(ignored_symbol_kind, item.symbol_kind:lower())
+    end,
+  },
+}
+
 source_config["file/bookmark"] = {
   opts = {
     default_paths = {
@@ -227,8 +236,13 @@ source_config["file/bookmark"] = {
   },
 }
 
+local ignored_ctags_type = { "member", "package", "packageName", "anonMember", "constant" }
 source_config["cmd/ctags"] = {
-  opts = { ignore = { "member", "package", "packageName", "anonMember", "constant" } },
+  global_opts = {
+    filter = function(item)
+      return not vim.tbl_contains(ignored_ctags_type, item.ctags_type)
+    end,
+  },
   filters = { "regex", "-regex" },
 }
 
@@ -321,8 +335,10 @@ source_config["vim/buffer_autocmd"] = {
 
 source_config["vim/modified_buffer"] = {
   alias_to = "vim/buffer",
-  opts = {
-    modified = true,
+  global_opts = {
+    filter = function(item)
+      return vim.bo[item.bufnr].modified
+    end,
   },
 }
 
@@ -392,9 +408,9 @@ end
 
 local ignored_file_names = { "COMMIT_EDITMSG" }
 source_config["file/mru"] = {
-  opts = {
-    filter = function(path)
-      local file_name = vim.fs.basename(path)
+  global_opts = {
+    filter = function(item)
+      local file_name = vim.fs.basename(item.path)
       return not vim.tbl_contains(ignored_file_names, file_name)
     end,
   },

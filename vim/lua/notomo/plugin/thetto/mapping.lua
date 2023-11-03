@@ -499,7 +499,17 @@ vim.keymap.set("n", "[file];", function()
   end)
 end)
 
-vim.keymap.set("n", "[finder]T", thetto_starter("vim/buffer", { source_opts = { buftype = "terminal" } }))
+vim.keymap.set(
+  "n",
+  "[finder]T",
+  thetto_starter("vim/buffer", {
+    opts = {
+      filter = function(item)
+        return vim.bo[item.bufnr].buftype == "terminal"
+      end,
+    },
+  })
+)
 vim.keymap.set("n", "[exec]cv", thetto_starter("vim/execute", { source_opts = { cmd = "version" } }))
 vim.keymap.set("n", "[finder]J", thetto_starter("vim/jump"))
 vim.keymap.set("n", "[finder]c", thetto_starter("vim/command"))
