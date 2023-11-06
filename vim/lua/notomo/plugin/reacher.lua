@@ -10,8 +10,24 @@ vim.keymap.set(
 )
 vim.keymap.set({ "n", "x" }, "gs", [[<Cmd>lua require("reacher").start()<CR>]])
 vim.keymap.set({ "n", "x" }, "gS", [[<Cmd>lua require("reacher").start_multiple()<CR>]])
-vim.keymap.set("n", "gj", [[<Cmd>lua require("reacher").start({first_row = vim.fn.line(".") + 1})<CR>]])
-vim.keymap.set("n", "gk", [[<Cmd>lua require("reacher").start({last_row = vim.fn.line(".") - 1})<CR>]])
+
+local safe_start = function(args)
+  local ok, result = pcall(require("reacher").start, args)
+  if ok then
+    return
+  end
+  if not result:find([=[^%[reacher%]]=]) then
+    error(result)
+  end
+  vim.notify(result, vim.log.levels.WARN)
+end
+vim.keymap.set("n", "gj", function()
+  safe_start({ first_row = vim.fn.line(".") + 1 })
+end)
+vim.keymap.set("n", "gk", function()
+  safe_start({ last_row = vim.fn.line(".") - 1 })
+end)
+
 vim.keymap.set({ "n", "x" }, "gl", function()
   require("reacher").start({
     first_row = vim.fn.line("."),
