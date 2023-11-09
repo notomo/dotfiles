@@ -44,6 +44,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
       "graphql",
       "comment",
       "prisma",
+      "tsx",
     }) do
       vim.cmd.TSInstall(language)
     end
