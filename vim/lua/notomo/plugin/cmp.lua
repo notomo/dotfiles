@@ -29,10 +29,11 @@ function M.complete()
 
   -- NOTE: select by <C-n> and then close and expand
   vim.schedule(function()
-    cmp.close()
     if vim.fn["neosnippet#expandable"]() ~= 0 then
+      cmp.close()
       return vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
     end
+    return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
   end)
   return vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "m", true)
 end
