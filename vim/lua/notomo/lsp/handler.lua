@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd({ "LspProgress" }, {
 })
 
 vim.ui.select = function(items, opts, on_choice)
-  if opts.kind == "codeaction" and #items == 1 and items[1][2].kind == "refactor.extract" then
+  if opts.kind == "codeaction" and vim.tbl_get(items, 1, 2, "kind") == "refactor.extract" then
     require("misclib.message").info("Executed: " .. items[1][2].title, "Title")
     return on_choice(items[1])
   end
@@ -47,7 +47,7 @@ vim.ui.select = function(items, opts, on_choice)
       return item.row == current_row or item.end_row == current_row
     end
     get_range = function(item)
-      local range = vim.tbl_get(item[2], "command", "arguments", 1, "Range") -- gopls
+      local range = vim.tbl_get(item, 2, "command", "arguments", 1, "Range") -- gopls
       if not range then
         return nil
       end
