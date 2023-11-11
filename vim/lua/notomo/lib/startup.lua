@@ -144,4 +144,15 @@ function M.quit_after_start()
   })
 end
 
+function M.update_runtimetable()
+  local ok, result = pcall(function()
+    require("notomo.plugin.runtimetable.mytodo")
+    require("notomo.plugin.runtimetable.filetype")
+  end)
+  if not ok then
+    vim.notify(result)
+  end
+  vim.cmd([[message | quitall!]])
+end
+
 return M

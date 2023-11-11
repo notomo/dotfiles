@@ -10,6 +10,16 @@
     dest: "{{ home_dir }}/.gitconfig"
   when: not gitconfig_file.stat.exists
 
+- name: copy post-merge
+  copy:
+    src: post-merge
+    dest: "{{ dotfiles_dir }}/.git/hooks/post-merge"
+
+- name: chmod +x post-merge
+  file:
+    dest: "{{ dotfiles_dir }}/.git/hooks/post-merge"
+    mode: +x
+
 - name: set git excludesfile
   git_config:
     name: core.excludesfile

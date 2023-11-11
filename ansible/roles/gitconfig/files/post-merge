@@ -1,0 +1,3 @@
+#/usr/bin/env bash
+diff_paths="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+echo ${diff_paths} | grep "runtimetable/" && nvim --headless +'lua require("notomo.lib.startup").update_runtimetable()'
