@@ -107,6 +107,14 @@ function M.setup(opts)
   vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true, buffer = true })
 
   vim.keymap.set({ "n", "x" }, "[keyword]c", [[:lua vim.lsp.buf.code_action()<CR>]], { silent = true, buffer = true })
+  vim.keymap.set({ "n", "x" }, "[keyword]a", function()
+    vim.lsp.buf.code_action({
+      filter = function(e)
+        return e.title:find("Add import")
+      end,
+      apply = true,
+    })
+  end, { silent = true, buffer = true })
   vim.keymap.set("n", "[keyword]e", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], { buffer = true })
 
   vim.keymap.set("n", "[keyword]o", function()
