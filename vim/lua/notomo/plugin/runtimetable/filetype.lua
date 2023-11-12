@@ -162,6 +162,10 @@ runtime.after.ftplugin["json.lua"] = function()
   end
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
+
+  if require("cmdhndlr").get("format_runner/json/prettier").working_dir_marker() then
+    vim.b.cmdhndlr = { format_runner = "json/prettier" }
+  end
 end
 
 runtime.after.ftplugin["jsonc.lua"] = function()
