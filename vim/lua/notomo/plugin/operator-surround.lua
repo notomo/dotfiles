@@ -31,6 +31,11 @@ vim.g["operator#surround#blocks"] = {
       keys = { "apre" },
     },
     {
+      block = { "<div>\n", "\n</div>" },
+      motionwise = { "char", "line", "block" },
+      keys = { "," },
+    },
+    {
       block = { "<details>\n<summary>Details</summary>\n\n", "\n\n\n" .. ctrl_u .. "</details>" },
       motionwise = { "char", "line", "block" },
       keys = { "s" },
