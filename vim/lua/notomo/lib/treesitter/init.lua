@@ -95,4 +95,39 @@ function M.get_expanded_row_range(bufnr, row, column)
   return start_row, end_row
 end
 
+function M.unwrap_selected_node()
+  local pos1 = {
+    vim.fn.line("v"),
+    vim.fn.col("v"),
+  }
+  local pos2 = {
+    vim.fn.line("."),
+    vim.fn.col("."),
+  }
+  local start_pos = pos1
+  local end_pos = pos2
+  if pos1[1] > pos2[1] or (pos1[1] == pos2[1] and pos1[2] > pos2[2]) then
+    start_pos = pos2
+    end_pos = pos1
+  end
+
+  local bufnr = vim.api.nvim_get_current_buf()
+  local node = vim.treesitter.get_node({
+    pos = start_pos,
+    bufnr = bufnr,
+  })
+  local child = node:child(1)
+  local child_node_text = vim.treesitter.get_node_text(child, bufnr)
+  vim.api.nvim_buf_set_text(
+    bufnr,
+    start_pos[1] - 1,
+    start_pos[2] - 1,
+    end_pos[1] - 1,
+    end_pos[2],
+    vim.split(child_node_text, "\n", { plain = true })
+  )
+
+  require("misclib.visual_mode").leave()
+end
+
 return M

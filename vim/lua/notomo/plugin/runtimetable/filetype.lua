@@ -319,7 +319,21 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
+
+  require("notomo.plugin.nvim-treesitter").mapping()
+  require("notomo.lib.treesitter").start()
+  vim.keymap.set(
+    "n",
+    "<CR>",
+    [[:<C-u>TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
+    { buffer = true }
+  )
 end
+
+runtime.after.queries.tsx["textobjects.scm"] = [=[
+;; extends
+(jsx_element) @jsx_element.outer
+]=]
 
 runtime.after.ftplugin["vim.lua"] = function()
   vim.opt_local.foldmethod = "marker"

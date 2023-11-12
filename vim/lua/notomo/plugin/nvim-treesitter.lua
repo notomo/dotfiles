@@ -82,6 +82,30 @@ function M.mapping()
     [[<Cmd>lua require("notomo.plugin.nvim-treesitter").prev_no_indent_function()<CR>]],
     { buffer = true }
   )
+
+  vim.keymap.set(
+    "n",
+    "<CR>",
+    [[:<C-u>lua require("nvim-treesitter.incremental_selection").init_selection()<CR>:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
+    { buffer = true }
+  )
+  vim.keymap.set(
+    "x",
+    "<CR>",
+    [[:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
+    { buffer = true }
+  )
+  vim.keymap.set(
+    "x",
+    "g<CR>",
+    [[:lua require("nvim-treesitter.incremental_selection").node_decremental()<CR>]],
+    { buffer = true }
+  )
+
+  vim.keymap.set("x", "D", function()
+    require("notomo.lib.treesitter").unwrap_selected_node()
+  end, { silent = true })
+
   require("notomo.plugin.nvim-treesitter").text_object_mapping()
 end
 
