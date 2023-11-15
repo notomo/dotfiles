@@ -110,7 +110,7 @@ function M.setup(opts)
   vim.keymap.set({ "n", "x" }, "[keyword]a", function()
     vim.lsp.buf.code_action({
       filter = function(e)
-        return e.title:find("Add import")
+        return e.title:find("Add import") or e.title:find("Update import")
       end,
       apply = true,
     })
