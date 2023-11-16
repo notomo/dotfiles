@@ -16,7 +16,7 @@ function M.mapping()
   vim.keymap.set(
     "n",
     "[exec],",
-    [[<Cmd>lua require("thetto").start("cmd/npm/script", {opts = {sorters = {"alphabet"}, target = "upward", target_patterns = {"package.json"}, insert = false}})<CR>]],
+    [[<Cmd>lua require("thetto").start("cmd/npm/script", {opts = {sorters = {"alphabet"},  cwd = require("thetto.util.cwd").project() , insert = false}})<CR>]],
     { buffer = true }
   )
 end

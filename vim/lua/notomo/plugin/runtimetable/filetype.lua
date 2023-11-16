@@ -309,6 +309,7 @@ runtime.after.ftplugin["typescript.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
+  require("notomo.lib.npm").mapping()
   vim.keymap.set("n", "[finder]i", [[<Cmd>lua require("thetto").start("deno/deps")<CR>]])
 end
 
@@ -319,6 +320,7 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
+  require("notomo.lib.npm").mapping()
 
   require("notomo.plugin.nvim-treesitter").mapping()
   require("notomo.lib.treesitter").start()
