@@ -146,8 +146,7 @@ end
 
 function M.update_runtimetable()
   local ok, result = pcall(function()
-    require("notomo.plugin.runtimetable.mytodo")
-    require("notomo.plugin.runtimetable.filetype")
+    require("notomo.plugin.runtimetable").save_all()
   end)
   if not ok then
     vim.notify(result)
