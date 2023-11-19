@@ -738,6 +738,7 @@ optpack.add("previm/previm", {
 })
 
 optpack.add("numToStr/Comment.nvim", {
+  depends = { "nvim-ts-context-commentstring" },
   load_on = { events = { "FileType" } },
   hooks = {
     post_load = function()
@@ -746,12 +747,14 @@ optpack.add("numToStr/Comment.nvim", {
           basic = false,
           extra = false,
         },
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       })
       vim.keymap.set("n", "<Space>c", "<Plug>(comment_toggle_linewise)_")
       vim.keymap.set("x", "<Space>c", "<Plug>(comment_toggle_linewise_visual)")
     end,
   },
 })
+optpack.add("JoosepAlviste/nvim-ts-context-commentstring") -- for tsx
 
 optpack.add("Wansmer/treesj", {
   depends = { "nvim-treesitter" },
