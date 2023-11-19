@@ -20,12 +20,8 @@ return {
       :filter(function(file_path)
         return vim.fs.basename(file_path) ~= "init.lua"
       end)
-      :map(function(file_path)
-        return require("misclib.module.path").detect(file_path)
-      end)
-      :each(function(module_path)
-        package.loaded[module_path] = nil
-        require(module_path)
+      :each(function(file_path)
+        dofile(file_path)
       end)
   end,
 }
