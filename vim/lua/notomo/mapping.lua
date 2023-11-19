@@ -453,6 +453,10 @@ vim.keymap.set("n", "[winmv]l", [[<C-w>l]])
 vim.keymap.set("n", "[winmv]s", [[<C-w>r]])
 vim.keymap.set("n", "[winmv];", [[<C-w>w]])
 
+vim.keymap.set("n", "mr", "qa")
+vim.keymap.set("n", "mq", "q")
+vim.keymap.set("n", "me", "@a")
+
 vim.keymap.set("n", "[win]h", [[<Cmd>split<CR>]])
 vim.keymap.set("n", "[win]v", [[<Cmd>vsplit<CR>]])
 vim.keymap.set("n", "[win]o", [[<Cmd>silent only<CR>]])
