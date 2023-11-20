@@ -138,7 +138,7 @@ setup_ls(lspconfig.denols, {
   end,
 }, { "unix" })
 
-setup_ls(lspconfig.cssls)
+setup_ls(lspconfig.cssls, {}, { "unix" })
 setup_ls(lspconfig.yamlls, {}, { "unix" })
 setup_ls(lspconfig.flux_lsp, {}, { "unix" })
 setup_ls(lspconfig.autohotkey2, {}, { "win32" })
