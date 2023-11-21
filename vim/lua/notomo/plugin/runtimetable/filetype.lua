@@ -322,6 +322,13 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   require("notomo.lsp").setup()
   require("notomo.lib.npm").mapping()
 
+  vim.keymap.set("n", "[keyword]go", function()
+    require("notomo.lib.cssmodules").go_to_definition()
+  end, { buffer = true })
+  vim.keymap.set("n", "[keyword]gv", function()
+    require("notomo.lib.cssmodules").go_to_definition("vsplit")
+  end, { buffer = true })
+
   require("notomo.plugin.nvim-treesitter").mapping()
   require("notomo.lib.treesitter").start()
   vim.keymap.set(
