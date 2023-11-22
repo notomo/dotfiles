@@ -21,7 +21,12 @@ function M.complete()
   if not cmp.visible() then
     vim.schedule(function()
       cmp.complete({
-        config = { sources = { { name = "nvim_lsp" } } },
+        config = {
+          sources = {
+            { name = "nvim_lsp" },
+            { name = "css_modules" },
+          },
+        },
       })
     end)
     return ""
@@ -87,6 +92,7 @@ function M.setup()
     sources = {
       { name = "neosnippet" },
       { name = "nvim_lsp" },
+      { name = "css_modules" },
       { name = "nvim_lua" },
       { name = "path" },
       {

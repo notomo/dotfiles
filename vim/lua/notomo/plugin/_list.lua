@@ -254,6 +254,7 @@ optpack.add("hrsh7th/nvim-cmp", {
     post_load = require("notomo.lib.once").new(
       vim.schedule_wrap(function()
         vim.cmd.runtime({ args = { "after/plugin/cmp_*.lua" }, bang = true })
+        require("cmp").register_source("css_modules", require("cmp_css_modules").new())
         if enabled_copilot then
           require("copilot_cmp").setup()
         end
