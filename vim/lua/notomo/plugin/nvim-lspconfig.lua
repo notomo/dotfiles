@@ -36,7 +36,9 @@ local setup_ls = function(ls, config, enable_features)
     tokenTypes = {},
     tokenModifiers = {},
   }
+  local on_attach = config.on_attach or function() end
   config.on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
     require("notomo.lsp.navigation").attach(client, bufnr)
   end
   ls.setup(config)
@@ -148,6 +150,7 @@ setup_ls(lspconfig.ocamllsp, {
 })
 setup_ls(lspconfig.terraformls, {}, { "unix" })
 setup_ls(lspconfig.prismals, {}, { "unix" })
+setup_ls(lspconfig.cssmodules_ls, {}, { "unix" })
 
 require("lsp_signature").setup({
   bind = true,
