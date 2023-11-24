@@ -254,7 +254,6 @@ optpack.add("hrsh7th/nvim-cmp", {
     post_load = require("notomo.lib.once").new(
       vim.schedule_wrap(function()
         vim.cmd.runtime({ args = { "after/plugin/cmp_*.lua" }, bang = true })
-        require("cmp").register_source("css_modules", require("cmp_css_modules").new())
         if enabled_copilot then
           require("copilot_cmp").setup()
         end
@@ -817,6 +816,12 @@ mypack.add("notomo/pluginbuf.nvim", {
 mypack.add("notomo/obhook.nvim", {
   load_on = {
     modules = { "obhook" },
+  },
+})
+
+mypack.add("notomo/lsp-handler-intercept.nvim", {
+  load_on = {
+    modules = { "lsp-handler-intercept" },
   },
 })
 

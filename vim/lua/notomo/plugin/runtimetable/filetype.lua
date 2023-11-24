@@ -320,14 +320,29 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
-  require("notomo.lib.npm").mapping()
 
-  vim.keymap.set("n", "[keyword]go", function()
-    require("notomo.lib.cssmodules").go_to_definition()
-  end, { buffer = true })
-  vim.keymap.set("n", "[keyword]gv", function()
-    require("notomo.lib.cssmodules").go_to_definition("vsplit")
-  end, { buffer = true })
+  local methods = {
+    vim.lsp.protocol.Methods.textDocument_definition,
+    vim.lsp.protocol.Methods.textDocument_hover,
+  }
+  require("lsp-handler-intercept").on_request(function() end, {
+    bufnr = 0,
+    client_names = { "tsserver" },
+    methods = methods,
+    predicate = function()
+      return require("notomo.lib.css_modules").cursor_on_jsx_css_module()
+    end,
+  })
+  require("lsp-handler-intercept").on_request(function() end, {
+    bufnr = 0,
+    client_names = { "cssmodules_ls" },
+    methods = methods,
+    predicate = function()
+      return not require("notomo.lib.css_modules").cursor_on_jsx_css_module()
+    end,
+  })
+
+  require("notomo.lib.npm").mapping()
 
   require("notomo.plugin.nvim-treesitter").mapping()
   require("notomo.lib.treesitter").start()

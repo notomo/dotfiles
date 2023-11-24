@@ -3,52 +3,61 @@ local util = vim.lsp.util
 local M = {}
 
 local go_to = function(method, params)
-  vim.lsp.buf_request(0, method, params, function(err, result, ctx)
-    if vim.tbl_contains({ "thetto", "thetto-input" }, vim.bo.filetype) then
-      return require("misclib.message").warn("already canceled: " .. vim.inspect(params, { newline = "", indent = "" }))
-    end
-    if not result or vim.tbl_isempty(result) then
-      return require("misclib.message").warn("not found: " .. vim.inspect(params, { newline = "", indent = "" }))
-    end
+  vim.lsp.buf_request(
+    0,
+    method,
+    params,
+    require("lsp-handler-intercept").wrap(function(err, result, ctx)
+      if vim.tbl_contains({ "thetto", "thetto-input" }, vim.bo.filetype) then
+        return require("misclib.message").warn(
+          "already canceled: " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
+        )
+      end
+      if not result or vim.tbl_isempty(result) then
+        return require("misclib.message").warn(
+          "not found : " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
+        )
+      end
 
-    local client = vim.lsp.get_client_by_id(ctx.client_id)
-    local handlers = client.handlers or {}
-    local handler = handlers[method]
-    if handler then
-      return handler(err, result, ctx)
-    end
+      local client = vim.lsp.get_client_by_id(ctx.client_id)
+      local handlers = client.handlers or {}
+      local handler = handlers[method]
+      if handler then
+        return handler(err, result, ctx)
+      end
 
-    if vim.tbl_islist(result) and #result > 1 then
-      require("thetto").start("function", {
-        opts = {
-          cwd = require("thetto.util.cwd").project(),
-          insert = false,
-        },
-        source_opts = {
-          collect = function(source_ctx)
-            local location_items = vim.lsp.util.locations_to_items(result, client.offset_encoding)
-            return vim
-              .iter(location_items)
-              :map(function(e)
-                local relative_path = require("thetto.lib.path").to_relative(e.filename, source_ctx.cwd)
-                local value = ("%s:%d:%d"):format(relative_path, e.lnum, e.col)
-                return {
-                  value = value,
-                  path = e.filename,
-                  row = e.lnum,
-                  kind_name = "file",
-                }
-              end)
-              :totable()
-          end,
-        },
-      })
-    elseif vim.tbl_islist(result) then
-      util.jump_to_location(result[1], client.offset_encoding, false)
-    else
-      util.jump_to_location(result, client.offset_encoding, false)
-    end
-  end)
+      if vim.tbl_islist(result) and #result > 1 then
+        require("thetto").start("function", {
+          opts = {
+            cwd = require("thetto.util.cwd").project(),
+            insert = false,
+          },
+          source_opts = {
+            collect = function(source_ctx)
+              local location_items = vim.lsp.util.locations_to_items(result, client.offset_encoding)
+              return vim
+                .iter(location_items)
+                :map(function(e)
+                  local relative_path = require("thetto.lib.path").to_relative(e.filename, source_ctx.cwd)
+                  local value = ("%s:%d:%d"):format(relative_path, e.lnum, e.col)
+                  return {
+                    value = value,
+                    path = e.filename,
+                    row = e.lnum,
+                    kind_name = "file",
+                  }
+                end)
+                :totable()
+            end,
+          },
+        })
+      elseif vim.tbl_islist(result) then
+        util.jump_to_location(result[1], client.offset_encoding, false)
+      else
+        util.jump_to_location(result, client.offset_encoding, false)
+      end
+    end)
+  )
 end
 
 function M.go_to_definition()
@@ -63,7 +72,7 @@ end
 
 function M.yank_function_arg_labels()
   local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, "textDocument/signatureHelp", params, function(err, result)
+  return vim.lsp.buf_request(0, vim.lsp.protocol.Methods.textDocument_signatureHelp, params, function(err, result)
     if err then
       error(err)
     end

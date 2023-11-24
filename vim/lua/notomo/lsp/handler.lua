@@ -16,8 +16,12 @@ function M.publish_diagnostics(err, result, ctx, config)
   })
 end
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
+vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_publishDiagnostics] = function(...)
   require("notomo.lsp.handler").publish_diagnostics(...)
+end
+
+vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = function(...)
+  require("lsp-handler-intercept").wrap(vim.lsp.handlers.hover)(...)
 end
 
 vim.api.nvim_create_autocmd({ "LspProgress" }, {

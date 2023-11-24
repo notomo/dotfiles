@@ -92,7 +92,6 @@ function M.setup()
     sources = {
       { name = "neosnippet" },
       { name = "nvim_lsp" },
-      { name = "css_modules" },
       { name = "nvim_lua" },
       { name = "path" },
       {

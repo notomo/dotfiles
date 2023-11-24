@@ -130,4 +130,18 @@ function M.unwrap_selected_node()
   require("misclib.visual_mode").leave()
 end
 
+function M.find_ancestor(base_node, typ)
+  local node = base_node
+  while true do
+    node = node:parent()
+    if not node then
+      return
+    end
+
+    if node:type() == typ then
+      return node
+    end
+  end
+end
+
 return M
