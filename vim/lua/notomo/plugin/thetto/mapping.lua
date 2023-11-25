@@ -571,6 +571,7 @@ vim.keymap.set("n", "[finder]b", thetto_starter("url/bookmark"))
 vim.keymap.set("n", "[finder]p", thetto_starter("plugin"))
 vim.keymap.set("n", "[finder]e", thetto_starter("emoji"))
 vim.keymap.set("n", "[finder]a", thetto_starter("aliaser"))
+vim.keymap.set("n", "[finder]C", thetto_starter("cmdhndlr/runner"))
 
 vim.keymap.set("n", "[finder]d", thetto_starter("vim/diagnostic"))
 vim.keymap.set("n", "[finder]D", function()
