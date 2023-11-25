@@ -26,7 +26,24 @@ local go_to = function(method, params)
         return handler(err, result, ctx)
       end
 
-      if vim.tbl_islist(result) and #result > 1 then
+      if not vim.tbl_islist(result) then
+        result = { result }
+      end
+
+      local already = {}
+      local location_items = vim
+        .iter(vim.lsp.util.locations_to_items(result, client.offset_encoding))
+        :map(function(e)
+          local path_with_row = ("%s:%d"):format(e.filename, e.lnum)
+          if already[path_with_row] then
+            return nil
+          end
+          already[path_with_row] = true
+          return e
+        end)
+        :totable()
+
+      if #location_items > 1 then
         require("thetto").start("function", {
           opts = {
             cwd = require("thetto.util.cwd").project(),
@@ -34,12 +51,11 @@ local go_to = function(method, params)
           },
           source_opts = {
             collect = function(source_ctx)
-              local location_items = vim.lsp.util.locations_to_items(result, client.offset_encoding)
               return vim
                 .iter(location_items)
                 :map(function(e)
                   local relative_path = require("thetto.lib.path").to_relative(e.filename, source_ctx.cwd)
-                  local value = ("%s:%d:%d"):format(relative_path, e.lnum, e.col)
+                  local value = ("%s:%s:%d"):format(relative_path, e.lnum, e.col)
                   return {
                     value = value,
                     path = e.filename,
@@ -51,10 +67,8 @@ local go_to = function(method, params)
             end,
           },
         })
-      elseif vim.tbl_islist(result) then
-        util.jump_to_location(result[1], client.offset_encoding, false)
       else
-        util.jump_to_location(result, client.offset_encoding, false)
+        util.jump_to_location(result[1], client.offset_encoding, false)
       end
     end)
   )
