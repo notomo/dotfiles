@@ -833,3 +833,15 @@ optpack.add("SmiteshP/nvim-navic", {
   depends = { "nvim-lspconfig" },
   load_on = { modules = { "nvim-navic" } },
 })
+
+optpack.add("windwp/nvim-ts-autotag", {
+  depends = { "nvim-treesitter" },
+  load_on = { filetypes = { "typescriptreact" } },
+  hooks = {
+    post_load = function()
+      require("nvim-ts-autotag").setup({
+        filetypes = { "typescriptreact" },
+      })
+    end,
+  },
+})

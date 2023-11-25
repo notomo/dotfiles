@@ -363,6 +363,7 @@ local main_input = {
   { lhs = "fq", rhs = "<C-c>" },
   { lhs = "fp", rhs = "<Up><CR>" },
   { lhs = "m", rhs = "<CR>" },
+  { lhs = ",", rhs = "<div></div><Left><Left><Left><Left><Left><Left>" },
 }
 for _, m in ipairs(main_input) do
   vim.keymap.set("i", MAIN_PREFIX .. m.lhs, with_undo(m.rhs))
