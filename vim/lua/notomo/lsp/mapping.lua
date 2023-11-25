@@ -183,6 +183,12 @@ function M.setup(opts)
   vim.keymap.set("n", "[yank]a", function()
     require("notomo.lsp.mapping").yank_function_arg_labels()
   end, { buffer = true })
+
+  vim.keymap.set("n", "<Space>qo", function()
+    vim.diagnostic.open_float({
+      source = true,
+    })
+  end, { buffer = true })
 end
 
 return M
