@@ -153,13 +153,6 @@ vim.keymap.set("o", "gP", [[t(]])
 vim.keymap.set("n", "go", [[<C-o>]])
 vim.keymap.set("n", "gi", [[<C-i>]])
 
-vim.keymap.set("n", "gO", function()
-  return require("notomo.lib.edit").prev_file()
-end, { expr = true })
-vim.keymap.set("n", "gI", function()
-  return require("notomo.lib.edit").next_file()
-end, { expr = true })
-
 vim.keymap.set("x", "<S-j>", [[}]])
 vim.keymap.set("x", "<S-k>", [[{]])
 -- remap for matchit

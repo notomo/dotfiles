@@ -352,6 +352,15 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
     [[:<C-u>TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
     { buffer = true }
   )
+
+  vim.keymap.set("n", "gI", function()
+    require("notomo.lib.jsx").go_to_first_child()
+    vim.cmd.startinsert()
+  end, { buffer = true })
+  vim.keymap.set("n", "gA", function()
+    require("notomo.lib.jsx").go_to_last_child()
+    vim.fn.feedkeys("a", "nt")
+  end, { buffer = true })
 end
 
 runtime.after.queries.tsx["textobjects.scm"] = [=[
