@@ -2,7 +2,7 @@ local M = {}
 
 function M.cursor_on_jsx_css_module()
   local base_node = vim.treesitter.get_node()
-  if base_node then
+  if not base_node then
     return false
   end
 

@@ -278,6 +278,8 @@ source_config["file/alter"] = {
       { "%/spec/lua/%_spec.lua", "%/lua/%.lua" },
       { "%/test/lua/%_spec.lua", "%/lua/%.lua" },
       { "%.c", "%.h" },
+      { "%.spec.ts", "%.ts" },
+      { "%.spec.tsx", "%.tsx" },
     },
   },
 }
