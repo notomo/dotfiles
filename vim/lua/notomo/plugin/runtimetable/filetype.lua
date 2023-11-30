@@ -194,7 +194,7 @@ runtime.after.ftplugin["lua.lua"] = function()
         input_lines = { ('"%s"'):format(require("misclib.module.path").detect(vim.fn.expand("%:p"))), "require(" },
       },
     })
-  end)
+  end, { buffer = true })
 
   require("notomo.plugin.nvim-treesitter").mapping()
   require("notomo.lib.treesitter").start()
@@ -310,7 +310,13 @@ runtime.after.ftplugin["typescript.lua"] = function()
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
   require("notomo.lib.npm").mapping()
-  vim.keymap.set("n", "[finder]i", [[<Cmd>lua require("thetto").start("deno/deps")<CR>]])
+  vim.keymap.set("n", "[finder]i", [[<Cmd>lua require("thetto").start("deno/deps")<CR>]], { buffer = true })
+  vim.keymap.set(
+    "n",
+    "[exec]bL",
+    [[<Cmd>lua require("cmdhndlr").build({name = 'typescript/tsc'})<CR>]],
+    { buffer = true }
+  )
 end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
