@@ -151,6 +151,22 @@ setup_ls(lspconfig.ocamllsp, {
 setup_ls(lspconfig.terraformls, {}, { "unix" })
 setup_ls(lspconfig.prismals, {}, { "unix" })
 setup_ls(lspconfig.cssmodules_ls, {}, { "unix" })
+setup_ls(lspconfig.tailwindcss, {
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          {
+            [=[cva\(([^)]*)\)]=],
+            [=[[\"'`]([^\"'`]*).*?[\"'`]]=],
+            [=[cx\(([^)]*)\)]=],
+            [=[?:'|\"|`)([^']*)(?:'|\"|`]=],
+          },
+        },
+      },
+    },
+  },
+}, { "unix" })
 
 require("lsp_signature").setup({
   bind = true,
