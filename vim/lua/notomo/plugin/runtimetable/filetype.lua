@@ -371,7 +371,10 @@ end
 
 runtime.after.queries.tsx["textobjects.scm"] = [=[
 ;; extends
-(jsx_element) @jsx_element.outer
+[
+  (jsx_element)
+  (jsx_self_closing_element)
+] @jsx_element.outer
 ]=]
 
 runtime.after.ftplugin["vim.lua"] = function()
