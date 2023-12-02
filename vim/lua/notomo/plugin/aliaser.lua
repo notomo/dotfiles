@@ -45,6 +45,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
       "comment",
       "prisma",
       "tsx",
+      "css",
     }) do
       vim.cmd.TSInstall(language)
     end

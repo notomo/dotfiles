@@ -296,6 +296,7 @@ end
 runtime.after.ftplugin["terraform.lua"] = function()
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").start()
+  require("notomo.plugin.nvim-treesitter").mapping()
 end
 
 runtime.after.ftplugin["flux.lua"] = function()
@@ -317,6 +318,8 @@ runtime.after.ftplugin["typescript.lua"] = function()
     [[<Cmd>lua require("cmdhndlr").build({name = 'typescript/tsc'})<CR>]],
     { buffer = true }
   )
+  require("notomo.plugin.nvim-treesitter").mapping()
+  require("notomo.lib.treesitter").start()
 end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
@@ -370,7 +373,7 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.keymap.set(
     "n",
     "<CR>",
-    [[:<C-u>TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
+    [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
     { buffer = true }
   )
 
