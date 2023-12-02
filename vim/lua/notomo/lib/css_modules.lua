@@ -1,7 +1,6 @@
 local M = {}
 
-function M.cursor_on_jsx_css_module()
-  local base_node = vim.treesitter.get_node()
+function M.cursor_on_jsx_css_module(base_node)
   if not base_node then
     return false
   end
@@ -22,6 +21,13 @@ function M.cursor_on_jsx_css_module()
   local property_identifier = jsx_attribute_node:child(0)
   local property_name = vim.treesitter.get_node_text(property_identifier, 0)
   return property_name == "className"
+end
+
+function M.cursor_on_string_fragment(base_node)
+  if not base_node then
+    return false
+  end
+  return base_node:type() == "string_fragment"
 end
 
 return M

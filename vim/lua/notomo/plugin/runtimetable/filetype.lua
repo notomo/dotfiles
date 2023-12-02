@@ -336,7 +336,9 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
     client_names = { "tsserver" },
     methods = methods,
     predicate = function()
-      return require("notomo.lib.css_modules").cursor_on_jsx_css_module()
+      local base_node = vim.treesitter.get_node()
+      return require("notomo.lib.css_modules").cursor_on_jsx_css_module(base_node)
+        or require("notomo.lib.css_modules").cursor_on_string_fragment(base_node)
     end,
   })
   require("lsp-handler-intercept").on_request(function() end, {
@@ -344,7 +346,20 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
     client_names = { "cssmodules_ls" },
     methods = methods,
     predicate = function()
-      return not require("notomo.lib.css_modules").cursor_on_jsx_css_module()
+      local base_node = vim.treesitter.get_node()
+      return not require("notomo.lib.css_modules").cursor_on_jsx_css_module(base_node)
+        or require("notomo.lib.css_modules").cursor_on_string_fragment(base_node)
+    end,
+  })
+  require("lsp-handler-intercept").on_request(function() end, {
+    bufnr = 0,
+    client_names = { "tailwindcss" },
+    methods = {
+      vim.lsp.protocol.Methods.textDocument_hover,
+    },
+    predicate = function()
+      local base_node = vim.treesitter.get_node()
+      return not require("notomo.lib.css_modules").cursor_on_string_fragment(base_node)
     end,
   })
 
