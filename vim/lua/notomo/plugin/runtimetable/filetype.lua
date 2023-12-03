@@ -128,7 +128,6 @@ runtime.after.ftplugin["javascript.lua"] = function()
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
-  require("notomo.lib.npm").mapping()
   require("notomo.lsp").setup()
 
   if vim.endswith(vim.fn.bufname(), ".mjs") then
@@ -157,9 +156,6 @@ runtime.after.ftplugin["json.lua"] = function()
 
     vim.cmd.normal({ args = { "$%k$%" }, bang = true })
   end, { buffer = true })
-  if vim.fn.bufname() == "package.json" then
-    require("notomo.lib.npm").mapping()
-  end
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
 
@@ -310,7 +306,7 @@ runtime.after.ftplugin["typescript.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
-  require("notomo.lib.npm").mapping()
+
   vim.keymap.set("n", "[finder]i", [[<Cmd>lua require("thetto").start("deno/deps")<CR>]], { buffer = true })
   vim.keymap.set(
     "n",
@@ -365,8 +361,6 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
       return not require("notomo.lib.css_modules").cursor_on_string_fragment(base_node)
     end,
   })
-
-  require("notomo.lib.npm").mapping()
 
   require("notomo.plugin.nvim-treesitter").mapping()
   require("notomo.lib.treesitter").start()

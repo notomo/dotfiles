@@ -428,7 +428,19 @@ vim.keymap.set("n", "[finder]gN", function()
 end)
 vim.keymap.set("n", "[finder]m", thetto_starter("listdefined/keymap"))
 vim.keymap.set("n", "[finder]o", thetto_starter("cmd/ctags"))
-vim.keymap.set("n", "[exec],", thetto_starter("cmd/make/target"))
+vim.keymap.set("n", "[exec],", function()
+  if require("cmdhndlr").get("normal_runner/make/make").working_dir_marker() then
+    require("thetto").start("cmd/make/target")
+    return
+  end
+  require("thetto").start("cmd/npm/script", {
+    opts = {
+      sorters = { "alphabet" },
+      cwd = require("thetto.util.cwd").project(),
+      insert = false,
+    },
+  })
+end)
 vim.keymap.set("n", "[finder]S", thetto_starter("vim/substitute"))
 vim.keymap.set("x", "[finder]s", thetto_starter("vim/substitute"))
 vim.keymap.set("n", "[git]ll", thetto_starter("git/log"))

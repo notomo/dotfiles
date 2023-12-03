@@ -32,13 +32,25 @@ vim.keymap.set("n", "<Leader>qb", function()
   require("cmdhndlr").build({ build_cmd = build_cmd })
 end)
 
-vim.keymap.set("n", "[test]t", [[<Cmd>lua require("cmdhndlr").test({name = 'make/make', layout = {type = "tab"}})<CR>]])
-vim.keymap.set(
-  "n",
-  "S",
-  [[<Cmd>lua require("cmdhndlr").run({name = 'make/make', runner_opts = {target = "start"}})<CR>]]
-)
-vim.keymap.set("n", "[exec]bl", [[<Cmd>lua require("cmdhndlr").build({name = 'make/make'})<CR>]])
+local decide_runner = function()
+  if require("cmdhndlr").get("build_runner/make/make").working_dir_marker() then
+    return "make/make"
+  end
+  return "javascript/npm"
+end
+
+vim.keymap.set("n", "[test]t", function()
+  local runner = decide_runner()
+  require("cmdhndlr").test({ name = runner, layout = { type = "tab" } })
+end)
+vim.keymap.set("n", "S", function()
+  local runner = decide_runner()
+  require("cmdhndlr").run({ name = runner, runner_opts = { target = "start" } })
+end)
+vim.keymap.set("n", "[exec]bl", function()
+  local runner = decide_runner()
+  require("cmdhndlr").build({ name = runner })
+end)
 vim.keymap.set("n", "[exec]bL", [[<Cmd>lua require("cmdhndlr").build()<CR>]])
 
 vim.keymap.set("n", "<Leader>F", [[<Cmd>lua require("cmdhndlr").format()<CR>]])
