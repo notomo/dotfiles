@@ -367,7 +367,7 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.keymap.set(
     "n",
     "<CR>",
-    [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
+    [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").init_selection()<CR>]],
     { buffer = true }
   )
 
