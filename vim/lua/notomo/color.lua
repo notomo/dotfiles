@@ -40,6 +40,8 @@ vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "Keyword" })
 vim.api.nvim_set_hl(0, "TermnaviLine", { bg = "#002b6f", bold = true })
 vim.api.nvim_set_hl(0, "WinbarNavic", { bg = pallet.blue, fg = "#d1d1f0", underline = true })
 
+vim.api.nvim_set_hl(0, "Operator", { link = "Conditional" })
+
 vim.api.nvim_set_hl(0, "@type.go", {})
 vim.api.nvim_set_hl(0, "@type.definition.go", {})
 vim.api.nvim_set_hl(0, "@property.go", {})
@@ -74,6 +76,8 @@ vim.api.nvim_set_hl(0, "@local.lua", { link = "Keyword" })
 vim.api.nvim_set_hl(0, "@keyword.operator.lua", { link = "Operator" })
 vim.api.nvim_set_hl(0, "@text.literal.block.markdown", {})
 vim.api.nvim_set_hl(0, "@text.literal.markdown_inline", { link = "Conditional" })
+vim.api.nvim_set_hl(0, "@text.literal.vimdoc", {})
+vim.api.nvim_set_hl(0, "@label.vimdoc", { link = "String" })
 
 vim.api.nvim_set_hl(0, "@text.note", { link = "Todo" })
 
