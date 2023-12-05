@@ -26,6 +26,10 @@ require("curstr").setup({
       names = { "togglable/pattern" },
       opts = { patterns = { { "\\v_(.)", "\\u\\1" }, { "\\v\\C([A-Z])", "_\\l\\1" } } },
     },
+    snake_kebab = {
+      names = { "togglable/pattern" },
+      opts = { patterns = { { "\\v_(.)", "-\\1" }, { "\\v-(.)", "_\\1" } }, char_pattern = "[:alnum:]_-" },
+    },
     togglable = { names = { "bool", "camel_snake" } },
     print_vim = {
       names = { "togglable/pattern" },
