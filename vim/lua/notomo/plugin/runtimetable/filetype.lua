@@ -364,12 +364,9 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
 
   require("notomo.plugin.nvim-treesitter").mapping()
   require("notomo.lib.treesitter").start()
-  vim.keymap.set(
-    "n",
-    "<CR>",
-    [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").init_selection()<CR>]],
-    { buffer = true }
-  )
+  vim.keymap.set("n", "<CR>", function()
+    return require("notomo.lib.jsx").select_tag_expr()
+  end, { buffer = true, expr = true })
 
   vim.keymap.set("n", "gI", function()
     require("notomo.lib.jsx").go_to_first_child()
