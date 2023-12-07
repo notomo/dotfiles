@@ -408,6 +408,9 @@ end
 
 runtime.after.ftplugin["yaml.lua"] = function()
   require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
+
+  require("notomo.plugin.nvim-treesitter").mapping()
+  require("notomo.lib.treesitter").start()
 end
 
 runtime.after.ftplugin["unionbuf.lua"] = function()

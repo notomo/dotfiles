@@ -475,6 +475,13 @@ optpack.add("nvim-treesitter/nvim-treesitter", {
     modules = { "nvim-treesitter" },
     events = { "FileType" },
   },
+  hooks = {
+    post_load = function(plugin)
+      -- prior than builtin
+      vim.opt.runtimepath:remove(plugin.directory)
+      vim.opt.runtimepath:prepend(plugin.directory)
+    end,
+  },
 })
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
   depends = { "nvim-treesitter" },
