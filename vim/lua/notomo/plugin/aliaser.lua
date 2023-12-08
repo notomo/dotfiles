@@ -47,6 +47,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
       "tsx",
       "css",
       "yaml",
+      "bash", -- workaround: not to use builtin bash parser
     }) do
       vim.cmd.TSInstall(language)
     end
