@@ -63,4 +63,12 @@ function M.select_tag_expr()
   return [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").init_selection()<CR>:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]]
 end
 
+function M.cursor_on_string(base_node)
+  if not base_node then
+    return false
+  end
+  local typ = base_node:type()
+  return vim.tbl_contains({ "string_fragment", "template_string" }, typ)
+end
+
 return M

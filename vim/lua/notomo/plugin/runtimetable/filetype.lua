@@ -336,18 +336,7 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
     methods = methods,
     predicate = function()
       local base_node = vim.treesitter.get_node()
-      return require("notomo.lib.css_modules").cursor_on_jsx_css_module(base_node)
-        or require("notomo.lib.css_modules").cursor_on_string_fragment(base_node)
-    end,
-  })
-  require("lsp-handler-intercept").on_request(function() end, {
-    bufnr = 0,
-    client_names = { "cssmodules_ls" },
-    methods = methods,
-    predicate = function()
-      local base_node = vim.treesitter.get_node()
-      return not require("notomo.lib.css_modules").cursor_on_jsx_css_module(base_node)
-        or require("notomo.lib.css_modules").cursor_on_string_fragment(base_node)
+      return require("notomo.lib.jsx").cursor_on_string(base_node)
     end,
   })
   require("lsp-handler-intercept").on_request(function() end, {
@@ -358,7 +347,7 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
     },
     predicate = function()
       local base_node = vim.treesitter.get_node()
-      return not require("notomo.lib.css_modules").cursor_on_string_fragment(base_node)
+      return not require("notomo.lib.jsx").cursor_on_string(base_node)
     end,
   })
 

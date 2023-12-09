@@ -138,7 +138,10 @@ function M.setup(opts)
       apply = true,
     })
   end, { silent = true, buffer = true })
-  vim.keymap.set("n", "[keyword]e", [[<Cmd>lua vim.lsp.buf.hover()<CR>]], { buffer = true })
+  vim.keymap.set("n", "[keyword]e", function()
+    vim.api.nvim_echo({ { "" } }, false, {}) -- reset message
+    vim.lsp.buf.hover()
+  end, { buffer = true })
 
   vim.keymap.set("n", "[keyword]o", function()
     require("notomo.lsp.mapping").go_to_definition()

@@ -24,7 +24,6 @@ function M.complete()
         config = {
           sources = {
             { name = "nvim_lsp" },
-            { name = "css_modules" },
           },
         },
       })
