@@ -11,14 +11,22 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   group = group,
   pattern = { "*" },
-  callback = function()
-    if vim.fn.bufname() ~= "" then
+  callback = function(args)
+    local bufnr = args.buf
+    if vim.api.nvim_buf_get_name(bufnr) ~= "" then
       return
     end
-    local byte = vim.fn.line2byte(vim.fn.line("$") + 1)
-    if byte ~= -1 or byte > 1 then
+
+    local count = vim.api.nvim_buf_line_count(bufnr)
+    if count > 1 then
       return
     end
+
+    local char = vim.api.nvim_buf_get_text(bufnr, 0, 0, 0, 1, {})[1]
+    if char and char ~= "" then
+      return
+    end
+
     vim.bo.buftype = "nofile"
     vim.bo.bufhidden = "wipe"
   end,
