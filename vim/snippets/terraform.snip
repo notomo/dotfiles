@@ -4,4 +4,16 @@ snippet import
 	  id = "${0:import_target_id}"
 	  to = ${1:aws_s3_bucket.main}
 	}
-	# terraform plan -generate-config-out=generated.tf
+	# terraform plan -generate-config-out=generated.txt
+	# terraform import $1 "$0"
+
+snippet locals
+	locals {
+		$0
+	}
+
+snippet variable
+	variable "${1:name}" {
+		type    = ${0:string}
+		default = ""
+	}
