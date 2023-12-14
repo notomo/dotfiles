@@ -293,6 +293,9 @@ runtime.after.ftplugin["terraform.lua"] = function()
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").start()
   require("notomo.plugin.nvim-treesitter").mapping()
+  vim.keymap.set("n", "[yank]t", function()
+    require("notomo.lib.terraform").yank()
+  end)
 end
 
 runtime.after.ftplugin["flux.lua"] = function()
