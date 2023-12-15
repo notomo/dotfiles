@@ -202,6 +202,11 @@ local source_specific = {
     vim.keymap.set("n", "yr", function()
       require("notomo.lib.edit").yank(require("thetto").get()[1].commit_hash)
     end, { buffer = list_bufnr })
+    vim.keymap.set("n", "yf", function()
+      local short_commit_hash = require("thetto").get()[1].commit_hash
+      local commit_hash = vim.fn.systemlist({ "git", "rev-parse", short_commit_hash })[1]
+      require("notomo.lib.edit").yank(commit_hash)
+    end, { buffer = list_bufnr })
     vim.keymap.set("n", "yR", function()
       require("notomo.lib.github").yank_revision_with_repo(require("thetto").get()[1].commit_hash)
     end, { buffer = list_bufnr })
