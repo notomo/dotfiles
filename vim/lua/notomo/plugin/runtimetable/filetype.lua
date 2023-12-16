@@ -226,6 +226,8 @@ end
 runtime.after.ftplugin["markdown.lua"] = function()
   vim.opt_local.tabstop = 4
   vim.opt_local.softtabstop = 4
+  require("notomo.lib.treesitter").start()
+  require("notomo.plugin.nvim-treesitter").mapping()
 end
 
 runtime.after.ftplugin["mydiary.lua"] = function()
