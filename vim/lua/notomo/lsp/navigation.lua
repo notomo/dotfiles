@@ -3,6 +3,7 @@ local M = {}
 M.filetypes = {
   go = true,
   typescript = true,
+  c = true,
 }
 
 function M.attach(client, bufnr)
