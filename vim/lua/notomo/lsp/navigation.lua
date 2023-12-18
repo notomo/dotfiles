@@ -4,6 +4,7 @@ M.filetypes = {
   go = true,
   typescript = true,
   c = true,
+  terraform = true,
 }
 
 function M.attach(client, bufnr)

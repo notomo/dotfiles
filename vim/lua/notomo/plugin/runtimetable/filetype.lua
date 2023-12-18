@@ -26,8 +26,7 @@ runtime.after.ftplugin["c.lua"] = function()
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
   require("notomo.lsp").setup()
-  vim.keymap.set("n", "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
-  vim.keymap.set("n", "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["cpp.lua"] = function()
@@ -79,8 +78,7 @@ runtime.after.ftplugin["go.lua"] = function()
 
   vim.keymap.set("ia", "~=", [[!=]], { buffer = true })
 
-  require("notomo.plugin.nvim-treesitter").mapping()
-  require("notomo.lib.treesitter").start()
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.queries.go["highlights.scm"] = [=[
@@ -192,8 +190,7 @@ runtime.after.ftplugin["lua.lua"] = function()
     })
   end, { buffer = true })
 
-  require("notomo.plugin.nvim-treesitter").mapping()
-  require("notomo.lib.treesitter").start()
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.queries.lua["highlights.scm"] = [=[
@@ -226,8 +223,7 @@ end
 runtime.after.ftplugin["markdown.lua"] = function()
   vim.opt_local.tabstop = 4
   vim.opt_local.softtabstop = 4
-  require("notomo.lib.treesitter").start()
-  require("notomo.plugin.nvim-treesitter").mapping()
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["mydiary.lua"] = function()
@@ -255,6 +251,7 @@ runtime.after.ftplugin["python.lua"] = function()
   vim.opt_local.modeline = false
   vim.b.cursorword = 0
   require("notomo.lsp").setup()
+  require("notomo.lib.treesitter").setup()
 
   vim.keymap.set("n", "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
   vim.keymap.set("n", "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
@@ -293,8 +290,7 @@ end
 
 runtime.after.ftplugin["terraform.lua"] = function()
   require("notomo.lsp").setup()
-  require("notomo.lib.treesitter").start()
-  require("notomo.plugin.nvim-treesitter").mapping()
+  require("notomo.lib.treesitter").setup()
   vim.keymap.set("n", "[yank]t", function()
     require("notomo.lib.terraform").yank()
   end)
@@ -319,8 +315,8 @@ runtime.after.ftplugin["typescript.lua"] = function()
     [[<Cmd>lua require("cmdhndlr").build({name = 'typescript/tsc'})<CR>]],
     { buffer = true }
   )
-  require("notomo.plugin.nvim-treesitter").mapping()
-  require("notomo.lib.treesitter").start()
+
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
@@ -356,8 +352,8 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
     end,
   })
 
-  require("notomo.plugin.nvim-treesitter").mapping()
-  require("notomo.lib.treesitter").start()
+  require("notomo.lib.treesitter").setup()
+
   vim.keymap.set("n", "<CR>", function()
     return require("notomo.lib.jsx").select_tag_expr()
   end, { buffer = true, expr = true })
@@ -403,8 +399,7 @@ end
 runtime.after.ftplugin["yaml.lua"] = function()
   require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
 
-  require("notomo.plugin.nvim-treesitter").mapping()
-  require("notomo.lib.treesitter").start()
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["unionbuf.lua"] = function()
@@ -459,7 +454,7 @@ runtime.after.ftplugin["prisma.lua"] = function()
     end,
   })
 
-  require("notomo.lib.treesitter").start()
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["css.lua"] = function()

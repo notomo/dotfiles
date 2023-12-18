@@ -75,6 +75,11 @@ function M.start()
   end)
 end
 
+function M.setup()
+  require("notomo.plugin.nvim-treesitter").mapping()
+  M.start()
+end
+
 function M.get_expanded_row_range(bufnr, row, column)
   local lang = vim.treesitter.language.get_lang(vim.bo[bufnr].filetype)
   if not lang then
