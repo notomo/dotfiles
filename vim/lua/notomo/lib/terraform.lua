@@ -21,7 +21,7 @@ function M.yank()
   )
 
   local base_node = vim.treesitter.get_node({})
-  local block = require("notomo.lib.treesitter").find_ancestor(base_node, "block", true)
+  local block = require("notomo.lib.treesitter").find_root_ancestor(base_node, "block", true)
   if not block then
     return
   end

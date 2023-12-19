@@ -152,4 +152,16 @@ function M.find_ancestor(base_node, typ, include_base)
   end
 end
 
+function M.find_root_ancestor(base_node, typ, include_base)
+  local before_node = M.find_ancestor(base_node, typ, include_base)
+  local node = before_node
+  while true do
+    if not node then
+      return before_node
+    end
+    before_node = node
+    node = M.find_ancestor(node, typ, false)
+  end
+end
+
 return M
