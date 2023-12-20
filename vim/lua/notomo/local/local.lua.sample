@@ -10,9 +10,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
     vim.keymap.set("n", "[test]t", function()
       require("cmdhndlr").test({
         name = "make/make",
-        working_dir_marker = function()
-          return vim.fn.expand("$DOTFILES/tool/nvim_development/Makefile")
-        end,
         layout = { type = "tab" },
         env = {
           TEST_FILE = vim.fn.expand("%:p:s?" .. home .. "/workspace/neovim/??"),
