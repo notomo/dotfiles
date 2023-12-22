@@ -284,26 +284,41 @@ vim.keymap.set(
   silent
 )
 
-local set_ia_xo = function(lhs, rhs)
-  local inner_lhs = "i" .. lhs
-  local inner_rhs = "i" .. rhs
-  local around_lhs = "a" .. lhs
-  local around_rhs = "a" .. rhs
-  vim.keymap.set({ "x", "o" }, inner_lhs, inner_rhs)
-  vim.keymap.set({ "x", "o" }, around_lhs, around_rhs)
-end
-set_ia_xo("o", "p")
-set_ia_xo(";", "w")
-set_ia_xo("<Space>", "W")
-set_ia_xo("t", ">")
-set_ia_xo("T", "t")
-set_ia_xo("p", ")")
-set_ia_xo("l", "]")
-set_ia_xo("w", '"')
-set_ia_xo("q", "'")
-set_ia_xo("d", "}")
-set_ia_xo("b", "`")
-set_ia_xo("<CR>", "B")
+vim.keymap.set({ "x", "o" }, "io", "ip")
+vim.keymap.set({ "x", "o" }, "ao", "ap")
+
+vim.keymap.set({ "x", "o" }, "i;", "iw")
+vim.keymap.set({ "x", "o" }, "a;", "aw")
+
+vim.keymap.set({ "x", "o" }, "i<Space>", "iW")
+vim.keymap.set({ "x", "o" }, "a<Space>", "aW")
+
+vim.keymap.set({ "x", "o" }, "it", "i>")
+vim.keymap.set({ "x", "o" }, "at", "a>")
+
+vim.keymap.set({ "x", "o" }, "iT", "it")
+vim.keymap.set({ "x", "o" }, "aT", "at")
+
+vim.keymap.set({ "x", "o" }, "ip", "i)")
+vim.keymap.set({ "x", "o" }, "ap", "a)")
+
+vim.keymap.set({ "x", "o" }, "il", "i]")
+vim.keymap.set({ "x", "o" }, "al", "a]")
+
+vim.keymap.set({ "x", "o" }, "iw", 'i"')
+vim.keymap.set({ "x", "o" }, "aw", 'a"')
+
+vim.keymap.set({ "x", "o" }, "iq", "i'")
+vim.keymap.set({ "x", "o" }, "aq", "a'")
+
+vim.keymap.set({ "x", "o" }, "id", "i}")
+vim.keymap.set({ "x", "o" }, "ad", "a}")
+
+vim.keymap.set({ "x", "o" }, "ib", "i`")
+vim.keymap.set({ "x", "o" }, "ab", "a`")
+
+vim.keymap.set({ "x", "o" }, "i<CR>", "iB")
+vim.keymap.set({ "x", "o" }, "a<CR>", "aB")
 
 vim.keymap.set("o", ";", [[iw]])
 vim.keymap.set("i", "<C-n>", [[<Down>]])
