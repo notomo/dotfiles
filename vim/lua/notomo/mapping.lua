@@ -94,7 +94,6 @@ vim.keymap.set("x", "<Space>v", [[v]])
 vim.keymap.set("x", "v", [[<ESC>]])
 vim.keymap.set("x", "q", [[<ESC>]])
 vim.keymap.set("s", "<CR>", [[<ESC>gv"_c]])
-vim.keymap.set("s", "j<Space>h", [[<ESC>gv"_c<C-r>+]])
 vim.keymap.set("i", "jj", [[<ESC>]], silent)
 vim.keymap.set("i", "っｊ", [[<ESC>]], silent)
 vim.keymap.set("i", "ｊｊ", [[<ESC>]], silent)
@@ -339,77 +338,61 @@ vim.keymap.set({ "i", "c" }, "<C-h>", [[<BS>]])
 vim.keymap.set({ "i", "c" }, "<C-d>", [[<Del>]])
 vim.keymap.set("i", "<C-o>", [[<C-o>o]])
 vim.keymap.set("i", "<S-TAB>", [[<C-d>]])
-vim.keymap.set("i", "j<Space><Space>", [[<ESC>gUiwea]])
-vim.keymap.set("i", "j<Space>z", [[<C-a>]])
-vim.keymap.set("c", "j<Space>o", [[<Space><BS><C-z>]])
 vim.keymap.set("c", "<Tab>", [[<C-n>]])
 vim.keymap.set("c", "<S-Tab>", [[<C-p>]])
+
+set_prefix({ "i", "c", "t" }, "main_input", "j<Space>")
+
+vim.keymap.set({ "i", "c", "t" }, "[main_input]a", "-")
+vim.keymap.set({ "i", "c", "t" }, "[main_input]e", "=")
+vim.keymap.set({ "i", "c", "t" }, "[main_input]s", "_")
+vim.keymap.set({ "i", "c", "t" }, "[main_input]r", "<Bar>")
+vim.keymap.set({ "i", "c", "t" }, "[main_input]g", "\\")
+vim.keymap.set({ "i", "c" }, "[main_input]h", "<C-r>+")
+vim.keymap.set({ "t" }, "[main_input]h", "<Cmd>put +<CR>")
+vim.keymap.set("s", "[main_input]h", [[<ESC>gv"_c<C-r>+]])
+vim.keymap.set({ "i", "c", "t" }, "[main_input]v", "<C-q>")
+vim.keymap.set({ "i", "c", "t" }, "[main_input]c", "::")
+vim.keymap.set({ "i", "c", "t" }, "[main_input]fe", ":=")
+vim.keymap.set({ "i", "c", "t" }, "[main_input]fe", ":=")
+vim.keymap.set({ "t" }, "[main_input]o", "<Tab>")
+vim.keymap.set({ "i" }, "[main_input]<CR>", function()
+  return require("notomo.lib.edit").to_multiline()
+end)
+vim.keymap.set("i", "[main_input]<Space>", [[<ESC>gUiwea]])
+vim.keymap.set("i", "[main_input]z", [[<C-a>]])
+vim.keymap.set("c", "[main_input]o", [[<Space><BS><C-z>]])
 
 local with_undo = function(rhs)
   return vim.fn.substitute(rhs, "\\ze<Left>$", "\\<C-g>U", "")
 end
 
-local MAIN_PREFIX = "j<Space>"
-local main_input = {
-  { lhs = "a", rhs = "-" },
-  { lhs = "e", rhs = "=" },
-  { lhs = "s", rhs = "_" },
-  { lhs = "r", rhs = "<Bar>" },
-  { lhs = "g", rhs = "\\" },
-  { lhs = "w", rhs = '""<Left>' },
-  { lhs = "b", rhs = "``<Left>" },
-  { lhs = "l", rhs = "[]<Left>" },
-  { lhs = "L", rhs = "[[]]<Left><Left>" },
-  { lhs = "t", rhs = "<><Left>" },
-  { lhs = "p", rhs = "()<Left>" },
-  { lhs = "d", rhs = "{}<Left>" },
-  { lhs = "q", rhs = "''<Left>" },
-  { lhs = "h", rhs = "<C-r>+" },
-  { lhs = "v", rhs = "<C-q>" },
-  { lhs = "c", rhs = "::" },
-  { lhs = "fe", rhs = ":=" },
-  { lhs = "fq", rhs = "<C-c>" },
-  { lhs = "fp", rhs = "<Up><CR>" },
-  { lhs = "m", rhs = "<CR>" },
-  { lhs = ",", rhs = "<div></div><Left><Left><Left><Left><Left><Left>" },
-}
-for _, m in ipairs(main_input) do
-  vim.keymap.set("i", MAIN_PREFIX .. m.lhs, with_undo(m.rhs))
-  vim.keymap.set({ "c", "t" }, MAIN_PREFIX .. m.lhs, m.rhs)
-end
-vim.keymap.set("t", MAIN_PREFIX .. "h", "<Cmd>put +<CR>")
-vim.keymap.set("t", MAIN_PREFIX .. "o", "<Tab>")
-vim.keymap.set("i", MAIN_PREFIX .. "<CR>", function()
-  return require("notomo.lib.edit").to_multiline()
-end, { expr = true })
+vim.keymap.set({ "i" }, "[main_input]w", with_undo('""<Left>'))
+vim.keymap.set({ "c", "t" }, "[main_input]w", '""<Left>')
 
-local sub_input = {
-  { lhs = "a", rhs = "&" },
-  { lhs = "h", rhs = "^" },
-  { lhs = "p", rhs = "+" },
-  { lhs = "s", rhs = "#" },
-  { lhs = "r", rhs = "%" },
-  { lhs = "m", rhs = "@" },
-  { lhs = "t", rhs = "~" },
-  { lhs = "d", rhs = "$" },
-  { lhs = "e", rhs = "!" },
-  { lhs = "b", rhs = "`" },
-  { lhs = "c", rhs = ":" },
-  { lhs = "x", rhs = "*" },
-  { lhs = "q", rhs = "?" },
-  { lhs = ";", rhs = '"' },
-  { lhs = ",", rhs = "'" },
-  { lhs = "g", rhs = "=>" },
-  { lhs = "f", rhs = "->" },
-  { lhs = "z", rhs = "<-" },
-  { lhs = "v", rhs = "<%=  %><Left><Left><Left>" },
-}
-local SUB_PREFIX = "jk"
-for _, m in ipairs(sub_input) do
-  vim.keymap.set("i", SUB_PREFIX .. m.lhs, with_undo(m.rhs))
-  vim.keymap.set({ "c", "t" }, SUB_PREFIX .. m.lhs, m.rhs)
-end
-vim.keymap.set({ "i", "c" }, SUB_PREFIX .. "<CR>", "<C-r>=")
+vim.keymap.set({ "i" }, "[main_input]b", with_undo("``<Left>"))
+vim.keymap.set({ "c", "t" }, "[main_input]b", "``<Left>")
+
+vim.keymap.set({ "i" }, "[main_input]l", with_undo("[]<Left>"))
+vim.keymap.set({ "c", "t" }, "[main_input]l", "[]<Left>")
+
+vim.keymap.set({ "i" }, "[main_input]L", with_undo("[[]]<Left><Left>"))
+vim.keymap.set({ "c", "t" }, "[main_input]L", "[[]]<Left><Left>")
+
+vim.keymap.set({ "i" }, "[main_input]t", with_undo("<><Left>"))
+vim.keymap.set({ "c", "t" }, "[main_input]t", "<><Left>")
+
+vim.keymap.set({ "i" }, "[main_input]p", with_undo("()<Left>"))
+vim.keymap.set({ "c", "t" }, "[main_input]p", "()<Left>")
+
+vim.keymap.set({ "i" }, "[main_input]d", with_undo("{}<Left>"))
+vim.keymap.set({ "c", "t" }, "[main_input]d", "{}<Left>")
+
+vim.keymap.set({ "i" }, "[main_input]q", with_undo("''<Left>"))
+vim.keymap.set({ "c", "t" }, "[main_input]q", "''<Left>")
+
+vim.keymap.set({ "i" }, "[main_input],", with_undo("<div></div><Left><Left><Left><Left><Left><Left>"))
+vim.keymap.set({ "c", "t" }, "[main_input],", "<div></div><Left><Left><Left><Left><Left><Left>")
 
 local complete_pairs = {
   { "(", ")" },
@@ -417,7 +400,7 @@ local complete_pairs = {
   { "[", "]" },
   { "<", ">" },
 }
-vim.keymap.set("i", "j<Space>k", function()
+vim.keymap.set("i", "[main_input]k", function()
   local chars = vim.fn.strcharpart(vim.fn.getline("."), vim.fn.col(".") - 2, 2)
   for _, pair in ipairs(complete_pairs) do
     local l, r = unpack(pair)
@@ -427,6 +410,29 @@ vim.keymap.set("i", "j<Space>k", function()
   end
   return "<Right>"
 end, expr)
+
+set_prefix({ "i", "c", "t" }, "sub_input", "jk")
+
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]a", "&")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]h", "^")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]p", "+")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]s", "#")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]r", "%")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]m", "@")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]t", "~")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]d", "$")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]e", "!")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]b", "`")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]c", ":")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]x", "*")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]q", "?")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input];", '"')
+vim.keymap.set({ "i", "c", "t" }, "[sub_input],", "'")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]g", "=>")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]f", "->")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]z", "<-")
+vim.keymap.set({ "i", "c" }, "[sub_input]<CR>", "<C-r>=")
+
 vim.keymap.set({ "n", "x" }, "[diff]j", [[]c]])
 vim.keymap.set({ "n", "x" }, "[diff]k", [[[c]])
 vim.keymap.set("n", "[diff]g", [[<Cmd>diffget<CR>]])
@@ -568,7 +574,7 @@ vim.keymap.set({ "n", "x" }, "[yank]U", function()
   require("notomo.lib.github").yank()
 end)
 
-require("notomo.lib.mapping").set_prefix({ "n", "x" }, "browser", "[exec]b")
+set_prefix({ "n", "x" }, "browser", "[exec]b")
 vim.keymap.set("n", "[browser]o", function()
   require("notomo.lib.browser").open(vim.fn.expand("<cWORD>"))
 end)

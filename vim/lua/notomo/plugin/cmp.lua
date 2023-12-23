@@ -58,7 +58,7 @@ end
 
 function M.setup()
   vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { link = "Keyword" })
-  vim.keymap.set("i", "j<Space>o", [[<Cmd>lua require("notomo.plugin.cmp").complete()<CR>]])
+  vim.keymap.set("i", "[main_input]o", [[<Cmd>lua require("notomo.plugin.cmp").complete()<CR>]])
   vim.keymap.set({ "i", "s" }, "<Tab>", function()
     return require("notomo.plugin.cmp").tab()
   end, { expr = true, remap = true })
