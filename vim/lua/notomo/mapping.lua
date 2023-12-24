@@ -1,32 +1,62 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = "<Leader>l"
 
-local silent = { silent = true }
-local remap = { remap = true }
-local silent_remap = { silent = true, remap = true }
-local expr = { expr = true }
+vim.keymap.set({ "n", "x" }, "[exec]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Space>x", "[exec]", { remap = true })
 
-local set_prefix = require("notomo.lib.mapping").set_prefix
+vim.keymap.set({ "n", "x" }, "[keyword]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Space>k", "[keyword]", { remap = true })
 
-set_prefix({ "n", "x" }, "exec", "<Space>x")
-set_prefix({ "n", "x" }, "keyword", "<Space>k")
-set_prefix({ "n", "x" }, "diff", "<Leader>d")
-set_prefix({ "n", "x" }, "edit", "<Space>e")
-set_prefix({ "n" }, "file", "<Space>f")
-set_prefix({ "n", "x" }, "operator", "<Space><Leader>")
-set_prefix({ "n", "x" }, "git", "<Leader>g")
-set_prefix({ "n", "x" }, "test", "<Leader>t")
-set_prefix({ "n", "x" }, "substitute", "<Space>s")
-set_prefix({ "n", "x" }, "finder", "<Space>d")
-set_prefix({ "n" }, "buf", "<Space>b")
-set_prefix({ "n", "x" }, "indent", "<Space>i")
-set_prefix({ "n" }, "winmv", "m")
-set_prefix({ "n" }, "win", "<Space>w")
-set_prefix({ "n", "x" }, "tab", "t")
-set_prefix({ "n" }, "term", "<Space>t")
-set_prefix({ "n", "x" }, "arith", "<Space>a")
-set_prefix({ "n", "x" }, "yank", "<Space>y")
-set_prefix({ "n" }, "newline", "o")
+vim.keymap.set({ "n", "x" }, "[diff]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Leader>d", "[diff]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[edit]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Space>e", "[edit]", { remap = true })
+
+vim.keymap.set({ "n" }, "[file]", "<Nop>")
+vim.keymap.set({ "n" }, "<Space>f", "[file]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[operator]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Space><Leader>", "[operator]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[git]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Leader>g", "[git]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[test]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Leader>t", "[test]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[substitute]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Space>s", "[substitute]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[finder]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Space>d", "[finder]", { remap = true })
+
+vim.keymap.set({ "n" }, "[buf]", "<Nop>")
+vim.keymap.set({ "n" }, "<Space>b", "[buf]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[indent]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Space>i", "[indent]", { remap = true })
+
+vim.keymap.set({ "n" }, "[winmv]", "<Nop>")
+vim.keymap.set({ "n" }, "m", "[winmv]", { remap = true })
+
+vim.keymap.set({ "n" }, "[win]", "<Nop>")
+vim.keymap.set({ "n" }, "<Space>w", "[win]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[tab]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "t", "[tab]", { remap = true })
+
+vim.keymap.set({ "n" }, "[term]", "<Nop>")
+vim.keymap.set({ "n" }, "<Space>t", "[term]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[arith]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Space>a", "[arith]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[yank]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "<Space>y", "[yank]", { remap = true })
+
+vim.keymap.set({ "n", "x" }, "[newline]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "o", "[newline]", { remap = true })
 
 vim.keymap.set({ "n", "x" }, "x", [["_x]])
 vim.keymap.set({ "n", "x" }, "[operator]x", [["_d]])
@@ -34,7 +64,7 @@ vim.keymap.set({ "n", "x" }, "c", [["_c]])
 
 vim.keymap.set({ "n", "x" }, "<Space>.", [[@:]])
 vim.keymap.set("n", "<Leader>r", [[<C-r>]])
-vim.keymap.set("n", "<Leader>x", [[<Cmd>lua require("notomo.lib.edit").exchange()<CR>]], silent)
+vim.keymap.set("n", "<Leader>x", [[<Cmd>lua require("notomo.lib.edit").exchange()<CR>]], { silent = true })
 vim.keymap.set({ "n", "x" }, "[edit]r", [[r]])
 vim.keymap.set({ "n", "x" }, "[edit]h", [[gU]])
 vim.keymap.set({ "n", "x" }, "[edit]l", [[gu]])
@@ -94,10 +124,10 @@ vim.keymap.set("x", "<Space>v", [[v]])
 vim.keymap.set("x", "v", [[<ESC>]])
 vim.keymap.set("x", "q", [[<ESC>]])
 vim.keymap.set("s", "<CR>", [[<ESC>gv"_c]])
-vim.keymap.set("i", "jj", [[<ESC>]], silent)
-vim.keymap.set("i", "っｊ", [[<ESC>]], silent)
-vim.keymap.set("i", "ｊｊ", [[<ESC>]], silent)
-vim.keymap.set("c", "jj", [[<C-c>]], silent)
+vim.keymap.set("i", "jj", [[<ESC>]], { silent = true })
+vim.keymap.set("i", "っｊ", [[<ESC>]], { silent = true })
+vim.keymap.set("i", "ｊｊ", [[<ESC>]], { silent = true })
+vim.keymap.set("c", "jj", [[<C-c>]], { silent = true })
 vim.keymap.set("o", "jj", [[<ESC>]])
 vim.keymap.set("s", "jj", [[<ESC>]])
 vim.keymap.set("c", "<LeftMouse>", [[<C-c>]])
@@ -124,10 +154,10 @@ local convert_indent_style = function(to_hard)
 end
 vim.keymap.set({ "n", "x" }, "[indent]t", function()
   convert_indent_style(true)
-end, silent)
+end, { silent = true })
 vim.keymap.set({ "n", "x" }, "[indent]<Space>", function()
   convert_indent_style(false)
-end, silent)
+end, { silent = true })
 
 vim.keymap.set({ "n", "x" }, "k", [[gk]])
 vim.keymap.set({ "n", "x" }, "j", [[gj]])
@@ -156,10 +186,10 @@ vim.keymap.set("n", "gi", [[<C-i>]])
 vim.keymap.set("x", "<S-j>", [[}]])
 vim.keymap.set("x", "<S-k>", [[{]])
 -- remap for matchit
-vim.keymap.set("x", "<S-l>", [[%]], remap)
-vim.keymap.set("n", "<S-l>", [[<Cmd>keepjumps normal %<CR>]], silent)
-vim.keymap.set("n", "<S-j>", [[<Cmd>keepjumps normal! }<CR>]], silent)
-vim.keymap.set("n", "<S-k>", [[<Cmd>keepjumps normal! {<CR>]], silent)
+vim.keymap.set("x", "<S-l>", [[%]], { remap = true })
+vim.keymap.set("n", "<S-l>", [[<Cmd>keepjumps normal %<CR>]], { silent = true })
+vim.keymap.set("n", "<S-j>", [[<Cmd>keepjumps normal! }<CR>]], { silent = true })
+vim.keymap.set("n", "<S-k>", [[<Cmd>keepjumps normal! {<CR>]], { silent = true })
 vim.keymap.set("n", "<C-k>", [[<C-b>]])
 vim.keymap.set("n", "<C-j>", [[<C-f>]])
 vim.keymap.set("n", "<C-e>", [[gi]])
@@ -170,13 +200,13 @@ vim.keymap.set("n", "[newline]o", function()
   for _ in ipairs(vim.fn.range(vim.v.count1)) do
     vim.fn.append(vim.fn.line("."), "")
   end
-end, silent)
+end, { silent = true })
 vim.keymap.set("n", "[newline]j", function()
   for _ in ipairs(vim.fn.range(vim.v.count1)) do
     vim.fn.append(vim.fn.line("."), "")
     vim.cmd.normal({ args = { "j" }, bang = true })
   end
-end, silent)
+end, { silent = true })
 vim.keymap.set("n", "<Space>os", [[<Cmd>setlocal spell!<CR>]])
 vim.keymap.set("n", "[keyword]v", [[:<C-u>vertical stjump <C-r>=expand('<cword>')<CR><CR>]])
 vim.keymap.set("n", "[keyword]t", [[:<C-u>tab stjump <C-r>=expand('<cword>')<CR><CR>]])
@@ -212,43 +242,53 @@ local substitute = function(cmd, is_visual)
     return require("notomo.lib.edit").gen_substitute(cmd, is_visual)
   end
 end
-vim.keymap.set("n", "[substitute]f", substitute([[:%s/\v{cursor}//g]], false), expr)
-vim.keymap.set("x", "[substitute]f", substitute([[:s/\v%V{cursor}%V//g]], true), expr)
-vim.keymap.set("n", "[substitute]wi", substitute([[:%s/\v{word}/{cursor}/g]], false), expr)
-vim.keymap.set("n", "[substitute]ww", substitute([[:%s/\v{word}/{word}{cursor}/g]], false), expr)
-vim.keymap.set("n", "[substitute]iw", substitute([[:%s/\v{cursor}/{word}/g]], false), expr)
-vim.keymap.set("n", "[substitute]vv", substitute([[gv:s/\v%V{word}%V/{word}{cursor}/g]], true), expr)
-vim.keymap.set("n", "[substitute]vi", substitute([[gv:s/\v%V{word}%V/{cursor}/g]], true), expr)
-vim.keymap.set("n", "[substitute]iv", substitute([[gv:s/\v%V{cursor}%V/{word}/g]], true), expr)
-vim.keymap.set("n", "[substitute]yv", substitute([[gv:s/\v%V{register}%V/{word}{cursor}/g]], true), expr)
-vim.keymap.set("n", "[substitute]vy", substitute([[gv:s/\v%V{word}%V/{register}{cursor}/g]], true), expr)
-vim.keymap.set("n", "[substitute]yi", substitute([[:%s/\v{register}/{cursor}/g]], false), expr)
-vim.keymap.set("x", "[substitute]yi", substitute([[:s/\v{register}/{cursor}/g]], true), expr)
-vim.keymap.set("n", "[substitute]yy", substitute([[:%s/\v{register}/{register}{cursor}/g]], false), expr)
-vim.keymap.set("x", "[substitute]yy", substitute([[:s/\v{register}/{register}{cursor}/g]], true), expr)
-vim.keymap.set("n", "[substitute]iy", substitute([[:%s/\v{cursor}/{register}/g]], false), expr)
-vim.keymap.set("x", "[substitute]iy", substitute([[:s/\v{cursor}/{register}/g]], true), expr)
-vim.keymap.set("n", "[substitute]yw", substitute([[:%s/\v{register}/{word}{cursor}/g]], false), expr)
-vim.keymap.set("n", "[substitute]wy", substitute([[:%s/\v{word}/{register}{cursor}/g]], false), expr)
-vim.keymap.set("n", "[substitute]c", substitute([[:%s/C\v{cursor}//g]], false), expr)
-vim.keymap.set("x", "[substitute]c", substitute([[:s/C\v{cursor}//g]], true), expr)
-vim.keymap.set("n", "[substitute]e", substitute([[:%s/\v$/{cursor}/g]], false), expr)
-vim.keymap.set("x", "[substitute]e", substitute([[:s/\v$/{cursor}/g]], true), expr)
-vim.keymap.set("n", "[substitute]de", substitute([[:g!/{cursor}/d]], false), expr)
-vim.keymap.set("x", "[substitute]de", substitute([[:g!/{cursor}/d]], false), expr)
-vim.keymap.set("n", "[substitute]di", substitute([[:g/{cursor}/d]], false), expr)
-vim.keymap.set("x", "[substitute]di", substitute([[:g/{cursor}/d]], false), expr)
-vim.keymap.set("n", "[substitute]do", substitute([[:%s/\v(.{-}({cursor}).*|^.*\n)/\2/g]], false), expr)
+vim.keymap.set("n", "[substitute]f", substitute([[:%s/\v{cursor}//g]], false), { expr = true })
+vim.keymap.set("x", "[substitute]f", substitute([[:s/\v%V{cursor}%V//g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]wi", substitute([[:%s/\v{word}/{cursor}/g]], false), { expr = true })
+vim.keymap.set("n", "[substitute]ww", substitute([[:%s/\v{word}/{word}{cursor}/g]], false), { expr = true })
+vim.keymap.set("n", "[substitute]iw", substitute([[:%s/\v{cursor}/{word}/g]], false), { expr = true })
+vim.keymap.set("n", "[substitute]vv", substitute([[gv:s/\v%V{word}%V/{word}{cursor}/g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]vi", substitute([[gv:s/\v%V{word}%V/{cursor}/g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]iv", substitute([[gv:s/\v%V{cursor}%V/{word}/g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]yv", substitute([[gv:s/\v%V{register}%V/{word}{cursor}/g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]vy", substitute([[gv:s/\v%V{word}%V/{register}{cursor}/g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]yi", substitute([[:%s/\v{register}/{cursor}/g]], false), { expr = true })
+vim.keymap.set("x", "[substitute]yi", substitute([[:s/\v{register}/{cursor}/g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]yy", substitute([[:%s/\v{register}/{register}{cursor}/g]], false), { expr = true })
+vim.keymap.set("x", "[substitute]yy", substitute([[:s/\v{register}/{register}{cursor}/g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]iy", substitute([[:%s/\v{cursor}/{register}/g]], false), { expr = true })
+vim.keymap.set("x", "[substitute]iy", substitute([[:s/\v{cursor}/{register}/g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]yw", substitute([[:%s/\v{register}/{word}{cursor}/g]], false), { expr = true })
+vim.keymap.set("n", "[substitute]wy", substitute([[:%s/\v{word}/{register}{cursor}/g]], false), { expr = true })
+vim.keymap.set("n", "[substitute]c", substitute([[:%s/C\v{cursor}//g]], false), { expr = true })
+vim.keymap.set("x", "[substitute]c", substitute([[:s/C\v{cursor}//g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]e", substitute([[:%s/\v$/{cursor}/g]], false), { expr = true })
+vim.keymap.set("x", "[substitute]e", substitute([[:s/\v$/{cursor}/g]], true), { expr = true })
+vim.keymap.set("n", "[substitute]de", substitute([[:g!/{cursor}/d]], false), { expr = true })
+vim.keymap.set("x", "[substitute]de", substitute([[:g!/{cursor}/d]], false), { expr = true })
+vim.keymap.set("n", "[substitute]di", substitute([[:g/{cursor}/d]], false), { expr = true })
+vim.keymap.set("x", "[substitute]di", substitute([[:g/{cursor}/d]], false), { expr = true })
+vim.keymap.set("n", "[substitute]do", substitute([[:%s/\v(.{-}({cursor}).*|^.*\n)/\2/g]], false), { expr = true })
 
-vim.keymap.set("n", "[yank]d", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.strftime('%Y-%m-%d'))<CR>]], silent)
-vim.keymap.set("n", "[yank]D", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.strftime('%Y-%m-%d %T'))<CR>]], silent)
+vim.keymap.set(
+  "n",
+  "[yank]d",
+  [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.strftime('%Y-%m-%d'))<CR>]],
+  { silent = true }
+)
+vim.keymap.set(
+  "n",
+  "[yank]D",
+  [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.strftime('%Y-%m-%d %T'))<CR>]],
+  { silent = true }
+)
 vim.keymap.set(
   "n",
   "[yank]n",
   [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.fnamemodify(vim.fn.expand('%'), ':r'))<CR>]],
-  silent
+  { silent = true }
 )
-vim.keymap.set("n", "[yank]N", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.expand('%'))<CR>]], silent)
+vim.keymap.set("n", "[yank]N", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.expand('%'))<CR>]], { silent = true })
 vim.keymap.set("n", "[yank]p", function()
   local home = vim.fs.normalize("$HOME")
   local path = vim.fs.normalize(vim.fn.expand("%:p"))
@@ -265,22 +305,22 @@ vim.keymap.set("n", "[yank]g", function()
   require("notomo.lib.edit").yank(path)
 end)
 vim.keymap.set("n", "[yank]P", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fs.normalize(vim.fn.expand('%:p')))<CR>]])
-vim.keymap.set("n", "[yank];", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg(":"))<CR>]], silent)
-vim.keymap.set("n", "[yank]/", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg("/"))<CR>]], silent)
-vim.keymap.set("n", "[yank]i", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg("."))<CR>]], silent)
+vim.keymap.set("n", "[yank];", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg(":"))<CR>]], { silent = true })
+vim.keymap.set("n", "[yank]/", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg("/"))<CR>]], { silent = true })
+vim.keymap.set("n", "[yank]i", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg("."))<CR>]], { silent = true })
 vim.keymap.set(
   "n",
   "[yank]b",
   [[<Cmd>lua require("notomo.lib.edit").yank(require("notomo.lib.git").current_branch())<CR>]],
-  silent
+  { silent = true }
 )
-vim.keymap.set("n", "[yank]l", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.line('.'))<CR>]], silent)
-vim.keymap.set("n", "[yank]c", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.col('.'))<CR>]], silent)
+vim.keymap.set("n", "[yank]l", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.line('.'))<CR>]], { silent = true })
+vim.keymap.set("n", "[yank]c", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.col('.'))<CR>]], { silent = true })
 vim.keymap.set(
   "n",
   "[yank]w",
   [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"))<CR>]],
-  silent
+  { silent = true }
 )
 
 vim.keymap.set({ "x", "o" }, "io", "ip")
@@ -341,7 +381,8 @@ vim.keymap.set("i", "<S-TAB>", [[<C-d>]])
 vim.keymap.set("c", "<Tab>", [[<C-n>]])
 vim.keymap.set("c", "<S-Tab>", [[<C-p>]])
 
-set_prefix({ "i", "c", "t" }, "main_input", "j<Space>")
+vim.keymap.set({ "i", "c", "t" }, "[main_input]", "<Nop>")
+vim.keymap.set({ "i", "c", "t" }, "j<Space>", "[main_input]", { remap = true })
 
 vim.keymap.set({ "i", "c", "t" }, "[main_input]a", "-")
 vim.keymap.set({ "i", "c", "t" }, "[main_input]e", "=")
@@ -409,9 +450,10 @@ vim.keymap.set("i", "[main_input]k", function()
     end
   end
   return "<Right>"
-end, expr)
+end, { expr = true })
 
-set_prefix({ "i", "c", "t" }, "sub_input", "jk")
+vim.keymap.set({ "i", "c", "t" }, "[sub_input]", "<Nop>")
+vim.keymap.set({ "i", "c", "t" }, "jk", "[sub_input]", { remap = true })
 
 vim.keymap.set({ "i", "c", "t" }, "[sub_input]a", "&")
 vim.keymap.set({ "i", "c", "t" }, "[sub_input]h", "^")
@@ -443,10 +485,10 @@ vim.keymap.set("x", "[diff]p", [[:diffput<CR>]])
 
 vim.keymap.set("n", "[arith]j", function()
   return require("notomo.lib.edit").inc_or_dec(false)
-end, expr)
+end, { expr = true })
 vim.keymap.set("n", "[arith]k", function()
   return require("notomo.lib.edit").inc_or_dec(true)
-end, expr)
+end, { expr = true })
 vim.keymap.set("x", "[arith]j", [[<C-x>gv]])
 vim.keymap.set("x", "[arith]k", [[<C-a>gv]])
 vim.keymap.set("x", "[arith]d", [[g<C-x>gv]])
@@ -455,7 +497,7 @@ vim.keymap.set("n", "[exec]n", function()
   vim.cmd.nohlsearch()
   vim.lsp.buf.clear_references()
 end)
-vim.keymap.set("n", "[exec]l", [[':' .. getline('.') .. '<CR>']], expr)
+vim.keymap.set("n", "[exec]l", [[':' .. getline('.') .. '<CR>']], { expr = true })
 vim.keymap.set("n", "[exec]q", [[<Cmd>lua require("notomo.lib.edit").jq()<CR>]])
 vim.keymap.set("n", "[exec]N", [[<Cmd>lua require("notomo.lib.edit").note()<CR>]])
 vim.keymap.set("n", "[exec]O", [[<Cmd>lua require("notomo.lib.github").view_repo()<CR>]])
@@ -468,6 +510,7 @@ vim.keymap.set("n", "[winmv]l", [[<C-w>l]])
 vim.keymap.set("n", "[winmv]s", [[<C-w>r]])
 vim.keymap.set("n", "[winmv];", [[<C-w>w]])
 
+-- macro
 vim.keymap.set("n", "mr", "qa")
 vim.keymap.set("n", "mq", "q")
 vim.keymap.set("n", "me", "@a")
@@ -479,19 +522,19 @@ vim.keymap.set("n", "[win]O", [[<Cmd>fclose!<CR>]])
 vim.keymap.set("n", "[win]q", [[<Cmd>q<CR>]])
 vim.keymap.set("n", "[win]e", [[<C-w>=]])
 
-vim.keymap.set("n", "[tab]o", [[<Cmd>silent tabonly<CR>]], silent)
-vim.keymap.set("x", "[tab]o", [[<Esc><Cmd>silent tabonly<CR>]], silent)
-vim.keymap.set("n", "[tab]t", [[<Plug>(new_tab)]], remap)
+vim.keymap.set("n", "[tab]o", [[<Cmd>silent tabonly<CR>]], { silent = true })
+vim.keymap.set("x", "[tab]o", [[<Esc><Cmd>silent tabonly<CR>]], { silent = true })
+vim.keymap.set("n", "[tab]t", [[<Plug>(new_tab)]], { remap = true })
 vim.keymap.set("n", "<C-Tab>", [[gt]])
 vim.keymap.set("n", "<C-S-Tab>", [[gT]])
 vim.keymap.set("i", "<C-Tab>", [[<Esc>gt]])
 vim.keymap.set("i", "<C-S-Tab>", [[<Esc>gT]])
 vim.keymap.set("v", "<C-Tab>", [[<Esc>gt]])
 vim.keymap.set("v", "<C-S-Tab>", [[<Esc>gT]])
-vim.keymap.set("n", "<C-w>", [[<Plug>(tabclose_c)]], silent)
-vim.keymap.set("i", "<C-w>", [[<ESC><Plug>(tabclose_c)]], silent_remap)
-vim.keymap.set("v", "<C-w>", [[<ESC><Plug>(tabclose_c)]], silent_remap)
-vim.keymap.set("n", "<C-t>", [[<Plug>(new_tab)]], silent)
+vim.keymap.set("n", "<C-w>", [[<Plug>(tabclose_c)]], { silent = true })
+vim.keymap.set("i", "<C-w>", [[<ESC><Plug>(tabclose_c)]], { silent = true, remap = true })
+vim.keymap.set("v", "<C-w>", [[<ESC><Plug>(tabclose_c)]], { silent = true, remap = true })
+vim.keymap.set("n", "<C-t>", [[<Plug>(new_tab)]], { silent = true })
 vim.keymap.set("t", "jj", [[<C-\><C-n>]])
 vim.keymap.set("t", "<C-p>", [[<Up>]])
 vim.keymap.set("t", "<C-n>", [[<Down>]])
@@ -514,10 +557,10 @@ if vim.fn.has("win32") == 1 then
   vim.keymap.set("t", "<C-u>", [[<C-Home>]])
 end
 
-vim.keymap.set("n", "[term]o", [[<Cmd>terminal<CR>]], silent)
-vim.keymap.set("n", "[term]v", [[<Cmd>vsplit|terminal<CR>]], silent)
-vim.keymap.set("n", "[term]h", [[<Cmd>split|terminal<CR>]], silent)
-vim.keymap.set("n", "[term]t", [[<Cmd>tabedit|terminal<CR>]], silent)
+vim.keymap.set("n", "[term]o", [[<Cmd>terminal<CR>]], { silent = true })
+vim.keymap.set("n", "[term]v", [[<Cmd>vsplit|terminal<CR>]], { silent = true })
+vim.keymap.set("n", "[term]h", [[<Cmd>split|terminal<CR>]], { silent = true })
+vim.keymap.set("n", "[term]t", [[<Cmd>tabedit|terminal<CR>]], { silent = true })
 vim.keymap.set("n", "[term]g", function()
   local path = vim.fn.finddir(".git", ",;")
   local project_path = "."
@@ -528,18 +571,18 @@ vim.keymap.set("n", "[term]g", function()
   vim.cmd.tabedit()
   vim.fn.termopen(vim.opt.shell:get(), { cwd = project_path })
   vim.cmd.lcd(project_path)
-end, silent)
+end, { silent = true })
 vim.keymap.set(
   "n",
   "[yank]ud",
   [[<Cmd>lua require("notomo.lib.edit").yank(require("misclib.url").decode(vim.fn.expand('<cWORD>')))<CR>]],
-  silent
+  { silent = true }
 )
 vim.keymap.set(
   "n",
   "[yank]ue",
   [[<Cmd>lua require("notomo.lib.edit").yank(require("misclib.url").encode(vim.fn.expand('<cWORD>')))<CR>]],
-  silent
+  { silent = true }
 )
 vim.keymap.set(
   "n",
@@ -574,7 +617,9 @@ vim.keymap.set({ "n", "x" }, "[yank]U", function()
   require("notomo.lib.github").yank()
 end)
 
-set_prefix({ "n", "x" }, "browser", "[exec]b")
+vim.keymap.set({ "n", "x" }, "[browser]", "<Nop>")
+vim.keymap.set({ "n", "x" }, "[exec]b", "[browser]", { remap = true })
+
 vim.keymap.set("n", "[browser]o", function()
   require("notomo.lib.browser").open(vim.fn.expand("<cWORD>"))
 end)

@@ -1,7 +1,12 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = "<Leader>l"
 
-local set_prefix = require("notomo.lib.mapping").set_prefix
+local set_prefix = function(modes, name, key)
+  local name_key = ("[%s]"):format(name)
+  vim.keymap.set(modes, name_key, "<Nop>")
+  vim.keymap.set(modes, key, name_key, { remap = true })
+end
+
 set_prefix({ "n", "x" }, "exec", "<Space>x")
 set_prefix({ "n" }, "keyword", "<Space>k")
 set_prefix({ "n" }, "file", "<Space>f")
