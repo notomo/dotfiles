@@ -1,6 +1,6 @@
-vim.api.nvim_create_augroup("dap_setting", {})
+local group = vim.api.nvim_create_augroup("dap_setting", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "dap_setting",
+  group = group,
   pattern = { "dap-float" },
   callback = function()
     vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { nowait = true, buffer = true })

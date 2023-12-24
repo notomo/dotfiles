@@ -1,7 +1,7 @@
-vim.api.nvim_create_augroup("kivi_setting", {})
+local group = vim.api.nvim_create_augroup("kivi_setting", {})
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "kivi_setting",
+  group = group,
   pattern = { "kivi-*" },
   callback = function()
     vim.keymap.set("n", "j", [[line('.') == line('$') ? 'gg' : 'j']], { silent = true, buffer = true, expr = true })

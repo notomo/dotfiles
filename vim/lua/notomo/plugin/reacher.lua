@@ -36,9 +36,9 @@ vim.keymap.set({ "n", "x" }, "gl", function()
 end)
 vim.keymap.set("n", "g<CR>", [[<Cmd>lua require("reacher").again({input = vim.fn.histget("/")})<CR><ESC>]])
 
-vim.api.nvim_create_augroup("reacher_setting", {})
+local group = vim.api.nvim_create_augroup("reacher_setting", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "reacher_setting",
+  group = group,
   pattern = { "reacher" },
   callback = function()
     vim.keymap.set("i", "jj", [[<Cmd>lua require("reacher").cancel()<CR>]], { silent = true, buffer = true })

@@ -32,9 +32,9 @@ vim.keymap.set(
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {line = vim.fn.getcmdline(), column = vim.fn.getcmdpos()})<CR><C-c>]]
 )
 
-vim.api.nvim_create_augroup("cmdbuf_setting", {})
+local group = vim.api.nvim_create_augroup("cmdbuf_setting", {})
 vim.api.nvim_create_autocmd({ "User" }, {
-  group = "cmdbuf_setting",
+  group = group,
   pattern = { "CmdbufNew" },
   callback = function(args)
     vim.bo.bufhidden = "wipe"

@@ -201,9 +201,9 @@ vim.keymap.set("n", "<Leader>D", function()
   end)
 end)
 
-vim.api.nvim_create_augroup("cmdhndlr_setting", {})
+local group = vim.api.nvim_create_augroup("cmdhndlr_setting", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "cmdhndlr_setting",
+  group = group,
   pattern = { "cmdhndlr" },
   callback = function()
     vim.keymap.set("n", "[file]rl", [[<Cmd>lua require("cmdhndlr").retry()<CR>]], { buffer = true })

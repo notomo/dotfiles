@@ -1,4 +1,4 @@
-vim.api.nvim_create_augroup("thetto_setting", {})
+local group = vim.api.nvim_create_augroup("thetto_setting", {})
 
 local thetto_starter = function(...)
   local args = { ... }
@@ -8,7 +8,7 @@ local thetto_starter = function(...)
 end
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "thetto_setting",
+  group = group,
   pattern = { "thetto" },
   callback = function()
     vim.keymap.set("n", "<CR>", [[<Cmd>lua require("thetto").execute()<CR>]], { buffer = true })
