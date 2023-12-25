@@ -294,6 +294,13 @@ runtime.after.ftplugin["terraform.lua"] = function()
   vim.keymap.set("n", "[yank]t", function()
     require("notomo.lib.terraform").yank()
   end)
+
+  vim.keymap.set("n", "sgj", function()
+    require("notomo.lib.terraform").go_to_next_resouce()
+  end, { buffer = true })
+  vim.keymap.set("n", "sgk", function()
+    require("notomo.lib.terraform").go_to_prev_resouce()
+  end, { buffer = true })
 end
 
 runtime.after.ftplugin["flux.lua"] = function()

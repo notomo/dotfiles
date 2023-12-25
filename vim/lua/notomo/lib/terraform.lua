@@ -51,4 +51,41 @@ function M.yank()
   end
 end
 
+function M.go_to_prev_resouce()
+  local base_node = vim.treesitter.get_node({})
+  -- TODO: if root
+
+  local prev_resource = require("notomo.lib.treesitter").find_root_ancestor(base_node, "block", true)
+  if not prev_resource then
+    return
+  end
+
+  local current_row = vim.api.nvim_win_get_cursor(0)[1] - 1
+  local row, column = prev_resource:start()
+  if row == current_row then
+    prev_resource = prev_resource:prev_sibling() or prev_resource
+  end
+  row, column = prev_resource:start()
+
+  require("misclib.window").jump(0, row + 1, column)
+end
+
+function M.go_to_next_resouce()
+  local base_node = vim.treesitter.get_node({})
+  -- TODO: if root
+
+  local prev_resouce = require("notomo.lib.treesitter").find_root_ancestor(base_node, "block", true)
+  if not prev_resouce then
+    return
+  end
+
+  local next_resouce = prev_resouce:next_sibling()
+  if not next_resouce then
+    return
+  end
+
+  local row, column = next_resouce:start()
+  require("misclib.window").jump(0, row + 1, column)
+end
+
 return M
