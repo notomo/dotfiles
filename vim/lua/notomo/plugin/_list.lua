@@ -49,6 +49,19 @@ mypack.add("notomo/optpack.nvim", {
       })
       vim.keymap.set("n", "[exec]U", function()
         require("optpack").update({
+          on_finished = function()
+            require("cmdhndlr").test({
+              name = "make/make",
+              layout = { type = "horizontal" },
+            })
+            require("cmdhndlr").run({
+              name = "make/make",
+              layout = { type = "horizontal" },
+              runner_opts = {
+                target = "help_tags",
+              },
+            })
+          end,
           outputters = {
             buffer = {
               open = function(bufnr)
