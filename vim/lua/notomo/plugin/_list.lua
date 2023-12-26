@@ -48,11 +48,30 @@ mypack.add("notomo/optpack.nvim", {
         end,
       })
       vim.keymap.set("n", "[exec]U", function()
+        local tabpage
         require("optpack").update({
+          outputters = {
+            buffer = {
+              open = function(bufnr)
+                vim.cmd.tabedit()
+                tabpage = vim.api.nvim_get_current_tabpage()
+
+                vim.bo.buftype = "nofile"
+                vim.bo.bufhidden = "wipe"
+                vim.cmd.buffer(bufnr)
+              end,
+            },
+          },
           on_finished = function()
+            local tmp_tabpage = vim.api.nvim_get_current_tabpage()
+            vim.api.nvim_set_current_tabpage(tabpage)
+
             require("cmdhndlr").test({
               name = "make/make",
               layout = { type = "horizontal" },
+              working_dir_marker = function()
+                return vim.fn.expand("~/dotfiles/vim/Makefile")
+              end,
             })
             require("cmdhndlr").run({
               name = "make/make",
@@ -60,18 +79,13 @@ mypack.add("notomo/optpack.nvim", {
               runner_opts = {
                 target = "help_tags",
               },
-            })
-          end,
-          outputters = {
-            buffer = {
-              open = function(bufnr)
-                vim.cmd.tabedit()
-                vim.bo.buftype = "nofile"
-                vim.bo.bufhidden = "wipe"
-                vim.cmd.buffer(bufnr)
+              working_dir_marker = function()
+                return vim.fn.expand("~/dotfiles/vim/Makefile")
               end,
-            },
-          },
+            })
+
+            vim.api.nvim_set_current_tabpage(tmp_tabpage)
+          end,
         })
       end)
     end,
