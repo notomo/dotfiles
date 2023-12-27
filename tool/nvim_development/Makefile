@@ -19,7 +19,7 @@ build:
 .PHONY: build
 
 build_with_asan:
-	cd ${NVIM_DIR}; make CMAKE_EXTRA_FLAGS="-DCLANG_ASAN_UBSAN=ON"
+	cd ${NVIM_DIR}; make CMAKE_EXTRA_FLAGS="-DENABLE_ASAN_UBSAN=ON"
 	cp ${NVIM} ${ASAN_NVIM}
 .PHONY: build_with_asan
 
@@ -61,7 +61,8 @@ start:
 	# ${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua"
 	# ${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua" +"quitall!"
 	# ASAN_OPTIONS=${ASAN_OPTIONS} UBSAN_OPTIONS=${UBSAN_OPTIONS} ${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua" +"quitall!"
-	${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua" +"quitall!"
+	# ${NVIM_WITH_RUNTIME} --clean +"luafile ./minimal.lua" +"quitall!"
+	${NVIM_WITH_RUNTIME} --clean --headless +"source ./minimal.lua" +"quitall!"
 	# ${NVIM_WITH_RUNTIME} --clean --headless +"source ./minimal.vim" +"quitall!"
 	# ${NVIM_WITH_RUNTIME} --clean +"source ./minimal.vim" +"quitall!"
 	# ${NVIM_WITH_RUNTIME} --clean +"source ./minimal.vim"
