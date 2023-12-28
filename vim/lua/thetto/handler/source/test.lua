@@ -34,6 +34,12 @@ end
 function M.collect(source_ctx)
   local items = {}
   local paths = source_ctx.opts.get_paths(source_ctx.cwd)
+
+  local tool_name
+  if require("cmdhndlr").get("test_runner/typescript/playwright").working_dir_marker() then
+    tool_name = "playwright"
+  end
+
   for _, path in ipairs(paths) do
     local tests = require("gettest").nodes({
       scope = source_ctx.opts.scope,
@@ -41,6 +47,7 @@ function M.collect(source_ctx)
         path = path,
         row = vim.fn.line("."),
       },
+      tool_name = tool_name,
     })
     for _, test in ipairs(tests) do
       vim.list_extend(items, M._collect(test, path))
