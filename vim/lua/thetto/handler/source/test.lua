@@ -10,12 +10,15 @@ M.opts = {
 local to_item = function(test, path)
   local name_node = test.name_nodes[#test.name_nodes]
   local row, column = name_node:start()
+  local end_row, end_column = name_node:end_()
   local full_name = test.full_name:gsub("\n", " ")
   return {
     value = full_name,
     is_leaf = #test.children == 0,
     row = row + 1,
     column = column,
+    end_row = end_row,
+    end_column = end_column,
     path = path,
     column_offsets = {
       name = #test.full_name - #test.name,
