@@ -15,7 +15,10 @@ runtime.after.ftplugin["autohotkey.lua"] = function()
   require("notomo.lsp").setup()
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     buffer = 0,
-    callback = function()
+    callback = function(args)
+      if vim.b[args.buf].notomo_format_disabled then
+        return
+      end
       vim.lsp.buf.format({ timeout_ms = 3000 })
     end,
   })
@@ -456,7 +459,10 @@ runtime.after.ftplugin["prisma.lua"] = function()
   require("notomo.lsp").setup()
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     buffer = 0,
-    callback = function()
+    callback = function(args)
+      if vim.b[args.buf].notomo_format_disabled then
+        return
+      end
       vim.lsp.buf.format({ timeout_ms = 3000 })
     end,
   })
