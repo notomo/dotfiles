@@ -210,7 +210,10 @@ local set_tabline = function()
         local current_window_id = vim.api.nvim_tabpage_get_win(current)
         local current_bufnr = vim.api.nvim_win_get_buf(current_window_id)
         local exists_modified = vim.iter(vim.api.nvim_list_bufs()):any(function(bufnr)
-          return bufnr ~= current_bufnr and vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].modified
+          return bufnr ~= current_bufnr
+            and vim.api.nvim_buf_is_valid(bufnr)
+            and vim.bo[bufnr].buflisted
+            and vim.bo[bufnr].modified
         end)
         if exists_modified then
           table.insert(components, Highlight("TablineSel", " + "))
