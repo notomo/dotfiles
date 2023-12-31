@@ -54,6 +54,15 @@ setup_ls(lspconfig.rust_analyzer, {
 })
 
 setup_ls(lspconfig.gopls, {
+  capabilities = {
+    textDocument = {
+      completion = {
+        completionItem = {
+          snippetSupport = false,
+        },
+      },
+    },
+  },
   init_options = {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks
