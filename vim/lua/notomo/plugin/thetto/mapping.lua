@@ -80,13 +80,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "yy", [[<Cmd>lua require("thetto").execute("yank")<CR>]], { buffer = true })
     vim.keymap.set(
       "n",
-      "tsl",
-      [[<Cmd>lua require("thetto").execute("toggle_sorter", {action_opts = {name = "length"}})<CR>]],
-      { buffer = true }
-    )
-    vim.keymap.set("n", "p", [[<Cmd>lua require("thetto").execute("toggle_preview")<CR>]], { buffer = true })
-    vim.keymap.set(
-      "n",
       "[finder]<CR>",
       [[<Cmd>lua require("thetto").execute("resume_previous")<CR>]],
       { buffer = true }
@@ -155,24 +148,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "t<Space>", [[<Cmd>lua require("thetto").execute("tab_open")<CR>]], { buffer = true })
     vim.keymap.set(
       "n",
-      "fan",
-      [[<Cmd>lua require("thetto").execute("add_filter", {action_opts = {name = "-substring"}})<CR>Gi]],
-      { buffer = true }
-    )
-    vim.keymap.set(
-      "n",
       "fau",
       [[<Cmd>lua require("thetto").execute("add_filter", {action_opts = {name = "unique:path"}})<CR>Gi]],
       { buffer = true }
     )
-    vim.keymap.set(
-      "n",
-      "faU",
-      [[<Cmd>lua require("thetto").execute("remove_filter", {action_opts = {name = "unique:path"}})<CR>Gi]],
-      { buffer = true }
-    )
-    vim.keymap.set("n", "fd", [[<Cmd>lua require("thetto").execute("remove_filter")<CR>]], { buffer = true })
-    vim.keymap.set("n", "fi", [[<Cmd>lua require("thetto").execute("inverse_filter")<CR>]], { buffer = true })
     vim.keymap.set("n", "sr", [[<Cmd>lua require("thetto").execute("reverse_sorter")<CR>]], { buffer = true })
     vim.keymap.set(
       "n",
@@ -183,7 +162,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "[finder]n", [[<Cmd>lua require("thetto").execute("resume_previous")<CR>]], { buffer = true })
     vim.keymap.set("n", "[finder]N", [[<Cmd>lua require("thetto").execute("resume_next")<CR>]], { buffer = true })
 
-    vim.keymap.set("i", "<Tab>", [[<Cmd>lua require("thetto").execute("append_filter_input")<CR>]], { buffer = true })
     vim.keymap.set(
       "i",
       "<C-p>",
