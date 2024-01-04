@@ -194,6 +194,74 @@ runtime.after.ftplugin["lua.lua"] = function()
   end, { buffer = true })
 
   require("notomo.lib.treesitter").setup()
+
+  if vim.endswith(vim.fn.bufname(), "_spec.lua") then
+    vim.keymap.set("n", "sgJ", function()
+      local current_row = vim.fn.line(".")
+      local path = vim.api.nvim_buf_get_name(0)
+      require("thetto").start("test", {
+        opts = {
+          insert = false,
+          immediately = true,
+          can_resume = false,
+          action = "open",
+          search_offset = function(item)
+            return item.is_toplevel and item.path == path and item.row > current_row
+          end,
+        },
+      })
+    end, { buffer = true })
+
+    vim.keymap.set("n", "sgj", function()
+      local current_row = vim.fn.line(".")
+      local path = vim.api.nvim_buf_get_name(0)
+      require("thetto").start("test", {
+        opts = {
+          insert = false,
+          immediately = true,
+          can_resume = false,
+          action = "open",
+          search_offset = function(item)
+            return item.path == path and item.row > current_row
+          end,
+        },
+      })
+    end, { buffer = true })
+
+    vim.keymap.set("n", "sgK", function()
+      local current_row = vim.fn.line(".")
+      local path = vim.api.nvim_buf_get_name(0)
+      require("thetto").start("test", {
+        opts = {
+          insert = false,
+          immediately = true,
+          can_resume = false,
+          action = "open",
+          search_offset = function(item)
+            return item.is_toplevel and item.path == path and item.row < current_row
+          end,
+          sorters = { "-row" },
+        },
+      })
+    end, { buffer = true })
+
+    vim.keymap.set("n", "sgk", function()
+      local current_row = vim.fn.line(".")
+      local path = vim.api.nvim_buf_get_name(0)
+      require("thetto").start("test", {
+        opts = {
+          insert = false,
+          immediately = true,
+          can_resume = false,
+          action = "open",
+          search_offset = function(item)
+            return item.path == path and item.row < current_row
+          end,
+          sorters = { "-row" },
+        },
+      })
+    end, { buffer = true })
+  end
 end
 
 runtime.after.queries.lua["highlights.scm"] = [=[

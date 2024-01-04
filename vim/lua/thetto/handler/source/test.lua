@@ -7,7 +7,7 @@ M.opts = {
   end,
 }
 
-local to_item = function(test, path)
+local to_item = function(test, path, is_toplevel)
   local name_node = test.name_nodes[#test.name_nodes]
   local row, column = name_node:start()
   local end_row, end_column = name_node:end_()
@@ -15,6 +15,7 @@ local to_item = function(test, path)
   return {
     value = full_name,
     is_leaf = #test.children == 0,
+    is_toplevel = is_toplevel or false,
     row = row + 1,
     column = column,
     end_row = end_row,
@@ -26,10 +27,10 @@ local to_item = function(test, path)
   }
 end
 
-function M._collect(test, path)
-  local items = { to_item(test, path) }
+function M._collect(test, path, is_toplevel)
+  local items = { to_item(test, path, is_toplevel) }
   for _, child in ipairs(test.children) do
-    vim.list_extend(items, M._collect(child, path))
+    vim.list_extend(items, M._collect(child, path, false))
   end
   return items
 end
@@ -53,7 +54,7 @@ function M.collect(source_ctx)
       tool_name = tool_name,
     })
     for _, test in ipairs(tests) do
-      vim.list_extend(items, M._collect(test, path))
+      vim.list_extend(items, M._collect(test, path, true))
     end
   end
   return items
