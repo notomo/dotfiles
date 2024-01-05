@@ -1,37 +1,41 @@
 local group = vim.api.nvim_create_augroup("kivi_setting", {})
 
+local execute = function(action_name, opts)
+  return function()
+    require("kivi").execute(action_name, opts)
+  end
+end
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
   pattern = { "kivi-*" },
   callback = function()
     vim.keymap.set("n", "j", [[line('.') == line('$') ? 'gg' : 'j']], { silent = true, buffer = true, expr = true })
     vim.keymap.set("n", "k", [[line('.') == 1 ? 'G' : 'k']], { silent = true, buffer = true, expr = true })
-    vim.keymap.set("n", "h", [[<Cmd>lua require("kivi").execute("parent")<CR>]], { buffer = true })
-    vim.keymap.set("n", "l", [[<Cmd>lua require("kivi").execute("child")<CR>]], { buffer = true })
+    vim.keymap.set("n", "h", execute("parent"), { buffer = true })
+    vim.keymap.set("n", "l", execute("child"), { buffer = true })
     vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
-    vim.keymap.set(
-      "n",
-      "t<Space>",
-      [[<Cmd>lua require("kivi").execute("tab_open", {quit = not require("kivi").is_parent()})<CR>]],
-      { buffer = true }
-    )
-    vim.keymap.set(
-      "n",
-      "sv",
-      [[<Cmd>lua require("kivi").execute("vsplit_open", {quit = not require("kivi").is_parent()})<CR>]],
-      { buffer = true }
-    )
-    vim.keymap.set("n", "D", [[<Cmd>lua require("kivi").execute("debug_print")<CR>]], { buffer = true })
-    vim.keymap.set("n", "yr", [[<Cmd>lua require("kivi").execute("yank")<CR>]], { buffer = true })
-    vim.keymap.set("n", "B", [[<Cmd>lua require("kivi").execute("back")<CR>]], { buffer = true })
-    vim.keymap.set("n", "rn", [[<Cmd>lua require("kivi").execute("rename")<CR>]], { buffer = true })
+    vim.keymap.set("n", "t<Space>", function()
+      require("kivi").execute("tab_open", {
+        quit = not require("kivi").is_parent(),
+      })
+    end, { buffer = true })
+    vim.keymap.set("n", "sv", function()
+      require("kivi").execute("vsplit_open", {
+        quit = not require("kivi").is_parent(),
+      })
+    end, { buffer = true })
+    vim.keymap.set("n", "D", execute("debug_print"), { buffer = true })
+    vim.keymap.set("n", "yr", execute("yank"), { buffer = true })
+    vim.keymap.set("n", "B", execute("back"), { buffer = true })
+    vim.keymap.set("n", "rn", execute("rename"), { buffer = true })
     vim.keymap.set("n", "o", function()
       if require("kivi").is_parent() then
         return require("kivi").execute("toggle_tree")
       end
       return require("kivi").execute("open")
     end, { buffer = true })
-    vim.keymap.set("n", "c", [[<Cmd>lua require("kivi").execute("close_all_tree")<CR>]], { buffer = true })
+    vim.keymap.set("n", "c", execute("close_all_tree"), { buffer = true })
 
     vim.keymap.set("n", "<2-LeftMouse>", function()
       require("kivi").execute("child")
@@ -48,13 +52,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end, { buffer = true })
 
     vim.keymap.set("n", "sm", [[<Cmd>lua require("kivi").execute("toggle_selection")<CR>j]], { buffer = true })
-    vim.keymap.set("x", "sm", [[<Cmd>lua require("kivi").execute("toggle_selection")<CR>]], { buffer = true })
-    vim.keymap.set("n", "O", [[<Cmd>lua require("kivi").execute("expand_parent")<CR>]], { buffer = true })
-    vim.keymap.set("n", ".", [[<Cmd>lua require("kivi").execute("shrink")<CR>]], { buffer = true })
-    vim.keymap.set("n", "I", [[<Cmd>lua require("kivi").execute("show_details")<CR>]], { buffer = true })
-    vim.keymap.set("x", "I", [[<Cmd>lua require("kivi").execute("show_details")<CR>]], { buffer = true })
-    vim.keymap.set("n", "T", [[<Cmd>lua require("kivi").execute("show_git_ignores")<CR>]], { buffer = true })
-    vim.keymap.set("n", "X", [[<Cmd>lua require("kivi").execute("open_by_system_default")<CR>]], { buffer = true })
+    vim.keymap.set("x", "sm", execute("toggle_selection"), { buffer = true })
+    vim.keymap.set("n", "O", execute("expand_parent"), { buffer = true })
+    vim.keymap.set("n", ".", execute("shrink"), { buffer = true })
+    vim.keymap.set("n", "I", execute("show_details"), { buffer = true })
+    vim.keymap.set("x", "I", execute("show_details"), { buffer = true })
+    vim.keymap.set("n", "T", execute("show_git_ignores"), { buffer = true })
+    vim.keymap.set("n", "X", execute("open_by_system_default"), { buffer = true })
 
     local gesture = require("gesture")
     gesture.register({
@@ -82,22 +86,23 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = "kivi_setting",
   pattern = { "kivi-file" },
   callback = function()
-    vim.keymap.set(
-      "n",
-      "<Space>g",
-      [[<Cmd>lua require("kivi").navigate(".", {target = "project"})<CR>]],
-      { buffer = true }
-    )
-    vim.keymap.set("n", "<Space>h", [[<Cmd>lua require("kivi").navigate("~")<CR>]], { buffer = true })
-    vim.keymap.set("n", "<Space>r", [[<Cmd>lua require("kivi").navigate("/tmp")<CR>]], {
+    local navigate = function(path, source_setup_opts)
+      return function()
+        require("kivi").navigate(path, source_setup_opts)
+      end
+    end
+
+    vim.keymap.set("n", "<Space>g", navigate(".", { target = "project" }), { buffer = true })
+    vim.keymap.set("n", "<Space>h", navigate("~"), { buffer = true })
+    vim.keymap.set("n", "<Space>r", navigate("/tmp"), {
       buffer = true,
       nowait = true,
     })
-    vim.keymap.set("n", "df", [[<Cmd>lua require("kivi").execute("delete")<CR>]], { buffer = true })
-    vim.keymap.set("n", "xf", [[<Cmd>lua require("kivi").execute("cut")<CR>]], { buffer = true })
-    vim.keymap.set("n", "yf", [[<Cmd>lua require("kivi").execute("copy")<CR>]], { buffer = true })
-    vim.keymap.set("n", "p", [[<Cmd>lua require("kivi").execute("paste")<CR>]], { buffer = true })
-    vim.keymap.set("n", "i", [[<Cmd>lua require("kivi").execute("create")<CR>]], { buffer = true })
+    vim.keymap.set("n", "df", execute("delete"), { buffer = true })
+    vim.keymap.set("n", "xf", execute("cut"), { buffer = true })
+    vim.keymap.set("n", "yf", execute("copy"), { buffer = true })
+    vim.keymap.set("n", "p", execute("paste"), { buffer = true })
+    vim.keymap.set("n", "i", execute("create"), { buffer = true })
   end,
 })
 
