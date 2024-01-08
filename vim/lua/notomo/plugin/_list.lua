@@ -66,12 +66,23 @@ mypack.add("notomo/optpack.nvim", {
             local tmp_tabpage = vim.api.nvim_get_current_tabpage()
             vim.api.nvim_set_current_tabpage(tabpage)
 
+            local close_on_success = {
+              success = function(info)
+                local window_id = info.window_id
+                if not vim.api.nvim_win_is_valid(window_id) then
+                  return
+                end
+                vim.api.nvim_win_close(window_id, true)
+              end,
+            }
+
             require("cmdhndlr").test({
               name = "make/make",
               layout = { type = "horizontal" },
               working_dir_marker = function()
                 return vim.fn.expand("~/dotfiles/vim/Makefile")
               end,
+              hooks = close_on_success,
             })
             require("cmdhndlr").run({
               name = "make/make",
@@ -82,6 +93,7 @@ mypack.add("notomo/optpack.nvim", {
               working_dir_marker = function()
                 return vim.fn.expand("~/dotfiles/vim/Makefile")
               end,
+              hooks = close_on_success,
             })
 
             vim.api.nvim_set_current_tabpage(tmp_tabpage)
