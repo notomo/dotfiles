@@ -17,6 +17,6 @@ function M.collect(source_ctx)
   })
 end
 
-M.kind_name = "go/package"
+M.kind_name = "file/directory"
 
 return M
