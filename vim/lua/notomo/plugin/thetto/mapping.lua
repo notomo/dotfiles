@@ -578,6 +578,7 @@ end)
 vim.keymap.set("n", "<Space>qn", function()
   local current_row = vim.fn.line(".")
   local path = vim.api.nvim_buf_get_name(0)
+  vim.cmd.normal({ args = { "m'" }, bang = true })
   require("thetto").start("vim/diagnostic", {
     opts = {
       insert = false,
@@ -593,6 +594,7 @@ end)
 vim.keymap.set("n", "<Space>qp", function()
   local current_row = vim.fn.line(".")
   local path = vim.api.nvim_buf_get_name(0)
+  vim.cmd.normal({ args = { "m'" }, bang = true })
   require("thetto").start("vim/diagnostic", {
     opts = {
       insert = false,
@@ -656,6 +658,7 @@ vim.keymap.set("n", "[git]j", function()
 
   local current_row = vim.fn.line(".")
   local path = vim.api.nvim_buf_get_name(0)
+  vim.cmd.normal({ args = { "m'" }, bang = true })
   require("thetto").start("git/diff", {
     opts = {
       insert = false,
@@ -677,6 +680,7 @@ vim.keymap.set("n", "[git]k", function()
 
   local current_row = vim.fn.line(".")
   local path = vim.api.nvim_buf_get_name(0)
+  vim.cmd.normal({ args = { "m'" }, bang = true })
   require("thetto").start("git/diff", {
     opts = {
       insert = false,
