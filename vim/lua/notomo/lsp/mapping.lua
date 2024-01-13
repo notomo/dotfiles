@@ -179,9 +179,11 @@ function M.setup(opts)
     vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
   end, { buffer = true })
 
-  vim.keymap.set("n", "[finder]o", function()
-    require("thetto").start(opts.symbol_source)
-  end, { buffer = true })
+  if opts.symbol_source == "vim/lsp/document_symbol" then
+    vim.keymap.set("n", "[finder]o", function()
+      require("thetto").start(opts.symbol_source)
+    end, { buffer = true })
+  end
 
   vim.keymap.set("n", "[yank]a", function()
     require("notomo.lsp.mapping").yank_function_arg_labels()
