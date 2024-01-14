@@ -455,8 +455,8 @@ register_source("cmd/npm/script", { actions = runner_actions })
 require("thetto2").setup_store("file/mru")
 
 vim.api.nvim_create_autocmd({ "User" }, {
-  group = vim.api.nvim_create_augroup("notomo_thetto2_to_kivi", {}),
-  pattern = { "Thetto2DirectoryOpened" },
+  group = vim.api.nvim_create_augroup("notomo_thetto_to_kivi", {}),
+  pattern = { "ThettoDirectoryOpened" },
   callback = function(args)
     local layout
     if args.data.bufnr then

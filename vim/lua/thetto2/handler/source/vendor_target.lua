@@ -39,7 +39,6 @@ function M.collect()
 end
 
 M.kind_name = "file"
-M.default_action = "add"
 
 M.actions = {
   action_add = function(items)
@@ -50,6 +49,7 @@ M.actions = {
       { path = "spec/lua/%s/vendorlib.lua" }
     )
   end,
+  default_action = "add",
 }
 
 return M

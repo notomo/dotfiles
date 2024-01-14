@@ -51,6 +51,8 @@ end
 
 M.kind_name = "url"
 
-M.sorters = { "-numeric:retrospect.created_at" }
+M.modify_pipeline = require("thetto2.util.pipeline").append({
+  require("thetto2.util.sorter").field_by_name({ "retrospect", "created_at" }, true),
+})
 
 return M

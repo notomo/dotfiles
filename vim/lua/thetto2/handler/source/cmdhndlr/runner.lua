@@ -12,7 +12,6 @@ function M.collect()
 end
 
 M.kind_name = "file"
-M.default_action = "execute"
 
 M.actions = {
   action_execute = function(items)
@@ -22,6 +21,7 @@ M.actions = {
     end
     require("cmdhndlr").execute(item.value)
   end,
+  default_action = "execute",
 }
 
 return M

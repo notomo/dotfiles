@@ -21,8 +21,6 @@ function M.collect()
     :totable()
 end
 
-M.default_action = "search"
-
 M.actions = {
   action_search = function(items, _, ctx)
     local item = items[1]
@@ -40,6 +38,7 @@ M.actions = {
       return require("thetto2.util.action").call("url", "open_browser", { new_item }, ctx)
     end)
   end,
+  default_action = "search",
 }
 
 return M

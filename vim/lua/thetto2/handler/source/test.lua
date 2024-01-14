@@ -77,8 +77,7 @@ M.actions = {
       require("cmdhndlr").test({ filter = item.value, is_leaf = item.is_leaf, layout = { type = "tab" } })
     end
   end,
+  default_action = "execute",
 }
-
-M.default_action = "execute"
 
 return M

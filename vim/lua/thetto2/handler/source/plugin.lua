@@ -13,7 +13,9 @@ function M.collect()
   return items
 end
 
-M.sorters = { "alphabet" }
+M.modify_pipeline = require("thetto2.util.pipeline").append({
+  require("thetto2.util.sorter").field_by_name("value"),
+})
 
 M.kind_name = "file/directory"
 
