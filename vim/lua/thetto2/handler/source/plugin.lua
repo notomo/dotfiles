@@ -27,15 +27,20 @@ M.actions = {
     end
     local bufnr = vim.fn.bufadd(vim.fn.expand("$DOTFILES/vim/lua/notomo/plugin/_list.lua"))
     vim.fn.bufload(bufnr)
-    return require("thetto2").start("line", {
-      opts = {
-        input_lines = { [[add("]] .. item.value },
-        immediately = true,
-        insert = false,
+    return require("thetto2").start(
+      require("thetto2.util.source").by_name("line", {
         can_resume = false,
-      },
-      source_opts = { bufnr = bufnr },
-    })
+      }),
+      {
+        source_bufnr = bufnr,
+        consumer_factory = require("thetto2.util.consumer").immediate({ action_name = "open" }),
+        pipeline_stages_factory = require("thetto2.util.pipeline").list({
+          require("thetto2.util.filter").item(function(e)
+            return e.value:find([[add%("]] .. vim.pesc(item.value))
+          end),
+        }),
+      }
+    )
   end,
 
   action_enable_hot_reloading = function(items)
