@@ -71,7 +71,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         format_runner = {
           ["lua/stylua"] = {
             build_cmd = function(cmd, callback, ctx)
-              local upward = vim.fs.find("stylua.toml", {
+              local upward = vim.fs.find({ "stylua.toml", ".stylua.toml" }, {
                 upward = true,
                 stop = vim.uv.os_homedir(),
                 path = vim.fs.dirname(vim.api.nvim_buf_get_name(ctx.bufnr)),
