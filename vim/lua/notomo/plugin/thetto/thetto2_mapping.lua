@@ -9,6 +9,23 @@ local action = function(action_name, opts)
   end
 end
 
+local action_with_fallback = function(action_names, opts)
+  return function()
+    local items, metadata = require("thetto2").get()
+    for _, action_name in ipairs(action_names) do
+      local item_action_groups = require("thetto2.util.action").grouping(items, {
+        action_name = action_name,
+        actions = metadata.actions,
+      })
+      if #item_action_groups ~= 0 then
+        require("thetto2").execute(item_action_groups, opts)
+        return
+      end
+    end
+    require("thetto2").execute({}, opts)
+  end
+end
+
 local action_key = function(prev, action_name)
   return function()
     vim.fn.feedkeys(prev, "mx")
@@ -81,7 +98,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "t<Space>", action("tab_open"), { buffer = true })
     vim.keymap.set("n", "fo", action("directory_open"), { buffer = true })
     vim.keymap.set("n", "fi", action("directory_tab_open"), { buffer = true })
-    vim.keymap.set("n", "ff", action("list_children"), { buffer = true })
+    vim.keymap.set("n", "ff", action_with_fallback({ "list_children", "list_siblings" }), { buffer = true })
     vim.keymap.set("n", "F", action("list_parents"), { buffer = true })
     vim.keymap.set("n", "yy", action("yank"), { buffer = true })
     vim.keymap.set("n", "D", action("debug_print", { quit = false }), { buffer = true })
