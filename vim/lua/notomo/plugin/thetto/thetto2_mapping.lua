@@ -442,19 +442,29 @@ vim.keymap.set("n", "[keyword]gg", function()
 end)
 vim.keymap.set("n", "[finder]gl", thetto_starter("file/grep"), { silent = true })
 vim.keymap.set("n", "[finder]G", function()
-  require("thetto2").start(require("thetto2.util.source").by_name("file/grep", {
-    cwd = require("thetto2.util.cwd").project(),
-    modify_pipeline = require("thetto2.util.pipeline").prepend({
-      require("thetto2.util.filter").by_name("source_input"),
+  require("thetto2").start(
+    require("thetto2.util.source").by_name("file/grep", {
+      cwd = require("thetto2.util.cwd").project(),
     }),
-  }))
+    {
+      pipeline_stages_factory = require("thetto2.util.pipeline").merge({
+        require("thetto2.util.pipeline").apply_source(),
+        require("thetto2.util.pipeline").prepend({
+          require("thetto2.util.filter").by_name("source_input"),
+        }),
+      }),
+    }
+  )
 end)
 vim.keymap.set("n", "[finder]gL", function()
-  require("thetto2").start(require("thetto2.util.source").by_name("file/grep", {
-    modify_pipeline = require("thetto2.util.pipeline").prepend({
-      require("thetto2.util.filter").by_name("source_input"),
+  require("thetto2").start(require("thetto2.util.source").by_name("file/grep"), {
+    pipeline_stages_factory = require("thetto2.util.pipeline").merge({
+      require("thetto2.util.pipeline").apply_source(),
+      require("thetto2.util.pipeline").prepend({
+        require("thetto2.util.filter").by_name("source_input"),
+      }),
     }),
-  }))
+  })
 end)
 vim.keymap.set(
   "n",

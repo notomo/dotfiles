@@ -226,13 +226,6 @@ register_source("line", {
   }),
 })
 
--- TODO: relative path
-local relative_path_filter = function(name, raw_fields)
-  local default = {}
-  local fields = vim.tbl_deep_extend("force", default, raw_fields or {})
-  return require("thetto2.util.filter").by_name(name, fields)
-end
-
 local value_path_filters = require("thetto2.util.pipeline").list({
   require("thetto2.util.filter").by_name("substring"),
   require("thetto2.util.filter").by_name("substring", {
@@ -240,8 +233,8 @@ local value_path_filters = require("thetto2.util.pipeline").list({
       inversed = true,
     },
   }),
-  relative_path_filter("substring"),
-  relative_path_filter("substring", {
+  require("thetto2.util.filter").relative_path("path", "substring"),
+  require("thetto2.util.filter").relative_path("path", "substring", {
     opts = {
       inversed = true,
     },
@@ -249,19 +242,16 @@ local value_path_filters = require("thetto2.util.pipeline").list({
 })
 
 local path_filters = require("thetto2.util.pipeline").list({
-  relative_path_filter("substring"),
-  relative_path_filter("substring", {
+  require("thetto2.util.filter").relative_path("path", "substring"),
+  require("thetto2.util.filter").relative_path("path", "substring", {
     opts = {
       inversed = true,
     },
   }),
 })
 
-register_source("vim/lsp/references", {
-  modify_pipeline = path_filters,
-})
 register_source("vim/diagnostic", {
-  modify_pipeline = value_path_filters,
+  modify_pipeline = path_filters,
 })
 register_source("vim/lsp/incoming_calls", {
   modify_pipeline = value_path_filters,
