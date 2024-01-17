@@ -40,9 +40,9 @@ mypack.add("notomo/optpack.nvim", {
             if not update then
               return
             end
-            require("thetto").start("git/log", {
-              source_opts = { args = { update.revision_range } },
-              opts = { cwd = update.directory },
+            require("thetto2.util.source").start_by_name("git/log", {
+              cwd = update.directory,
+              opts = { args = { update.revision_range } },
             })
           end, { buffer = true })
         end,
@@ -742,7 +742,16 @@ mypack.add("notomo/hlmsg.nvim", {
   hooks = {
     post_add = function()
       vim.keymap.set("n", "[exec]cm", function()
-        require("thetto").start("hlmsg")
+        require("thetto2.util.source").start_by_name("hlmsg", {
+          consumer_opts = {
+            ui = {
+              insert = false,
+              display_limit = 10000,
+            },
+          },
+        }, {
+          item_cursor_factory = require("thetto2.util.item_cursor").bottom(),
+        })
       end)
     end,
   },

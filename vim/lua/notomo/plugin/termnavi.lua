@@ -28,7 +28,9 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
       return "<C-l>"
     end, { expr = true, buffer = true })
 
-    vim.keymap.set("n", "[finder]o", [[<Cmd>lua require("thetto").start("termnavi")<CR>]], { buffer = true })
+    vim.keymap.set("n", "[finder]o", function()
+      require("thetto2.util.source").start_by_name("termnavi")
+    end, { buffer = true })
 
     vim.keymap.set({ "n", "x" }, "sgj", [[<Cmd>lua require("termnavi").next()<CR>]], { buffer = true })
     vim.keymap.set("o", "gj", [[<Cmd>lua require("termnavi").next()<CR>]], { buffer = true })

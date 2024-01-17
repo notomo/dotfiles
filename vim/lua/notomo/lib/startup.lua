@@ -48,13 +48,6 @@ end
 function M._test()
   require("kivi").open()
 
-  require("thetto").start(
-    "file/in_dir",
-    { opts = { cwd = vim.fn.expand("$DOTFILES/vim/lua/notomo"), input_lines = { "option.lua" } } }
-  )
-  require("thetto").execute()
-  assert(vim.bo.filetype == "lua", "filetype")
-
   vim.fn.feedkeys("tt", "mx")
   assert(vim.fn.tabpagenr("$") == 2, "tab count")
 

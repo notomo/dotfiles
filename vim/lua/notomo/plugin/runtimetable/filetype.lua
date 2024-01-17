@@ -184,12 +184,20 @@ runtime.after.ftplugin["lua.lua"] = function()
   vim.keymap.set("ia", "!=", [[~=]], { buffer = true })
 
   vim.keymap.set("n", "[finder]I", function()
-    require("thetto").start("file/grep", {
-      opts = {
-        cwd = require("thetto.util.cwd").project(),
-        filters = require("thetto.util.filter").prepend("interactive"),
-        input_lines = { ('"%s"'):format(require("misclib.module.path").detect(vim.fn.expand("%:p"))), "require(" },
-      },
+    require("thetto2.util.source").start_by_name("file/grep", {
+      cwd = require("thetto2.util.cwd").project(),
+      get_pattern = function()
+        return ('"%s"'):format(require("misclib.module.path").detect(vim.fn.expand("%:p")))
+      end,
+    }, {
+      pipeline_stages_factory = require("thetto2.util.pipeline").merge({
+        require("thetto2.util.pipeline").list({
+          require("thetto2.util.filter").item(function(item)
+            return item.value:find("require%(")
+          end),
+        }),
+        require("thetto2.util.pipeline").apply_source(),
+      }),
     })
   end, { buffer = true })
 
@@ -199,66 +207,62 @@ runtime.after.ftplugin["lua.lua"] = function()
     vim.keymap.set("n", "sgJ", function()
       local current_row = vim.fn.line(".")
       local path = vim.api.nvim_buf_get_name(0)
-      require("thetto").start("test", {
-        opts = {
-          insert = false,
-          immediately = true,
-          can_resume = false,
-          action = "open",
-          search_offset = function(item)
-            return item.is_toplevel and item.path == path and item.row > current_row
-          end,
-        },
+      require("thetto2.util.source").start_by_name("test", {
+        can_resume = false,
+      }, {
+        consumer_factory = require("thetto2.util.consumer").immediate({ action_name = "open" }),
+        item_cursor_factory = require("thetto2.util.item_cursor").search(function(item)
+          return item.is_toplevel and item.path == path and item.row > current_row
+        end),
       })
     end, { buffer = true })
 
     vim.keymap.set("n", "sgj", function()
       local current_row = vim.fn.line(".")
       local path = vim.api.nvim_buf_get_name(0)
-      require("thetto").start("test", {
-        opts = {
-          insert = false,
-          immediately = true,
-          can_resume = false,
-          action = "open",
-          search_offset = function(item)
-            return item.path == path and item.row > current_row
-          end,
-        },
+      require("thetto2.util.source").start_by_name("test", {
+        can_resume = false,
+      }, {
+        consumer_factory = require("thetto2.util.consumer").immediate({ action_name = "open" }),
+        item_cursor_factory = require("thetto2.util.item_cursor").search(function(item)
+          return item.path == path and item.row > current_row
+        end),
       })
     end, { buffer = true })
 
     vim.keymap.set("n", "sgK", function()
       local current_row = vim.fn.line(".")
       local path = vim.api.nvim_buf_get_name(0)
-      require("thetto").start("test", {
-        opts = {
-          insert = false,
-          immediately = true,
-          can_resume = false,
-          action = "open",
-          search_offset = function(item)
-            return item.is_toplevel and item.path == path and item.row < current_row
-          end,
-          sorters = { "-row" },
-        },
+      require("thetto2.util.source").start_by_name("test", {
+        can_resume = false,
+        modify_pipeline = require("thetto2.util.pipeline").append({
+          require("thetto2.util.sorter").field_by_name("row", {
+            opts = { reversed = true },
+          }),
+        }),
+      }, {
+        consumer_factory = require("thetto2.util.consumer").immediate({ action_name = "open" }),
+        item_cursor_factory = require("thetto2.util.item_cursor").search(function(item)
+          return item.is_toplevel and item.path == path and item.row < current_row
+        end),
       })
     end, { buffer = true })
 
     vim.keymap.set("n", "sgk", function()
       local current_row = vim.fn.line(".")
       local path = vim.api.nvim_buf_get_name(0)
-      require("thetto").start("test", {
-        opts = {
-          insert = false,
-          immediately = true,
-          can_resume = false,
-          action = "open",
-          search_offset = function(item)
-            return item.path == path and item.row < current_row
-          end,
-          sorters = { "-row" },
-        },
+      require("thetto2.util.source").start_by_name("test", {
+        can_resume = false,
+        modify_pipeline = require("thetto2.util.pipeline").append({
+          require("thetto2.util.sorter").field_by_name("row", {
+            opts = { reversed = true },
+          }),
+        }),
+      }, {
+        consumer_factory = require("thetto2.util.consumer").immediate({ action_name = "open" }),
+        item_cursor_factory = require("thetto2.util.item_cursor").search(function(item)
+          return item.path == path and item.row < current_row
+        end),
       })
     end, { buffer = true })
   end

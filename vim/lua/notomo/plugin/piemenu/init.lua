@@ -10,39 +10,40 @@ piemenu.register("default", {
     {
       text = "🔍 finder",
       action = function()
-        require("thetto").start("thetto/source", { opts = { insert = false } })
+        require("thetto2.util.source").start_by_name("thetto/source", { consumer_opts = { ui = { insert = false } } })
       end,
     },
     {
       text = "🔌 plugin",
       action = function()
-        require("thetto").start("plugin", { opts = { insert = false } })
+        require("thetto2.util.source").start_by_name("plugin", { consumer_opts = { ui = { insert = false } } })
       end,
     },
     {
       text = "📁 directory",
       action = function()
-        require("thetto").start("file/directory/recursive", {
-          opts = { insert = false, target = "project" },
+        require("thetto2.util.source").start_by_name("file/directory/recursive", {
+          consumer_opts = { ui = { insert = false } },
+          cwd = require("thetto2.util.cwd").project(),
         })
       end,
     },
     {
       text = "🔖 bookmark",
       action = function()
-        require("thetto").start("file/bookmark", { opts = { insert = false } })
+        require("thetto2.util.source").start_by_name("file/bookmark", { consumer_opts = { ui = { insert = false } } })
       end,
     },
     {
       text = "📂 file",
       action = function()
-        require("thetto").start("file/in_dir", { opts = { insert = false } })
+        require("thetto2.util.source").start_by_name("file/in_dir", { consumer_opts = { ui = { insert = false } } })
       end,
     },
     {
       text = "👀 mru",
       action = function()
-        require("thetto").start("file/mru", { opts = { insert = false } })
+        require("thetto2.util.source").start_by_name("file/mru", { consumer_opts = { ui = { insert = false } } })
       end,
     },
     {},

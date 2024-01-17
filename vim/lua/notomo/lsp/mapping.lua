@@ -44,28 +44,24 @@ local go_to = function(method, params)
         :totable()
 
       if #location_items > 1 then
-        require("thetto").start("function", {
-          opts = {
-            cwd = require("thetto.util.cwd").project(),
-            insert = false,
-          },
-          source_opts = {
-            collect = function(source_ctx)
-              return vim
-                .iter(location_items)
-                :map(function(e)
-                  local relative_path = require("thetto.lib.path").to_relative(e.filename, source_ctx.cwd)
-                  local value = ("%s:%s:%d"):format(relative_path, e.lnum, e.col)
-                  return {
-                    value = value,
-                    path = e.filename,
-                    row = e.lnum,
-                    kind_name = "file",
-                  }
-                end)
-                :totable()
-            end,
-          },
+        require("thetto2").start({
+          collect = function(source_ctx)
+            return vim
+              .iter(location_items)
+              :map(function(e)
+                local relative_path = require("thetto2.lib.path").to_relative(e.filename, source_ctx.cwd)
+                local value = ("%s:%s:%d"):format(relative_path, e.lnum, e.col)
+                return {
+                  value = value,
+                  path = e.filename,
+                  row = e.lnum,
+                }
+              end)
+              :totable()
+          end,
+          cwd = require("thetto2.util.cwd").project(),
+          consumer_opts = { ui = { insert = false } },
+          kind_name = "file",
         })
       else
         util.jump_to_location(result[1], client.offset_encoding, false)
@@ -179,11 +175,9 @@ function M.setup(opts)
     vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
   end, { buffer = true })
 
-  if opts.symbol_source == "vim/lsp/document_symbol" then
-    vim.keymap.set("n", "[finder]o", function()
-      require("thetto").start(opts.symbol_source)
-    end, { buffer = true })
-  end
+  vim.keymap.set("n", "[finder]o", function()
+    require("thetto2.util.source").start_by_name(opts.symbol_source)
+  end, { buffer = true })
 
   vim.keymap.set("n", "[yank]a", function()
     require("notomo.lsp.mapping").yank_function_arg_labels()
