@@ -40,5 +40,10 @@ vim.g["operator#surround#blocks"] = {
       motionwise = { "char", "line", "block" },
       keys = { "s" },
     },
+    {
+      block = { "function()\n  return ", "\nend " },
+      motionwise = { "char", "line", "block" },
+      keys = { "f" },
+    },
   },
 }
