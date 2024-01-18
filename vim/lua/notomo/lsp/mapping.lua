@@ -44,12 +44,12 @@ local go_to = function(method, params)
         :totable()
 
       if #location_items > 1 then
-        require("thetto2").start({
+        require("thetto").start({
           collect = function(source_ctx)
             return vim
               .iter(location_items)
               :map(function(e)
-                local relative_path = require("thetto2.lib.path").to_relative(e.filename, source_ctx.cwd)
+                local relative_path = require("thetto.lib.path").to_relative(e.filename, source_ctx.cwd)
                 local value = ("%s:%s:%d"):format(relative_path, e.lnum, e.col)
                 return {
                   value = value,
@@ -59,7 +59,7 @@ local go_to = function(method, params)
               end)
               :totable()
           end,
-          cwd = require("thetto2.util.cwd").project(),
+          cwd = require("thetto.util.cwd").project(),
           consumer_opts = { ui = { insert = false } },
           kind_name = "file",
         })
@@ -176,7 +176,7 @@ function M.setup(opts)
   end, { buffer = true })
 
   vim.keymap.set("n", "[finder]o", function()
-    require("thetto2.util.source").start_by_name(opts.symbol_source)
+    require("thetto.util.source").start_by_name(opts.symbol_source)
   end, { buffer = true })
 
   vim.keymap.set("n", "[yank]a", function()

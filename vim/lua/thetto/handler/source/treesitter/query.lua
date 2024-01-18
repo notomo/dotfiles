@@ -12,7 +12,6 @@ function M.collect()
 end
 
 M.kind_name = "file"
-M.default_action = "open_editor"
 M.actions = {
   action_open_editor = function(items)
     local item = items[1]
@@ -21,6 +20,7 @@ M.actions = {
     end
     require("notomo.lib.treesitter.query").open(item.path)
   end,
+  default_action = "open_editor",
 }
 
 return M

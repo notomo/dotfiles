@@ -14,7 +14,6 @@ function M.collect()
 end
 
 M.kind_name = "file"
-M.default_action = "call"
 
 M.actions = {
   action_call = function(items)
@@ -27,6 +26,7 @@ M.actions = {
       alias:call()
     end
   end,
+  default_action = "call",
 }
 
 return M

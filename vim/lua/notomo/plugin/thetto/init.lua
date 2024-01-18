@@ -1,11 +1,22 @@
-local source_config = {}
-local source_actions = {}
-local kind_actions = {}
+local register_kind = function(kind_name, fields)
+  local kind = require("thetto.util.kind").by_name(kind_name, fields, { use_registered = false })
+  require("thetto").register_kind(kind_name, kind)
+end
+
+local register_source = function(source_name, fields)
+  local source = require("thetto.util.source").by_name(source_name, fields, { use_registered = false })
+  require("thetto").register_source(source_name, source)
+end
+
+local register_source_alias = function(alias_name, source_name, fields)
+  local source = require("thetto.util.source").by_name(source_name, fields, { use_registered = false })
+  require("thetto").register_source(alias_name, source)
+end
 
 local ignore_patterns = {}
 vim.list_extend(ignore_patterns, vim.g.notomo_thetto_ignore_pattenrs or {})
 
-kind_actions["file"] = {
+register_kind("file", {
   action_unionbuf = function(items, action_ctx)
     local entries = vim.iter(items):map(action_ctx.opts.convert):totable()
     require("unionbuf").open(entries)
@@ -24,14 +35,15 @@ kind_actions["file"] = {
     },
     preview = { ignore_patterns = ignore_patterns },
   },
-}
-kind_actions["git/status"] = {
+})
+
+register_kind("git/status", {
   opts = {
     preview = { ignore_patterns = ignore_patterns },
   },
-}
+})
 
-kind_actions["vim/variable"] = {
+register_kind("vim/variable", {
   action_edit = function(items)
     local item = items[1]
     if item == nil then
@@ -41,9 +53,9 @@ kind_actions["vim/variable"] = {
     vim.cmd.normal({ args = { "$" }, bang = true })
   end,
   default_action = "edit",
-}
+})
 
-kind_actions["vim/option"] = {
+register_kind("vim/option", {
   action_edit = function(items)
     local item = items[1]
     if item == nil then
@@ -52,9 +64,9 @@ kind_actions["vim/option"] = {
     require("cmdbuf").split_open(vim.o.cmdwinheight, { line = "setlocal " .. item.value })
     vim.cmd.normal({ args = { "$" }, bang = true })
   end,
-}
+})
 
-kind_actions["vim/command"] = {
+register_kind("vim/command", {
   action_open = function(items)
     local item = items[1]
     if item == nil then
@@ -63,9 +75,9 @@ kind_actions["vim/command"] = {
     require("cmdbuf").split_open(vim.o.cmdwinheight, { line = item.value })
     vim.cmd.normal({ args = { "$" }, bang = true })
   end,
-}
+})
 
-kind_actions["github/repository"] = {
+register_kind("github/repository", {
   action_temporary_clone = function(items)
     local item = items[1]
     if not item then
@@ -75,37 +87,68 @@ kind_actions["github/repository"] = {
     vim.fn.mkdir(dir, "p")
     require("notomo.lib.job").run({ "gh", "repo", "clone", item.value }, { cwd = dir })
   end,
-}
+})
 
-source_actions["github/project"] = {
-  action_list_children = function(items)
-    local item = items[1]
-    if not item then
-      return
-    end
-    return require("thetto").start("github/project/item", {
-      source_opts = {
-        project_url = item.url,
-        query = vim.g.notomo_gh_project_item_query,
-      },
-    })
-  end,
-}
+register_source("github/project", {
+  actions = {
+    action_list_children = function(items)
+      local item = items[1]
+      if not item then
+        return
+      end
+      return require("thetto").start("github/project/item", {
+        source_opts = {
+          project_url = item.url,
+          query = vim.g.notomo_gh_project_item_query,
+        },
+      })
+    end,
+  },
+})
 
-source_config["github/project/item_with_close"] = {
-  alias_to = "github/project/item",
+register_source_alias("github/project/item_with_close", "github/project/item", {
   opts = {
     project_url = vim.g.notomo_gh_project_url,
     query = [[.[] | select((.fieldValues.nodes|any(.field.name == "Iteration")))]],
   },
-}
+})
 
-source_config["github/pull_request_review"] = {
-  alias_to = "github/pull_request",
+register_source_alias("github/pull_request_review", "github/pull_request", {
   opts = {
     extra_args = { "--review-requested=@me" },
   },
-}
+})
+
+register_source("vim/filetype", {
+  actions = {
+    action_open_scratch = function(items)
+      local item = items[1]
+      if item == nil then
+        return
+      end
+      local filetype = item.value
+      local name = require("filetypext").detect({ filetype = filetype })[1]
+      require("notomo.lib.edit").scratch(name, filetype)
+    end,
+    action_search = function(items)
+      local item = items[1]
+      if item == nil then
+        return
+      end
+      local bufnr = vim.fn.bufadd(vim.fn.expand("$DOTFILES/vim/lua/notomo/plugin/runtimetable/filetype.lua"))
+      vim.fn.bufload(bufnr)
+      return require("thetto").start("line", {
+        opts = {
+          input_lines = { ([["%s.lua"]]):format(item.value) },
+          immediately = true,
+          insert = false,
+          can_resume = false,
+        },
+        source_opts = { bufnr = bufnr },
+      })
+    end,
+  },
+})
 
 local file_recursive, directory_recursive, modify_path
 if vim.fn.has("win32") == 0 then
@@ -142,33 +185,91 @@ if vim.fn.has("win32") == 0 then
     return path
   end
 end
-source_config["file/recursive"] = {
+
+register_source("file/recursive", {
   opts = { get_command = file_recursive },
-  sorters = { "length" },
-  filters = {
-    "regex",
-    "-regex",
+  modify_pipeline = require("thetto.util.pipeline").list({
+    require("thetto.util.filter").by_name("regex"),
+    require("thetto.util.filter").by_name("regex", {
+      opts = {
+        inversed = true,
+      },
+    }),
+    require("thetto.util.sorter").field_length_by_name("value"),
+  }),
+})
+
+register_source("file/directory/recursive", {
+  opts = {
+    get_command = directory_recursive,
+    modify_path = modify_path,
   },
-}
-source_config["file/directory/recursive"] = {
-  opts = { get_command = directory_recursive, modify_path = modify_path },
-  sorters = { "length" },
-}
+  modify_pipeline = require("thetto.util.pipeline").append({
+    require("thetto.util.sorter").field_length_by_name("value"),
+  }),
+})
 
-source_config["line"] = {
-  filters = { "regex", "-regex", "substring", "-substring" },
-}
+register_source("line", {
+  modify_pipeline = require("thetto.util.pipeline").list({
+    require("thetto.util.filter").by_name("regex"),
+    require("thetto.util.filter").by_name("regex", {
+      opts = {
+        inversed = true,
+      },
+    }),
+    require("thetto.util.filter").by_name("substring"),
+    require("thetto.util.filter").by_name("substring", {
+      opts = {
+        inversed = true,
+      },
+    }),
+  }),
+})
 
-source_config["vim/diagnostic"] = {
-  filters = {
-    "substring",
-    "-substring",
-    "substring:path:relative",
-    "-substring:path:relative",
-  },
-}
+local value_path_filters = require("thetto.util.pipeline").list({
+  require("thetto.util.filter").by_name("substring"),
+  require("thetto.util.filter").by_name("substring", {
+    opts = {
+      inversed = true,
+    },
+  }),
+  require("thetto.util.filter").relative_path("path", "substring"),
+  require("thetto.util.filter").relative_path("path", "substring", {
+    opts = {
+      inversed = true,
+    },
+  }),
+})
 
-source_config["file/grep"] = {
+local path_filters = require("thetto.util.pipeline").list({
+  require("thetto.util.filter").relative_path("path", "substring"),
+  require("thetto.util.filter").relative_path("path", "substring", {
+    opts = {
+      inversed = true,
+    },
+  }),
+})
+
+register_source("vim/diagnostic", {
+  modify_pipeline = path_filters,
+})
+register_source("vim/lsp/incoming_calls", {
+  modify_pipeline = value_path_filters,
+})
+register_source("vim/lsp/outgoing_calls", {
+  modify_pipeline = value_path_filters,
+})
+
+local ignored_symbol_kind = { "variable", "field" }
+register_source("vim/lsp/document_symbol", {
+  modify_pipeline = require("thetto.util.pipeline").prepend({
+    require("thetto.util.filter").item(function(item)
+      return not vim.tbl_contains(ignored_symbol_kind, item.symbol_kind:lower())
+    end),
+  }),
+})
+
+register_source("file/grep", {
   opts = {
     command = "rg",
     command_opts = {
@@ -183,42 +284,25 @@ source_config["file/grep"] = {
     recursive_opt = "",
     separator = "",
   },
-  filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-}
+  modify_pipeline = value_path_filters,
+})
 
-source_config["vim/lsp/references"] = {
-  filters = {
-    "substring:path:relative",
-    "-substring:path:relative",
-  },
-}
-source_config["vim/lsp/workspace_symbol"] = {
-  filters = {
-    "interactive",
-    "substring",
-    "-substring",
-    "substring:kind",
-    "substring:path:relative",
-    "-substring:path:relative",
-  },
-}
-source_config["vim/lsp/incoming_calls"] = {
-  filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-}
-source_config["vim/lsp/outgoing_calls"] = {
-  filters = { "substring", "-substring", "substring:path:relative", "-substring:path:relative" },
-}
+local ignored_ctags_type = { "member", "package", "packageName", "anonMember", "constant" }
+register_source("cmd/ctags", {
+  modify_pipeline = require("thetto.util.pipeline").list({
+    require("thetto.util.filter").item(function(item)
+      return not vim.tbl_contains(ignored_ctags_type, item.ctags_type)
+    end),
+    require("thetto.util.filter").by_name("regex"),
+    require("thetto.util.filter").by_name("regex", {
+      opts = {
+        inversed = true,
+      },
+    }),
+  }),
+})
 
-local ignored_symbol_kind = { "variable", "field" }
-source_config["vim/lsp/document_symbol"] = {
-  global_opts = {
-    filter = function(item)
-      return not vim.tbl_contains(ignored_symbol_kind, item.symbol_kind:lower())
-    end,
-  },
-}
-
-source_config["file/bookmark"] = {
+register_source("file/bookmark", {
   opts = {
     default_paths = {
       vim.fn.expand("$DOTFILES/vim/rc/local/local.vim"),
@@ -234,26 +318,81 @@ source_config["file/bookmark"] = {
       vim.fn.stdpath("log") .. "/*",
     },
   },
-}
+})
 
-local ignored_ctags_type = { "member", "package", "packageName", "anonMember", "constant" }
-source_config["cmd/ctags"] = {
-  global_opts = {
-    filter = function(item)
-      return not vim.tbl_contains(ignored_ctags_type, item.ctags_type)
-    end,
+register_source("file/alter", {
+  opts = {
+    pattern_groups = {
+      { "%_test.go", "%.go" },
+      { "%_test.ts", "%.ts" },
+      { "%/spec/lua/%_spec.lua", "%/lua/%.lua" },
+      { "%/test/lua/%_spec.lua", "%/lua/%.lua" },
+      { "%.c", "%.h" },
+      { "%.spec.ts", "%.ts" },
+      { "%.spec.tsx", "%.tsx" },
+    },
   },
-  filters = { "regex", "-regex" },
-}
+})
 
-source_config["github/issue"] = {
-  filters = {
-    "interactive",
-    "regex",
-    "-regex",
-  },
+local listdefined_names = {
+  "keymap",
+  "autocmd",
+  "autocmd_group",
+  "highlight",
+  "command",
 }
-kind_actions["github/issue"] = {
+for _, name in ipairs(listdefined_names) do
+  register_source_alias("listdefined/" .. name, "listdefined", {
+    opts = {
+      name = name,
+    },
+  })
+end
+
+local ignored_file_names = { "COMMIT_EDITMSG" }
+register_source("file/mru", {
+  modify_pipeline = require("thetto.util.pipeline").prepend({
+    require("thetto.util.filter").item(function(item)
+      local file_name = vim.fs.basename(item.path)
+      return not vim.tbl_contains(ignored_file_names, file_name)
+    end),
+  }),
+})
+
+register_source("cmd/zsh/history", {
+  modify_pipeline = require("thetto.util.pipeline").append({
+    require("thetto.util.sorter").field_length_by_name("value"),
+  }),
+  cwd = require("thetto.util.cwd").upward({ "Makefile" }),
+})
+
+register_source_alias("vim/buffer_autocmd", "vim/autocmd", {
+  opts = {
+    buffer = 0,
+  },
+})
+
+register_source_alias("vim/modified_buffer", "vim/buffer", {
+  modify_pipeline = require("thetto.util.pipeline").prepend({
+    require("thetto.util.filter").item(function(item)
+      return vim.bo[item.bufnr].modified
+    end),
+  }),
+})
+
+register_source("github/issue", {
+  modify_pipeline = require("thetto.util.pipeline").list({
+    require("thetto.util.filter").by_name("source_input"),
+    require("thetto.util.filter").by_name("regex"),
+    require("thetto.util.filter").by_name("regex", {
+      opts = {
+        inversed = true,
+      },
+    }),
+  }),
+})
+
+register_kind("github/issue", {
   action_edit_body = function(items)
     local item = items[1]
     if item == nil then
@@ -268,110 +407,21 @@ kind_actions["github/issue"] = {
     end
     require("notomo.lib.github").edit_issue(item.url, "title")
   end,
-}
+})
 
-source_config["file/alter"] = {
-  opts = {
-    pattern_groups = {
-      { "%_test.go", "%.go" },
-      { "%_test.ts", "%.ts" },
-      { "%/spec/lua/%_spec.lua", "%/lua/%.lua" },
-      { "%/test/lua/%_spec.lua", "%/lua/%.lua" },
-      { "%.c", "%.h" },
-      { "%.spec.ts", "%.ts" },
-      { "%.spec.tsx", "%.tsx" },
-    },
-  },
-}
-
-source_config["cmd/zsh/history"] = {
-  sorters = { "length" },
-  global_opts = { cwd = require("thetto.util.cwd").upward({ "Makefile" }) },
-}
-
-source_config["github/assigned_issue"] = {
-  alias_to = "github/issue",
+register_source_alias("github/assigned_issue", "github/issue", {
   opts = {
     repo_with_owner = "",
     extra_args = { "--assignee=@me" },
   },
-}
+})
 
-source_config["github/authored_issue"] = {
-  alias_to = "github/issue",
+register_source_alias("github/authored_issue", "github/issue", {
   opts = {
     repo_with_owner = "",
     extra_args = { "--author=@me", "--sort=created" },
   },
-}
-
-source_config["go/bin"] = {
-  alias_to = "file/recursive",
-  global_opts = {
-    cwd = (vim.env.GOBIN or vim.env.GOPATH) .. "/bin",
-    action = "go_install_latest",
-    auto = "",
-  },
-}
-source_actions["file/recursive"] = {
-  -- HACK
-  action_go_install_latest = function(items)
-    local item = items[1]
-    if item == nil then
-      return
-    end
-    local package_path = require("notomo.lib.go").to_package(item.path)
-    if not package_path then
-      return nil, "no package_path: " .. item.path
-    end
-    require("notomo.lib.job").run({ "go", "install", package_path .. "@latest" })
-  end,
-}
-
-source_config["vim/buffer_autocmd"] = {
-  alias_to = "vim/autocmd",
-  opts = {
-    buffer = 0,
-  },
-}
-
-source_config["vim/modified_buffer"] = {
-  alias_to = "vim/buffer",
-  global_opts = {
-    filter = function(item)
-      return vim.bo[item.bufnr].modified
-    end,
-  },
-}
-
-source_actions["vim/filetype"] = {
-  action_open_scratch = function(items)
-    local item = items[1]
-    if item == nil then
-      return
-    end
-    local filetype = item.value
-    local name = require("filetypext").detect({ filetype = filetype })[1]
-    require("notomo.lib.edit").scratch(name, filetype)
-  end,
-  action_search = function(items)
-    local item = items[1]
-    if item == nil then
-      return
-    end
-    local bufnr = vim.fn.bufadd(vim.fn.expand("$DOTFILES/vim/lua/notomo/plugin/runtimetable/filetype.lua"))
-    vim.fn.bufload(bufnr)
-    return require("thetto").start("line", {
-      opts = {
-        input_lines = { ([["%s.lua"]]):format(item.value) },
-        immediately = true,
-        insert = false,
-        can_resume = false,
-      },
-      source_opts = { bufnr = bufnr },
-    })
-  end,
-}
+})
 
 local runner_actions = {
   opts = {
@@ -389,47 +439,8 @@ local runner_actions = {
     },
   },
 }
-source_actions["cmd/make/target"] = runner_actions
-source_actions["cmd/npm/script"] = runner_actions
-
-local listdefined_names = {
-  "keymap",
-  "autocmd",
-  "autocmd_group",
-  "highlight",
-  "command",
-}
-for _, name in ipairs(listdefined_names) do
-  source_config["listdefined/" .. name] = {
-    alias_to = "listdefined",
-    opts = {
-      name = name,
-    },
-  }
-end
-
-local ignored_file_names = { "COMMIT_EDITMSG" }
-source_config["file/mru"] = {
-  global_opts = {
-    filter = function(item)
-      local file_name = vim.fs.basename(item.path)
-      return not vim.tbl_contains(ignored_file_names, file_name)
-    end,
-  },
-}
-
-require("thetto").setup({
-  global_opts = {
-    display_limit = 500,
-  },
-  filters = {
-    "substring",
-    "-substring",
-  },
-  source = source_config,
-  source_actions = source_actions,
-  kind_actions = kind_actions,
-})
+register_source("cmd/make/target", { actions = runner_actions })
+register_source("cmd/npm/script", { actions = runner_actions })
 
 require("thetto").setup_store("file/mru")
 

@@ -13,7 +13,9 @@ function M.collect()
   return items
 end
 
-M.sorters = { "alphabet" }
+M.modify_pipeline = require("thetto.util.pipeline").append({
+  require("thetto.util.sorter").field_by_name("value"),
+})
 
 M.kind_name = "file/directory"
 
@@ -25,15 +27,20 @@ M.actions = {
     end
     local bufnr = vim.fn.bufadd(vim.fn.expand("$DOTFILES/vim/lua/notomo/plugin/_list.lua"))
     vim.fn.bufload(bufnr)
-    return require("thetto").start("line", {
-      opts = {
-        input_lines = { [[add("]] .. item.value },
-        immediately = true,
-        insert = false,
+    return require("thetto").start(
+      require("thetto.util.source").by_name("line", {
         can_resume = false,
-      },
-      source_opts = { bufnr = bufnr },
-    })
+      }),
+      {
+        source_bufnr = bufnr,
+        consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
+        pipeline_stages_factory = require("thetto.util.pipeline").list({
+          require("thetto.util.filter").item(function(e)
+            return e.value:find([[add%("]] .. vim.pesc(item.value))
+          end),
+        }),
+      }
+    )
   end,
 
   action_enable_hot_reloading = function(items)

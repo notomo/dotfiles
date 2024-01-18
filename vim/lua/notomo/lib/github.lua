@@ -75,7 +75,7 @@ function M.yank()
     "--no-browser",
   })[1]
 
-  local state = require("thetto2.util.git").state() or {}
+  local state = require("thetto.util.git").state() or {}
   local revision = state.revision or require("notomo.lib.git").current_branch()
 
   local full_path = state.path or vim.api.nvim_buf_get_name(0)

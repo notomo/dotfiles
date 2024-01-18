@@ -52,6 +52,19 @@ M.highlight = require("thetto.util.highlight").columns({
   },
 })
 
-M.sorters = { "-boolean:content.is_opened", "-numeric:content.updated_at" }
+M.modify_pipeline = require("thetto.util.pipeline").append({
+  require("thetto.util.sorter").fields({
+    {
+      name = "value",
+      field_name = { "content", "is_opened" },
+      reversed = true,
+    },
+    {
+      name = "value",
+      field_name = { "content", "updated_at" },
+      reversed = true,
+    },
+  }),
+})
 
 return M

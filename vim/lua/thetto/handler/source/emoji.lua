@@ -19,12 +19,11 @@ end
 
 M.kind_name = "word"
 
-M.default_action = "append"
-
 M.actions = {
   opts = {
     append = { key = "emoji" },
   },
+  default_action = "append",
 }
 
 return M

@@ -44,7 +44,7 @@ vim.ui.select = function(items, opts, on_choice)
   local item_cursor_factory, get_range
   if opts.kind == "codeaction" then
     local current_row = vim.fn.line(".")
-    item_cursor_factory = require("thetto2.util.item_cursor").search(function(item)
+    item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
       if not (item.row and item.end_row) then
         return false
       end
@@ -55,11 +55,11 @@ vim.ui.select = function(items, opts, on_choice)
       if not range then
         return nil
       end
-      return require("thetto2.util.lsp").range(range)
+      return require("thetto.util.lsp").range(range)
     end
   end
 
-  require("thetto2.util.source").start_by_name("vim/select", {
+  require("thetto.util.source").start_by_name("vim/select", {
     opts = {
       items = items,
       prompt = opts.prompt,
