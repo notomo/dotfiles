@@ -1,16 +1,30 @@
+local thetto = require("thetto")
+
+local kinds = {}
 local register_kind = function(kind_name, fields)
-  local kind = require("thetto.util.kind").by_name(kind_name, fields, { use_registered = false })
-  require("thetto").register_kind(kind_name, kind)
+  kinds[kind_name] = function()
+    return require("thetto.util.kind").by_name(kind_name, fields, { use_registered = false })
+  end
 end
 
+local sources = {}
+
 local register_source = function(source_name, fields)
-  local source = require("thetto.util.source").by_name(source_name, fields, { use_registered = false })
-  require("thetto").register_source(source_name, source)
+  sources[source_name] = function()
+    if type(fields) == "function" then
+      fields = fields()
+    end
+    return require("thetto.util.source").by_name(source_name, fields, { use_registered = false })
+  end
 end
 
 local register_source_alias = function(alias_name, source_name, fields)
-  local source = require("thetto.util.source").by_name(source_name, fields, { use_registered = false })
-  require("thetto").register_source(alias_name, source)
+  sources[alias_name] = function()
+    if type(fields) == "function" then
+      fields = fields()
+    end
+    return require("thetto.util.source").by_name(source_name, fields, { use_registered = false })
+  end
 end
 
 local ignore_patterns = {}
@@ -186,139 +200,159 @@ if vim.fn.has("win32") == 0 then
   end
 end
 
-register_source("file/recursive", {
-  opts = { get_command = file_recursive },
-  modify_pipeline = require("thetto.util.pipeline").list({
-    require("thetto.util.filter").by_name("regex"),
-    require("thetto.util.filter").by_name("regex", {
-      opts = {
-        inversed = true,
-      },
+register_source("file/recursive", function()
+  return {
+    opts = { get_command = file_recursive },
+    modify_pipeline = require("thetto.util.pipeline").list({
+      require("thetto.util.filter").by_name("regex"),
+      require("thetto.util.filter").by_name("regex", {
+        opts = {
+          inversed = true,
+        },
+      }),
+      require("thetto.util.sorter").field_length_by_name("value"),
     }),
-    require("thetto.util.sorter").field_length_by_name("value"),
-  }),
-})
+  }
+end)
 
-register_source("file/directory/recursive", {
-  opts = {
-    get_command = directory_recursive,
-    modify_path = modify_path,
-  },
-  modify_pipeline = require("thetto.util.pipeline").append({
-    require("thetto.util.sorter").field_length_by_name("value"),
-  }),
-})
-
-register_source("line", {
-  modify_pipeline = require("thetto.util.pipeline").list({
-    require("thetto.util.filter").by_name("regex"),
-    require("thetto.util.filter").by_name("regex", {
-      opts = {
-        inversed = true,
-      },
+register_source("file/directory/recursive", function()
+  return {
+    opts = {
+      get_command = directory_recursive,
+      modify_path = modify_path,
+    },
+    modify_pipeline = require("thetto.util.pipeline").append({
+      require("thetto.util.sorter").field_length_by_name("value"),
     }),
+  }
+end)
+
+register_source("line", function()
+  return {
+    modify_pipeline = require("thetto.util.pipeline").list({
+      require("thetto.util.filter").by_name("regex"),
+      require("thetto.util.filter").by_name("regex", {
+        opts = {
+          inversed = true,
+        },
+      }),
+      require("thetto.util.filter").by_name("substring"),
+      require("thetto.util.filter").by_name("substring", {
+        opts = {
+          inversed = true,
+        },
+      }),
+    }),
+  }
+end)
+
+local value_path_filters = function()
+  return require("thetto.util.pipeline").list({
     require("thetto.util.filter").by_name("substring"),
     require("thetto.util.filter").by_name("substring", {
       opts = {
         inversed = true,
       },
     }),
-  }),
-})
-
-local value_path_filters = require("thetto.util.pipeline").list({
-  require("thetto.util.filter").by_name("substring"),
-  require("thetto.util.filter").by_name("substring", {
-    opts = {
-      inversed = true,
-    },
-  }),
-  require("thetto.util.filter").relative_path("path", "substring"),
-  require("thetto.util.filter").relative_path("path", "substring", {
-    opts = {
-      inversed = true,
-    },
-  }),
-})
-
-local path_filters = require("thetto.util.pipeline").list({
-  require("thetto.util.filter").relative_path("path", "substring"),
-  require("thetto.util.filter").relative_path("path", "substring", {
-    opts = {
-      inversed = true,
-    },
-  }),
-})
-
-register_source("vim/diagnostic", {
-  modify_pipeline = path_filters,
-})
-register_source("vim/lsp/incoming_calls", {
-  modify_pipeline = value_path_filters,
-})
-register_source("vim/lsp/outgoing_calls", {
-  modify_pipeline = value_path_filters,
-})
-
-local ignored_symbol_kind = { "variable", "field" }
-register_source("vim/lsp/document_symbol", {
-  modify_pipeline = require("thetto.util.pipeline").prepend({
-    require("thetto.util.filter").item(function(item)
-      return not vim.tbl_contains(ignored_symbol_kind, item.symbol_kind:lower())
-    end),
-  }),
-})
-
-register_source("file/grep", {
-  opts = {
-    command = "rg",
-    command_opts = {
-      "--color=never",
-      "--no-heading",
-      "--smart-case",
-      "--glob=!.git",
-      "--hidden",
-      "--line-number",
-    },
-    pattern_opt = "-e",
-    recursive_opt = "",
-    separator = "",
-  },
-  modify_pipeline = value_path_filters,
-})
-
-local ignored_ctags_type = { "member", "package", "packageName", "anonMember", "constant" }
-register_source("cmd/ctags", {
-  modify_pipeline = require("thetto.util.pipeline").list({
-    require("thetto.util.filter").item(function(item)
-      return not vim.tbl_contains(ignored_ctags_type, item.ctags_type)
-    end),
-    require("thetto.util.filter").by_name("regex"),
-    require("thetto.util.filter").by_name("regex", {
+    require("thetto.util.filter").relative_path("path", "substring"),
+    require("thetto.util.filter").relative_path("path", "substring", {
       opts = {
         inversed = true,
       },
     }),
-  }),
-})
+  })
+end
 
-register_source("file/bookmark", {
-  opts = {
-    default_paths = {
-      vim.fn.expand("$DOTFILES/vim/rc/local/local.vim"),
-      "~/.local/.bashrc",
-      "~/.bashrc",
-      "~/.local/.bash_profile",
-      "~/.bash_profile",
-      "~/workspace/*",
-      vim.fn.stdpath("cache") .. "/*",
-      vim.fn.stdpath("config") .. "/*",
-      vim.fn.stdpath("data") .. "/*",
-      vim.fn.stdpath("state") .. "/*",
-      vim.fn.stdpath("log") .. "/*",
+register_source("vim/diagnostic", function()
+  return {
+    modify_pipeline = require("thetto.util.pipeline").list({
+      require("thetto.util.filter").relative_path("path", "substring"),
+      require("thetto.util.filter").relative_path("path", "substring", {
+        opts = {
+          inversed = true,
+        },
+      }),
+    }),
+  }
+end)
+register_source("vim/lsp/incoming_calls", function()
+  return {
+    modify_pipeline = value_path_filters(),
+  }
+end)
+register_source("vim/lsp/outgoing_calls", function()
+  return {
+    modify_pipeline = value_path_filters(),
+  }
+end)
+
+local ignored_symbol_kind = { "variable", "field" }
+register_source("vim/lsp/document_symbol", function()
+  return {
+    modify_pipeline = require("thetto.util.pipeline").prepend({
+      require("thetto.util.filter").item(function(item)
+        return not vim.tbl_contains(ignored_symbol_kind, item.symbol_kind:lower())
+      end),
+    }),
+  }
+end)
+
+register_source("file/grep", function()
+  return {
+    opts = {
+      command = "rg",
+      command_opts = {
+        "--color=never",
+        "--no-heading",
+        "--smart-case",
+        "--glob=!.git",
+        "--hidden",
+        "--line-number",
+      },
+      pattern_opt = "-e",
+      recursive_opt = "",
+      separator = "",
     },
-  },
-})
+    modify_pipeline = value_path_filters(),
+  }
+end)
+
+local ignored_ctags_type = { "member", "package", "packageName", "anonMember", "constant" }
+register_source("cmd/ctags", function()
+  return {
+    modify_pipeline = require("thetto.util.pipeline").list({
+      require("thetto.util.filter").item(function(item)
+        return not vim.tbl_contains(ignored_ctags_type, item.ctags_type)
+      end),
+      require("thetto.util.filter").by_name("regex"),
+      require("thetto.util.filter").by_name("regex", {
+        opts = {
+          inversed = true,
+        },
+      }),
+    }),
+  }
+end)
+
+register_source("file/bookmark", function()
+  return {
+    opts = {
+      default_paths = {
+        vim.fn.expand("$DOTFILES/vim/rc/local/local.vim"),
+        "~/.local/.bashrc",
+        "~/.bashrc",
+        "~/.local/.bash_profile",
+        "~/.bash_profile",
+        "~/workspace/*",
+        vim.fn.stdpath("cache") .. "/*",
+        vim.fn.stdpath("config") .. "/*",
+        vim.fn.stdpath("data") .. "/*",
+        vim.fn.stdpath("state") .. "/*",
+        vim.fn.stdpath("log") .. "/*",
+      },
+    },
+  }
+end)
 
 register_source("file/alter", {
   opts = {
@@ -350,21 +384,25 @@ for _, name in ipairs(listdefined_names) do
 end
 
 local ignored_file_names = { "COMMIT_EDITMSG" }
-register_source("file/mru", {
-  modify_pipeline = require("thetto.util.pipeline").prepend({
-    require("thetto.util.filter").item(function(item)
-      local file_name = vim.fs.basename(item.path)
-      return not vim.tbl_contains(ignored_file_names, file_name)
-    end),
-  }),
-})
+register_source("file/mru", function()
+  return {
+    modify_pipeline = require("thetto.util.pipeline").prepend({
+      require("thetto.util.filter").item(function(item)
+        local file_name = vim.fs.basename(item.path)
+        return not vim.tbl_contains(ignored_file_names, file_name)
+      end),
+    }),
+  }
+end)
 
-register_source("cmd/zsh/history", {
-  modify_pipeline = require("thetto.util.pipeline").append({
-    require("thetto.util.sorter").field_length_by_name("value"),
-  }),
-  cwd = require("thetto.util.cwd").upward({ "Makefile" }),
-})
+register_source("cmd/zsh/history", function()
+  return {
+    modify_pipeline = require("thetto.util.pipeline").append({
+      require("thetto.util.sorter").field_length_by_name("value"),
+    }),
+    cwd = require("thetto.util.cwd").upward({ "Makefile" }),
+  }
+end)
 
 register_source_alias("vim/buffer_autocmd", "vim/autocmd", {
   opts = {
@@ -372,25 +410,29 @@ register_source_alias("vim/buffer_autocmd", "vim/autocmd", {
   },
 })
 
-register_source_alias("vim/modified_buffer", "vim/buffer", {
-  modify_pipeline = require("thetto.util.pipeline").prepend({
-    require("thetto.util.filter").item(function(item)
-      return vim.bo[item.bufnr].modified
-    end),
-  }),
-})
-
-register_source("github/issue", {
-  modify_pipeline = require("thetto.util.pipeline").list({
-    require("thetto.util.filter").by_name("source_input"),
-    require("thetto.util.filter").by_name("regex"),
-    require("thetto.util.filter").by_name("regex", {
-      opts = {
-        inversed = true,
-      },
+register_source_alias("vim/modified_buffer", "vim/buffer", function()
+  return {
+    modify_pipeline = require("thetto.util.pipeline").prepend({
+      require("thetto.util.filter").item(function(item)
+        return vim.bo[item.bufnr].modified
+      end),
     }),
-  }),
-})
+  }
+end)
+
+register_source("github/issue", function()
+  return {
+    modify_pipeline = require("thetto.util.pipeline").list({
+      require("thetto.util.filter").by_name("source_input"),
+      require("thetto.util.filter").by_name("regex"),
+      require("thetto.util.filter").by_name("regex", {
+        opts = {
+          inversed = true,
+        },
+      }),
+    }),
+  }
+end)
 
 register_kind("github/issue", {
   action_edit_body = function(items)
@@ -442,7 +484,11 @@ local runner_actions = {
 register_source("cmd/make/target", { actions = runner_actions })
 register_source("cmd/npm/script", { actions = runner_actions })
 
-require("thetto").setup_store("file/mru")
+thetto.set_default({
+  sources = sources,
+  kinds = kinds,
+})
+thetto.setup_store("file/mru")
 
 vim.api.nvim_create_autocmd({ "User" }, {
   group = vim.api.nvim_create_augroup("notomo_thetto_to_kivi", {}),
