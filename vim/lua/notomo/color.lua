@@ -86,6 +86,8 @@ vim.api.nvim_set_hl(0, "@constant.bash", {})
 vim.api.nvim_set_hl(0, "@variable.bash", {})
 vim.api.nvim_set_hl(0, "@punctuation.special.bash", {})
 vim.api.nvim_set_hl(0, "@punctuation.bracket.bash", {})
+vim.api.nvim_set_hl(0, "@type.typescript", { link = "Normal" })
+vim.api.nvim_set_hl(0, "@constant.typescript", {})
 
 vim.api.nvim_set_hl(0, "@text.note", { link = "Todo" })
 
