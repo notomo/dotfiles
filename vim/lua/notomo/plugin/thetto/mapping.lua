@@ -149,7 +149,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "thetto-input" },
   callback = function()
     vim.keymap.set("n", "<CR>", action(), { buffer = true })
-    vim.keymap.set("i", "<CR>", action_key("<ESC>"), { buffer = true })
+    vim.keymap.set("i", "<CR>", action_key(vim.keycode("<ESC>")), { buffer = true })
     vim.keymap.set("n", "o", action("open"), { buffer = true })
     vim.keymap.set("n", "sv", action("vsplit_open"), { buffer = true })
     vim.keymap.set("n", "t<Space>", action("tab_open"), { buffer = true })
@@ -607,7 +607,7 @@ vim.keymap.set("n", "[finder]ga", function()
     }),
     consumer_opts = {
       ui = {
-        insert = false,
+        insert = true,
       },
     },
   }))
@@ -626,7 +626,7 @@ vim.keymap.set("n", "[finder]gA", function()
     }),
     consumer_opts = {
       ui = {
-        insert = false,
+        insert = true,
       },
     },
   }))
