@@ -47,6 +47,8 @@ end
 
 function M._test()
   require("kivi").open()
+  vim.cmd.tabedit()
+  vim.cmd.tabonly()
 
   vim.fn.feedkeys("tt", "mx")
   assert(vim.fn.tabpagenr("$") == 2, "tab count")
