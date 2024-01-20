@@ -1,9 +1,13 @@
 local M = {}
 
+function M.get_pattern()
+  return vim.fn.input("Pattern: ")
+end
+
 function M.collect(source_ctx)
-  local pattern, subscriber = require("thetto.util.source").get_input(source_ctx)
-  if not pattern then
-    return subscriber
+  local pattern = source_ctx.pattern
+  if pattern == "" then
+    return {}
   end
 
   local filters = vim.tbl_map(function(p)

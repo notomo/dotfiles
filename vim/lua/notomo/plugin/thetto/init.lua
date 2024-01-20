@@ -406,7 +406,7 @@ end)
 
 register_source_alias("vim/buffer_autocmd", "vim/autocmd", {
   opts = {
-    buffer = 0,
+    buffer = true,
   },
 })
 
