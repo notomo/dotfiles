@@ -79,7 +79,7 @@ function M.setup()
       ["<C-y>"] = cmp.mapping.confirm({ select = true }),
     },
     enabled = function()
-      return not vim.tbl_contains({ "thetto-input", "reacher", "searcho" }, vim.bo.filetype)
+      return not vim.tbl_contains({ "thetto-inputter", "reacher", "searcho" }, vim.bo.filetype)
     end,
     preselect = cmp.PreselectMode.None,
     window = {

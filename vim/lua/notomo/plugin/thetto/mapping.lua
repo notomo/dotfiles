@@ -146,7 +146,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = thetto_group,
-  pattern = { "thetto-input" },
+  pattern = { "thetto-inputter" },
   callback = function()
     vim.keymap.set("n", "<CR>", action(), { buffer = true })
     vim.keymap.set("i", "<CR>", action_key(vim.keycode("<ESC>")), { buffer = true })

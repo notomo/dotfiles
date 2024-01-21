@@ -8,7 +8,7 @@ local go_to = function(method, params)
     method,
     params,
     require("lsp-handler-intercept").wrap(function(err, result, ctx)
-      if vim.tbl_contains({ "thetto", "thetto-input" }, vim.bo.filetype) then
+      if vim.tbl_contains({ "thetto", "thetto-inputter" }, vim.bo.filetype) then
         return require("misclib.message").warn(
           "already canceled: " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
         )

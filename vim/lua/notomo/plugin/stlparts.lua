@@ -94,7 +94,7 @@ local set_statusline = function()
     SwitchByFiletype({
       ["kivi-file"] = Truncate(join_by({ cwd, branch }, " ")),
       ["thetto"] = Base(alter_path),
-      ["thetto-input"] = Base(alter_path),
+      ["thetto-inputter"] = Base(alter_path),
       _ = Base(path),
     }),
     " ",
@@ -191,7 +191,7 @@ local set_tabline = function()
                   ["thetto"] = function(ctx)
                     return escape(alter_tab_label(tab_id, ctx.window_id))
                   end,
-                  ["thetto-input"] = function(ctx)
+                  ["thetto-inputter"] = function(ctx)
                     return escape(alter_tab_label(tab_id, ctx.window_id))
                   end,
                   _ = function(ctx)
