@@ -63,6 +63,8 @@ vim.api.nvim_set_hl(0, "@namespace.go", {})
 vim.api.nvim_set_hl(0, "@include.go", { link = "Conditional" })
 
 vim.api.nvim_set_hl(0, "@variable.lua", {})
+vim.api.nvim_set_hl(0, "@variable.member.lua", {})
+vim.api.nvim_set_hl(0, "@variable.parameter.lua", {})
 vim.api.nvim_set_hl(0, "@parameter.lua", {})
 vim.api.nvim_set_hl(0, "@field.lua", {})
 vim.api.nvim_set_hl(0, "@punctuation.delimiter.lua", {})
