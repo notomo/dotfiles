@@ -295,13 +295,13 @@ vim.keymap.set("n", "<Space>usf", thetto_starter("file/recursive"))
 vim.keymap.set("n", "[finder]f", thetto_starter("file/in_dir"))
 vim.keymap.set("n", "[finder]h", thetto_starter("vim/help"))
 
-vim.keymap.set("n", "[finder]l", thetto_starter("line"))
+vim.keymap.set("n", "[finder]l", thetto_starter("vim/line"))
 vim.keymap.set("n", "[finder]L", function()
   local row_range, err = require("notomo.lib.treesitter").get_current_function_range()
   if err then
     error(err)
   end
-  thetto_starter("line", {
+  thetto_starter("vim/line", {
     opts = {
       start_row = row_range[1],
       end_row = row_range[2] + 1,

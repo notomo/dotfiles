@@ -28,7 +28,7 @@ M.actions = {
     local bufnr = vim.fn.bufadd(vim.fn.expand("$DOTFILES/vim/lua/notomo/plugin/_list.lua"))
     vim.fn.bufload(bufnr)
     return require("thetto").start(
-      require("thetto.util.source").by_name("line", {
+      require("thetto.util.source").by_name("vim/line", {
         can_resume = false,
       }),
       {

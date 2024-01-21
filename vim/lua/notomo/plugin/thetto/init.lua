@@ -151,7 +151,7 @@ register_source("vim/filetype", {
       end
       local bufnr = vim.fn.bufadd(vim.fn.expand("$DOTFILES/vim/lua/notomo/plugin/runtimetable/filetype.lua"))
       vim.fn.bufload(bufnr)
-      return require("thetto").start("line", {
+      return require("thetto").start("vim/line", {
         opts = {
           input_lines = { ([["%s.lua"]]):format(item.value) },
           immediately = true,

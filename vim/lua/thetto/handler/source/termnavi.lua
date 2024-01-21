@@ -13,6 +13,6 @@ function M.collect(source_ctx)
   end, marks)
 end
 
-M.kind_name = "position"
+M.kind_name = "vim/position"
 
 return M
