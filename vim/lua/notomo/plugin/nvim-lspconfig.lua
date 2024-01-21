@@ -38,6 +38,7 @@ local setup_ls = function(ls, config, enable_features)
   }
   local on_attach = config.on_attach or function() end
   config.on_attach = function(client, bufnr)
+    client.server_capabilities.semanticTokensProvider = nil
     on_attach(client, bufnr)
     require("notomo.lsp.navigation").attach(client, bufnr)
   end
