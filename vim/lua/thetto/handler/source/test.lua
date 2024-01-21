@@ -2,8 +2,8 @@ local M = {}
 
 M.opts = {
   scope = "all",
-  get_paths = function()
-    return { vim.fn.expand("%:p") }
+  get_paths = function(_, bufnr)
+    return { vim.api.nvim_buf_get_name(bufnr) }
   end,
 }
 
@@ -37,7 +37,7 @@ end
 
 function M.collect(source_ctx)
   local items = {}
-  local paths = source_ctx.opts.get_paths(source_ctx.cwd)
+  local paths = source_ctx.opts.get_paths(source_ctx.cwd, source_ctx.bufnr)
 
   local tool_name
   if require("cmdhndlr").get("test_runner/typescript/playwright").working_dir_marker() then
