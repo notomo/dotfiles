@@ -1,3 +1,5 @@
+vim.lsp.semantic_tokens.start = function() end
+
 require("neodev").setup({
   override = function(root_dir, library)
     library.enabled = true
@@ -38,7 +40,6 @@ local setup_ls = function(ls, config, enable_features)
   }
   local on_attach = config.on_attach or function() end
   config.on_attach = function(client, bufnr)
-    client.server_capabilities.semanticTokensProvider = nil
     on_attach(client, bufnr)
     require("notomo.lsp.navigation").attach(client, bufnr)
   end
