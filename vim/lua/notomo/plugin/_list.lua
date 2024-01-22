@@ -111,7 +111,7 @@ mypack.add("notomo/genvdoc", {
   load_on = { modules = { "genvdoc" } },
 })
 
-optpack.add("kana/vim-textobj-user", {
+local vim_textobj_user = optpack.add("kana/vim-textobj-user", {
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "o", "x" }, "aB", [[<Plug>(textobj-codeblock-a)]])
@@ -187,7 +187,7 @@ optpack.add("kana/vim-smartword", {
 })
 
 optpack.add("kana/vim-textobj-entire", {
-  depends = { "vim-textobj-user" },
+  depends = { vim_textobj_user.name },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "o", "x" }, "ae", [[<Plug>(textobj-entire-a)]])
@@ -196,8 +196,8 @@ optpack.add("kana/vim-textobj-entire", {
   },
 })
 
-optpack.add("osyo-manga/vim-textobj-blockwise", {
-  depends = { "vim-textobj-user" },
+local vim_textobj_blockwise = optpack.add("osyo-manga/vim-textobj-blockwise", {
+  depends = { vim_textobj_user.name },
   hooks = {
     pre_load = function()
       vim.g.textobj_blockwise_enable_default_key_mapping = 0
@@ -206,7 +206,7 @@ optpack.add("osyo-manga/vim-textobj-blockwise", {
 })
 
 optpack.add("kana/vim-textobj-line", {
-  depends = { "vim-textobj-user" },
+  depends = { vim_textobj_user.name },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "x", "o" }, "ag", [[<Plug>(textobj-line-a)]])
@@ -226,7 +226,7 @@ optpack.add("bkad/CamelCaseMotion", {
 })
 
 optpack.add("osyo-manga/vim-textobj-from_regexp", {
-  depends = { "vim-textobj-user" },
+  depends = { vim_textobj_user.name },
   load_on = {
     keymaps = function(vim)
       local opts = { expr = true, replace_keycodes = false }
@@ -309,13 +309,13 @@ optpack.add("hrsh7th/cmp-nvim-lua", { load_on = { events = { "InsertEnter" } } }
 mypack.add("notomo/cmp-neosnippet", { load_on = { events = { "InsertEnter" } } })
 optpack.add("ray-x/lsp_signature.nvim", { load_on = { modules = { "lsp_signature" }, events = { "InsertEnter" } } })
 
-optpack.add("zbirenbaum/copilot.lua", {
+local copilot_lua = optpack.add("zbirenbaum/copilot.lua", {
   enabled = enabled_copilot,
   load_on = { events = { "InsertEnter" } },
 })
 optpack.add("zbirenbaum/copilot-cmp", {
   enabled = enabled_copilot,
-  depends = { "copilot.lua" },
+  depends = { copilot_lua.name },
   load_on = { events = { "VimEnter" }, modules = { "copilot_cmp" } },
   hooks = {
     post_load = function()
@@ -442,7 +442,7 @@ mypack.add("notomo/thetto.nvim", {
 optpack.add("folke/neodev.nvim", {
   load_on = { modules = { "neodev" } },
 })
-optpack.add("neovim/nvim-lspconfig", {
+local nvim_lspconfig = optpack.add("neovim/nvim-lspconfig", {
   load_on = { events = { "FileType" } },
   hooks = {
     post_load = function()
@@ -508,7 +508,7 @@ mypack.add("notomo/suball.nvim", {
   hooks = { post_add = require_fn("notomo.plugin.suball") },
 })
 
-optpack.add("nvim-treesitter/nvim-treesitter", {
+local nvim_treesitter = optpack.add("nvim-treesitter/nvim-treesitter", {
   load_on = {
     cmds = { "TS*" },
     modules = { "nvim-treesitter" },
@@ -523,7 +523,7 @@ optpack.add("nvim-treesitter/nvim-treesitter", {
   },
 })
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
-  depends = { "nvim-treesitter" },
+  depends = { nvim_treesitter.name },
   load_on = { cmds = { "TS*" }, modules = { "nvim-treesitter.textobjects" } },
   hooks = {
     post_load = function()
@@ -537,10 +537,10 @@ mypack.add("notomo/aliaser.nvim", {
   hooks = { post_load = require_fn("notomo.plugin.aliaser") },
 })
 
-optpack.add("kana/vim-operator-user")
+local vim_operator_user = optpack.add("kana/vim-operator-user")
 
-optpack.add("osyo-manga/vim-textobj-multiblock", {
-  depends = { "vim-textobj-user" },
+local vim_textobj_multiblock = optpack.add("osyo-manga/vim-textobj-multiblock", {
+  depends = { vim_textobj_user.name },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "o", "x" }, "aj", [[<Plug>(textobj-multiblock-a)]])
@@ -574,7 +574,7 @@ optpack.add("Shougo/neosnippet.vim", {
 })
 
 optpack.add("osyo-manga/vim-operator-blockwise", {
-  depends = { "vim-operator-user", "vim-textobj-blockwise" },
+  depends = { vim_operator_user.name, vim_textobj_blockwise.name },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set("n", "[operator]c", [[<Plug>(operator-blockwise-change)]])
@@ -585,7 +585,7 @@ optpack.add("osyo-manga/vim-operator-blockwise", {
 })
 
 optpack.add("kana/vim-operator-replace", {
-  depends = { "vim-operator-user" },
+  depends = { vim_operator_user.name },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "n", "x", "o" }, "r", [[<Plug>(operator-replace)]])
@@ -612,7 +612,7 @@ optpack.add("kana/vim-operator-replace", {
 })
 
 optpack.add("rhysd/vim-operator-surround", {
-  depends = { "vim-operator-user", "vim-textobj-multiblock" },
+  depends = { vim_operator_user.name, vim_textobj_multiblock.name },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "n", "x" }, "[surround]", "<Nop>")
@@ -650,7 +650,7 @@ mypack.add("notomo/stlparts.nvim", {
 })
 
 mypack.add("notomo/gettest.nvim", {
-  depends = { "nvim-treesitter" },
+  depends = { nvim_treesitter.name },
   load_on = { modules = { "gettest" } },
 })
 
@@ -658,7 +658,7 @@ mypack.add("notomo/tracebundler.nvim", {
   load_on = { modules = { "tracebundler" } },
 })
 
-optpack.add("mfussenegger/nvim-dap", {
+local nvim_dap = optpack.add("mfussenegger/nvim-dap", {
   load_on = {
     modules = { "dap" },
     filetypes = { "go" },
@@ -708,7 +708,7 @@ optpack.add("theHamsta/nvim-dap-virtual-text", {
 })
 
 optpack.add("jbyuki/one-small-step-for-vimkind", {
-  depends = { "nvim-dap" },
+  depends = { nvim_dap.name },
   load_on = { modules = { "osv" } },
   hooks = {
     pre_load = require_fn("notomo.plugin.one-small-step-for-vimkind"),
@@ -724,7 +724,7 @@ mypack.add("notomo/misclib.nvim", {
 })
 
 mypack.add("notomo/importgraph.nvim", {
-  depends = { "nvim-treesitter" },
+  depends = { nvim_treesitter.name },
   load_on = { modules = { "importgraph" } },
 })
 
@@ -793,8 +793,9 @@ optpack.add("previm/previm", {
   },
 })
 
+local nvim_ts_context_commentstring = optpack.add("JoosepAlviste/nvim-ts-context-commentstring") -- for tsx
 optpack.add("numToStr/Comment.nvim", {
-  depends = { "nvim-ts-context-commentstring" },
+  depends = { nvim_ts_context_commentstring.name },
   load_on = { events = { "FileType" } },
   hooks = {
     post_load = function()
@@ -810,10 +811,9 @@ optpack.add("numToStr/Comment.nvim", {
     end,
   },
 })
-optpack.add("JoosepAlviste/nvim-ts-context-commentstring") -- for tsx
 
 optpack.add("Wansmer/treesj", {
-  depends = { "nvim-treesitter" },
+  depends = { nvim_treesitter.name },
   load_on = { filetypes = { "go", "lua", "typescript", "typescriptreact" } },
   hooks = {
     post_load = function()
@@ -886,12 +886,12 @@ optpack.add("uga-rosa/ccc.nvim", {
 })
 
 optpack.add("SmiteshP/nvim-navic", {
-  depends = { "nvim-lspconfig" },
+  depends = { nvim_lspconfig.name },
   load_on = { modules = { "nvim-navic" } },
 })
 
 optpack.add("windwp/nvim-ts-autotag", {
-  depends = { "nvim-treesitter" },
+  depends = { nvim_treesitter.name },
   load_on = { filetypes = { "typescriptreact" } },
   hooks = {
     post_load = function()
