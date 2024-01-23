@@ -1,28 +1,12 @@
-local action = function(action_name, opts)
+local action = function(action_name, execute_opts)
   return function()
-    local items, metadata = require("thetto").get()
-    local item_action_groups = require("thetto.util.action").grouping(items, {
-      action_name = action_name,
-      actions = metadata.actions,
-    })
-    require("thetto").execute(item_action_groups, opts)
+    require("thetto.util.action").execute(action_name, {}, execute_opts)
   end
 end
 
-local action_with_fallback = function(action_names, opts)
+local action_with_fallback = function(action_names, execute_opts)
   return function()
-    local items, metadata = require("thetto").get()
-    for _, action_name in ipairs(action_names) do
-      local item_action_groups = require("thetto.util.action").grouping(items, {
-        action_name = action_name,
-        actions = metadata.actions,
-      })
-      if #item_action_groups ~= 0 then
-        require("thetto").execute(item_action_groups, opts)
-        return
-      end
-    end
-    require("thetto").execute({}, opts)
+    require("thetto.util.action").execute_with_fallback(action_names, {}, execute_opts)
   end
 end
 
@@ -223,7 +207,7 @@ local source_specific = {
     end, { buffer = list_bufnr })
   end,
   ["git/status"] = function(list_bufnr)
-    local action_without_message = function(action_name, opts)
+    local action_without_message = function(action_name, execute_opts)
       return function()
         local items, metadata = require("thetto").get()
         local filtered = vim
@@ -232,11 +216,9 @@ local source_specific = {
             return item.kind_name ~= "git/status/message"
           end)
           :totable()
-        local item_action_groups = require("thetto.util.action").grouping(filtered, {
-          action_name = action_name,
-          actions = metadata.actions,
-        })
-        require("thetto").execute(item_action_groups, opts)
+        require("thetto.util.action").execute(action_name, {}, execute_opts, function()
+          return filtered, metadata
+        end)
         require("misclib.visual_mode").leave()
       end
     end
