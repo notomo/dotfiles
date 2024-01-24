@@ -10,13 +10,6 @@ local action_with_fallback = function(action_names, execute_opts)
   end
 end
 
-local action_key = function(prev, action_name)
-  return function()
-    vim.fn.feedkeys(prev, "mx")
-    action(action_name)
-  end
-end
-
 local thetto_starter = function(source_name, fields, opts)
   return function()
     require("thetto").start(require("thetto.util.source").by_name(source_name, fields), opts)
@@ -133,7 +126,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "thetto-inputter" },
   callback = function()
     vim.keymap.set("n", "<CR>", action(), { buffer = true })
-    vim.keymap.set("i", "<CR>", action_key(vim.keycode("<ESC>")), { buffer = true })
+    vim.keymap.set("i", "<CR>", function()
+      action()()
+      vim.cmd.stopinsert()
+    end, { buffer = true })
     vim.keymap.set("n", "o", action("open"), { buffer = true })
     vim.keymap.set("n", "sv", action("vsplit_open"), { buffer = true })
     vim.keymap.set("n", "t<Space>", action("tab_open"), { buffer = true })
