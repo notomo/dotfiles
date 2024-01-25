@@ -148,6 +148,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("i", "<C-u>", function()
       require("notomo.lib.edit").delete_prev()
     end, { buffer = true })
+
+    vim.keymap.set("n", "[finder]<CR>", function()
+      require("thetto").resume({ offset = -1 })
+    end, { buffer = true })
   end,
 })
 
@@ -172,9 +176,9 @@ local source_specific = {
     end, { buffer = list_bufnr })
     vim.keymap.set("n", "ch", action("checkout"), { buffer = list_bufnr })
     vim.keymap.set("n", "D", action("diff"), { buffer = list_bufnr })
-    vim.keymap.set("n", "RS", action("reset"), { buffer = list_bufnr })
-    vim.keymap.set("n", "F", action("fixup"), { buffer = list_bufnr })
-    vim.keymap.set("n", "rw", action("reword"), { buffer = list_bufnr })
+    vim.keymap.set("n", "RS", action("reset", { quit = false }), { buffer = list_bufnr })
+    vim.keymap.set("n", "F", action("fixup", { quit = false }), { buffer = list_bufnr })
+    vim.keymap.set("n", "rw", action("reword", { quit = false }), { buffer = list_bufnr })
     vim.keymap.set("n", "I", action("rebase_interactively"), { buffer = list_bufnr })
   end,
   ["git/file_log"] = function(list_bufnr)
@@ -226,7 +230,7 @@ local source_specific = {
       { buffer = list_bufnr }
     )
     vim.keymap.set({ "n", "x" }, "U", action_without_message("discard", { quit = false }), { buffer = list_bufnr })
-    vim.keymap.set({ "n", "x" }, "S", action("stash"), { buffer = list_bufnr })
+    vim.keymap.set({ "n", "x" }, "S", action("stash", { quit = false }), { buffer = list_bufnr })
     vim.keymap.set("n", "cc", action("commit"), { buffer = list_bufnr })
     vim.keymap.set("n", "ca", action("commit_amend"), { buffer = list_bufnr })
     vim.keymap.set("n", "dd", action("compare", { quit = false }), { buffer = list_bufnr })
@@ -269,7 +273,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
 })
 
 vim.keymap.set("n", "[finder]R", thetto_starter("vim/runtimepath"))
-vim.keymap.set("n", "<Space>usf", thetto_starter("file/recursive"))
+vim.keymap.set("n", "<Space>usf", thetto_starter("file/recursive/all"))
 vim.keymap.set("n", "[finder]f", thetto_starter("file/in_dir"))
 vim.keymap.set("n", "[finder]h", thetto_starter("vim/help"))
 
@@ -352,12 +356,16 @@ vim.keymap.set("n", "[file]l", function()
 end)
 
 vim.keymap.set("n", "[file]t", function()
-  require("thetto").start(require("thetto.util.source").by_name("file/alter"), {
-    opts = {
-      allow_new = true,
-    },
-    consumer_factory = require("thetto.util.consumer").immediate(),
-  })
+  require("thetto").start(
+    require("thetto.util.source").by_name("file/alter", {
+      opts = {
+        allow_new = true,
+      },
+    }),
+    {
+      consumer_factory = require("thetto.util.consumer").immediate(),
+    }
+  )
 end)
 
 vim.keymap.set("n", "[finder]T", function()
@@ -406,7 +414,7 @@ vim.keymap.set(
   "[finder]v",
   thetto_starter("file/recursive", {
     cwd = "$DOTFILES",
-    source_opts = ls_opts,
+    opts = ls_opts,
   })
 )
 

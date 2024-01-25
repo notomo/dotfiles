@@ -111,7 +111,7 @@ register_source("github/project", {
         return
       end
       return require("thetto").start("github/project/item", {
-        source_opts = {
+        opts = {
           project_url = item.url,
           query = vim.g.notomo_gh_project_item_query,
         },
@@ -151,20 +151,23 @@ register_source("vim/filetype", {
       end
       local bufnr = vim.fn.bufadd(vim.fn.expand("$DOTFILES/vim/lua/notomo/plugin/runtimetable/filetype.lua"))
       vim.fn.bufload(bufnr)
-      return require("thetto").start("vim/line", {
-        opts = {
-          input_lines = { ([["%s.lua"]]):format(item.value) },
-          immediately = true,
-          insert = false,
-          can_resume = false,
-        },
-        source_opts = { bufnr = bufnr },
+      return require("thetto.util.source").start_by_name("vim/line", {
+        can_resume = false,
+      }, {
+        source_bufnr = bufnr,
+        consumer_factory = require("thetto.util.consumer").immediate(),
+        pipeline_stages_factory = require("thetto.util.pipeline").list({
+          require("thetto.util.filter").item(function(e)
+            local pattern = ([["%s.lua"]]):format(vim.pesc(item.value))
+            return e.value:find(pattern)
+          end),
+        }),
       })
     end,
   },
 })
 
-local file_recursive, directory_recursive, modify_path
+local file_recursive, file_recursive_all, directory_recursive, directory_recursive_all, modify_path
 if vim.fn.has("win32") == 0 then
   file_recursive = function(path, max_depth)
     return {
@@ -177,6 +180,12 @@ if vim.fn.has("win32") == 0 then
       "--files",
       path,
     }
+  end
+
+  file_recursive_all = function(...)
+    local cmd = file_recursive(...)
+    table.insert(cmd, 2, "--no-ignore")
+    return cmd
   end
 
   directory_recursive = function(path, max_depth)
@@ -195,6 +204,13 @@ if vim.fn.has("win32") == 0 then
       path,
     }
   end
+
+  directory_recursive_all = function(...)
+    local cmd = file_recursive(...)
+    table.insert(cmd, 2, "--no-ignore")
+    return cmd
+  end
+
   modify_path = function(path)
     return path
   end
@@ -215,6 +231,12 @@ register_source("file/recursive", function()
   }
 end)
 
+sources["file/recursive/all"] = function()
+  local source = require("thetto.util.source").by_name("file/recursive")
+  source.opts.get_command = file_recursive_all
+  return source
+end
+
 register_source("file/directory/recursive", function()
   return {
     opts = {
@@ -227,7 +249,13 @@ register_source("file/directory/recursive", function()
   }
 end)
 
-register_source("line", function()
+sources["directory/recursive/all"] = function()
+  local source = require("thetto.util.source").by_name("directory/recursive")
+  source.opts.get_command = directory_recursive_all
+  return source
+end
+
+register_source("vim/line", function()
   return {
     modify_pipeline = require("thetto.util.pipeline").list({
       require("thetto.util.filter").by_name("regex"),
@@ -358,12 +386,12 @@ register_source("file/alter", {
   opts = {
     pattern_groups = {
       { "%_test.go", "%.go" },
-      { "%_test.ts", "%.ts" },
       { "%/spec/lua/%_spec.lua", "%/lua/%.lua" },
       { "%/test/lua/%_spec.lua", "%/lua/%.lua" },
       { "%.c", "%.h" },
       { "%.spec.ts", "%.ts" },
       { "%.spec.tsx", "%.tsx" },
+      { "%_test.ts", "%.ts" },
     },
   },
 })
