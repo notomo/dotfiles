@@ -86,7 +86,26 @@ end
 
 runtime.after.queries.go["highlights.scm"] = [=[
 ;; extends
-"range" @repeat.go
+[
+  "const"
+  "interface"
+  "struct"
+  "type"
+  "var"
+  "func"
+] @keyword.strong
+
+[
+  "range"
+  "continue"
+  "default"
+  "defer"
+  "goto"
+  "range"
+  "select"
+  "fallthrough"
+] @keyword.middle
+
 ]=]
 
 runtime.after.ftplugin["gomod.lua"] = function()
