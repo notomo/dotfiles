@@ -15,6 +15,9 @@ function M.setup()
         enable = true,
       },
     },
+    autotag = {
+      enable = true,
+    },
   })
 end
 
@@ -139,19 +142,19 @@ function M.mapping()
   vim.keymap.set(
     "n",
     "<CR>",
-    [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:lua require("nvim-treesitter.incremental_selection").init_selection()<CR>:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
+    [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:<C-u>lua require("nvim-treesitter.incremental_selection").init_selection()<CR>:<C-u>lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
     { buffer = true }
   )
   vim.keymap.set(
     "x",
     "<CR>",
-    [[:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
+    [[:<C-u>lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]],
     { buffer = true }
   )
   vim.keymap.set(
     "x",
     "g<CR>",
-    [[:lua require("nvim-treesitter.incremental_selection").node_decremental()<CR>]],
+    [[:<C-u>lua require("nvim-treesitter.incremental_selection").node_decremental()<CR>]],
     { buffer = true }
   )
 

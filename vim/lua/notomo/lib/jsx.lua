@@ -58,9 +58,9 @@ function M.select_tag_expr()
   local node = vim.treesitter.get_node({})
   local self_closing = require("notomo.lib.treesitter").find_ancestor(node, "jsx_self_closing_element", true)
   if self_closing then
-    return [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").init_selection()<CR>]]
+    return [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:<C-u>lua require("nvim-treesitter.incremental_selection").init_selection()<CR>]]
   end
-  return [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:lua require("nvim-treesitter.incremental_selection").init_selection()<CR>:lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]]
+  return [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:<C-u>lua require("nvim-treesitter.incremental_selection").init_selection()<CR>:<C-u>lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]]
 end
 
 function M.cursor_on_string(base_node)
