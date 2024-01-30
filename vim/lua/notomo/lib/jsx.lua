@@ -54,13 +54,16 @@ function M.go_to_last_child()
   vim.api.nvim_win_set_cursor(0, { row + 1, math.max(0, column - 1) }) -- HACk
 end
 
-function M.select_tag_expr()
+function M.select_tag()
   local node = vim.treesitter.get_node({})
   local self_closing = require("notomo.lib.treesitter").find_ancestor(node, "jsx_self_closing_element", true)
+  vim.cmd.normal({ args = { "m'" }, bang = true })
+  vim.cmd.TSTextobjectSelect("@jsx_element.outer")
+  require("nvim-treesitter.incremental_selection").init_selection()
   if self_closing then
-    return [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:<C-u>lua require("nvim-treesitter.incremental_selection").init_selection()<CR>]]
+    return
   end
-  return [[:<C-u>lua vim.cmd.normal({ args = { "m'" }, bang = true })<CR>:TSTextobjectSelect @jsx_element.outer<CR>:<C-u>lua require("nvim-treesitter.incremental_selection").init_selection()<CR>:<C-u>lua require("nvim-treesitter.incremental_selection").node_incremental()<CR>]]
+  require("nvim-treesitter.incremental_selection").node_incremental()
 end
 
 function M.cursor_on_string(base_node)
