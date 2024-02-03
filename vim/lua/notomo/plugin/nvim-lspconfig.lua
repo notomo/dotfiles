@@ -33,11 +33,6 @@ local setup_ls = function(ls, config, enable_features)
       },
     },
   })
-  config.capabilities.textDocument.semanticTokens = {
-    dynamicRegistration = false,
-    tokenTypes = {},
-    tokenModifiers = {},
-  }
   local on_attach = config.on_attach or function() end
   config.on_attach = function(client, bufnr)
     on_attach(client, bufnr)
@@ -138,6 +133,18 @@ setup_ls(lspconfig.tsserver, {
       or vim.loop.cwd()
   end,
   single_file_support = false,
+  init_options = {
+    preferences = {
+      includeInlayParameterNameHints = "all",
+      includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+      includeInlayFunctionParameterTypeHints = true,
+      includeInlayVariableTypeHints = true,
+      includeInlayPropertyDeclarationTypeHints = true,
+      includeInlayFunctionLikeReturnTypeHints = true,
+      includeInlayEnumMemberValueHints = true,
+      importModuleSpecifierPreference = "non-relative",
+    },
+  },
 }, { "unix" })
 
 setup_ls(lspconfig.denols, {
