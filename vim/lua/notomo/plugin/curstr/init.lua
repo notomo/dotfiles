@@ -13,7 +13,15 @@ require("curstr").setup({
       },
       filetypes = { "yaml" },
     },
-    openable = { names = { "vim/function", "lua", "file", "directory", "swagger", "vim/runtime" } },
+    openable = { names = { "vim/function", "lua", "no_modified_file", "file", "directory", "swagger", "vim/runtime" } },
+    no_modified_file = {
+      names = { "file/path" },
+      opts = {
+        modify = function(path)
+          return path
+        end,
+      },
+    },
     bool = {
       names = { "togglable/word" },
       opts = {
