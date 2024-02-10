@@ -45,7 +45,20 @@ vim.keymap.set("n", "[test]t", function()
 end)
 vim.keymap.set("n", "S", function()
   local runner = decide_runner()
-  require("cmdhndlr").run({ name = runner, runner_opts = { target = "start" } })
+  require("cmdhndlr").run({
+    name = runner,
+    runner_opts = { target = "start" },
+    layout = { type = "tab_drop" },
+    hooks = {
+      failure = require("cmdhndlr.util.hook").echo_failure(),
+    },
+    reuse_predicate = function(current_state, state)
+      local same = current_state.full_name == state.full_name
+          and current_state.working_dir_path == state.working_dir_path
+          and vim.deep_equal(current_state.cmd, state.executed_cmd)
+      return same
+    end
+  })
 end)
 vim.keymap.set("n", "[exec]bl", function()
   local runner = decide_runner()
