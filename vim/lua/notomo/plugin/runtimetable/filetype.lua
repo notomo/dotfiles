@@ -402,6 +402,10 @@ runtime.after.ftplugin["flux.lua"] = function()
 end
 
 runtime.after.ftplugin["typescript.lua"] = function()
+  if require("misclib.window").is_floating(0) then
+    return
+  end
+
   vim.opt_local.modeline = false
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.tabstop = 2
@@ -420,6 +424,10 @@ runtime.after.ftplugin["typescript.lua"] = function()
 end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
+  if require("misclib.window").is_floating(0) then
+    return
+  end
+
   vim.opt_local.modeline = false
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.tabstop = 2
