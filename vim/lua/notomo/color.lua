@@ -72,6 +72,10 @@ vim.api.nvim_set_hl(0, "@keyword.strong.go", { link = "Keyword" })
 vim.api.nvim_set_hl(0, "@keyword.middle.go", { link = "Conditional" })
 vim.api.nvim_set_hl(0, "@constructor.go", {})
 
+vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { link = "Identifier" })
+vim.api.nvim_set_hl(0, "@tag.builtin.tsx", { link = "Statement" })
+vim.api.nvim_set_hl(0, "@function.tsx", { link = "Normal" })
+
 vim.api.nvim_set_hl(0, "@variable.lua", {})
 vim.api.nvim_set_hl(0, "@variable.member.lua", {})
 vim.api.nvim_set_hl(0, "@variable.parameter.lua", {})
