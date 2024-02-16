@@ -117,7 +117,7 @@ runtime.after.ftplugin["graphql.lua"] = function()
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
-  require("notomo.lib.treesitter").start()
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["groovy.lua"] = function()
@@ -402,10 +402,6 @@ runtime.after.ftplugin["flux.lua"] = function()
 end
 
 runtime.after.ftplugin["typescript.lua"] = function()
-  if require("misclib.window").is_floating(0) then
-    return
-  end
-
   vim.opt_local.modeline = false
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.tabstop = 2
@@ -424,10 +420,6 @@ runtime.after.ftplugin["typescript.lua"] = function()
 end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
-  if require("misclib.window").is_floating(0) then
-    return
-  end
-
   vim.opt_local.modeline = false
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.tabstop = 2

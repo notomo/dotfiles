@@ -66,13 +66,10 @@ function M.get_current_function_range()
 end
 
 function M.start()
-  local bufnr = vim.api.nvim_get_current_buf()
-  vim.schedule(function()
-    if not vim.api.nvim_buf_is_valid(bufnr) then
-      return
-    end
-    vim.treesitter.start(bufnr)
-  end)
+  if require("misclib.window").is_floating(0) then
+    return
+  end
+  vim.treesitter.start()
 end
 
 function M.setup()
