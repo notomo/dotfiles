@@ -69,7 +69,13 @@ function M.note()
   end
 
   local before_tab_num = vim.fn.tabpagenr()
-  vim.cmd.drop({ mods = { tab = 0 }, args = { file_path } })
+  local bufnr = vim.fn.bufnr("^" .. file_path .. "$")
+  local window_id = vim.fn.win_findbuf(bufnr)[1]
+  if not window_id then
+    vim.cmd.drop({ mods = { tab = 0 }, args = { file_path } })
+  else
+    vim.api.nvim_set_current_win(window_id)
+  end
   vim.cmd.lcd(dir_path)
 
   local note_tab_num = vim.fn.tabpagenr()
