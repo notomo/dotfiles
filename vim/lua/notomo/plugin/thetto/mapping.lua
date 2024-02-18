@@ -476,6 +476,11 @@ vim.keymap.set("n", "[keyword]n", function()
         insert = false,
       },
     },
+    modify_pipeline = require("thetto.util.pipeline").prepend({
+      require("thetto.util.filter").item(function(item)
+        return item.path == path
+      end),
+    }),
   }))
 end)
 
