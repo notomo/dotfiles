@@ -73,8 +73,6 @@ function M.note()
   local window_id = vim.fn.win_findbuf(bufnr)[1]
   if not window_id then
     vim.cmd.tabedit(file_path)
-    vim.bo.buftype = "nofile"
-    vim.bo.bufhidden = "wipe"
   else
     vim.api.nvim_set_current_win(window_id)
   end
