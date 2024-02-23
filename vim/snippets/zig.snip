@@ -1,0 +1,54 @@
+snippet import
+options word
+	@import("${1:name}");
+
+snippet function
+	fn ${1:name}() !void {
+		${0:TARGET}
+	}
+
+snippet print
+	std.debug.print(${1:expr}, .{});
+
+snippet const
+	const ${1:name} = ${0:expr};
+
+snippet var
+	var ${1:name} = ${0:expr};
+
+snippet try
+	try ${0:expr};
+
+snippet return
+	return ${0:expr};
+
+snippet ifonly
+alias if
+	if (${1:condition}) {
+		${0:TARGET}
+	}
+
+snippet and
+	and ${0:expr};
+
+snippet or
+	or ${0:expr};
+
+snippet comptime
+	comptime ${0:expr};
+
+snippet struct
+	struct {
+		${0:TARGET}
+	}
+
+snippet test
+	test "${1:name}" {
+		${0:TARGET}
+	}
+
+snippet main
+	const std = @import("std");
+	pub fn main() void {
+    	std.debug.print("Hello, world!\n", .{});
+	}

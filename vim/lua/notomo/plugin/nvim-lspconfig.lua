@@ -184,6 +184,7 @@ setup_ls(lspconfig.tailwindcss, {
     },
   },
 }, { "unix" })
+setup_ls(lspconfig.zls, {}, { "unix" })
 
 require("lsp_signature").setup({
   bind = true,

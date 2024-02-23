@@ -568,4 +568,10 @@ runtime.after.ftplugin["css.lua"] = function()
   require("notomo.lsp").setup()
 end
 
+runtime.after.ftplugin["zig.lua"] = function()
+  vim.opt_local.iskeyword:remove("@-@")
+  require("notomo.lsp").setup()
+  require("notomo.lib.treesitter").setup()
+end
+
 require("notomo.plugin.runtimetable").save(runtime)
