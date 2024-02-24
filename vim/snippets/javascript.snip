@@ -32,6 +32,20 @@ options word
 		${0:TARGET}
 	}
 
+snippet arrow
+options word
+	(${1:args}) => ${0:expr}
+
+snippet sleep
+	await new Promise((resolve) => {
+		setTimeout(resolve, ${0:1000});
+	});
+
+snippet setTimeout
+	setTimeout(() => {
+		${0:TARGET}
+	});
+
 snippet array_foreach
 	${1:array}.forEach((v, i) => {
 		${0:TARGET}

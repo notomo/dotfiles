@@ -821,6 +821,7 @@ optpack.add("Wansmer/treesj", {
         use_default_keymaps = false,
       })
       vim.keymap.set("n", "[exec]J", [[<Cmd>TSJSplit<CR>]])
+      vim.keymap.set("n", "[exec]K", [[<Cmd>TSJJoin<CR>]])
     end,
   },
 })

@@ -1,1 +1,14 @@
 include typescript.snip
+
+snippet args
+options word
+	{${1:arg}}: {$1: ${0:string}}
+
+snippet tag
+options word
+	<${1:name}>${0:TARGET}</$1>
+
+snippet component
+	const ${1:Name} = () => {
+		return <div>${0:TARGET}</div>;
+	};
