@@ -455,6 +455,11 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   require("notomo.lib.treesitter").setup()
 
   vim.keymap.set("n", "<CR>", function()
+    local node = vim.treesitter.get_node({})
+    if require("notomo.lib.jsx").cursor_on_string(node) then
+      require("notomo.lib.jsx").select_class_name(node)
+      return
+    end
     require("notomo.lib.jsx").select_tag()
   end, { buffer = true })
 
