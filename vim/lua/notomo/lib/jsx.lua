@@ -104,4 +104,62 @@ function M.select_class_name(str_node)
   vim.cmd.normal({ args = { "gv" }, bang = true })
 end
 
+local get_tag_name_node = function(jsx_node, field_name)
+  local open_tag = jsx_node:field(field_name)[1]
+  if not open_tag then
+    return "not found jsx " .. field_name
+  end
+
+  local open_tag_name = open_tag:field("name")[1]
+  if not open_tag_name then
+    return ("not found %s name"):format(field_name)
+  end
+
+  return open_tag_name
+end
+
+function M.change_tag()
+  local node = vim.treesitter.get_node({})
+  local jsx_node = require("notomo.lib.treesitter").find_ancestor(node, "jsx_element", true)
+  if not jsx_node then
+    require("misclib.message").warn("not found jsx_element node in ancestor")
+    return
+  end
+
+  local open_tag = get_tag_name_node(jsx_node, "open_tag")
+  if type(open_tag) == "string" then
+    require("misclib.message").warn(open_tag)
+    return
+  end
+
+  local bufnr = vim.api.nvim_get_current_buf()
+  local current_tag_name = vim.treesitter.get_node_text(open_tag, bufnr)
+
+  vim.ui.input({
+    prompt = "Change tag from: " .. current_tag_name,
+    default = current_tag_name,
+  }, function(input)
+    if not input or input == "" or input == current_tag_name then
+      require("misclib.message").info("Canceled.")
+      return
+    end
+
+    do
+      local start_row, start_col, end_row, end_col = open_tag:range()
+      vim.api.nvim_buf_set_text(bufnr, start_row, start_col, end_row, end_col, { input })
+    end
+
+    -- NOTE: get node after updating buffer
+    local close_tag = get_tag_name_node(jsx_node, "close_tag")
+    if type(close_tag) == "string" then
+      require("misclib.message").warn(close_tag)
+      return
+    end
+    do
+      local start_row, start_col, end_row, end_col = close_tag:range()
+      vim.api.nvim_buf_set_text(bufnr, start_row, start_col, end_row, end_col, { input })
+    end
+  end)
+end
+
 return M

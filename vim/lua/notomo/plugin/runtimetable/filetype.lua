@@ -471,6 +471,10 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
     require("notomo.lib.jsx").go_to_last_child()
     vim.fn.feedkeys("a", "nt")
   end, { buffer = true })
+
+  vim.keymap.set("n", "<Space>rn", function()
+    require("notomo.lib.jsx").change_tag()
+  end, { buffer = true })
 end
 
 runtime.after.queries.tsx["textobjects.scm"] = [=[
