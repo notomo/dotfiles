@@ -133,6 +133,13 @@ register_source_alias("github/pull_request_review", "github/pull_request", {
   },
 })
 
+register_source("github/pull_request", {
+  modify_pipeline = require("thetto.util.pipeline").pass_through(),
+  get_pattern = function()
+    return ""
+  end,
+})
+
 register_source("vim/filetype", {
   actions = {
     action_open_scratch = function(items)

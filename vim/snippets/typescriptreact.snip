@@ -4,6 +4,10 @@ snippet args
 options word
 	{${1:arg}}: {$1: ${0:string}}
 
+snippet children_with
+options word
+	{${1:arg}, children}: React.PropsWithChildren<{$1: ${0:string}}>
+
 snippet tag
 options word
 	<${1:name}>${0:TARGET}</$1>
