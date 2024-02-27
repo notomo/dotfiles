@@ -519,6 +519,25 @@ local runner_actions = {
 register_source("cmd/make/target", { actions = runner_actions })
 register_source("cmd/npm/script", { actions = runner_actions })
 
+register_source("cmd/aws/profile", function()
+  return {
+    actions = {
+      opts = {
+        yank = {
+          convert = function(values)
+            return vim
+              .iter(values)
+              :map(function(v)
+                return ("AWS_PROFILE=%s "):format(v)
+              end)
+              :totable()
+          end,
+        },
+      },
+    },
+  }
+end)
+
 thetto.set_default({
   sources = sources,
   kinds = kinds,
