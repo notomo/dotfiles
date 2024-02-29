@@ -119,7 +119,8 @@ setup_ls(lspconfig.clangd)
 setup_ls(lspconfig.eslint, {}, { "unix" })
 
 local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
-setup_ls(lspconfig.tsserver, {
+
+require("typescript-tools").setup({
   root_dir = function(fname)
     if fname:find("deno:") then
       return nil
@@ -132,9 +133,8 @@ setup_ls(lspconfig.tsserver, {
       or require("lspconfig.util").root_pattern("package.json", "jsconfig.json", ".git")(fname)
       or vim.loop.cwd()
   end,
-  single_file_support = false,
-  init_options = {
-    preferences = {
+  settings = {
+    tsserver_file_preferences = {
       includeInlayParameterNameHints = "all",
       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
       includeInlayFunctionParameterTypeHints = true,
@@ -145,7 +145,7 @@ setup_ls(lspconfig.tsserver, {
       importModuleSpecifierPreference = "non-relative",
     },
   },
-}, { "unix" })
+})
 
 setup_ls(lspconfig.denols, {
   root_dir = require("lspconfig.util").root_pattern(unpack(deno_pattern)),
