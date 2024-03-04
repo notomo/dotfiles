@@ -133,6 +133,7 @@ require("typescript-tools").setup({
       or require("lspconfig.util").root_pattern("package.json", "jsconfig.json", ".git")(fname)
       or vim.loop.cwd()
   end,
+  single_file_support = false,
   settings = {
     tsserver_file_preferences = {
       includeInlayParameterNameHints = "all",
