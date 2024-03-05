@@ -593,7 +593,7 @@ vim.keymap.set("n", "[term]S", [[<Cmd>lua require("notomo.plugin.termdebug").sta
 vim.keymap.set("n", "[term]q", [[<Cmd>lua require("notomo.plugin.termdebug").quit()<CR>]])
 
 vim.keymap.set("n", "[git]H", function()
-  return require("notomo.lib.git").pull()
+  return require("notomo.lib.git").pull({ "--autostash" })
 end, { expr = true })
 vim.keymap.set("n", "[git]F", function()
   return require("notomo.lib.git").fetch()

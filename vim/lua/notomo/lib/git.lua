@@ -7,14 +7,15 @@ vim.api.nvim_create_user_command("Git", function(command)
   require("notomo.lib.job").run({ "git", unpack(args) })
 end, { nargs = "+" })
 
-function M.pull()
+function M.pull(args)
   local remote = M._remote()
   local branch = M.current_branch()
   if branch == "" then
     require("misclib.message").warn("no specific branch")
     return ""
   end
-  return (":<C-u>Git pull %s %s"):format(remote, branch)
+  local cmd = { "pull", remote, branch, unpack(args or {}) }
+  return (":<C-u>Git %s"):format(table.concat(cmd, " "))
 end
 
 function M.push()
