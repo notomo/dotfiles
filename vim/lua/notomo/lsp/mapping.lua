@@ -129,7 +129,15 @@ function M.setup(opts)
   vim.keymap.set({ "n", "x" }, "[keyword]a", function()
     vim.lsp.buf.code_action({
       filter = function(e)
-        return e.title:find("Add import") or e.title:find("Update import")
+        return (e.title:find("Add import") or e.title:find("Update import")) ~= nil
+      end,
+      apply = true,
+    })
+  end, { silent = true, buffer = true })
+  vim.keymap.set({ "n", "x" }, "[keyword]p", function()
+    vim.lsp.buf.code_action({
+      filter = function(e)
+        return e.title:find("Add missing") ~= nil
       end,
       apply = true,
     })
