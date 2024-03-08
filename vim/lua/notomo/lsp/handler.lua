@@ -16,8 +16,46 @@ function M.publish_diagnostics(err, result, ctx, config)
   })
 end
 
+function M.references(err, result)
+  if err then
+    require("misclib.message").warn(err)
+    return
+  end
+  if not result then
+    require("misclib.message").warn("no references")
+    return
+  end
+
+  require("thetto").start({
+    collect = function()
+      return vim
+        .iter(result)
+        :map(function(e)
+          local path = vim.uri_to_fname(e.uri)
+          local row = e.range.start.line + 1
+          return {
+            value = ("%s:%d"):format(path, row),
+            path = path,
+            row = row,
+            end_row = e.range["end"].line,
+            column = e.range.start.character,
+            end_column = e.range["end"].character,
+          }
+        end)
+        :totable()
+    end,
+    consumer_opts = { ui = { insert = false } },
+    name = "notomo/lsp/references",
+    kind_name = "file",
+  })
+end
+
 vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_publishDiagnostics] = function(...)
   require("notomo.lsp.handler").publish_diagnostics(...)
+end
+
+vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_references] = function(...)
+  require("notomo.lsp.handler").references(...)
 end
 
 vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = function(...)
