@@ -475,6 +475,10 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.keymap.set("n", "<Space>rn", function()
     require("notomo.lib.jsx").change_tag()
   end, { buffer = true })
+
+  vim.keymap.set("n", "[keyword]A", function()
+    require("notomo.lib.jsx").add_component_parameter()
+  end, { buffer = true })
 end
 
 runtime.after.queries.tsx["textobjects.scm"] = [=[

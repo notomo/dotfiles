@@ -162,4 +162,62 @@ function M.change_tag()
   end)
 end
 
+function M.add_component_parameter()
+  local node = vim.treesitter.get_node({})
+  local param_node = require("notomo.lib.treesitter").find_ancestor(node, "required_parameter", true)
+  if not param_node then
+    require("misclib.message").warn("not found required_parameter node in ancestor")
+    return
+  end
+
+  local pattern_node = param_node:field("pattern")[1]
+  if not pattern_node then
+    require("misclib.message").warn("not found pattern node in ancestor")
+    return
+  end
+
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  vim.ui.input({
+    prompt = "Add parameter",
+  }, function(input)
+    if not input or input == "" then
+      require("misclib.message").info("Canceled.")
+      return
+    end
+
+    do
+      local _, _, end_row, end_col = pattern_node:range()
+      vim.api.nvim_buf_set_text(bufnr, end_row, end_col - 1, end_row, end_col - 1, { input, "" })
+    end
+
+    local type_node = param_node:field("type")[1]
+    if not type_node then
+      require("misclib.message").warn("not found type node in ancestor")
+      return
+    end
+
+    do
+      local _, _, end_row, end_col = type_node:range()
+      vim.api.nvim_buf_set_text(bufnr, end_row, end_col - 1, end_row, end_col - 1, { input .. ": string", "" })
+    end
+
+    vim.schedule(function()
+      local new_node = vim.treesitter.get_node({})
+      local new_param_node = require("notomo.lib.treesitter").find_ancestor(new_node, "required_parameter", true)
+      local new_type_node = new_param_node:field("type")[1]
+      local object_type_node = new_type_node:named_child(0)
+      local target_node =
+        object_type_node:named_child(object_type_node:named_child_count() - 1):field("type")[1]:named_child(0)
+
+      local start_row, start_col, end_row, end_col = target_node:range()
+      vim.api.nvim_buf_set_mark(0, "<", start_row + 1, start_col, {})
+      vim.api.nvim_buf_set_mark(0, ">", end_row + 1, end_col - 1, {})
+
+      vim.cmd.normal({ args = { "gv" }, bang = true })
+      vim.api.nvim_feedkeys(vim.keycode("<C-g>"), "n", true)
+    end)
+  end)
+end
+
 return M
