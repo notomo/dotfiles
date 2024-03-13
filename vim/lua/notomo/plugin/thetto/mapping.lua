@@ -32,13 +32,21 @@ end)
 vim.keymap.set("n", "[finder]n", function()
   require("thetto").resume({
     item_cursor_factory = require("thetto.util.item_cursor").offset(1),
-    consumer_factory = require("thetto.util.consumer").immediate(),
+    consumer_factory = require("thetto.util.consumer").immediate({
+      is_valid = function(item)
+        return item.kind_name ~= "git/status/message"
+      end,
+    }),
   })
 end)
 vim.keymap.set("n", "[finder]N", function()
   require("thetto").resume({
     item_cursor_factory = require("thetto.util.item_cursor").offset(-1),
-    consumer_factory = require("thetto.util.consumer").immediate(),
+    consumer_factory = require("thetto.util.consumer").immediate({
+      is_valid = function(item)
+        return item.kind_name ~= "git/status/message"
+      end,
+    }),
   })
 end)
 
