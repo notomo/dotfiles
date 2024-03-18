@@ -511,6 +511,11 @@ local runner_actions = {
           end,
           layout = { type = "no" },
           runner_opts = { cmd = cmd },
+          hooks = {
+            success = require("cmdhndlr.util.hook").echo_success(),
+            failure = require("cmdhndlr.util.hook").echo_failure(),
+            pre_execute = require("cmdhndlr.util.hook").echo_cmd(),
+          },
         })
       end,
     },
