@@ -23,7 +23,7 @@
 
 - name: download nvim on mac
   get_url:
-    url: https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
+    url: https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz
     dest: "{{ app_dir }}/nvim.tar.gz"
   when: is_macos and not nvim_installed.stat.exists and not nvim_installed.stat.exists
 
