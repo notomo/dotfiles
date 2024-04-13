@@ -1,8 +1,13 @@
-require("curstr.action_group.directory").after = function(_, path)
-  require("kivi").open({ path = path })
-end
-
 require("curstr").setup({
+  groups = {
+    directory = {
+      opts = {
+        after = function(path)
+          require("kivi").open({ path = path })
+        end,
+      },
+    },
+  },
   source_aliases = {
     swagger = {
       names = { "file/search" },
