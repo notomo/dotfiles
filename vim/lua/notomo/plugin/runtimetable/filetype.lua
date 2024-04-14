@@ -587,4 +587,9 @@ runtime.after.ftplugin["zig.lua"] = function()
   require("notomo.lib.treesitter").setup()
 end
 
+runtime.after.ftplugin["astro.lua"] = function()
+  require("notomo.lsp").setup()
+  require("notomo.lib.treesitter").setup()
+end
+
 require("notomo.plugin.runtimetable").save(runtime)

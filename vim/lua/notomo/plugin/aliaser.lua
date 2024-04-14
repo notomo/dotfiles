@@ -44,6 +44,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
       "graphql",
       "comment",
       "prisma",
+      "astro",
       "tsx",
       "css",
       "yaml",
