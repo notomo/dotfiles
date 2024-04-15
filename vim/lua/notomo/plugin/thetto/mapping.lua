@@ -114,13 +114,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
     vim.keymap.set("n", "<Tab>", thetto_starter("thetto/action"), { buffer = true })
     vim.keymap.set("n", "[finder]<CR>", function()
-      require("thetto").resume({ offset = -1 })
+      require("thetto").resume({ offset = 1 })
     end, { buffer = true })
     vim.keymap.set("n", "[finder]n", function()
-      require("thetto").resume({ offset = -1 })
+      require("thetto").resume({ offset = 1 })
     end, { buffer = true })
     vim.keymap.set("n", "[finder]N", function()
-      require("thetto").resume({ offset = 1 })
+      require("thetto").resume({ offset = -1 })
     end, { buffer = true })
 
     vim.keymap.set("n", "sm", call_consumer_key("", "toggle_selection", "<Down>"), { buffer = true })
@@ -158,7 +158,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end, { buffer = true })
 
     vim.keymap.set("n", "[finder]<CR>", function()
-      require("thetto").resume({ offset = -1 })
+      require("thetto").resume({ offset = 1 })
     end, { buffer = true })
   end,
 })
