@@ -22,8 +22,39 @@ vim.keymap.set(
   [[<Cmd>lua require("curstr").execute("openable", {action = "horizontal_open"})<CR>]],
   { silent = true }
 )
-vim.keymap.set("n", "[edit]s", [[<Cmd>lua require("curstr").execute("togglable")<CR>]], { silent = true })
-vim.keymap.set("n", "[edit]k", [[<Cmd>lua require("curstr").execute("snake_kebab")<CR>]], { silent = true })
-vim.keymap.set("n", "<Space>rj", [[<Cmd>lua require("curstr").execute("print", {action = "append"})<CR>j]])
-vim.keymap.set("n", "[edit]J", [[<Cmd>lua require("curstr").execute("range", {action = "join"})<CR>]])
-vim.keymap.set("x", "[edit]J", [[<Cmd>lua require("curstr").execute("range", {action = "join"})<CR>]])
+vim.keymap.set("n", "[edit]s", function()
+  local cmd = require("curstr").operator("togglable") .. "$"
+  vim.cmd.normal({ args = { cmd }, bang = true })
+end)
+vim.keymap.set("n", "[edit]k", function()
+  local cmd = require("curstr").operator("snake_kebab") .. "$"
+  vim.cmd.normal({ args = { cmd }, bang = true })
+end)
+vim.keymap.set("n", "<Space>rj", function()
+  local cmd = require("curstr").operator("print", { action = "append" }) .. "$"
+  vim.cmd.normal({ args = { cmd }, bang = true })
+end)
+vim.keymap.set("n", "[edit]J", function()
+  vim.ui.input({
+    prompt = "Separator: ",
+  }, function(separator)
+    local cmd = require("curstr").operator("range", { action = "join", action_opts = { separator = separator } }) .. "G"
+    vim.cmd.normal({ args = { cmd }, bang = true })
+  end)
+end)
+vim.keymap.set("x", "[edit]J", function()
+  vim.ui.input({
+    prompt = "Separator: ",
+  }, function(separator)
+    vim.cmd.normal({ args = { "gv" }, bang = true })
+
+    local cmd = require("curstr").operator("range", {
+      action = "join",
+      action_opts = {
+        separator = separator,
+        offset = math.abs(vim.fn.line("v") - vim.fn.line(".")),
+      },
+    })
+    vim.cmd.normal({ args = { cmd }, bang = true })
+  end)
+end)
