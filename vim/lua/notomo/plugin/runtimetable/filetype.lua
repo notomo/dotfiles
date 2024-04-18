@@ -255,9 +255,7 @@ runtime.after.ftplugin["lua.lua"] = function()
       require("thetto.util.source").start_by_name("test", {
         can_resume = false,
         modify_pipeline = require("thetto.util.pipeline").append({
-          require("thetto.util.sorter").field_by_name("row", {
-            opts = { reversed = true },
-          }),
+          require("thetto.util.sorter").field_by_name("row", true),
         }),
       }, {
         consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
@@ -273,9 +271,7 @@ runtime.after.ftplugin["lua.lua"] = function()
       require("thetto.util.source").start_by_name("test", {
         can_resume = false,
         modify_pipeline = require("thetto.util.pipeline").append({
-          require("thetto.util.sorter").field_by_name("row", {
-            opts = { reversed = true },
-          }),
+          require("thetto.util.sorter").field_by_name("row", true),
         }),
       }, {
         consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
@@ -417,6 +413,38 @@ runtime.after.ftplugin["typescript.lua"] = function()
   )
 
   require("notomo.lib.treesitter").setup()
+
+  vim.keymap.set("n", "sgj", function()
+    local current_row = vim.fn.line(".")
+    local path = vim.api.nvim_buf_get_name(0)
+    require("thetto.util.source").start_by_name("vim/lsp/document_symbol", {
+      can_resume = false,
+    }, {
+      consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
+      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
+        return item.path == path and item.row > current_row
+      end),
+    })
+  end, { buffer = true })
+
+  vim.keymap.set("n", "sgk", function()
+    local current_row = vim.fn.line(".")
+    local path = vim.api.nvim_buf_get_name(0)
+    require("thetto.util.source").start_by_name("vim/lsp/document_symbol", {
+      can_resume = false,
+    }, {
+      consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
+      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
+        return item.path == path and item.row < current_row
+      end),
+      pipeline_stages_factory = require("thetto.util.pipeline").merge({
+        require("thetto.util.pipeline").apply_source(),
+        require("thetto.util.pipeline").append({
+          require("thetto.util.sorter").field_by_name("row", true),
+        }),
+      }),
+    })
+  end, { buffer = true })
 end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
@@ -478,6 +506,38 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
 
   vim.keymap.set("n", "[keyword]A", function()
     require("notomo.lib.jsx").add_component_parameter()
+  end, { buffer = true })
+
+  vim.keymap.set("n", "sgj", function()
+    local current_row = vim.fn.line(".")
+    local path = vim.api.nvim_buf_get_name(0)
+    require("thetto.util.source").start_by_name("vim/lsp/document_symbol", {
+      can_resume = false,
+    }, {
+      consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
+      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
+        return item.path == path and item.row > current_row
+      end),
+    })
+  end, { buffer = true })
+
+  vim.keymap.set("n", "sgk", function()
+    local current_row = vim.fn.line(".")
+    local path = vim.api.nvim_buf_get_name(0)
+    require("thetto.util.source").start_by_name("vim/lsp/document_symbol", {
+      can_resume = false,
+    }, {
+      consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
+      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
+        return item.path == path and item.row < current_row
+      end),
+      pipeline_stages_factory = require("thetto.util.pipeline").merge({
+        require("thetto.util.pipeline").apply_source(),
+        require("thetto.util.pipeline").append({
+          require("thetto.util.sorter").field_by_name("row", true),
+        }),
+      }),
+    })
   end, { buffer = true })
 end
 
