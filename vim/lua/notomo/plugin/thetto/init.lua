@@ -321,13 +321,27 @@ register_source("vim/lsp/outgoing_calls", function()
   }
 end)
 
-local ignored_symbol_kind = { "variable", "field" }
+local ignored_symbol_kind = { "variable", "field", "property" }
 register_source("vim/lsp/document_symbol", function()
   return {
-    modify_pipeline = require("thetto.util.pipeline").prepend({
-      require("thetto.util.filter").item(function(item)
-        return not vim.tbl_contains(ignored_symbol_kind, item.symbol_kind:lower())
-      end),
+    modify_pipeline = require("thetto.util.pipeline").merge({
+      require("thetto.util.pipeline").prepend({
+        require("thetto.util.filter").item(function(item)
+          if vim.tbl_contains(ignored_symbol_kind, item.symbol_kind:lower()) then
+            return false
+          end
+          if not item.value:find("%(") and item.value:find("%.") then
+            return false
+          end
+          if item.value:find(" callback$") then
+            return false
+          end
+          return true
+        end),
+      }),
+      require("thetto.util.pipeline").append({
+        require("thetto.util.sorter").field_by_name("row", false),
+      }),
     }),
   }
 end)
