@@ -22,6 +22,12 @@ local call_consumer = function(action_name, opts)
   end
 end
 
+local quit = function()
+  return function()
+    return require("thetto").quit()
+  end
+end
+
 local call_consumer_key = function(prev, action_name, next)
   return ([[%s<Cmd>lua require("thetto").call_consumer(%q)<CR>%s]]):format(prev, action_name, next)
 end
@@ -59,7 +65,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "<2-LeftMouse>", action(), { buffer = true, silent = true })
     vim.keymap.set("n", "<RightMouse>", [[<Nop>]], { buffer = true })
     vim.keymap.set("n", "<RightDrag>", [[<Nop>]], { buffer = true })
-    vim.keymap.set("n", "<C-w>", call_consumer("quit"), { buffer = true })
+    vim.keymap.set("n", "<C-w>", quit(), { buffer = true })
 
     vim.keymap.set("n", "dd", call_consumer_key("", "move_to_input", "<Cmd>silent delete _<CR>"), { buffer = true })
     vim.keymap.set(
@@ -74,7 +80,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "a", call_consumer("move_to_input"), { buffer = true })
     vim.keymap.set("n", "A", call_consumer_key("", "move_to_input", "<End>"), { buffer = true })
 
-    vim.keymap.set("n", "q", call_consumer("quit"), { buffer = true, nowait = true })
+    vim.keymap.set("n", "q", quit(), { buffer = true, nowait = true })
     vim.keymap.set("n", "M", call_consumer("increase_display_limit"), { buffer = true })
 
     vim.keymap.set("n", "<CR>", action(), { buffer = true })
@@ -142,8 +148,8 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "sv", action("vsplit_open"), { buffer = true })
     vim.keymap.set("n", "t<Space>", action("tab_open"), { buffer = true })
 
-    vim.keymap.set("i", "jq", call_consumer_key("", "quit", "<Cmd>stopinsert<CR>"), { buffer = true })
-    vim.keymap.set("n", "q", call_consumer("quit"), { buffer = true })
+    vim.keymap.set("i", "jq", [[<Cmd>lua require("thetto").quit()<CR><Cmd>stopinsert<CR>]], { buffer = true })
+    vim.keymap.set("n", "q", quit(), { buffer = true })
 
     vim.keymap.set("n", "j", call_consumer("move_to_list"), { buffer = true })
     vim.keymap.set("n", "J", [[line('.') == line('$') ? 'gg' : 'j']], { buffer = true, silent = true, expr = true })
