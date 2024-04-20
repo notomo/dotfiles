@@ -224,61 +224,27 @@ runtime.after.ftplugin["lua.lua"] = function()
 
   if vim.endswith(vim.fn.bufname(), "_spec.lua") then
     vim.keymap.set("n", "sgJ", function()
-      local current_row = vim.fn.line(".")
-      local path = vim.api.nvim_buf_get_name(0)
-      require("thetto.util.source").start_by_name("test", {
-        can_resume = false,
-      }, {
-        consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-        item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-          return item.is_toplevel and item.path == path and item.row > current_row
-        end),
+      require("thetto.util.source").go_to_next("test", {
+        filter = function(item)
+          return item.is_toplevel
+        end,
       })
     end, { buffer = true })
 
     vim.keymap.set("n", "sgj", function()
-      local current_row = vim.fn.line(".")
-      local path = vim.api.nvim_buf_get_name(0)
-      require("thetto.util.source").start_by_name("test", {
-        can_resume = false,
-      }, {
-        consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-        item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-          return item.path == path and item.row > current_row
-        end),
-      })
+      require("thetto.util.source").go_to_next("test")
     end, { buffer = true })
 
     vim.keymap.set("n", "sgK", function()
-      local current_row = vim.fn.line(".")
-      local path = vim.api.nvim_buf_get_name(0)
-      require("thetto.util.source").start_by_name("test", {
-        can_resume = false,
-        modify_pipeline = require("thetto.util.pipeline").append({
-          require("thetto.util.sorter").field_by_name("row", true),
-        }),
-      }, {
-        consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-        item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-          return item.is_toplevel and item.path == path and item.row < current_row
-        end),
+      require("thetto.util.source").go_to_previous("test", {
+        filter = function(item)
+          return item.is_toplevel
+        end,
       })
     end, { buffer = true })
 
     vim.keymap.set("n", "sgk", function()
-      local current_row = vim.fn.line(".")
-      local path = vim.api.nvim_buf_get_name(0)
-      require("thetto.util.source").start_by_name("test", {
-        can_resume = false,
-        modify_pipeline = require("thetto.util.pipeline").append({
-          require("thetto.util.sorter").field_by_name("row", true),
-        }),
-      }, {
-        consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-        item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-          return item.path == path and item.row < current_row
-        end),
-      })
+      require("thetto.util.source").go_to_previous("test")
     end, { buffer = true })
   end
 end
@@ -415,35 +381,10 @@ runtime.after.ftplugin["typescript.lua"] = function()
   require("notomo.lib.treesitter").setup()
 
   vim.keymap.set("n", "sgj", function()
-    local current_row = vim.fn.line(".")
-    local path = vim.api.nvim_buf_get_name(0)
-    require("thetto.util.source").start_by_name("vim/lsp/document_symbol", {
-      can_resume = false,
-    }, {
-      consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-        return item.path == path and item.row > current_row
-      end),
-    })
+    require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
   end, { buffer = true })
-
   vim.keymap.set("n", "sgk", function()
-    local current_row = vim.fn.line(".")
-    local path = vim.api.nvim_buf_get_name(0)
-    require("thetto.util.source").start_by_name("vim/lsp/document_symbol", {
-      can_resume = false,
-    }, {
-      consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-        return item.path == path and item.row < current_row
-      end),
-      pipeline_stages_factory = require("thetto.util.pipeline").merge({
-        require("thetto.util.pipeline").apply_source(),
-        require("thetto.util.pipeline").append({
-          require("thetto.util.sorter").field_by_name("row", true),
-        }),
-      }),
-    })
+    require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
   end, { buffer = true })
 end
 
@@ -509,35 +450,10 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   end, { buffer = true })
 
   vim.keymap.set("n", "sgj", function()
-    local current_row = vim.fn.line(".")
-    local path = vim.api.nvim_buf_get_name(0)
-    require("thetto.util.source").start_by_name("vim/lsp/document_symbol", {
-      can_resume = false,
-    }, {
-      consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-        return item.path == path and item.row > current_row
-      end),
-    })
+    require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
   end, { buffer = true })
-
   vim.keymap.set("n", "sgk", function()
-    local current_row = vim.fn.line(".")
-    local path = vim.api.nvim_buf_get_name(0)
-    require("thetto.util.source").start_by_name("vim/lsp/document_symbol", {
-      can_resume = false,
-    }, {
-      consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-        return item.path == path and item.row < current_row
-      end),
-      pipeline_stages_factory = require("thetto.util.pipeline").merge({
-        require("thetto.util.pipeline").apply_source(),
-        require("thetto.util.pipeline").append({
-          require("thetto.util.sorter").field_by_name("row", true),
-        }),
-      }),
-    })
+    require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
   end, { buffer = true })
 end
 

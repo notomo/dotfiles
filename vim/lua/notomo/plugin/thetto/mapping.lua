@@ -550,45 +550,10 @@ vim.keymap.set("n", "[finder]D", function()
   })()
 end)
 vim.keymap.set("n", "<Space>qn", function()
-  local current_row = vim.fn.line(".")
-  local path = vim.api.nvim_buf_get_name(0)
-  vim.cmd.normal({ args = { "m'" }, bang = true })
-  require("thetto").start(
-    require("thetto.util.source").by_name("vim/diagnostic", {
-      actions = {
-        default_action = "open",
-      },
-      can_resume = false,
-    }),
-    {
-      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-        return item.path == path and item.row > current_row
-      end),
-      consumer_factory = require("thetto.util.consumer").immediate(),
-    }
-  )
+  require("thetto.util.source").go_to_next("vim/diagnostic")
 end)
 vim.keymap.set("n", "<Space>qp", function()
-  local current_row = vim.fn.line(".")
-  local path = vim.api.nvim_buf_get_name(0)
-  vim.cmd.normal({ args = { "m'" }, bang = true })
-  require("thetto").start(
-    require("thetto.util.source").by_name("vim/diagnostic", {
-      actions = {
-        default_action = "open",
-      },
-      can_resume = false,
-      modify_pipeline = require("thetto.util.pipeline").append({
-        require("thetto.util.sorter").field_by_name("row", true),
-      }),
-    }),
-    {
-      item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-        return item.path == path and item.row < current_row
-      end),
-      consumer_factory = require("thetto.util.consumer").immediate(),
-    }
-  )
+  require("thetto.util.source").go_to_previous("vim/diagnostic")
 end)
 
 vim.keymap.set("n", "[git]dl", thetto_starter("git/deleted_file"))
@@ -699,19 +664,7 @@ vim.keymap.set("n", "[git]j", function()
     vim.api.nvim_feedkeys(vim.keycode("]c"), "m", true)
     return
   end
-
-  local current_row = vim.fn.line(".")
-  local path = vim.api.nvim_buf_get_name(0)
-  vim.cmd.normal({ args = { "m'" }, bang = true })
-  thetto_starter("git/diff", {
-    can_resume = false,
-    opts = { expr = path },
-  }, {
-    item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-      return item.path == path and item.row > current_row
-    end),
-    consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-  })()
+  require("thetto.util.source").go_to_next("git/diff")
 end)
 
 vim.keymap.set("n", "[git]k", function()
@@ -719,20 +672,5 @@ vim.keymap.set("n", "[git]k", function()
     vim.api.nvim_feedkeys(vim.keycode("[c"), "m", true)
     return
   end
-
-  local current_row = vim.fn.line(".")
-  local path = vim.api.nvim_buf_get_name(0)
-  vim.cmd.normal({ args = { "m'" }, bang = true })
-  thetto_starter("git/diff", {
-    can_resume = false,
-    opts = { expr = path },
-    modify_pipeline = require("thetto.util.pipeline").append({
-      require("thetto.util.sorter").field_by_name("row", true),
-    }),
-  }, {
-    item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-      return item.path == path and item.row < current_row
-    end),
-    consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-  })()
+  require("thetto.util.source").go_to_previous("git/diff")
 end)

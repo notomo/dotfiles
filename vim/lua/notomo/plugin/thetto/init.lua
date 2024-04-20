@@ -333,7 +333,7 @@ register_source("vim/lsp/document_symbol", function()
           if not item.value:find("%(") and item.value:find("%.") then
             return false
           end
-          if item.value:find(" callback") then
+          if item.value:find(" callback%.?.*$") then
             return false
           end
           return true
