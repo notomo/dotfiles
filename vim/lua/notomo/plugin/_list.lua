@@ -393,7 +393,7 @@ optpack.add("AndrewRadev/linediff.vim", {
 })
 
 optpack.add("tmhedberg/matchit", {
-  load_on = { filetypes = { "html", "vim", "sql" } },
+  load_on = { filetypes = { "html", "vim", "sql", "astro" } },
   hooks = {
     post_load = function(plugin)
       -- prior than builtin
