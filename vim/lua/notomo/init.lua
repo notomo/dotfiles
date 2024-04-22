@@ -12,6 +12,9 @@ local safe_require = function(name)
   end
 end
 
+-- temporary workaround
+vim.tbl_islist = vim.tbl_islist or vim.islist
+
 vim.env.DOTFILES = vim.env.DOTFILES or vim.fn.expand("~/dotfiles")
 
 safe_cmd([[runtime! lua/notomo/local/*.lua]])

@@ -26,7 +26,7 @@ local go_to = function(method, params)
         return handler(err, result, ctx)
       end
 
-      if not vim.tbl_islist(result) then
+      if not vim.islist(result) then
         result = { result }
       end
 
