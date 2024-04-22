@@ -5,9 +5,12 @@ local ignored_diagnostic = {
   deno = { ["import-map-remap"] = true },
 }
 function M.publish_diagnostics(err, result, ctx, config)
-  result.diagnostics = vim.tbl_filter(function(e)
-    return not vim.tbl_get(ignored_diagnostic, e.source, e.code)
-  end, result.diagnostics)
+  result.diagnostics = vim
+    .iter(result.diagnostics)
+    :filter(function(e)
+      return not vim.tbl_get(ignored_diagnostic, e.source, e.code)
+    end)
+    :totable()
 
   vim.lsp.diagnostic.on_publish_diagnostics(err, result, ctx, config)
   vim.diagnostic.setloclist({

@@ -24,9 +24,12 @@ local hooks = {
   end,
 }
 
-local plugins = vim.tbl_filter(function(plugin)
-  return plugin.full_name:match("^notomo/")
-end, require("optpack").list())
+local plugins = vim
+  .iter(require("optpack").list())
+  :filter(function(plugin)
+    return plugin.full_name:match("^notomo/")
+  end)
+  :totable()
 
 local settings = vim.tbl_map(function(plugin)
   local name = plugin.name:gsub([[%.nvim$]], "")

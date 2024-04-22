@@ -12,9 +12,12 @@ local collect_one = function(full_name)
   local pattern = ("%s/lua/**/*.lua"):format(plugin.directory)
 
   local paths = vim.fn.glob(pattern, false, true)
-  paths = vim.tbl_filter(function(path)
-    return not path:find("/vendor/") and not path:find("/test/helper%.lua")
-  end, paths)
+  paths = vim
+    .iter(paths)
+    :filter(function(path)
+      return not path:find("/vendor/") and not path:find("/test/helper%.lua")
+    end)
+    :totable()
 
   return vim.tbl_map(function(path)
     local index = path:find(plugin_name)

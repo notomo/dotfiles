@@ -105,9 +105,12 @@ end
 set_statusline()
 
 local window_count = function(window_ids)
-  local floating_window_ids = vim.tbl_filter(function(window_id)
-    return api.nvim_win_get_config(window_id).relative ~= ""
-  end, window_ids)
+  local floating_window_ids = vim
+    .iter(window_ids)
+    :filter(function(window_id)
+      return api.nvim_win_get_config(window_id).relative ~= ""
+    end)
+    :totable()
   local count = #window_ids - #floating_window_ids
   if count == 1 then
     return ""
@@ -120,10 +123,13 @@ local modified = function(current_bufnr, window_ids)
     return "+"
   end
 
-  local modified_window_ids = vim.tbl_filter(function(window_id)
-    local bufnr = api.nvim_win_get_buf(window_id)
-    return vim.bo[bufnr].modified
-  end, window_ids)
+  local modified_window_ids = vim
+    .iter(window_ids)
+    :filter(function(window_id)
+      local bufnr = api.nvim_win_get_buf(window_id)
+      return vim.bo[bufnr].modified
+    end)
+    :totable()
 
   if #modified_window_ids > 0 then
     return "(+)"

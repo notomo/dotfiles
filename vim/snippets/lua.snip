@@ -304,9 +304,9 @@ snippet bench
 
 snippet filter
 options word
-	vim.tbl_filter(function (${1:e})
+	vim.iter(${0:table}):filter(function (${1:e})
 		return ${2:expr}
-	end, ${0:table})
+	end):totable()
 
 snippet map
 options word

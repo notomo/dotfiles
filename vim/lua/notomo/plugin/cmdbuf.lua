@@ -48,9 +48,12 @@ vim.api.nvim_create_autocmd({ "User" }, {
     )
 
     local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)
-    lines = vim.tbl_filter(function(line)
-      return not line:match("^Git push")
-    end, lines)
+    lines = vim
+      .iter(lines)
+      :filter(function(line)
+        return not line:match("^Git push")
+      end)
+      :totable()
     vim.api.nvim_buf_set_lines(args.buf, 0, -1, false, lines)
   end,
 })

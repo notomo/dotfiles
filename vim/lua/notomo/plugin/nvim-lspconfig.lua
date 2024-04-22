@@ -15,9 +15,12 @@ local lspconfig = require("lspconfig")
 
 local setup_ls = function(ls, config, enable_features)
   enable_features = enable_features or { "linux" }
-  local ok = #vim.tbl_filter(function(feature)
-    return vim.fn.has(feature) == 1
-  end, enable_features) > 0
+  local ok = #vim
+    .iter(enable_features)
+    :filter(function(feature)
+      return vim.fn.has(feature) == 1
+    end)
+    :totable() > 0
   if not ok then
     return
   end
