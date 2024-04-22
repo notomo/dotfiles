@@ -180,36 +180,39 @@ local set_tabline = function()
       Builder(function()
         local tab_ids = api.nvim_list_tabpages()
         local current = api.nvim_get_current_tabpage()
-        local components = vim.tbl_map(function(tab_id)
-          local is_current = tab_id == current
-          local hl_group = is_current and "TabLineSel" or "TabLine"
-          return Tab(
-            tab_id,
-            Highlight(hl_group, {
-              " ",
-              TruncateLeft(
-                SwitchByFiletype({
-                  ["kivi-file"] = function(ctx)
-                    local tab_number = api.nvim_tabpage_get_number(tab_id)
-                    local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
-                    return escape(name)
-                  end,
-                  ["thetto"] = function(ctx)
-                    return escape(alter_tab_label(tab_id, ctx.window_id))
-                  end,
-                  ["thetto-inputter"] = function(ctx)
-                    return escape(alter_tab_label(tab_id, ctx.window_id))
-                  end,
-                  _ = function(ctx)
-                    return escape(current_tab_label(tab_id, ctx.window_id))
-                  end,
-                }),
-                { max_width = 30 }
-              ),
-              " ",
-            })
-          )
-        end, tab_ids)
+        local components = vim
+          .iter(tab_ids)
+          :map(function(tab_id)
+            local is_current = tab_id == current
+            local hl_group = is_current and "TabLineSel" or "TabLine"
+            return Tab(
+              tab_id,
+              Highlight(hl_group, {
+                " ",
+                TruncateLeft(
+                  SwitchByFiletype({
+                    ["kivi-file"] = function(ctx)
+                      local tab_number = api.nvim_tabpage_get_number(tab_id)
+                      local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
+                      return escape(name)
+                    end,
+                    ["thetto"] = function(ctx)
+                      return escape(alter_tab_label(tab_id, ctx.window_id))
+                    end,
+                    ["thetto-inputter"] = function(ctx)
+                      return escape(alter_tab_label(tab_id, ctx.window_id))
+                    end,
+                    _ = function(ctx)
+                      return escape(current_tab_label(tab_id, ctx.window_id))
+                    end,
+                  }),
+                  { max_width = 30 }
+                ),
+                " ",
+              })
+            )
+          end)
+          :totable()
 
         table.insert(components, " ")
 

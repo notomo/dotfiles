@@ -2,13 +2,16 @@ local M = {}
 
 function M.collect()
   local messages = require("hlmsg").get()
-  return vim.tbl_map(function(message)
-    return {
-      value = message.line,
-      chunks = message.chunks,
-      message_kind = message.kind,
-    }
-  end, messages)
+  return vim
+    .iter(messages)
+    :map(function(message)
+      return {
+        value = message.line,
+        chunks = message.chunks,
+        message_kind = message.kind,
+      }
+    end)
+    :totable()
 end
 
 M.kind_name = "word"

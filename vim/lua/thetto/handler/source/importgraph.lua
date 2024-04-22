@@ -10,16 +10,19 @@ function M.collect(source_ctx)
     return {}
   end
 
-  local filters = vim.tbl_map(function(p)
-    if vim.startswith(p, "!") then
-      return function(path)
-        return not path:match(p:sub(2))
+  local filters = vim
+    .iter(vim.split(pattern, "%s+"))
+    :map(function(p)
+      if vim.startswith(p, "!") then
+        return function(path)
+          return not path:match(p:sub(2))
+        end
       end
-    end
-    return function(path)
-      return path:match(p)
-    end
-  end, vim.split(pattern, "%s+"))
+      return function(path)
+        return path:match(p)
+      end
+    end)
+    :totable()
   local filter = function(path)
     for _, filter in ipairs(filters) do
       if not filter(path) then
@@ -47,11 +50,14 @@ function M.collect(source_ctx)
   })
 
   local lines = vim.split(graph, "\n", { plain = true })
-  return vim.tbl_map(function(line)
-    return {
-      value = line,
-    }
-  end, lines)
+  return vim
+    .iter(lines)
+    :map(function(line)
+      return {
+        value = line,
+      }
+    end)
+    :totable()
 end
 
 M.kind_name = "word"

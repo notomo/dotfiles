@@ -19,14 +19,17 @@ local collect_one = function(full_name)
     end)
     :totable()
 
-  return vim.tbl_map(function(path)
-    local index = path:find(plugin_name)
-    local name = path:sub(index - 1)
-    return {
-      value = account_name .. name,
-      path = path,
-    }
-  end, paths)
+  return vim
+    .iter(paths)
+    :map(function(path)
+      local index = path:find(plugin_name)
+      local name = path:sub(index - 1)
+      return {
+        value = account_name .. name,
+        path = path,
+      }
+    end)
+    :totable()
 end
 
 function M.collect()
@@ -46,9 +49,12 @@ M.kind_name = "file"
 M.actions = {
   action_add = function(items)
     require("vendorlib").add(
-      vim.tbl_map(function(item)
-        return item.value
-      end, items),
+      vim
+        .iter(items)
+        :map(function(item)
+          return item.value
+        end)
+        :totable(),
       { path = "spec/lua/%s/vendorlib.lua" }
     )
   end,

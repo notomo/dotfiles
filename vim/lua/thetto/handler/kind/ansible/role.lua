@@ -10,9 +10,12 @@ local execute = function(items, args)
     error("not found playbook")
   end
 
-  local tags = vim.tbl_map(function(item)
-    return "--tags=" .. item.value
-  end, items)
+  local tags = vim
+    .iter(items)
+    :map(function(item)
+      return "--tags=" .. item.value
+    end)
+    :totable()
 
   vim.cmd.tabedit()
 

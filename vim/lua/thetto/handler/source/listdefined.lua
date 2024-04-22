@@ -10,13 +10,16 @@ function M.collect(source_ctx)
   if err then
     return nil, err
   end
-  return vim.tbl_map(function(e)
-    return {
-      path = e.path,
-      row = e.start_row,
-      value = require("notomo.lib.treesitter").remove_indent(e.text),
-    }
-  end, elements)
+  return vim
+    .iter(elements)
+    :map(function(e)
+      return {
+        path = e.path,
+        row = e.start_row,
+        value = require("notomo.lib.treesitter").remove_indent(e.text),
+      }
+    end)
+    :totable()
 end
 
 M.kind_name = "file"

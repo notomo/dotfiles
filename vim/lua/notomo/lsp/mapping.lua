@@ -96,16 +96,19 @@ function M.yank_function_arg_labels()
     local parameters = signature.parameters or {}
 
     local name_pattern = "[a-zA-Z_]+"
-    local labels = vim.tbl_map(function(param)
-      if type(param.label) == "string" then
-        return param.label:match(name_pattern)
-      end
-      local s = param.label[1] + 1
-      local e = param.label[2]
-      local label = signature.label:sub(s, e)
-      local name = label:match(name_pattern)
-      return name
-    end, parameters)
+    local labels = vim
+      .iter(parameters)
+      :map(function(param)
+        if type(param.label) == "string" then
+          return param.label:match(name_pattern)
+        end
+        local s = param.label[1] + 1
+        local e = param.label[2]
+        local label = signature.label:sub(s, e)
+        local name = label:match(name_pattern)
+        return name
+      end)
+      :totable()
 
     local str = table.concat(labels, ", ")
     require("notomo.lib.edit").yank(str)

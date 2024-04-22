@@ -31,20 +31,23 @@ local plugins = vim
   end)
   :totable()
 
-local settings = vim.tbl_map(function(plugin)
-  local name = plugin.name:gsub([[%.nvim$]], "")
-  return {
-    name = name,
-    hook = function(args)
-      if args then
-        require("lreload").refresh("notomo.plugin." .. name)
-      end
-      plugin.opts.hooks.post_add(plugin)
-      plugin.opts.hooks.pre_load(plugin)
-      plugin.opts.hooks.post_load(plugin)
-    end,
-  }
-end, plugins)
+local settings = vim
+  .iter(plugins)
+  :map(function(plugin)
+    local name = plugin.name:gsub([[%.nvim$]], "")
+    return {
+      name = name,
+      hook = function(args)
+        if args then
+          require("lreload").refresh("notomo.plugin." .. name)
+        end
+        plugin.opts.hooks.post_add(plugin)
+        plugin.opts.hooks.pre_load(plugin)
+        plugin.opts.hooks.post_load(plugin)
+      end,
+    }
+  end)
+  :totable()
 table.insert(settings, { name = "notomo" })
 table.insert(settings, {
   name = "notomo.color",
@@ -55,6 +58,10 @@ for _, setting in ipairs(settings) do
   require("lreload").enable(setting.name, { post_hook = hooks[setting.name] or setting.hook })
 end
 
-return vim.tbl_map(function(setting)
-  return setting.name
-end, settings)
+local names = vim
+  .iter(settings)
+  :map(function(setting)
+    return setting.name
+  end)
+  :totable()
+return names

@@ -58,9 +58,12 @@ M.actions = {
   end,
 
   action_update = function(items)
-    local names = vim.tbl_map(function(item)
-      return ("(%s)"):format(item.name)
-    end, items)
+    local names = vim
+      .iter(items)
+      :map(function(item)
+        return ("(%s)"):format(item.name)
+      end)
+      :totable()
     local pattern = "\\v" .. table.concat(names, "|")
     require("optpack").update({ pattern = pattern })
   end,

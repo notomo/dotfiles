@@ -310,9 +310,9 @@ options word
 
 snippet map
 options word
-	vim.tbl_map(function (${2:e})
+	vim.iter(${1:table}):map(function (${2:e})
 		return ${0:expr}
-	end, ${1:table})
+	end):totable()
 
 snippet sort_desc
 	table.sort(${1:table}, function(a, b)
