@@ -5,7 +5,8 @@ function M.remove_indent(str)
   lines = vim
     .iter(lines)
     :map(function(line)
-      return line:gsub("^%s+", "")
+      local x = line:gsub("^%s+", "")
+      return x
     end)
     :totable()
   return table.concat(lines, " ")
