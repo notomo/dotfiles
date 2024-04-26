@@ -566,6 +566,7 @@ end
 runtime.after.ftplugin["astro.lua"] = function()
   vim.b.match_words =
     [[<!--:-->,<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/!][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>]]
+  vim.opt_local.iskeyword:remove("-")
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
 end

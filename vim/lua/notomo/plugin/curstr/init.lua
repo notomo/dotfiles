@@ -71,7 +71,7 @@ require("curstr").setup({
       opts = {
         patterns = { { "\\v^(\\s*)(let\\s+|const\\s+)?([^=[:space:],:]*).*$", "\\1console.log(\\3)" } },
       },
-      filetypes = { "typescript", "typescriptreact" },
+      filetypes = { "typescript", "typescriptreact", "astro" },
     },
     print_rust = {
       names = { "togglable/pattern" },
