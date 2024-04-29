@@ -59,6 +59,8 @@ function M.root()
   return nil
 end
 
+local watchers = {}
+
 function M.branch_component()
   if vim.b.gitsigns_head then
     return vim.b.gitsigns_head
@@ -68,15 +70,45 @@ function M.branch_component()
     return vim.b.notomo_git_branch
   end
 
-  local branch = M._current_branch()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clear = function()
+    if not vim.api.nvim_buf_is_valid(bufnr) then
+      return
+    end
+    vim.b[bufnr].notomo_git_branch = nil
+  end
+
+  local head_file_path = M._head_file_path()
+  if not head_file_path then
+    return ""
+  end
+
+  local branch = M._current_branch(head_file_path)
   local events = vim.tbl_contains({ "kivi-file" }, vim.bo.filetype) and { "BufReadCmd" } or { "BufRead" }
   vim.api.nvim_create_autocmd(events, {
-    buffer = 0,
+    buffer = bufnr,
     callback = function()
-      vim.b.notomo_git_branch = nil
+      watchers[bufnr] = nil
+      clear()
     end,
     once = true,
   })
+
+  local old_watcher = watchers[bufnr]
+  if old_watcher then
+    old_watcher:stop()
+  end
+
+  local watcher = vim.uv.new_fs_event()
+  watchers[bufnr] = watcher
+  watcher:start(head_file_path, {}, function()
+    watchers[bufnr] = nil
+    watcher:stop()
+    vim.schedule(function()
+      clear()
+    end)
+  end)
+
   vim.b.notomo_git_branch = branch
   return branch
 end
@@ -87,8 +119,8 @@ function M.current_branch()
   return M.branch_component()
 end
 
-function M._current_branch()
-  local head = M._head_file_path()
+function M._current_branch(head_file_path)
+  local head = head_file_path or M._head_file_path()
   if not head then
     return ""
   end
