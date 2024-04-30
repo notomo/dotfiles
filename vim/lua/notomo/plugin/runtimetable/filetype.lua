@@ -134,6 +134,7 @@ runtime.after.ftplugin["help.lua"] = function()
     vim.opt_local.textwidth = 78
     vim.opt_local.colorcolumn = "+1"
     vim.opt_local.conceallevel = 0
+    vim.opt_local.iskeyword = [=[@,33-126,_,192-255,^|]=]
   end
 end
 
