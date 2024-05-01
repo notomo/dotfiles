@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "<2-LeftMouse>", action(), { buffer = true, silent = true })
     vim.keymap.set("n", "<RightMouse>", [[<Nop>]], { buffer = true })
     vim.keymap.set("n", "<RightDrag>", [[<Nop>]], { buffer = true })
-    vim.keymap.set("n", "<C-w>", quit(), { buffer = true })
+    vim.keymap.set("n", "<C-w>", quit(), { buffer = true, nowait = true })
 
     vim.keymap.set("n", "dd", call_consumer_key("", "move_to_input", "<Cmd>silent delete _<CR>"), { buffer = true })
     vim.keymap.set(

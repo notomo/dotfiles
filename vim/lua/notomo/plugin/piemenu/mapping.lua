@@ -20,6 +20,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "<RightMouse>", [[<Cmd>lua require("piemenu").cancel()<CR>]], { buffer = true })
     vim.keymap.set("x", "<RightMouse>", [[<Cmd>lua require("piemenu").cancel()<CR>]], { buffer = true })
     vim.keymap.set("n", "q", [[<Cmd>lua require("piemenu").cancel()<CR>]], { nowait = true, buffer = true })
-    vim.keymap.set("n", "<C-w>", [[<Cmd>lua require("piemenu").cancel()<CR>]], { buffer = true })
+    vim.keymap.set("n", "<C-w>", [[<Cmd>lua require("piemenu").cancel()<CR>]], { nowait = true, buffer = true })
   end,
 })
