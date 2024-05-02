@@ -534,6 +534,31 @@ local runner_actions = {
       end,
     },
   },
+  action_execute_reusable = function(items, action_ctx)
+    return require("thetto.util.action").call(action_ctx.kind_name, "execute", items, {
+      driver = function(cmd, opts)
+        require("cmdhndlr").run({
+          name = "cmdhndlr/raw",
+          working_dir = function()
+            return opts.cwd
+          end,
+          layout = { type = "tab_drop" },
+          runner_opts = { cmd = cmd },
+          hooks = {
+            success = require("cmdhndlr.util.hook").echo_success(),
+            failure = require("cmdhndlr.util.hook").echo_failure(),
+            pre_execute = require("cmdhndlr.util.hook").echo_cmd(),
+          },
+          reuse_predicate = function(current_state, state)
+            local same = current_state.full_name == state.full_name
+              and current_state.working_dir_path == state.working_dir_path
+              and vim.deep_equal(current_state.cmd, state.executed_cmd)
+            return same
+          end,
+        })
+      end,
+    })
+  end,
 }
 register_source("cmd/make/target", { actions = runner_actions })
 register_source("cmd/npm/script", { actions = runner_actions })

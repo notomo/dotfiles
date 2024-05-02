@@ -273,6 +273,7 @@ local source_specific = {
   end,
   ["cmd/make/target"] = function(list_bufnr)
     vim.keymap.set("n", "P", action("dry_run"), { buffer = list_bufnr })
+    vim.keymap.set("n", "O", action("execute_reusable"), { buffer = list_bufnr })
   end,
 }
 vim.api.nvim_create_autocmd({ "User" }, {
