@@ -19,6 +19,7 @@
       - procs
       - zip
       - rsync
+      - lsyncd
 
 - name: create .procs.toml link
   file:
