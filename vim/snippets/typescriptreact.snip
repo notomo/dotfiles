@@ -12,6 +12,20 @@ snippet tag
 options word
 	<${1:name}>${0:TARGET}</$1>
 
+snippet self_closing_tag
+alias self
+options word
+	<${0:TARGET} />
+
+snippet param
+options word
+	${1:param}={${0:value}}
+
+snippet init
+	export default function Page() {
+		return <div>${0:TARGET}</div>
+	}
+
 snippet component
 	const ${1:Name} = () => {
 		return <div>${0:TARGET}</div>;
