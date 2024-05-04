@@ -283,6 +283,13 @@ runtime.after.ftplugin["markdown.lua"] = function()
   require("notomo.lib.treesitter").setup()
 end
 
+runtime.after.ftplugin["mdx.lua"] = function()
+  vim.opt_local.tabstop = 4
+  vim.opt_local.softtabstop = 4
+  vim.treesitter.language.register("markdown", "mdx")
+  require("notomo.lib.treesitter").setup()
+end
+
 runtime.after.ftplugin["mydiary.lua"] = function()
   vim.opt_local.expandtab = true
 end
