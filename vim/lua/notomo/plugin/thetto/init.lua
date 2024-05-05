@@ -536,6 +536,7 @@ local runner_actions = {
   },
   action_execute_reusable = function(items, action_ctx)
     return require("thetto.util.action").call(action_ctx.kind_name, "execute", items, {
+      open = function() end,
       driver = function(cmd, opts)
         require("cmdhndlr").run({
           name = "cmdhndlr/raw",
