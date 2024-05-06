@@ -902,3 +902,21 @@ optpack.add("SmiteshP/nvim-navic", {
   depends = { nvim_lspconfig.name },
   load_on = { modules = { "nvim-navic" } },
 })
+
+optpack.add("shellRaining/hlchunk.nvim", {
+  depends = { nvim_treesitter.name },
+  load_on = {
+    modules = { "hlchunk" },
+    events = { "FileType" },
+  },
+  hooks = {
+    post_load = function()
+      require("hlchunk").setup({
+        indent = { enable = false },
+        chunk = { enable = true },
+        line_num = { enable = false },
+        blank = { enable = false },
+      })
+    end,
+  },
+})
