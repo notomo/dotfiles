@@ -187,8 +187,9 @@ function M.add_component_parameter()
     end
 
     do
-      local _, _, end_row, end_col = pattern_node:range()
-      vim.api.nvim_buf_set_text(bufnr, end_row, end_col - 1, end_row, end_col - 1, { input, "" })
+      local start_row, _, end_row, end_col = pattern_node:range()
+      local prefix = start_row == end_row and ", " or ""
+      vim.api.nvim_buf_set_text(bufnr, end_row, end_col - 1, end_row, end_col - 1, { prefix .. input, "" })
     end
 
     local type_node = param_node:field("type")[1]
@@ -198,8 +199,16 @@ function M.add_component_parameter()
     end
 
     do
-      local _, _, end_row, end_col = type_node:range()
-      vim.api.nvim_buf_set_text(bufnr, end_row, end_col - 1, end_row, end_col - 1, { input .. ": string", "" })
+      local start_row, _, end_row, end_col = type_node:range()
+      local prefix = start_row == end_row and ", " or ""
+      vim.api.nvim_buf_set_text(
+        bufnr,
+        end_row,
+        end_col - 1,
+        end_row,
+        end_col - 1,
+        { prefix .. input .. ": string", "" }
+      )
     end
 
     vim.schedule(function()
