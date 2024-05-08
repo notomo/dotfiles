@@ -826,7 +826,7 @@ optpack.add("numToStr/Comment.nvim", {
 
 optpack.add("Wansmer/treesj", {
   depends = { nvim_treesitter.name },
-  load_on = { filetypes = { "go", "lua", "typescript", "typescriptreact" } },
+  load_on = { filetypes = { "go", "lua", "typescript", "typescriptreact", "astro" } },
   hooks = {
     post_load = function()
       require("treesj").setup({
