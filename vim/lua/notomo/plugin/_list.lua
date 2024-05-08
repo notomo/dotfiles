@@ -907,13 +907,21 @@ optpack.add("shellRaining/hlchunk.nvim", {
   depends = { nvim_treesitter.name },
   load_on = {
     modules = { "hlchunk" },
-    events = { "FileType" },
+    events = { { "BufReadPre", "*/*" } },
   },
   hooks = {
     post_load = function()
       require("hlchunk").setup({
         indent = { enable = false },
-        chunk = { enable = true },
+        chunk = {
+          enable = true,
+          support_filetypes = {
+            "*.lua",
+            "*.ts",
+            "*.tsx",
+            "*.astro",
+          },
+        },
         line_num = { enable = false },
         blank = { enable = false },
       })
