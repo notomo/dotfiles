@@ -4,12 +4,15 @@
     "editor.minimap.enabled": false,
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
-    "workbench.editor.untitled.hint": "hidden",
     "window.zoomLevel": 0,
     "breadcrumbs.enabled": false,
-    "workbench.activityBar.visible": false,
     "workbench.list.automaticKeyboardNavigation": false,
     "vscode-neovim.neovimExecutablePaths.win32": "C:/Users/tmno3/app/nvim-win64/bin/nvim.exe",
+    "vscode-neovim.compositeKeys": {
+        "jj": {
+            "command": "vscode-neovim.escape"
+        }
+    },
     "editor.formatOnSave": true,
     "security.allowedUNCHosts": [
         "wsl.localhost"
@@ -18,5 +21,6 @@
         "asvetliakov.vscode-neovim": 1
     },
     "git.openRepositoryInParentFolders": "always",
-    "workbench.editor.empty.hint": "hidden"
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.activityBar.location": "hidden"
 }
