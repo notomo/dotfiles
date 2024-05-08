@@ -1,3 +1,4 @@
+---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.semantic_tokens.start = function() end
 
 require("neodev").setup({
@@ -103,10 +104,8 @@ setup_ls(lspconfig.lua_ls, {
           "newproxy",
         },
         disable = {
-          "need-check-nil", -- HACK: return tbl, err
           "param-type-mismatch", -- HACK: vim.fn.getline("."):sub()
           "undefined-field", -- HACK: str:sub()
-          "duplicate-set-field", -- HACK: vim.ui.select etc.
         },
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },

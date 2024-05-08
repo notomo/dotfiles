@@ -76,6 +76,7 @@ vim.api.nvim_create_autocmd({ "LspProgress" }, {
   end,
 })
 
+---@diagnostic disable-next-line: duplicate-set-field
 vim.ui.select = function(items, opts, on_choice)
   if opts.kind == "codeaction" and vim.tbl_get(items, 1, 2, "kind") == "refactor.extract" then
     require("misclib.message").info("Executed: " .. items[1][2].title, "Title")
