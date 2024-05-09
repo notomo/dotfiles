@@ -665,7 +665,9 @@ vim.keymap.set("n", "[git]j", function()
     vim.api.nvim_feedkeys(vim.keycode("]c"), "m", true)
     return
   end
-  require("thetto.util.source").go_to_next("git/diff")
+  require("thetto.util.source").go_to_next("git/diff", {
+    fields = { opts = { expr = "%:p" } },
+  })
 end)
 
 vim.keymap.set("n", "[git]k", function()
@@ -673,5 +675,7 @@ vim.keymap.set("n", "[git]k", function()
     vim.api.nvim_feedkeys(vim.keycode("[c"), "m", true)
     return
   end
-  require("thetto.util.source").go_to_previous("git/diff")
+  require("thetto.util.source").go_to_previous("git/diff", {
+    fields = { opts = { expr = "%:p" } },
+  })
 end)
