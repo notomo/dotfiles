@@ -152,4 +152,43 @@ function M.update_runtimetable()
   vim.cmd([[message | quitall!]])
 end
 
+function M.diagnostic_workspace()
+  vim.iter(vim.fn.glob("$DOTFILES/vim/**/*.lua", false, true)):each(function(path)
+    local bufnr = vim.fn.bufadd(path)
+    vim.fn.bufload(bufnr)
+  end)
+
+  local has_diagnostic = false
+  vim.api.nvim_create_autocmd({ "LspProgress" }, {
+    group = vim.api.nvim_create_augroup("notomo_diagnostic_progress", {}),
+    pattern = { "*" },
+    callback = function(args)
+      if args.data.params.value.kind ~= "end" then
+        return
+      end
+      if args.data.params.value.title ~= "Diagnosing workspace" then
+        return
+      end
+      if has_diagnostic then
+        vim.cmd([[message | cquit!]])
+      else
+        vim.cmd([[message | quitall!]])
+      end
+    end,
+  })
+
+  vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_publishDiagnostics] = function(_, result)
+    has_diagnostic = true
+    local path = vim.uri_to_fname(result.uri)
+    vim
+      .iter(result.diagnostics)
+      :map(function(x)
+        return ("%s:%s %s"):format(path, x.range.start.line, x.message)
+      end)
+      :each(function(x)
+        io.stdout:write(x .. "\n")
+      end)
+  end
+end
+
 return M

@@ -77,3 +77,6 @@ _PUSH:
 	then \
 	  git -C ${TARGET_PATH} push; \
 	fi
+
+diagnostic:
+	${NVIM} --headless +'lua require("notomo.lib.startup").diagnostic_workspace()'
