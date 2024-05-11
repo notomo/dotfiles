@@ -17,15 +17,16 @@ function M._get_near_function_node(bufnr)
 
   local root, err = require("misclib.treesitter").get_first_tree_root(bufnr, language)
   if err then
-    return nil, err
+    error(err)
   end
 
   local row = unpack(vim.api.nvim_win_get_cursor(0))
 
   require("nvim-treesitter")
   local query = vim.treesitter.query.get(language, "locals")
+  assert(query, ("%s locals query is not found"):format(language))
 
-  local last_node
+  local last_node = nil
   for id, node, _ in query:iter_captures(root, bufnr, 0, -1) do
     local name = query.captures[id]
     if name == "definition.function" then
@@ -37,36 +38,34 @@ function M._get_near_function_node(bufnr)
     end
   end
   if not last_node then
-    return nil, "not found near function node"
+    error("not found near function node")
   end
   return last_node
 end
 
 function M.get_near_function_name()
   local bufnr = 0
-  local node, err = M._get_near_function_node(bufnr)
-  if err then
-    return nil, err
-  end
+  local node = M._get_near_function_node(bufnr)
   local text = vim.treesitter.get_node_text(node, bufnr):gsub('"', ""):gsub("'", "")
   return text
 end
 
 function M.get_current_function_range()
   local bufnr = 0
-  local node, err = M._get_near_function_node(bufnr)
-  if err then
-    return nil, err
-  end
-  local range_node = node
+  local node = M._get_near_function_node(bufnr)
+  local range_node --- @type TSNode?
+  range_node = node
   for _ = 0, 2, 1 do
     range_node = range_node:parent()
+    if not range_node then
+      return "not found"
+    end
     local s, _, e, _ = range_node:range()
     if s ~= e then
       return { s, e }
     end
   end
-  return nil, "not found"
+  return "not found"
 end
 
 function M.start()
@@ -96,6 +95,9 @@ function M.get_expanded_row_range(bufnr, row, column)
   end
 
   local expanded = node:parent():parent()
+  if not expanded then
+    return row, row
+  end
   local start_row = expanded:start()
   local end_row = expanded:end_()
   return start_row, end_row
@@ -122,6 +124,10 @@ function M.unwrap_selected_node()
     pos = start_pos,
     bufnr = bufnr,
   })
+  if not node then
+    return
+  end
+
   local child = node:child(1)
   local child_node_text = vim.treesitter.get_node_text(child, bufnr)
   vim.api.nvim_buf_set_text(

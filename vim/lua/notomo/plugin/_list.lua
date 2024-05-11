@@ -811,6 +811,7 @@ optpack.add("numToStr/Comment.nvim", {
   load_on = { events = { "FileType" } },
   hooks = {
     post_load = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("Comment").setup({
         mappings = {
           basic = false,
@@ -911,8 +912,11 @@ optpack.add("shellRaining/hlchunk.nvim", {
   },
   hooks = {
     post_load = function()
+      ---@diagnostic disable-next-line: missing-fields
       require("hlchunk").setup({
+        ---@diagnostic disable-next-line: missing-fields
         indent = { enable = false },
+        ---@diagnostic disable-next-line: missing-fields
         chunk = {
           enable = true,
           support_filetypes = {
@@ -922,7 +926,9 @@ optpack.add("shellRaining/hlchunk.nvim", {
             "*.astro",
           },
         },
+        ---@diagnostic disable-next-line: missing-fields
         line_num = { enable = false },
+        ---@diagnostic disable-next-line: missing-fields
         blank = { enable = false },
       })
     end,

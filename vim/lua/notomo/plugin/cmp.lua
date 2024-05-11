@@ -85,6 +85,7 @@ function M.setup()
     window = {
       documentation = documentation,
     },
+    ---@diagnostic disable-next-line: missing-fields
     sorting = {
       priority_weight = 200.0,
     },

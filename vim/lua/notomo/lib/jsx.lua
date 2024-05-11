@@ -2,6 +2,9 @@ local M = {}
 
 local find_parent = function()
   local node = vim.treesitter.get_node({})
+  if not node then
+    return nil
+  end
 
   local parent = require("notomo.lib.treesitter").find_ancestor(node, "jsx_element", true)
   if parent then
@@ -213,7 +216,15 @@ function M.add_component_parameter()
 
     vim.schedule(function()
       local new_node = vim.treesitter.get_node({})
+      if not new_node then
+        return
+      end
+
       local new_param_node = require("notomo.lib.treesitter").find_ancestor(new_node, "required_parameter", true)
+      if not new_param_node then
+        return
+      end
+
       local new_type_node = new_param_node:field("type")[1]
       local object_type_node = new_type_node:named_child(0)
       local target_node =

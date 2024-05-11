@@ -47,6 +47,7 @@ function M.quit()
     vim.fn.TermDebugSendCommand("quit")
     vim.fn.TermDebugSendCommand("y")
   end)
+  ---@diagnostic disable-next-line: need-check-nil
   if not ok and not result:find([[Can't send data to closed stream]]) then
     error(result)
   end

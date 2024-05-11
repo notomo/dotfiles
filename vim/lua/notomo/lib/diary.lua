@@ -23,6 +23,9 @@ function M.open()
 
   local before = others[1]
   local f = io.open(before, "r")
+  if not f then
+    return
+  end
   local content = f:read("*a")
   f:close()
   vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(content, "\n"))

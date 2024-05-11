@@ -100,6 +100,10 @@ function M.branch_component()
   end
 
   local watcher = vim.uv.new_fs_event()
+  if not watcher then
+    return branch
+  end
+
   watchers[bufnr] = watcher
   watcher:start(head_file_path, {}, function()
     watchers[bufnr] = nil

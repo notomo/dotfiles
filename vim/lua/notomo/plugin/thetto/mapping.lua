@@ -294,8 +294,9 @@ vim.keymap.set("n", "[finder]h", thetto_starter("vim/help"))
 
 vim.keymap.set("n", "[finder]l", thetto_starter("vim/line"))
 vim.keymap.set("n", "[finder]L", function()
-  local row_range, err = require("notomo.lib.treesitter").get_current_function_range()
-  if err then
+  local row_range = require("notomo.lib.treesitter").get_current_function_range()
+  if type(row_range) == "string" then
+    local err = row_range
     error(err)
   end
   thetto_starter("vim/line", {

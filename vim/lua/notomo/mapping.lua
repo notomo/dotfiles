@@ -94,6 +94,7 @@ vim.keymap.set("n", "[file]w", [[<Cmd>write<CR>]])
 vim.keymap.set("n", "[file]rl", function()
   local view = vim.fn.winsaveview()
   local ok, err = pcall(vim.cmd.edit, { bang = true })
+  ---@diagnostic disable-next-line: need-check-nil
   if not ok and not err:match("No file name") then
     error(err)
   end

@@ -20,6 +20,9 @@ local go_to = function(method, params)
       end
 
       local client = vim.lsp.get_client_by_id(ctx.client_id)
+      if not client then
+        error(("not found client: %s"):format(ctx.client_id))
+      end
       local handlers = client.handlers or {}
       local handler = handlers[method]
       if handler then
