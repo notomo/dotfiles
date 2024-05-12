@@ -240,4 +240,27 @@ function M.add_component_parameter()
   end)
 end
 
+function M.unwrap()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local node = vim.treesitter.get_node({
+    bufnr = bufnr,
+  })
+  if not node then
+    return
+  end
+
+  local jsx_element = require("notomo.lib.treesitter").find_ancestor(node, "jsx_element", true)
+  if not jsx_element then
+    return
+  end
+
+  local child = jsx_element:child(1)
+  local child_node_text = vim.treesitter.get_node_text(child, bufnr)
+
+  local s_row, s_col, e_row, e_col = jsx_element:range()
+  vim.api.nvim_buf_set_text(bufnr, s_row, s_col, e_row, e_col, vim.split(child_node_text, "\n", { plain = true }))
+
+  require("misclib.visual_mode").leave()
+end
+
 return M

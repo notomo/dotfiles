@@ -106,10 +106,6 @@ function M.mapping()
     require("nvim-treesitter.incremental_selection").node_decremental()
   end, { buffer = true })
 
-  vim.keymap.set("x", "D", function()
-    require("notomo.lib.treesitter").unwrap_selected_node()
-  end, { silent = true })
-
   require("notomo.plugin.nvim-treesitter").text_object_mapping()
 end
 

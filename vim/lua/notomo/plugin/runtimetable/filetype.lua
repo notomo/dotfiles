@@ -463,6 +463,10 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.keymap.set("n", "sgk", function()
     require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
   end, { buffer = true })
+
+  vim.keymap.set("n", "sD", function()
+    require("notomo.lib.jsx").unwrap()
+  end, { silent = true })
 end
 
 runtime.after.queries.tsx["textobjects.scm"] = [=[
