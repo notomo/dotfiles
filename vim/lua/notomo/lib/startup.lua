@@ -152,12 +152,7 @@ function M.update_runtimetable()
   vim.cmd([[message | quitall!]])
 end
 
-function M.diagnostic_workspace()
-  vim.iter(vim.fn.glob("$DOTFILES/vim/**/*.lua", false, true)):each(function(path)
-    local bufnr = vim.fn.bufadd(path)
-    vim.fn.bufload(bufnr)
-  end)
-
+function M.diagnostic()
   local has_diagnostic = false
   vim.api.nvim_create_autocmd({ "LspProgress" }, {
     group = vim.api.nvim_create_augroup("notomo_diagnostic_progress", {}),
@@ -177,16 +172,38 @@ function M.diagnostic_workspace()
     end,
   })
 
+  local base_path = vim.uv.cwd()
+  local iter = vim.fs.dir(vim.uv.cwd(), {
+    depth = 100,
+  })
+  vim.iter(iter):each(function(path, typ)
+    vim.print(path, typ)
+    if typ and typ ~= "file" then
+      return
+    end
+    if not vim.endswith(path, ".lua") then
+      return
+    end
+
+    local full_path = vim.fs.joinpath(base_path, path)
+    local bufnr = vim.fn.bufadd(full_path)
+    vim.fn.bufload(bufnr)
+  end)
+
   vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_publishDiagnostics] = function(_, result)
     has_diagnostic = true
     local path = vim.uri_to_fname(result.uri)
     vim
       .iter(result.diagnostics)
       :map(function(x)
-        return ("%s:%s %s"):format(path, x.range.start.line, x.message)
+        return {
+          path = path,
+          message = x.message,
+          row = x.range.start.line,
+        }
       end)
       :each(function(x)
-        io.stdout:write(x .. "\n")
+        io.stdout:write(vim.json.encode(x) .. "\n")
       end)
   end
 end

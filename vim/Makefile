@@ -79,4 +79,4 @@ _PUSH:
 	fi
 
 diagnostic:
-	${NVIM} --headless +'lua require("notomo.lib.startup").diagnostic_workspace()'
+	${NVIM} --headless +'lua require("notomo.lib.startup").diagnostic()'
