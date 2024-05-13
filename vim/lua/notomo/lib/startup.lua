@@ -177,7 +177,6 @@ function M.diagnostic()
     depth = 100,
   })
   vim.iter(iter):each(function(path, typ)
-    vim.print(path, typ)
     if typ and typ ~= "file" then
       return
     end
