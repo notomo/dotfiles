@@ -212,7 +212,7 @@ local source_specific = {
     vim.keymap.set("n", "D", action("diff"), { buffer = list_bufnr })
   end,
   ["git/change"] = function(list_bufnr)
-    vim.keymap.set("n", "dd", action("compare"), { buffer = list_bufnr })
+    vim.keymap.set("n", "dd", action("compare", { quit = false }), { buffer = list_bufnr })
   end,
   ["git/branch"] = function(list_bufnr)
     vim.keymap.set("n", "C", action("create"), { buffer = list_bufnr })
