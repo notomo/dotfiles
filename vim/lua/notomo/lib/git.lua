@@ -135,7 +135,7 @@ function M._current_branch(head_file_path)
   local content = vim.trim(f:read("*a"))
   f:close()
 
-  local splitted = vim.split(content, " ", true)
+  local splitted = vim.split(content, " ", { plain = true })
   if #splitted == 1 then
     return splitted[1]
   end
