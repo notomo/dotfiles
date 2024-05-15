@@ -21,3 +21,4 @@ alias unfreeze="tar -zxvf"
 alias symbolic_link="ln -s" # ln -s {origin} {link_name}
 alias docker_build="docker build -t image_name ." # image_name=notomo/name:1.0
 alias docker_run_bash="docker run --rm -it image_name bash"
+alias semgrep_fix="semgrep scan --quiet --json --metrics=off --config=semgrep.yaml --use-git-ignore --autofix"

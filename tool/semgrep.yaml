@@ -1,0 +1,9 @@
+rules:
+  - id: use-vim-iter-map
+    languages:
+      - lua
+    message: |
+      test
+    pattern: vim.tbl_map($F, $X)
+    fix: vim.iter($X):map($F):totable()
+    severity: WARNING
