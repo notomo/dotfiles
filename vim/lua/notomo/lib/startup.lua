@@ -99,12 +99,18 @@ function M.plugin_shared_dirs()
     local shared_dir = vim.fn.glob(plugin.directory .. "**/spec/.shared")
     return vim.fn.isdirectory(shared_dir) == 1
   end)
+
   local shared_dirs = vim
     .iter(dirs)
     :map(function(dir)
-      return vim.fs.joinpath(dir, "spec/.shared")
+      return {
+        vim.fs.joinpath(dir, "spec/.shared"),
+        vim.fs.joinpath(dir, "spec/.shared/packages/pack/testpack/start/assertlib.nvim"),
+      }
     end)
+    :flatten()
     :totable()
+
   io.stdout:write(table.concat(shared_dirs, "\n"))
 end
 

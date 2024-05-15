@@ -43,6 +43,7 @@ sync_config:
 	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} make sync_config -C {}
 
 pull_shared:
+	# ${NVIM} --headless +'lua require("notomo.lib.startup").plugin_shared_dirs()' +quitall! | xargs -I{} git --no-pager -C {} reset --hard
 	${NVIM} --headless +'lua require("notomo.lib.startup").plugin_shared_dirs()' +quitall! | xargs -I{} git --no-pager -C {} pull origin
 
 reset:
