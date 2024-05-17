@@ -13,7 +13,7 @@ local safe_require = function(name)
 end
 
 -- temporary workaround
-vim.tbl_islist = vim.tbl_islist or vim.islist
+vim.tbl_islist = vim.islist or vim.tbl_islist
 
 vim.env.DOTFILES = vim.env.DOTFILES or vim.fn.expand("~/dotfiles")
 

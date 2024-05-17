@@ -150,6 +150,11 @@ snippet export_default
 snippet export_from
 	export {${0}} from "${1:path}"
 
+snippet export_function
+	export async function ${1:name}(${2:args}) {
+		${0:TARGET}
+	}
+
 snippet thisx
 	this.${1:name} = $1;
 
