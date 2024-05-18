@@ -4,7 +4,10 @@ function M.collect()
   local items = {}
   local path = vim.fn.expand("$DOTFILES/ansible/roles")
   for _, dir in ipairs(vim.fn.readdir(path)) do
-    table.insert(items, { value = dir, path = path .. "/" .. dir })
+    table.insert(items, {
+      value = dir,
+      path = vim.fs.joinpath(path, dir),
+    })
   end
   return items
 end

@@ -72,7 +72,7 @@ end
 
 function M.plugins()
   local dirs = M._get_plugin_dirs(function(plugin)
-    local makefile = plugin.directory .. "/Makefile"
+    local makefile = vim.fs.joinpath(plugin.directory, "Makefile")
     return vim.fn.filereadable(makefile) == 1
   end)
   io.stdout:write(table.concat(dirs, "\n"))
@@ -122,7 +122,7 @@ function M._get_plugin_dirs(filter)
         return
       end
 
-      local lua_dir = plugin.directory .. "/lua"
+      local lua_dir = vim.fs.joinpath(plugin.directory, "lua")
       if vim.fn.isdirectory(lua_dir) == 0 then
         return
       end

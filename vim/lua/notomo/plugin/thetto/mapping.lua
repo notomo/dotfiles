@@ -415,7 +415,7 @@ if vim.fn.has("win32") == 1 then
       return { "git", "ls-files", "--full-name" }
     end,
     to_absolute = function(cwd, path)
-      return cwd .. "/" .. path
+      return vim.fs.joinpath(cwd, path)
     end,
   }
 end

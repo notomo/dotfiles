@@ -153,7 +153,7 @@ require("typescript-tools").setup({
 setup_ls(lspconfig.denols, {
   root_dir = require("lspconfig.util").root_pattern(unpack(deno_pattern)),
   before_init = function(config)
-    local import_map = config.rootPath .. "/import_map.json"
+    local import_map = vim.fs.joinpath(config.rootPath, "import_map.json")
     if vim.fn.filereadable(import_map) ~= 1 then
       return
     end

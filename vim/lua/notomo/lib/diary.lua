@@ -3,7 +3,7 @@ local M = {}
 function M.open()
   local dir_path = vim.fn.expand("~/workspace/diary")
 
-  local diary_path = dir_path .. "/" .. vim.fn.strftime("%Y%m%d.txt")
+  local diary_path = vim.fs.joinpath(dir_path, vim.fn.strftime("%Y%m%d.txt"))
   vim.cmd.drop({ mods = { tab = 0 }, args = { diary_path } })
   vim.bo.filetype = "mydiary"
 

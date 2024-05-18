@@ -47,16 +47,7 @@ function M._remote()
 end
 
 function M.root()
-  local current_dir = vim.fn.getcwd()
-  if vim.fn.isdirectory(current_dir .. "/.git") == 1 then
-    return current_dir
-  end
-  for dir in vim.fs.parents(current_dir) do
-    if vim.fn.isdirectory(dir .. "/.git") == 1 then
-      return dir
-    end
-  end
-  return nil
+  return vim.fs.root(vim.fn.getcwd(), { ".git" })
 end
 
 local watchers = {}
@@ -150,7 +141,7 @@ function M._head_file_path()
   if not git_root then
     return nil
   end
-  return git_root .. "/.git/HEAD"
+  return vim.fs.joinpath(git_root, ".git/HEAD")
 end
 
 function M.yank_commit_message(revision)
