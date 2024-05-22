@@ -205,16 +205,6 @@ local vim_textobj_blockwise = optpack.add("osyo-manga/vim-textobj-blockwise", {
   },
 })
 
-optpack.add("kana/vim-textobj-line", {
-  depends = { vim_textobj_user.name },
-  load_on = {
-    keymaps = function(vim)
-      vim.keymap.set({ "x", "o" }, "ag", [[<Plug>(textobj-line-a)]])
-      vim.keymap.set({ "x", "o" }, "ig", [[<Plug>(textobj-line-i)]])
-    end,
-  },
-})
-
 optpack.add("bkad/CamelCaseMotion", {
   load_on = {
     keymaps = function(vim)
