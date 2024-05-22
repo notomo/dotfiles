@@ -186,16 +186,6 @@ optpack.add("kana/vim-smartword", {
   },
 })
 
-optpack.add("kana/vim-textobj-entire", {
-  depends = { vim_textobj_user.name },
-  load_on = {
-    keymaps = function(vim)
-      vim.keymap.set({ "o", "x" }, "ae", [[<Plug>(textobj-entire-a)]])
-      vim.keymap.set({ "o", "x" }, "ie", [[<Plug>(textobj-entire-i)]])
-    end,
-  },
-})
-
 local vim_textobj_blockwise = optpack.add("osyo-manga/vim-textobj-blockwise", {
   depends = { vim_textobj_user.name },
   hooks = {
