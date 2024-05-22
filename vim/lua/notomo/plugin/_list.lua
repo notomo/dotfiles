@@ -455,7 +455,7 @@ local nvim_lspconfig = optpack.add("neovim/nvim-lspconfig", {
 
 local plenary_nvim = optpack.add("nvim-lua/plenary.nvim")
 
-optpack.add("pmizio/typescript-tools.nvim", {
+optpack.add("notomo/typescript-tools.nvim", {
   depends = {
     plenary_nvim.name,
     nvim_lspconfig.name,
@@ -463,6 +463,7 @@ optpack.add("pmizio/typescript-tools.nvim", {
   load_on = {
     modules = { "typescript-tools" },
   },
+  fetch = { depth = 0 },
 })
 
 mypack.add("notomo/kivi.nvim", {
