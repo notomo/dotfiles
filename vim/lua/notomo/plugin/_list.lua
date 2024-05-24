@@ -827,7 +827,9 @@ mypack.add("notomo/waitevent.nvim", {
   },
   hooks = {
     post_load = function()
-      vim.env.GIT_EDITOR = require("waitevent").editor()
+      local editor = require("waitevent").editor()
+      vim.env.GIT_EDITOR = editor
+      vim.env.REACT_EDITOR = editor
 
       vim.env.EDITOR = require("waitevent").editor({
         done_events = {},
