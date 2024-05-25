@@ -68,3 +68,29 @@ end)
 vim.keymap.set({ "x", "o" }, "ae", function()
   require("curstr").execute("vim/entire/around")
 end)
+vim.keymap.set({ "x", "o" }, "ij", function()
+  require("curstr").execute("vim/surrounded/inner")
+end)
+vim.keymap.set({ "x", "o" }, "aj", function()
+  require("curstr").execute("vim/surrounded/around")
+end)
+vim.keymap.set({ "x", "o" }, "i/", function()
+  require("curstr").execute("vim/surrounded/inner", {
+    source_opts = {
+      targets = {
+        { s = [=[/[^/]]=], e = [=[[^/]\?\zs/]=], single_line = true },
+      },
+    },
+  })
+end)
+vim.keymap.set({ "x", "o" }, "ix", function()
+  require("curstr").execute("vim/surrounded/inner", {
+    source_opts = {
+      targets = {
+        { s = [=[\*[^*]]=], e = [=[[^*]\?\zs\*]=], single_line = true },
+      },
+    },
+  })
+end)
+
+-- vim.keymap.set({ "o", "x" }, "i/", [[textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')]], opts)

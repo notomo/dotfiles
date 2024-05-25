@@ -205,23 +205,6 @@ optpack.add("bkad/CamelCaseMotion", {
   },
 })
 
-optpack.add("osyo-manga/vim-textobj-from_regexp", {
-  depends = { vim_textobj_user.name },
-  load_on = {
-    keymaps = function(vim)
-      local opts = { expr = true, replace_keycodes = false }
-      vim.keymap.set({ "o", "x" }, "i.", [[textobj#from_regexp#mapexpr('\.\zs.\{-}\ze\.')]], opts)
-      vim.keymap.set({ "o", "x" }, "a.", [[textobj#from_regexp#mapexpr('\..\{-1,}\(\.\)\@=')]], opts)
-
-      vim.keymap.set({ "o", "x" }, "ix", [[textobj#from_regexp#mapexpr('\v\*\zs[^*]+\ze\*')]], opts)
-      vim.keymap.set({ "o", "x" }, "ax", [[textobj#from_regexp#mapexpr('\*.\{-1,}\(*\)\@=')]], opts)
-
-      vim.keymap.set({ "o", "x" }, "i/", [[textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')]], opts)
-      vim.keymap.set({ "o", "x" }, "a/", [[textobj#from_regexp#mapexpr('/.\{-1,}\(/\)\@=')]], opts)
-    end,
-  },
-})
-
 optpack.add("haya14busa/vim-edgemotion", {
   load_on = {
     keymaps = function(vim)
@@ -532,30 +515,6 @@ mypack.add("notomo/aliaser.nvim", {
 
 local vim_operator_user = optpack.add("kana/vim-operator-user")
 
-local vim_textobj_multiblock = optpack.add("osyo-manga/vim-textobj-multiblock", {
-  depends = { vim_textobj_user.name },
-  load_on = {
-    keymaps = function(vim)
-      vim.keymap.set({ "o", "x" }, "aj", [[<Plug>(textobj-multiblock-a)]])
-      vim.keymap.set({ "o", "x" }, "ij", [[<Plug>(textobj-multiblock-i)]])
-    end,
-  },
-  hooks = {
-    pre_load = function()
-      vim.g.textobj_multiblock_no_default_key_mappings = 1
-      vim.g.textobj_multiblock_blocks = {
-        { "(", ")" },
-        { "[", "]" },
-        { "{", "}" },
-        { "<", ">" },
-        { '"', '"' },
-        { "'", "'" },
-        { "`", "`", 1 },
-      }
-    end,
-  },
-})
-
 optpack.add("Shougo/neosnippet.vim", {
   load_on = { events = { "InsertEnter" } },
   hooks = {
@@ -605,26 +564,16 @@ optpack.add("kana/vim-operator-replace", {
 })
 
 optpack.add("rhysd/vim-operator-surround", {
-  depends = { vim_operator_user.name, vim_textobj_multiblock.name },
+  depends = { vim_operator_user.name },
   load_on = {
     keymaps = function(vim)
       vim.keymap.set({ "n", "x" }, "[surround]", "<Nop>")
       vim.keymap.set({ "n", "x" }, "s", "[surround]", { remap = true })
 
       vim.keymap.set({ "n", "x" }, "[surround]a", [[<Plug>(operator-surround-append)]], { silent = true })
-      vim.keymap.set(
-        "n",
-        "[surround]d",
-        [[v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-delete)]],
-        { silent = true, remap = true }
-      )
+      vim.keymap.set("n", "[surround]d", [[vaj<Plug>(operator-surround-delete)]], { silent = true, remap = true })
       vim.keymap.set("x", "[surround]d", [[<Plug>(operator-surround-delete)]], { silent = true })
-      vim.keymap.set(
-        "n",
-        "[surround]r",
-        [[v<Plug>(textobj-multiblock-a)<Plug>(operator-surround-replace)]],
-        { silent = true, remap = true }
-      )
+      vim.keymap.set("n", "[surround]r", [[vaj<Plug>(operator-surround-replace)]], { silent = true, remap = true })
       vim.keymap.set("x", "[surround]r", [[<Plug>(operator-surround-replace)]], { silent = true })
     end,
   },
