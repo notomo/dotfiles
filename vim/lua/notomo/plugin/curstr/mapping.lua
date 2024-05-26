@@ -92,5 +92,3 @@ vim.keymap.set({ "x", "o" }, "ix", function()
     },
   })
 end)
-
--- vim.keymap.set({ "o", "x" }, "i/", [[textobj#from_regexp#mapexpr('/\zs.\{-}\ze/')]], opts)
