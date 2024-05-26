@@ -111,26 +111,6 @@ mypack.add("notomo/genvdoc", {
   load_on = { modules = { "genvdoc" } },
 })
 
-local vim_textobj_user = optpack.add("kana/vim-textobj-user", {
-  load_on = {
-    keymaps = function(vim)
-      vim.keymap.set({ "o", "x" }, "aB", [[<Plug>(textobj-codeblock-a)]])
-      vim.keymap.set({ "o", "x" }, "iB", [[<Plug>(textobj-codeblock-i)]])
-    end,
-  },
-  hooks = {
-    post_load = function()
-      vim.fn["textobj#user#plugin"]("codeblock", {
-        ["-"] = {
-          pattern = { [[\v^\s*```\s?\w*$\n\ze.]], [[\v^\s*```]] },
-          ["select-a"] = "aB",
-          ["select-i"] = "iB",
-        },
-      })
-    end,
-  },
-})
-
 optpack.add("kana/vim-submode", {
   load_on = {
     keymaps = function(vim)
@@ -182,15 +162,6 @@ optpack.add("kana/vim-smartword", {
       vim.keymap.set({ "n", "x", "o" }, "w", [[<Plug>(smartword-w)]])
       vim.keymap.set({ "n", "x", "o" }, "b", [[<Plug>(smartword-b)]])
       vim.keymap.set({ "n", "x", "o" }, "e", [[<Plug>(smartword-e)]])
-    end,
-  },
-})
-
-local vim_textobj_blockwise = optpack.add("osyo-manga/vim-textobj-blockwise", {
-  depends = { vim_textobj_user.name },
-  hooks = {
-    pre_load = function()
-      vim.g.textobj_blockwise_enable_default_key_mapping = 0
     end,
   },
 })
@@ -521,17 +492,6 @@ optpack.add("Shougo/neosnippet.vim", {
     pre_load = require_fn("notomo.plugin.neosnippet"),
     post_load = function()
       vim.cmd.runtime([[ftdetect/neosnippet.vim]])
-    end,
-  },
-})
-
-optpack.add("osyo-manga/vim-operator-blockwise", {
-  depends = { vim_operator_user.name, vim_textobj_blockwise.name },
-  load_on = {
-    keymaps = function(vim)
-      vim.keymap.set("n", "[operator]c", [[<Plug>(operator-blockwise-change)]])
-      vim.keymap.set("n", "[operator]d", [[<Plug>(operator-blockwise-delete)]])
-      vim.keymap.set("n", "[operator]y", [[<Plug>(operator-blockwise-yank)]])
     end,
   },
 })
