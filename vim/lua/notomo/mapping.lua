@@ -636,3 +636,7 @@ vim.api.nvim_create_user_command("SearchEngine", function(command)
 end, { nargs = 1 })
 vim.keymap.set("n", "[browser]i", [[:<C-u>SearchEngine ]])
 vim.keymap.set("n", "[browser]s", [[:<C-u>SearchEngine <C-r>=expand('<cword>')<CR><CR>]])
+
+vim.keymap.set("x", "t<Space>", function()
+  require("notomo.lib.edit").open_selected()
+end)

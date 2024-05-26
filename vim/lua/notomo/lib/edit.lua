@@ -191,4 +191,17 @@ function M.get_selected_text()
   return selected_text
 end
 
+function M.open_selected()
+  require("misclib.visual_mode").leave()
+
+  local typ = vim.fn.visualmode()
+  vim.cmd.normal({ args = { "gv" }, bang = true })
+
+  local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = typ })
+  vim.cmd.tabedit()
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "wipe"
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+end
+
 return M
