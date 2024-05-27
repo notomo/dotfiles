@@ -191,17 +191,83 @@ function M.get_selected_text()
   return selected_text
 end
 
-function M.open_selected()
+function M._selected_lines()
   require("misclib.visual_mode").leave()
 
   local typ = vim.fn.visualmode()
   vim.cmd.normal({ args = { "gv" }, bang = true })
 
-  local lines = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = typ })
+  return vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = typ })
+end
+
+function M.open_selected()
+  local lines = M._selected_lines()
   vim.cmd.tabedit()
   vim.bo.buftype = "nofile"
   vim.bo.bufhidden = "wipe"
   vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+end
+
+function M.align(separator)
+  local lines = M._selected_lines()
+
+  local rows = vim
+    .iter(lines)
+    :map(function(line)
+      local cells = vim.split(line, separator, { plain = true })
+      return {
+        cells = cells,
+        widths = vim
+          .iter(cells)
+          :map(function(x)
+            return vim.fn.strdisplaywidth(x)
+          end)
+          :totable(),
+      }
+    end)
+    :totable()
+
+  local column_count = math.max(unpack(vim
+    .iter(rows)
+    :map(function(row)
+      return #row.cells
+    end)
+    :totable()))
+  local column_widths = vim
+    .iter(vim.fn.range(column_count))
+    :map(function(i)
+      local column = i + 1
+      return math.max(unpack(vim
+        .iter(rows)
+        :map(function(row)
+          return row.widths[column] or 0
+        end)
+        :totable()))
+    end)
+    :totable()
+
+  local new_lines = vim
+    .iter(rows)
+    :map(function(row)
+      return vim
+        .iter(row.cells)
+        :enumerate()
+        :map(function(column, cell)
+          local space = column_widths[column] - row.widths[column]
+          return cell .. (" "):rep(space)
+        end)
+        :join(separator)
+    end)
+    :totable()
+
+  local s = vim.fn.line("v") - 1
+  local e = vim.fn.line(".") - 1
+  if s > e then
+    s, e = e, s
+  end
+  vim.api.nvim_buf_set_text(0, s, 0, e, -1, new_lines)
+
+  require("misclib.visual_mode").leave()
 end
 
 return M

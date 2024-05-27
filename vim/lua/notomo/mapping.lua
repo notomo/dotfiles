@@ -640,3 +640,14 @@ vim.keymap.set("n", "[browser]s", [[:<C-u>SearchEngine <C-r>=expand('<cword>')<C
 vim.keymap.set("x", "t<Space>", function()
   require("notomo.lib.edit").open_selected()
 end)
+vim.keymap.set("x", "<Leader>A", function()
+  vim.ui.input({
+    prompt = "Separator:",
+  }, function(separator)
+    if not separator then
+      require("misclib.message").info("Canceled.")
+      return
+    end
+    require("notomo.lib.edit").align(separator)
+  end)
+end)
