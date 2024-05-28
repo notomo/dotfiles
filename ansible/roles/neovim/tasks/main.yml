@@ -27,6 +27,18 @@
     dest: "{{ app_dir }}/nvim.tar.gz"
   when: is_macos and not nvim_installed.stat.exists and not nvim_installed.stat.exists
 
+- name: clean up nvim runtime
+  file:
+    path: "{{ app_dir }}/nvim/nvim-linux64/share/nvim/runtime"
+    state: absent
+  when: is_ubuntu
+
+- name: clean up nvim runtime
+  file:
+    path: "{{ app_dir }}/nvim/nvim-macos-x86_64/share/nvim/runtime"
+    state: absent
+  when: is_macos
+
 - name: unarchive nvim
   unarchive:
     src: "{{ app_dir }}/nvim.tar.gz"
