@@ -28,20 +28,22 @@ function M.generate_help_tags()
 end
 
 function M.test()
-  M._load_plugins()
-
-  for _, name in ipairs(require("notomo.plugin.lreload")) do
-    require("lreload").refresh(name)
-  end
-
   vim.schedule(function()
-    local ok, result = pcall(M._test)
-    if not ok then
-      vim.api.nvim_echo({ { result, "Error" } }, true, {})
-      vim.cmd([[message | cquit!]])
-    else
-      vim.cmd([[message | quitall!]])
+    M._load_plugins()
+
+    for _, name in ipairs(require("notomo.plugin.lreload")) do
+      require("lreload").refresh(name)
     end
+
+    vim.schedule(function()
+      local ok, result = pcall(M._test)
+      if not ok then
+        vim.api.nvim_echo({ { result, "Error" } }, true, {})
+        vim.cmd([[message | cquit!]])
+      else
+        vim.cmd([[message | quitall!]])
+      end
+    end)
   end)
 end
 
