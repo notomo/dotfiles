@@ -15,6 +15,7 @@
     pushfff = push --force-with-lease --force-if-includes
     rc = rebase --continue
     rs = rebase --skip
+    forked = "!f() { git remote add notomorepo https://github.com/notomo/$1.git; }; f"
 
 [init]
     defaultBranch = main

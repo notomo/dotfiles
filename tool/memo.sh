@@ -7,10 +7,6 @@ function port() {
     lsof -i:$1
 }
 
-function git_remote_add_from_github() {
-    git remote add upstream https://github.com/"$1".git
-}
-
 alias gob="go test -bench . -benchmem"
 alias gco='git checkout -t'          # {remote}/{branch_name}
 alias gd='git push --delete origin ' # {tag_name} or {branch_name}
