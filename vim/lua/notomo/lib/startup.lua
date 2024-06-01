@@ -2,10 +2,15 @@ local M = {}
 
 function M._load_plugins()
   local optpack = require("optpack")
-  local plugins = optpack.list()
-  for _, plugin in ipairs(plugins) do
-    optpack.load(plugin.name)
-  end
+  local promises = vim
+    .iter(optpack.list())
+    :map(function(plugin)
+      return require("promise").new(function(resolve)
+        optpack.load(plugin.name, { on_finished = resolve })
+      end)
+    end)
+    :totable()
+  return require("promise").all(promises)
 end
 
 function M.update_plugins()
@@ -23,53 +28,51 @@ end
 
 function M.generate_help_tags()
   M._load_plugins()
-  vim.cmd.helptags([[ALL]])
-  M.schedule([[message | quitall!]])
+    :next(function()
+      vim.cmd.helptags([[ALL]])
+    end)
+    :finally(function()
+      vim.cmd([[message | quitall!]])
+    end)
 end
 
 function M.test()
-  vim.schedule(function()
-    M._load_plugins()
-
-    for _, name in ipairs(require("notomo.plugin.lreload")) do
-      require("lreload").refresh(name)
-    end
-
-    vim.schedule(function()
-      local ok, result = pcall(M._test)
-      if not ok then
-        vim.api.nvim_echo({ { result, "Error" } }, true, {})
-        vim.cmd([[message | cquit!]])
-      else
-        vim.cmd([[message | quitall!]])
+  M._load_plugins()
+    :next(function()
+      for _, name in ipairs(require("notomo.plugin.lreload")) do
+        require("lreload").refresh(name)
       end
     end)
-  end)
+    :next(M._test)
+    :next(function()
+      vim.cmd([[message | quitall!]])
+    end)
+    :catch(function(err)
+      vim.api.nvim_echo({ { err, "Error" } }, true, {})
+      vim.cmd([[message | cquit!]])
+    end)
 end
 
 function M._test()
-  require("kivi").open()
-  vim.cmd.tabedit()
-  vim.cmd.tabonly()
-
-  vim.fn.feedkeys("tt", "mx")
-  assert(vim.fn.tabpagenr("$") == 2, "tab count")
-
-  vim.fn.feedkeys("th", "mx")
-  assert(vim.fn.tabpagenr() == 1, "tab current")
-
-  vim.fn.feedkeys("tt", "mx")
-  vim.fn.feedkeys("idate", "ix")
-  vim.fn.feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "ixm")
-  assert(vim.fn.getline(".") ~= "date", "snippet expand")
-end
-
-function M.schedule(cmd)
-  vim.schedule(function()
-    vim.schedule(function()
-      vim.cmd(cmd)
+  return require("promise")
+    .new(function(resolve)
+      return resolve(require("kivi").open())
     end)
-  end)
+    :next(function()
+      vim.cmd.tabedit()
+      vim.cmd.tabonly()
+
+      vim.fn.feedkeys("tt", "mx")
+      assert(vim.fn.tabpagenr("$") == 2, "tab count")
+
+      vim.fn.feedkeys("th", "mx")
+      assert(vim.fn.tabpagenr() == 1, "tab current")
+
+      vim.fn.feedkeys("tt", "mx")
+      vim.fn.feedkeys("idate", "ix")
+      vim.fn.feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "ixm")
+      assert(vim.fn.getline(".") ~= "date", "snippet expand")
+    end)
 end
 
 function M.plugins()
