@@ -239,7 +239,6 @@ optpack.add("hrsh7th/nvim-cmp", {
 optpack.add("hrsh7th/cmp-nvim-lsp", { load_on = { events = { "InsertEnter" }, modules = { "cmp_nvim_lsp" } } })
 optpack.add("hrsh7th/cmp-buffer", { load_on = { events = { "InsertEnter" } } })
 optpack.add("hrsh7th/cmp-path", { load_on = { events = { "InsertEnter" } } })
-optpack.add("hrsh7th/cmp-nvim-lua", { load_on = { events = { "InsertEnter" } } })
 mypack.add("notomo/cmp-neosnippet", { load_on = { events = { "InsertEnter" } } })
 optpack.add("ray-x/lsp_signature.nvim", { load_on = { modules = { "lsp_signature" }, events = { "InsertEnter" } } })
 
@@ -373,9 +372,6 @@ mypack.add("notomo/thetto.nvim", {
   },
 })
 
-optpack.add("folke/neodev.nvim", {
-  load_on = { modules = { "neodev" } },
-})
 local nvim_lspconfig = optpack.add("neovim/nvim-lspconfig", {
   load_on = { events = { "FileType" } },
   hooks = {
@@ -479,6 +475,16 @@ optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
   },
 })
 
+optpack.add("folke/lazydev.nvim", {
+  depends = { nvim_treesitter.name },
+  load_on = { filetypes = { "lua" } },
+  hooks = {
+    post_load = function()
+      require("lazydev").setup()
+    end,
+  },
+})
+
 mypack.add("notomo/aliaser.nvim", {
   load_on = { modules = { "aliaser" } },
   hooks = { post_load = require_fn("notomo.plugin.aliaser") },
@@ -507,6 +513,7 @@ optpack.add("kana/vim-operator-replace", {
       vim.keymap.set("c", "<Plug>(builtin-CR)", [[<CR>]])
       vim.keymap.set("n", "[edit]n", [[*<Plug>(builtin-N)<Plug>(operator-replace)<Plug>(builtin-gn)]], { remap = true })
 
+      ---@diagnostic disable-next-line: duplicate-set-field
       _G._notomo_search = function()
         local tmp = vim.fn.getreg('"')
         vim.cmd.normal({ args = { [[gv""y]] }, bang = true })

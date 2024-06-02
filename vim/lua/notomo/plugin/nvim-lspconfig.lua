@@ -1,17 +1,6 @@
 ---@diagnostic disable-next-line: duplicate-set-field
 vim.lsp.semantic_tokens.start = function() end
 
-require("neodev").setup({
-  override = function(root_dir, library)
-    library.enabled = true
-    if not root_dir:match("/dotfiles/") then
-      library.plugins = false
-      return
-    end
-    library.plugins = true
-  end,
-})
-
 local lspconfig = require("lspconfig")
 
 local setup_ls = function(ls, config, enable_features)

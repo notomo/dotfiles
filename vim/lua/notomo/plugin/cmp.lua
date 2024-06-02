@@ -92,7 +92,7 @@ function M.setup()
     sources = {
       { name = "neosnippet" },
       { name = "nvim_lsp" },
-      { name = "nvim_lua" },
+      { name = "lazydev" },
       { name = "path" },
       {
         name = "buffer",
