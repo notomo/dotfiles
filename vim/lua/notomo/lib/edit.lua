@@ -106,6 +106,8 @@ function M.rotate_file()
 end
 
 function M.set_term_title(prompt_pattern, max_length)
+  prompt_pattern = prompt_pattern or "^\\$ "
+
   local path = vim.api.nvim_buf_get_name(0)
   local shell = vim.split(vim.fn.fnamemodify(path, ":t"), ":", { plain = true })[1]
   local term_path = ("%s/%s"):format(vim.fn.fnamemodify(path, ":h"), shell)
@@ -119,6 +121,30 @@ function M.set_term_title(prompt_pattern, max_length)
   end
 
   vim.api.nvim_buf_set_name(0, ("%s:%s"):format(term_path, cmd))
+  vim.cmd.redrawtabline()
+end
+
+function M.set_title(bufnr, cmd, max_length)
+  max_length = max_length or 24
+
+  local simplified_cmd = vim
+    .iter(cmd)
+    :map(function(x)
+      if vim.startswith(x, "/") then
+        return "{path}"
+      end
+      return x
+    end)
+    :totable()
+  local str = table.concat(simplified_cmd, " ")
+
+  str = str:sub(1, max_length)
+  str = vim.fn.substitute(str, "/", [[\]], "g")
+  if vim.trim(str) == "" then
+    return
+  end
+
+  vim.api.nvim_buf_set_name(bufnr, str)
   vim.cmd.redrawtabline()
 end
 

@@ -435,7 +435,23 @@ mypack.add("notomo/cmdhndlr.nvim", {
     modules = { "cmdhndlr" },
     events = { "BufWritePre" },
   },
-  hooks = { post_add = require_fn("notomo.plugin.cmdhndlr") },
+  hooks = {
+    post_add = require_fn("notomo.plugin.cmdhndlr"),
+    post_load = function()
+      local hooks = {
+        post_execute = function(ctx)
+          require("notomo.lib.edit").set_title(ctx.bufnr, ctx.cmd)
+        end,
+      }
+      require("cmdhndlr").setup({
+        opts = {
+          normal_runner = { ["_"] = { hooks = hooks } },
+          test_runner = { ["_"] = { hooks = hooks } },
+          build_runner = { ["_"] = { hooks = hooks } },
+        },
+      })
+    end,
+  },
 })
 
 -- should load after cmdhndlr not to clear format autocmd

@@ -54,10 +54,10 @@ vim.keymap.set("n", "S", function()
     },
     reuse_predicate = function(current_state, state)
       local same = current_state.full_name == state.full_name
-          and current_state.working_dir_path == state.working_dir_path
-          and vim.deep_equal(current_state.cmd, state.executed_cmd)
+        and current_state.working_dir_path == state.working_dir_path
+        and vim.deep_equal(current_state.cmd, state.executed_cmd)
       return same
-    end
+    end,
   })
 end)
 vim.keymap.set("n", "[exec]bl", function()
