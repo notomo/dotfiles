@@ -124,9 +124,7 @@ function M.set_term_title(prompt_pattern, max_length)
   vim.cmd.redrawtabline()
 end
 
-function M.set_title(bufnr, cmd, max_length)
-  max_length = max_length or 24
-
+function M.set_title(bufnr, cmd)
   local simplified_cmd = vim
     .iter(cmd)
     :map(function(x)
@@ -138,7 +136,6 @@ function M.set_title(bufnr, cmd, max_length)
     :totable()
   local str = table.concat(simplified_cmd, " ")
 
-  str = str:sub(1, max_length)
   str = vim.fn.substitute(str, "/", [[\]], "g")
   if vim.trim(str) == "" then
     return
