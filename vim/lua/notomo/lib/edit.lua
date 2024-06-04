@@ -141,7 +141,7 @@ function M.set_title(bufnr, cmd)
     return
   end
 
-  vim.api.nvim_buf_set_name(bufnr, str)
+  vim.api.nvim_buf_set_name(bufnr, ("%s/%s"):format(bufnr, str))
   vim.cmd.redrawtabline()
 end
 
