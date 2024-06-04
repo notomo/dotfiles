@@ -370,6 +370,7 @@ local ignored_ctags_type = { "member", "package", "packageName", "anonMember", "
 register_source("cmd/ctags", function()
   return {
     modify_pipeline = require("thetto.util.pipeline").list({
+      require("thetto.util.sorter").field_by_name("row", false),
       require("thetto.util.filter").item(function(item)
         return not vim.tbl_contains(ignored_ctags_type, item.ctags_type)
       end),
