@@ -105,7 +105,7 @@ function M.rotate_file()
   error("fail rotate: " .. origin)
 end
 
-function M.set_term_title(prompt_pattern, max_length)
+function M.set_term_title(prompt_pattern)
   prompt_pattern = prompt_pattern or "^\\$ "
 
   local path = vim.api.nvim_buf_get_name(0)
@@ -114,7 +114,7 @@ function M.set_term_title(prompt_pattern, max_length)
 
   local prompt_line = vim.fn.getline(vim.fn.search(prompt_pattern, "nbcW"))
   local prompt = vim.fn.matchstr(prompt_line, prompt_pattern)
-  local cmd = prompt_line:sub(vim.fn.strlen(prompt), max_length)
+  local cmd = prompt_line:sub(vim.fn.strlen(prompt))
   cmd = vim.fn.substitute(cmd, "/", [[\]], "g")
   if vim.trim(cmd) == "" then
     return

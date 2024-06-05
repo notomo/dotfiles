@@ -137,7 +137,8 @@ local modified = function(current_bufnr, window_ids)
   return ""
 end
 
-local tab_label = function(tab_id, bufnr)
+local tab_label = function(tab_id, window_id)
+  local bufnr = api.nvim_win_get_buf(window_id)
   local name = fn.fnamemodify(api.nvim_buf_get_name(bufnr), ":t")
   if name == "" then
     name = "[Scratch]"
@@ -151,27 +152,62 @@ local tab_label = function(tab_id, bufnr)
   return ("%s[%s]"):format(name, opt)
 end
 
-local current_tab_label = function(tab_id, window_id)
-  local bufnr = api.nvim_win_get_buf(window_id)
-  return tab_label(tab_id, bufnr)
-end
-
-local alter_tab_label = function(tab_id, window_id)
-  local bufnr = vim.api.nvim_win_call(window_id, function()
-    return fn.bufnr("#")
-  end)
-  if bufnr == -1 then
-    return current_tab_label(tab_id, window_id)
-  end
-  return tab_label(tab_id, bufnr)
-end
-
 local set_tabline = function()
   local Builder = C.builder
   local Highlight = C.highlight
   local DefaultHighlight = C.default_highlight
   local Tab = C.tab
-  local TruncateLeft = C.truncate_left
+  local ContextBuilder = C.context_builder
+
+  local TruncateRight = function(component)
+    return C.truncate_right(component, {
+      max_width = 30,
+    })
+  end
+  local TruncateLeft = function(component)
+    return C.truncate_left(component, {
+      max_width = 30,
+    })
+  end
+
+  local get_buftype = function(ctx)
+    return vim.bo[get_bufnr(ctx)].buftype
+  end
+  local Truncate = function(component)
+    return Switch(get_buftype, {
+      terminal = TruncateRight(component),
+      _ = TruncateLeft(component),
+    })
+  end
+  local TruncateAlter = function(component)
+    return ContextBuilder(function(ctx)
+      local bufnr = vim.api.nvim_win_call(ctx.window_id, function()
+        return fn.bufnr("#")
+      end)
+      if bufnr == -1 then
+        return ctx
+      end
+      return ctx:with_window(fn.bufwinid(bufnr))
+    end, Truncate(component))
+  end
+
+  local TabLabel = function(ctx)
+    return escape(tab_label(ctx.tab_id, ctx.window_id))
+  end
+  local Content = {
+    " ",
+    SwitchByFiletype({
+      ["kivi-file"] = TruncateLeft(function(ctx)
+        local tab_number = api.nvim_tabpage_get_number(ctx.tab_id)
+        local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
+        return escape(name)
+      end),
+      ["thetto"] = TruncateAlter(TabLabel),
+      ["thetto-inputter"] = TruncateAlter(TabLabel),
+      _ = Truncate(TabLabel),
+    }),
+    " ",
+  }
 
   stlparts.set(
     "tabline",
@@ -185,32 +221,7 @@ local set_tabline = function()
           :map(function(tab_id)
             local is_current = tab_id == current
             local hl_group = is_current and "TabLineSel" or "TabLine"
-            return Tab(
-              tab_id,
-              Highlight(hl_group, {
-                " ",
-                TruncateLeft(
-                  SwitchByFiletype({
-                    ["kivi-file"] = function(ctx)
-                      local tab_number = api.nvim_tabpage_get_number(tab_id)
-                      local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
-                      return escape(name)
-                    end,
-                    ["thetto"] = function(ctx)
-                      return escape(alter_tab_label(tab_id, ctx.window_id))
-                    end,
-                    ["thetto-inputter"] = function(ctx)
-                      return escape(alter_tab_label(tab_id, ctx.window_id))
-                    end,
-                    _ = function(ctx)
-                      return escape(current_tab_label(tab_id, ctx.window_id))
-                    end,
-                  }),
-                  { max_width = 30 }
-                ),
-                " ",
-              })
-            )
+            return Tab(tab_id, Highlight(hl_group, Content))
           end)
           :totable()
 
