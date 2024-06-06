@@ -123,7 +123,7 @@ function M._get_plugin_dirs(filter)
   return vim
     .iter(require("optpack").list())
     :map(function(plugin)
-      if not plugin.full_name:find("notomo/") then
+      if not plugin.directory:find("mypack/") then
         return
       end
 
