@@ -16,6 +16,9 @@ local alter_path = function()
 end
 
 local get_bufnr = function(ctx)
+  if ctx.window_id == -1 then
+    vim.print(ctx)
+  end
   return vim.api.nvim_win_get_buf(ctx.window_id)
 end
 local get_filetype = function(ctx)
@@ -187,7 +190,13 @@ local set_tabline = function()
       if bufnr == -1 then
         return ctx
       end
-      return ctx:with_window(fn.bufwinid(bufnr))
+
+      local window_id = fn.bufwinid(bufnr)
+      if window_id == -1 then
+        return ctx
+      end
+
+      return ctx:with_window(window_id)
     end, Truncate(component))
   end
 
