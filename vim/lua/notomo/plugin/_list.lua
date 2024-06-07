@@ -818,34 +818,3 @@ optpack.add("SmiteshP/nvim-navic", {
   depends = { nvim_lspconfig.name },
   load_on = { modules = { "nvim-navic" } },
 })
-
-optpack.add("shellRaining/hlchunk.nvim", {
-  depends = { nvim_treesitter.name },
-  load_on = {
-    modules = { "hlchunk" },
-    events = { { "BufReadPre", "*/*" } },
-  },
-  hooks = {
-    post_load = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("hlchunk").setup({
-        ---@diagnostic disable-next-line: missing-fields
-        indent = { enable = false },
-        ---@diagnostic disable-next-line: missing-fields
-        chunk = {
-          enable = true,
-          support_filetypes = {
-            "*.lua",
-            "*.ts",
-            "*.tsx",
-            "*.astro",
-          },
-        },
-        ---@diagnostic disable-next-line: missing-fields
-        line_num = { enable = false },
-        ---@diagnostic disable-next-line: missing-fields
-        blank = { enable = false },
-      })
-    end,
-  },
-})
