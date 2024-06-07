@@ -613,10 +613,20 @@ vim.keymap.set("n", "[git]b", function()
 end)
 
 vim.keymap.set("n", "[git]s", function()
+  local path = vim.api.nvim_buf_get_name(0)
   require("thetto").start(require("thetto.util.source").by_name("git/status"), {
-    item_cursor_factory = require("thetto.util.item_cursor").search(function(item)
-      return item.path ~= nil
-    end),
+    item_cursor_factory = function(all_items)
+      local item_cursor = require("thetto.util.item_cursor").search(function(item)
+        return item.path == path
+      end)(all_items)
+      if item_cursor.row then
+        return item_cursor
+      end
+
+      return require("thetto.util.item_cursor").search(function(item)
+        return item.path ~= nil
+      end)(all_items)
+    end,
   })
 end)
 vim.keymap.set("n", "[git]B", function()
