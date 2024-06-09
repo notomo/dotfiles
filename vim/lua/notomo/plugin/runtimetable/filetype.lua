@@ -209,15 +209,9 @@ runtime.after.ftplugin["lua.lua"] = function()
       get_pattern = function()
         return ('"%s"'):format(require("misclib.module.path").detect(vim.fn.expand("%:p")))
       end,
-    }, {
-      pipeline_stages_factory = require("thetto.util.pipeline").merge({
-        require("thetto.util.pipeline").list({
-          require("thetto.util.filter").item(function(item)
-            return item.value:find("require%(")
-          end),
-        }),
-        require("thetto.util.pipeline").apply_source(),
-      }),
+      filter = require("thetto.util.source").filter(function(item)
+        return item.value:find("require%(")
+      end),
     })
   end, { buffer = true })
 

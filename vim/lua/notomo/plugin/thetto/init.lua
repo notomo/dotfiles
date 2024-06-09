@@ -160,15 +160,13 @@ register_source("vim/filetype", {
       vim.fn.bufload(bufnr)
       return require("thetto.util.source").start_by_name("vim/line", {
         can_resume = false,
+        filter = require("thetto.util.source").filter(function(e)
+          local pattern = ([["%s.lua"]]):format(vim.pesc(item.value))
+          return e.value:find(pattern)
+        end),
       }, {
         source_bufnr = bufnr,
         consumer_factory = require("thetto.util.consumer").immediate(),
-        pipeline_stages_factory = require("thetto.util.pipeline").list({
-          require("thetto.util.filter").item(function(e)
-            local pattern = ([["%s.lua"]]):format(vim.pesc(item.value))
-            return e.value:find(pattern)
-          end),
-        }),
       })
     end,
   },
@@ -324,24 +322,20 @@ end)
 local ignored_symbol_kind = { "variable", "field", "property" }
 register_source("vim/lsp/document_symbol", function()
   return {
-    modify_pipeline = require("thetto.util.pipeline").merge({
-      require("thetto.util.pipeline").prepend({
-        require("thetto.util.filter").item(function(item)
-          if vim.tbl_contains(ignored_symbol_kind, item.symbol_kind:lower()) then
-            return false
-          end
-          if not item.value:find("%(") and item.value:find("%.") then
-            return false
-          end
-          if item.value:find(" callback%.?.*$") then
-            return false
-          end
-          return true
-        end),
-      }),
-      require("thetto.util.pipeline").append({
-        require("thetto.util.sorter").field_by_name("row", false),
-      }),
+    filter = require("thetto.util.source").filter(function(item)
+      if vim.tbl_contains(ignored_symbol_kind, item.symbol_kind:lower()) then
+        return false
+      end
+      if not item.value:find("%(") and item.value:find("%.") then
+        return false
+      end
+      if item.value:find(" callback%.?.*$") then
+        return false
+      end
+      return true
+    end),
+    modify_pipeline = require("thetto.util.pipeline").append({
+      require("thetto.util.sorter").field_by_name("row", false),
     }),
   }
 end)
@@ -369,11 +363,11 @@ end)
 local ignored_ctags_type = { "member", "package", "packageName", "anonMember", "constant" }
 register_source("cmd/ctags", function()
   return {
+    filter = require("thetto.util.source").filter(function(item)
+      return not vim.tbl_contains(ignored_ctags_type, item.ctags_type)
+    end),
     modify_pipeline = require("thetto.util.pipeline").list({
       require("thetto.util.sorter").field_by_name("row", false),
-      require("thetto.util.filter").item(function(item)
-        return not vim.tbl_contains(ignored_ctags_type, item.ctags_type)
-      end),
       require("thetto.util.filter").by_name("regex"),
       require("thetto.util.filter").by_name("regex", {
         opts = {
@@ -436,12 +430,10 @@ end
 local ignored_file_names = { "COMMIT_EDITMSG" }
 register_source("file/mru", function()
   return {
-    modify_pipeline = require("thetto.util.pipeline").prepend({
-      require("thetto.util.filter").item(function(item)
-        local file_name = vim.fs.basename(item.path)
-        return not vim.tbl_contains(ignored_file_names, file_name)
-      end),
-    }),
+    filter = require("thetto.util.source").filter(function(item)
+      local file_name = vim.fs.basename(item.path)
+      return not vim.tbl_contains(ignored_file_names, file_name)
+    end),
   }
 end)
 
@@ -462,11 +454,9 @@ register_source_alias("vim/buffer_autocmd", "vim/autocmd", {
 
 register_source_alias("vim/modified_buffer", "vim/buffer", function()
   return {
-    modify_pipeline = require("thetto.util.pipeline").prepend({
-      require("thetto.util.filter").item(function(item)
-        return vim.bo[item.bufnr].modified
-      end),
-    }),
+    filter = require("thetto.util.source").filter(function(item)
+      return vim.bo[item.bufnr].modified
+    end),
   }
 end)
 

@@ -30,15 +30,13 @@ M.actions = {
     return require("thetto").start(
       require("thetto.util.source").by_name("vim/line", {
         can_resume = false,
+        filter = require("thetto.util.source").filter(function(e)
+          return e.value:find([[add%("]] .. vim.pesc(item.value))
+        end),
       }),
       {
         source_bufnr = bufnr,
         consumer_factory = require("thetto.util.consumer").immediate({ action_name = "open" }),
-        pipeline_stages_factory = require("thetto.util.pipeline").list({
-          require("thetto.util.filter").item(function(e)
-            return e.value:find([[add%("]] .. vim.pesc(item.value))
-          end),
-        }),
       }
     )
   end,
