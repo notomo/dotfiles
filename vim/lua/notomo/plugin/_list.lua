@@ -275,10 +275,10 @@ mypack.add("notomo/searcho.nvim", {
       vim.keymap.set({ "n", "x" }, "?", [[?\v]])
 
       vim.keymap.set({ "n", "x" }, "s<Space>j", function()
-        return [[/\v]] .. vim.fn.getreg([["]])
+        return [[/\V]] .. vim.fn.escape(vim.fn.getreg([["]]), [[/\]])
       end, { expr = true })
       vim.keymap.set({ "n", "x" }, "s<Space>k", function()
-        return [[?\v]] .. vim.fn.getreg([["]])
+        return [[?\V]] .. vim.fn.escape(vim.fn.getreg([["]]), [[/\]])
       end, { expr = true })
     end,
   },
