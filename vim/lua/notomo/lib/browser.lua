@@ -5,16 +5,8 @@ function M.open(url)
     require("misclib.message").warn("invalid url: " .. url)
     return
   end
-  if vim.fn.has("wsl") ~= 1 then
-    vim.ui.open(url)
-    return
-  end
-
-  local cmd = { "wslview", url }
-  local result = vim.system(cmd, { text = true, detach = true }):wait()
-  if result.code ~= 0 then
-    require("misclib.message").warn(("failed browser.open: exit_code=%d"):format(result.code))
-  end
+  require("misclib.message").info("Opening: " .. url)
+  vim.ui.open(url)
 end
 
 return M

@@ -57,6 +57,16 @@ register_kind("git/status", {
   },
 })
 
+register_kind("url", {
+  opts = {
+    open_browser = {
+      open = function(url)
+        require("notomo.lib.browser").open(url)
+      end,
+    },
+  },
+})
+
 register_kind("vim/variable", {
   action_edit = function(items)
     local item = items[1]
