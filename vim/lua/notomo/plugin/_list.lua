@@ -818,3 +818,8 @@ optpack.add("SmiteshP/nvim-navic", {
   depends = { nvim_lspconfig.name },
   load_on = { modules = { "nvim-navic" } },
 })
+
+optpack.add("stevearc/aerial.nvim", {
+  depends = { nvim_treesitter.name },
+  load_on = { modules = { "aerial" } },
+})

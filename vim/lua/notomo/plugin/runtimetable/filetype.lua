@@ -275,6 +275,10 @@ runtime.after.ftplugin["markdown.lua"] = function()
   vim.opt_local.tabstop = 4
   vim.opt_local.softtabstop = 4
   require("notomo.lib.treesitter").setup()
+
+  vim.keymap.set("n", "[finder]o", function()
+    require("thetto.util.source").start_by_name("aerial")
+  end, { buffer = true })
 end
 
 runtime.after.ftplugin["mdx.lua"] = function()
@@ -461,6 +465,10 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.keymap.set("n", "sD", function()
     require("notomo.lib.jsx").unwrap()
   end, { silent = true })
+
+  vim.keymap.set("n", "[finder]o", function()
+    require("thetto.util.source").start_by_name("aerial")
+  end, { buffer = true })
 end
 
 runtime.after.queries.tsx["textobjects.scm"] = [=[
