@@ -12,6 +12,7 @@
       - prettier
       - yaml-language-server
       - "@prisma/language-server"
+      - "@tailwindcss/language-server"
 
 - name: install node.js package globally
   npm:
