@@ -39,6 +39,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
   aliases:set("ready_parser", function()
     for _, language in ipairs({
       "go",
+      "gomod",
       "typescript",
       "terraform",
       "graphql",

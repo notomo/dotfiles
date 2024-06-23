@@ -110,6 +110,8 @@ runtime.after.queries.go["highlights.scm"] = [=[
 
 runtime.after.ftplugin["gomod.lua"] = function()
   vim.bo.commentstring = "//%s"
+  require("notomo.lsp").setup()
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["graphql.lua"] = function()
