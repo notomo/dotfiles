@@ -115,8 +115,8 @@ function M.set_term_title(prompt_pattern)
   local prompt_line = vim.fn.getline(vim.fn.search(prompt_pattern, "nbcW"))
   local prompt = vim.fn.matchstr(prompt_line, prompt_pattern)
   local cmd = prompt_line:sub(vim.fn.strlen(prompt))
-  cmd = vim.fn.substitute(cmd, "/", [[\]], "g")
-  if vim.trim(cmd) == "" then
+  cmd = vim.trim(vim.fn.substitute(cmd, "/", [[\]], "g"))
+  if cmd == "" then
     return
   end
 
@@ -136,8 +136,8 @@ function M.set_title(bufnr, cmd)
     :totable()
   local str = table.concat(simplified_cmd, " ")
 
-  str = vim.fn.substitute(str, "/", [[\]], "g")
-  if vim.trim(str) == "" then
+  str = vim.trim(vim.fn.substitute(str, "/", [[\]], "g"))
+  if str == "" then
     return
   end
 
