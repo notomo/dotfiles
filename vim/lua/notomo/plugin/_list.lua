@@ -667,6 +667,7 @@ mypack.add("notomo/hlmsg.nvim", {
   hooks = {
     post_add = function()
       vim.keymap.set("n", "[exec]cm", function()
+        vim.o.cmdheight = 1 -- workaround
         require("thetto.util.source").start_by_name("hlmsg", {
           consumer_opts = {
             ui = {
