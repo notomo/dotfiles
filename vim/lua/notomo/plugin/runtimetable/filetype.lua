@@ -394,6 +394,12 @@ runtime.after.ftplugin["typescript.lua"] = function()
   vim.keymap.set("n", "sgk", function()
     require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
   end, { buffer = true })
+
+  if vim.fs.root(0, { "deno.json", "deno.jsonc" }) then
+    vim.b.cmdhndlr = { normal_runner = "typescript/deno" }
+  else
+    vim.b.cmdhndlr = { normal_runner = "typescript/tsx" }
+  end
 end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
