@@ -166,6 +166,16 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "[finder]<CR>", function()
       require("thetto").resume({ offset = 1 })
     end, { buffer = true })
+
+    vim.keymap.set("i", "<Tab>", function()
+      local item = require("thetto").get()[1]
+
+      vim.api.nvim_set_current_line(item.value .. " ")
+
+      local last_column = vim.fn.col("$")
+      local row = vim.api.nvim_win_get_cursor(0)[1]
+      vim.api.nvim_win_set_cursor(0, { row, last_column })
+    end, { buffer = true })
   end,
 })
 
