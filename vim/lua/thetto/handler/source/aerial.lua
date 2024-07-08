@@ -5,15 +5,19 @@ local to_item = function(match_tree, bufnr, path, depth)
   local row, column = name_node:start()
   local end_row, end_column = name_node:end_()
 
+  local scope_text = vim.treesitter.get_node_text(match_tree.scope_node, bufnr)
+  local is_tag = vim.startswith(scope_text, "<")
+
   local text = vim.treesitter.get_node_text(name_node, bufnr)
   local newline_index = text:find("\n")
   local first_line = newline_index and text:sub(0, newline_index - 1) or text
   local indent_depth = match_tree.captured.level and #vim.treesitter.get_node_text(match_tree.captured.level, bufnr) - 1
     or depth
   local indent = (" "):rep(indent_depth * 2)
+  local tag_marker = is_tag and "<" or ""
 
   return {
-    value = indent .. first_line,
+    value = indent .. tag_marker .. first_line,
     row = row + 1,
     column = column,
     end_row = end_row,
