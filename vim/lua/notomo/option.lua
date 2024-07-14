@@ -110,6 +110,7 @@ opt.laststatus = 3
 opt.mousescroll = "ver:2,hor:6"
 opt.mousemodel = "extend" -- to disable default popup
 opt.isfname:append("@-@,[,],$")
+opt.tabclose = "left"
 
 vim.filetype.add({
   filename = {

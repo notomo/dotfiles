@@ -11,12 +11,3 @@ vim.keymap.set("n", "<Plug>(tabclose_r)", [[<Cmd>lua require("wintablib.tab").cl
 vim.keymap.set("n", "<Plug>(tabclose_l)", [[<Cmd>lua require("wintablib.tab").close_left()<CR>]], { silent = true })
 vim.keymap.set("n", "<Plug>(tabclose_c)", [[<Cmd>lua require("wintablib.tab").close()<CR>]], { silent = true })
 vim.keymap.set("n", "<Plug>(new_tab)", [[<Cmd>lua require("wintablib.tab").scratch()<CR>]], { silent = true })
-
-vim.api.nvim_create_autocmd({ "TabNew" }, {
-  group = vim.api.nvim_create_augroup("wintablib_setting", {}),
-  pattern = { "*" },
-  once = true,
-  callback = function()
-    require("wintablib.tab").activate_left_on_closed()
-  end,
-})
