@@ -811,6 +811,12 @@ mypack.add("notomo/lsp-handler-intercept.nvim", {
   },
 })
 
+mypack.add("notomo/requireall.nvim", {
+  load_on = {
+    modules = { "requireall" },
+  },
+})
+
 optpack.add("uga-rosa/ccc.nvim", {
   load_on = { modules = { "ccc" }, cmds = { "Ccc*" } },
 })
