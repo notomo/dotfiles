@@ -35,7 +35,7 @@ end
 function M.create_issue()
   vim.cmd.tabedit()
   vim.cmd.terminal()
-  vim.fn.chansend(vim.bo.channel, "gh issue create\n")
+  vim.fn.chansend(vim.bo.channel, "gh issue create --editor\n")
   vim.cmd.startinsert({ bang = true })
 end
 

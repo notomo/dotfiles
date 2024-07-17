@@ -12,9 +12,6 @@ export PATH=$HOME/.local/nvim/bin:$HOME/.local/bin:$PATH:$HOME/bin:$HOME/.cargo/
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.luarocks/bin:$PATH
 
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin:$HOME/.local/go/bin
-
 export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
 
 osrelease=/proc/sys/kernel/osrelease
@@ -30,6 +27,9 @@ fi
 if [ -d "/home/linuxbrew" ]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 fi
+
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$HOME/.local/go/bin$PATH
 
 export DENO_INSTALL="${HOME}/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
