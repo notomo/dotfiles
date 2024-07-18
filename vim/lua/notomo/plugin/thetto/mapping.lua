@@ -370,14 +370,7 @@ end)
 vim.keymap.set("n", "[finder]gi", function()
   thetto_starter("github/issue", { opts = { url = vim.fn.expand("<cWORD>") } })()
 end)
-vim.keymap.set("n", "[finder]gI", function()
-  thetto_starter("github/project/item", {
-    opts = {
-      project_url = vim.g.notomo_gh_project_url,
-      query = vim.g.notomo_gh_project_item_query,
-    },
-  })()
-end)
+vim.keymap.set("n", "[finder]gI", thetto_starter("github/issue_template"))
 
 vim.keymap.set("n", "[file]f", function()
   require("thetto").start(require("thetto.util.source").by_name("file/alter"), {
