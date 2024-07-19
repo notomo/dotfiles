@@ -3,7 +3,11 @@ NVIM_DIR := ${HOME}/workspace/neovim
 NVIM := nvim
 
 test:
+	$(MAKE) requireall
 	${NVIM} --headless +'lua require("notomo.lib.startup").test()'
+
+requireall:
+	${NVIM} --headless +'lua require("notomo.lib.startup").requireall()'
 
 profile:
 	rm -f log

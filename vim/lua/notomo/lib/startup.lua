@@ -218,4 +218,26 @@ function M.diagnostic()
   end
 end
 
+function M.requireall()
+  ---@diagnostic disable-next-line: duplicate-set-field
+  vim.notify = function(msg)
+    io.stdout:write(msg .. "\n")
+  end
+
+  M._load_plugins():next(function()
+    require("requireall").execute({
+      module_filter = function(module_path)
+        local ignore = vim.iter({ "copilot" }):any(function(x)
+          local found = module_path:find(x)
+          return found ~= nil
+        end)
+        if ignore then
+          return false
+        end
+        return true
+      end,
+    })
+  end)
+end
+
 return M
