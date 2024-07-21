@@ -1,14 +1,15 @@
 local M = {}
 
 function M.collect()
-  local items = {}
-  for _, runner in ipairs(require("cmdhndlr").runners()) do
-    table.insert(items, {
-      value = runner.full_name,
-      path = runner.path,
-    })
-  end
-  return items
+  return vim
+    .iter(require("cmdhndlr").runners())
+    :map(function(runner)
+      return {
+        value = runner.full_name,
+        path = runner.path,
+      }
+    end)
+    :totable()
 end
 
 M.kind_name = "file"

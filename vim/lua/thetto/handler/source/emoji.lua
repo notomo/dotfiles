@@ -1,20 +1,24 @@
 local M = {}
 
 function M.collect()
-  local items = {}
-  for name, codes in pairs(vim.fn["emoji#data#dict"]()) do
-    local char = ""
-    if type(codes) == "table" then
-      for _, code in ipairs(codes) do
-        char = char .. vim.fn.nr2char(code)
+  return vim
+    .iter(vim.fn["emoji#data#dict"]())
+    :map(function(name, codes)
+      if type(codes) ~= "table" then
+        codes = { codes }
       end
-    else
-      char = vim.fn.nr2char(codes)
-    end
-    local value = ("%s %s"):format(char, name)
-    table.insert(items, { value = value, emoji = char })
-  end
-  return items
+      local emoji = vim
+        .iter(codes)
+        :map(function(code)
+          return vim.fn.nr2char(code)
+        end)
+        :join("")
+      return {
+        value = ("%s %s"):format(emoji, name),
+        emoji = emoji,
+      }
+    end)
+    :totable()
 end
 
 M.kind_name = "word"
@@ -25,5 +29,9 @@ M.actions = {
   },
   default_action = "append",
 }
+
+M.modify_pipeline = require("thetto.util.pipeline").append({
+  require("thetto.util.sorter").field_length_by_name("value"),
+})
 
 return M

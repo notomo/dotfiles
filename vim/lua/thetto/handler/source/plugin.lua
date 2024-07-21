@@ -1,16 +1,16 @@
 local M = {}
 
 function M.collect()
-  local items = {}
-  local plugins = require("optpack").list()
-  for _, plugin in ipairs(plugins) do
-    table.insert(items, {
-      value = plugin.full_name,
-      name = plugin.name,
-      path = plugin.directory,
-    })
-  end
-  return items
+  return vim
+    .iter(require("optpack").list())
+    :map(function(plugin)
+      return {
+        value = plugin.full_name,
+        name = plugin.name,
+        path = plugin.directory,
+      }
+    end)
+    :totable()
 end
 
 M.modify_pipeline = require("thetto.util.pipeline").append({

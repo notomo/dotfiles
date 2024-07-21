@@ -1,15 +1,16 @@
 local M = {}
 
 function M.collect()
-  local items = {}
-  local path = vim.fn.expand("$DOTFILES/ansible/roles")
-  for _, dir in ipairs(vim.fn.readdir(path)) do
-    table.insert(items, {
-      value = dir,
-      path = vim.fs.joinpath(path, dir),
-    })
-  end
-  return items
+  local roles_dir = vim.fn.expand("$DOTFILES/ansible/roles")
+  return vim
+    .iter(vim.fn.readdir(roles_dir))
+    :map(function(path)
+      return {
+        value = path,
+        path = vim.fs.joinpath(roles_dir, path),
+      }
+    end)
+    :totable()
 end
 
 M.kind_name = "ansible/role"

@@ -6,9 +6,8 @@ M.opts = {
 
 function M.collect(source_ctx)
   local paths = vim.fn.glob("$DOTFILES/vim/**/*.lua", false, true)
-  local elements = require("listdefined")[source_ctx.opts.name](paths)
   return vim
-    .iter(elements)
+    .iter(require("listdefined")[source_ctx.opts.name](paths))
     :map(function(e)
       return {
         path = e.path,

@@ -36,28 +36,32 @@ function M._collect(test, path, is_toplevel)
 end
 
 function M.collect(source_ctx)
-  local items = {}
-  local paths = source_ctx.opts.get_paths(source_ctx.cwd, source_ctx.bufnr)
-
   local tool_name
   if require("cmdhndlr").get("test_runner/typescript/playwright").working_dir_marker() then
     tool_name = "playwright"
   end
 
-  for _, path in ipairs(paths) do
-    local tests = require("gettest").nodes({
-      scope = source_ctx.opts.scope,
-      target = {
-        path = path,
-        row = vim.fn.line("."),
-      },
-      tool_name = tool_name,
-    })
-    for _, test in ipairs(tests) do
-      vim.list_extend(items, M._collect(test, path, true))
-    end
-  end
-  return items
+  return vim
+    .iter(source_ctx.opts.get_paths(source_ctx.cwd, source_ctx.bufnr))
+    :map(function(path)
+      local tests = require("gettest").nodes({
+        scope = source_ctx.opts.scope,
+        target = {
+          path = path,
+          row = vim.fn.line("."),
+        },
+        tool_name = tool_name,
+      })
+      return vim
+        .iter(tests)
+        :map(function(test)
+          return M._collect(test, path, true)
+        end)
+        :flatten()
+        :totable()
+    end)
+    :flatten()
+    :totable()
 end
 
 M.highlight = require("thetto.util.highlight").columns({

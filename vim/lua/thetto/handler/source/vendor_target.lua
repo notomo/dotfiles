@@ -9,11 +9,10 @@ local collect_one = function(full_name)
   if not plugin then
     return {}
   end
-  local pattern = ("%s/lua/**/*.lua"):format(plugin.directory)
 
-  local paths = vim.fn.glob(pattern, false, true)
-  paths = vim
-    .iter(paths)
+  local pattern = ("%s/lua/**/*.lua"):format(plugin.directory)
+  local paths = vim
+    .iter(vim.fn.glob(pattern, false, true))
     :filter(function(path)
       return not path:find("/vendor/") and not path:find("/test/helper%.lua")
     end)
@@ -33,15 +32,17 @@ local collect_one = function(full_name)
 end
 
 function M.collect()
-  local items = {}
-  for _, name in ipairs({
-    "notomo/promise.nvim",
-    "notomo/misclib.nvim",
-    "notomo/assertlib.nvim",
-  }) do
-    vim.list_extend(items, collect_one(name))
-  end
-  return items
+  return vim
+    .iter({
+      "notomo/promise.nvim",
+      "notomo/misclib.nvim",
+      "notomo/assertlib.nvim",
+    })
+    :map(function(name)
+      return collect_one(name)
+    end)
+    :flatten()
+    :totable()
 end
 
 M.kind_name = "file"
