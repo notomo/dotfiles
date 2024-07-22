@@ -98,6 +98,7 @@ vim.api.nvim_set_hl(0, "@punctuation.special.typescript", { link = "Identifier" 
 vim.api.nvim_set_hl(0, "@variable.lua", {})
 vim.api.nvim_set_hl(0, "@variable.member.lua", {})
 vim.api.nvim_set_hl(0, "@variable.parameter.lua", {})
+vim.api.nvim_set_hl(0, "@property.lua", {})
 vim.api.nvim_set_hl(0, "@parameter.lua", {})
 vim.api.nvim_set_hl(0, "@field.lua", {})
 vim.api.nvim_set_hl(0, "@punctuation.delimiter.lua", {})
