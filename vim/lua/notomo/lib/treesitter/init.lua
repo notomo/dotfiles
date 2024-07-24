@@ -1,15 +1,13 @@
 local M = {}
 
 function M.remove_indent(str)
-  local lines = vim.split(str, "\n", { plain = true })
-  lines = vim
-    .iter(lines)
+  return vim
+    .iter(vim.gsplit(str, "\n", { plain = true }))
     :map(function(line)
       local x = line:gsub("^%s+", "")
       return x
     end)
-    :totable()
-  return table.concat(lines, " ")
+    :join()
 end
 
 function M._get_near_function_node(bufnr)
