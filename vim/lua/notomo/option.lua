@@ -62,6 +62,7 @@ opt.scrolloff = 8
 opt.sidescrolloff = 24
 opt.showmatch = true
 opt.wildmode = "longest:full"
+opt.wildoptions:append("fuzzy")
 opt.switchbuf = "useopen"
 opt.matchpairs:append("<:>")
 opt.shiftwidth = 0
@@ -94,7 +95,7 @@ opt.copyindent = true
 opt.preserveindent = true
 opt.fixendofline = false
 opt.tagcase = "match"
-opt.completeopt:remove("preview")
+opt.completeopt = "menu,menuone,noselect,fuzzy,popup"
 opt.termguicolors = true
 opt.spelloptions = "camel"
 opt.cedit = [[<C-q>]]
