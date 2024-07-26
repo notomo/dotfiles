@@ -396,7 +396,10 @@ runtime.after.ftplugin["typescript.lua"] = function()
   end, { buffer = true })
 
   if vim.fs.root(0, { "deno.json", "deno.jsonc" }) then
-    vim.b.cmdhndlr = { normal_runner = "typescript/deno" }
+    vim.b.cmdhndlr = {
+      normal_runner = "typescript/deno",
+      test_runner = "typescript/deno",
+    }
   else
     vim.b.cmdhndlr = { normal_runner = "typescript/tsx" }
   end

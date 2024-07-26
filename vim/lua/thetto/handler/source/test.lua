@@ -37,7 +37,9 @@ end
 
 function M.collect(source_ctx)
   local tool_name
-  if require("cmdhndlr").get("test_runner/typescript/playwright").working_dir_marker() then
+  if require("cmdhndlr").get("test_runner/typescript/deno").working_dir_marker() then
+    tool_name = "deno_test"
+  elseif require("cmdhndlr").get("test_runner/typescript/playwright").working_dir_marker() then
     tool_name = "playwright"
   end
 
