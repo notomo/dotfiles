@@ -59,6 +59,10 @@ end)
 aliaser.register_factory("vim", function(aliases)
   aliases:set("clear_messages", "messages clear")
 
+  aliases:set("count_characters", function()
+    vim.notify(("Characters: %d"):format(vim.fn.wordcount().chars))
+  end)
+
   aliases:set("hlmsg", function()
     local bufnr = vim.api.nvim_create_buf(false, true)
     require("hlmsg").render(bufnr)
