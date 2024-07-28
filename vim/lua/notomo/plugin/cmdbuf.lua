@@ -39,6 +39,9 @@ vim.api.nvim_create_autocmd({ "User" }, {
   callback = function(args)
     vim.bo.bufhidden = "wipe"
     vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
+    vim.keymap.set({ "n", "i" }, "<C-c>", function()
+      return require("cmdbuf").cmdline_expr()
+    end, { buffer = true, expr = true })
     vim.keymap.set("n", "dd", [[<Cmd>lua require("cmdbuf").delete()<CR>]], { buffer = true })
     vim.keymap.set(
       "x",
