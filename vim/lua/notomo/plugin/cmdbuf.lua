@@ -26,11 +26,6 @@ vim.keymap.set(
   [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/input"})<CR>]]
 )
 vim.keymap.set("n", "<Space>qe", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/env"})<CR>]])
-vim.keymap.set(
-  "c",
-  "<C-q>",
-  [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {line = vim.fn.getcmdline(), column = vim.fn.getcmdpos()})<CR><C-c>]]
-)
 
 local group = vim.api.nvim_create_augroup("cmdbuf_setting", {})
 vim.api.nvim_create_autocmd({ "User" }, {
@@ -39,9 +34,21 @@ vim.api.nvim_create_autocmd({ "User" }, {
   callback = function(args)
     vim.bo.bufhidden = "wipe"
     vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
-    vim.keymap.set({ "n", "i" }, "<C-c>", function()
+
+    local typ = vim.api.nvim_buf_get_name(args.buf):match("cmdbuf://(.+)-buffer")
+    vim.keymap.set("c", "<C-q>", function()
+      require("cmdbuf").split_open(vim.o.cmdwinheight, {
+        type = typ,
+        line = vim.fn.getcmdline(),
+        column = vim.fn.getcmdpos(),
+      })
+      vim.api.nvim_feedkeys(vim.keycode("<C-c>"), "n", true)
+    end)
+
+    vim.keymap.set({ "n", "i" }, "<C-q>", function()
       return require("cmdbuf").cmdline_expr()
     end, { buffer = true, expr = true })
+
     vim.keymap.set("n", "dd", [[<Cmd>lua require("cmdbuf").delete()<CR>]], { buffer = true })
     vim.keymap.set(
       "x",
