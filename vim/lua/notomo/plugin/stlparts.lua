@@ -182,22 +182,24 @@ local set_tabline = function()
       _ = TruncateLeft(component),
     })
   end
+
+  local alter = function(ctx)
+    local bufnr = vim.api.nvim_win_call(ctx.window_id, function()
+      return fn.bufnr("#")
+    end)
+    if bufnr == -1 then
+      return ctx
+    end
+
+    local window_id = fn.bufwinid(bufnr)
+    if window_id == -1 then
+      return ctx
+    end
+
+    return ctx:with_window(window_id)
+  end
   local TruncateAlter = function(component)
-    return ContextBuilder(function(ctx)
-      local bufnr = vim.api.nvim_win_call(ctx.window_id, function()
-        return fn.bufnr("#")
-      end)
-      if bufnr == -1 then
-        return ctx
-      end
-
-      local window_id = fn.bufwinid(bufnr)
-      if window_id == -1 then
-        return ctx
-      end
-
-      return ctx:with_window(window_id)
-    end, Truncate(component))
+    return ContextBuilder(alter, Truncate(component))
   end
 
   local TabLabel = function(ctx)
@@ -217,6 +219,62 @@ local set_tabline = function()
     }),
     " ",
   }
+
+  local current_buffer_diagnostic = function(window_id)
+    local is_float = require("misclib.window").is_floating(window_id)
+    local bufnr = is_float
+        and vim.api.nvim_win_call(window_id, function()
+          local b = fn.bufnr("#")
+          return b ~= -1 and b or nil
+        end)
+      or vim.api.nvim_win_get_buf(window_id)
+
+    local severity = vim.diagnostic.severity
+
+    local counts = vim.iter(vim.diagnostic.get(bufnr)):fold({
+      [severity.ERROR] = 0,
+      [severity.WARN] = 0,
+      [severity.INFO] = 0,
+      [severity.HINT] = 0,
+    }, function(acc, d)
+      acc[d.severity] = acc[d.severity] + 1
+      return acc
+    end)
+
+    return vim
+      .iter({
+        {
+          str = "ERROR",
+          count = counts[severity.ERROR],
+          hl_group = "DiagnosticError",
+        },
+        {
+          str = "WARN",
+          count = counts[severity.WARN],
+          hl_group = "DiagnosticWarn",
+        },
+        {
+          str = "INFO",
+          count = counts[severity.INFO],
+          hl_group = "DiagnosticInfo",
+        },
+        {
+          str = "HINT",
+          count = counts[severity.HINT],
+          hl_group = "DiagnosticHint",
+        },
+      })
+      :filter(function(x)
+        return x.count > 0
+      end)
+      :map(function(x)
+        return {
+          Highlight(x.hl_group, x.str),
+          (":%d"):format(x.count),
+        }
+      end)
+      :totable()
+  end
 
   stlparts.set(
     "tabline",
@@ -248,10 +306,26 @@ local set_tabline = function()
           table.insert(components, Highlight("TablineSel", " + "))
         end
 
+        local diagnostic = current_buffer_diagnostic(current_window_id)
+        if #diagnostic > 0 then
+          vim.list_extend(
+            components,
+            { Highlight("Comment", " [ "), join_by(diagnostic, " "), Highlight("Comment", " ] ") }
+          )
+        end
+
         return components
       end)
     )
   )
+
+  local group = vim.api.nvim_create_augroup("notomo_tabline_diagnostic", {})
+  vim.api.nvim_create_autocmd("DiagnosticChanged", {
+    group = group,
+    callback = function()
+      vim.cmd.redrawtabline()
+    end,
+  })
 
   vim.opt.tabline = [[%!v:lua.require("stlparts").build("tabline")]]
 end
