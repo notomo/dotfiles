@@ -125,7 +125,7 @@ function M.setup(opts)
   opts = vim.tbl_deep_extend("force", default, opts or {})
 
   vim.keymap.set("n", "<Leader>fs", function()
-    vim.diagnostic.hide()
+    vim.diagnostic.reset()
     vim.cmd.LspRestart()
   end, { silent = true, buffer = true })
 
