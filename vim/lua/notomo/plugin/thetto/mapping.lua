@@ -169,6 +169,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
     vim.keymap.set("i", "<Tab>", function()
       local item = require("thetto").get()[1]
+      if not item then
+        return
+      end
 
       vim.api.nvim_set_current_line(item.value .. " ")
 
