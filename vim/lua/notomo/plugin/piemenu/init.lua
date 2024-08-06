@@ -78,7 +78,7 @@ piemenu.register("lsp", {
     {
       text = "👉 definition",
       action = function()
-        vim.lsp.buf.definition()
+        require("notomo.lsp.mapping").go_to_definition()
       end,
     },
     {
@@ -90,13 +90,19 @@ piemenu.register("lsp", {
     {
       text = "🔎 impl",
       action = function()
-        vim.lsp.buf.implementation()
+        require("thetto.util.source").start_by_name(
+          "vim/lsp/implementation",
+          { consumer_opts = { ui = { insert = false } } }
+        )
       end,
     },
     {
       text = "📚 references",
       action = function()
-        vim.lsp.buf.references()
+        require("thetto.util.source").start_by_name(
+          "vim/lsp/references",
+          { consumer_opts = { ui = { insert = false } } }
+        )
       end,
     },
     {
