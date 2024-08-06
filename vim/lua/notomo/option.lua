@@ -72,6 +72,7 @@ opt.clipboard = "unnamed,unnamedplus"
 opt.showmode = false
 opt.nrformats:append("unsigned")
 opt.shortmess:append("I")
+opt.shortmess:append("c")
 opt.shortmess:remove("S")
 opt.diffopt:append("vertical")
 opt.diffopt:append("iwhite")
