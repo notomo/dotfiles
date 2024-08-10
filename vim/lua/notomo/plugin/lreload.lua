@@ -1,4 +1,13 @@
-local hooks = {
+local pre_hooks = {
+  thetto = function()
+    vim.api.nvim_exec_autocmds("User", {
+      pattern = "ThettoStoreSaveTrigger",
+      modeline = false,
+    })
+  end,
+}
+
+local post_hooks = {
   optpack = function()
     package.loaded["notomo.plugin._list"] = nil
     require("notomo.plugin._list")
@@ -37,7 +46,7 @@ local settings = vim
     local name = plugin.name:gsub([[%.nvim$]], "")
     return {
       name = name,
-      hook = function(args)
+      post_hook = function(args)
         if args then
           require("lreload").refresh("notomo.plugin." .. name)
         end
@@ -51,11 +60,14 @@ local settings = vim
 table.insert(settings, { name = "notomo" })
 table.insert(settings, {
   name = "notomo.color",
-  hook = hooks.ultramarine,
+  post_hook = post_hooks.ultramarine,
 })
 
 for _, setting in ipairs(settings) do
-  require("lreload").enable(setting.name, { post_hook = hooks[setting.name] or setting.hook })
+  require("lreload").enable(setting.name, {
+    pre_hook = pre_hooks[setting.name] or setting.pre_hook,
+    post_hook = post_hooks[setting.name] or setting.post_hook,
+  })
 end
 
 local names = vim
