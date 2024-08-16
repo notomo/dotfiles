@@ -28,6 +28,8 @@ local config = {
 
   set_environment_variables = {},
 
+  audible_bell = "Disabled",
+
   disable_default_key_bindings = true,
   keys = {
     { key = "Tab", mods = "CTRL", action = act.SendKey({ key = "Tab", mods = "CTRL" }) },
