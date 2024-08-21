@@ -92,10 +92,10 @@ setup_ls(lspconfig.lua_ls, {
           "pending",
           "newproxy",
         },
-        disable = {
-          "param-type-mismatch", -- HACK: vim.fn.getline("."):sub()
-          "undefined-field", -- HACK: str:sub()
-        },
+        disable = {},
+      },
+      runtime = {
+        version = "LuaJIT",
       },
       completion = { callSnippet = "Disable", keywordSnippet = "Disable" },
       semantic = { enable = false },
