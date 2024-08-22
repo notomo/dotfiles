@@ -176,6 +176,7 @@ function M.diagnostic()
         return
       end
       if has_diagnostic then
+        io.stderr:write("found diagnostic\n")
         vim.cmd([[message | cquit!]])
       else
         vim.cmd([[message | quitall!]])
@@ -184,7 +185,9 @@ function M.diagnostic()
   })
 
   local base_path = vim.uv.cwd()
-  local iter = vim.fs.dir(vim.uv.cwd(), {
+  assert(base_path, "should not be nil")
+
+  local iter = vim.fs.dir(base_path, {
     depth = 100,
   })
   vim.iter(iter):each(function(path, typ)

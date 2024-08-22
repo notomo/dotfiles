@@ -101,7 +101,15 @@ setup_ls(lspconfig.lua_ls, {
       semantic = { enable = false },
       hint = { enable = true },
       telemetry = { enable = false },
-      workspace = { checkThirdParty = false },
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+          "${3rd}/luv/library",
+          "${3rd}/busted/library",
+          "${3rd}/luaassert/library",
+        },
+      },
     },
   },
 })

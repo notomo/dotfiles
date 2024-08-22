@@ -1,4 +1,4 @@
-local path = vim.fs.joinpath(vim.fn.stdpath("data"), "notomo_runtimetable")
+local path = vim.fs.joinpath(tostring(vim.fn.stdpath("data")), "notomo_runtimetable")
 vim.opt.runtimepath:prepend(path)
 vim.opt.runtimepath:append(vim.fs.joinpath(path, "after"))
 

@@ -7,7 +7,7 @@ function M.remove_indent(str)
       local x = line:gsub("^%s+", "")
       return x
     end)
-    :join()
+    :join("")
 end
 
 function M._get_near_function_node(bufnr)
