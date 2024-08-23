@@ -114,6 +114,10 @@ function M.set_term_title(prompt_pattern)
 
   local row = vim.fn.search(prompt_pattern, "nbcW")
   local prompt_line = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1]
+  if not prompt_line then
+    return
+  end
+
   local prompt = vim.fn.matchstr(prompt_line, prompt_pattern)
   local cmd = prompt_line:sub(vim.fn.strlen(prompt))
   cmd = vim.trim(vim.fn.substitute(cmd, "/", [[\]], "g"))
