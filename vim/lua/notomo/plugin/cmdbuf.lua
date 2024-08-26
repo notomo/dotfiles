@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
     vim.bo.bufhidden = "wipe"
     vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
 
-    local typ = vim.api.nvim_buf_get_name(args.buf):match("cmdbuf://(.+)-buffer")
+    local typ = require("cmdbuf").get_context().type
     vim.keymap.set("c", "<C-q>", function()
       require("cmdbuf").split_open(vim.o.cmdwinheight, {
         type = typ,
