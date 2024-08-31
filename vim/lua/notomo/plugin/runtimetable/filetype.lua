@@ -228,6 +228,24 @@ runtime.after.ftplugin["lua.lua"] = function()
       })
     end, { buffer = true })
 
+    vim.keymap.set("n", "[test]D", function()
+      local test = require("gettest").nodes({
+        scope = "smallest_ancestor",
+        target = { row = vim.fn.line(".") },
+      })[1]
+      test = test or { children = {} }
+      require("cmdhndlr").test({
+        filter = test.full_name,
+        is_leaf = #test.children == 0,
+        env = {
+          VUSTED_DISABLE_EXIT = 1,
+          VUSTED_DISABLE_CLEANUP = 1,
+          VUSTED_ARGS = "-u NONE -i NONE",
+        },
+        layout = { type = "tab" },
+      })
+    end)
+
     vim.keymap.set("n", "sgj", function()
       require("thetto.util.source").go_to_next("test")
     end, { buffer = true })
