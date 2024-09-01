@@ -16,7 +16,7 @@ local safe_start = function(args)
   if ok then
     return
   end
-  ---@diagnostic disable-next-line: need-check-nil
+  ---@diagnostic disable-next-line: need-check-nil, undefined-field
   if not result:find([=[^%[reacher%]]=]) then
     error(result)
   end

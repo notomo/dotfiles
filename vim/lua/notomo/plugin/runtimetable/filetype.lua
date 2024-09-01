@@ -46,7 +46,9 @@ runtime.after.ftplugin["diff.lua"] = function()
 end
 
 runtime.after.ftplugin["dune.lua"] = function()
+  ---@diagnostic disable-next-line: undefined-field
   vim.opt_local.iskeyword:remove(".")
+  ---@diagnostic disable-next-line: undefined-field
   vim.opt_local.iskeyword:remove("/")
 end
 
@@ -287,7 +289,9 @@ runtime.after.ftplugin["query.lua"] = function()
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
   -- vim.opt_local.iskeyword:remove("@-@")
+  ---@diagnostic disable-next-line: undefined-field
   vim.opt_local.iskeyword:remove("?")
+  ---@diagnostic disable-next-line: undefined-field
   vim.opt_local.iskeyword:remove(":")
 end
 
@@ -512,6 +516,7 @@ runtime.after.ftplugin["vim.lua"] = function()
   vim.opt_local.foldmethod = "marker"
   vim.b.match_words =
     [[\<if\>:\<elseif\>:\<else\>:\<endif\>,\<for\>:\<endfor\>,\<while\>:\<endwhile\>,\<try\>:\<catch\>:\<finally\>:\<endtry\>,\<func\(tion\)\?\>:\<endfunc\(tion\)\?\>,\<augroup [^E]\w*\>:\<augroup END\>]]
+  ---@diagnostic disable-next-line: undefined-field
   vim.opt_local.iskeyword:remove("#")
 
   vim.keymap.set("n", "[exec]s", [[<Cmd>source %<CR>]], { buffer = true })
@@ -601,6 +606,7 @@ runtime.after.ftplugin["css.lua"] = function()
 end
 
 runtime.after.ftplugin["zig.lua"] = function()
+  ---@diagnostic disable-next-line: undefined-field
   vim.opt_local.iskeyword:remove("@-@")
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
@@ -609,6 +615,7 @@ end
 runtime.after.ftplugin["astro.lua"] = function()
   vim.b.match_words =
     [[<!--:-->,<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/!][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>]]
+  ---@diagnostic disable-next-line: undefined-field
   vim.opt_local.iskeyword:remove("-")
   vim.schedule(function()
     vim.opt_local.indentkeys = ""
