@@ -111,6 +111,7 @@ function M.plugin_shared_dirs()
       return {
         vim.fs.joinpath(dir, "spec/.shared"),
         vim.fs.joinpath(dir, "spec/.shared/packages/pack/testpack/start/assertlib.nvim"),
+        vim.fs.joinpath(dir, "spec/.shared/packages/pack/testpack/start/requireall.nvim"),
       }
     end)
     :flatten()
