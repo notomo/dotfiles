@@ -111,15 +111,16 @@ end
 function M.current_branch()
   vim.b.notomo_git_branch = nil
   vim.cmd.redrawstatus()
-  return M.branch_component()
+
+  local head_file_path = M._head_file_path()
+  if not head_file_path then
+    return ""
+  end
+  return M._current_branch(head_file_path)
 end
 
 function M._current_branch(head_file_path)
-  local head = head_file_path or M._head_file_path()
-  if not head then
-    return ""
-  end
-  local f = io.open(head)
+  local f = io.open(head_file_path)
   if not f then
     return ""
   end
