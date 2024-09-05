@@ -130,4 +130,52 @@ function M.find_root_ancestor(base_node, typ, include_base)
   end
 end
 
+function M.lua_parameters(row)
+  local query = vim.treesitter.query.parse(
+    "lua",
+    [[
+(function_declaration
+  name: (_)
+  parameters: (_) @parameters
+)
+]]
+  )
+
+  local bufnr = vim.api.nvim_get_current_buf()
+  local parser = vim.treesitter.get_parser(bufnr, "lua")
+  local trees = parser:parse()
+  local root = trees[1]:root()
+
+  local match = vim
+    .iter(query:iter_matches(root, bufnr, 0, row))
+    :map(function(_, match)
+      return match
+    end)
+    :last()
+
+  return vim
+    .iter(match)
+    :map(function(nodes)
+      return nodes
+    end)
+    :flatten()
+    :map(function(node)
+      return vim
+        .iter(node:iter_children())
+        :filter(function(child)
+          return child:type() == "identifier"
+        end)
+        :map(function(child)
+          local text = vim.treesitter.get_node_text(child, bufnr)
+          if text == "self" then
+            return nil
+          end
+          return text
+        end)
+        :totable()
+    end)
+    :flatten()
+    :totable()
+end
+
 return M
