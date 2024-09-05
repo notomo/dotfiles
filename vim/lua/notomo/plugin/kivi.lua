@@ -101,6 +101,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "df", execute("delete"), { buffer = true })
     vim.keymap.set("n", "xf", execute("cut"), { buffer = true })
     vim.keymap.set("n", "yf", execute("copy"), { buffer = true })
+    vim.keymap.set("n", "yx", execute("clear_clipboard"), { buffer = true })
     vim.keymap.set("n", "p", execute("paste"), { buffer = true })
     vim.keymap.set("n", "i", execute("create"), { buffer = true })
   end,
