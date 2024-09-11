@@ -184,6 +184,17 @@ runtime.after.ftplugin["json.lua"] = function()
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
 
+  vim.keymap.set({ "n" }, "<Space>of", function()
+    if vim.wo.foldmethod == "indent" then
+      vim.opt_local.foldenable = false
+      vim.opt_local.foldmethod = "manual"
+      return
+    end
+
+    vim.opt_local.foldenable = true
+    vim.opt_local.foldmethod = "indent"
+  end, { buffer = true })
+
   if require("cmdhndlr").get("format_runner/json/prettier").working_dir_marker() then
     vim.b.cmdhndlr = { format_runner = "json/prettier" }
   end
