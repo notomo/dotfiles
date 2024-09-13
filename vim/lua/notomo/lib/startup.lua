@@ -115,6 +115,9 @@ function M.plugin_shared_dirs()
       }
     end)
     :flatten()
+    :filter(function(path)
+      return vim.fn.isdirectory(path) == 1
+    end)
     :totable()
 
   io.stdout:write(table.concat(shared_dirs, "\n"))
