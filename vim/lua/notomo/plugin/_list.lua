@@ -586,7 +586,7 @@ mypack.add("notomo/tracebundler.nvim", {
 local nvim_dap = optpack.add("mfussenegger/nvim-dap", {
   load_on = {
     modules = { "dap" },
-    filetypes = { "go" },
+    filetypes = { "go", "lua" },
   },
   hooks = {
     post_add = function()

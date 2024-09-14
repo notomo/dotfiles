@@ -252,6 +252,26 @@ runtime.after.ftplugin["lua.lua"] = function()
       })
     end, { buffer = true })
 
+    vim.keymap.set("n", "[test]d", function()
+      local test = require("gettest").nodes({
+        scope = "smallest_ancestor",
+        target = { row = vim.fn.line(".") },
+      })[1]
+      if not test then
+        require("misclib.message").warn("not found test")
+        return nil
+      end
+
+      require("dap").run({
+        name = "Debug vusted",
+        type = "local-lua",
+        cwd = vim.fs.root(0, ".git"),
+        request = "launch",
+        program = { command = "vusted" },
+        args = { "${file}" },
+      })
+    end, { buffer = true })
+
     vim.keymap.set("n", "[test]D", function()
       local test = require("gettest").nodes({
         scope = "smallest_ancestor",
@@ -268,7 +288,7 @@ runtime.after.ftplugin["lua.lua"] = function()
         },
         layout = { type = "tab" },
       })
-    end)
+    end, { buffer = true })
 
     vim.keymap.set("n", "sgj", function()
       require("thetto.util.source").go_to_next("test")

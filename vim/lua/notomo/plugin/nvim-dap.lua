@@ -29,6 +29,25 @@ dap.adapters.go = {
   },
 }
 
+dap.adapters["local-lua"] = {
+  type = "executable",
+  command = "node",
+  args = {
+    vim.fn.expand("~/app/local-lua-debugger-vscode/extension/debugAdapter.js"),
+  },
+  enrich_config = function(config, on_config)
+    ---@diagnostic disable-next-line: undefined-field
+    if not config.extensionPath then
+      local c = vim.deepcopy(config)
+      ---@diagnostic disable-next-line: inject-field
+      c.extensionPath = vim.fn.expand("~/app/local-lua-debugger-vscode")
+      on_config(c)
+      return
+    end
+    on_config(config)
+  end,
+}
+
 require("nvim-dap-virtual-text").setup({
   commented = true,
   virt_text_pos = "eol",
