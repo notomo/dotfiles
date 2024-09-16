@@ -81,6 +81,8 @@ setup_ls(lspconfig.lua_ls, {
         enable = true,
         globals = {
           "vim",
+          "require",
+          "unpack",
           "it",
           "describe",
           "before_each",
@@ -130,7 +132,7 @@ require("typescript-tools").setup({
     end
     return require("lspconfig.util").root_pattern("tsconfig.json")(fname)
       or require("lspconfig.util").root_pattern("package.json", "jsconfig.json", ".git")(fname)
-      or vim.loop.cwd()
+      or vim.uv.cwd()
   end,
   single_file_support = false,
   settings = {

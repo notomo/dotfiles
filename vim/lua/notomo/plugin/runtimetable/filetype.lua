@@ -265,7 +265,7 @@ runtime.after.ftplugin["lua.lua"] = function()
       require("dap").run({
         name = "Debug vusted",
         type = "local-lua",
-        cwd = vim.fs.root(0, ".git"),
+        cwd = vim.fs.root(0, ".git") or vim.uv.cwd(),
         request = "launch",
         program = { command = "vusted" },
         args = { "${file}" },

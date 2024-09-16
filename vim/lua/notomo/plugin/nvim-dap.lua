@@ -29,18 +29,19 @@ dap.adapters.go = {
   },
 }
 
+local lldebugger_path = vim.fn.expand("~/app/local-lua-debugger-vscode")
 dap.adapters["local-lua"] = {
   type = "executable",
   command = "node",
   args = {
-    vim.fn.expand("~/app/local-lua-debugger-vscode/extension/debugAdapter.js"),
+    vim.fs.joinpath(lldebugger_path, "extension/debugAdapter.js"),
   },
   enrich_config = function(config, on_config)
     ---@diagnostic disable-next-line: undefined-field
     if not config.extensionPath then
       local c = vim.deepcopy(config)
       ---@diagnostic disable-next-line: inject-field
-      c.extensionPath = vim.fn.expand("~/app/local-lua-debugger-vscode")
+      c.extensionPath = lldebugger_path
       on_config(c)
       return
     end

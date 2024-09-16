@@ -16,7 +16,7 @@ return {
     },
     filetypes = { "autohotkey" },
     root_dir = function(fname)
-      return require("lspconfig.util").find_git_ancestor(fname) or vim.loop.cwd()
+      return require("lspconfig.util").find_git_ancestor(fname) or vim.uv.cwd()
     end,
   },
 }
