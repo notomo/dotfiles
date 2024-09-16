@@ -191,21 +191,17 @@ function M.diagnostic()
   local base_path = vim.uv.cwd()
   assert(base_path, "should not be nil")
 
-  local iter = vim.fs.dir(base_path, {
-    depth = 100,
-  })
-  vim.iter(iter):each(function(path, typ)
-    if typ and typ ~= "file" then
-      return
-    end
-    if not vim.endswith(path, ".lua") then
-      return
-    end
-
-    local full_path = vim.fs.joinpath(base_path, path)
-    local bufnr = vim.fn.bufadd(full_path)
-    vim.fn.bufload(bufnr)
-  end)
+  local o = vim.system({ "git", "ls-files" }, { text = true }):wait()
+  vim
+    .iter(vim.gsplit(o.stdout, "\n", { plain = true }))
+    :filter(function(path)
+      return vim.endswith(path, ".lua")
+    end)
+    :each(function(path)
+      local full_path = vim.fs.joinpath(base_path, path)
+      local bufnr = vim.fn.bufadd(full_path)
+      vim.fn.bufload(bufnr)
+    end)
 
   vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_publishDiagnostics] = function(_, result)
     has_diagnostic = true
