@@ -168,11 +168,33 @@ function M.update_runtimetable()
 end
 
 function M.diagnostic()
+  local ok, result = pcall(M._diagnostic)
+  if not ok then
+    io.stderr:write(result)
+    vim.cmd([[message | cquit!]])
+  end
+end
+
+function M._diagnostic()
+  local base_path = vim.uv.cwd()
+  assert(base_path, "should not be nil")
+  io.stderr:write(base_path .. "\n")
+
+  local timer = vim.uv.new_timer()
+  assert(timer)
+  local on_timeout = vim.schedule_wrap(function()
+    io.stderr:write("timeout\n")
+    vim.cmd([[message | quitall!]])
+  end)
+
   local has_diagnostic = false
+
   vim.api.nvim_create_autocmd({ "LspProgress" }, {
     group = vim.api.nvim_create_augroup("notomo_diagnostic_progress", {}),
     pattern = { "*" },
     callback = function(args)
+      timer:stop()
+      timer:start(10 * 1000, 0, on_timeout)
       if args.data.params.value.kind ~= "end" then
         return
       end
@@ -188,9 +210,6 @@ function M.diagnostic()
     end,
   })
 
-  local base_path = vim.uv.cwd()
-  assert(base_path, "should not be nil")
-
   local o = vim.system({ "git", "ls-files" }, { text = true }):wait()
   vim
     .iter(vim.gsplit(o.stdout, "\n", { plain = true }))
@@ -204,8 +223,11 @@ function M.diagnostic()
     end)
 
   vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_publishDiagnostics] = function(_, result)
-    has_diagnostic = true
     local path = vim.uri_to_fname(result.uri)
+    if path:match("spec/%.shared") then
+      return
+    end
+    has_diagnostic = true
     vim
       .iter(result.diagnostics)
       :map(function(x)

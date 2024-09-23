@@ -85,3 +85,6 @@ _PUSH:
 
 diagnostic:
 	${NVIM} --headless +'lua require("notomo.lib.startup").diagnostic()'
+
+diagnostic_all:
+	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} ${NVIM} --headless +'lua require("notomo.lib.startup").diagnostic()' {}
