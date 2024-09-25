@@ -10,15 +10,18 @@ local escape = function(s)
   return s
 end
 
-local alter_path = function()
-  local path = api.nvim_buf_get_name(fn.bufnr("#"))
+local alter_path = function(ctx)
+  local bufnr = vim.api.nvim_win_call(ctx.window_id, function()
+    return fn.bufnr("#")
+  end)
+  if bufnr == -1 then
+    return ""
+  end
+  local path = api.nvim_buf_get_name(bufnr)
   return fn.fnamemodify(path, ":~")
 end
 
 local get_bufnr = function(ctx)
-  if ctx.window_id == -1 then
-    vim.print(ctx)
-  end
   return vim.api.nvim_win_get_buf(ctx.window_id)
 end
 local get_filetype = function(ctx)
