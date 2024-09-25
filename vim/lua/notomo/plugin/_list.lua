@@ -719,22 +719,16 @@ optpack.add("previm/previm", {
   },
 })
 
-local nvim_ts_context_commentstring = optpack.add("JoosepAlviste/nvim-ts-context-commentstring") -- for tsx
-optpack.add("numToStr/Comment.nvim", {
-  depends = { nvim_ts_context_commentstring.name },
-  load_on = { events = { "FileType" } },
+optpack.add("folke/ts-comments.nvim", {
+  load_on = {
+    keymaps = function(vim)
+      vim.keymap.set("n", "<Space>c", "gcc", { remap = true })
+      vim.keymap.set("x", "<Space>c", "gc", { remap = true })
+    end,
+  },
   hooks = {
     post_load = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("Comment").setup({
-        mappings = {
-          basic = false,
-          extra = false,
-        },
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-      })
-      vim.keymap.set("n", "<Space>c", "<Plug>(comment_toggle_linewise)_")
-      vim.keymap.set("x", "<Space>c", "<Plug>(comment_toggle_linewise_visual)")
+      require("ts-comments").setup()
     end,
   },
 })
