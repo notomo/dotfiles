@@ -390,6 +390,9 @@ end)
 
 register_source("file/bookmark", function()
   return {
+    modify_pipeline = require("thetto.util.pipeline").append({
+      require("thetto.util.sorter").field_by_name("kind_name", true),
+    }),
     opts = {
       default_paths = {
         vim.fn.expand("$DOTFILES/vim/rc/local/local.vim"),
