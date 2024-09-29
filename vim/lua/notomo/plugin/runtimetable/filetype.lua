@@ -197,6 +197,8 @@ runtime.after.ftplugin["json.lua"] = function()
 
   if require("cmdhndlr").get("format_runner/json/prettier").working_dir_marker() then
     vim.b.cmdhndlr = { format_runner = "json/prettier" }
+  elseif require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
+    vim.b.cmdhndlr = { format_runner = "javascript/biome" }
   end
 end
 
@@ -467,6 +469,10 @@ runtime.after.ftplugin["typescript.lua"] = function()
   else
     vim.b.cmdhndlr = { normal_runner = "typescript/tsx" }
   end
+
+  if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
+    vim.b.cmdhndlr = { format_runner = "javascript/biome" }
+  end
 end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
@@ -544,6 +550,10 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.keymap.set("n", "[finder]o", function()
     require("thetto.util.source").start_by_name("aerial")
   end, { buffer = true })
+
+  if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
+    vim.b.cmdhndlr = { format_runner = "javascript/biome" }
+  end
 end
 
 runtime.after.queries.tsx["textobjects.scm"] = [=[
@@ -664,6 +674,10 @@ runtime.after.ftplugin["astro.lua"] = function()
   end)
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
+
+  if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
+    vim.b.cmdhndlr = { format_runner = "javascript/biome" }
+  end
 end
 
 require("notomo.plugin.runtimetable").save(runtime)

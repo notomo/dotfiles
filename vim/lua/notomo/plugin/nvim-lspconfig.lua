@@ -118,6 +118,10 @@ setup_ls(lspconfig.lua_ls, {
 setup_ls(lspconfig.pylsp, {}, { "unix" })
 setup_ls(lspconfig.clangd)
 setup_ls(lspconfig.eslint, {}, { "unix" })
+setup_ls(lspconfig.biome, {
+  cmd = { "npx", "biome", "lsp-proxy" },
+}, { "unix" })
+setup_ls(lspconfig.jsonls, {}, { "unix" })
 
 local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
 
