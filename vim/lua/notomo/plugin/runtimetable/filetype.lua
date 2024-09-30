@@ -476,6 +476,8 @@ runtime.after.ftplugin["typescript.lua"] = function()
 end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
+  vim.treesitter.language.register("tsx", "typescriptreact")
+
   vim.opt_local.modeline = false
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.tabstop = 2
