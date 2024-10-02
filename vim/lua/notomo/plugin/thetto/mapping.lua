@@ -580,9 +580,11 @@ vim.keymap.set("n", "[finder]gd", thetto_starter("git/diff"))
 vim.keymap.set("n", "[finder]gr", thetto_starter("git/diff", { opts = { expr = "%:p" } }))
 vim.keymap.set("n", "[git]xl", thetto_starter("git/stash"))
 vim.keymap.set("n", "[git]xs", function()
-  require("thetto").start(require("thetto.util.source").by_name("git/stash"), {
-    consumer_factory = require("thetto.util.consumer").immediate({ action_name = "create" }),
-  })
+  local git_root, err = require("thetto.util.git").root()
+  if err then
+    return require("misclib.message").warn(err)
+  end
+  require("thetto.util.git").create_stash(git_root)
 end)
 
 vim.keymap.set("n", "[finder]ga", function()
