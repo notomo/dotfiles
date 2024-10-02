@@ -391,7 +391,10 @@ end)
 register_source("file/bookmark", function()
   return {
     modify_pipeline = require("thetto.util.pipeline").append({
-      require("thetto.util.sorter").field_by_name("kind_name", true),
+      require("thetto.util.sorter").field_by_merged({
+        require("thetto.util.sorter").field_by_name("kind_name", true),
+        require("thetto.util.sorter").field_length_by_name("value"),
+      }),
     }),
     opts = {
       default_paths = {
