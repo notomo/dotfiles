@@ -408,6 +408,12 @@ vim.keymap.set("n", "[finder]T", function()
     end),
   }))
 end)
+vim.keymap.set("n", "[finder]M", function()
+  require("thetto.util.source").start_by_name("vim/modified_buffer", {}, {
+    consumer_factory = require("thetto.util.consumer").immediate({ action_name = "tab_drop" }),
+  })
+end)
+
 vim.keymap.set("n", "[exec]cv", thetto_starter("vim/execute", { opts = { cmd = "version" } }))
 
 vim.keymap.set("n", "<Space>ur", function()
