@@ -416,6 +416,7 @@ runtime.after.ftplugin["sql.lua"] = function()
   vim.b.match_words = [[\<select\>:\<from\>:\<join\>:\<where\>]]
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
+  vim.opt_local.expandtab = true
 end
 
 runtime.after.ftplugin["terraform.lua"] = function()
