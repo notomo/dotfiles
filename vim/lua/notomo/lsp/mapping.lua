@@ -67,7 +67,7 @@ local go_to = function(method, params)
           kind_name = "file",
         })
       else
-        util.jump_to_location(result[1], client.offset_encoding, false)
+        util.show_document(result[1], client.offset_encoding, { reuse_win = false, focus = true })
       end
     end)
   )
