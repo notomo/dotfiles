@@ -344,7 +344,7 @@ snippet status
 	coroutine.status(${0:co})
 
 snippet validate
-	vim.validate({${1:name} = {$1, "${1:string}"}})
+	vim.validate("${1:name}", $1, "${1:string}")
 
 snippet _validate
     ${1:name} = {$1, "${1:string}"}
