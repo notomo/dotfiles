@@ -486,28 +486,15 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
 
-  local methods = {
-    vim.lsp.protocol.Methods.textDocument_definition,
-    vim.lsp.protocol.Methods.textDocument_hover,
-  }
   require("lsp-handler-intercept").on_request(function() end, {
     bufnr = 0,
     client_names = { "tsserver" },
-    methods = methods,
-    predicate = function()
-      local base_node = vim.treesitter.get_node()
-      return require("notomo.lib.jsx").cursor_on_string(base_node)
-    end,
-  })
-  require("lsp-handler-intercept").on_request(function() end, {
-    bufnr = 0,
-    client_names = { "tailwindcss" },
     methods = {
-      vim.lsp.protocol.Methods.textDocument_hover,
+      vim.lsp.protocol.Methods.textDocument_definition,
     },
     predicate = function()
       local base_node = vim.treesitter.get_node()
-      return not require("notomo.lib.jsx").cursor_on_string(base_node)
+      return require("notomo.lib.jsx").cursor_on_string(base_node)
     end,
   })
 

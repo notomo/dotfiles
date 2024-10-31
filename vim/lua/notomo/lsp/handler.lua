@@ -61,10 +61,6 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_references] = function(..
   require("notomo.lsp.handler").references(...)
 end
 
-vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_hover] = function(...)
-  require("lsp-handler-intercept").wrap(vim.lsp.handlers.hover)(...)
-end
-
 vim.api.nvim_create_autocmd({ "LspProgress" }, {
   group = vim.api.nvim_create_augroup("notomo_lsp_progress", {}),
   pattern = { "end" },
@@ -116,7 +112,7 @@ end
 
 vim.ui.input = require("notomo.lib.input").open
 
-vim.lsp.set_log_level("error")
+vim.lsp.set_log_level(vim.log.levels.ERROR)
 vim.diagnostic.config({ severity_sort = true })
 
 return M
