@@ -3,74 +3,69 @@ local util = vim.lsp.util
 local M = {}
 
 local go_to = function(method, params)
-  vim.lsp.buf_request(
-    0,
-    method,
-    params,
-    require("lsp-handler-intercept").wrap(function(err, result, ctx)
-      if vim.tbl_contains({ "thetto", "thetto-inputter" }, vim.bo.filetype) then
-        return require("misclib.message").warn(
-          "already canceled: " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
-        )
-      end
-      if not result or vim.tbl_isempty(result) then
-        return require("misclib.message").warn(
-          "not found : " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
-        )
-      end
+  vim.lsp.buf_request(0, method, params, function(err, result, ctx)
+    if vim.tbl_contains({ "thetto", "thetto-inputter" }, vim.bo.filetype) then
+      return require("misclib.message").warn(
+        "already canceled: " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
+      )
+    end
+    if not result or vim.tbl_isempty(result) then
+      return require("misclib.message").warn(
+        "not found : " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
+      )
+    end
 
-      local client = vim.lsp.get_client_by_id(ctx.client_id)
-      if not client then
-        error(("not found client: %s"):format(ctx.client_id))
-      end
-      local handlers = client.handlers or {}
-      local handler = handlers[method]
-      if handler then
-        return handler(err, result, ctx)
-      end
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    if not client then
+      error(("not found client: %s"):format(ctx.client_id))
+    end
+    local handlers = client.handlers or {}
+    local handler = handlers[method]
+    if handler then
+      return handler(err, result, ctx)
+    end
 
-      if not vim.islist(result) then
-        result = { result }
-      end
+    if not vim.islist(result) then
+      result = { result }
+    end
 
-      local already = {}
-      local location_items = vim
-        .iter(vim.lsp.util.locations_to_items(result, client.offset_encoding))
-        :map(function(e)
-          local path_with_row = ("%s:%d"):format(e.filename, e.lnum)
-          if already[path_with_row] then
-            return nil
-          end
-          already[path_with_row] = true
-          return e
-        end)
-        :totable()
+    local already = {}
+    local location_items = vim
+      .iter(vim.lsp.util.locations_to_items(result, client.offset_encoding))
+      :map(function(e)
+        local path_with_row = ("%s:%d"):format(e.filename, e.lnum)
+        if already[path_with_row] then
+          return nil
+        end
+        already[path_with_row] = true
+        return e
+      end)
+      :totable()
 
-      if #location_items > 1 then
-        require("thetto").start({
-          collect = function(source_ctx)
-            return vim
-              .iter(location_items)
-              :map(function(e)
-                local relative_path = require("thetto.lib.path").to_relative(e.filename, source_ctx.cwd)
-                local value = ("%s:%s:%d"):format(relative_path, e.lnum, e.col)
-                return {
-                  value = value,
-                  path = e.filename,
-                  row = e.lnum,
-                }
-              end)
-              :totable()
-          end,
-          cwd = require("thetto.util.cwd").project(),
-          consumer_opts = { ui = { insert = false } },
-          kind_name = "file",
-        })
-      else
-        util.show_document(result[1], client.offset_encoding, { reuse_win = false, focus = true })
-      end
-    end)
-  )
+    if #location_items > 1 then
+      require("thetto").start({
+        collect = function(source_ctx)
+          return vim
+            .iter(location_items)
+            :map(function(e)
+              local relative_path = require("thetto.lib.path").to_relative(e.filename, source_ctx.cwd)
+              local value = ("%s:%s:%d"):format(relative_path, e.lnum, e.col)
+              return {
+                value = value,
+                path = e.filename,
+                row = e.lnum,
+              }
+            end)
+            :totable()
+        end,
+        cwd = require("thetto.util.cwd").project(),
+        consumer_opts = { ui = { insert = false } },
+        kind_name = "file",
+      })
+    else
+      util.show_document(result[1], client.offset_encoding, { reuse_win = false, focus = true })
+    end
+  end)
 end
 
 function M.go_to_definition()

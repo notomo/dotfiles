@@ -799,12 +799,6 @@ mypack.add("notomo/obhook.nvim", {
   },
 })
 
-mypack.add("notomo/lsp-handler-intercept.nvim", {
-  load_on = {
-    modules = { "lsp-handler-intercept" },
-  },
-})
-
 mypack.add("notomo/requireall.nvim", {
   load_on = {
     modules = { "requireall" },

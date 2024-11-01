@@ -486,18 +486,6 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
 
-  require("lsp-handler-intercept").on_request(function() end, {
-    bufnr = 0,
-    client_names = { "tsserver" },
-    methods = {
-      vim.lsp.protocol.Methods.textDocument_definition,
-    },
-    predicate = function()
-      local base_node = vim.treesitter.get_node()
-      return require("notomo.lib.jsx").cursor_on_string(base_node)
-    end,
-  })
-
   require("notomo.lib.treesitter").setup()
 
   vim.keymap.set("n", "<CR>", function()
