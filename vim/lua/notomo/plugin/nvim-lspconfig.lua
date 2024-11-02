@@ -118,14 +118,11 @@ setup_ls(lspconfig.lua_ls, {
 setup_ls(lspconfig.pylsp, {}, { "unix" })
 setup_ls(lspconfig.clangd)
 setup_ls(lspconfig.eslint, {}, { "unix" })
-setup_ls(lspconfig.biome, {
-  cmd = { "npx", "biome", "lsp-proxy" },
-}, { "unix" })
 setup_ls(lspconfig.jsonls, {}, { "unix" })
 
 local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
 
-require("typescript-tools").setup({
+setup_ls(lspconfig.vtsls, {
   root_dir = function(fname)
     if fname:find("deno:") then
       return nil
@@ -139,8 +136,8 @@ require("typescript-tools").setup({
       or vim.uv.cwd()
   end,
   single_file_support = false,
-  settings = {
-    tsserver_file_preferences = {
+  init_options = {
+    preferences = {
       includeInlayParameterNameHints = "all",
       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
       includeInlayFunctionParameterTypeHints = true,
@@ -151,7 +148,18 @@ require("typescript-tools").setup({
       importModuleSpecifierPreference = "non-relative",
     },
   },
-})
+  settings = {
+    typescript = {
+      updateImportsOnFileMove = "always",
+    },
+    javascript = {
+      updateImportsOnFileMove = "always",
+    },
+    vtsls = {
+      enableMoveToFileCodeAction = true,
+    },
+  },
+}, { "unix" })
 
 setup_ls(lspconfig.denols, {
   root_dir = require("lspconfig.util").root_pattern(unpack(deno_pattern)),
@@ -162,6 +170,10 @@ setup_ls(lspconfig.denols, {
     end
     config.initializationOptions["importMap"] = import_map
   end,
+}, { "unix" })
+
+setup_ls(lspconfig.biome, {
+  cmd = { "npx", "biome", "lsp-proxy" },
 }, { "unix" })
 
 setup_ls(lspconfig.cssls, {}, { "unix" })
