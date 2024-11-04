@@ -85,7 +85,6 @@ opt.expandtab = true
 opt.foldenable = false
 opt.foldtext = ""
 opt.fillchars = "fold: "
-opt.foldlevelstart = 4
 vim.cmd([[set wildcharm=<C-z>]])
 opt.undoreload = 0
 opt.updatecount = 0
