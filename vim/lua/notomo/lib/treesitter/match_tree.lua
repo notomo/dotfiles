@@ -13,12 +13,14 @@ function M.get(bufnr, query_name, scope_name)
   local language = vim.treesitter.language.get_lang(filetype)
   local query = vim.treesitter.query.get(language, query_name)
   if not query then
-    return ("query not found: language=%s query_name=%s"):format(language, query_name)
+    local err = ("query not found: language=%s query_name=%s"):format(language, query_name)
+    error(err)
   end
 
-  local root, err = require("misclib.treesitter").get_first_tree_root(bufnr, language)
-  if err then
-    return err
+  local root = require("misclib.treesitter").get_first_tree_root(bufnr, language)
+  if type(root) == "string" then
+    local err = root
+    error(err)
   end
 
   local match_tree = new_match_tree(root)

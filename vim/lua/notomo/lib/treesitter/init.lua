@@ -10,11 +10,13 @@ function M.remove_indent(str)
     :join("")
 end
 
+--- @return TSNode
 function M._get_near_function_node(bufnr)
   local language = vim.bo[bufnr].filetype
 
-  local root, err = require("misclib.treesitter").get_first_tree_root(bufnr, language)
-  if err then
+  local root = require("misclib.treesitter").get_first_tree_root(bufnr, language)
+  if type(root) == "string" then
+    local err = root
     error(err)
   end
 
