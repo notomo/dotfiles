@@ -39,6 +39,7 @@ vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", { link = "Keyword" })
 
 vim.api.nvim_set_hl(0, "TermnaviLine", { bg = "#002b6f", bold = true })
 vim.api.nvim_set_hl(0, "WinbarNavic", { bg = pallet.blue, fg = "#d1d1f0", underline = true })
+vim.api.nvim_set_hl(0, "WinbarNavicSeparator", { bg = pallet.blue, fg = pallet.gray })
 
 vim.api.nvim_set_hl(0, "Operator", { link = "Conditional" })
 

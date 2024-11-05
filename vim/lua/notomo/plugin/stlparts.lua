@@ -339,15 +339,15 @@ local set_winbar = function()
   local Highlight = C.highlight
   local DefaultHighlight = C.default_highlight
 
-  local no_scope = Highlight("Comment", "(no scope)")
-  local separator = Highlight("Comment", " > ")
+  local no_scope = Highlight("WinbarNavic", "(no scope)")
+  local separator = Highlight("WinbarNavicSeparator", " > ")
 
   local ignore_types = {
     "Variable",
   }
   stlparts.set("navic", {
     DefaultHighlight("Normal", {
-      Highlight("Comment", " > "),
+      Highlight("WinbarNavicSeparator", " > "),
       Builder(function(ctx)
         local bufnr = get_bufnr(ctx)
         local navic = require("nvim-navic")
