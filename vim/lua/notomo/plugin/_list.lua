@@ -732,14 +732,17 @@ optpack.add("folke/ts-comments.nvim", {
 
 optpack.add("Wansmer/treesj", {
   depends = { nvim_treesitter.name },
-  load_on = { filetypes = { "go", "lua", "typescript", "typescriptreact", "astro" } },
+  load_on = {
+    keymaps = function(vim)
+      vim.keymap.set("n", "[exec]J", [[<Cmd>TSJSplit<CR>]])
+      vim.keymap.set("n", "[exec]K", [[<Cmd>TSJJoin<CR>]])
+    end,
+  },
   hooks = {
     post_load = function()
       require("treesj").setup({
         use_default_keymaps = false,
       })
-      vim.keymap.set("n", "[exec]J", [[<Cmd>TSJSplit<CR>]])
-      vim.keymap.set("n", "[exec]K", [[<Cmd>TSJJoin<CR>]])
     end,
   },
 })
