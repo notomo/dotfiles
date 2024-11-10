@@ -1,5 +1,8 @@
 vim.api.nvim_create_user_command("TSRename", function()
   local path = vim.api.nvim_buf_get_name(0)
+  if vim.bo.filetype == "kivi-file" then
+    path = vim.fn.getcwd()
+  end
   vim.ui.input({ prompt = "Rename", default = path }, function(input)
     if not input or path == input then
       require("misclib.message").info("Canceled.")
