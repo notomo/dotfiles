@@ -23,7 +23,8 @@ setopt hist_ignore_space
 export HISTSIZE=1000
 export SAVEHIST=100000
 export HISTFILE=${HOME}/.zsh_history
-setopt EXTENDED_HISTORY
+setopt extended_history
+setopt print_exit_value
 
 zinit light zsh-users/zsh-completions
 
