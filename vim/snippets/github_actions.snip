@@ -1,0 +1,29 @@
+snippet workflow
+	# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+	name: ${1:build}
+	on:
+		workflow_dispatch:
+	jobs:
+		$1:
+			name: $1
+			runs-on: ubuntu-latest
+			steps:
+				- uses: actions/checkout@v4
+				- run: echo hello
+
+snippet schedule
+	schedule:
+		- cron: "0 15 * * 0" # JST Monday 0:00
+
+snippet push
+	push:
+		branches:
+			- main
+		paths:
+			- '**.go'
+
+snippet add_env
+	echo '${1:NAME}=$${0:value}' >> $GITHUB_ENV
+
+snippet add_output
+	echo '${1:name}=$${0:value}' >> $GITHUB_OUTPUT
