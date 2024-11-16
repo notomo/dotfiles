@@ -15,7 +15,6 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
         })
       end)
       if not ok then
-        require("misclib.message").warn(err)
       end
       return "<CR>"
     end

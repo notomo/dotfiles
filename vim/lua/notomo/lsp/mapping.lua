@@ -5,12 +5,12 @@ local M = {}
 local go_to = function(method, params)
   vim.lsp.buf_request(0, method, params, function(err, result, ctx)
     if vim.tbl_contains({ "thetto", "thetto-inputter" }, vim.bo.filetype) then
-      return require("misclib.message").warn(
+      return require("notomo.lib.message").warn(
         "already canceled: " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
       )
     end
     if not result or vim.tbl_isempty(result) then
-      return require("misclib.message").warn(
+      return require("notomo.lib.message").warn(
         "not found : " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
       )
     end

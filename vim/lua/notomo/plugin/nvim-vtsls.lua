@@ -5,7 +5,6 @@ vim.api.nvim_create_user_command("TSRename", function()
   end
   vim.ui.input({ prompt = "Rename", default = path }, function(input)
     if not input or path == input then
-      require("misclib.message").info("Canceled.")
       return
     end
     vim.cmd.VtsRename({ args = { path, input } })

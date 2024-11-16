@@ -66,7 +66,7 @@ end
 function M.yank()
   local git_root = require("notomo.lib.git").root()
   if not git_root then
-    return require("misclib.message").warn("no .git")
+    return require("notomo.lib.message").warn("no .git")
   end
 
   local root_url = vim.fn.systemlist({

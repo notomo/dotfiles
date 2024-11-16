@@ -11,7 +11,7 @@ function M.pull(args)
   local remote = M._remote()
   local branch = M.current_branch()
   if branch == "" then
-    require("misclib.message").warn("no specific branch")
+    require("notomo.lib.message").warn("no specific branch")
     return ""
   end
   local cmd = { "pull", remote, branch, unpack(args or {}) }
@@ -22,7 +22,7 @@ function M.push()
   local remote = M._remote()
   local branch = M.current_branch()
   if branch == "" then
-    require("misclib.message").warn("no specific branch")
+    require("notomo.lib.message").warn("no specific branch")
     return ""
   end
   return (":<C-u>Git push %s %s"):format(remote, branch)

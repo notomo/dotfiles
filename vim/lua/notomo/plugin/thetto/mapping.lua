@@ -588,7 +588,7 @@ vim.keymap.set("n", "[git]xl", thetto_starter("git/stash"))
 vim.keymap.set("n", "[git]xs", function()
   local git_root, err = require("thetto.util.git").root()
   if err then
-    return require("misclib.message").warn(err)
+    return require("notomo.lib.message").warn(err)
   end
   require("thetto.util.git").create_stash(git_root)
 end)
@@ -672,7 +672,7 @@ end)
 vim.keymap.set("n", "[git]D", function()
   local git_root, err = require("thetto.util.git").root()
   if err then
-    return require("misclib.message").warn(err)
+    return require("notomo.lib.message").warn(err)
   end
   local bufnr = require("thetto.util.git").diff_buffer()
   require("thetto.util.git").diff(git_root, bufnr):next(function()
@@ -683,7 +683,7 @@ end)
 vim.keymap.set("n", "[git]dd", function()
   local git_root, err = require("thetto.util.git").root()
   if err then
-    return require("misclib.message").warn(err)
+    return require("notomo.lib.message").warn(err)
   end
   local path = vim.api.nvim_buf_get_name(0)
   local original_cursor = vim.api.nvim_win_get_cursor(0)

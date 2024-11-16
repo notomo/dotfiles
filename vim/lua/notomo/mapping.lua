@@ -655,7 +655,7 @@ vim.keymap.set("x", "<Leader>A", function()
     prompt = "Separator:",
   }, function(separator)
     if not separator then
-      require("misclib.message").info("Canceled.")
+      require("notomo.lib.message").info("Canceled.")
       return
     end
     require("notomo.lib.edit").align(separator)

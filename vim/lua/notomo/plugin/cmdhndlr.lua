@@ -159,7 +159,7 @@ vim.keymap.set("n", "[test]d", function()
     target = { row = vim.fn.line(".") },
   })[1]
   if not test then
-    require("misclib.message").warn("not found test")
+    require("notomo.lib.message").warn("not found test")
     return nil
   end
 
@@ -182,7 +182,7 @@ vim.keymap.set("x", "[test]d", function()
   })
   local test = tests[1]
   if not test then
-    require("misclib.message").warn("not found test")
+    require("notomo.lib.message").warn("not found test")
     return nil
   end
   require("misclib.visual_mode").leave()
@@ -201,7 +201,7 @@ end)
 vim.keymap.set("n", "<Leader>D", function()
   vim.ui.input({ prompt = "Debug args: " }, function(input)
     if not input then
-      require("misclib.message").info("Canceled debug.")
+      require("notomo.lib.message").info("Canceled debug.")
       return
     end
     local args = vim.split(input, "%s+", { trimempty = true })

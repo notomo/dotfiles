@@ -21,7 +21,7 @@ local regex = vim.regex([[\vjsx_.*]])
 function M.go_to_first_child()
   local parent = find_parent()
   if not parent then
-    require("misclib.message").warn("not found parent")
+    require("notomo.lib.message").warn("not found parent")
     return
   end
 
@@ -29,7 +29,7 @@ function M.go_to_first_child()
     return not field_name and regex:match_str(n:type())
   end)
   if not child then
-    require("misclib.message").warn("not found children")
+    require("notomo.lib.message").warn("not found children")
     return
   end
 
@@ -40,7 +40,7 @@ end
 function M.go_to_last_child()
   local parent = find_parent()
   if not parent then
-    require("misclib.message").warn("not found parent")
+    require("notomo.lib.message").warn("not found parent")
     return
   end
 
@@ -49,7 +49,7 @@ function M.go_to_last_child()
     return not field_name and regex:match_str(n:type())
   end)
   if not child then
-    require("misclib.message").warn("not found children")
+    require("notomo.lib.message").warn("not found children")
     return
   end
 
@@ -125,13 +125,13 @@ function M.change_tag()
   local node = vim.treesitter.get_node({})
   local jsx_node = require("notomo.lib.treesitter").find_ancestor(node, "jsx_element", true)
   if not jsx_node then
-    require("misclib.message").warn("not found jsx_element node in ancestor")
+    require("notomo.lib.message").warn("not found jsx_element node in ancestor")
     return
   end
 
   local open_tag = get_tag_name_node(jsx_node, "open_tag")
   if type(open_tag) == "string" then
-    require("misclib.message").warn(open_tag)
+    require("notomo.lib.message").warn(open_tag)
     return
   end
 
@@ -143,7 +143,7 @@ function M.change_tag()
     default = current_tag_name,
   }, function(input)
     if not input or input == "" or input == current_tag_name then
-      require("misclib.message").info("Canceled.")
+      require("notomo.lib.message").info("Canceled.")
       return
     end
 
@@ -155,7 +155,7 @@ function M.change_tag()
     -- NOTE: get node after updating buffer
     local close_tag = get_tag_name_node(jsx_node, "close_tag")
     if type(close_tag) == "string" then
-      require("misclib.message").warn(close_tag)
+      require("notomo.lib.message").warn(close_tag)
       return
     end
     do
@@ -169,13 +169,13 @@ function M.add_component_parameter()
   local node = vim.treesitter.get_node({})
   local param_node = require("notomo.lib.treesitter").find_ancestor(node, "required_parameter", true)
   if not param_node then
-    require("misclib.message").warn("not found required_parameter node in ancestor")
+    require("notomo.lib.message").warn("not found required_parameter node in ancestor")
     return
   end
 
   local pattern_node = param_node:field("pattern")[1]
   if not pattern_node then
-    require("misclib.message").warn("not found pattern node in ancestor")
+    require("notomo.lib.message").warn("not found pattern node in ancestor")
     return
   end
 
@@ -185,7 +185,7 @@ function M.add_component_parameter()
     prompt = "Add parameter",
   }, function(input)
     if not input or input == "" then
-      require("misclib.message").info("Canceled.")
+      require("notomo.lib.message").info("Canceled.")
       return
     end
 
@@ -197,7 +197,7 @@ function M.add_component_parameter()
 
     local type_node = param_node:field("type")[1]
     if not type_node then
-      require("misclib.message").warn("not found type node in ancestor")
+      require("notomo.lib.message").warn("not found type node in ancestor")
       return
     end
 

@@ -260,7 +260,7 @@ runtime.after.ftplugin["lua.lua"] = function()
         target = { row = vim.fn.line(".") },
       })[1]
       if not test then
-        require("misclib.message").warn("not found test")
+        require("notomo.lib.message").warn("not found test")
         return nil
       end
 
