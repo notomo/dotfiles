@@ -138,6 +138,9 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = vim.api.nvim_create_augroup("notomo_whitespace", {}),
   pattern = { "*" },
   callback = function(args)
+    if require("misclib.window").is_floating(0) then
+      return
+    end
     decorators[args.buf] = Decorator.new(ns, args.buf, true)
   end,
 })
