@@ -124,6 +124,14 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 })
 
 vim.keymap.set("n", "[test]f", [[<Cmd>lua require("cmdhndlr").test({layout = {type = "tab"}})<CR>]])
+vim.keymap.set("n", "[test]r", function()
+  require("cmdhndlr").test({
+    layout = { type = "tab" },
+    path_modifier = function(path)
+      return vim.fs.dirname(path)
+    end,
+  })
+end)
 vim.keymap.set("n", "[test]n", function()
   local test = require("gettest").nodes({
     scope = "smallest_ancestor",
