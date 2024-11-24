@@ -2,115 +2,143 @@ local util = vim.lsp.util
 
 local M = {}
 
-local go_to = function(method, params)
-  vim.lsp.buf_request(0, method, params, function(err, result, ctx)
-    if vim.tbl_contains({ "thetto", "thetto-inputter" }, vim.bo.filetype) then
-      return require("notomo.lib.message").warn(
-        "already canceled: " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
-      )
-    end
-    if not result or vim.tbl_isempty(result) then
-      return require("notomo.lib.message").warn(
-        "not found : " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
-      )
-    end
-
-    local client = vim.lsp.get_client_by_id(ctx.client_id)
-    if not client then
-      error(("not found client: %s"):format(ctx.client_id))
-    end
-    local handlers = client.handlers or {}
-    local handler = handlers[method]
-    if handler then
-      return handler(err, result, ctx)
-    end
-
-    if not vim.islist(result) then
-      result = { result }
-    end
-
-    local already = {}
-    local location_items = vim
-      .iter(vim.lsp.util.locations_to_items(result, client.offset_encoding))
-      :map(function(e)
-        local path_with_row = ("%s:%d"):format(e.filename, e.lnum)
-        if already[path_with_row] then
-          return nil
+local go_to = function(method)
+  local bufnr = vim.api.nvim_get_current_buf()
+  require("thetto.util.lsp").request({
+    bufnr = bufnr,
+    method = method,
+    clients = vim.lsp.get_clients({
+      bufnr = bufnr,
+      method = method,
+    }),
+    params = function(client)
+      return vim.lsp.util.make_position_params(0, client.offset_encoding)
+    end,
+    observer = {
+      next = function(result, ctx)
+        if vim.tbl_contains({ "thetto", "thetto-inputter" }, vim.bo.filetype) then
+          return require("notomo.lib.message").warn(
+            "already canceled: " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
+          )
         end
-        already[path_with_row] = true
-        return e
-      end)
-      :totable()
+        if not result or vim.tbl_isempty(result) then
+          return require("notomo.lib.message").warn(
+            "not found : " .. vim.inspect({ client_id = ctx.client_id }, { newline = "", indent = "" })
+          )
+        end
 
-    if #location_items > 1 then
-      require("thetto").start({
-        collect = function(source_ctx)
-          return vim
-            .iter(location_items)
-            :map(function(e)
-              local relative_path = require("thetto.lib.path").to_relative(e.filename, source_ctx.cwd)
-              local value = ("%s:%s:%d"):format(relative_path, e.lnum, e.col)
-              return {
-                value = value,
-                path = e.filename,
-                row = e.lnum,
-              }
-            end)
-            :totable()
-        end,
-        cwd = require("thetto.util.cwd").project(),
-        consumer_opts = { ui = { insert = false } },
-        kind_name = "file",
-      })
-    else
-      util.show_document(result[1], client.offset_encoding, { reuse_win = false, focus = true })
-    end
-  end)
+        local client = vim.lsp.get_client_by_id(ctx.client_id)
+        if not client then
+          error(("not found client: %s"):format(ctx.client_id))
+        end
+        local handlers = client.handlers or {}
+        local handler = handlers[method]
+        if handler then
+          return handler(nil, result, ctx)
+        end
+
+        if not vim.islist(result) then
+          result = { result }
+        end
+
+        local already = {}
+        local location_items = vim
+          .iter(vim.lsp.util.locations_to_items(result, client.offset_encoding))
+          :map(function(e)
+            local path_with_row = ("%s:%d"):format(e.filename, e.lnum)
+            if already[path_with_row] then
+              return nil
+            end
+            already[path_with_row] = true
+            return e
+          end)
+          :totable()
+
+        if #location_items > 1 then
+          require("thetto").start({
+            collect = function(source_ctx)
+              return vim
+                .iter(location_items)
+                :map(function(e)
+                  local relative_path = require("thetto.lib.path").to_relative(e.filename, source_ctx.cwd)
+                  local value = ("%s:%s:%d"):format(relative_path, e.lnum, e.col)
+                  return {
+                    value = value,
+                    path = e.filename,
+                    row = e.lnum,
+                  }
+                end)
+                :totable()
+            end,
+            cwd = require("thetto.util.cwd").project(),
+            consumer_opts = { ui = { insert = false } },
+            kind_name = "file",
+          })
+        else
+          util.show_document(result[1], client.offset_encoding, { reuse_win = false, focus = true })
+        end
+      end,
+      error = function(err)
+        vim.notify(err)
+      end,
+    },
+  })
 end
 
 function M.go_to_definition()
-  local params = util.make_position_params()
-  go_to(vim.lsp.protocol.Methods.textDocument_definition, params)
+  go_to(vim.lsp.protocol.Methods.textDocument_definition)
 end
 
 function M.go_to_type_definition()
-  local params = util.make_position_params()
-  go_to(vim.lsp.protocol.Methods.textDocument_typeDefinition, params)
+  go_to(vim.lsp.protocol.Methods.textDocument_typeDefinition)
 end
 
 function M.yank_function_arg_labels()
-  local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, vim.lsp.protocol.Methods.textDocument_signatureHelp, params, function(err, result)
-    if err then
-      error(err)
-    end
+  local bufnr = vim.api.nvim_get_current_buf()
+  local method = vim.lsp.protocol.Methods.textDocument_signatureHelp
+  require("thetto.util.lsp").request({
+    bufnr = bufnr,
+    method = method,
+    clients = vim.lsp.get_clients({
+      bufnr = bufnr,
+      method = method,
+    }),
+    params = function(client)
+      return vim.lsp.util.make_position_params(0, client.offset_encoding)
+    end,
+    observer = {
+      next = function(result)
+        local signatures = result.signatures
+        table.sort(signatures, function(a, b)
+          return #a.parameters > #b.parameters
+        end)
 
-    local signatures = result.signatures
-    table.sort(signatures, function(a, b)
-      return #a.parameters > #b.parameters
-    end)
+        local signature = result.signatures[1] or {}
+        local parameters = signature.parameters or {}
 
-    local signature = result.signatures[1] or {}
-    local parameters = signature.parameters or {}
+        local name_pattern = "[a-zA-Z_]+"
+        local labels = vim
+          .iter(parameters)
+          :map(function(param)
+            if type(param.label) == "string" then
+              return param.label:match(name_pattern)
+            end
+            local s = param.label[1] + 1
+            local e = param.label[2]
+            local label = signature.label:sub(s, e)
+            local name = label:match(name_pattern)
+            return name
+          end)
+          :totable()
 
-    local name_pattern = "[a-zA-Z_]+"
-    local labels = vim
-      .iter(parameters)
-      :map(function(param)
-        if type(param.label) == "string" then
-          return param.label:match(name_pattern)
-        end
-        local s = param.label[1] + 1
-        local e = param.label[2]
-        local label = signature.label:sub(s, e)
-        local name = label:match(name_pattern)
-        return name
-      end)
-      :totable()
-
-    local str = table.concat(labels, ", ")
-    require("notomo.lib.edit").yank(str)
-  end)
+        local str = table.concat(labels, ", ")
+        require("notomo.lib.edit").yank(str)
+      end,
+      error = function(err)
+        vim.notify(err)
+      end,
+    },
+  })
 end
 
 function M.setup(opts)
@@ -203,27 +231,36 @@ function M.setup(opts)
 end
 
 function M.yank_to_fill()
-  local params = vim.lsp.util.make_position_params()
-  return vim.lsp.buf_request(0, vim.lsp.protocol.Methods.textDocument_completion, params, function(err, result)
-    if err then
-      error(err)
-    end
-    if not result then
-      vim.notify("not found to filled")
-      return
-    end
-
-    local filled = vim
-      .iter(result.items)
-      :map(function(item)
-        if item.kind ~= 5 then
-          return nil
-        end
-        return ([[%s: "TODO",]]):format(item.label)
-      end)
-      :join("\n")
-    require("notomo.lib.edit").yank(filled)
-  end)
+  local bufnr = vim.api.nvim_get_current_buf()
+  local method = vim.lsp.protocol.Methods.textDocument_completion
+  require("thetto.util.lsp").request({
+    bufnr = bufnr,
+    method = method,
+    clients = vim.lsp.get_clients({
+      bufnr = bufnr,
+      method = method,
+    }),
+    params = function(client)
+      return vim.lsp.util.make_position_params(0, client.offset_encoding)
+    end,
+    observer = {
+      next = function(result)
+        local filled = vim
+          .iter(result.items)
+          :map(function(item)
+            if item.kind ~= 5 then
+              return nil
+            end
+            return ([[%s: "TODO",]]):format(item.label)
+          end)
+          :join("\n")
+        require("notomo.lib.edit").yank(filled)
+      end,
+      error = function(err)
+        vim.notify(err)
+      end,
+    },
+  })
 end
 
 return M
