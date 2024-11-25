@@ -1,0 +1,19 @@
+snippet query_bool
+	{
+		"query": {
+			"bool": {
+				"must": {
+					"term": {
+						"name": "test"
+					}
+				}
+			}
+		}
+	}
+
+snippet query_match_all
+	{
+		"query": {
+			"match_all": {}
+		}
+	}
