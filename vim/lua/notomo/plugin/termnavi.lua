@@ -15,6 +15,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
         })
       end)
       if not ok then
+        vim.notify(err, vim.log.levels.WARN)
       end
       return "<CR>"
     end

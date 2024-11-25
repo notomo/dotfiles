@@ -30,7 +30,7 @@ M.actions = {
 
     vim.ui.input({ prompt = "Search: " .. item.value }, function(input)
       if not input then
-        requiru("notomo.lib.message").info("Canceled.")
+        require("notomo.lib.message").info("Canceled.")
         return
       end
       local url = item.url_prefix .. input
