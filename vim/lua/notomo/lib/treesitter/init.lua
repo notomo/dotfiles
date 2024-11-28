@@ -144,7 +144,7 @@ function M.lua_parameters(row)
   )
 
   local bufnr = vim.api.nvim_get_current_buf()
-  local parser = vim.treesitter.get_parser(bufnr, "lua")
+  local parser = assert(vim.treesitter.get_parser(bufnr, "lua"), "no lua parser")
   local trees = parser:parse()
   local root = trees[1]:root()
 

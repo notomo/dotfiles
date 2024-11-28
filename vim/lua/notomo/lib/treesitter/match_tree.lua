@@ -10,7 +10,7 @@ end
 
 function M.get(bufnr, query_name, scope_name)
   local filetype = vim.bo[bufnr].filetype
-  local language = vim.treesitter.language.get_lang(filetype)
+  local language = vim.treesitter.language.get_lang(filetype) or ""
   local query = vim.treesitter.query.get(language, query_name)
   if not query then
     local err = ("query not found: language=%s query_name=%s"):format(language, query_name)
