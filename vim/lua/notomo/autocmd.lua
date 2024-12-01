@@ -91,6 +91,10 @@ if vim.fn.has("gui_running") == 1 then
     group = group,
     pattern = { "*" },
     callback = function()
+      if vim.fn.exists(":Guifont") == 0 then
+        return
+      end
+
       vim.cmd.Guifont({ args = { "MeiryoKe_Gothic:h14" }, bang = true })
       vim.cmd.GuiTabline("0")
       vim.cmd.GuiPopupmenu("0")
