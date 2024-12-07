@@ -240,7 +240,6 @@ optpack.add("hrsh7th/cmp-nvim-lsp", { load_on = { events = { "InsertEnter" }, mo
 optpack.add("hrsh7th/cmp-buffer", { load_on = { events = { "InsertEnter" } } })
 optpack.add("hrsh7th/cmp-path", { load_on = { events = { "InsertEnter" } } })
 mypack.add("notomo/cmp-neosnippet", { load_on = { events = { "InsertEnter" } } })
-optpack.add("ray-x/lsp_signature.nvim", { load_on = { modules = { "lsp_signature" }, events = { "InsertEnter" } } })
 
 local copilot_lua = optpack.add("zbirenbaum/copilot.lua", {
   enabled = enabled_copilot,
