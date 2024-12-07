@@ -58,6 +58,17 @@ function M.scratch(name, filetype)
   end
   vim.cmd.lcd(dir_path)
   local file_path = table.concat({ dir_path, name }, "/")
+
+  -- to open modified buffer
+  local bufnr = require("misclib.buffer").find(file_path)
+  if bufnr then
+    local window_id = vim.fn.win_findbuf(bufnr)[1]
+    if window_id then
+      vim.api.nvim_set_current_win(window_id)
+      return
+    end
+  end
+
   vim.cmd.drop({ mods = { tab = vim.fn.tabpagenr() }, args = { file_path } })
 end
 
