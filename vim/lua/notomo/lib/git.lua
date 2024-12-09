@@ -53,10 +53,6 @@ end
 local watchers = {}
 
 function M.branch_component()
-  if vim.b.gitsigns_head then
-    return vim.b.gitsigns_head
-  end
-
   if vim.b.notomo_git_branch then
     return vim.b.notomo_git_branch
   end
@@ -67,6 +63,7 @@ function M.branch_component()
       return
     end
     vim.b[bufnr].notomo_git_branch = nil
+    vim.cmd.redrawstatus()
   end
 
   local head_file_path = M._head_file_path()
