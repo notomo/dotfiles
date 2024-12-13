@@ -14,16 +14,22 @@ function M.run(cmd, raw_opts)
       if not data then
         return
       end
+      local messages = vim.split(vim.trim(data), "\n", { plain = true })
       vim.schedule(function()
-        notify(prefix .. vim.trim(data))
+        for _, message in ipairs(messages) do
+          notify(prefix .. message)
+        end
       end)
     end,
     stderr = function(_, data)
       if not data then
         return
       end
+      local messages = vim.split(vim.trim(data), "\n", { plain = true })
       vim.schedule(function()
-        notify(prefix .. vim.trim(data), vim.log.levels.WARN)
+        for _, message in ipairs(messages) do
+          notify(prefix .. message, vim.log.levels.WARN)
+        end
       end)
     end,
   }, function(o)
