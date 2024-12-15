@@ -3,6 +3,12 @@ vim.lsp.semantic_tokens.start = function() end
 
 local lspconfig = require("lspconfig")
 
+local root_pattern = function(names)
+  return function(path)
+    return vim.fs.root(path, names)
+  end
+end
+
 local setup_ls = function(ls, config, enable_features)
   enable_features = enable_features or { "linux" }
   local ok = #vim
@@ -127,12 +133,12 @@ setup_ls(lspconfig.vtsls, {
     if fname:find("deno:") then
       return nil
     end
-    local is_deno = require("lspconfig.util").root_pattern(unpack(deno_pattern))(fname)
+    local is_deno = root_pattern(deno_pattern)(fname)
     if is_deno then
       return nil
     end
-    return require("lspconfig.util").root_pattern("tsconfig.json")(fname)
-      or require("lspconfig.util").root_pattern("package.json", "jsconfig.json", ".git")(fname)
+    return root_pattern({ "tsconfig.json" })(fname)
+      or root_pattern({ "package.json", "jsconfig.json", ".git" })(fname)
       or vim.uv.cwd()
   end,
   single_file_support = false,
@@ -162,7 +168,7 @@ setup_ls(lspconfig.vtsls, {
 }, { "unix" })
 
 setup_ls(lspconfig.denols, {
-  root_dir = require("lspconfig.util").root_pattern(unpack(deno_pattern)),
+  root_dir = root_pattern(deno_pattern),
   before_init = function(config)
     local import_map = vim.fs.joinpath(config.rootPath, "import_map.json")
     if vim.fn.filereadable(import_map) ~= 1 then
@@ -182,7 +188,7 @@ setup_ls(lspconfig.flux_lsp, {}, { "unix" })
 setup_ls(lspconfig.autohotkey2, {}, { "win32" })
 setup_ls(lspconfig.graphql, {}, { "unix" })
 setup_ls(lspconfig.ocamllsp, {
-  root_dir = require("lspconfig.util").root_pattern("*.opam", ".git", "dune-project", ".opam-switch"),
+  root_dir = root_pattern({ "*.opam", ".git", "dune-project", ".opam-switch" }),
 })
 setup_ls(lspconfig.terraformls, {}, { "unix" })
 setup_ls(lspconfig.prismals, {}, { "unix" })
