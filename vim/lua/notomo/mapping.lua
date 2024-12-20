@@ -580,7 +580,7 @@ vim.keymap.set("n", "[term]g", function()
     project_path = vim.fn.fnamemodify(path, ":p:h:h")
   end
   vim.cmd.tabedit()
-  vim.fn.termopen(vim.opt.shell:get(), { cwd = project_path })
+  vim.fn.jobstart(vim.opt.shell:get(), { cwd = project_path, term = true })
   vim.cmd.lcd(project_path)
 end, { silent = true })
 vim.keymap.set(
