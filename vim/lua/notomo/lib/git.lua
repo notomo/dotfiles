@@ -76,6 +76,9 @@ function M.branch_component()
   vim.api.nvim_create_autocmd(events, {
     buffer = bufnr,
     callback = function()
+      local watcher = watchers[bufnr]
+      watcher:stop()
+      watcher:close()
       watchers[bufnr] = nil
       clear()
     end,
@@ -85,6 +88,7 @@ function M.branch_component()
   local old_watcher = watchers[bufnr]
   if old_watcher then
     old_watcher:stop()
+    old_watcher:close()
   end
 
   local watcher = vim.uv.new_fs_event()
@@ -96,6 +100,7 @@ function M.branch_component()
   watcher:start(head_file_path, {}, function()
     watchers[bufnr] = nil
     watcher:stop()
+    watcher:close()
     vim.schedule(function()
       clear()
     end)
