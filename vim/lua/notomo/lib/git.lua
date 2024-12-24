@@ -77,9 +77,11 @@ function M.branch_component()
     buffer = bufnr,
     callback = function()
       local watcher = watchers[bufnr]
-      watcher:stop()
-      watcher:close()
-      watchers[bufnr] = nil
+      if watcher then
+        watcher:stop()
+        watcher:close()
+        watchers[bufnr] = nil
+      end
       clear()
     end,
     once = true,
