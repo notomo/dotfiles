@@ -113,6 +113,9 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     require("cmdhndlr").format({
       hooks = {
         success = function()
+          if not vim.api.nvim_buf_is_valid(bufnr) then
+            return
+          end
           vim.api.nvim_buf_call(bufnr, function()
             return vim.cmd.update({ mods = { silent = true, noautocmd = true } })
           end)
