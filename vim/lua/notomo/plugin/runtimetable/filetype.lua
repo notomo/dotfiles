@@ -157,10 +157,10 @@ runtime.after.ftplugin["javascript.lua"] = function()
 
   local cmdhndlr = {}
   if vim.endswith(vim.fn.bufname(), ".mjs") then
-    cmdhndlr.normal_runner = "javascript/zx"
+    cmdhndlr.normal_runner = { name = "javascript/zx" }
   end
   if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
-    cmdhndlr.format_runner = "javascript/biome"
+    cmdhndlr.format_runner = { name = "javascript/biome" }
   end
   vim.b.cmdhndlr = cmdhndlr
 end
@@ -201,9 +201,9 @@ runtime.after.ftplugin["json.lua"] = function()
   end, { buffer = true })
 
   if require("cmdhndlr").get("format_runner/json/prettier").working_dir_marker() then
-    vim.b.cmdhndlr = { format_runner = "json/prettier" }
+    vim.b.cmdhndlr = { format_runner = { name = "json/prettier" } }
   elseif require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
-    vim.b.cmdhndlr = { format_runner = "javascript/biome" }
+    vim.b.cmdhndlr = { format_runner = { name = "javascript/biome" } }
   end
 end
 
@@ -375,9 +375,13 @@ runtime.after.ftplugin["ocaml.lua"] = function()
     vim.opt_local.indentkeys = ""
   end)
   local use_dune_top = vim.fs.find("dune-project", { upward = true, type = "file" })[1] ~= nil
-  vim.b.cmdhndlr_runner_opts = {
-    use_in_repl = true,
-    use_dune_top = use_dune_top,
+  vim.b.cmdhndlr = {
+    _ = {
+      runner_opts = {
+        use_in_repl = true,
+        use_dune_top = use_dune_top,
+      },
+    },
   }
 end
 
@@ -469,15 +473,15 @@ runtime.after.ftplugin["typescript.lua"] = function()
 
   if vim.fs.root(0, { "deno.json", "deno.jsonc" }) then
     vim.b.cmdhndlr = {
-      normal_runner = "typescript/deno",
-      test_runner = "typescript/deno",
+      normal_runner = { name = "typescript/deno" },
+      test_runner = { name = "typescript/deno" },
     }
   else
-    vim.b.cmdhndlr = { normal_runner = "typescript/tsx" }
+    vim.b.cmdhndlr = { normal_runner = { name = "typescript/tsx" } }
   end
 
   if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
-    vim.b.cmdhndlr = { format_runner = "javascript/biome" }
+    vim.b.cmdhndlr = { format_runner = { name = "javascript/biome" } }
   end
 end
 
@@ -535,7 +539,7 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   end, { buffer = true })
 
   if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
-    vim.b.cmdhndlr = { format_runner = "javascript/biome" }
+    vim.b.cmdhndlr = { format_runner = { name = "javascript/biome" } }
   end
 end
 
@@ -659,7 +663,7 @@ runtime.after.ftplugin["astro.lua"] = function()
   require("notomo.lib.treesitter").setup()
 
   if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
-    vim.b.cmdhndlr = { format_runner = "javascript/biome" }
+    vim.b.cmdhndlr = { format_runner = { name = "javascript/biome" } }
   end
 end
 
