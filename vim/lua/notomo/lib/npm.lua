@@ -1,8 +1,7 @@
 local M = {}
 
 function M.update(path)
-  path = vim.fn.fnamemodify(path, ":p")
-  local dir = vim.fn.fnamemodify(path, ":p:h")
+  local dir = vim.fs.dirname(path)
   vim.cmd.lcd(dir)
 
   local lines = vim.fn.systemlist({ "npm", "outdated" })

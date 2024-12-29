@@ -34,7 +34,7 @@ function M.fetch()
 end
 
 function M.apply()
-  local path = vim.fn.fnamemodify(vim.fn.bufname(), ":p")
+  local path = vim.api.nvim_buf_get_name(0)
   return (":<C-u>Git apply %s"):format(path)
 end
 
@@ -47,7 +47,7 @@ function M._remote()
 end
 
 function M.root()
-  return vim.fs.root(vim.fn.getcwd(), { ".git" })
+  return vim.fs.root(".", { ".git" })
 end
 
 local watchers = {}

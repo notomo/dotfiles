@@ -120,8 +120,8 @@ function M.set_term_title(prompt_pattern)
   prompt_pattern = prompt_pattern or "^\\$ "
 
   local path = vim.api.nvim_buf_get_name(0)
-  local shell = vim.split(vim.fn.fnamemodify(path, ":t"), ":", { plain = true })[1]
-  local term_path = ("%s/%s"):format(vim.fn.fnamemodify(path, ":h"), shell)
+  local shell = vim.split(vim.fs.basename(path), ":", { plain = true })[1]
+  local term_path = ("%s/%s"):format(vim.fs.dirname(path), shell)
 
   local row = vim.fn.search(prompt_pattern, "nbcW")
   local prompt_line = vim.api.nvim_buf_get_lines(0, row - 1, row, false)[1]

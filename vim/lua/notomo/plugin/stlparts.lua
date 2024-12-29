@@ -1,6 +1,7 @@
 local vim = vim
 local api = vim.api
 local fn = vim.fn
+local fs = vim.fs
 local stlparts = require("stlparts")
 local C = stlparts.component
 local join_by = require("misclib.collection.list").join_by
@@ -145,7 +146,7 @@ end
 
 local tab_label = function(tab_id, window_id)
   local bufnr = api.nvim_win_get_buf(window_id)
-  local name = fn.fnamemodify(api.nvim_buf_get_name(bufnr), ":t")
+  local name = fs.basename(api.nvim_buf_get_name(bufnr))
   if name == "" then
     name = "[Scratch]"
   end
@@ -213,7 +214,7 @@ local set_tabline = function()
     SwitchByFiletype({
       ["kivi-file"] = TruncateLeft(function(ctx)
         local tab_number = api.nvim_tabpage_get_number(ctx.tab_id)
-        local name = fn.fnamemodify(fn.getcwd(ctx.window_id, tab_number), ":t") .. "/"
+        local name = fs.basename(fn.getcwd(ctx.window_id, tab_number)) .. "/"
         return escape(name)
       end),
       ["thetto"] = TruncateAlter(TabLabel),

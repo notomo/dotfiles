@@ -3,8 +3,7 @@ return {
     -- git clone --depth=1 -b server https://github.com/thqby/vscode-autohotkey2-lsp
     cmd = {
       "node",
-      vim.fn.fnamemodify(vim.fn.exepath("AutoHotkey64.exe"), ":h")
-        .. "\\vscode-autohotkey2-lsp\\server\\dist\\server.js",
+      vim.fs.dirname(vim.fn.exepath("AutoHotkey64.exe")) .. "\\vscode-autohotkey2-lsp\\server\\dist\\server.js",
       "--stdio",
     },
     cmd_env = {

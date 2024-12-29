@@ -292,13 +292,13 @@ vim.keymap.set(
   [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.strftime('%Y-%m-%d %T'))<CR>]],
   { silent = true }
 )
-vim.keymap.set(
-  "n",
-  "[yank]n",
-  [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.fnamemodify(vim.fn.expand('%'), ':r'))<CR>]],
-  { silent = true }
-)
-vim.keymap.set("n", "[yank]N", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.expand('%'))<CR>]], { silent = true })
+vim.keymap.set("n", "[yank]n", function()
+  require("notomo.lib.edit").yank(vim.fn.fnamemodify(vim.fn.expand("%"), ":r"))
+end, { silent = true })
+vim.keymap.set("n", "[yank]N", function()
+  local path = vim.api.nvim_buf_get_name(0)
+  require("notomo.lib.edit").yank(vim.fs.basename(path))
+end, { silent = true })
 vim.keymap.set("n", "[yank]p", function()
   local home = vim.fs.normalize("$HOME")
   local path = vim.fs.normalize(vim.fn.expand("%:p"))
@@ -326,12 +326,9 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "[yank]l", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.line('.'))<CR>]], { silent = true })
 vim.keymap.set("n", "[yank]c", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.col('.'))<CR>]], { silent = true })
-vim.keymap.set(
-  "n",
-  "[yank]w",
-  [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"))<CR>]],
-  { silent = true }
-)
+vim.keymap.set("n", "[yank]w", function()
+  require("notomo.lib.edit").yank(vim.fs.basename(vim.fn.getcwd()))
+end, { silent = true })
 
 vim.keymap.set({ "x", "o" }, "io", "ip")
 vim.keymap.set({ "x", "o" }, "ao", "ap")
@@ -573,15 +570,10 @@ vim.keymap.set("n", "[term]v", [[<Cmd>vsplit|terminal<CR>]], { silent = true })
 vim.keymap.set("n", "[term]h", [[<Cmd>split|terminal<CR>]], { silent = true })
 vim.keymap.set("n", "[term]t", [[<Cmd>tabedit|terminal<CR>]], { silent = true })
 vim.keymap.set("n", "[term]g", function()
-  local path = vim.fn.finddir(".git", ",;")
-  local project_path = "."
-  if path ~= "" then
-    ---@diagnostic disable-next-line: cast-local-type
-    project_path = vim.fn.fnamemodify(path, ":p:h:h")
-  end
+  local git_root = require("notomo.lib.git").root() or "."
   vim.cmd.tabedit()
-  vim.fn.jobstart(vim.opt.shell:get(), { cwd = project_path, term = true })
-  vim.cmd.lcd(project_path)
+  vim.fn.jobstart(vim.opt.shell:get(), { cwd = git_root, term = true })
+  vim.cmd.lcd(git_root)
 end, { silent = true })
 vim.keymap.set(
   "n",
