@@ -804,6 +804,12 @@ mypack.add("notomo/requireall.nvim", {
   },
 })
 
+mypack.add("notomo/redraw-inspect.nvim", {
+  load_on = {
+    modules = { "redraw-inspect" },
+  },
+})
+
 optpack.add("uga-rosa/ccc.nvim", {
   load_on = { modules = { "ccc" }, cmds = { "Ccc*" } },
 })
