@@ -219,7 +219,7 @@ mypack.add("notomo/wintablib.nvim", {
   hooks = { post_add = require_fn("notomo.plugin.wintablib") },
 })
 
-local enabled_copilot = vim.fn.has("mac") == 1
+local enabled_copilot = vim.g.notomo_enabled_copilot == true
 
 optpack.add("hrsh7th/nvim-cmp", {
   load_on = { modules = { "cmp" }, events = { "InsertEnter" } },
@@ -262,6 +262,71 @@ optpack.add("zbirenbaum/copilot-cmp", {
         },
       })
       vim.cmd.Copilot("enable")
+    end,
+  },
+})
+
+local plenary_nvim = optpack.add("nvim-lua/plenary.nvim")
+
+optpack.add("CopilotC-Nvim/CopilotChat.nvim", {
+  enabled = enabled_copilot,
+  depends = { copilot_lua.name, plenary_nvim.name },
+  load_on = {
+    cmds = { "CopilotChat*" },
+    modules = { "CopilotChat" },
+  },
+  hooks = {
+    post_load = function()
+      require("CopilotChat").setup({
+        highlight_selection = false,
+        highlight_headers = false,
+        insert_at_end = true,
+        mappings = {
+          complete = {
+            insert = "",
+          },
+          close = {
+            normal = "",
+            insert = "",
+          },
+          reset = {
+            normal = "",
+            insert = "",
+          },
+          submit_prompt = {
+            normal = "",
+            insert = "",
+          },
+          toggle_sticky = {
+            normal = "",
+          },
+          accept_diff = {
+            normal = "",
+            insert = "",
+          },
+          jump_to_diff = {
+            normal = "",
+          },
+          quickfix_diffs = {
+            normal = "",
+          },
+          yank_diff = {
+            normal = "",
+          },
+          show_diff = {
+            normal = "",
+          },
+          show_info = {
+            normal = "",
+          },
+          show_context = {
+            normal = "",
+          },
+          show_help = {
+            normal = "",
+          },
+        },
+      })
     end,
   },
 })

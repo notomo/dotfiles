@@ -185,3 +185,9 @@ aliaser.register_factory("format", function(aliases)
     vim.b.notomo_format_disabled = not disabled
   end)
 end)
+
+aliaser.register_factory("copilot", function(aliases)
+  aliases:set("chat", function()
+    vim.cmd.CopilotChatOpen()
+  end)
+end)

@@ -62,3 +62,5 @@ vim.g.notomo_thetto_ignore_pattenrs = {}
 vim.g.notomo_gh_project_url = "https://github.com/users/notomo/projects/1"
 vim.g.notomo_gh_project_item_query =
   [[.[] | select((.fieldValues.nodes|any(.field.name == "Iteration")) and .content.state == "OPEN")]]
+
+vim.g.notomo_enabled_copilot = false

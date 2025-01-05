@@ -252,7 +252,7 @@ function M.requireall()
   M._load_plugins():next(function()
     require("requireall").execute({
       module_filter = function(module_path)
-        local ignore = vim.iter({ "copilot" }):any(function(x)
+        local ignore = vim.iter({ "copilot", "CopilotChat" }):any(function(x)
           local found = module_path:find(x)
           return found ~= nil
         end)
