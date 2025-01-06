@@ -280,7 +280,7 @@ optpack.add("CopilotC-Nvim/CopilotChat.nvim", {
       require("CopilotChat").setup({
         highlight_selection = false,
         highlight_headers = false,
-        insert_at_end = true,
+        insert_at_end = false,
         mappings = {
           complete = {
             insert = "",
@@ -294,7 +294,7 @@ optpack.add("CopilotC-Nvim/CopilotChat.nvim", {
             insert = "",
           },
           submit_prompt = {
-            normal = "",
+            normal = "<CR>",
             insert = "",
           },
           toggle_sticky = {
