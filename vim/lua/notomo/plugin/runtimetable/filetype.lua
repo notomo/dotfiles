@@ -376,7 +376,7 @@ runtime.after.ftplugin["ocaml.lua"] = function()
   vim.schedule(function()
     vim.opt_local.indentkeys = ""
   end)
-  local use_dune_top = vim.fs.find("dune-project", { upward = true, type = "file" })[1] ~= nil
+  local use_dune_top = vim.fs.root(0, "dune-project") ~= nil
   vim.b.cmdhndlr = vim.tbl_deep_extend("force", vim.b.cmdhndlr or {}, {
     _ = {
       runner_opts = {

@@ -307,8 +307,7 @@ vim.keymap.set("n", "[yank]p", function()
   require("notomo.lib.edit").yank(path)
 end)
 vim.keymap.set("n", "[yank]g", function()
-  local git = vim.fs.find(".git", { upward = true, type = "directory" })[1]
-  local git_root = vim.fs.dirname(git)
+  local git_root = vim.fs.root(0, ".git")
   local path = vim.fs.normalize(vim.fn.expand("%:p"))
   ---@diagnostic disable-next-line: cast-local-type
   path = vim.fn.substitute(path, "^" .. git_root, ".", "")
