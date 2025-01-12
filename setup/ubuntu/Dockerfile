@@ -3,7 +3,7 @@
 FROM ubuntu:24.04
 
 ARG USERNAME=notomo
-ARG PASSWORD=notomo
+ARG PASS=notomo
 RUN <<EOF
   sed -i -e "s/http:\/\/archive\.ubuntu\.com/http:\/\/jp\.archive\.ubuntu\.com/g" /etc/apt/sources.list
   apt update
@@ -11,7 +11,7 @@ RUN <<EOF
   apt install sudo
   groupadd -g 1000 $USERNAME
   useradd --create-home --shell /bin/bash -u 1000 -g 1000 -G sudo $USERNAME
-  echo $USERNAME:$PASSWORD | chpasswd
+  echo $USERNAME:$PASS | chpasswd
   echo "[user]\ndefault=$USERNAME" > /etc/wsl.conf
   DEBIAN_FRONTEND=noninteractive apt install tzdata
   apt install locales

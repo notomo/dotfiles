@@ -16,8 +16,12 @@ $(DEP_DIR)/thetto.nvim: $(DEP_DIR)
 	mkdir -p ~/.local/share/nvim/thetto.nvim
 	cp -rf ~/.local/share/nvim/thetto.nvim $@
 
+BUILD_EXTRA_ARG:=
 build: $(DEP_DIR)/ansible $(DEP_DIR)/.ssh $(DEP_DIR)/thetto.nvim
-	DOCKER_BUILDKIT=1 docker build --progress=plain -f ./Dockerfile -t ${IMAGE_NAME} ${DEP_DIR}
+	DOCKER_BUILDKIT=1 docker build --progress=plain -f ./Dockerfile -t ${IMAGE_NAME} ${DEP_DIR} ${BUILD_EXTRA_ARG}
+
+check: BUILD_EXTRA_ARG=--check
+check: build
 
 start:
 	docker run --rm -it ${IMAGE_NAME} bash
