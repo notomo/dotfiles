@@ -2,7 +2,7 @@
   homebrew:
     name:
       - luarocks
-      - lua@5.1
+      - luajit
       - lua-language-server
       - stylua
 
