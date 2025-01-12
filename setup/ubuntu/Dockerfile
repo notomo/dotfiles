@@ -8,14 +8,15 @@ RUN <<EOF
   sed -i -e "s/http:\/\/archive\.ubuntu\.com/http:\/\/jp\.archive\.ubuntu\.com/g" /etc/apt/sources.list
   apt update
   apt upgrade
-  apt install sudo
-  groupadd -g 1000 $USERNAME
-  useradd --create-home --shell /bin/bash -u 1000 -g 1000 -G sudo $USERNAME
+  apt install -y sudo
+  groupadd -g 1001 $USERNAME
+  useradd --create-home --shell /bin/bash -u 1001 -g 1001 -G sudo $USERNAME
   echo $USERNAME:$PASS | chpasswd
   echo "[user]\ndefault=$USERNAME" > /etc/wsl.conf
   DEBIAN_FRONTEND=noninteractive apt install tzdata
-  apt install locales
+  apt install -y locales
   locale-gen en_US.UTF-8
+  apt install -y unminimize
   yes | unminimize
   apt install -y man
 EOF

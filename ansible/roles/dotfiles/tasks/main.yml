@@ -1,4 +1,3 @@
-
 - name: set variables
   set_fact:
     link_dict:
@@ -11,7 +10,7 @@
     path: "{{ home_dir }}/{{ item }}"
     state: directory
   with_items:
-    - .config
+    - .config/nvim
 
 - name: mkdir for karabiner
   file:

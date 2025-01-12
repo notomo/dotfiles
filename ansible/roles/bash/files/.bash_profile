@@ -26,6 +26,7 @@ fi
 
 if [ -d "/home/linuxbrew" ]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 fi
 
 export GOPATH=$HOME/go
