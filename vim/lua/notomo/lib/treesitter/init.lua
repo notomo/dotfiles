@@ -69,9 +69,6 @@ function M.get_current_function_range()
 end
 
 function M.start()
-  if require("misclib.window").is_floating(0) then
-    return
-  end
   vim.treesitter.start()
 end
 
