@@ -1,3 +1,6 @@
+- name: tap universal-ctags
+  homebrew_tap:
+    name: universal-ctags/universal-ctags
 
 - name: install ctags with homebrew
   homebrew:
