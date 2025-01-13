@@ -85,12 +85,16 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
   config.window_decorations = "RESIZE" -- disable title bar
 
-  local wsl = { "wsl.exe", "--distribution", "notomo_dev", "--exec", "/bin/bash", "-l" }
+  local wsl = { "wsl.exe", "--distribution", "notomo_dev2", "--exec", "/bin/bash", "-l" }
   config.default_prog = wsl
 
   table.insert(config.launch_menu, {
     label = "WSL",
     args = wsl,
+  })
+  table.insert(config.launch_menu, {
+    label = "WSL(sub)",
+    args = { "wsl.exe", "--distribution", "notomo_dev", "--exec", "/bin/bash", "-l" },
   })
   table.insert(config.launch_menu, {
     label = "Powershell",
