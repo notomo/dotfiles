@@ -192,3 +192,17 @@ aliaser.register_factory("copilot", function(aliases)
     vim.cmd.CopilotChatOpen()
   end)
 end)
+
+aliaser.register_factory("lua", function(aliases)
+  aliases:set("install_debugger", function()
+    local lldebugger_path = vim.fn.expand("~/app/local-lua-debugger-vscode")
+    if vim.uv.fs_stat(lldebugger_path) then
+      return
+    end
+    require("notomo.lib.job")
+      .run({ "git", "clone", "https://github.com/tomblind/local-lua-debugger-vscode", lldebugger_path })
+      :wait()
+    require("notomo.lib.job").run({ "npm", "install" }, { cwd = lldebugger_path }):wait()
+    require("notomo.lib.job").run({ "npm", "run", "build" }, { cwd = lldebugger_path }):wait()
+  end)
+end)
