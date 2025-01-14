@@ -347,8 +347,9 @@ runtime.after.ftplugin["query.lua"] = function()
 end
 
 runtime.after.ftplugin["markdown.lua"] = function()
-  vim.opt_local.tabstop = 4
-  vim.opt_local.softtabstop = 4
+  vim.opt_local.shiftwidth = 0
+  vim.opt_local.tabstop = 2
+  vim.opt_local.softtabstop = 2
   require("notomo.lib.treesitter").setup()
 
   vim.keymap.set("n", "[finder]o", function()
@@ -357,8 +358,9 @@ runtime.after.ftplugin["markdown.lua"] = function()
 end
 
 runtime.after.ftplugin["mdx.lua"] = function()
-  vim.opt_local.tabstop = 4
-  vim.opt_local.softtabstop = 4
+  vim.opt_local.shiftwidth = 0
+  vim.opt_local.tabstop = 2
+  vim.opt_local.softtabstop = 2
   vim.treesitter.language.register("markdown", "mdx")
   require("notomo.lib.treesitter").setup()
 end
