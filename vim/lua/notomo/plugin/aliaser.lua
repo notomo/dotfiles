@@ -138,6 +138,10 @@ aliaser.register_factory("vim", function(aliases)
   aliases:set("inspect", function()
     vim.cmd.Inspect({ bang = true })
   end)
+
+  aliases:set("reset_runtimetable", function()
+    require("notomo.plugin.runtimetable").save_all()
+  end)
 end)
 
 aliaser.register_factory("other", function(aliases)

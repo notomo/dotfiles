@@ -18,6 +18,7 @@ return {
     require("runtimetable").save(runtime, { as_binary = vim.fn.has("win32") ~= 1 })
   end,
   save_all = function()
+    vim.fs.rm(path, { force = true, recursive = true })
     vim
       .iter(vim.api.nvim_get_runtime_file("lua/notomo/plugin/runtimetable/*.lua", true))
       :filter(function(file_path)
