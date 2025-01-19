@@ -1,4 +1,4 @@
-local group = vim.api.nvim_create_augroup("notomo_setting", {})
+local group = vim.api.nvim_create_augroup("notomo.autocmd", {})
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   group = group,

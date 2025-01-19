@@ -1,5 +1,5 @@
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-  group = vim.api.nvim_create_augroup("termnavi_setting", {}),
+  group = vim.api.nvim_create_augroup("notomo.termnavi", {}),
   pattern = { "*" },
   callback = function()
     local enter = function()

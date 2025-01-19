@@ -24,7 +24,7 @@ vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_publishDiagnostics] = fun
 end
 
 vim.api.nvim_create_autocmd({ "LspProgress" }, {
-  group = vim.api.nvim_create_augroup("notomo_lsp_progress", {}),
+  group = vim.api.nvim_create_augroup("notomo.lsp.progress", {}),
   pattern = { "end" },
   callback = function(args)
     local done_clients = vim.g.notomo_done_clients or {}

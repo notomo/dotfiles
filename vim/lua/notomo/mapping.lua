@@ -546,7 +546,7 @@ vim.keymap.set("t", "<C-j>", [[<Nop>]])
 vim.keymap.set("t", "<C-p>", [[<Up>]])
 vim.keymap.set("t", "<C-n>", [[<Down>]])
 vim.api.nvim_create_autocmd({ "TermOpen" }, {
-  group = vim.api.nvim_create_augroup("notomo_terminal_mapping", {}),
+  group = vim.api.nvim_create_augroup("notomo.terminal.mapping", {}),
   pattern = { "*" },
   callback = function()
     local path = vim.api.nvim_buf_get_name(0)

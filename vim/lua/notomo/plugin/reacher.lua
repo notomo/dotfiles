@@ -37,7 +37,7 @@ vim.keymap.set({ "n", "x" }, "gl", function()
 end)
 vim.keymap.set("n", "g<CR>", [[<Cmd>lua require("reacher").again({input = vim.fn.histget("/")})<CR><ESC>]])
 
-local group = vim.api.nvim_create_augroup("reacher_setting", {})
+local group = vim.api.nvim_create_augroup("notomo.reacher", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
   pattern = { "reacher" },

@@ -12,7 +12,7 @@ local create_cancel = function(on_confirm, close)
   end
 end
 
-local group = vim.api.nvim_create_augroup("notomo_ui_input", {})
+local group = vim.api.nvim_create_augroup("notomo.input", {})
 local create_confirm = function(on_confirm, close)
   return function()
     vim.cmd.stopinsert()

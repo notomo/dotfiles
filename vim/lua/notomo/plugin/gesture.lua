@@ -94,7 +94,7 @@ gesture.register({
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = vim.api.nvim_create_augroup("gesture_setting", {}),
+  group = vim.api.nvim_create_augroup("notomo.gesture", {}),
   pattern = { "gesture" },
   callback = function()
     vim.o.mousemoveevent = true

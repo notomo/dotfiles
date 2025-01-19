@@ -1,4 +1,4 @@
-local group = vim.api.nvim_create_augroup("kivi_setting", {})
+local group = vim.api.nvim_create_augroup("notomo.kivi", {})
 
 local execute = function(action_name, opts)
   return function()
@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       require("kivi").execute("child")
       -- workaround?
       vim.api.nvim_create_autocmd({ "ModeChanged" }, {
-        group = vim.api.nvim_create_augroup("kivi_mouse", {}),
+        group = vim.api.nvim_create_augroup("notomo.kivi.mouse", {}),
         pattern = { "*:v" },
         callback = function()
           local ESC = vim.keycode("<ESC>")
@@ -83,7 +83,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  group = "kivi_setting",
+  group = group,
   pattern = { "kivi-file" },
   callback = function()
     local navigate = function(path, source_setup_opts)
@@ -108,7 +108,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufRead" }, {
-  group = "kivi_setting",
+  group = group,
   pattern = { "*/kivi-renamer", "*/kivi-creator" },
   callback = function()
     vim.keymap.set("n", "q", [[<Cmd>quit!<CR>]], { buffer = true, nowait = true })

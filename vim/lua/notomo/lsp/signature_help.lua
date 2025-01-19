@@ -23,7 +23,7 @@ local show = require("misclib.debounce").wrap(
 
 function M.setup()
   local bufnr = vim.api.nvim_get_current_buf()
-  local group = vim.api.nvim_create_augroup("notomo_lsp_signature_help_" .. bufnr, {})
+  local group = vim.api.nvim_create_augroup("notomo.lsp.signature_help_" .. bufnr, {})
   vim.api.nvim_create_autocmd({ "InsertEnter", "TextChangedI" }, {
     buffer = bufnr,
     group = group,

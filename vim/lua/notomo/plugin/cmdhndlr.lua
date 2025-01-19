@@ -71,7 +71,7 @@ vim.keymap.set("n", "[exec]bL", [[<Cmd>lua require("cmdhndlr").build()<CR>]])
 
 vim.keymap.set("n", "<Leader>F", [[<Cmd>lua require("cmdhndlr").format()<CR>]])
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  group = vim.api.nvim_create_augroup("cmdhndlr_format_setting", {}),
+  group = vim.api.nvim_create_augroup("notomo.cmdhndlr.format", {}),
   pattern = { "*" },
   callback = function(args)
     local bufnr = args.buf
@@ -228,7 +228,7 @@ vim.keymap.set("n", "<Leader>D", function()
   end)
 end)
 
-local group = vim.api.nvim_create_augroup("cmdhndlr_setting", {})
+local group = vim.api.nvim_create_augroup("notomo.cmdhndlr", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
   pattern = { "cmdhndlr" },

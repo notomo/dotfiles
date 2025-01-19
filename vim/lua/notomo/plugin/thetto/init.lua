@@ -599,7 +599,7 @@ if not vim.tbl_contains(vim.v.argv, "--headless") then
   thetto.setup_store("file/mru")
 end
 vim.api.nvim_create_autocmd({ "User" }, {
-  group = vim.api.nvim_create_augroup("notomo_thetto_to_kivi", {}),
+  group = vim.api.nvim_create_augroup("notomo.thetto.kivi", {}),
   pattern = { "ThettoDirectoryOpened" },
   callback = function(args)
     local layout

@@ -135,7 +135,7 @@ local Decorator = require("misclib.decorator")
 local decorators = {}
 local ns = vim.api.nvim_create_namespace("notomo_whitespace")
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  group = vim.api.nvim_create_augroup("notomo_whitespace", {}),
+  group = vim.api.nvim_create_augroup("notomo.color.whitespace", {}),
   pattern = { "*" },
   callback = function(args)
     if require("misclib.window").is_floating(0) then
@@ -173,7 +173,7 @@ local hl_groups = require("ultramarine").highlight_groups
 vim.api.nvim_set_hl(0, "NormalCursorLineNr", hl_groups.CursorLineNr)
 vim.api.nvim_set_hl(0, "VisualCursorLineNr", { fg = pallet.white, bg = pallet.green, bold = true })
 
-local group = vim.api.nvim_create_augroup("notomo_mode_color", {})
+local group = vim.api.nvim_create_augroup("notomo.color.mode", {})
 vim.api.nvim_create_autocmd({ "ModeChanged" }, {
   group = group,
   pattern = { [=[*:[vV\x16]]=] },

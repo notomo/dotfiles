@@ -1,4 +1,4 @@
-local group = vim.api.nvim_create_augroup("dap_setting", {})
+local group = vim.api.nvim_create_augroup("notomo.dap", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
   pattern = { "dap-float" },

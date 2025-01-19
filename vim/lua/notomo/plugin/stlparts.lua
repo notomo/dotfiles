@@ -323,7 +323,7 @@ local set_tabline = function()
     )
   )
 
-  local group = vim.api.nvim_create_augroup("notomo_tabline_diagnostic", {})
+  local group = vim.api.nvim_create_augroup("notomo.stlparts.diagnostic", {})
   vim.api.nvim_create_autocmd("DiagnosticChanged", {
     group = group,
     callback = function()

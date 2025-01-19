@@ -32,7 +32,7 @@ mypack.add("notomo/optpack.nvim", {
         },
       })
       vim.api.nvim_create_autocmd({ "FileType" }, {
-        group = vim.api.nvim_create_augroup("optpack_mapping", {}),
+        group = vim.api.nvim_create_augroup("notomo.optpack.mapping", {}),
         pattern = { "optpack" },
         callback = function()
           vim.keymap.set("n", "<CR>", function()

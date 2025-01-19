@@ -1,7 +1,7 @@
 vim.keymap.set("n", "<RightMouse>", [[<LeftMouse><Cmd>lua require("piemenu").start("lsp")<CR>]])
 vim.keymap.set("x", "<RightMouse>", [[<Cmd>lua require("piemenu").start("lsp")<CR>]])
 
-local group = vim.api.nvim_create_augroup("piemenu_setting", {})
+local group = vim.api.nvim_create_augroup("notomo.piemenu", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
   pattern = { "piemenu" },

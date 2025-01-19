@@ -147,7 +147,7 @@ end
 
 function M.quit_after_start()
   vim.api.nvim_create_autocmd({ "UIEnter" }, {
-    group = vim.api.nvim_create_augroup("notomo_startup", {}),
+    group = vim.api.nvim_create_augroup("notomo.startup", {}),
     pattern = { "*" },
     callback = function()
       vim.schedule(function()
@@ -190,7 +190,7 @@ function M._diagnostic()
   local has_diagnostic = false
 
   vim.api.nvim_create_autocmd({ "LspProgress" }, {
-    group = vim.api.nvim_create_augroup("notomo_diagnostic_progress", {}),
+    group = vim.api.nvim_create_augroup("notomo.diagnostic_progress", {}),
     pattern = { "*" },
     callback = function(args)
       timer:stop()

@@ -27,7 +27,7 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<Space>qe", [[<Cmd>lua require("cmdbuf").split_open(vim.o.cmdwinheight, {type = "vim/env"})<CR>]])
 
-local group = vim.api.nvim_create_augroup("cmdbuf_setting", {})
+local group = vim.api.nvim_create_augroup("notomo.cmdbuf", {})
 vim.api.nvim_create_autocmd({ "User" }, {
   group = group,
   pattern = { "CmdbufNew" },

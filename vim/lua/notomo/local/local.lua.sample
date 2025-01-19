@@ -2,7 +2,7 @@
 
 local home = vim.fn.expand("~")
 
-local group = vim.api.nvim_create_augroup("notomo_local", {})
+local group = vim.api.nvim_create_augroup("notomo.local", {})
 vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
   group = group,
   pattern = { vim.fn.expand("~/workspace/neovim/") .. "*" },

@@ -56,7 +56,7 @@ vim.keymap.set("n", "[finder]N", function()
   })
 end)
 
-local thetto_group = vim.api.nvim_create_augroup("thetto_setting", {})
+local thetto_group = vim.api.nvim_create_augroup("notomo.thetto.mapping", {})
 vim.api.nvim_create_autocmd({ "FileType" }, {
   group = thetto_group,
   pattern = { "thetto" },
