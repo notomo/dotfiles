@@ -337,6 +337,7 @@ vim.keymap.set("n", "[finder]a", function()
     require("thetto.util.source").by_name("thetto/source"),
     require("thetto.util.source").by_name("vim/command"),
     require("thetto.util.source").by_name("cmdhndlr/runner"),
+    require("thetto.util.source").by_name("vim/substitute"),
   }))
 end)
 
@@ -356,7 +357,6 @@ vim.keymap.set("n", "[finder]A", thetto_starter("vim/autocmd"))
 vim.keymap.set("n", "[finder]s", thetto_starter("thetto/source"))
 vim.keymap.set("n", "[finder]m", thetto_starter("listdefined/keymap"))
 vim.keymap.set("n", "[finder]o", thetto_starter("cmd/ctags"))
-vim.keymap.set("n", "[finder]S", thetto_starter("vim/substitute"))
 vim.keymap.set("x", "[finder]s", thetto_starter("vim/substitute"))
 vim.keymap.set("n", "[finder];", thetto_starter("vim/filetype", { actions = { default_action = "open_scratch" } }))
 
