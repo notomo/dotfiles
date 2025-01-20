@@ -851,12 +851,6 @@ mypack.add("notomo/unionbuf.nvim", {
   },
 })
 
-mypack.add("notomo/pluginbuf.nvim", {
-  load_on = {
-    modules = { "pluginbuf" },
-  },
-})
-
 mypack.add("notomo/requireall.nvim", {
   load_on = {
     modules = { "requireall" },

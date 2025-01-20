@@ -490,23 +490,6 @@ register_source("github/issue", function()
   }
 end)
 
-register_kind("github/issue", {
-  action_edit_body = function(items)
-    local item = items[1]
-    if item == nil then
-      return
-    end
-    require("notomo.lib.github").edit_issue(item.url, "body")
-  end,
-  action_edit_title = function(items)
-    local item = items[1]
-    if item == nil then
-      return
-    end
-    require("notomo.lib.github").edit_issue(item.url, "title")
-  end,
-})
-
 register_source_alias("github/assigned_issue", "github/issue", {
   opts = {
     repo_with_owner = "",
