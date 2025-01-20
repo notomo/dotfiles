@@ -857,12 +857,6 @@ mypack.add("notomo/pluginbuf.nvim", {
   },
 })
 
-mypack.add("notomo/obhook.nvim", {
-  load_on = {
-    modules = { "obhook" },
-  },
-})
-
 mypack.add("notomo/requireall.nvim", {
   load_on = {
     modules = { "requireall" },
