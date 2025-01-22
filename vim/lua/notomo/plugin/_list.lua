@@ -467,11 +467,6 @@ mypack.add("notomo/kivi.nvim", {
   },
 })
 
-mypack.add("notomo/reacher.nvim", {
-  load_on = { modules = { "reacher" } },
-  hooks = { post_add = require_fn("notomo.plugin.reacher") },
-})
-
 mypack.add("notomo/cmdbuf.nvim", {
   load_on = { modules = { "cmdbuf" } },
   hooks = { post_add = require_fn("notomo.plugin.cmdbuf") },
