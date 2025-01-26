@@ -142,6 +142,12 @@ aliaser.register_factory("vim", function(aliases)
   aliases:set("reset_runtimetable", function()
     require("notomo.plugin.runtimetable").save_all()
   end)
+
+  aliases:set("inspect_redraw", function()
+    require("redraw-inspect").start({
+      on_redraw = require("redraw-inspect.util").highlight_line(),
+    })
+  end)
 end)
 
 aliaser.register_factory("other", function(aliases)
