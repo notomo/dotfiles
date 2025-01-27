@@ -156,9 +156,6 @@ runtime.after.ftplugin["javascript.lua"] = function()
   require("notomo.lsp").setup()
 
   local cmdhndlr = vim.b.cmdhndlr or {}
-  if vim.endswith(vim.fn.bufname(), ".mjs") then
-    cmdhndlr.normal_runner = { name = "javascript/zx" }
-  end
   if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
     cmdhndlr.format_runner = { name = "javascript/biome" }
   end
