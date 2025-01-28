@@ -162,6 +162,21 @@ runtime.after.ftplugin["javascript.lua"] = function()
   vim.b.cmdhndlr = cmdhndlr
 end
 
+runtime.after.ftplugin["javascriptreact.lua"] = function()
+  vim.opt_local.completeopt:remove("preview")
+  vim.opt_local.tabstop = 2
+  vim.opt_local.softtabstop = 2
+  vim.opt_local.expandtab = true
+
+  require("notomo.lib.treesitter").setup()
+
+  local cmdhndlr = vim.b.cmdhndlr or {}
+  if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
+    cmdhndlr.format_runner = { name = "javascript/biome" }
+  end
+  vim.b.cmdhndlr = cmdhndlr
+end
+
 runtime.after.ftplugin["json.lua"] = function()
   vim.keymap.set({ "n", "x" }, "J", function()
     vim.cmd.normal({ args = { "%" }, bang = true })
