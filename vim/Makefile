@@ -29,6 +29,9 @@ version:
 test_all:
 	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} make test -C {}
 
+check_all:
+	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} make check -C {}
+
 format:
 	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} $(MAKE) --no-print-directory _format TARGET_PATH={}
 	$(MAKE) --no-print-directory _format TARGET_PATH=${HOME}/dotfiles
@@ -82,9 +85,3 @@ _PUSH:
 	then \
 	  git -C ${TARGET_PATH} push; \
 	fi
-
-diagnostic:
-	${NVIM} --headless +'lua require("notomo.lib.startup").diagnostic()'
-
-diagnostic_all:
-	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} ${NVIM} --headless +'lua require("notomo.lib.startup").diagnostic()' {}
