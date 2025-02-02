@@ -30,7 +30,10 @@ test_all:
 	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} make test -C {}
 
 check_all:
+	rm -rf /tmp/luals-check
 	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} make check -C {}
+remove_empty_check_result:
+	find /tmp/luals-check -type f -size -2b | xargs -n1 rm
 
 format:
 	${NVIM} --headless +'lua require("notomo.lib.startup").plugins()' +quitall! | xargs -I{} $(MAKE) --no-print-directory _format TARGET_PATH={}

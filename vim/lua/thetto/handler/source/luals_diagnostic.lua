@@ -30,19 +30,22 @@ function M.collect(source_ctx)
             :map(function(diagnostic)
               local path = vim.uri_to_fname(uri)
               local relative_path = pathlib.to_relative(path, source_ctx.cwd)
+              local row = diagnostic.range.start.line + 1
+              local column = diagnostic.range.start.character
+              local path_part = ("%s:%d:%d"):format(relative_path, row, column)
               local message = diagnostic.message:gsub("\n", " ")
-              local desc = ("%s %s [%s:%s]"):format(relative_path, message, diagnostic.source, diagnostic.code)
+              local desc = ("%s %s [%s:%s]"):format(path_part, message, diagnostic.source, diagnostic.code)
               return {
                 value = message,
                 desc = desc,
-                row = diagnostic.range.start.line + 1,
+                row = row,
                 column = diagnostic.range.start.character,
                 end_column = diagnostic.range["end"].character,
                 path = path,
                 severity = diagnostic.severity,
                 column_offsets = {
                   path = 0,
-                  value = #relative_path + 1,
+                  value = #path_part + 1,
                 },
               }
             end)
