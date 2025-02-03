@@ -1,6 +1,0 @@
-
-- name: install terminal with homebrew_cask
-  homebrew_cask: name={{ item }}
-  with_items:
-    - iterm2
-  when: is_macos
