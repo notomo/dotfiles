@@ -63,7 +63,9 @@ function M.branch_component()
       return
     end
     vim.b[bufnr].notomo_git_branch = nil
-    vim.cmd.redrawstatus()
+    vim.schedule(function() -- workaround for highlighter end_col out of range error
+      vim.cmd.redrawstatus()
+    end)
   end
 
   local head_file_path = M._head_file_path()
