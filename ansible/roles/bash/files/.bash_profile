@@ -12,8 +12,6 @@ export PATH=$HOME/.local/nvim/bin:$HOME/.local/bin:$PATH:$HOME/bin:$HOME/.cargo/
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.luarocks/bin:$PATH
 
-export LD_LIBRARY_PATH=${HOME}/.local/lib:$LD_LIBRARY_PATH
-
 osrelease=/proc/sys/kernel/osrelease
 if [[ -f ${osrelease} && "$(< ${osrelease})" == *microsoft* ]]; then 
     export LIBGL_ALWAYS_INDIRECT=1

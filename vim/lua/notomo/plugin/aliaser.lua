@@ -52,6 +52,7 @@ aliaser.register_factory("tree_sitter", function(aliases)
       "yaml",
       "bash", -- workaround: not to use builtin bash parser
       "cpp",
+      "rust",
     }) do
       vim.cmd.TSUpdate(language)
     end
