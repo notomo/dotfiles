@@ -49,7 +49,7 @@ function M.collect(source_ctx)
       local tests = require("gettest").nodes({
         scope = source_ctx.opts.scope,
         target = {
-          path = path,
+          source = source_ctx.bufnr,
           row = vim.fn.line("."),
         },
         tool_name = tool_name,
