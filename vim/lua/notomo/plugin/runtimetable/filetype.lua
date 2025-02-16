@@ -498,6 +498,9 @@ runtime.after.ftplugin["typescript.lua"] = function()
   if require("cmdhndlr").get("format_runner/javascript/biome").working_dir_marker() then
     cmdhndlr.format_runner = { name = "javascript/biome" }
   end
+  if require("cmdhndlr").get("test_runner/javascript/vitest").working_dir() then
+    cmdhndlr.test_runner = { name = "javascript/vitest" }
+  end
   vim.b.cmdhndlr = cmdhndlr
 end
 
