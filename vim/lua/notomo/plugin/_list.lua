@@ -250,7 +250,7 @@ optpack.add("zbirenbaum/copilot-cmp", {
   depends = { copilot_lua.name },
   load_on = { events = { "VimEnter" }, modules = { "copilot_cmp" } },
   hooks = {
-    post_load = function()
+    post_load = require("notomo.lib.once").new(function()
       require("copilot").setup({
         filetypes = {
           go = true,
@@ -262,7 +262,7 @@ optpack.add("zbirenbaum/copilot-cmp", {
         },
       })
       vim.cmd.Copilot("enable")
-    end,
+    end, "copilot_cmp_setup"),
   },
 })
 
