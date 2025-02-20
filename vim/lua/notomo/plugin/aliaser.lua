@@ -22,7 +22,7 @@ end)
 
 aliaser.register_factory("tree_sitter", function(aliases)
   aliases:set("query", function()
-    local runtime_dir = vim.fs.joinpath(tostring(vim.fn.stdpath("cache")), "notomo")
+    local runtime_dir = vim.fs.joinpath(vim.fn.stdpath("cache"), "notomo")
     local dir = vim.fs.joinpath(runtime_dir, "queries", vim.bo.filetype)
     local query_path = vim.fs.joinpath(dir, "scratch.scm")
     vim.fn.writefile({}, query_path, "p")
