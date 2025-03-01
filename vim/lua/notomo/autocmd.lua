@@ -1,6 +1,9 @@
 local group = vim.api.nvim_create_augroup("notomo.autocmd", {})
 
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
+vim.api.nvim_create_autocmd({
+  "BufEnter",
+  "BufNew",
+}, {
   group = group,
   pattern = { "*" },
   callback = function()
