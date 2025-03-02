@@ -197,6 +197,15 @@ aliaser.register_factory("format", function(aliases)
     local disabled = vim.b.notomo_format_disabled
     vim.b.notomo_format_disabled = not disabled
   end)
+
+  aliases:set("biome/unsafe", function()
+    require("cmdhndlr").format({
+      name = "javascript/biome",
+      runner_opts = {
+        extra_args = { "--unsafe" },
+      },
+    })
+  end)
 end)
 
 aliaser.register_factory("copilot", function(aliases)
