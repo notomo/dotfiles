@@ -561,7 +561,20 @@ vim.keymap.set("n", "[finder]to", thetto_starter("test"))
 
 vim.keymap.set("n", "[exec],", function()
   if require("cmdhndlr").get("normal_runner/make/make").working_dir_marker() then
-    require("thetto.util.source").start_by_name("cmd/make/target")
+    local current_row = vim.fn.line(".")
+    local path = vim.api.nvim_buf_get_name(0)
+    require("thetto").start(require("thetto.util.source").by_name("cmd/make/target"), {
+      item_cursor_factory = function(all_items)
+        for i = 1, #all_items, 1 do
+          local a = all_items[i]
+          local b = all_items[i + 1] or { path = path, row = math.huge }
+          if a.path == path and b.path == path and a.row <= current_row and current_row < b.row then
+            return { row = i }
+          end
+        end
+        return { row = 0 }
+      end,
+    })
     return
   end
   require("thetto.util.source").start_by_name("cmd/npm/script", {
