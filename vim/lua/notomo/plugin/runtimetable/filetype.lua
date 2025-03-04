@@ -490,6 +490,10 @@ runtime.after.ftplugin["typescript.lua"] = function()
     require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
   end, { buffer = true })
 
+  vim.keymap.set("n", "[file]W", function()
+    require("aliaser").call("format/biome/unsafe")
+  end, { buffer = true })
+
   require("cmdhndlr").use({
     normal_runner = {
       { name = "typescript/deno" },
@@ -556,6 +560,10 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
 
   vim.keymap.set("n", "[finder]o", function()
     require("thetto.util.source").start_by_name("aerial")
+  end, { buffer = true })
+
+  vim.keymap.set("n", "[file]W", function()
+    require("aliaser").call("format/biome/unsafe")
   end, { buffer = true })
 
   require("cmdhndlr").use({
