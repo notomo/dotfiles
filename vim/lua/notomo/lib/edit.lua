@@ -73,7 +73,7 @@ function M.scratch(name, filetype)
 end
 
 function M.note()
-  local dir_path = vim.fn.expand("~/workspace/memo")
+  local dir_path = vim.fn.expand("~/workspace/memo/notes")
   local file_path = table.concat({ dir_path, "note.md" }, "/")
   if vim.fn.filereadable(file_path) ~= 1 then
     vim.fn.writefile({}, file_path, "p")
