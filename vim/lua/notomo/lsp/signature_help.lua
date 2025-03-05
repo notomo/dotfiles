@@ -12,6 +12,7 @@ local show = require("misclib.debounce").wrap(
     end
 
     vim.lsp.buf.signature_help({
+      max_height = 4,
       focusable = false,
       silent = true,
       close_events = {
@@ -31,6 +32,23 @@ function M.setup()
       show(bufnr)
     end,
   })
+  vim.keymap.set("i", "[main_input];", M._land, { buffer = true })
+end
+
+function M._land()
+  local window_ids = vim.api.nvim_tabpage_list_wins(0)
+  for _, window_id in ipairs(window_ids) do
+    local config = vim.api.nvim_win_get_config(window_id)
+    if config.relative ~= "" then
+      local bufnr = vim.api.nvim_win_get_buf(window_id)
+      vim.api.nvim_open_win(bufnr, false, {
+        vertical = true,
+        split = "right",
+      })
+      vim.api.nvim_win_close(window_id, true)
+      return
+    end
+  end
 end
 
 return M
