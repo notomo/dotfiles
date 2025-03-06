@@ -82,13 +82,13 @@ end
 
 function M.mapping()
   vim.keymap.set(
-    "n",
+    { "n", "x" },
     "sgj",
     [[<Cmd>lua require("notomo.plugin.nvim-treesitter").next_no_indent_function()<CR>]],
     { buffer = true }
   )
   vim.keymap.set(
-    "n",
+    { "n", "x" },
     "sgk",
     [[<Cmd>lua require("notomo.plugin.nvim-treesitter").prev_no_indent_function()<CR>]],
     { buffer = true }

@@ -264,14 +264,6 @@ runtime.after.ftplugin["lua.lua"] = function()
   require("notomo.lib.treesitter").setup()
 
   if vim.endswith(vim.fn.bufname(), "_spec.lua") then
-    vim.keymap.set("n", "sgJ", function()
-      require("thetto.util.source").go_to_next("test", {
-        filter = function(item)
-          return item.is_toplevel
-        end,
-      })
-    end, { buffer = true })
-
     vim.keymap.set("n", "[test]d", function()
       local test = require("gettest").nodes({
         scope = "smallest_ancestor",
@@ -310,11 +302,19 @@ runtime.after.ftplugin["lua.lua"] = function()
       })
     end, { buffer = true })
 
-    vim.keymap.set("n", "sgj", function()
+    vim.keymap.set({ "n", "x" }, "sgJ", function()
+      require("thetto.util.source").go_to_next("test", {
+        filter = function(item)
+          return item.is_toplevel
+        end,
+      })
+    end, { buffer = true })
+
+    vim.keymap.set({ "n", "x" }, "sgj", function()
       require("thetto.util.source").go_to_next("test")
     end, { buffer = true })
 
-    vim.keymap.set("n", "sgK", function()
+    vim.keymap.set({ "n", "x" }, "sgK", function()
       require("thetto.util.source").go_to_previous("test", {
         filter = function(item)
           return item.is_toplevel
@@ -322,7 +322,7 @@ runtime.after.ftplugin["lua.lua"] = function()
       })
     end, { buffer = true })
 
-    vim.keymap.set("n", "sgk", function()
+    vim.keymap.set({ "n", "x" }, "sgk", function()
       require("thetto.util.source").go_to_previous("test")
     end, { buffer = true })
   end
@@ -410,8 +410,8 @@ runtime.after.ftplugin["python.lua"] = function()
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
 
-  vim.keymap.set("n", "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
-  vim.keymap.set("n", "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
 end
 
 runtime.after.ftplugin["requirements.lua"] = function()
@@ -429,8 +429,8 @@ runtime.after.ftplugin["rust.lua"] = function()
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
 
-  vim.keymap.set("n", "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
-  vim.keymap.set("n", "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
 end
 
 runtime.after.ftplugin["scheme.lua"] = function()
@@ -454,10 +454,10 @@ runtime.after.ftplugin["terraform.lua"] = function()
     require("notomo.lib.terraform").yank()
   end)
 
-  vim.keymap.set("n", "sgj", function()
+  vim.keymap.set({ "n", "x" }, "sgj", function()
     require("notomo.lib.terraform").go_to_next_resouce()
   end, { buffer = true })
-  vim.keymap.set("n", "sgk", function()
+  vim.keymap.set({ "n", "x" }, "sgk", function()
     require("notomo.lib.terraform").go_to_prev_resouce()
   end, { buffer = true })
 end
@@ -483,10 +483,10 @@ runtime.after.ftplugin["typescript.lua"] = function()
 
   require("notomo.lib.treesitter").setup()
 
-  vim.keymap.set("n", "sgj", function()
+  vim.keymap.set({ "n", "x" }, "sgj", function()
     require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
   end, { buffer = true })
-  vim.keymap.set("n", "sgk", function()
+  vim.keymap.set({ "n", "x" }, "sgk", function()
     require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
   end, { buffer = true })
 
@@ -547,10 +547,10 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
     require("notomo.lib.jsx").add_component_parameter()
   end, { buffer = true })
 
-  vim.keymap.set("n", "sgj", function()
+  vim.keymap.set({ "n", "x" }, "sgj", function()
     require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
   end, { buffer = true })
-  vim.keymap.set("n", "sgk", function()
+  vim.keymap.set({ "n", "x" }, "sgk", function()
     require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
   end, { buffer = true })
 
