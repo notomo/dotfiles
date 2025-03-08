@@ -743,13 +743,6 @@ mypack.add("notomo/assertlib.nvim", {
   load_on = { modules = { "assertlib" } },
 })
 
-mypack.add("notomo/termnavi.nvim", {
-  load_on = { modules = { "termnavi" }, events = { { "BufReadPre", "*/*" } } },
-  hooks = {
-    pre_load = require_fn("notomo.plugin.termnavi"),
-  },
-})
-
 mypack.add("notomo/listdefined.nvim", {
   load_on = { modules = { "listdefined" } },
 })

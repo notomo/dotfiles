@@ -57,6 +57,12 @@ register_kind("git/status", {
   },
 })
 
+register_source("vim/terminal_prompt", {
+  opts = {
+    row_offset = 2,
+  },
+})
+
 register_kind("url", {
   opts = {
     open_browser = {

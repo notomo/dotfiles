@@ -555,7 +555,40 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
     end
     vim.keymap.set("n", "[file]rl", function()
       vim.api.nvim_exec_autocmds("BufRead", { buffer = 0, modeline = false })
+      vim.api.nvim_exec_autocmds("TermOpen", { modeline = false })
       vim.bo.filetype = ""
+    end, { buffer = true })
+
+    local enter = function()
+      local ok, err = pcall(function()
+        require("notomo.lib.edit").set_term_title()
+      end)
+      if not ok then
+        ---@diagnostic disable-next-line: param-type-mismatch
+        vim.notify(err, vim.log.levels.WARN)
+      end
+      return "<CR>"
+    end
+    vim.keymap.set("t", "<CR>", enter, { expr = true, buffer = true })
+    vim.keymap.set("t", "<C-CR>", enter, { expr = true, buffer = true })
+    vim.keymap.set("t", "<S-CR>", enter, { expr = true, buffer = true })
+
+    vim.keymap.set("n", "[finder]o", function()
+      require("thetto.util.source").start_by_name("vim/terminal_prompt")
+    end, { buffer = true })
+
+    vim.keymap.set({ "n", "x" }, "sgj", function()
+      require("thetto.util.source").go_to_next("vim/terminal_prompt")
+    end, { buffer = true })
+    vim.keymap.set("o", "gj", function()
+      require("thetto.util.source").go_to_next("vim/terminal_prompt", { fields = { opts = { row_offset = 0 } } })
+    end, { buffer = true })
+
+    vim.keymap.set({ "n", "x" }, "sgk", function()
+      require("thetto.util.source").go_to_previous("vim/terminal_prompt")
+    end, { buffer = true })
+    vim.keymap.set("o", "gk", function()
+      require("thetto.util.source").go_to_previous("vim/terminal_prompt", { fields = { opts = { row_offset = 1 } } })
     end, { buffer = true })
   end,
 })
