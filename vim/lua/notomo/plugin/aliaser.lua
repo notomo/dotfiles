@@ -210,7 +210,18 @@ end)
 
 aliaser.register_factory("copilot", function(aliases)
   aliases:set("chat", function()
-    vim.cmd.CopilotChatOpen()
+    vim.api.nvim_create_autocmd({ "FileType" }, {
+      group = vim.api.nvim_create_augroup("config.copilot-chat", {}),
+      pattern = { "copilot-chat" },
+      callback = function()
+        vim.keymap.set("n", "[file]rl", function()
+          require("CopilotChat").reset()
+        end, { buffer = true })
+      end,
+    })
+
+    vim.cmd.vsplit()
+    require("CopilotChat").open({ window = { layout = "replace" } })
   end)
 end)
 
