@@ -192,6 +192,12 @@ vim.keymap.set("o", "gc", [[t:]])
 vim.keymap.set("o", "gP", [[t(]])
 vim.keymap.set("n", "go", [[<C-o>]])
 vim.keymap.set("n", "gi", [[<C-i>]])
+vim.keymap.set("n", "g;", function()
+  local last = vim.api.nvim_buf_get_mark(0, "^")
+  if last[1] > 0 then
+    require("misclib.cursor").set(last)
+  end
+end)
 
 vim.keymap.set("x", "<S-j>", [[}]])
 vim.keymap.set("x", "<S-k>", [[{]])

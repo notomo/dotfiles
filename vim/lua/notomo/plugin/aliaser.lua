@@ -220,8 +220,8 @@ aliaser.register_factory("copilot", function(aliases)
       end,
     })
 
-    vim.cmd.vsplit()
-    require("CopilotChat").open({ window = { layout = "replace" } })
+    vim.cmd.CopilotChat()
+    vim.cmd.normal({ args = { vim.keycode("<C-w>r") }, bang = true })
   end)
 end)
 
