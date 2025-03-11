@@ -195,6 +195,7 @@ vim.keymap.set("n", "gi", [[<C-i>]])
 vim.keymap.set("n", "g;", function()
   local last = vim.api.nvim_buf_get_mark(0, "^")
   if last[1] > 0 then
+    vim.cmd.normal({ args = { "m'" }, bang = true })
     require("misclib.cursor").set(last)
   end
 end)
