@@ -142,3 +142,9 @@ vim_build:
 vim_run:
 	${VIM} -es -u NONE +"source ./minimal.vim" +"quitall!"
 .PHONY: vim_run
+
+# memo
+z3:
+	brew tap-new notomo/z3
+	curl https://raw.githubusercontent.com/Homebrew/homebrew-core/6afcc696c79ddfba0bd9a47ea53d19a9d35469bf/Formula/z/z3.rb -o /home/linuxbrew/.linuxbrew/Homebrew/Library/Taps/notomo/homebrew-z3/Formula/z3.rb
+	brew install notomo/z3/z3
