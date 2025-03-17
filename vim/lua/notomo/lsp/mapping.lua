@@ -79,7 +79,7 @@ local go_to = function(method)
         end
       end,
       error = function(err)
-        vim.notify(err)
+        vim.notify(vim.inspect(err), vim.log.levels.WARN)
       end,
     },
   })
