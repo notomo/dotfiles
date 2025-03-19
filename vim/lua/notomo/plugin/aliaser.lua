@@ -210,8 +210,9 @@ end)
 
 aliaser.register_factory("copilot", function(aliases)
   aliases:set("chat", function()
+    local group = vim.api.nvim_create_augroup("config.copilot-chat", {})
     vim.api.nvim_create_autocmd({ "FileType" }, {
-      group = vim.api.nvim_create_augroup("config.copilot-chat", {}),
+      group = group,
       pattern = { "copilot-chat" },
       callback = function()
         vim.keymap.set("n", "[file]rl", function()
@@ -219,9 +220,15 @@ aliaser.register_factory("copilot", function(aliases)
         end, { buffer = true })
       end,
     })
+    vim.api.nvim_create_autocmd("BufEnter", {
+      group = group,
+      pattern = "copilot-*",
+      callback = function()
+        vim.opt_local.wrap = false
+      end,
+    })
 
     vim.cmd.CopilotChat()
-    vim.cmd.normal({ args = { vim.keycode("<C-w>r") }, bang = true })
   end)
 end)
 
