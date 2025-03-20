@@ -270,10 +270,15 @@ local plenary_nvim = optpack.add("nvim-lua/plenary.nvim")
 
 optpack.add("CopilotC-Nvim/CopilotChat.nvim", {
   enabled = enabled_copilot,
-  depends = { copilot_lua.name, plenary_nvim.name },
+  depends = { plenary_nvim.name },
   load_on = {
     cmds = { "CopilotChat*" },
     modules = { "CopilotChat" },
+    keymaps = function(vim)
+      vim.keymap.set({ "n", "x" }, "gl", function()
+        require("aliaser").call("copilot/chat")
+      end)
+    end,
   },
   hooks = {
     post_load = function()
@@ -848,6 +853,16 @@ mypack.add("notomo/requireall.nvim", {
 mypack.add("notomo/redraw-inspect.nvim", {
   load_on = {
     modules = { "redraw-inspect" },
+  },
+})
+
+mypack.add("notomo/multito.nvim", {
+  load_on = {
+    modules = { "multito" },
+    events = { "FileType" },
+  },
+  hooks = {
+    post_load = require_fn("notomo.plugin.multito"),
   },
 })
 

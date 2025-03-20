@@ -5,6 +5,31 @@ local pre_hooks = {
       modeline = false,
     })
   end,
+  multito = function()
+    vim.iter(vim.api.nvim_list_bufs()):each(function(bufnr)
+      if not vim.api.nvim_buf_is_valid(bufnr) then
+        return
+      end
+
+      local name = vim.api.nvim_buf_get_name(bufnr)
+      if not vim.startswith(name, "multito") then
+        return
+      end
+
+      local panel = require("multito.copilot").panel_get({ bufnr = bufnr })
+      if not panel then
+        return
+      end
+
+      vim.b[bufnr].multito_copilot_panel_debug_state = {
+        source_bufnr = panel.source_bufnr,
+        items = panel.items,
+        current_index = panel.current_index,
+        done = panel.done,
+        client_id = panel.client_id,
+      }
+    end)
+  end,
 }
 
 local post_hooks = {

@@ -21,7 +21,7 @@ aliaser.register_factory("buffer", function(aliases)
 end)
 
 aliaser.register_factory("tree_sitter", function(aliases)
-  aliases:set("query", function()
+  aliases:set("open_query_editor", function()
     local runtime_dir = vim.fs.joinpath(vim.fn.stdpath("cache"), "notomo")
     local dir = vim.fs.joinpath(runtime_dir, "queries", vim.bo.filetype)
     local query_path = vim.fs.joinpath(dir, "scratch.scm")
@@ -228,7 +228,7 @@ aliaser.register_factory("copilot", function(aliases)
       end,
     })
 
-    vim.cmd.CopilotChat()
+    vim.cmd.CopilotChatToggle()
   end)
 end)
 
