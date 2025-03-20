@@ -110,6 +110,7 @@ opt.shada = [['10,!,<50,/0,s10,h,@10,:100]]
 if vim.fn.has("win32") ~= 1 then
   opt.shell = "zsh"
 end
+opt.shelltemp = false
 opt.laststatus = 3
 opt.mousescroll = "ver:2,hor:6"
 opt.mousemodel = "extend" -- to disable default popup
