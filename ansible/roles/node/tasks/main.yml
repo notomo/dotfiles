@@ -14,6 +14,7 @@
       - "@prisma/language-server"
       - "@tailwindcss/language-server"
       - "@vtsls/language-server"
+      - "@github/copilot-language-server"
 
 - name: install node.js package globally
   npm:

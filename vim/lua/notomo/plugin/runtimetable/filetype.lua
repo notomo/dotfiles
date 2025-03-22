@@ -590,6 +590,8 @@ runtime.after.ftplugin["vim.lua"] = function()
 
   vim.keymap.set("n", "[exec]s", [[<Cmd>source %<CR>]], { buffer = true })
   require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
+
+  require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["vue.lua"] = function()
