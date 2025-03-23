@@ -227,9 +227,6 @@ optpack.add("hrsh7th/nvim-cmp", {
     post_load = require("notomo.lib.once").new(
       vim.schedule_wrap(function()
         vim.cmd.runtime({ args = { "after/plugin/cmp_*.lua" }, bang = true })
-        if enabled_copilot then
-          require("copilot_cmp").setup()
-        end
         require("notomo.plugin.cmp").setup()
       end),
       "cmp_setup"
@@ -240,31 +237,6 @@ optpack.add("hrsh7th/cmp-nvim-lsp", { load_on = { events = { "InsertEnter" }, mo
 optpack.add("hrsh7th/cmp-buffer", { load_on = { events = { "InsertEnter" } } })
 optpack.add("hrsh7th/cmp-path", { load_on = { events = { "InsertEnter" } } })
 mypack.add("notomo/cmp-neosnippet", { load_on = { events = { "InsertEnter" } } })
-
-local copilot_lua = optpack.add("zbirenbaum/copilot.lua", {
-  enabled = enabled_copilot,
-  load_on = { events = { "InsertEnter" } },
-})
-optpack.add("zbirenbaum/copilot-cmp", {
-  enabled = enabled_copilot,
-  depends = { copilot_lua.name },
-  load_on = { events = { "VimEnter" }, modules = { "copilot_cmp" } },
-  hooks = {
-    post_load = require("notomo.lib.once").new(function()
-      require("copilot").setup({
-        filetypes = {
-          go = true,
-          terraform = true,
-          yaml = true,
-          typescript = true,
-          typescriptreact = true,
-          ["*"] = false,
-        },
-      })
-      vim.cmd.Copilot("enable")
-    end, "copilot_cmp_setup"),
-  },
-})
 
 local plenary_nvim = optpack.add("nvim-lua/plenary.nvim")
 

@@ -16,7 +16,7 @@ local pre_hooks = {
         return
       end
 
-      local panel = require("multito.copilot").panel_get({ bufnr = bufnr })
+      local panel = require("multito.copilot.panel").get({ bufnr = bufnr })
       if not panel then
         return
       end
