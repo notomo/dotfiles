@@ -3,9 +3,12 @@ local M = {}
 local cmp = require("cmp")
 
 function M.complete()
-  vim.schedule(function()
-    require("multito.copilot.inline").accept()
-  end)
+  if require("multito.copilot.inline").get() then
+    vim.schedule(function()
+      require("multito.copilot.inline").accept()
+    end)
+    return
+  end
 
   if vim.fn["neosnippet#expandable"]() ~= 0 then
     vim.schedule(function()
