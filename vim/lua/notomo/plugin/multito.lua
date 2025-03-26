@@ -9,7 +9,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "yaml",
     "go",
   },
-  callback = function()
+  callback = function(args)
+    local root = vim.fs.root(args.buf, ".git")
+    if not root then
+      return
+    end
+    if root:find("/tmp/") then
+      return
+    end
     require("multito.copilot").start()
   end,
 })
