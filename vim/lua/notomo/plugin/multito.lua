@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "terraform",
     "yaml",
     "go",
+    "lua",
   },
   callback = function(args)
     local root = vim.fs.root(args.buf, ".git")
