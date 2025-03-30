@@ -445,6 +445,8 @@ runtime.after.ftplugin["sql.lua"] = function()
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
   vim.opt_local.expandtab = true
+
+  require("notomo.lsp").setup()
 end
 
 runtime.after.ftplugin["terraform.lua"] = function()

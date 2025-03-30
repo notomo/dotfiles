@@ -37,6 +37,7 @@ local setup_ls = function(ls, config, enable_features)
     on_attach(client, bufnr)
     require("notomo.lsp.navigation").attach(client, bufnr)
   end
+  config.silent = true
   ls.setup(config)
 end
 
@@ -210,6 +211,7 @@ setup_ls(lspconfig.ocamllsp, {
 })
 setup_ls(lspconfig.terraformls, {}, { "unix" })
 setup_ls(lspconfig.prismals, {}, { "unix" })
+setup_ls(lspconfig.postgres_lsp, {}, { "unix" })
 setup_ls(lspconfig.tailwindcss, {
   settings = {
     tailwindCSS = {
