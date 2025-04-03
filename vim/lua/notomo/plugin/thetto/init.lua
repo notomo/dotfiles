@@ -602,3 +602,29 @@ vim.api.nvim_create_autocmd({ "User" }, {
     })
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  group = vim.api.nvim_create_augroup("notomo.thetto.completion", {}),
+  pattern = { "*" },
+  callback = function(args)
+    local filetype = vim.bo[args.buf].filetype
+    if vim.tbl_contains({ "thetto-inputter" }, filetype) then
+      return
+    end
+    if not vim.bo[args.buf].modifiable then
+      return
+    end
+
+    if not vim.g.notomo_thetto_completion then
+      require("thetto.util.completion").disable()
+      return
+    end
+
+    require("thetto.util.completion").enable({
+      require("thetto.util.source").by_name("neosnippet"),
+      require("thetto.util.source").by_name("vim/lsp/completion"),
+      require("thetto.util.source").by_name("file/path"),
+      require("thetto.util.source").by_name("vim/buffer_word"),
+    })
+  end,
+})
