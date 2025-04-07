@@ -39,7 +39,7 @@ if [ -d "$HOME/.pyenv" ]; then
     eval "$(pyenv init -)"
 fi
 
-if [ -d "${DOTFILES}" ]; then
+if [ -d "${DOTFILES}" && "${TERM_PROGRAM}" != "vscode" ]; then
     cd ${DOTFILES}
 fi
 
