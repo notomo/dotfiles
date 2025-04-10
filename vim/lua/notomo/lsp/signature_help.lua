@@ -12,12 +12,14 @@ local show = require("misclib.debounce").wrap(
     end
 
     local height = 4
+    local offset_y = vim.o.lines - vim.o.cmdheight - height - 2
 
     vim.lsp.buf.signature_help({
       max_height = height,
       offset_x = 9999,
-      offset_y = vim.o.lines - vim.o.cmdheight - height - 2,
+      offset_y = offset_y,
       relative = "editor",
+      anchor_bias = "below",
       focusable = false,
       silent = true,
       close_events = {

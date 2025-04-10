@@ -30,6 +30,13 @@ function M.complete()
     if vim.fn.complete_info({ "selected" }).selected ~= -1 then
       return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
     end
+
+    vim.schedule(function()
+      if vim.fn["neosnippet#expandable"]() ~= 0 then
+        return vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
+      end
+      return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
+    end)
     return vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "m", true)
   end
 
