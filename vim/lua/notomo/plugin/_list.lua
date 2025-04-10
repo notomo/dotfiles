@@ -524,16 +524,6 @@ optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
   },
 })
 
-optpack.add("folke/lazydev.nvim", {
-  depends = { nvim_treesitter.name },
-  load_on = { filetypes = { "lua" } },
-  hooks = {
-    post_load = function()
-      require("lazydev").setup()
-    end,
-  },
-})
-
 mypack.add("notomo/aliaser.nvim", {
   load_on = { modules = { "aliaser" } },
   hooks = { post_load = require_fn("notomo.plugin.aliaser") },
