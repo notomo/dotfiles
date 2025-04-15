@@ -24,14 +24,40 @@ local setup_ls = function(ls, config, enable_features)
   config = config or {}
   config.flags = config.flags or {}
   config.flags.debounce_text_changes = config.flags.debounce_text_changes or 200
-  config.capabilities = require("cmp_nvim_lsp").default_capabilities()
-  config.capabilities = vim.tbl_deep_extend("force", config.capabilities, {
+  config.capabilities = {
+    textDocument = {
+      completion = {
+        completionItem = {
+          commitCharactersSupport = true,
+          deprecatedSupport = true,
+          insertReplaceSupport = false,
+          insertTextModeSupport = {
+            valueSet = { 1, 2 },
+          },
+          labelDetailsSupport = true,
+          preselectSupport = true,
+          resolveSupport = {
+            properties = { "documentation", "additionalTextEdits", "insertTextFormat", "insertTextMode", "command" },
+          },
+          snippetSupport = false,
+          tagSupport = {
+            valueSet = { 1 },
+          },
+        },
+        completionList = {
+          itemDefaults = { "commitCharacters", "editRange", "insertTextFormat", "insertTextMode", "data" },
+        },
+        contextSupport = true,
+        dynamicRegistration = false,
+        insertTextMode = 1,
+      },
+    },
     workspace = {
       didChangeWatchedFiles = {
         dynamicRegistration = false,
       },
     },
-  })
+  }
   local on_attach = config.on_attach or function() end
   config.on_attach = function(client, bufnr)
     on_attach(client, bufnr)
@@ -51,15 +77,6 @@ setup_ls(lspconfig.rust_analyzer, {
 })
 
 setup_ls(lspconfig.gopls, {
-  capabilities = {
-    textDocument = {
-      completion = {
-        completionItem = {
-          snippetSupport = false,
-        },
-      },
-    },
-  },
   init_options = {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks

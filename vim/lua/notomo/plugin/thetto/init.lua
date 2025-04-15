@@ -615,11 +615,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
       return
     end
 
-    if not vim.g.notomo_thetto_completion then
-      require("thetto.util.completion").disable()
-      return
-    end
-
     require("thetto.util.completion").enable({
       require("thetto.util.source").by_name("neosnippet"),
       require("thetto.util.source").by_name("vim/lsp/completion"),

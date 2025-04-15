@@ -64,5 +64,3 @@ vim.g.notomo_gh_project_item_query =
   [[.[] | select((.fieldValues.nodes|any(.field.name == "Iteration")) and .content.state == "OPEN")]]
 
 vim.g.notomo_enabled_copilot = false
-
-vim.g.notomo_thetto_completion = false

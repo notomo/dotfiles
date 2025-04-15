@@ -220,26 +220,7 @@ mypack.add("notomo/wintablib.nvim", {
 })
 
 local enabled_copilot = vim.g.notomo_enabled_copilot == true
-
-optpack.add("hrsh7th/nvim-cmp", {
-  load_on = { modules = { "cmp" }, events = { "InsertEnter" } },
-  hooks = {
-    post_load = require("notomo.lib.once").new(
-      vim.schedule_wrap(function()
-        vim.cmd.runtime({ args = { "after/plugin/cmp_*.lua" }, bang = true })
-        require("notomo.plugin.cmp").setup()
-      end),
-      "cmp_setup"
-    ),
-  },
-})
-optpack.add("hrsh7th/cmp-nvim-lsp", { load_on = { events = { "InsertEnter" }, modules = { "cmp_nvim_lsp" } } })
-optpack.add("hrsh7th/cmp-buffer", { load_on = { events = { "InsertEnter" } } })
-optpack.add("hrsh7th/cmp-path", { load_on = { events = { "InsertEnter" } } })
-mypack.add("notomo/cmp-neosnippet", { load_on = { events = { "InsertEnter" } } })
-
 local plenary_nvim = optpack.add("nvim-lua/plenary.nvim")
-
 optpack.add("CopilotC-Nvim/CopilotChat.nvim", {
   enabled = enabled_copilot,
   depends = { plenary_nvim.name },

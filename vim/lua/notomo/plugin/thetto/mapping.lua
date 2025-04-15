@@ -730,3 +730,50 @@ vim.keymap.set("n", "[git]k", function()
     fields = { opts = { expr = "%:p" } },
   })
 end)
+
+vim.keymap.set("i", "[main_input]o", function()
+  if require("multito.copilot.inline").get() then
+    vim.schedule(function()
+      require("multito.copilot.inline").accept()
+    end)
+    return
+  end
+
+  if vim.fn.pumvisible() == 1 then
+    if vim.fn.complete_info({ "selected" }).selected ~= -1 then
+      vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
+      return
+    end
+
+    vim.schedule(function()
+      return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
+    end)
+    vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "m", true)
+    return
+  end
+
+  if vim.fn["neosnippet#expandable"]() ~= 0 then
+    vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
+    return
+  end
+
+  if vim.fn.pumvisible() == 0 then
+    vim.schedule(function()
+      require("thetto.util.completion").trigger({
+        require("thetto.util.source").by_name("vim/lsp/completion"),
+      })
+    end)
+    return
+  end
+end)
+
+vim.keymap.set({ "i", "s" }, "<Tab>", function()
+  if vim.fn["neosnippet#jumpable"]() ~= 0 then
+    vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_jump)"), "m", true)
+    return ""
+  end
+  if vim.fn.pumvisible() == 1 then
+    return vim.api.nvim_eval([["\<C-n>"]])
+  end
+  return vim.api.nvim_eval([["\<Tab>"]])
+end, { expr = true, remap = true })
