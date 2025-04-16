@@ -221,7 +221,6 @@ setup_ls(lspconfig.biome, {
 setup_ls(lspconfig.cssls, {}, { "unix" })
 setup_ls(lspconfig.yamlls, {}, { "unix" })
 setup_ls(lspconfig.flux_lsp, {}, { "unix" })
-setup_ls(lspconfig.autohotkey2, {}, { "win32" })
 setup_ls(lspconfig.graphql, {}, { "unix" })
 setup_ls(lspconfig.ocamllsp, {
   root_dir = root_pattern({ "*.opam", ".git", "dune-project", ".opam-switch" }),
