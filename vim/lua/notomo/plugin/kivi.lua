@@ -86,13 +86,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
   pattern = { "kivi-file" },
   callback = function()
-    local navigate = function(path, source_setup_opts)
+    local navigate = function(path)
       return function()
-        require("kivi").navigate(path, source_setup_opts)
+        require("kivi").navigate(path)
       end
     end
 
-    vim.keymap.set("n", "<Space>g", navigate(".", { target = "project" }), { buffer = true })
+    vim.keymap.set("n", "<Space>g", navigate(vim.fs.root(0, ".git") or "."), { buffer = true })
     vim.keymap.set("n", "<Space>h", navigate("~"), { buffer = true })
     vim.keymap.set("n", "<Space>r", navigate("/tmp"), {
       buffer = true,
