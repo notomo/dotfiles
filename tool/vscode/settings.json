@@ -22,5 +22,6 @@
     },
     "git.openRepositoryInParentFolders": "always",
     "workbench.editor.empty.hint": "hidden",
-    "workbench.activityBar.location": "hidden"
+    "workbench.activityBar.location": "hidden",
+    "chat.agent.enabled": true
 }
