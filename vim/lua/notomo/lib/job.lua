@@ -21,7 +21,7 @@ function M.run(cmd, raw_opts)
         end
       end)
     end,
-    stderr = function(_, data)
+    stderr = raw_opts.stderr or function(_, data)
       if not data then
         return
       end

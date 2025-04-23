@@ -155,12 +155,18 @@ end)
 aliaser.register_factory("other", function(aliases)
   local open_line = function()
     local path = vim.fn.expand("%:p") .. ":" .. vim.fn.line(".") .. ":" .. vim.fn.col(".")
-    vim.cmd["!"]({ args = { "code", "-r", "-g", path } })
+    require("notomo.lib.job").run({ "code", "-r", "-g", path }, {
+      stderr = function() end,
+    })
   end
   aliases:set("open_line_in_vscode", open_line)
   aliases:set("open_repo_in_vscode", function()
     local git_root = vim.fs.root(".", { ".git" })
-    vim.cmd["!"]({ args = { "code", "-r", git_root } })
+    require("notomo.lib.job")
+      .run({ "code", "-r", git_root }, {
+        stderr = function() end,
+      })
+      :wait()
     open_line()
   end)
 end)
