@@ -174,18 +174,7 @@ function M.requireall()
   end
 
   M._load_plugins():next(function()
-    require("requireall").execute({
-      module_filter = function(module_path)
-        local ignore = vim.iter({ "copilot", "CopilotChat" }):any(function(x)
-          local found = module_path:find(x)
-          return found ~= nil
-        end)
-        if ignore then
-          return false
-        end
-        return true
-      end,
-    })
+    require("requireall").execute()
   end)
 end
 

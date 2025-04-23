@@ -214,30 +214,6 @@ aliaser.register_factory("format", function(aliases)
   end)
 end)
 
-aliaser.register_factory("copilot", function(aliases)
-  aliases:set("chat", function()
-    local group = vim.api.nvim_create_augroup("config.copilot-chat", {})
-    vim.api.nvim_create_autocmd({ "FileType" }, {
-      group = group,
-      pattern = { "copilot-chat" },
-      callback = function()
-        vim.keymap.set("n", "[file]rl", function()
-          require("CopilotChat").reset()
-        end, { buffer = true })
-      end,
-    })
-    vim.api.nvim_create_autocmd("BufEnter", {
-      group = group,
-      pattern = "copilot-*",
-      callback = function()
-        vim.opt_local.wrap = false
-      end,
-    })
-
-    vim.cmd.CopilotChatToggle()
-  end)
-end)
-
 aliaser.register_factory("lua", function(aliases)
   aliases:set("install_debugger", function()
     local lldebugger_path = vim.fn.expand("~/app/local-lua-debugger-vscode")
