@@ -62,6 +62,9 @@ local setup_ls = function(ls, config, enable_features)
   config.on_attach = function(client, bufnr)
     on_attach(client, bufnr)
     require("notomo.lsp.navigation").attach(client, bufnr)
+    if client:supports_method("textDocument/documentColor") then
+      vim.lsp.document_color.enable(true, bufnr, { style = "virtual" })
+    end
   end
   config.silent = true
   ls.setup(config)
