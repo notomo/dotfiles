@@ -517,7 +517,7 @@ mypack.add("notomo/tracebundler.nvim", {
   load_on = { modules = { "tracebundler" } },
 })
 
-local nvim_dap = optpack.add("mfussenegger/nvim-dap", {
+optpack.add("mfussenegger/nvim-dap", {
   load_on = {
     modules = { "dap" },
     filetypes = { "go", "lua" },
@@ -564,14 +564,6 @@ local nvim_dap = optpack.add("mfussenegger/nvim-dap", {
 })
 optpack.add("theHamsta/nvim-dap-virtual-text", {
   load_on = { modules = { "nvim-dap-virtual-text" } },
-})
-
-optpack.add("jbyuki/one-small-step-for-vimkind", {
-  depends = { nvim_dap.name },
-  load_on = { modules = { "osv" } },
-  hooks = {
-    pre_load = require_fn("notomo.plugin.one-small-step-for-vimkind"),
-  },
 })
 
 mypack.add("notomo/vendorlib.nvim", {
@@ -737,10 +729,6 @@ mypack.add("notomo/multito.nvim", {
   hooks = {
     post_load = require_fn("notomo.plugin.multito"),
   },
-})
-
-optpack.add("uga-rosa/ccc.nvim", {
-  load_on = { modules = { "ccc" }, cmds = { "Ccc*" } },
 })
 
 optpack.add("SmiteshP/nvim-navic", {

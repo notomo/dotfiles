@@ -123,18 +123,10 @@ aliaser.register_factory("vim", function(aliases)
     vim.cmd.PrevimOpen()
   end)
 
-  aliases:set("start_debug", function()
-    require("osv").run_this()
-  end)
-
   aliases:set("test_highlight", function()
     vim.cmd.tabedit()
     vim.cmd.source([[$VIMRUNTIME/syntax/hitest.vim]])
     vim.cmd.only()
-  end)
-
-  aliases:set("toggle_color", function()
-    vim.cmd.CccHighlighterToggle()
   end)
 
   aliases:set("inspect", function()
