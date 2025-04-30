@@ -6,7 +6,9 @@ function M.open(url)
     return
   end
   require("notomo.lib.message").info("Opening: " .. url)
-  vim.ui.open(url)
+  vim.ui.open(url, {
+    cmd = vim.fn.has("wsl") == 1 and { "wslview" } or nil,
+  })
 end
 
 return M
