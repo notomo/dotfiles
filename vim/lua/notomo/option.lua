@@ -6,6 +6,15 @@ if vim.fn.has("mac") ~= 1 then
   vim.cmd.language("en_US.UTF-8")
 end
 
+if vim.fn.has("wsl") == 1 then
+  vim.env.PATH = vim
+    .iter(vim.split(vim.env.PATH, ":", { plain = true }))
+    :filter(function(x)
+      return not vim.startswith(x, "/mnt/") or vim.endswith(x, "/use_from_wsl")
+    end)
+    :join(":")
+end
+
 g.no_plugin_maps = 1
 g.plugin_dicwin_disable = 1
 g.loaded_gzip = 1
@@ -36,12 +45,7 @@ g.python_highlight_all = 1
 g.markdown_fenced_languages = { "vim" }
 g.ft_ignore_pat = [[\.\(Z\|gz\|bz2\|zip\|tgz\|log\)$]]
 if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
-  vim.g.clipboard = {
-    name = "win32yank",
-    copy = { ["+"] = "win32yank.exe -i --crlf", ["*"] = "win32yank.exe -i --crlf" },
-    paste = { ["+"] = "win32yank.exe -o --lf", ["*"] = "win32yank.exe -o --lf" },
-    cache_enabled = 0,
-  }
+  vim.g.clipboard = "win32yank"
 end
 
 opt.wrap = false
