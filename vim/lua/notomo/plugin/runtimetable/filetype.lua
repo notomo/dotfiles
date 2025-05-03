@@ -493,7 +493,7 @@ runtime.after.ftplugin["typescript.lua"] = function()
   end, { buffer = true })
 
   vim.keymap.set("n", "[file]W", function()
-    require("aliaser").call("format/biome/unsafe")
+    require("notomo.plugin.aliaser").format_biome_unsafe()
   end, { buffer = true })
 
   require("cmdhndlr").use({
@@ -565,7 +565,7 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   end, { buffer = true })
 
   vim.keymap.set("n", "[file]W", function()
-    require("aliaser").call("format/biome/unsafe")
+    require("notomo.plugin.aliaser").format_biome_unsafe()
   end, { buffer = true })
 
   require("cmdhndlr").use({

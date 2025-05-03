@@ -2,7 +2,7 @@ local M = {}
 
 function M.collect()
   return vim
-    .iter(require("aliaser").list())
+    .iter(require("aliaser").list({ "notomo.plugin.aliaser" }))
     :map(function(alias)
       return {
         value = alias.name,
@@ -20,11 +20,11 @@ M.actions = {
   action_call = function(items)
     for _, item in ipairs(items) do
       local alias = item.alias
-      if alias:need_args() then
+      if alias.params_count > 0 then
         local line = require("aliaser").to_string(alias)
         return require("cmdbuf").split_open(vim.o.cmdwinheight, { line = line, type = "lua/cmd" })
       end
-      alias:call()
+      alias.call()
     end
   end,
   default_action = "call",
