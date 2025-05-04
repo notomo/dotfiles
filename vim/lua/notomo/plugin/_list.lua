@@ -625,7 +625,9 @@ optpack.add("lewis6991/gitsigns.nvim", {
 })
 
 optpack.add("previm/previm", {
-  load_on = { filetypes = { "markdown" } },
+  load_on = {
+    filetypes = { "markdown", "html" },
+  },
   hooks = {
     pre_load = function()
       if vim.fn.has("wsl") == 1 then
