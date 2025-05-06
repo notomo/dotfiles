@@ -437,7 +437,6 @@ optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
 
 mypack.add("notomo/aliaser.nvim", {
   load_on = { modules = { "aliaser" } },
-  hooks = { post_load = require_fn("notomo.plugin.aliaser") },
 })
 
 local vim_operator_user = optpack.add("kana/vim-operator-user")
