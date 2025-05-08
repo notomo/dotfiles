@@ -39,4 +39,15 @@ function M.run(cmd, raw_opts)
   end)
 end
 
+function M.terminal(cmd, raw_opts)
+  local opts = vim.tbl_extend("force", { term = true }, raw_opts or {})
+  local bufnr = vim.api.nvim_create_buf(false, true)
+  local window_id = vim.api.nvim_open_win(bufnr, false, {
+    split = "right",
+  })
+  vim.api.nvim_win_call(window_id, function()
+    vim.fn.jobstart(cmd, opts)
+  end)
+end
+
 return M

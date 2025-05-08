@@ -521,7 +521,15 @@ vim.keymap.set("x", "[exec]p", function()
     return
   end
   require("misclib.visual_mode").leave()
-  require("notomo.lib.job").run({ "gh", "copilot", "explain", selected })
+  require("notomo.lib.job").terminal({ "gh", "copilot", "explain", selected })
+end)
+vim.keymap.set("x", "[exec]S", function()
+  local selected = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })[1]
+  if not selected then
+    return
+  end
+  require("misclib.visual_mode").leave()
+  require("notomo.lib.job").terminal({ "gh", "copilot", "suggest", "-t", "shell", selected })
 end)
 
 vim.keymap.set("n", "[winmv]a", [[<C-w>h]])
