@@ -620,6 +620,12 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
       require("thetto.util.source").by_name("vim/lsp/completion"),
       require("thetto.util.source").by_name("file/path"),
       require("thetto.util.source").by_name("vim/buffer_word"),
+    }, {
+      kind_priorities = {
+        Field = 100000,
+        Directory = 10001,
+        File = 10000,
+      },
     })
   end,
 })

@@ -761,6 +761,10 @@ vim.keymap.set("i", "[main_input]o", function()
     vim.schedule(function()
       require("thetto.util.completion").trigger({
         require("thetto.util.source").by_name("vim/lsp/completion"),
+      }, {
+        kind_priorities = {
+          Field = 10000,
+        },
       })
     end)
     return
