@@ -1,5 +1,6 @@
 {
     "vscode-neovim.neovimInitVimPaths.win32": "~/dotfiles/tool/vscode/neovim.lua",
+    "vscode-neovim.neovimInitVimPaths.darwin": "~/dotfiles/tool/vscode/neovim.lua",
     "vscode-neovim.logOutputToConsole": true,
     "editor.minimap.enabled": false,
     "explorer.openEditors.visible": 0,
