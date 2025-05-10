@@ -512,10 +512,6 @@ mypack.add("notomo/gettest.nvim", {
   load_on = { modules = { "gettest" } },
 })
 
-mypack.add("notomo/tracebundler.nvim", {
-  load_on = { modules = { "tracebundler" } },
-})
-
 optpack.add("mfussenegger/nvim-dap", {
   load_on = {
     modules = { "dap" },
@@ -571,11 +567,6 @@ mypack.add("notomo/vendorlib.nvim", {
 
 mypack.add("notomo/misclib.nvim", {
   load_on = { modules = { "misclib" } },
-})
-
-mypack.add("notomo/importgraph.nvim", {
-  depends = { nvim_treesitter.name },
-  load_on = { modules = { "importgraph" } },
 })
 
 mypack.add("notomo/ultramarine.nvim", {
