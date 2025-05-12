@@ -335,7 +335,7 @@ register_source("vim/lsp/outgoing_calls", function()
   }
 end)
 
-local ignored_symbol_kind = { "variable", "field", "property" }
+local ignored_symbol_kind = { "field", "property" }
 register_source("vim/lsp/document_symbol", function()
   return {
     filter = require("thetto.util.source").filter(function(item)
