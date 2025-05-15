@@ -335,6 +335,11 @@ vim.keymap.set("n", "[yank]c", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn
 vim.keymap.set("n", "[yank]w", function()
   require("notomo.lib.edit").yank(vim.fs.basename(vim.fn.getcwd()))
 end, { silent = true })
+vim.keymap.set("n", "[yank]s", function()
+  local git_root = vim.fs.root(0, ".git") or "."
+  local path = vim.fs.relpath(git_root, vim.fs.normalize(vim.fn.expand("%:p")))
+  require("notomo.lib.edit").yank("#file:" .. path)
+end)
 
 vim.keymap.set({ "x", "o" }, "io", "ip")
 vim.keymap.set({ "x", "o" }, "ao", "ap")
