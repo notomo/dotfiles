@@ -263,6 +263,23 @@ runtime.after.ftplugin["lua.lua"] = function()
 
   require("notomo.lib.treesitter").setup()
 
+  if vim.endswith(vim.api.nvim_buf_get_name(0), "/runtimetable/filetype.lua") then
+    vim.keymap.set({ "n", "x" }, "sgj", function()
+      require("thetto.util.source").go_to_next("vim/line", {
+        filter = function(item)
+          return vim.startswith(item.value, "runtime.")
+        end,
+      })
+    end, { buffer = true })
+    vim.keymap.set({ "n", "x" }, "sgk", function()
+      require("thetto.util.source").go_to_previous("vim/line", {
+        filter = function(item)
+          return vim.startswith(item.value, "runtime.")
+        end,
+      })
+    end, { buffer = true })
+  end
+
   if vim.endswith(vim.fn.bufname(), "_spec.lua") then
     vim.keymap.set("n", "[test]d", function()
       local test = require("gettest").nodes({
@@ -668,6 +685,13 @@ runtime.after.ftplugin["prisma.lua"] = function()
   })
 
   require("notomo.lib.treesitter").setup()
+
+  vim.keymap.set({ "n", "x" }, "sgj", function()
+    require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
+  end, { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgk", function()
+    require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
+  end, { buffer = true })
 end
 
 runtime.after.ftplugin["css.lua"] = function()
