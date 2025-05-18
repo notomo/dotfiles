@@ -145,6 +145,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       vim.cmd.stopinsert()
     end, { buffer = true })
     vim.keymap.set("n", "o", action("open"), { buffer = true })
+    vim.keymap.set("n", "O", action_with_fallback({ "search", "open" }), { buffer = true })
     vim.keymap.set("n", "sv", action("vsplit_open"), { buffer = true })
     vim.keymap.set("n", "t<Space>", action("tab_open"), { buffer = true })
 
