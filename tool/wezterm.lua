@@ -114,8 +114,10 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     mouse_reporting = false,
   })
 elseif wezterm.target_triple:match("apple") then
-  config.font = wezterm.font("Source Han Code JP", { weight = "Regular", stretch = "Normal", style = "Normal" })
-  config.font_size = 17.0
+  config.font = wezterm.font("Cica")
+  config.font_size = 23.0
+  config.macos_forward_to_ime_modifier_mask = "SHIFT|CTRL"
+  config.native_macos_fullscreen_mode = true
 end
 
 return config
