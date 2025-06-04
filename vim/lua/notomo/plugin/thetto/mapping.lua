@@ -208,6 +208,7 @@ local source_specific = {
     vim.keymap.set("n", "F", action("fixup", { quit = false }), { buffer = list_bufnr })
     vim.keymap.set("n", "rw", action("reword", { quit = false }), { buffer = list_bufnr })
     vim.keymap.set("n", "I", action("rebase_interactively"), { buffer = list_bufnr })
+    vim.keymap.set("n", "F", action("list_change_to"), { buffer = list_bufnr })
   end,
   ["git/file_log"] = function(list_bufnr)
     vim.keymap.set("n", "yr", function()
@@ -224,6 +225,7 @@ local source_specific = {
     end, { buffer = list_bufnr })
     vim.keymap.set("n", "ch", action("checkout"), { buffer = list_bufnr })
     vim.keymap.set("n", "D", action("diff"), { buffer = list_bufnr })
+    vim.keymap.set("n", "F", action("list_change_to"), { buffer = list_bufnr })
   end,
   ["git/change"] = function(list_bufnr)
     vim.keymap.set("n", "dd", action("compare", { quit = false }), { buffer = list_bufnr })
