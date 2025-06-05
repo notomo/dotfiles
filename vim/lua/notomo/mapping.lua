@@ -713,3 +713,5 @@ vim.keymap.set("x", "<Leader>A", function()
     require("notomo.lib.edit").align(separator)
   end)
 end)
+
+vim.keymap.set("n", "<Space>R", "<Cmd>restart<CR>")
