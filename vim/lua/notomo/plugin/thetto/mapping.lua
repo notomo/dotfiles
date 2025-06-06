@@ -410,13 +410,22 @@ vim.keymap.set("n", "[file]t", function()
   )
 end)
 
-vim.keymap.set("n", "[finder]T", function()
-  require("thetto").start(require("thetto.util.source").by_name("vim/buffer", {
-    filter = require("thetto.util.source").filter(function(item)
-      return vim.bo[item.bufnr].buftype == "terminal"
-    end),
-  }))
+vim.keymap.set("n", "[finder]T", thetto_starter("vim/buffer/terminal"))
+vim.keymap.set("n", "<Space>tn", function()
+  require("thetto.util.source").start_by_name("vim/buffer/terminal", {
+    modify_pipeline = require("thetto.util.pipeline").append({
+      require("thetto.util.sorter").field_by_name("bufnr", true),
+    }),
+    consumer_opts = {
+      ui = {
+        insert = false,
+      },
+    },
+  }, {
+    consumer_factory = require("thetto.util.consumer").immediate({ action_name = "tab_drop" }),
+  })
 end)
+
 vim.keymap.set("n", "[finder]M", function()
   require("thetto.util.source").start_by_name("vim/modified_buffer", {}, {
     consumer_factory = require("thetto.util.consumer").immediate({ action_name = "tab_drop" }),

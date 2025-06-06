@@ -57,6 +57,12 @@ register_kind("git/status", {
   },
 })
 
+register_source_alias("vim/buffer/terminal", "vim/buffer", {
+  filter = require("thetto.util.source").filter(function(item)
+    return vim.bo[item.bufnr].buftype == "terminal"
+  end),
+})
+
 register_source("vim/terminal_prompt", {
   opts = {
     row_offset = 2,
