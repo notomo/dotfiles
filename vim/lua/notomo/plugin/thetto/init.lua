@@ -247,6 +247,12 @@ register_source("file/recursive", function()
   return {
     opts = { get_command = file_recursive },
     modify_pipeline = require("thetto.util.pipeline").list({
+      require("thetto.util.filter").by_name("substring"),
+      require("thetto.util.filter").by_name("substring", {
+        opts = {
+          inversed = true,
+        },
+      }),
       require("thetto.util.filter").by_name("regex"),
       require("thetto.util.filter").by_name("regex", {
         opts = {
