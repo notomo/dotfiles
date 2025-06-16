@@ -189,16 +189,12 @@ function M.format_toggle()
 end
 
 function M.format_biome_unsafe()
-  require("cmdhndlr")
-    .format({
-      name = "javascript/biome",
-      runner_opts = {
-        extra_args = { "--unsafe" },
-      },
-    })
-    :next(function()
-      vim.cmd.TSRemoveUnused()
-    end)
+  require("cmdhndlr").format({
+    name = "javascript/biome",
+    runner_opts = {
+      extra_args = { "--unsafe" },
+    },
+  })
 end
 
 function M.install_lua_debugger()
