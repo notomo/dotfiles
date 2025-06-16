@@ -39,10 +39,6 @@ if [ -d "$HOME/.pyenv" ]; then
     eval "$(pyenv init -)"
 fi
 
-if [[ -d "${DOTFILES}" && "${TERM_PROGRAM}" != "vscode" && -z "${START_MPC_SERVER}" ]]; then
-    cd ${DOTFILES}
-fi
-
 if [ -f "$HOME/.local/.bash_profile" ]; then
     source "$HOME/.local/.bash_profile"
 fi
