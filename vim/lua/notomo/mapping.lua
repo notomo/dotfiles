@@ -633,7 +633,6 @@ vim.keymap.set("n", "[term]g", function()
   local git_root = require("notomo.lib.git").root() or "."
   vim.cmd.tabedit()
   vim.fn.jobstart(vim.opt.shell:get(), { cwd = git_root, term = true })
-  vim.cmd.lcd(git_root)
 end, { silent = true })
 vim.keymap.set(
   "n",

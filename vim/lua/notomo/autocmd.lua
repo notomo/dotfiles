@@ -11,6 +11,29 @@ vim.api.nvim_create_autocmd({
   end,
 })
 
+vim.api.nvim_create_autocmd({
+  "BufEnter",
+  "BufNew",
+  "TermOpen",
+}, {
+  group = group,
+  pattern = { "*" },
+  callback = function(args)
+    local bufnr = args.buf
+    if vim.bo[bufnr].buftype ~= "terminal" then
+      return
+    end
+
+    local path = vim.api.nvim_buf_get_name(bufnr)
+    local working_dir = path:match("term://(%S+)//%d+:")
+    if not working_dir then
+      return
+    end
+
+    pcall(vim.cmd.lcd, ([[`="%s"`]]):format(vim.fs.abspath(working_dir)))
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, {
   group = group,
   pattern = { "*" },
