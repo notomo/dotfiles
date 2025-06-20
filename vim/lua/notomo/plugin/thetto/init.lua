@@ -468,6 +468,9 @@ register_source("file/mru", function()
       local file_name = vim.fs.basename(item.path)
       return not vim.tbl_contains(ignored_file_names, file_name)
     end),
+    modify_pipeline = require("thetto.util.pipeline").append({
+      require("thetto.util.sorter").by_name("path"),
+    }),
   }
 end)
 
