@@ -794,3 +794,14 @@ vim.keymap.set({ "i", "s" }, "<Tab>", function()
   end
   return vim.api.nvim_eval([["\<Tab>"]])
 end, { expr = true, remap = true })
+
+vim.keymap.set({ "i" }, "[main_input];", function()
+  require("thetto.util.completion").trigger({
+    require("thetto.util.source").by_name("vim/lsp/completion"),
+  }, {
+    kind_priorities = {
+      Field = 100001,
+      Property = 100000,
+    },
+  })
+end)

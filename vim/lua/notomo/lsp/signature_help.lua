@@ -39,7 +39,7 @@ function M.setup()
       show(bufnr)
     end,
   })
-  vim.keymap.set("i", "[main_input];", M._land, { buffer = true })
+  vim.keymap.set("i", "[main_input]i", M._land, { buffer = true })
 end
 
 function M._land()
