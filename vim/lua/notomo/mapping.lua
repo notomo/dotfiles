@@ -714,3 +714,7 @@ vim.keymap.set("x", "<Leader>A", function()
 end)
 
 vim.keymap.set("n", "<Space>R", "<Cmd>restart<CR>")
+
+vim.keymap.set("n", "[exec]v", function()
+  require("notomo.plugin.aliaser").open_line_in_vscode()
+end)
