@@ -35,23 +35,28 @@ end
 vim.keymap.set("n", "[finder]<CR>", function()
   require("thetto").resume()
 end)
+
 vim.keymap.set("n", "[finder]n", function()
+  local action_name = vim.wo.diff and "compare_open" or nil
   require("thetto").resume({
     item_cursor_factory = require("thetto.util.item_cursor").offset(1),
     consumer_factory = require("thetto.util.consumer").immediate({
       is_valid = function(item)
         return item.kind_name ~= "git/status/message"
       end,
+      action_name = action_name,
     }),
   })
 end)
 vim.keymap.set("n", "[finder]N", function()
+  local action_name = vim.wo.diff and "compare_open" or nil
   require("thetto").resume({
     item_cursor_factory = require("thetto.util.item_cursor").offset(-1),
     consumer_factory = require("thetto.util.consumer").immediate({
       is_valid = function(item)
         return item.kind_name ~= "git/status/message"
       end,
+      action_name = action_name,
     }),
   })
 end)
@@ -228,7 +233,7 @@ local source_specific = {
     vim.keymap.set("n", "fl", action("list_change_to"), { buffer = list_bufnr })
   end,
   ["git/change"] = function(list_bufnr)
-    vim.keymap.set("n", "dd", action("compare", { quit = false }), { buffer = list_bufnr })
+    vim.keymap.set("n", "dd", action("compare", { quit = true }), { buffer = list_bufnr })
   end,
   ["git/branch"] = function(list_bufnr)
     vim.keymap.set("n", "C", action("create"), { buffer = list_bufnr })
@@ -263,7 +268,7 @@ local source_specific = {
     vim.keymap.set({ "n", "x" }, "S", action("stash", { quit = false }), { buffer = list_bufnr })
     vim.keymap.set("n", "cc", action("commit"), { buffer = list_bufnr })
     vim.keymap.set("n", "ca", action("commit_amend"), { buffer = list_bufnr })
-    vim.keymap.set("n", "dd", action("compare", { quit = false }), { buffer = list_bufnr })
+    vim.keymap.set("n", "dd", action("compare", { quit = true }), { buffer = list_bufnr })
     vim.keymap.set("n", "D", action("diff"), { buffer = list_bufnr })
 
     local move = function(flag, fallback_key)
