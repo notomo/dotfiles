@@ -337,8 +337,12 @@ vim.keymap.set("n", "[yank]w", function()
 end, { silent = true })
 vim.keymap.set("n", "[yank]s", function()
   local git_root = vim.fs.root(0, ".git") or "."
-  local path = vim.fs.relpath(git_root, vim.fs.normalize(vim.fn.expand("%:p")))
-  require("notomo.lib.edit").yank("#file:" .. path)
+  local path = vim.fs.normalize(vim.fn.expand("%:p"))
+  if vim.bo.filetype == "kivi-file" then
+    path = vim.fs.normalize(vim.fn.getcwd())
+  end
+  local relative_path = vim.fs.relpath(git_root, path)
+  require("notomo.lib.edit").yank("#file:" .. relative_path)
 end)
 
 vim.keymap.set({ "x", "o" }, "io", "ip")
