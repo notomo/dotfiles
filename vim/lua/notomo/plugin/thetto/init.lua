@@ -61,6 +61,14 @@ register_source_alias("vim/buffer/terminal", "vim/buffer", {
   filter = require("thetto.util.source").filter(function(item)
     return vim.bo[item.bufnr].buftype == "terminal"
   end),
+  highlight = require("thetto.util.highlight").columns({
+    {
+      group = "Comment",
+      filter = function(item)
+        return vim.endswith(item.value, ":zsh")
+      end,
+    },
+  }),
 })
 
 register_source("vim/terminal_prompt", {
