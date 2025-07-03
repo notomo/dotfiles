@@ -25,5 +25,15 @@
     "workbench.editor.empty.hint": "hidden",
     "workbench.activityBar.location": "hidden",
     "chat.agent.enabled": true,
-    "jest.runMode": "on-demand"
+    "jest.runMode": "on-demand",
+    "terminal.integrated.env.osx": {
+        "GIT_PAGER": "cat",
+        "HISTSIZE": "0",
+        "SAVEHIST": "0"
+    },
+    "terminal.integrated.env.windows": {
+        "GIT_PAGER": "cat",
+        "HISTSIZE": "0",
+        "SAVEHIST": "0"
+    }
 }
