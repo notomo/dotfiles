@@ -90,6 +90,7 @@ opt.foldenable = false
 opt.foldtext = ""
 opt.fillchars = "fold: "
 vim.cmd([[set wildcharm=<C-z>]])
+opt.undofile = true
 opt.undoreload = 10
 opt.updatecount = 0
 opt.keywordprg = ":help"
