@@ -450,6 +450,7 @@ register_source("file/alter", {
       { "%.spec.tsx", "%.tsx" },
       { "%.spec.ts", "%.ts" },
       { "%_test.ts", "%.ts" },
+      { "%.test.ts", "%.ts" },
     },
   },
 })
