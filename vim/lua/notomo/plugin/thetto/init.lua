@@ -31,6 +31,17 @@ local ignore_patterns = {}
 vim.list_extend(ignore_patterns, vim.g.notomo_thetto_ignore_pattenrs or {})
 
 register_kind("file", {
+  action_treesitter_search = function(items)
+    local paths = vim
+      .iter(items)
+      :map(function(item)
+        return item.path
+      end)
+      :totable()
+    return require("thetto.util.source").start_by_name("listdefined_search", {
+      opts = { paths = paths },
+    })
+  end,
   action_unionbuf = function(items, action_ctx)
     local entries = vim.iter(items):map(action_ctx.opts.convert):totable()
     require("unionbuf").open(entries)

@@ -17,15 +17,11 @@ function M.expand_line()
 end
 
 function M.open_treesitter_query_editor()
-  local runtime_dir = vim.fs.joinpath(vim.fn.stdpath("cache"), "notomo")
-  local dir = vim.fs.joinpath(runtime_dir, "queries", vim.bo.filetype)
-  local query_path = vim.fs.joinpath(dir, "scratch.scm")
-  vim.fn.writefile({}, query_path, "p")
-  vim.opt.runtimepath:append(runtime_dir)
   vim.treesitter.query.edit()
   vim.cmd.stopinsert()
   vim.cmd.wincmd("r")
   vim.cmd.wincmd("=")
+
   vim.cmd.new({ mods = { split = "belowright" } })
   local winid = vim.api.nvim_get_current_win()
   vim.cmd.wincmd("h")
