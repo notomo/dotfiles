@@ -1,6 +1,3 @@
----@diagnostic disable-next-line: duplicate-set-field
-vim.lsp.semantic_tokens.start = function() end
-
 local vim = vim
 
 vim.api.nvim_create_autocmd({ "LspAttach" }, {
@@ -12,6 +9,7 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
       return
     end
 
+    vim.lsp.semantic_tokens.enable(false, { bufnr = bufnr })
     require("notomo.lsp.navigation").attach(client, bufnr)
 
     if client:supports_method("textDocument/documentColor") then
