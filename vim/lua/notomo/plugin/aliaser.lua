@@ -138,21 +138,19 @@ function M.inspect_redraw()
   })
 end
 
-function M.open_line_in_vscode()
+function M.open_in_vscode()
+  local git_root = vim.fs.root(".", { ".git" })
+  local cmd = { "code", "-r" }
+  if git_root then
+    vim.list_extend(cmd, { git_root })
+  end
+
   local path = vim.fn.expand("%:p") .. ":" .. vim.fn.line(".") .. ":" .. vim.fn.col(".")
-  require("notomo.lib.job").run({ "code", "-r", "-g", path }, {
+  vim.list_extend(cmd, { "-g", path })
+
+  require("notomo.lib.job").run(cmd, {
     stderr = function() end,
   })
-end
-
-function M.open_repo_in_vscode()
-  local git_root = vim.fs.root(".", { ".git" })
-  require("notomo.lib.job")
-    .run({ "code", "-r", git_root }, {
-      stderr = function() end,
-    })
-    :wait()
-  M.open_line_in_vscode()
 end
 
 function M.create_issue()
