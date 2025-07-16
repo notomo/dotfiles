@@ -320,6 +320,11 @@ vim.keymap.set("n", "[yank]g", function()
   path = vim.fn.substitute(path, "^" .. git_root, ".", "")
   require("notomo.lib.edit").yank(path)
 end)
+vim.keymap.set(
+  "x",
+  "[yank]T",
+  [[<Cmd>lua require("notomo.lib.edit").yank(require("notomo.lib.treesitter.node").expr())<CR>]]
+)
 vim.keymap.set("n", "[yank]P", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fs.normalize(vim.fn.expand('%:p')))<CR>]])
 vim.keymap.set("n", "[yank];", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg(":"))<CR>]], { silent = true })
 vim.keymap.set("n", "[yank]/", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg("/"))<CR>]], { silent = true })
