@@ -756,6 +756,11 @@ vim.keymap.set("i", "[main_input]o", function()
     return
   end
 
+  if vim.fn["neosnippet#expandable"]() ~= 0 then
+    vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
+    return
+  end
+
   if vim.fn.pumvisible() == 1 then
     if vim.fn.complete_info({ "selected" }).selected ~= -1 then
       vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
@@ -766,11 +771,6 @@ vim.keymap.set("i", "[main_input]o", function()
       return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
     end)
     vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "m", true)
-    return
-  end
-
-  if vim.fn["neosnippet#expandable"]() ~= 0 then
-    vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
     return
   end
 
