@@ -34,7 +34,7 @@ function M.expr()
     end
   end
 
-  return require("misclib.treesitter.query_format").execute(node:sexpr())
+  return node:sexpr()
 end
 
 return M
