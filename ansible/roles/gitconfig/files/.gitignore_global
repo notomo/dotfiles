@@ -5,3 +5,4 @@ __pycache__
 .envrc
 core
 !core/
+.claude/settings.local.json
