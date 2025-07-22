@@ -17,7 +17,22 @@ function M.expand_line()
 end
 
 function M.open_treesitter_query_editor()
+  local file_path = require("notomo.lib.edit").scratch_path("queries/editor.scm", "query")
+  if vim.fn.filereadable(file_path) ~= 1 then
+    vim.fn.writefile({}, file_path, "p")
+  end
+
+  local f = assert(io.open(file_path, "r"))
+  local str = vim.fn.trim(f:read("*a"), "\n", 2)
+  f:close()
+
   vim.treesitter.query.edit()
+  require("misclib.buffer").delete_by_name(file_path)
+  vim.api.nvim_buf_set_name(0, file_path)
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(str, "\n", { plain = true }))
+  vim.bo.buftype = ""
+  vim.bo.modified = false
+  vim.cmd.edit({ bang = true })
   vim.cmd.stopinsert()
   vim.cmd.wincmd("r")
   vim.cmd.wincmd("=")

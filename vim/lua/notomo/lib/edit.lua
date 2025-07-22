@@ -45,19 +45,28 @@ function M.jq()
   vim.cmd("%!jq '.'")
 end
 
-function M.scratch(name, filetype)
+function M.scratch_path(name, filetype)
   local typ
   if filetype == "" then
     typ = "nofiletype"
   else
     typ = filetype
   end
-  local dir_path = vim.fn.expand("~/workspace/scratch/" .. typ)
+
+  local file_path = vim.fs.joinpath(vim.fs.normalize("~/workspace/scratch/"), typ, name)
+
+  local dir_path = vim.fs.dirname(file_path)
   if vim.fn.isdirectory(dir_path) ~= 1 then
     vim.fn.mkdir(dir_path, "p")
   end
+
   vim.cmd.lcd(dir_path)
-  local file_path = table.concat({ dir_path, name }, "/")
+
+  return file_path
+end
+
+function M.scratch(name, filetype)
+  local file_path = M.scratch_path(name, filetype)
 
   -- to open modified buffer
   local bufnr = require("misclib.buffer").find(file_path)
