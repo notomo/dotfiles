@@ -429,7 +429,7 @@ vim.keymap.set({ "i" }, "[main_input]<CR>", function()
 end, { expr = true })
 vim.keymap.set("i", "[main_input]<Space>", [[<ESC>gUiwea]])
 vim.keymap.set("i", "[main_input]z", [[<C-a>]])
-vim.keymap.set("c", "[main_input]o", [[<Space><BS><C-z>]])
+vim.keymap.set("c", "[main_input]o", [[<C-n>]])
 
 local with_undo = function(rhs)
   return vim.fn.substitute(rhs, "\\ze<Left>$", "\\<C-g>U", "")

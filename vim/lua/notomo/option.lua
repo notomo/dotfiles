@@ -65,7 +65,7 @@ opt.cmdheight = 1
 opt.scrolloff = 8
 opt.sidescrolloff = 24
 opt.showmatch = true
-opt.wildmode = "longest:full"
+opt.wildmode = "noselect:lastused,full"
 opt.wildoptions:append("fuzzy")
 opt.switchbuf = "useopen"
 opt.matchpairs:append("<:>")
