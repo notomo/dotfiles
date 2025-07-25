@@ -67,10 +67,19 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   end,
 })
 
+local disabled_trigger = {
+  "%s",
+  "g/",
+  "g!",
+}
 vim.api.nvim_create_autocmd({ "CmdlineChanged" }, {
   group = group,
   pattern = { ":" },
   callback = function()
+    local prefix = vim.fn.getcmdline():sub(0, 2)
+    if vim.tbl_contains(disabled_trigger, prefix) then
+      return
+    end
     vim.fn.wildtrigger()
   end,
 })
