@@ -8,8 +8,8 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
     if not client then
       return
     end
+    client.server_capabilities.semanticTokensProvider = nil
 
-    vim.lsp.semantic_tokens.enable(false, { bufnr = bufnr })
     require("notomo.lsp.navigation").attach(client, bufnr)
 
     if client:supports_method("textDocument/documentColor") then
