@@ -100,6 +100,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("n", "D", action("debug_print", { quit = false }), { buffer = true })
     vim.keymap.set("n", "rn", action("rename"), { buffer = true })
     vim.keymap.set("n", "O", action("search"), { buffer = true })
+    vim.keymap.set("n", "T", action("terminal"), { buffer = true })
 
     vim.keymap.set("n", "rp", action("unionbuf"), { buffer = true })
     vim.keymap.set("n", "<Leader>rP", function()
