@@ -3,6 +3,7 @@ local M = {}
 M.filetypes = {
   go = true,
   typescript = true,
+  typescriptreact = true,
   c = true,
   terraform = true,
 }
@@ -14,7 +15,7 @@ function M.attach(client, bufnr)
   end
 end
 
-local setup_stlparts = function()
+local function setup_stlparts()
   local join_by = require("misclib.collection.list").join_by
   local stlparts = require("stlparts")
   local C = stlparts.component
@@ -56,13 +57,14 @@ local setup_stlparts = function()
     }),
   })
 end
-setup_stlparts()
 
 function M.setup()
   local filetype = vim.bo.filetype
   if not M.filetypes[filetype] then
     return
   end
+
+  setup_stlparts()
 
   local window_id = vim.api.nvim_get_current_win()
   if not require("misclib.window").is_floating(window_id) then
