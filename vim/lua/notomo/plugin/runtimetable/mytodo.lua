@@ -5,14 +5,14 @@ runtime.syntax["mytodo.lua"] = function()
     return
   end
 
-  vim.cmd.syntax({ args = { "match", "mytodoDone", [["^\s*#.*"]] } })
+  vim.cmd.syntax({ args = { "match", "mytodoDone", [["^\s*;.*"]] } })
   vim.api.nvim_set_hl(0, "mytodoDone", { default = true, link = "Comment" })
 
   vim.b.current_syntax = "mytodo"
 end
 
 runtime.after.ftplugin["mytodo.lua"] = function()
-  vim.bo.commentstring = "#%s"
+  vim.bo.commentstring = "; %s"
   vim.keymap.set("n", "[file]f", [[<Cmd>tab drop ~/workspace/todo/todo.tsv<CR>]], { buffer = true })
 end
 
