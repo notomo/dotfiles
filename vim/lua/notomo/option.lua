@@ -130,5 +130,6 @@ vim.filetype.add({
   extension = {
     flux = "flux",
     tf = "terraform",
+    mdx = "mdx",
   },
 })

@@ -7,9 +7,6 @@ vim.filetype.add({
   filename = {
     [".mytodo"] = "mytodo",
   },
-  extension = {
-    mdx = "mdx",
-  },
 })
 
 return {
