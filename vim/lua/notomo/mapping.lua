@@ -530,7 +530,7 @@ vim.keymap.set("n", "[exec]N", [[<Cmd>lua require("notomo.lib.edit").note()<CR>]
 vim.keymap.set("n", "[exec]O", [[<Cmd>lua require("notomo.lib.github").view_repo()<CR>]])
 vim.keymap.set("n", "[exec]P", [[<Cmd>lua require("notomo.lib.github").view_pr()<CR>]])
 vim.keymap.set("x", "[exec]p", function()
-  local selected = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })[1]
+  local selected = require("notomo.lib.edit").get_selected_text()
   if not selected then
     return
   end
@@ -538,7 +538,7 @@ vim.keymap.set("x", "[exec]p", function()
   require("notomo.lib.job").terminal({ "gh", "copilot", "explain", selected })
 end)
 vim.keymap.set("x", "[exec]S", function()
-  local selected = vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })[1]
+  local selected = require("notomo.lib.edit").get_selected_text()
   if not selected then
     return
   end

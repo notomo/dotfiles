@@ -153,6 +153,9 @@ vim.keymap.set("n", "[test]N", function()
 end)
 vim.keymap.set("x", "[test]N", function()
   local selected_text = require("notomo.lib.edit").get_selected_text()
+  if not selected_text then
+    return
+  end
 
   local tests, info = require("gettest").nodes({
     scope = "smallest_ancestor",
@@ -186,6 +189,9 @@ end)
 
 vim.keymap.set("x", "[test]d", function()
   local selected_text = require("notomo.lib.edit").get_selected_text()
+  if not selected_text then
+    return
+  end
 
   local tests, info = require("gettest").nodes({
     scope = "smallest_ancestor",
