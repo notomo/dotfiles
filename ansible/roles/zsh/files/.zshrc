@@ -23,6 +23,10 @@ setopt hist_ignore_space
 export HISTSIZE=1000
 export SAVEHIST=100000
 export HISTFILE=${HOME}/.zsh_history
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    export HISTSIZE=0
+    export SAVEHIST=0
+fi
 setopt extended_history
 setopt print_exit_value
 
