@@ -74,7 +74,7 @@ end
 
 vim.ui.input = require("notomo.lib.input").open
 
-vim.lsp.set_log_level(vim.log.levels.ERROR)
+vim.lsp.log.set_level(vim.log.levels.ERROR)
 vim.diagnostic.config({
   severity_sort = true,
   virtual_text = true,
