@@ -421,10 +421,10 @@ vim.keymap.set("n", "<Space>tn", function()
   require("thetto.util.source").start_by_name("vim/buffer/terminal", {
     modify_pipeline = require("thetto.util.pipeline").append({
       require("thetto.util.sorter").field_by_name("bufnr", true),
+      require("thetto.util.filter").item(function(item)
+        return vim.bo[item.bufnr].filetype ~= "cmdhndlr"
+      end),
     }),
-    filter = require("thetto.util.source").filter(function(item)
-      return vim.bo[item.bufnr].filetype ~= "cmdhndlr"
-    end),
     consumer_opts = {
       ui = {
         insert = false,
