@@ -52,8 +52,8 @@ local open_inputter = function(bufnr)
     style = "minimal",
     zindex = 200,
   })
-  vim.wo[window_id].winhighlight = "Normal:Normal,SignColumn:Normal"
-  vim.wo[window_id].signcolumn = "yes:1"
+  vim.wo[window_id][0].winhighlight = "Normal:Normal,SignColumn:Normal"
+  vim.wo[window_id][0].signcolumn = "yes:1"
   return window_id
 end
 
@@ -76,8 +76,8 @@ local open_prompt = function(prompt, base_window_id)
     style = "minimal",
     zindex = 200,
   })
-  vim.wo[window_id].winhighlight = "Normal:StatusLine,SignColumn:StatusLine"
-  vim.wo[window_id].signcolumn = "yes:1"
+  vim.wo[window_id][0].winhighlight = "Normal:StatusLine,SignColumn:StatusLine"
+  vim.wo[window_id][0].signcolumn = "yes:1"
   return window_id
 end
 

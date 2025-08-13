@@ -68,7 +68,7 @@ function M.setup()
 
   local window_id = vim.api.nvim_get_current_win()
   if not require("misclib.window").is_floating(window_id) then
-    vim.wo[window_id].winbar = [[%!v:lua.require("stlparts").build("navic")]]
+    vim.wo[window_id][0].winbar = [[%!v:lua.require("stlparts").build("navic")]]
   end
 end
 
