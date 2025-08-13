@@ -314,11 +314,13 @@ vim.keymap.set("n", "[yank]p", function()
   require("notomo.lib.edit").yank(path)
 end)
 vim.keymap.set("n", "[yank]g", function()
-  local git_root = vim.fs.root(0, ".git")
+  local git_root = vim.fs.root(0, ".git") or "."
   local path = vim.fs.normalize(vim.fn.expand("%:p"))
-  ---@diagnostic disable-next-line: cast-local-type
-  path = vim.fn.substitute(path, "^" .. git_root, ".", "")
-  require("notomo.lib.edit").yank(path)
+  if vim.bo.filetype == "kivi-file" then
+    path = vim.fs.normalize(vim.fn.getcwd())
+  end
+  local relative_path = vim.fs.relpath(git_root, path)
+  require("notomo.lib.edit").yank(relative_path)
 end)
 vim.keymap.set(
   "x",
