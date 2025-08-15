@@ -15,13 +15,6 @@ function M.should_collect()
   return false
 end
 
-function M.resolve()
-  if vim.fn["neosnippet#expandable"]() == 0 then
-    return
-  end
-  vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
-end
-
 M.kind_name = "word"
 M.kind_label = "Snippet"
 

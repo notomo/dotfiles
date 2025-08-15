@@ -772,6 +772,10 @@ vim.keymap.set("i", "[main_input]o", function()
     end
 
     vim.schedule(function()
+      if vim.fn["neosnippet#expandable"]() ~= 0 then
+        vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
+        return
+      end
       return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
     end)
     vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "m", true)
