@@ -7,7 +7,9 @@ vim.api.nvim_create_autocmd({
   group = group,
   pattern = { "*" },
   callback = function()
-    pcall(vim.cmd.lcd, [[`=expand('%:p:h')`]])
+    pcall(function()
+      vim.fn.chdir(vim.fn.expand("%:p:h"), "tabpage")
+    end)
   end,
 })
 
@@ -30,7 +32,9 @@ vim.api.nvim_create_autocmd({
       return
     end
 
-    pcall(vim.cmd.lcd, ([[`="%s"`]]):format(vim.fs.abspath(working_dir)))
+    pcall(function()
+      vim.fn.chdir(vim.fs.abspath(working_dir), "tabpage")
+    end)
   end,
 })
 

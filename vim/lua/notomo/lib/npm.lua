@@ -2,7 +2,7 @@ local M = {}
 
 function M.update(path)
   local dir = vim.fs.dirname(path)
-  vim.cmd.lcd(dir)
+  vim.fn.chdir(dir, "tabpage")
 
   local lines = vim.fn.systemlist({ "npm", "outdated" })
   lines = vim.list_slice(lines, 2)

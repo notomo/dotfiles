@@ -60,7 +60,7 @@ function M.scratch_path(name, filetype)
     vim.fn.mkdir(dir_path, "p")
   end
 
-  vim.cmd.lcd(dir_path)
+  vim.fn.chdir(dir_path, "tabpage")
 
   return file_path
 end
@@ -96,7 +96,7 @@ function M.note()
   else
     vim.api.nvim_set_current_win(window_id)
   end
-  vim.cmd.lcd(dir_path)
+  vim.fn.chdir(dir_path, "tabpage")
 
   local note_tab_num = vim.fn.tabpagenr()
   local offset = before_tab_num - note_tab_num
