@@ -417,12 +417,29 @@ vim.keymap.set("n", "[file]t", function()
 end)
 
 vim.keymap.set("n", "[finder]T", thetto_starter("vim/buffer/terminal"))
-vim.keymap.set("n", "<Space>tn", function()
+vim.keymap.set("n", "[term]n", function()
   require("thetto.util.source").start_by_name("vim/buffer/terminal", {
     modify_pipeline = require("thetto.util.pipeline").append({
       require("thetto.util.sorter").field_by_name("bufnr", true),
       require("thetto.util.filter").item(function(item)
         return vim.bo[item.bufnr].filetype ~= "cmdhndlr"
+      end),
+    }),
+    consumer_opts = {
+      ui = {
+        insert = false,
+      },
+    },
+  }, {
+    consumer_factory = require("thetto.util.consumer").immediate({ action_name = "tab_drop" }),
+  })
+end)
+vim.keymap.set("n", "[term]N", function()
+  require("thetto.util.source").start_by_name("vim/buffer/terminal", {
+    modify_pipeline = require("thetto.util.pipeline").append({
+      require("thetto.util.sorter").field_by_name("bufnr", true),
+      require("thetto.util.filter").item(function(item)
+        return vim.api.nvim_buf_get_name(item.bufnr):match(":claude")
       end),
     }),
     consumer_opts = {
