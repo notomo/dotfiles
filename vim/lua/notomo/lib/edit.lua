@@ -140,7 +140,8 @@ function M.set_term_title(prompt_pattern)
 
   local prompt = vim.fn.matchstr(prompt_line, prompt_pattern)
   local cmd = prompt_line:sub(vim.fn.strlen(prompt))
-  cmd = vim.trim(vim.fn.substitute(cmd, "/", [[\]], "g"))
+  cmd = vim.fn.substitute(vim.trim(cmd), "/", [[\]], "g")
+  cmd = vim.fn.substitute(cmd, " ", "_", "g")
   if cmd == "" then
     return
   end

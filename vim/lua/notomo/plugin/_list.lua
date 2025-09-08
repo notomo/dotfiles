@@ -534,7 +534,7 @@ optpack.add("mfussenegger/nvim-dap", {
           end)
         end)
       end)
-      vim.keymap.set("n", "[term]n", [[<Cmd>lua require("dap").step_over()<CR>]])
+      vim.keymap.set("n", "[term]l", [[<Cmd>lua require("dap").step_over()<CR>]])
       vim.keymap.set("n", "[term]c", [[<Cmd>lua require("dap").continue()<CR>]])
       vim.keymap.set("n", "[term]C", [[<Cmd>lua require("dap").run_to_cursor()<CR>]])
       vim.keymap.set("n", "[term]R", [[<Cmd>lua require("dap").restart()<CR>]])
