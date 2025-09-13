@@ -300,15 +300,25 @@ vim.keymap.set(
   { silent = true }
 )
 vim.keymap.set("n", "[yank]n", function()
-  require("notomo.lib.edit").yank(vim.fn.fnamemodify(vim.fn.expand("%"), ":r"))
+  local path = vim.fn.expand("%")
+  if vim.bo.filetype == "kivi-file" then
+    path = vim.fs.basename(vim.fs.normalize(vim.fn.getcwd()))
+  end
+  require("notomo.lib.edit").yank(vim.fn.fnamemodify(path, ":r"))
 end, { silent = true })
 vim.keymap.set("n", "[yank]N", function()
   local path = vim.api.nvim_buf_get_name(0)
+  if vim.bo.filetype == "kivi-file" then
+    path = vim.fn.getcwd()
+  end
   require("notomo.lib.edit").yank(vim.fs.basename(path))
 end, { silent = true })
 vim.keymap.set("n", "[yank]p", function()
   local home = vim.fs.normalize("$HOME")
   local path = vim.fs.normalize(vim.fn.expand("%:p"))
+  if vim.bo.filetype == "kivi-file" then
+    path = vim.fs.normalize(vim.fn.getcwd())
+  end
   ---@diagnostic disable-next-line: cast-local-type
   path = vim.fn.substitute(path, "^" .. home, "~", "")
   require("notomo.lib.edit").yank(path)
@@ -327,7 +337,13 @@ vim.keymap.set(
   "[yank]T",
   [[<Cmd>lua require("notomo.lib.edit").yank(require("notomo.lib.treesitter.node").expr())<CR>]]
 )
-vim.keymap.set("n", "[yank]P", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fs.normalize(vim.fn.expand('%:p')))<CR>]])
+vim.keymap.set("n", "[yank]P", function()
+  local path = vim.fs.normalize(vim.fn.expand("%:p"))
+  if vim.bo.filetype == "kivi-file" then
+    path = vim.fs.normalize(vim.fn.getcwd())
+  end
+  require("notomo.lib.edit").yank(path)
+end)
 vim.keymap.set("n", "[yank];", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg(":"))<CR>]], { silent = true })
 vim.keymap.set("n", "[yank]/", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg("/"))<CR>]], { silent = true })
 vim.keymap.set("n", "[yank]i", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.getreg("."))<CR>]], { silent = true })
