@@ -417,6 +417,7 @@ local nvim_treesitter = optpack.add("nvim-treesitter/nvim-treesitter", {
     modules = { "nvim-treesitter" },
     events = { "FileType" },
   },
+  fetch = { version = "main" },
   hooks = {
     post_load = function(plugin)
       -- prior than builtin
@@ -427,12 +428,8 @@ local nvim_treesitter = optpack.add("nvim-treesitter/nvim-treesitter", {
 })
 optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
   depends = { nvim_treesitter.name },
-  load_on = { cmds = { "TS*" }, modules = { "nvim-treesitter.textobjects" } },
-  hooks = {
-    post_load = function()
-      require("notomo.plugin.nvim-treesitter").setup()
-    end,
-  },
+  load_on = { modules = { "nvim-treesitter-textobjects" } },
+  fetch = { version = "main" },
 })
 
 mypack.add("notomo/aliaser.nvim", {

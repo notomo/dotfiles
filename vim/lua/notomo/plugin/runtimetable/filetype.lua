@@ -378,7 +378,6 @@ runtime.after.ftplugin["markdown.lua"] = function()
   vim.opt_local.shiftwidth = 0
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
-  require("notomo.lib.treesitter").setup()
 
   vim.keymap.set("n", "[finder]o", function()
     require("thetto.util.source").start_by_name("aerial")
@@ -427,8 +426,12 @@ runtime.after.ftplugin["python.lua"] = function()
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
 
-  vim.keymap.set({ "n", "x" }, "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
-  vim.keymap.set({ "n", "x" }, "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgj", function()
+    require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+  end, { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgk", function()
+    require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+  end, { buffer = true })
 end
 
 runtime.after.ftplugin["requirements.lua"] = function()
@@ -446,8 +449,12 @@ runtime.after.ftplugin["rust.lua"] = function()
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
 
-  vim.keymap.set({ "n", "x" }, "sgj", [[<Cmd>TSTextobjectGotoNextStart @function.outer<CR>]], { buffer = true })
-  vim.keymap.set({ "n", "x" }, "sgk", [[<Cmd>TSTextobjectGotoPreviousStart @function.outer<CR>]], { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgj", function()
+    require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
+  end, { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgk", function()
+    require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
+  end, { buffer = true })
 end
 
 runtime.after.ftplugin["scheme.lua"] = function()
@@ -531,6 +538,7 @@ end
 runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.treesitter.language.register("tsx", "typescriptreact")
 
+  ---@diagnostic disable-next-line: undefined-field
   vim.opt_local.iskeyword:append("-")
   vim.opt_local.modeline = false
   vim.opt_local.completeopt:remove("preview")
@@ -540,15 +548,6 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   require("notomo.lsp").setup()
 
   require("notomo.lib.treesitter").setup()
-
-  vim.keymap.set("n", "<CR>", function()
-    local node = vim.treesitter.get_node({})
-    if require("notomo.lib.jsx").cursor_on_string(node) then
-      require("notomo.lib.jsx").select_class_name(node)
-      return
-    end
-    require("notomo.lib.jsx").select_tag()
-  end, { buffer = true })
 
   vim.keymap.set("n", "gI", function()
     require("notomo.lib.jsx").go_to_first_child()
