@@ -8,6 +8,7 @@ function M.run(cmd, raw_opts)
 
   local notify = raw_opts.notify or vim.notify
   local cwd = raw_opts.cwd or "."
+  notify(prefix .. "starting")
   return vim.system(cmd, {
     cwd = cwd,
     stdout = function(_, data)
