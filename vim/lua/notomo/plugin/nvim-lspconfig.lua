@@ -119,7 +119,6 @@ vim.lsp.config("lua_ls", {
     },
   },
 })
-vim.lsp.enable("lua_ls")
 
 local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
 vim.lsp.config("vtsls", {
@@ -162,7 +161,6 @@ vim.lsp.config("vtsls", {
     },
   },
 })
-vim.lsp.enable("vtsls")
 
 vim.lsp.config("denols", {
   root_dir = function(bufnr, cb)
@@ -180,7 +178,6 @@ vim.lsp.config("denols", {
     config.initializationOptions["importMap"] = import_map
   end,
 }, { "unix" })
-vim.lsp.enable("denols")
 
 vim.lsp.config("rust_analyzer", {
   cmd = {
@@ -190,7 +187,6 @@ vim.lsp.config("rust_analyzer", {
     "rust-analyzer",
   },
 })
-vim.lsp.enable("rust_analyzer")
 
 vim.lsp.config("gopls", {
   init_options = {
@@ -213,12 +209,10 @@ vim.lsp.config("gopls", {
     },
   },
 })
-vim.lsp.enable("gopls")
 
 vim.lsp.config("ocamllsp", {
   root_markers = { "*.opam", ".git", "dune-project", ".opam-switch" },
 })
-vim.lsp.enable("ocamllsp")
 
 vim.lsp.config("tailwindcss", {
   settings = {
@@ -234,22 +228,7 @@ vim.lsp.config("tailwindcss", {
     },
   },
 })
-vim.lsp.enable("tailwindcss")
 
 vim.lsp.config("biome", {
   cmd = { "npx", "biome", "lsp-proxy" },
 })
-vim.lsp.enable("biome")
-
-vim.lsp.enable("pylsp")
-vim.lsp.enable("clangd")
-vim.lsp.enable("jsonls")
-vim.lsp.enable("cssls")
-vim.lsp.enable("yamlls")
-vim.lsp.enable("flux_lsp")
-vim.lsp.enable("graphql")
-vim.lsp.enable("terraformls")
-vim.lsp.enable("prismals")
-vim.lsp.enable("postgres_lsp")
-vim.lsp.enable("zls")
-vim.lsp.enable("astro")
