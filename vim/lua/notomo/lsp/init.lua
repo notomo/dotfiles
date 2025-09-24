@@ -5,6 +5,7 @@ local M = {}
 local filetype_servers = {
   lua = { "lua_ls" },
   typescript = { "vtsls", "tailwindcss", "biome", "denols" },
+  typescriptreact = { "vtsls", "tailwindcss", "biome" },
   css = { "cssls" },
   yaml = { "yamlls" },
   rust = { "rust_analyzer" },
@@ -36,11 +37,21 @@ function M.setup(raw_opts)
       config.root_dir(bufnr, function(root_dir)
         config.root_dir = root_dir
         vim.schedule(function()
-          vim.lsp.start(config, { silent = true })
+          vim.lsp.start(config, {
+            silent = true,
+            bufnr = bufnr,
+            reuse_client = config.reuse_client,
+            _root_markers = config.root_markers,
+          })
         end)
       end)
     else
-      vim.lsp.start(config, { silent = true })
+      vim.lsp.start(config, {
+        silent = true,
+        bufnr = bufnr,
+        reuse_client = config.reuse_client,
+        _root_markers = config.root_markers,
+      })
     end
   end
 
