@@ -446,7 +446,7 @@ vim.keymap.set("n", "[term]N", function()
         require("thetto.util.sorter").field_by_name("bufnr", true),
         require("thetto.util.filter").item(function(item)
           local name = vim.api.nvim_buf_get_name(item.bufnr)
-          local path = name:match("^term://(.*)")
+          local path = name:match("^term://(.*)") or ""
           local root = vim.split(path, "//", { plain = true })[1]
           if not root then
             return false
@@ -469,7 +469,7 @@ vim.keymap.set("n", "[term]N", function()
       consumer_factory = require("thetto.util.consumer").immediate({ action_name = "tab_drop" }),
     })
     :next(function(result)
-      if #result > 0 then
+      if not result or #result > 0 then
         return
       end
 
