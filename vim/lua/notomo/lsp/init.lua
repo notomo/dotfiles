@@ -4,7 +4,7 @@ local M = {}
 
 local filetype_servers = {
   lua = { "lua_ls" },
-  typescript = { "vtsls", "tailwindcss", "biome", "denols" },
+  typescript = { "vtsls", "biome", "denols" },
   typescriptreact = { "vtsls", "tailwindcss", "biome" },
   css = { "cssls" },
   yaml = { "yamlls" },
