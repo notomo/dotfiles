@@ -614,6 +614,10 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
       vim.bo.filetype = ""
     end, { buffer = true })
 
+    vim.keymap.set("n", "I", function()
+      require("notomo.lib.terminal").input()
+    end, { buffer = true })
+
     local enter = function()
       local ok, err = pcall(function()
         require("notomo.lib.edit").set_term_title()
