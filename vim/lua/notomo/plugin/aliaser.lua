@@ -184,10 +184,6 @@ function M.view_cursor_repository()
   require("notomo.lib.github").view_repo(vim.fn.expand("<cWORD>"))
 end
 
-function M.package_json_update()
-  require("notomo.lib.npm").update(vim.fn.expand("%:p"))
-end
-
 function M.format_do()
   vim.lsp.buf.format({ async = true })
 end
