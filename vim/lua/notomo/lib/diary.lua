@@ -13,7 +13,7 @@ function M.open()
   end
 
   vim.cmd([[write ++p]])
-  vim.fn.chdir(dir_path, "tabpage")
+  vim.fn.chdir(dir_path, "window")
 
   local dir = vim.fn.reverse(vim.fn.readdir("."))
   local others = vim.list_slice(dir, 2)
