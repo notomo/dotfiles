@@ -615,7 +615,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
     end, { buffer = true })
 
     vim.keymap.set("n", "I", function()
-      require("notomo.lib.terminal").input()
+      require("notomo.lib.prompt").open()
     end, { buffer = true })
 
     local enter = function()
