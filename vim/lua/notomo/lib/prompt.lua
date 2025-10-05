@@ -6,7 +6,16 @@ function M.open()
     pattern = { "*/text/prompt.txt" },
     callback = function()
       vim.keymap.set("n", "[exec]I", function()
-        require("notomo.lib.prompt").send()
+        local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+        local text = table.concat(lines, "\n")
+        require("notomo.lib.prompt").send(text)
+      end, { buffer = true })
+
+      vim.keymap.set("x", "[exec]I", function()
+        local lines = require("notomo.lib.edit").get_selected_lines()
+        require("misclib.visual_mode").leave()
+        local text = table.concat(lines, "\n")
+        require("notomo.lib.prompt").send(text)
       end, { buffer = true })
     end,
   })
@@ -30,13 +39,14 @@ function M.open()
       split = "below",
     })
     vim.cmd.edit(file_path)
+    vim.cmd.wincmd("=")
     return
   end
 
   vim.api.nvim_tabpage_set_win(0, window_id)
 end
 
-function M.send()
+function M.send(text)
   local terminal = vim
     .iter(vim.api.nvim_tabpage_list_wins(0))
     :map(function(window_id)
@@ -45,7 +55,6 @@ function M.send()
         return nil
       end
       return {
-        channel = vim.bo[bufnr].channel,
         window_id = window_id,
       }
     end)
@@ -56,16 +65,12 @@ function M.send()
     error("no terminal in tabpage")
   end
 
-  vim.fn.chansend(terminal.channel, { vim.keycode("<C-c>") })
+  vim.fn.setreg("+", text)
 
-  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-  vim.fn.setreg("+", table.concat(lines, "\n"))
-
-  vim.schedule(function()
-    vim.api.nvim_set_current_win(terminal.window_id)
-    vim.api.nvim_feedkeys("p", "nx", true)
-    vim.cmd.startinsert({ bang = true })
-  end)
+  vim.api.nvim_set_current_win(terminal.window_id)
+  require("misclib.cursor").to_bottom(terminal.window_id)
+  vim.api.nvim_feedkeys("p", "nx", true)
+  vim.cmd.startinsert({ bang = true })
 end
 
 return M

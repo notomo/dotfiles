@@ -225,7 +225,11 @@ function M.delete_prev()
 end
 
 function M.get_selected_text()
-  return vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })[1]
+  return M.get_selected_lines()[1]
+end
+
+function M.get_selected_lines()
+  return vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos("."), { type = vim.fn.mode() })
 end
 
 function M._selected_lines()
