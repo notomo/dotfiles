@@ -547,22 +547,6 @@ vim.keymap.set("n", "[exec]q", [[<Cmd>lua require("notomo.lib.edit").jq()<CR>]])
 vim.keymap.set("n", "[exec]N", [[<Cmd>lua require("notomo.lib.edit").note()<CR>]])
 vim.keymap.set("n", "[exec]O", [[<Cmd>lua require("notomo.lib.github").view_repo()<CR>]])
 vim.keymap.set("n", "[exec]P", [[<Cmd>lua require("notomo.lib.github").view_pr()<CR>]])
-vim.keymap.set("x", "[exec]p", function()
-  local selected = require("notomo.lib.edit").get_selected_text()
-  if not selected then
-    return
-  end
-  require("misclib.visual_mode").leave()
-  require("notomo.lib.job").terminal({ "gh", "copilot", "explain", selected })
-end)
-vim.keymap.set("x", "[exec]S", function()
-  local selected = require("notomo.lib.edit").get_selected_text()
-  if not selected then
-    return
-  end
-  require("misclib.visual_mode").leave()
-  require("notomo.lib.job").terminal({ "gh", "copilot", "suggest", "-t", "shell", selected })
-end)
 
 vim.keymap.set("n", "[winmv]a", [[<C-w>h]])
 vim.keymap.set("n", "[winmv]x", [[<C-w>j]])
