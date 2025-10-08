@@ -55,8 +55,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.keymap.set("x", "sm", execute("toggle_selection"), { buffer = true })
     vim.keymap.set("n", "O", execute("expand_parent"), { buffer = true })
     vim.keymap.set("n", ".", execute("shrink"), { buffer = true })
-    vim.keymap.set("n", "I", execute("show_details"), { buffer = true })
-    vim.keymap.set("x", "I", execute("show_details"), { buffer = true })
+    vim.keymap.set({ "n", "x" }, "I", execute("show_details"), { buffer = true })
     vim.keymap.set("n", "T", execute("show_git_ignores"), { buffer = true })
     vim.keymap.set("n", "X", execute("open_by_system_default"), { buffer = true })
 
@@ -98,9 +97,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       buffer = true,
       nowait = true,
     })
-    vim.keymap.set("n", "df", execute("delete"), { buffer = true })
-    vim.keymap.set("n", "xf", execute("cut"), { buffer = true })
-    vim.keymap.set("n", "yf", execute("copy"), { buffer = true })
+    vim.keymap.set({ "n", "x" }, "df", execute("delete"), { buffer = true })
+    vim.keymap.set({ "n", "x" }, "xf", execute("cut"), { buffer = true })
+    vim.keymap.set({ "n", "x" }, "yf", execute("copy"), { buffer = true })
     vim.keymap.set("n", "yx", execute("clear_clipboard"), { buffer = true })
     vim.keymap.set("n", "p", execute("paste"), { buffer = true })
     vim.keymap.set("n", "i", execute("create"), { buffer = true })
