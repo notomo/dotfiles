@@ -106,7 +106,6 @@ mypack.add("notomo/optpack.nvim", {
 
 mypack.add("notomo/workflow")
 mypack.add("notomo/vusted")
-mypack.add("notomo/virtes.nvim")
 mypack.add("notomo/genvdoc", {
   load_on = { modules = { "genvdoc" } },
 })
