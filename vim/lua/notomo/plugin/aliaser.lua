@@ -214,4 +214,11 @@ function M.install_lua_debugger()
   require("notomo.lib.job").run({ "npm", "run", "build" }, { cwd = lldebugger_path }):wait()
 end
 
+function M.open_undotree()
+  vim.cmd.packadd("nvim.undotree")
+  vim.cmd.Undotree()
+  vim.cmd.wincmd("=")
+  require("misclib.cursor").to_bottom()
+end
+
 return M
