@@ -5,14 +5,3 @@
       - "libxrandr2:i386"
   become: true
   when: is_ubuntu
-
-- name: add .bashrc content for clipboard
-  blockinfile:
-    marker: "# {mark} ANSIBLE MANAGED BLOCK clipboard"
-    dest: "{{ home_dir }}/.bashrc"
-    content: |
-      if [ -x /usr/bin/Xvfb ] && [ -x /usr/bin/VBoxClient ] && [ ! -f /tmp/.X0-lock ]; then
-          Xvfb -screen 0 320x240x8 >/dev/null 2>&1 &
-          sleep 0.5
-          DISPLAY=:0 VBoxClient --clipboard
-      fi
