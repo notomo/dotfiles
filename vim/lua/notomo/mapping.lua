@@ -581,6 +581,7 @@ vim.keymap.set("i", "<C-w>", [[<ESC><Plug>(tabclose_c)]], { silent = true, remap
 vim.keymap.set("v", "<C-w>", [[<ESC><Plug>(tabclose_c)]], { silent = true, remap = true })
 vim.keymap.set("n", "<C-t>", [[<Plug>(new_tab)]], { silent = true })
 vim.keymap.set("t", "jj", [[<C-\><C-n>]])
+vim.keymap.set("t", "jJ", [[<ESC>]])
 vim.keymap.set("t", "<C-j>", [[<Nop>]])
 vim.keymap.set("t", "<C-p>", [[<Up>]])
 vim.keymap.set("t", "<C-n>", [[<Down>]])
