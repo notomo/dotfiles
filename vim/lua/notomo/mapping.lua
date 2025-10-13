@@ -589,10 +589,6 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   group = vim.api.nvim_create_augroup("notomo.terminal.mapping", {}),
   pattern = { "*" },
   callback = function()
-    local path = vim.api.nvim_buf_get_name(0)
-    if not vim.endswith(path, vim.o.shell) then
-      return
-    end
     vim.keymap.set("n", "[file]rl", function()
       vim.api.nvim_exec_autocmds("BufRead", { buffer = 0, modeline = false })
       vim.api.nvim_exec_autocmds("TermOpen", { modeline = false })
@@ -602,6 +598,11 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
     vim.keymap.set("n", "I", function()
       require("notomo.lib.prompt").open()
     end, { buffer = true })
+
+    local path = vim.api.nvim_buf_get_name(0)
+    if not vim.endswith(path, vim.o.shell) then
+      return
+    end
 
     local enter = function()
       local ok, err = pcall(function()
