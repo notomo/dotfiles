@@ -6,3 +6,4 @@ __pycache__
 core
 !core/
 .claude/settings.local.json
+.mcp.json
