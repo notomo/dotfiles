@@ -17,7 +17,7 @@ local to_item = function(match_tree, bufnr, path, depth)
   local tag_marker = is_tag and "<" or ""
 
   return {
-    value = indent .. tag_marker .. first_line,
+    value = indent == "" and tag_marker .. first_line .. " >" or indent .. tag_marker .. first_line,
     row = row + 1,
     column = column,
     end_row = end_row,
