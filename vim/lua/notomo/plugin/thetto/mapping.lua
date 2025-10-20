@@ -416,9 +416,13 @@ vim.keymap.set("n", "[file]t", function()
   )
 end)
 
-vim.keymap.set("n", "[finder]T", thetto_starter("vim/buffer/terminal"))
+vim.keymap.set("n", "[finder]T", function()
+  require("thetto").start(require("thetto.util.source").by_name("vim/terminal", {
+    cwd = require("thetto.util.cwd").project(),
+  }))
+end)
 vim.keymap.set("n", "[term]n", function()
-  require("thetto.util.source").start_by_name("vim/buffer/terminal", {
+  require("thetto.util.source").start_by_name("vim/terminal", {
     modify_pipeline = require("thetto.util.pipeline").append({
       require("thetto.util.sorter").field_by_name("bufnr", true),
       require("thetto.util.filter").item(function(item)
@@ -441,7 +445,7 @@ vim.keymap.set("n", "[term]N", function()
   end
 
   require("thetto.util.source")
-    .start_by_name("vim/buffer/terminal", {
+    .start_by_name("vim/terminal", {
       modify_pipeline = require("thetto.util.pipeline").append({
         require("thetto.util.sorter").field_by_name("bufnr", true),
         require("thetto.util.filter").item(function(item)

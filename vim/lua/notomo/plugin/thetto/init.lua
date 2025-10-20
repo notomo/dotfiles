@@ -68,20 +68,6 @@ register_kind("git/status", {
   },
 })
 
-register_source_alias("vim/buffer/terminal", "vim/buffer", {
-  filter = require("thetto.util.source").filter(function(item)
-    return vim.bo[item.bufnr].buftype == "terminal"
-  end),
-  highlight = require("thetto.util.highlight").columns({
-    {
-      group = "Comment",
-      filter = function(item)
-        return vim.endswith(item.value, ":zsh")
-      end,
-    },
-  }),
-})
-
 register_source("vim/terminal_prompt", {
   opts = {
     row_offset = 2,
@@ -96,6 +82,14 @@ register_kind("url", {
       end,
     },
   },
+})
+
+register_kind("file/directory", {
+  action_open_browser = function(items)
+    for _, item in ipairs(items) do
+      require("notomo.lib.github").view_repo(nil, { cwd = item.path })
+    end
+  end,
 })
 
 register_kind("vim/variable", {
