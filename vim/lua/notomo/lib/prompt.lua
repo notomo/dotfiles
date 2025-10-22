@@ -67,7 +67,10 @@ function M.send(text)
 
   vim.fn.setreg("+", text)
 
+  local prompt_window_id = vim.api.nvim_get_current_win()
   vim.api.nvim_set_current_win(terminal.window_id)
+  vim.api.nvim_win_close(prompt_window_id, true)
+
   require("misclib.cursor").to_bottom(terminal.window_id)
   vim.api.nvim_feedkeys("p", "nx", true)
   vim.cmd.startinsert({ bang = true })
