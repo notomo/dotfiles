@@ -20,7 +20,7 @@ function M.view_pr()
   require("notomo.lib.job").run(cmd)
 end
 
-function M.view_repo(target)
+function M.view_repo(target, opts)
   local cmd = { "gh", "repo", "view", "--web" }
   if target then
     target = vim.fn.substitute(target, "^https:\\/\\/", "", "")
@@ -29,7 +29,7 @@ function M.view_repo(target)
   if target ~= "" then
     table.insert(cmd, target)
   end
-  require("notomo.lib.job").run(cmd)
+  require("notomo.lib.job").run(cmd, opts)
 end
 
 function M.create_issue()
