@@ -60,13 +60,11 @@ function M.scratch_path(name, filetype)
     vim.fn.mkdir(dir_path, "p")
   end
 
-  vim.fn.chdir(dir_path, "tabpage")
-
-  return file_path
+  return file_path, dir_path
 end
 
 function M.scratch(name, filetype)
-  local file_path = M.scratch_path(name, filetype)
+  local file_path, dir_path = M.scratch_path(name, filetype)
 
   -- to open modified buffer
   local bufnr = require("misclib.buffer").find(file_path)
@@ -74,11 +72,13 @@ function M.scratch(name, filetype)
     local window_id = vim.fn.win_findbuf(bufnr)[1]
     if window_id then
       vim.api.nvim_set_current_win(window_id)
+      vim.fn.chdir(dir_path, "tabpage")
       return
     end
   end
 
   vim.cmd.drop({ mods = { tab = vim.fn.tabpagenr() }, args = { file_path } })
+  vim.fn.chdir(dir_path, "tabpage")
 end
 
 function M.note()
