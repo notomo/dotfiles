@@ -7,6 +7,9 @@ vim.api.nvim_create_autocmd({
   group = group,
   pattern = { "*" },
   callback = function()
+    if vim.w.notomo_disable_autocd then
+      return
+    end
     pcall(function()
       vim.fn.chdir(vim.fn.expand("%:p:h"), "window")
     end)

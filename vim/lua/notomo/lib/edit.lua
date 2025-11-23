@@ -109,12 +109,15 @@ function M.note()
 end
 
 function M.rotate_file()
-  local origin = vim.fn.expand("%")
+  local origin = vim.fn.expand("%:p")
   if origin == "" then
     return
   end
+
+  local base_name = vim.fs.basename(origin)
+  local base_path = vim.fs.dirname(origin)
   for i = 1, 10000 do
-    local name = ("%03d_%s"):format(i, origin)
+    local name = vim.fs.joinpath(base_path, ("%03d_%s"):format(i, base_name))
     if vim.fn.filereadable(name) ~= 1 and vim.fn.bufexists(name) ~= 1 then
       vim.cmd.file(name)
       vim.cmd.write()
