@@ -570,6 +570,30 @@ vim.keymap.set("n", "[win]e", [[<C-w>=]])
 vim.keymap.set("n", "[tab]o", [[<Cmd>silent tabonly<CR>]], { silent = true })
 vim.keymap.set("x", "[tab]o", [[<Esc><Cmd>silent tabonly<CR>]], { silent = true })
 vim.keymap.set("n", "[tab]t", [[<Plug>(new_tab)]], { remap = true })
+
+local tab_submode_mappings = {
+  { lhs = "l", rhs = "<Esc>gt" },
+  { lhs = "s", rhs = "<Cmd>tabr<CR>" },
+  { lhs = "e", rhs = "<Cmd>tabl<CR>" },
+  { lhs = "a", rhs = "<Esc>gT" },
+  { lhs = "h", rhs = "<Esc>gT" },
+  { lhs = "q", rhs = "<Esc><Plug>(tabclose_c)" },
+  { lhs = "da", rhs = "<Esc><Plug>(tabclose_l)" },
+  { lhs = "dl", rhs = "<Esc><Plug>(tabclose_r)" },
+  { lhs = "d;", rhs = "<Cmd>+tabclose<CR>" },
+  { lhs = "ml", rhs = "<Cmd>tabm+1<CR>" },
+  { lhs = "ms", rhs = "<Cmd>tabm 0<CR>" },
+  { lhs = "me", rhs = "<Cmd>tabm<CR>" },
+  { lhs = "ma", rhs = "<Cmd>tabm-1<CR>" },
+}
+for _, m in ipairs(tab_submode_mappings) do
+  vim.keymap.set("n", "[tab]" .. m.lhs, m.rhs .. "<Plug>(tab-submode)")
+end
+for _, m in ipairs(tab_submode_mappings) do
+  vim.keymap.set("n", "<Plug>(tab-submode)" .. m.lhs, m.rhs .. "<Plug>(tab-submode)")
+end
+vim.keymap.set("n", "<Plug>(tab-submode)", "<Nop>")
+
 vim.keymap.set("n", "<C-Tab>", [[gt]])
 vim.keymap.set("n", "<C-S-Tab>", [[gT]])
 vim.keymap.set("i", "<C-Tab>", [[<Esc>gt]])
