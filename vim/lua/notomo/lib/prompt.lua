@@ -34,20 +34,21 @@ function M.open()
   end)
 
   local cwd = vim.fn.getcwd()
-  vim.w[window_id].notomo_disable_autocd = true
 
   if not window_id then
-    vim.api.nvim_open_win(0, true, {
+    local opened = vim.api.nvim_open_win(0, true, {
       vertical = false,
       split = "below",
     })
     vim.cmd.edit(file_path)
     vim.cmd.wincmd("=")
+    vim.w[opened].notomo_disable_autocd = true
     vim.fn.chdir(cwd, "window")
     return
   end
 
   vim.api.nvim_tabpage_set_win(0, window_id)
+  vim.w[window_id].notomo_disable_autocd = true
   vim.fn.chdir(cwd, "window")
 end
 
