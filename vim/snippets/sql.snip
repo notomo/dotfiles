@@ -10,6 +10,9 @@ alias UPDATE
 abbr UPDATE ... SET ... WHERE ...
 	UPDATE ${1:table} SET ${2:column} = ${3:value} WHERE ${0:condition};
 
+snippet alter
+	ALTER TABLE ${1:table_name} ADD COLUMN ${0:column_name varchar(30)}
+
 snippet select
 alias SELECT
 abbr SELECT {column} FROM {table}
@@ -158,11 +161,15 @@ snippet not
 abbr NOT
 	NOT
 
+snippet case_when_else
+	CASE WHEN ${1:condition} THEN ${2:value}
+	ELSE ${3:value} END AS ${0:name}
+
 snippet case
 abbr CASE WHEN condition THEN value
 	CASE WHEN ${1:condition} THEN ${0:value}
 
-snippet case_when
+snippet case_var_when
 abbr CASE var WHEN condition THEN value
 	CASE ${1:var} WHEN ${2:condition} THEN ${0:value}
 
