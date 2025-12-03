@@ -415,6 +415,8 @@ vim.keymap.set("i", "<C-k>", [[<C-o>C]])
 vim.keymap.set("c", "<C-k>", [[<Up>]])
 vim.keymap.set("c", "<Up>", [[<C-p>]])
 vim.keymap.set("c", "<Down>", [[<C-n>]])
+vim.keymap.set("c", "<C-f>", [[<Space><BS><Right>]]) -- for wildmenu
+vim.keymap.set("c", "<C-b>", [[<Space><BS><Left>]]) -- for wildmenu
 vim.keymap.set("c", "<C-j>", [[<Down>]])
 vim.keymap.set({ "i", "c" }, "<C-e>", [[<End>]])
 vim.keymap.set("i", "<C-a>", [[<C-o>^]])
