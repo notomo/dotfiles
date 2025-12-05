@@ -17,6 +17,11 @@ function M.open()
         local text = table.concat(lines, "\n")
         require("notomo.lib.prompt").send(text)
       end, { buffer = true })
+
+      vim.keymap.set("n", "[exec]H", function()
+        local terminal = require("notomo.lib.prompt").terminal()
+        vim.fn.chansend(terminal.channel, { vim.keycode("<C-c>") })
+      end, { buffer = true })
     end,
   })
 
@@ -52,7 +57,7 @@ function M.open()
   vim.fn.chdir(cwd, "window")
 end
 
-function M.send(text)
+function M.terminal()
   local terminal = vim
     .iter(vim.api.nvim_tabpage_list_wins(0))
     :map(function(window_id)
@@ -62,6 +67,7 @@ function M.send(text)
       end
       return {
         window_id = window_id,
+        channel = vim.bo[bufnr].channel,
       }
     end)
     :find(function(x)
@@ -70,6 +76,11 @@ function M.send(text)
   if not terminal then
     error("no terminal in tabpage")
   end
+  return terminal
+end
+
+function M.send(text)
+  local terminal = M.terminal()
 
   vim.fn.setreg("+", text)
 
