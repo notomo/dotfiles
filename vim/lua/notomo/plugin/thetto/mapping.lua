@@ -293,17 +293,6 @@ local source_specific = {
     vim.keymap.set("n", "pop", action("pop"), { buffer = list_bufnr })
     vim.keymap.set("n", "AP", action("apply"), { buffer = list_bufnr })
   end,
-  ["git/blame"] = function(list_bufnr)
-    vim.keymap.set("n", "<CR>", function()
-      local item = require("thetto").get()[1]
-      require("thetto.util.source").start_by_name("git/blame", {
-        opts = {
-          commit_hash = item.commit_hash,
-          path = item.path,
-        },
-      })
-    end, { buffer = list_bufnr })
-  end,
   ["cmd/make/target"] = function(list_bufnr)
     vim.keymap.set("n", "P", action("dry_run"), { buffer = list_bufnr })
     vim.keymap.set("n", "O", action("execute_reusable"), { buffer = list_bufnr })
