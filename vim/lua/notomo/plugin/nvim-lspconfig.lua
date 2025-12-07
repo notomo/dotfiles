@@ -17,6 +17,16 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
     if client:supports_method("textDocument/documentColor") then
       vim.lsp.document_color.enable(true, bufnr, { style = "virtual" })
     end
+
+    if client:supports_method("textDocument/selectionRange") then
+      vim.keymap.set({ "n", "x" }, "<CR>", function()
+        vim.lsp.buf.selection_range(1)
+      end, { buffer = bufnr })
+
+      vim.keymap.set({ "x" }, "<Space><CR>", function()
+        vim.lsp.buf.selection_range(-1)
+      end, { buffer = bufnr })
+    end
   end,
 })
 

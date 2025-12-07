@@ -1,36 +1,31 @@
 local M = {}
 
 function M.text_object_mapping()
-  local treesitter_text_object_select = function(query)
+  local select_ob = function(query)
     return function()
       require("nvim-treesitter-textobjects.select").select_textobject(query, "textobjects")
     end
   end
 
-  vim.keymap.set("o", "ic", treesitter_text_object_select("@call.inner"), { buffer = true })
-  vim.keymap.set("x", "ic", treesitter_text_object_select("@call.inner"), { buffer = true, silent = true })
-  vim.keymap.set("o", "ac", treesitter_text_object_select("@call.outer"), { buffer = true })
-  vim.keymap.set("x", "ac", treesitter_text_object_select("@call.outer"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "ic", select_ob("@call.inner"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "ac", select_ob("@call.outer"), { buffer = true, silent = true })
 
-  vim.keymap.set("o", "if", treesitter_text_object_select("@function.inner"), { buffer = true })
-  vim.keymap.set("x", "if", treesitter_text_object_select("@function.inner"), { buffer = true, silent = true })
-  vim.keymap.set("o", "af", treesitter_text_object_select("@function.outer"), { buffer = true })
-  vim.keymap.set("x", "af", treesitter_text_object_select("@function.outer"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "if", select_ob("@function.inner"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "af", select_ob("@function.outer"), { buffer = true, silent = true })
 
-  vim.keymap.set("o", "ir", treesitter_text_object_select("@parameter.inner"), { buffer = true })
-  vim.keymap.set("x", "ir", treesitter_text_object_select("@parameter.inner"), { buffer = true, silent = true })
-  vim.keymap.set("o", "ar", treesitter_text_object_select("@parameter.outer"), { buffer = true })
-  vim.keymap.set("x", "ar", treesitter_text_object_select("@parameter.outer"), { buffer = true, silent = true })
+  if vim.bo.filetype == "typescriptreact" then
+    vim.keymap.set({ "o", "x" }, "ir", select_ob("@attribute.inner"), { buffer = true, silent = true })
+    vim.keymap.set({ "o", "x" }, "ar", select_ob("@attribute.outer"), { buffer = true, silent = true })
+  else
+    vim.keymap.set({ "o", "x" }, "ir", select_ob("@parameter.inner"), { buffer = true, silent = true })
+    vim.keymap.set({ "o", "x" }, "ar", select_ob("@parameter.outer"), { buffer = true, silent = true })
+  end
 
-  vim.keymap.set("o", "iv", treesitter_text_object_select("@block.inner"), { buffer = true })
-  vim.keymap.set("x", "iv", treesitter_text_object_select("@block.inner"), { buffer = true, silent = true })
-  vim.keymap.set("o", "av", treesitter_text_object_select("@block.outer"), { buffer = true })
-  vim.keymap.set("x", "av", treesitter_text_object_select("@block.outer"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "iv", select_ob("@block.inner"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "av", select_ob("@block.outer"), { buffer = true, silent = true })
 
-  vim.keymap.set("o", "is", treesitter_text_object_select("@statement.inner"), { buffer = true })
-  vim.keymap.set("x", "is", treesitter_text_object_select("@statement.inner"), { buffer = true, silent = true })
-  vim.keymap.set("o", "as", treesitter_text_object_select("@statement.outer"), { buffer = true })
-  vim.keymap.set("x", "as", treesitter_text_object_select("@statement.outer"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "is", select_ob("@statement.inner"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "as", select_ob("@statement.outer"), { buffer = true, silent = true })
 
   vim.keymap.set("n", "so", function()
     local tmp = vim.fn.getreg("9")
