@@ -676,16 +676,6 @@ mypack.add("notomo/redraw-inspect.nvim", {
   },
 })
 
-mypack.add("notomo/multito.nvim", {
-  load_on = {
-    modules = { "multito" },
-    events = { "FileType" },
-  },
-  hooks = {
-    post_load = require_fn("notomo.plugin.multito"),
-  },
-})
-
 optpack.add("SmiteshP/nvim-navic", {
   depends = { nvim_lspconfig.name },
   load_on = { modules = { "nvim-navic" } },

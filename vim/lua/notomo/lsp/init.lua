@@ -4,18 +4,18 @@ local M = {}
 
 local filetype_servers = {
   lua = { "lua_ls" },
-  typescript = { "vtsls", "biome", "denols" },
-  typescriptreact = { "vtsls", "tailwindcss", "biome" },
+  typescript = { "vtsls", "biome", "denols", "copilot" },
+  typescriptreact = { "vtsls", "tailwindcss", "biome", "copilot" },
   css = { "cssls" },
   yaml = { "yamlls" },
   rust = { "rust_analyzer" },
-  go = { "gopls" },
+  go = { "gopls", "copilot" },
   python = { "pylsp" },
   json = { "jsonls" },
   prisma = { "prismals" },
   zig = { "zls" },
   astro = { "astro" },
-  terraform = { "terraformls" },
+  terraform = { "terraformls", "copilot" },
   graphql = { "graphql" },
   c = { "clangd" },
   ocaml = { "ocamllsp" },
@@ -53,6 +53,10 @@ function M.setup(raw_opts)
         _root_markers = config.root_markers,
       })
     end
+  end
+
+  if vim.tbl_contains(servers, "copilot") then
+    vim.lsp.inline_completion.enable(true, { bufnr = 0 })
   end
 
   require("notomo.lsp.mapping").setup({ symbol_source = opts.symbol_source })

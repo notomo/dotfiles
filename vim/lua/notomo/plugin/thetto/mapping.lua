@@ -792,13 +792,6 @@ vim.keymap.set("n", "[git]k", function()
 end)
 
 vim.keymap.set("i", "[main_input]o", function()
-  if require("multito.copilot.inline").get() then
-    vim.schedule(function()
-      require("multito.copilot.inline").accept()
-    end)
-    return
-  end
-
   if vim.fn["neosnippet#expandable"]() ~= 0 then
     vim.api.nvim_feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "m", true)
     return

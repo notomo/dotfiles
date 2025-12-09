@@ -761,3 +761,7 @@ vim.keymap.set("n", "<Space>R", "<Cmd>restart<CR>")
 vim.keymap.set("n", "[exec]v", function()
   require("notomo.plugin.aliaser").open_in_vscode()
 end)
+
+vim.keymap.set("i", "[main_input]/", function()
+  vim.lsp.inline_completion.get()
+end)
