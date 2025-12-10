@@ -5,7 +5,7 @@ local show = require("misclib.debounce").wrap(
   vim.schedule_wrap(function(bufnr)
     local client = vim.lsp.get_clients({
       bufnr = bufnr,
-      method = vim.lsp.protocol.Methods.textDocument_signatureHelp,
+      method = "textDocument/signatureHelp",
     })[1]
     if not client then
       return

@@ -3,7 +3,7 @@ local M = {}
 function M.collect(source_ctx)
   return function(observer)
     local bufnr = source_ctx.bufnr
-    local method = vim.lsp.protocol.Methods.workspace_executeCommand
+    local method = "workspace/executeCommand"
     local cancel = require("thetto.util.lsp").request({
       bufnr = bufnr,
       method = method,

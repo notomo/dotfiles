@@ -19,7 +19,7 @@ function M.publish_diagnostics(err, result, ctx)
   })
 end
 
-vim.lsp.handlers[vim.lsp.protocol.Methods.textDocument_publishDiagnostics] = function(...)
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
   require("notomo.lsp.handler").publish_diagnostics(...)
 end
 

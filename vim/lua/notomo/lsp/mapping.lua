@@ -86,16 +86,16 @@ local go_to = function(method)
 end
 
 function M.go_to_definition()
-  go_to(vim.lsp.protocol.Methods.textDocument_definition)
+  go_to("textDocument/definition")
 end
 
 function M.go_to_type_definition()
-  go_to(vim.lsp.protocol.Methods.textDocument_typeDefinition)
+  go_to("textDocument/typeDefinition")
 end
 
 function M.yank_function_arg_labels()
   local bufnr = vim.api.nvim_get_current_buf()
-  local method = vim.lsp.protocol.Methods.textDocument_signatureHelp
+  local method = "textDocument/signatureHelp"
   require("thetto.util.lsp").request({
     bufnr = bufnr,
     method = method,
@@ -232,7 +232,7 @@ end
 
 function M.yank_to_fill()
   local bufnr = vim.api.nvim_get_current_buf()
-  local method = vim.lsp.protocol.Methods.textDocument_completion
+  local method = "textDocument/completion"
   require("thetto.util.lsp").request({
     bufnr = bufnr,
     method = method,
