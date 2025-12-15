@@ -103,6 +103,7 @@ runtime.after.queries.go["highlights.scm"] = [=[
   "default"
   "defer"
   "goto"
+  "break"
   "range"
   "select"
   "fallthrough"
