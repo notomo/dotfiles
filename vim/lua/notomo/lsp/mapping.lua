@@ -149,7 +149,7 @@ function M.setup(opts)
 
   vim.keymap.set("n", "<Leader>fs", function()
     vim.diagnostic.reset()
-    vim.cmd.LspRestart()
+    vim.cmd.lsp("restart")
   end, { silent = true, buffer = true })
 
   vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true, buffer = true })
