@@ -2,34 +2,30 @@ local M = {}
 
 function M.view_issue(target)
   local id = vim.fn.substitute(target, "[^[:digit:]]", "", "g")
-  local cmd = { "gh", "issue", "view", id, "--web" }
-  local repo = vim.b.notomo_gh_repo
-  if repo then
-    table.insert(cmd, "--repo=" .. repo)
-  end
-  require("notomo.lib.job").run(cmd)
+  local root_url = M.repo_url()
+  local url = ("%s/issue/%s"):format(root_url, id)
+  require("notomo.lib.browser").open(url)
 end
 
 function M.view_pr()
   local target = vim.fn.expand("<cword>")
   local id = vim.fn.substitute(target, "[^[:digit:]]", "", "g")
-  local cmd = { "gh", "pr", "view", "--web" }
-  if id ~= "" then
-    table.insert(cmd, id)
-  end
-  require("notomo.lib.job").run(cmd)
+  local root_url = M.repo_url()
+  local url = ("%s/pull/%s"):format(root_url, id)
+  require("notomo.lib.browser").open(url)
 end
 
-function M.view_repo(target, opts)
-  local cmd = { "gh", "repo", "view", "--web" }
+function M.view_repo(target)
   if target then
     target = vim.fn.substitute(target, "^https:\\/\\/", "", "")
     target = vim.fn.substitute(target, "^github\\.com\\/", "", "")
+    local root_url = ("https://github.com/%s"):format(target)
+    require("notomo.lib.browser").open(root_url)
+    return
   end
-  if target ~= "" then
-    table.insert(cmd, target)
-  end
-  require("notomo.lib.job").run(cmd, opts)
+
+  local root_url = M.repo_url()
+  require("notomo.lib.browser").open(root_url)
 end
 
 function M.create_issue()
@@ -39,28 +35,32 @@ function M.create_issue()
   vim.cmd.startinsert({ bang = true })
 end
 
+function M.repo_name()
+  local repo = vim.b.notomo_gh_repo
+  if repo then
+    return repo
+  end
+
+  local result = vim.system({ "git", "remote", "get-url", "origin" }):wait()
+  local name = vim.trim(result.stdout):gsub("^@git:github.com/", ""):gsub("^https://github.com/", ""):gsub(".git$", "")
+  return name
+end
+
+function M.repo_url()
+  local name = M.repo_name()
+  return ("https://github.com/%s"):format(name)
+end
+
 function M.yank_revision_with_repo(revision)
-  local name = vim.fn.systemlist({
-    "gh",
-    "repo",
-    "view",
-    "--json",
-    "nameWithOwner",
-    "--template",
-    "{{.nameWithOwner}}",
-  })[1]
+  local name = M.repo_name()
   local name_with_reivision = ("%s@%s"):format(name, revision)
   require("notomo.lib.edit").yank(name_with_reivision)
 end
 
 function M.yank_commit_url(revision)
-  local url = vim.fn.systemlist({
-    "gh",
-    "browse",
-    "--no-browser",
-    revision,
-  })[1]
-  require("notomo.lib.edit").yank(url)
+  local root_url = M.repo_url()
+  local commit_url = ("%s/commit/%s"):format(root_url, revision)
+  require("notomo.lib.edit").yank(commit_url)
 end
 
 function M.yank()
@@ -69,11 +69,7 @@ function M.yank()
     return require("notomo.lib.message").warn("no .git")
   end
 
-  local root_url = vim.fn.systemlist({
-    "gh",
-    "browse",
-    "--no-browser",
-  })[1]
+  local root_url = M.repo_url()
 
   local state = require("thetto.util.git").state() or {}
   local revision = state.revision or require("notomo.lib.git").current_branch()
