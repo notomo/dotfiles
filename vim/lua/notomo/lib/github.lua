@@ -42,7 +42,7 @@ function M.repo_name()
   end
 
   local result = vim.system({ "git", "remote", "get-url", "origin" }):wait()
-  local name = vim.trim(result.stdout):gsub("^@git:github.com/", ""):gsub("^https://github.com/", ""):gsub(".git$", "")
+  local name = vim.trim(result.stdout):gsub("^git@github.com:", ""):gsub("^https://github.com/", ""):gsub(".git$", "")
   return name
 end
 
