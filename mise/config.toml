@@ -1,0 +1,23 @@
+[tools]
+go = "1.25"
+"go:golang.org/x/tools/cmd/goimports" = "latest"
+"go:golang.org/x/tools/gopls" = "latest"
+"go:github.com/fatih/motion" = "latest"
+"go:github.com/go-delve/delve/cmd/dlv" = "latest"
+"go:github.com/google/yamlfmt/cmd/yamlfmt" = "latest"
+
+node = "24"
+"npm:fixjson" = "latest"
+"npm:typescript-language-server" = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+"npm:eslint" = "latest"
+"npm:prettier" = "latest"
+"npm:yaml-language-server" = "latest"
+"npm:@prisma/language-server" = "latest"
+"npm:@tailwindcss/language-server" = "latest"
+"npm:@vtsls/language-server" = "latest"
+"npm:@github/copilot-language-server" = "latest"
+
+deno = "latest"
+
+gh = "latest"
