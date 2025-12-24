@@ -1,9 +1,0 @@
-- name: tap hashcorp
-  homebrew_tap:
-    name: hashicorp/tap
-
-- name: install with homebrew
-  homebrew:
-    name:
-      - hashicorp/tap/terraform
-      - hashicorp/tap/terraform-ls

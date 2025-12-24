@@ -1,4 +1,0 @@
-
-- name: install gh with homebrew
-  homebrew:
-    name: gh

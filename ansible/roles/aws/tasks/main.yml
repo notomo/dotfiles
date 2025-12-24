@@ -1,4 +1,0 @@
-- name: install with homebrew
-  homebrew:
-    name:
-      - awscli

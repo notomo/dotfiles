@@ -1,12 +1,23 @@
 [tools]
 go = "1.25"
+node = "24"
+deno = "latest"
+python = "latest"
+
+terraform = "latest"
+terraform-ls = "latest"
+
+sqlite = "latest"
+
+"aws-cli" = "latest"
+gh = "latest"
+
 "go:golang.org/x/tools/cmd/goimports" = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
 "go:github.com/fatih/motion" = "latest"
 "go:github.com/go-delve/delve/cmd/dlv" = "latest"
 "go:github.com/google/yamlfmt/cmd/yamlfmt" = "latest"
 
-node = "24"
 "npm:fixjson" = "latest"
 "npm:typescript-language-server" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
@@ -18,6 +29,13 @@ node = "24"
 "npm:@vtsls/language-server" = "latest"
 "npm:@github/copilot-language-server" = "latest"
 
-deno = "latest"
+"asdf:mise-plugins/mise-luaJIT" = "latest"
+"aqua:LuaLS/lua-language-server" = "latest"
+"cargo:stylua" = "latest"
 
-gh = "latest"
+"aqua:BurntSushi/ripgrep" = "latest"
+"aqua:sharkdp/fd" = "latest"
+"aqua:jqlang/jq" = "latest"
+"aqua:tomnomnom/gron" = "latest"
+"aqua:nektos/act" = "latest"
+"aqua:rhysd/actionlint" = "latest"

@@ -1,4 +1,0 @@
-- name: install sqlite3 with homebrew
-  homebrew:
-    name:
-      - sqlite3

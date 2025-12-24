@@ -6,21 +6,12 @@
       - tree
       - wget
       - nkf
-      - jq
-      - actionlint
       - tmpreaper
-      - supervisor
-      - cscope
-      - ripgrep
-      - gron
-      - fd
-      - httpie
       - lsof
       - procs
       - zip
       - rsync
       - lsyncd
-      - act
 
 - name: create .procs.toml link
   file:
