@@ -1,23 +1,18 @@
 - hosts: 'local'
   roles:
-    - { role: 'workspace', tags: ['workspace'] }
-    - { role: 'bash', tags: ['bash'] }
-    - { role: 'zsh', tags: ['zsh'] }
-    - { role: 'dotfiles', tags: ['dotfiles'] }
-    - { role: 'tools', tags: ['tools'] }
-    - { role: 'docker', tags: ['docker'] }
-    - { role: 'neovim', tags: ['neovim'] }
-    - { role: 'neovim_dev', tags: ['neovim_dev'] }
-    - { role: 'ctags', tags: ['ctags'] }
-    - { role: 'xvfb', tags: ['xvfb'] }
-    - { role: 'rust', tags: ['rust'] }
-    - { role: 'wslu', tags: ['wslu'] }
-    - { role: 'ocaml', tags: ['ocaml'] }
-    - { role: 'gcloud', tags: ['gcloud'] }
-    - { role: 'lua', tags: ['lua'] }
-    - { role: 'default_shell', tags: ['default_shell'] }
-    - { role: 'gitconfig', tags: ['gitconfig'] }
+    - {role: 'workspace', tags: ['workspace']}
+    - {role: 'bash', tags: ['bash']}
+    - {role: 'zsh', tags: ['zsh']}
+    - {role: 'dotfiles', tags: ['dotfiles']}
+    - {role: 'tools', tags: ['tools']}
+    - {role: 'docker', tags: ['docker']}
+    - {role: 'neovim_dev', tags: ['neovim_dev']}
+    - {role: 'xvfb', tags: ['xvfb']}
+    - {role: 'wslu', tags: ['wslu']}
+    - {role: 'gcloud', tags: ['gcloud']}
+    - {role: 'default_shell', tags: ['default_shell']}
+    - {role: 'gitconfig', tags: ['gitconfig']}
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
   vars:
-    ansible_python_interpreter: "/home/linuxbrew/.linuxbrew/bin/python3" 
+    ansible_python_interpreter: "/home/linuxbrew/.linuxbrew/bin/python3"

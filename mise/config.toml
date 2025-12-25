@@ -11,6 +11,7 @@ sqlite = "latest"
 
 "aws-cli" = "latest"
 gh = "latest"
+"github:neovim/neovim" = "nightly"
 
 "go:golang.org/x/tools/cmd/goimports" = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
@@ -32,6 +33,7 @@ gh = "latest"
 "asdf:mise-plugins/mise-luaJIT" = "latest"
 "aqua:LuaLS/lua-language-server" = "latest"
 "cargo:stylua" = "latest"
+"github:luarocks/luarocks" = "latest"
 
 "aqua:BurntSushi/ripgrep" = "latest"
 "aqua:sharkdp/fd" = "latest"
@@ -39,3 +41,10 @@ gh = "latest"
 "aqua:tomnomnom/gron" = "latest"
 "aqua:nektos/act" = "latest"
 "aqua:rhysd/actionlint" = "latest"
+"github:universal-ctags/ctags" = "latest"
+"github:dalance/procs" = { version = "latest" }
+
+opam = "latest"
+"github:containers/bubblewrap" = "latest"
+
+"rust" = { version = "nightly", components = "rust-analyzer,rust-src,rustfmt" }

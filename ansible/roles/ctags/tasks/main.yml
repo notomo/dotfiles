@@ -1,9 +1,0 @@
-- name: tap universal-ctags
-  homebrew_tap:
-    name: universal-ctags/universal-ctags
-
-- name: install ctags with homebrew
-  homebrew:
-    name: universal-ctags/universal-ctags/universal-ctags
-    state: head
-  ignore_errors: true # because head only

@@ -1,6 +1,0 @@
-
-- name: install with homebrew
-  homebrew:
-    name:
-      - opam
-      - bubblewrap # https://opam.ocaml.org/doc/FAQ.html#Why-does-opam-require-bwrap.
