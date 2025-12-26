@@ -5,4 +5,6 @@ gh auth login --with-token < /tmp/token.txt
 
 [ ! -f "${DOTFILES}"/vim/lua/notomo/local/local.lua ] && cp "${DOTFILES}"/vim/lua/notomo/local/local.lua.sample "${DOTFILES}"/vim/lua/notomo/local/local.lua
 
-ANSIBLE_CONFIG="${DOTFILES}"/ansible ansible-playbook "${DOTFILES}"/ansible/playbooks/ubuntu.yml --ask-become-pass --tags gitconfig --tags default_shell
+ANSIBLE_CONFIG="${DOTFILES}"/ansible ansible-playbook "${DOTFILES}"/ansible/playbooks/ubuntu.yml --ask-become-pass --tags gitconfig
+
+sudo chsh -s /home/linuxbrew/.linuxbrew/bin/zsh "$(whoami)"

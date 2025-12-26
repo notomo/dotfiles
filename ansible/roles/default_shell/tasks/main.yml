@@ -1,6 +1,0 @@
-- name: change default shell
-  become: true
-  user:
-    name: "{{ ansible_env.USER }}"
-    shell: /home/linuxbrew/.linuxbrew/bin/zsh
-  when: is_ubuntu
