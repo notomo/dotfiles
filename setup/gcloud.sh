@@ -26,8 +26,8 @@ fi
 tar -xzf "$GCLOUD_TARBALL" -C "$GCLOUD_DIR"
 
 ZSHRC="$HOME/.zshrc"
-MARKER_START="# BEGIN ANSIBLE MANAGED BLOCK gcloud role"
-MARKER_END="# END ANSIBLE MANAGED BLOCK gcloud role"
+MARKER_START="# BEGIN MANAGED BLOCK gcloud"
+MARKER_END="# END MANAGED BLOCK gcloud"
 GCLOUD_PATH_SCRIPT="$HOME/app/gcloud/google-cloud-sdk/path.zsh.inc"
 if ! grep -q "$MARKER_START" "$ZSHRC" 2>/dev/null; then
   echo "Adding gcloud configuration to .zshrc..."

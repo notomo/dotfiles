@@ -6,13 +6,6 @@ xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # input password
 
-brew install ansible
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 mkdir -p "${HOME}/.config/karabiner"
 cp "${SCRIPT_DIR}/karabiner.json" "${HOME}/.config/karabiner/karabiner.json"
-
-git clone https://github.com/notomo/dotfiles.git ~/dotfiles
-
-cd ~/dotfiles/ansible
-ansible-playbook playbooks/mac.yml --ask-become-pass

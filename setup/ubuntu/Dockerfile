@@ -33,29 +33,5 @@ EOF
 
 USER $USERNAME
 ENV PATH=$PATH:/home/linuxbrew/.linuxbrew/bin USER=$USERNAME GIT_EMAIL=empty
-RUN <<EOF
-  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-  brew install ansible
-  brew install python
-EOF
-
-COPY --chown=$USERNAME:$USERNAME ansible /_ansible
-RUN <<EOF
-  cd /_ansible
-  ANSIBLE_CONFIG=$(pwd) ansible-playbook playbooks/ubuntu.yml \
-    --tags workspace \
-    --tags dotfiles \
-    --tags bash \
-    --tags zsh \
-    --tags neovim \
-    --tags tools \
-    --tags gh \
-    --tags ctags \
-    --tags lua \
-    --tags node \
-    --tags deno \
-    --tags wslu \
-    --tags gitconfig
-EOF
 
 COPY --chown=$USERNAME:$USERNAME thetto.nvim /home/$USERNAME/.local/share/nvim/thetto.nvim
