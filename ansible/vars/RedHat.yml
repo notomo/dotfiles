@@ -1,2 +1,0 @@
-home_dir: '/home/{{ ansible_env.USER }}'
-app_dir: '{{ home_dir }}/app'

@@ -1,5 +1,0 @@
-is_macos: '{{ ansible_os_family == "Darwin" }}'
-is_ubuntu: '{{ ansible_os_family == "Debian" }}'
-is_linux: '{{ is_ubuntu }}'
-default_dotfiles_dir: "{{ home_dir }}/dotfiles"
-dotfiles_dir: "{{ lookup('env', 'DOTFILES') or default_dotfiles_dir }}"

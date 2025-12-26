@@ -1,4 +1,0 @@
-
-- name: 'start docker'
-  command: |
-    open -a Docker

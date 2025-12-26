@@ -1,7 +1,0 @@
-- hosts: 'local'
-  roles:
-    - {role: 'docker', tags: ['docker']}
-  vars_files:
-    - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
-  vars:
-    ansible_python_interpreter: "/home/linuxbrew/.linuxbrew/bin/python3"
