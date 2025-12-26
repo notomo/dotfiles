@@ -7,7 +7,6 @@
     - {role: 'docker', tags: ['docker']}
     - {role: 'neovim_dev', tags: ['neovim_dev']}
     - {role: 'xvfb', tags: ['xvfb']}
-    - {role: 'wslu', tags: ['wslu']}
     - {role: 'gcloud', tags: ['gcloud']}
     - {role: 'default_shell', tags: ['default_shell']}
     - {role: 'gitconfig', tags: ['gitconfig']}
