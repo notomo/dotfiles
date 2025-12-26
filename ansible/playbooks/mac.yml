@@ -3,7 +3,6 @@
     - {role: 'unarchive', tags: ['unarchive']}
     - {role: 'bash', tags: ['bash']}
     - {role: 'zsh', tags: ['zsh']}
-    - {role: 'workspace', tags: ['workspace']}
     - {role: 'dotfiles', tags: ['dotfiles']}
     - {role: 'tools', tags: ['tools']}
     - {role: 'docker', tags: ['docker']}

@@ -1,6 +1,5 @@
 - hosts: 'local'
   roles:
-    - {role: 'workspace', tags: ['workspace']}
     - {role: 'bash', tags: ['bash']}
     - {role: 'zsh', tags: ['zsh']}
     - {role: 'dotfiles', tags: ['dotfiles']}
