@@ -3,7 +3,6 @@
     - {role: 'bash', tags: ['bash']}
     - {role: 'zsh', tags: ['zsh']}
     - {role: 'dotfiles', tags: ['dotfiles']}
-    - {role: 'tools', tags: ['tools']}
     - {role: 'docker', tags: ['docker']}
     - {role: 'git', tags: ['git']}
     - {role: 'gitconfig', tags: ['gitconfig']}
