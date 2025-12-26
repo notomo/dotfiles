@@ -46,7 +46,9 @@ gh = "latest"
 opam = "latest"
 "github:containers/bubblewrap" = "latest"
 
-"rust" = { version = "nightly", components = "rust-analyzer,rust-src,rustfmt" }
+[tools.rust]
+version = "nightly"
+components = "rust-analyzer,rust-src,rustfmt"
 
 [tools."github:dalance/procs"]
 version = "latest"

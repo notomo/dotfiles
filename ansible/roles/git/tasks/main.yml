@@ -1,3 +1,0 @@
-- name: install git with homebrew
-  homebrew: name=git
-  ignore_errors: true
