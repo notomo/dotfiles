@@ -1,6 +1,0 @@
-
-- name: install gnu-tar with homebrew
-  homebrew:
-    name:
-      - gnu-tar
-  when: is_macos

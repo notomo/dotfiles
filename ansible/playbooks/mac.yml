@@ -1,12 +1,10 @@
 - hosts: 'local'
   roles:
-    - {role: 'unarchive', tags: ['unarchive']}
     - {role: 'bash', tags: ['bash']}
     - {role: 'zsh', tags: ['zsh']}
     - {role: 'dotfiles', tags: ['dotfiles']}
     - {role: 'tools', tags: ['tools']}
     - {role: 'docker', tags: ['docker']}
-    - {role: 'font', tags: ['font']}
     - {role: 'git', tags: ['git']}
     - {role: 'gitconfig', tags: ['gitconfig']}
   vars_files:
