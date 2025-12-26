@@ -5,7 +5,6 @@
     - {role: 'dotfiles', tags: ['dotfiles']}
     - {role: 'docker', tags: ['docker']}
     - {role: 'neovim_dev', tags: ['neovim_dev']}
-    - {role: 'gitconfig', tags: ['gitconfig']}
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
   vars:
