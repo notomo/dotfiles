@@ -22,6 +22,8 @@ RUN <<EOF
 EOF
 ENV TZ=Asia/Tokyo LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
+RUN apt install -y xvfb libxrandr2
+
 # install brew
 RUN <<EOF
   apt install -y build-essential procps curl file git

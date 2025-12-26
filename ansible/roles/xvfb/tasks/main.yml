@@ -1,7 +1,0 @@
-- name: install Xvfb with apt
-  apt:
-    name:
-      - xvfb
-      - "libxrandr2:i386"
-  become: true
-  when: is_ubuntu
