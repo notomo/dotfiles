@@ -4,7 +4,6 @@
     - {role: 'zsh', tags: ['zsh']}
     - {role: 'dotfiles', tags: ['dotfiles']}
     - {role: 'docker', tags: ['docker']}
-    - {role: 'neovim_dev', tags: ['neovim_dev']}
   vars_files:
     - '{{ inventory_dir | dirname }}/vars/{{ ansible_os_family }}.yml'
   vars:
