@@ -14,3 +14,4 @@ fi
 ln -sf "$DOTFILES_DIR/vim/lua" "$HOME/.config/nvim/lua"
 ln -sf "$DOTFILES_DIR/vim/snippets" "$HOME/.config/nvim/snippets"
 ln -sf "$DOTFILES_DIR/vim/lua/notomo/init.lua" "$HOME/.config/nvim/init.lua"
+cp --update=none "$DOTFILES_DIR/vim/lua/notomo/local/local.lua.sample" "$DOTFILES_DIR/vim/lua/notomo/local/local.lua"

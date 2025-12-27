@@ -38,5 +38,6 @@ $MARKER_END
 EOF
 fi
 
-cd ~/app/gcloud/google-cloud-sdk
+pushd ~/app/gcloud/google-cloud-sdk
 ./install.sh
+popd

@@ -1,8 +1,9 @@
 #!/bin/bash
 
-gh auth login --with-token < /tmp/token.txt
-[ ! -d ~/workspace/todo ] && gh repo clone notomo/todo ~/workspace/todo
+[ ! -d ~/workspace/todo ] && git clone git@github.com:notomo/todo.git ~/workspace/todo
 
-[ ! -f "${DOTFILES}"/vim/lua/notomo/local/local.lua ] && cp "${DOTFILES}"/vim/lua/notomo/local/local.lua.sample "${DOTFILES}"/vim/lua/notomo/local/local.lua
-
-sudo chsh -s /home/linuxbrew/.linuxbrew/bin/zsh "$(whoami)"
+if [ -z "$(git config --global user.email)" ]; then
+  git_user_email=
+  read -p "input git user email: " git_user_email
+  git config --global user.email "${git_user_email}"
+fi

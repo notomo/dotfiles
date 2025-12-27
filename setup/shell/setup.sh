@@ -14,8 +14,6 @@ mkdir -p "${HOME}/.local"
 touch "${HOME}/.local/.bashrc"
 touch "${HOME}/.local/.bash_profile"
 
-brew install zsh
-
 mkdir -p "${HOME}/.zinit"
 if [ ! -d "${HOME}/.zinit/bin" ]; then
   git clone https://github.com/zdharma-continuum/zinit.git "${HOME}/.zinit/bin"
