@@ -1,5 +1,5 @@
 IMAGE_NAME:=notomo_dev
-TARGET:=${IMAGE_NAME}
+TARGET:=${IMAGE_NAME}2
 
 DEP_DIR:=./tmp
 $(DEP_DIR):
