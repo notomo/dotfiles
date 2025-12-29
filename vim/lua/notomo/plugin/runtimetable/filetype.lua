@@ -728,4 +728,10 @@ runtime.after.ftplugin["astro.lua"] = function()
   })
 end
 
+runtime.after.ftplugin["moonbit.lua"] = function()
+  vim.bo.commentstring = "//%s"
+  require("notomo.lsp").setup()
+  require("notomo.lib.treesitter").setup()
+end
+
 require("notomo.plugin.runtimetable").save(runtime)

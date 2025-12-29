@@ -386,6 +386,19 @@ local nvim_treesitter = optpack.add("nvim-treesitter/nvim-treesitter", {
   fetch = { version = "main" },
   hooks = {
     post_load = function(plugin)
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TSUpdate",
+        callback = function()
+          require("nvim-treesitter.parsers").moonbit = {
+            install_info = {
+              revision = "a5a7e0b9cb2db740cfcc4232b2f16493b42a0c82",
+              url = "https://github.com/moonbitlang/tree-sitter-moonbit",
+              queries = "queries",
+            },
+          }
+        end,
+      })
+
       -- prior than builtin
       vim.opt.runtimepath:remove(plugin.directory)
       vim.opt.runtimepath:prepend(plugin.directory)

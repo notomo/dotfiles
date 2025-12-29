@@ -19,6 +19,7 @@ local filetype_servers = {
   graphql = { "graphql" },
   c = { "clangd" },
   ocaml = { "ocamllsp" },
+  moonbit = { "moonbit-lsp" },
 }
 
 function M.setup(raw_opts)

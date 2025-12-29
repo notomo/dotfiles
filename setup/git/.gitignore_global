@@ -6,5 +6,6 @@ __pycache__
 core
 !core/
 .claude/settings.local.json
+.claude/agents
 .mcp.json
 .playwright-mcp

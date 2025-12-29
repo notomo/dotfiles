@@ -132,5 +132,6 @@ vim.filetype.add({
     flux = "flux",
     tf = "terraform",
     mdx = "mdx",
+    mbt = "moonbit",
   },
 })

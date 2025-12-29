@@ -242,3 +242,9 @@ vim.lsp.config("tailwindcss", {
 vim.lsp.config("biome", {
   cmd = { "npx", "biome", "lsp-proxy" },
 })
+
+vim.lsp.config("moonbit-lsp", {
+  cmd = { "moonbit-lsp" },
+  root_markers = { "moon.mod.json" },
+  filetypes = { "moonbit" },
+})
