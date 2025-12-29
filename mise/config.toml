@@ -15,7 +15,6 @@ gh = "latest"
 
 "go:golang.org/x/tools/cmd/goimports" = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
-"go:github.com/fatih/motion" = "latest"
 "go:github.com/go-delve/delve/cmd/dlv" = "latest"
 "go:github.com/google/yamlfmt/cmd/yamlfmt" = "latest"
 
@@ -30,6 +29,7 @@ gh = "latest"
 "npm:@tailwindcss/language-server" = "latest"
 "npm:@vtsls/language-server" = "latest"
 "npm:@github/copilot-language-server" = "latest"
+"npm:tree-sitter-cli" = "latest"
 
 "asdf:mise-plugins/mise-luaJIT" = "latest"
 "aqua:LuaLS/lua-language-server" = "latest"

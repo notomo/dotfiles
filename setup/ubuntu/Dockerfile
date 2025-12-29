@@ -71,15 +71,23 @@ RUN <<EOF
   GITHUB_TOKEN=$(echo $GITHUB_TOKEN) mise install \
     node \
     deno \
+    go \
     github:universal-ctags/ctags \
     github:neovim/neovim \
     gh \
     github:dalance/procs \
     npm:@aikidosec/safe-chain \
     npm:fixjson \
+    npm:tree-sitter-cli \
     aqua:LuaLS/lua-language-server \
+    npm:typescript-language-server \
+    npm:@vtsls/language-server \
+    npm:@tailwindcss/language-server \
     github:JohnnyMorganz/StyLua \
+    aqua:sharkdp/fd \
     aqua:jqlang/jq \
     aqua:BurntSushi/ripgrep \
+    go:golang.org/x/tools/cmd/goimports \
+    go:golang.org/x/tools/gopls \
   ;
 EOF

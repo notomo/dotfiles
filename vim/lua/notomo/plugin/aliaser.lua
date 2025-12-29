@@ -61,7 +61,7 @@ function M.ready_parser()
     "cpp",
     "rust",
   }) do
-    vim.cmd.TSUpdate(language)
+    vim.cmd.TSInstall(language)
   end
 end
 
