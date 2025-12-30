@@ -1,3 +1,6 @@
+[settings]
+exec_auto_install = false
+
 [tools]
 go = "1.25"
 node = "24"
@@ -42,7 +45,7 @@ gh = "latest"
 "aqua:tomnomnom/gron" = "latest"
 "aqua:nektos/act" = "latest"
 "aqua:rhysd/actionlint" = "latest"
-"github:universal-ctags/ctags" = "latest"
+"github:universal-ctags/ctags-nightly-build" = "latest"
 
 opam = "latest"
 "github:containers/bubblewrap" = "latest"
