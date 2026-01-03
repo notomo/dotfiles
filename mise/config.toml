@@ -46,6 +46,7 @@ gh = "latest"
 "aqua:nektos/act" = "latest"
 "aqua:rhysd/actionlint" = "latest"
 "github:universal-ctags/ctags-nightly-build" = "latest"
+"aqua:cloudflare/cloudflared" = "latest"
 
 opam = "latest"
 "github:containers/bubblewrap" = "latest"
