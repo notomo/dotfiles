@@ -20,7 +20,7 @@ function M.publish_diagnostics(err, result, ctx)
 end
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
-  require("notomo.lsp.handler").publish_diagnostics(...)
+  M.publish_diagnostics(...)
 end
 
 vim.api.nvim_create_autocmd({ "LspProgress" }, {

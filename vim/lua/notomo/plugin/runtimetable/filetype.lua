@@ -732,6 +732,13 @@ runtime.after.ftplugin["moonbit.lua"] = function()
   vim.bo.commentstring = "//%s"
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
+
+  vim.keymap.set({ "n", "x" }, "sgj", function()
+    require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
+  end, { buffer = true })
+  vim.keymap.set({ "n", "x" }, "sgk", function()
+    require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
+  end, { buffer = true })
 end
 
 require("notomo.plugin.runtimetable").save(runtime)

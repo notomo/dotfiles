@@ -82,6 +82,15 @@ require("curstr").setup({
       },
       filetypes = { "rust" },
     },
+    print_moonbit = {
+      names = { "togglable/pattern" },
+      opts = {
+        patterns = {
+          { "\\v^(\\s*)let\\s+(mut\\s+)?([^=[:space:],:]*).*$", "\\1println(\\3)" },
+        },
+      },
+      filetypes = { "moonbit" },
+    },
     print_lua = {
       names = { "togglable/pattern" },
       opts = {
@@ -97,6 +106,7 @@ require("curstr").setup({
         "print_js",
         "print_ts",
         "print_rust",
+        "print_moonbit",
         "print_lua",
       },
       opts = { is_line = true },

@@ -87,7 +87,7 @@ register_kind("url", {
 register_kind("file/directory", {
   action_open_browser = function(items)
     for _, item in ipairs(items) do
-      require("notomo.lib.github").view_repo(nil, { cwd = item.path })
+      require("notomo.lib.github").view_repo({ cwd = item.path })
     end
   end,
 })
@@ -456,6 +456,8 @@ register_source("file/alter", {
       { "%.spec.ts", "%.ts" },
       { "%_test.ts", "%.ts" },
       { "%.test.ts", "%.ts" },
+      { "%_test.mbt", "%.mbt" },
+      { "%_wbtest.mbt", "%.mbt" },
     },
   },
 })

@@ -1,0 +1,282 @@
+
+snippet main
+abbr fn main() {}
+	fn main {
+		${0:TARGET}
+	}
+
+snippet function
+alias fn
+abbr fn name(args) -> ReturnType {}
+	fn ${1:name}(${2:args}) -> ${3:ReturnType} {
+		${0:TARGET}
+	}
+
+snippet pub_function
+alias pubfn
+abbr pub fn name(args) -> ReturnType {}
+	pub fn ${1:name}(${2:args}) -> ${3:ReturnType} {
+		${0:TARGET}
+	}
+
+snippet method
+abbr fn Type::method(self) -> ReturnType {}
+	fn ${1:Type}::${2:method}(self : $1) -> ${3:ReturnType} {
+		${0:TARGET}
+	}
+
+snippet test
+abbr test "name" {}
+	test "${1:name}" {
+		${0:TARGET}
+	}
+
+snippet struct
+abbr struct Name {}
+	struct ${1:Name} {
+		${2:field} : ${0:Type}
+	}
+
+snippet pub_all_struct
+abbr pub(all) struct Name {}
+	pub(all) struct ${1:Name} {
+		${2:field} : ${0:Type}
+	} derive(${3:Show, ToJson})
+
+snippet enum
+abbr enum Name {}
+	enum ${1:Name} {
+		${2:Variant}(${0:Type})
+	}
+
+snippet suberror
+abbr suberror ErrorName String
+	suberror ${1:ErrorName} ${0:String}
+
+snippet match
+	match ${1:expr} {
+		${2:pattern} => ${3:TARGET}
+		${0:_ => TARGET}
+	}
+
+snippet if
+alias ifonly
+abbr if condition {}
+	if ${1:condition} {
+		${0:TARGET}
+	}
+
+snippet ifelse
+abbr if condition {} else {}
+	if ${1:condition} {
+		${2:TARGET}
+	} else {
+		${0:TARGET}
+	}
+
+snippet guard
+abbr guard condition else {}
+	guard ${1:condition} else {
+		${0:TARGET}
+	}
+
+snippet guard_simple
+abbr guard condition
+	guard ${0:condition}
+
+snippet for
+abbr for i = 0; i < n; {}
+	for ${1:i} = ${2:0}; $1 < ${3:n}; {
+		${0:TARGET}
+	}
+
+snippet for_iter
+abbr for i, v in array {}
+	for ${1:i}, ${2:v} in ${3:array} {
+		${0:TARGET}
+	}
+
+snippet for_iter_no_index
+abbr for v in array {}
+	for ${1:v} in ${2:array} {
+		${0:TARGET}
+	}
+
+snippet while
+abbr while condition {}
+	while ${1:condition} {
+		${0:TARGET}
+	}
+
+snippet continue
+abbr continue new_state
+	continue ${0:new_state}
+
+snippet array
+abbr [value, ...]
+	[${0:value}]
+
+snippet map
+abbr { "key": value }
+	{ "${1:key}": ${0:value} }
+
+snippet inspect
+abbr inspect(value, content="...")
+	inspect(${1:value}, content="${0:expected}")
+
+snippet json_inspect
+abbr @json.inspect(value, content=(...))
+	@json.inspect(${1:value}, content=(${0:expected}))
+
+snippet assert_eq
+abbr assert_eq(a, b)
+	assert_eq(${1:a}, ${0:b})
+
+snippet assert_true
+abbr assert_true(condition)
+	assert_true(${0:condition})
+
+snippet fail
+abbr fail("message")
+	fail("${0:message}")
+
+snippet raise
+abbr raise Error
+	raise ${0:Error}
+
+snippet try_catch
+abbr try {} catch {}
+	try ${1:expr} catch {
+		${2:err} => ${0:TARGET}
+	}
+
+snippet try_result
+abbr try? expr
+	try? ${0:expr}
+
+snippet try_panic
+abbr try! expr
+	try! ${0:expr}
+
+snippet let
+abbr let name = value
+	let ${1:name} = ${0:value}
+
+snippet let_mut
+abbr let mut name = value
+	let mut ${1:name} = ${0:value}
+
+snippet let_type
+abbr let name : Type = value
+	let ${1:name} : ${2:Type} = ${0:value}
+
+snippet println
+	println("${0:message}")
+
+snippet println_interp
+	println("\{${0:expr}}")
+
+snippet derive
+options word
+	derive(${0:Show, ToJson})
+
+snippet separator
+abbr ///|
+	///|
+
+snippet label_param
+options word
+	${1:arg}~ : ${0:Type}
+
+snippet optional_param
+options word
+	${1:arg}? : ${0:Type}
+
+snippet optional_param_default
+options word
+	${1:arg}? : ${2:Type} = ${0:default}
+
+snippet type_alias
+abbr type Name Type
+	type ${1:Name} ${0:Type}
+
+snippet pub
+	pub ${0}
+
+snippet trait
+abbr trait Name {}
+	trait ${1:Name} {
+		${0:method}(Self) -> ${2:Type}
+	}
+
+snippet impl
+abbr impl Trait for Type {}
+	impl ${1:Trait} for ${2:Type} with ${3:method}(self) {
+		${0:TARGET}
+	}
+
+snippet placeholder
+abbr ...
+	...
+
+snippet string_interp
+options word
+	\{${0:expr}}
+
+snippet bytes_literal
+abbr b"..."
+	b"${0:content}"
+
+snippet multiline_string
+abbr #| multi-line
+	#|${0:content}
+
+snippet multiline_string_interp
+abbr $| multi-line with interpolation
+	$|${0:content}
+
+snippet todo
+	@builtin.todo("${0:message}")
+
+snippet ignore
+abbr ignore(expr)
+	ignore(${0:expr})
+
+snippet slice
+abbr expr[start:end]
+	${1:expr}[${2:start}:${0:end}]
+
+snippet array_get
+abbr array.get(index)
+	${1:array}.get(${0:index})
+
+snippet map_get
+abbr map["key"]
+	${1:map}["${0:key}"]
+
+snippet range
+abbr start..end
+	${1:start}..${0:end}
+
+snippet range_inclusive
+abbr start..=end
+	${1:start}..=${0:end}
+
+snippet utf8_encode
+	@encoding/utf8.encode(${0:string})
+
+snippet utf8_decode
+	@encoding/utf8.decode(${0:bytes})
+
+snippet as
+abbr expr as Type
+	${1:expr} as ${0:Type}
+
+snippet loop
+abbr loop {}
+	loop {
+		${0:TARGET}
+	}
+
+snippet break
+	break ${0:value}
