@@ -34,7 +34,7 @@ gh = "latest"
 "npm:@github/copilot-language-server" = "latest"
 "npm:tree-sitter-cli" = "latest"
 
-"asdf:mise-plugins/mise-luaJIT" = "latest"
+lua = "5.1"
 "aqua:LuaLS/lua-language-server" = "latest"
 "github:JohnnyMorganz/StyLua" = "latest"
 "github:luarocks/luarocks" = "latest"
