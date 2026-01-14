@@ -741,4 +741,9 @@ runtime.after.ftplugin["moonbit.lua"] = function()
   end, { buffer = true })
 end
 
+runtime.after.ftplugin["svelte.lua"] = function()
+  require("notomo.lsp").setup()
+  require("notomo.lib.treesitter").setup()
+end
+
 require("notomo.plugin.runtimetable").save(runtime)

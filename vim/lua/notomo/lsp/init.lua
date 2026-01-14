@@ -20,6 +20,7 @@ local filetype_servers = {
   c = { "clangd" },
   ocaml = { "ocamllsp" },
   moonbit = { "moonbit-lsp", "tailwindcss" },
+  svelte = { "svelte" },
 }
 
 function M.setup(raw_opts)
