@@ -13,6 +13,8 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.luarocks/bin:$PATH
 export PATH=$PATH:$HOME/bin
 
+export VUSTED_USE_LOCAL=1
+
 osrelease=/proc/sys/kernel/osrelease
 if [[ -f ${osrelease} && "$(< ${osrelease})" == *microsoft* ]]; then 
     export LIBGL_ALWAYS_INDIRECT=1
