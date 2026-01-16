@@ -433,6 +433,7 @@ register_source("file/bookmark", function()
         "~/.local/.bashrc",
         "~/.bashrc",
         "~/.local/.bash_profile",
+        "~/.local/share/mise/installs/*",
         "~/.bash_profile",
         "~/workspace/*",
         vim.fn.stdpath("cache") .. "/*",
