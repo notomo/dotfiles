@@ -127,6 +127,7 @@ opt.tabclose = "left"
 vim.filetype.add({
   filename = {
     ["supervisord.conf"] = "dosini",
+    ["moon.pkg"] = "moonbitpkg",
   },
   extension = {
     flux = "flux",

@@ -741,6 +741,15 @@ runtime.after.ftplugin["moonbit.lua"] = function()
   end, { buffer = true })
 end
 
+runtime.after.ftplugin["moonbitpkg.lua"] = function()
+  vim.bo.commentstring = "//%s"
+  require("cmdhndlr").use({
+    format_runner = {
+      { name = "moonbit/moon", is_default = true },
+    },
+  })
+end
+
 runtime.after.ftplugin["svelte.lua"] = function()
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
