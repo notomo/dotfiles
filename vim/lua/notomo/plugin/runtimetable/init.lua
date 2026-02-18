@@ -2,7 +2,15 @@ local path = vim.fs.joinpath(vim.fn.stdpath("data"), "notomo_runtimetable")
 vim.opt.runtimepath:prepend(path)
 vim.opt.runtimepath:append(vim.fs.joinpath(path, "after"))
 
-vim.keymap.set("n", "[exec]do", [[<Cmd>tab drop ~/.local/.mytodo<CR>]])
+vim.keymap.set("n", "[exec]do", function()
+  local cwd = vim.fn.getcwd()
+  vim.cmd.drop({
+    mods = { tab = vim.fn.tabpagenr() },
+    args = { vim.fn.expand("~/.local/.mytodo") },
+  })
+  vim.w[0].notomo_disable_autocd = true
+  vim.fn.chdir(cwd, "window")
+end)
 vim.filetype.add({
   filename = {
     [".mytodo"] = "mytodo",
