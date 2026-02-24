@@ -8,8 +8,8 @@ if [ -d "$install_dir" ]; then
   cp -rf "$install_dir" "$backup_dir"
 fi
 
-rm -rf ~/.cache/mise/github-neovim-neovim
-mise install -fv github:neovim/neovim@nightly
+mise cache clear
+mise install -f github:neovim/neovim@nightly
 popd
 nvim --version
 make -C ${DOTFILES}/vim test
