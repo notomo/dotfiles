@@ -214,6 +214,14 @@ function M.install_lua_debugger()
   require("notomo.lib.job").run({ "npm", "run", "build" }, { cwd = lldebugger_path }):wait()
 end
 
+function M.wipe_normal_buffers()
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buftype == "" then
+      vim.cmd.bwipeout({ bufnr, bang = true })
+    end
+  end
+end
+
 function M.open_undotree()
   vim.cmd.packadd("nvim.undotree")
   vim.cmd.Undotree()
