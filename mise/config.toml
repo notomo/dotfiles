@@ -33,6 +33,7 @@ gh = "latest"
 "npm:@vtsls/language-server" = "latest"
 "npm:@github/copilot-language-server" = "latest"
 "npm:tree-sitter-cli" = "latest"
+"npm:@playwright/cli" = "latest"
 
 lua = "5.1"
 "aqua:LuaLS/lua-language-server" = "latest"
