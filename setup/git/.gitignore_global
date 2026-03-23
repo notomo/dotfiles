@@ -9,3 +9,4 @@ core
 .claude/agents
 .mcp.json
 .playwright-mcp
+*.tsbuildinfo
