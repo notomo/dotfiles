@@ -8,4 +8,5 @@ nkf \
 tmpreaper \
 lsof \
 zip \
+coreutils \
 ;

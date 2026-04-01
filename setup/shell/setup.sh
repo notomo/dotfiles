@@ -4,11 +4,13 @@ set -eu
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-cp --update=none "${SCRIPT_DIR}/.bash_profile" "${HOME}/.bash_profile"
-cp --update=none "${SCRIPT_DIR}/.bashrc" "${HOME}/.bashrc"
-cp --update=none "${SCRIPT_DIR}/.inputrc" "${HOME}/.inputrc"
-cp --update=none "${SCRIPT_DIR}/.zshrc" "${HOME}/.zshrc"
-cp --update=none "${SCRIPT_DIR}/.zprofile" "${HOME}/.zprofile"
+if command -v gcp &>/dev/null; then CP=gcp; else CP=cp; fi
+
+"$CP" --update=none "${SCRIPT_DIR}/.bash_profile" "${HOME}/.bash_profile"
+"$CP" --update=none "${SCRIPT_DIR}/.bashrc" "${HOME}/.bashrc"
+"$CP" --update=none "${SCRIPT_DIR}/.inputrc" "${HOME}/.inputrc"
+"$CP" --update=none "${SCRIPT_DIR}/.zshrc" "${HOME}/.zshrc"
+"$CP" --update=none "${SCRIPT_DIR}/.zprofile" "${HOME}/.zprofile"
 
 mkdir -p "${HOME}/.local"
 touch "${HOME}/.local/.bashrc"

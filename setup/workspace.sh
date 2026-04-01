@@ -15,4 +15,5 @@ ln -sf "$DOTFILES_DIR/vim/lua" "$HOME/.config/nvim/lua"
 ln -sf "$DOTFILES_DIR/vim/snippets" "$HOME/.config/nvim/snippets"
 ln -sf "$DOTFILES_DIR/vim/lua/notomo/init.lua" "$HOME/.config/nvim/init.lua"
 ln -sf "$DOTFILES_DIR/mise/config.toml" "$HOME/.config/mise/config.toml"
-cp --update=none "$DOTFILES_DIR/vim/lua/notomo/local/local.lua.sample" "$DOTFILES_DIR/vim/lua/notomo/local/local.lua"
+if command -v gcp &>/dev/null; then CP=gcp; else CP=cp; fi
+"$CP" --update=none "$DOTFILES_DIR/vim/lua/notomo/local/local.lua.sample" "$DOTFILES_DIR/vim/lua/notomo/local/local.lua"
