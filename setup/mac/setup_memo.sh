@@ -5,7 +5,3 @@ xcode-select --install
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # input password
-
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-mkdir -p "${HOME}/.config/karabiner"
-cp "${SCRIPT_DIR}/karabiner.json" "${HOME}/.config/karabiner/karabiner.json"
