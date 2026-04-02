@@ -12,6 +12,7 @@ local filetype_servers = {
   go = { "gopls", "copilot" },
   python = { "pylsp" },
   json = { "jsonls" },
+  jsonc = { "jsonls" },
   prisma = { "prismals" },
   zig = { "zls" },
   astro = { "astro" },

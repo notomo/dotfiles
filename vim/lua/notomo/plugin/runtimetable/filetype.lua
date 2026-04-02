@@ -179,6 +179,7 @@ runtime.after.ftplugin["javascriptreact.lua"] = function()
 end
 
 runtime.after.ftplugin["json.lua"] = function()
+  require("notomo.lsp").setup()
   vim.keymap.set({ "n", "x" }, "J", function()
     vim.cmd.normal({ args = { "%" }, bang = true })
 
