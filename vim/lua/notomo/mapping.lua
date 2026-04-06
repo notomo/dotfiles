@@ -765,3 +765,11 @@ end)
 vim.keymap.set("i", "[main_input]/", function()
   vim.lsp.inline_completion.get()
 end)
+
+vim.keymap.set("n", "[exec]t", function()
+  local cmd = require("notomo.lib.todo").operator() .. "$"
+  vim.cmd.normal({ args = { cmd }, bang = true })
+end)
+vim.keymap.set("x", "[exec]t", function()
+  return require("notomo.lib.todo").operator()
+end, { expr = true })
