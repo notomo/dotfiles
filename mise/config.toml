@@ -2,7 +2,7 @@
 exec_auto_install = false
 
 [tools]
-go = "1.25"
+go = "1.26"
 node = "24"
 deno = "latest"
 python = "latest"
