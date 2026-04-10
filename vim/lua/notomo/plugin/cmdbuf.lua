@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
   pattern = { "CmdbufNew" },
   callback = function(args)
     vim.bo.bufhidden = "wipe"
-    vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
+    vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buf = 0, nowait = true })
 
     local typ = require("cmdbuf").get_context().type
     vim.keymap.set("c", "<C-q>", function()
@@ -47,14 +47,14 @@ vim.api.nvim_create_autocmd({ "User" }, {
 
     vim.keymap.set({ "n", "i" }, "<C-q>", function()
       return require("cmdbuf").cmdline_expr()
-    end, { buffer = true, expr = true })
+    end, { buf = 0, expr = true })
 
-    vim.keymap.set("n", "dd", [[<Cmd>lua require("cmdbuf").delete()<CR>]], { buffer = true })
+    vim.keymap.set("n", "dd", [[<Cmd>lua require("cmdbuf").delete()<CR>]], { buf = 0 })
     vim.keymap.set(
       "x",
       "D",
       [[:lua require("cmdbuf").delete({vim.api.nvim_buf_get_mark(0, "<")[1], vim.api.nvim_buf_get_mark(0, ">")[1]})<CR>]],
-      { buffer = true }
+      { buf = 0 }
     )
 
     local lines = vim.api.nvim_buf_get_lines(args.buf, 0, -1, false)

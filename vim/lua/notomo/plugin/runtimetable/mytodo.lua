@@ -13,7 +13,7 @@ end
 
 runtime.after.ftplugin["mytodo.lua"] = function()
   vim.bo.commentstring = "; %s"
-  vim.keymap.set("n", "[file]f", [[<Cmd>tab drop ~/workspace/todo/todo.tsv<CR>]], { buffer = true })
+  vim.keymap.set("n", "[file]f", [[<Cmd>tab drop ~/workspace/todo/todo.tsv<CR>]], { buf = 0 })
 end
 
 require("notomo.plugin.runtimetable").save(runtime)

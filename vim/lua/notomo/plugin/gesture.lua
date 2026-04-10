@@ -99,7 +99,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     vim.o.mousemoveevent = true
     vim.api.nvim_create_autocmd({ "BufWipeout" }, {
-      buffer = 0,
+      buf = 0,
       once = true,
       callback = function()
         vim.o.mousemoveevent = false

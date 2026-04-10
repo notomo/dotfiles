@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
           TEST_FILE = vim.fn.expand("%:p:s?" .. home .. "/workspace/neovim/??"),
         },
       })
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set("n", "[exec]bl", function()
       require("cmdhndlr").build({
@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
           return vim.fn.expand("$DOTFILES/tool/nvim_development/Makefile")
         end,
       })
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set("n", "S", function()
       require("cmdhndlr").run({
@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
         end,
         layout = { type = "tab" },
       })
-    end, { buffer = true })
+    end, { buf = 0 })
   end,
 })
 
@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter" }, {
           TEST_FILTER = ".*WIP.*",
         },
       })
-    end, { buffer = true })
+    end, { buf = 0 })
   end,
 })
 

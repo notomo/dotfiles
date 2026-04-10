@@ -9,19 +9,19 @@ function M.open()
         local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
         local text = table.concat(lines, "\n")
         require("notomo.lib.prompt").send(text)
-      end, { buffer = true })
+      end, { buf = 0 })
 
       vim.keymap.set("x", "[exec]I", function()
         local lines = require("notomo.lib.edit").get_selected_lines()
         require("misclib.visual_mode").leave()
         local text = table.concat(lines, "\n")
         require("notomo.lib.prompt").send(text)
-      end, { buffer = true })
+      end, { buf = 0 })
 
       vim.keymap.set("n", "[exec]H", function()
         local terminal = require("notomo.lib.prompt").terminal()
         vim.fn.chansend(terminal.channel, { vim.keycode("<C-c>") })
-      end, { buffer = true })
+      end, { buf = 0 })
     end,
   })
 

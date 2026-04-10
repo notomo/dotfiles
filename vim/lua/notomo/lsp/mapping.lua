@@ -150,11 +150,11 @@ function M.setup(opts)
   vim.keymap.set("n", "<Leader>fs", function()
     vim.diagnostic.reset()
     vim.cmd.lsp("restart")
-  end, { silent = true, buffer = true })
+  end, { silent = true, buf = 0 })
 
-  vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true, buffer = true })
+  vim.keymap.set("n", "[exec]gn", [[<Cmd>lua vim.lsp.buf.rename()<CR>]], { silent = true, buf = 0 })
 
-  vim.keymap.set({ "n", "x" }, "[keyword]c", [[:lua vim.lsp.buf.code_action()<CR>]], { silent = true, buffer = true })
+  vim.keymap.set({ "n", "x" }, "[keyword]c", [[:lua vim.lsp.buf.code_action()<CR>]], { silent = true, buf = 0 })
   vim.keymap.set({ "n", "x" }, "[keyword]a", function()
     vim.lsp.buf.code_action({
       filter = function(e)
@@ -162,7 +162,7 @@ function M.setup(opts)
       end,
       apply = true,
     })
-  end, { silent = true, buffer = true })
+  end, { silent = true, buf = 0 })
   vim.keymap.set({ "n", "x" }, "[keyword]p", function()
     vim.lsp.buf.code_action({
       filter = function(e)
@@ -170,64 +170,64 @@ function M.setup(opts)
       end,
       apply = true,
     })
-  end, { silent = true, buffer = true })
+  end, { silent = true, buf = 0 })
   vim.keymap.set("n", "[keyword]e", function()
     vim.api.nvim_echo({ { "" } }, false, {}) -- reset message
     vim.lsp.buf.hover()
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "[keyword]o", function()
     require("notomo.lsp.mapping").go_to_definition()
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("n", "[keyword]v", function()
     vim.cmd.vsplit()
     require("notomo.lsp.mapping").go_to_definition()
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("n", "[keyword]h", function()
     vim.cmd.split()
     require("notomo.lsp.mapping").go_to_definition()
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("n", "[keyword]t", function()
     require("wintablib.window").duplicate_as_right_tab()
     require("notomo.lsp.mapping").go_to_definition()
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "[keyword]O", function()
     require("notomo.lsp.mapping").go_to_type_definition()
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "sl", function()
     vim.cmd.nohlsearch()
     vim.lsp.buf.document_highlight()
     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-      buffer = 0,
+      buf = 0,
       once = true,
       callback = function()
         vim.lsp.buf.clear_references()
       end,
     })
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "si", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "[finder]o", function()
     require("thetto.util.source").start_by_name(opts.symbol_source)
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "[yank]a", function()
     require("notomo.lsp.mapping").yank_function_arg_labels()
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("n", "[yank]f", function()
     require("notomo.lsp.mapping").yank_to_fill()
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "<Space>qo", function()
     vim.diagnostic.open_float({
       source = true,
     })
-  end, { buffer = true })
+  end, { buf = 0 })
 end
 
 function M.yank_to_fill()

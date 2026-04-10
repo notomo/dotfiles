@@ -136,21 +136,21 @@ function M.open(opts, on_confirm)
 
   vim.api.nvim_create_autocmd({ "WinClosed", "WinLeave", "TabLeave", "BufLeave", "BufWipeout" }, {
     group = group,
-    buffer = bufnr,
+    buf = bufnr,
     callback = cancel,
     once = true,
   })
   vim.keymap.set("n", "q", cancel)
-  vim.keymap.set({ "n", "i" }, "<CR>", confirm, { buffer = bufnr })
-  vim.keymap.set({ "i" }, "<C-m>", confirm, { buffer = bufnr })
-  vim.keymap.set("n", "[file]w", confirm, { buffer = bufnr })
+  vim.keymap.set({ "n", "i" }, "<CR>", confirm, { buf = bufnr })
+  vim.keymap.set({ "i" }, "<C-m>", confirm, { buf = bufnr })
+  vim.keymap.set("n", "[file]w", confirm, { buf = bufnr })
 
   vim.keymap.set("i", "<C-j>", function()
     recall_history(1)
-  end, { buffer = bufnr })
+  end, { buf = bufnr })
   vim.keymap.set("i", "<C-k>", function()
     recall_history(-1)
-  end, { buffer = bufnr })
+  end, { buf = bufnr })
 end
 
 return M

@@ -616,14 +616,14 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
   pattern = { "*" },
   callback = function()
     vim.keymap.set("n", "[file]rl", function()
-      vim.api.nvim_exec_autocmds("BufRead", { buffer = 0, modeline = false })
+      vim.api.nvim_exec_autocmds("BufRead", { buf = 0, modeline = false })
       vim.api.nvim_exec_autocmds("TermOpen", { modeline = false })
       vim.bo.filetype = ""
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set("n", "I", function()
       require("notomo.lib.prompt").open()
-    end, { buffer = true })
+    end, { buf = 0 })
 
     local path = vim.api.nvim_buf_get_name(0)
     if not vim.endswith(path, vim.o.shell) then
@@ -640,27 +640,27 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
       end
       return "<CR>"
     end
-    vim.keymap.set("t", "<CR>", enter, { expr = true, buffer = true })
-    vim.keymap.set("t", "<C-CR>", enter, { expr = true, buffer = true })
-    vim.keymap.set("t", "<S-CR>", enter, { expr = true, buffer = true })
+    vim.keymap.set("t", "<CR>", enter, { expr = true, buf = 0 })
+    vim.keymap.set("t", "<C-CR>", enter, { expr = true, buf = 0 })
+    vim.keymap.set("t", "<S-CR>", enter, { expr = true, buf = 0 })
 
     vim.keymap.set("n", "[finder]o", function()
       require("thetto.util.source").start_by_name("vim/terminal_prompt")
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set({ "n", "x" }, "sgj", function()
       require("thetto.util.source").go_to_next("vim/terminal_prompt")
-    end, { buffer = true })
+    end, { buf = 0 })
     vim.keymap.set("o", "gj", function()
       require("thetto.util.source").go_to_next("vim/terminal_prompt", { fields = { opts = { row_offset = 0 } } })
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set({ "n", "x" }, "sgk", function()
       require("thetto.util.source").go_to_previous("vim/terminal_prompt")
-    end, { buffer = true })
+    end, { buf = 0 })
     vim.keymap.set("o", "gk", function()
       require("thetto.util.source").go_to_previous("vim/terminal_prompt", { fields = { opts = { row_offset = 1 } } })
-    end, { buffer = true })
+    end, { buf = 0 })
   end,
 })
 

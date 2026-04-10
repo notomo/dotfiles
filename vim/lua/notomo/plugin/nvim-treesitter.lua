@@ -7,25 +7,25 @@ function M.text_object_mapping()
     end
   end
 
-  vim.keymap.set({ "o", "x" }, "ic", select_ob("@call.inner"), { buffer = true, silent = true })
-  vim.keymap.set({ "o", "x" }, "ac", select_ob("@call.outer"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "ic", select_ob("@call.inner"), { buf = 0, silent = true })
+  vim.keymap.set({ "o", "x" }, "ac", select_ob("@call.outer"), { buf = 0, silent = true })
 
-  vim.keymap.set({ "o", "x" }, "if", select_ob("@function.inner"), { buffer = true, silent = true })
-  vim.keymap.set({ "o", "x" }, "af", select_ob("@function.outer"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "if", select_ob("@function.inner"), { buf = 0, silent = true })
+  vim.keymap.set({ "o", "x" }, "af", select_ob("@function.outer"), { buf = 0, silent = true })
 
   if vim.bo.filetype == "typescriptreact" then
-    vim.keymap.set({ "o", "x" }, "ir", select_ob("@attribute.inner"), { buffer = true, silent = true })
-    vim.keymap.set({ "o", "x" }, "ar", select_ob("@attribute.outer"), { buffer = true, silent = true })
+    vim.keymap.set({ "o", "x" }, "ir", select_ob("@attribute.inner"), { buf = 0, silent = true })
+    vim.keymap.set({ "o", "x" }, "ar", select_ob("@attribute.outer"), { buf = 0, silent = true })
   else
-    vim.keymap.set({ "o", "x" }, "ir", select_ob("@parameter.inner"), { buffer = true, silent = true })
-    vim.keymap.set({ "o", "x" }, "ar", select_ob("@parameter.outer"), { buffer = true, silent = true })
+    vim.keymap.set({ "o", "x" }, "ir", select_ob("@parameter.inner"), { buf = 0, silent = true })
+    vim.keymap.set({ "o", "x" }, "ar", select_ob("@parameter.outer"), { buf = 0, silent = true })
   end
 
-  vim.keymap.set({ "o", "x" }, "iv", select_ob("@block.inner"), { buffer = true, silent = true })
-  vim.keymap.set({ "o", "x" }, "av", select_ob("@block.outer"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "iv", select_ob("@block.inner"), { buf = 0, silent = true })
+  vim.keymap.set({ "o", "x" }, "av", select_ob("@block.outer"), { buf = 0, silent = true })
 
-  vim.keymap.set({ "o", "x" }, "is", select_ob("@statement.inner"), { buffer = true, silent = true })
-  vim.keymap.set({ "o", "x" }, "as", select_ob("@statement.outer"), { buffer = true, silent = true })
+  vim.keymap.set({ "o", "x" }, "is", select_ob("@statement.inner"), { buf = 0, silent = true })
+  vim.keymap.set({ "o", "x" }, "as", select_ob("@statement.outer"), { buf = 0, silent = true })
 
   vim.keymap.set("n", "so", function()
     local tmp = vim.fn.getreg("9")
@@ -55,13 +55,13 @@ function M.mapping()
     { "n", "x" },
     "sgj",
     [[<Cmd>lua require("notomo.plugin.nvim-treesitter").next_no_indent_function()<CR>]],
-    { buffer = true }
+    { buf = 0 }
   )
   vim.keymap.set(
     { "n", "x" },
     "sgk",
     [[<Cmd>lua require("notomo.plugin.nvim-treesitter").prev_no_indent_function()<CR>]],
-    { buffer = true }
+    { buf = 0 }
   )
 
   require("notomo.plugin.nvim-treesitter").text_object_mapping()

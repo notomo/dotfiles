@@ -44,7 +44,7 @@ mypack.add("notomo/optpack.nvim", {
               cwd = update.directory,
               opts = { args = { update.revision_range } },
             })
-          end, { buffer = true })
+          end, { buf = 0 })
         end,
       })
       vim.keymap.set("n", "[exec]U", function()

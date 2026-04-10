@@ -66,43 +66,38 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = thetto_group,
   pattern = { "thetto" },
   callback = function()
-    vim.keymap.set("n", "<2-LeftMouse>", action(), { buffer = true, silent = true })
-    vim.keymap.set("n", "<2-LeftMouse>", action(), { buffer = true, silent = true })
-    vim.keymap.set("n", "<RightMouse>", [[<Nop>]], { buffer = true })
-    vim.keymap.set("n", "<RightDrag>", [[<Nop>]], { buffer = true })
-    vim.keymap.set("n", "<C-w>", quit(), { buffer = true, nowait = true })
+    vim.keymap.set("n", "<2-LeftMouse>", action(), { buf = 0, silent = true })
+    vim.keymap.set("n", "<2-LeftMouse>", action(), { buf = 0, silent = true })
+    vim.keymap.set("n", "<RightMouse>", [[<Nop>]], { buf = 0 })
+    vim.keymap.set("n", "<RightDrag>", [[<Nop>]], { buf = 0 })
+    vim.keymap.set("n", "<C-w>", quit(), { buf = 0, nowait = true })
 
-    vim.keymap.set("n", "dd", call_consumer_key("", "move_to_input", "<Cmd>silent delete _<CR>"), { buffer = true })
-    vim.keymap.set(
-      "n",
-      "cc",
-      call_consumer_key("<ESC>", "move_to_input", "<Cmd>silent delete _<CR>"),
-      { buffer = true }
-    )
+    vim.keymap.set("n", "dd", call_consumer_key("", "move_to_input", "<Cmd>silent delete _<CR>"), { buf = 0 })
+    vim.keymap.set("n", "cc", call_consumer_key("<ESC>", "move_to_input", "<Cmd>silent delete _<CR>"), { buf = 0 })
 
-    vim.keymap.set("n", "i", call_consumer("move_to_input"), { buffer = true })
-    vim.keymap.set("n", "I", call_consumer_key("", "move_to_input", "<Home>"), { buffer = true })
-    vim.keymap.set("n", "a", call_consumer("move_to_input"), { buffer = true })
-    vim.keymap.set("n", "A", call_consumer_key("", "move_to_input", "<End>"), { buffer = true })
+    vim.keymap.set("n", "i", call_consumer("move_to_input"), { buf = 0 })
+    vim.keymap.set("n", "I", call_consumer_key("", "move_to_input", "<Home>"), { buf = 0 })
+    vim.keymap.set("n", "a", call_consumer("move_to_input"), { buf = 0 })
+    vim.keymap.set("n", "A", call_consumer_key("", "move_to_input", "<End>"), { buf = 0 })
 
-    vim.keymap.set("n", "q", quit(), { buffer = true, nowait = true })
-    vim.keymap.set("n", "M", call_consumer("increase_display_limit"), { buffer = true })
+    vim.keymap.set("n", "q", quit(), { buf = 0, nowait = true })
+    vim.keymap.set("n", "M", call_consumer("increase_display_limit"), { buf = 0 })
 
-    vim.keymap.set("n", "<CR>", action(), { buffer = true })
-    vim.keymap.set("n", "o", action("open"), { buffer = true })
-    vim.keymap.set("n", "sv", action("vsplit_open"), { buffer = true })
-    vim.keymap.set("n", "t<Space>", action("tab_open"), { buffer = true })
-    vim.keymap.set("n", "fo", action("directory_open"), { buffer = true })
-    vim.keymap.set("n", "fi", action("directory_tab_open"), { buffer = true })
-    vim.keymap.set("n", "ff", action_with_fallback({ "list_children", "list_siblings" }), { buffer = true })
-    vim.keymap.set("n", "F", action("list_parents"), { buffer = true })
-    vim.keymap.set("n", "yy", action("yank"), { buffer = true })
-    vim.keymap.set("n", "D", action("debug_print", { quit = false }), { buffer = true })
-    vim.keymap.set("n", "rn", action("rename"), { buffer = true })
-    vim.keymap.set("n", "O", action("search"), { buffer = true })
-    vim.keymap.set("n", "T", action("terminal"), { buffer = true })
+    vim.keymap.set("n", "<CR>", action(), { buf = 0 })
+    vim.keymap.set("n", "o", action("open"), { buf = 0 })
+    vim.keymap.set("n", "sv", action("vsplit_open"), { buf = 0 })
+    vim.keymap.set("n", "t<Space>", action("tab_open"), { buf = 0 })
+    vim.keymap.set("n", "fo", action("directory_open"), { buf = 0 })
+    vim.keymap.set("n", "fi", action("directory_tab_open"), { buf = 0 })
+    vim.keymap.set("n", "ff", action_with_fallback({ "list_children", "list_siblings" }), { buf = 0 })
+    vim.keymap.set("n", "F", action("list_parents"), { buf = 0 })
+    vim.keymap.set("n", "yy", action("yank"), { buf = 0 })
+    vim.keymap.set("n", "D", action("debug_print", { quit = false }), { buf = 0 })
+    vim.keymap.set("n", "rn", action("rename"), { buf = 0 })
+    vim.keymap.set("n", "O", action("search"), { buf = 0 })
+    vim.keymap.set("n", "T", action("terminal"), { buf = 0 })
 
-    vim.keymap.set("n", "rp", action("unionbuf"), { buffer = true })
+    vim.keymap.set("n", "rp", action("unionbuf"), { buf = 0 })
     vim.keymap.set("n", "<Leader>rP", function()
       action("unionbuf", {
         action_opts = {
@@ -119,25 +114,25 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
           end,
         },
       })
-    end, { buffer = true })
+    end, { buf = 0 })
 
-    vim.keymap.set("n", "j", [[line('.') == line('$') ? 'gg' : 'j']], { buffer = true, expr = true, silent = true })
-    vim.keymap.set("n", "k", [[line('.') == 1 ? 'G' : 'k']], { buffer = true, expr = true, silent = true })
+    vim.keymap.set("n", "j", [[line('.') == line('$') ? 'gg' : 'j']], { buf = 0, expr = true, silent = true })
+    vim.keymap.set("n", "k", [[line('.') == 1 ? 'G' : 'k']], { buf = 0, expr = true, silent = true })
 
-    vim.keymap.set("n", "<Tab>", thetto_starter("thetto/action"), { buffer = true })
+    vim.keymap.set("n", "<Tab>", thetto_starter("thetto/action"), { buf = 0 })
     vim.keymap.set("n", "[finder]<CR>", function()
       require("thetto").resume({ offset = 1 })
-    end, { buffer = true })
+    end, { buf = 0 })
     vim.keymap.set("n", "[finder]n", function()
       require("thetto").resume({ offset = 1 })
-    end, { buffer = true })
+    end, { buf = 0 })
     vim.keymap.set("n", "[finder]N", function()
       require("thetto").resume({ offset = -1 })
-    end, { buffer = true })
+    end, { buf = 0 })
 
-    vim.keymap.set("n", "sm", call_consumer_key("", "toggle_selection", "<Down>"), { buffer = true })
-    vim.keymap.set("x", "sm", call_consumer_key("", "toggle_selection", "<ESC>"), { buffer = true })
-    vim.keymap.set("n", "sa", call_consumer_key("", "toggle_all_selection", ""), { buffer = true })
+    vim.keymap.set("n", "sm", call_consumer_key("", "toggle_selection", "<Down>"), { buf = 0 })
+    vim.keymap.set("x", "sm", call_consumer_key("", "toggle_selection", "<ESC>"), { buf = 0 })
+    vim.keymap.set("n", "sa", call_consumer_key("", "toggle_all_selection", ""), { buf = 0 })
   end,
 })
 
@@ -145,34 +140,34 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = thetto_group,
   pattern = { "thetto-inputter" },
   callback = function()
-    vim.keymap.set("n", "<CR>", action(), { buffer = true })
+    vim.keymap.set("n", "<CR>", action(), { buf = 0 })
     vim.keymap.set("i", "<CR>", function()
       action()()
       vim.cmd.stopinsert()
-    end, { buffer = true })
-    vim.keymap.set("n", "o", action("open"), { buffer = true })
-    vim.keymap.set("n", "O", action_with_fallback({ "search", "open" }), { buffer = true })
-    vim.keymap.set("n", "sv", action("vsplit_open"), { buffer = true })
-    vim.keymap.set("n", "t<Space>", action("tab_open"), { buffer = true })
+    end, { buf = 0 })
+    vim.keymap.set("n", "o", action("open"), { buf = 0 })
+    vim.keymap.set("n", "O", action_with_fallback({ "search", "open" }), { buf = 0 })
+    vim.keymap.set("n", "sv", action("vsplit_open"), { buf = 0 })
+    vim.keymap.set("n", "t<Space>", action("tab_open"), { buf = 0 })
 
-    vim.keymap.set("i", "jq", [[<Cmd>lua require("thetto").quit()<CR><Cmd>stopinsert<CR>]], { buffer = true })
-    vim.keymap.set("n", "q", quit(), { buffer = true })
+    vim.keymap.set("i", "jq", [[<Cmd>lua require("thetto").quit()<CR><Cmd>stopinsert<CR>]], { buf = 0 })
+    vim.keymap.set("n", "q", quit(), { buf = 0 })
 
-    vim.keymap.set("n", "j", call_consumer("move_to_list"), { buffer = true })
-    vim.keymap.set("n", "J", [[line('.') == line('$') ? 'gg' : 'j']], { buffer = true, silent = true, expr = true })
-    vim.keymap.set("n", "k", [[line('.') == 1 ? 'G' : 'k']], { buffer = true, expr = true })
-    vim.keymap.set("n", "K", [[line('.') == 1 ? 'G' : 'k']], { buffer = true, expr = true })
+    vim.keymap.set("n", "j", call_consumer("move_to_list"), { buf = 0 })
+    vim.keymap.set("n", "J", [[line('.') == line('$') ? 'gg' : 'j']], { buf = 0, silent = true, expr = true })
+    vim.keymap.set("n", "k", [[line('.') == 1 ? 'G' : 'k']], { buf = 0, expr = true })
+    vim.keymap.set("n", "K", [[line('.') == 1 ? 'G' : 'k']], { buf = 0, expr = true })
 
-    vim.keymap.set("i", "<C-p>", call_consumer("recall_history", 1), { buffer = true })
-    vim.keymap.set("i", "<C-n>", call_consumer("recall_history", -1), { buffer = true })
+    vim.keymap.set("i", "<C-p>", call_consumer("recall_history", 1), { buf = 0 })
+    vim.keymap.set("i", "<C-n>", call_consumer("recall_history", -1), { buf = 0 })
 
     vim.keymap.set("i", "<C-u>", function()
       require("notomo.lib.edit").delete_prev()
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set("n", "[finder]<CR>", function()
       require("thetto").resume({ offset = 1 })
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set("i", "<Tab>", function()
       local item = require("thetto").get()[1]
@@ -185,7 +180,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
       local last_column = vim.fn.col("$")
       local row = vim.api.nvim_win_get_cursor(0)[1]
       vim.api.nvim_win_set_cursor(0, { row, last_column })
-    end, { buffer = true })
+    end, { buf = 0 })
   end,
 })
 
@@ -193,54 +188,54 @@ local source_specific = {
   ["git/log"] = function(list_bufnr)
     vim.keymap.set("n", "yr", function()
       require("notomo.lib.edit").yank(require("thetto").get()[1].commit_hash)
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
     vim.keymap.set("n", "yf", function()
       local short_commit_hash = require("thetto").get()[1].commit_hash
       local commit_hash = vim.fn.systemlist({ "git", "rev-parse", short_commit_hash })[1]
       require("notomo.lib.edit").yank(commit_hash)
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
     vim.keymap.set("n", "yR", function()
       require("notomo.lib.github").yank_revision_with_repo(require("thetto").get()[1].commit_hash)
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
     vim.keymap.set("n", "ym", function()
       require("notomo.lib.git").yank_commit_message(require("thetto").get()[1].commit_hash)
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
     vim.keymap.set("n", "yu", function()
       require("notomo.lib.github").yank_commit_url(require("thetto").get()[1].commit_hash)
-    end, { buffer = list_bufnr })
-    vim.keymap.set("n", "ch", action("checkout"), { buffer = list_bufnr })
-    vim.keymap.set("n", "D", action("diff"), { buffer = list_bufnr })
-    vim.keymap.set("n", "RS", action("reset", { quit = false }), { buffer = list_bufnr })
-    vim.keymap.set("n", "F", action("fixup", { quit = false }), { buffer = list_bufnr })
-    vim.keymap.set("n", "rw", action("reword", { quit = false }), { buffer = list_bufnr })
-    vim.keymap.set("n", "I", action("rebase_interactively"), { buffer = list_bufnr })
-    vim.keymap.set("n", "fl", action("list_change_to"), { buffer = list_bufnr })
+    end, { buf = list_bufnr })
+    vim.keymap.set("n", "ch", action("checkout"), { buf = list_bufnr })
+    vim.keymap.set("n", "D", action("diff"), { buf = list_bufnr })
+    vim.keymap.set("n", "RS", action("reset", { quit = false }), { buf = list_bufnr })
+    vim.keymap.set("n", "F", action("fixup", { quit = false }), { buf = list_bufnr })
+    vim.keymap.set("n", "rw", action("reword", { quit = false }), { buf = list_bufnr })
+    vim.keymap.set("n", "I", action("rebase_interactively"), { buf = list_bufnr })
+    vim.keymap.set("n", "fl", action("list_change_to"), { buf = list_bufnr })
   end,
   ["git/file_log"] = function(list_bufnr)
     vim.keymap.set("n", "yr", function()
       require("notomo.lib.edit").yank(require("thetto").get()[1].commit_hash)
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
     vim.keymap.set("n", "yR", function()
       require("notomo.lib.github").yank_revision_with_repo(require("thetto").get()[1].commit_hash)
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
     vim.keymap.set("n", "ym", function()
       require("notomo.lib.git").yank_commit_message(require("thetto").get()[1].commit_hash)
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
     vim.keymap.set("n", "yu", function()
       require("notomo.lib.github").yank_commit_url(require("thetto").get()[1].commit_hash)
-    end, { buffer = list_bufnr })
-    vim.keymap.set("n", "ch", action("checkout"), { buffer = list_bufnr })
-    vim.keymap.set("n", "D", action("diff"), { buffer = list_bufnr })
-    vim.keymap.set("n", "fl", action("list_change_to"), { buffer = list_bufnr })
+    end, { buf = list_bufnr })
+    vim.keymap.set("n", "ch", action("checkout"), { buf = list_bufnr })
+    vim.keymap.set("n", "D", action("diff"), { buf = list_bufnr })
+    vim.keymap.set("n", "fl", action("list_change_to"), { buf = list_bufnr })
   end,
   ["git/change"] = function(list_bufnr)
-    vim.keymap.set("n", "dd", action("compare", { quit = true }), { buffer = list_bufnr })
+    vim.keymap.set("n", "dd", action("compare", { quit = true }), { buf = list_bufnr })
   end,
   ["git/branch"] = function(list_bufnr)
-    vim.keymap.set("n", "C", action("create"), { buffer = list_bufnr })
+    vim.keymap.set("n", "C", action("create"), { buf = list_bufnr })
     vim.keymap.set("n", "yr", function()
       require("notomo.lib.edit").yank(require("thetto").get()[1].commit_hash)
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
   end,
   ["git/status"] = function(list_bufnr)
     local action_without_message = function(action_name, execute_opts)
@@ -263,14 +258,14 @@ local source_specific = {
       { "n", "x" },
       "[git]a",
       action_without_message("toggle_stage", { quit = false }),
-      { buffer = list_bufnr }
+      { buf = list_bufnr }
     )
-    vim.keymap.set({ "n", "x" }, "U", action_without_message("discard", { quit = false }), { buffer = list_bufnr })
-    vim.keymap.set({ "n", "x" }, "S", action("stash", { quit = false }), { buffer = list_bufnr })
-    vim.keymap.set("n", "cc", action("commit"), { buffer = list_bufnr })
-    vim.keymap.set("n", "ca", action("commit_amend"), { buffer = list_bufnr })
-    vim.keymap.set("n", "dd", action("compare", { quit = true }), { buffer = list_bufnr })
-    vim.keymap.set("n", "D", action("diff"), { buffer = list_bufnr })
+    vim.keymap.set({ "n", "x" }, "U", action_without_message("discard", { quit = false }), { buf = list_bufnr })
+    vim.keymap.set({ "n", "x" }, "S", action("stash", { quit = false }), { buf = list_bufnr })
+    vim.keymap.set("n", "cc", action("commit"), { buf = list_bufnr })
+    vim.keymap.set("n", "ca", action("commit_amend"), { buf = list_bufnr })
+    vim.keymap.set("n", "dd", action("compare", { quit = true }), { buf = list_bufnr })
+    vim.keymap.set("n", "D", action("diff"), { buf = list_bufnr })
 
     local move = function(flag, fallback_key)
       local _, column = unpack(vim.api.nvim_win_get_cursor(0))
@@ -284,18 +279,18 @@ local source_specific = {
     end
     vim.keymap.set("n", "j", function()
       move("w", "j")
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
     vim.keymap.set("n", "k", function()
       move("bw", "k")
-    end, { buffer = list_bufnr })
+    end, { buf = list_bufnr })
   end,
   ["git/stash"] = function(list_bufnr)
-    vim.keymap.set("n", "pop", action("pop"), { buffer = list_bufnr })
-    vim.keymap.set("n", "AP", action("apply"), { buffer = list_bufnr })
+    vim.keymap.set("n", "pop", action("pop"), { buf = list_bufnr })
+    vim.keymap.set("n", "AP", action("apply"), { buf = list_bufnr })
   end,
   ["cmd/make/target"] = function(list_bufnr)
-    vim.keymap.set("n", "P", action("dry_run"), { buffer = list_bufnr })
-    vim.keymap.set("n", "O", action("execute_reusable"), { buffer = list_bufnr })
+    vim.keymap.set("n", "P", action("dry_run"), { buf = list_bufnr })
+    vim.keymap.set("n", "O", action("execute_reusable"), { buf = list_bufnr })
   end,
 }
 vim.api.nvim_create_autocmd({ "User" }, {

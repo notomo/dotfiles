@@ -14,7 +14,7 @@ end
 runtime.after.ftplugin["autohotkey.lua"] = function()
   require("notomo.lsp").setup()
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    buffer = 0,
+    buf = 0,
     callback = function(args)
       if vim.b[args.buf].notomo_format_disabled then
         return
@@ -42,7 +42,7 @@ runtime.after.ftplugin["cs.lua"] = function()
 end
 
 runtime.after.ftplugin["diff.lua"] = function()
-  vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
+  vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buf = 0, nowait = true })
 end
 
 runtime.after.ftplugin["dune.lua"] = function()
@@ -55,7 +55,7 @@ end
 runtime.after.ftplugin["gitcommit.lua"] = function()
   vim.opt_local.spell = true
   vim.opt_local.textwidth = 0
-  vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buffer = true, nowait = true })
+  vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buf = 0, nowait = true })
 end
 
 runtime.after.ftplugin["go.lua"] = function()
@@ -67,21 +67,21 @@ runtime.after.ftplugin["go.lua"] = function()
     "n",
     "[yank]I",
     [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.trim(vim.fn.system('go list -f "{{.ImportPath}}" ./')))<CR>]],
-    { buffer = true }
+    { buf = 0 }
   )
 
   local test_pattern = [[\v^(func Test|\s*t\.Run)]]
   vim.keymap.set("n", "sgn", function()
     require("notomo.lib.edit").jump(test_pattern, "W")
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("n", "sgp", function()
     require("notomo.lib.edit").jump(test_pattern, "Wb")
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.cmd.syntax({ args = { "keyword", "goKeywords", "nil", "iota", "true", "false" } })
   vim.api.nvim_set_hl(0, "goKeywords", { link = "Boolean" })
 
-  vim.keymap.set("ia", "~=", [[!=]], { buffer = true })
+  vim.keymap.set("ia", "~=", [[!=]], { buf = 0 })
 
   require("notomo.lib.treesitter").setup()
 end
@@ -189,7 +189,7 @@ runtime.after.ftplugin["json.lua"] = function()
     end
 
     vim.cmd.normal({ args = { "j^%j$" }, bang = true })
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "K", function()
     vim.cmd.normal({ args = { "k" }, bang = true })
 
@@ -199,7 +199,7 @@ runtime.after.ftplugin["json.lua"] = function()
     end
 
     vim.cmd.normal({ args = { "$%k$%" }, bang = true })
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
 
@@ -212,7 +212,7 @@ runtime.after.ftplugin["json.lua"] = function()
 
     vim.opt_local.foldenable = true
     vim.opt_local.foldmethod = "indent"
-  end, { buffer = true })
+  end, { buf = 0 })
 
   require("cmdhndlr").use({
     format_runner = {
@@ -231,11 +231,11 @@ runtime.after.ftplugin["lua.lua"] = function()
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
-  vim.keymap.set("n", "[exec]s", [[<Cmd>luafile %<CR>]], { buffer = true })
-  vim.keymap.set("n", "[exec]l", [[':lua ' . getline('.') . '<CR>']], { expr = true, buffer = true })
+  vim.keymap.set("n", "[exec]s", [[<Cmd>luafile %<CR>]], { buf = 0 })
+  vim.keymap.set("n", "[exec]l", [[':lua ' . getline('.') . '<CR>']], { expr = true, buf = 0 })
   vim.keymap.set("n", "[yank]I", function()
     require("notomo.lib.edit").yank(require("misclib.module.path").detect(vim.fn.expand("%:p")))
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("n", "[yank]F", function()
     local row = unpack(vim.api.nvim_win_get_cursor(0))
     local parameters = require("notomo.lib.treesitter").lua_parameters(row)
@@ -246,10 +246,10 @@ runtime.after.ftplugin["lua.lua"] = function()
       end)
       :join("\n")
     require("notomo.lib.edit").yank(doc)
-  end, { buffer = true })
+  end, { buf = 0 })
   require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
 
-  vim.keymap.set("ia", "!=", [[~=]], { buffer = true })
+  vim.keymap.set("ia", "!=", [[~=]], { buf = 0 })
 
   vim.keymap.set("n", "[finder]I", function()
     require("thetto.util.source").start_by_name("file/grep", {
@@ -261,7 +261,7 @@ runtime.after.ftplugin["lua.lua"] = function()
         return item.value:find("require%(")
       end),
     })
-  end, { buffer = true })
+  end, { buf = 0 })
 
   require("notomo.lib.treesitter").setup()
 
@@ -272,14 +272,14 @@ runtime.after.ftplugin["lua.lua"] = function()
           return vim.startswith(item.value, "runtime.")
         end,
       })
-    end, { buffer = true })
+    end, { buf = 0 })
     vim.keymap.set({ "n", "x" }, "sgk", function()
       require("thetto.util.source").go_to_previous("vim/line", {
         filter = function(item)
           return vim.startswith(item.value, "runtime.")
         end,
       })
-    end, { buffer = true })
+    end, { buf = 0 })
   end
 
   if vim.endswith(vim.fn.bufname(), "_spec.lua") then
@@ -301,7 +301,7 @@ runtime.after.ftplugin["lua.lua"] = function()
         program = { command = "vusted" },
         args = { "${file}" },
       })
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set("n", "[test]D", function()
       local test = require("gettest").nodes({
@@ -319,7 +319,7 @@ runtime.after.ftplugin["lua.lua"] = function()
         },
         layout = { type = "tab" },
       })
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set({ "n", "x" }, "sgJ", function()
       require("thetto.util.source").go_to_next("test", {
@@ -327,11 +327,11 @@ runtime.after.ftplugin["lua.lua"] = function()
           return item.is_toplevel
         end,
       })
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set({ "n", "x" }, "sgj", function()
       require("thetto.util.source").go_to_next("test")
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set({ "n", "x" }, "sgK", function()
       require("thetto.util.source").go_to_previous("test", {
@@ -339,11 +339,11 @@ runtime.after.ftplugin["lua.lua"] = function()
           return item.is_toplevel
         end,
       })
-    end, { buffer = true })
+    end, { buf = 0 })
 
     vim.keymap.set({ "n", "x" }, "sgk", function()
       require("thetto.util.source").go_to_previous("test")
-    end, { buffer = true })
+    end, { buf = 0 })
   end
 end
 
@@ -383,7 +383,7 @@ runtime.after.ftplugin["markdown.lua"] = function()
 
   vim.keymap.set("n", "[finder]o", function()
     require("thetto.util.source").start_by_name("aerial")
-  end, { buffer = true })
+  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["mdx.lua"] = function()
@@ -430,10 +430,10 @@ runtime.after.ftplugin["python.lua"] = function()
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
     require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
     require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
-  end, { buffer = true })
+  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["requirements.lua"] = function()
@@ -453,10 +453,10 @@ runtime.after.ftplugin["rust.lua"] = function()
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
     require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
     require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
-  end, { buffer = true })
+  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["scheme.lua"] = function()
@@ -484,10 +484,10 @@ runtime.after.ftplugin["terraform.lua"] = function()
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
     require("notomo.lib.terraform").go_to_next_resouce()
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
     require("notomo.lib.terraform").go_to_prev_resouce()
-  end, { buffer = true })
+  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["flux.lua"] = function()
@@ -502,25 +502,20 @@ runtime.after.ftplugin["typescript.lua"] = function()
   vim.opt_local.expandtab = true
   require("notomo.lsp").setup()
 
-  vim.keymap.set(
-    "n",
-    "[exec]bL",
-    [[<Cmd>lua require("cmdhndlr").build({name = 'typescript/tsc'})<CR>]],
-    { buffer = true }
-  )
+  vim.keymap.set("n", "[exec]bL", [[<Cmd>lua require("cmdhndlr").build({name = 'typescript/tsc'})<CR>]], { buf = 0 })
 
   require("notomo.lib.treesitter").setup()
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
     require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
     require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "[file]W", function()
     require("notomo.plugin.aliaser").format_biome_unsafe()
-  end, { buffer = true })
+  end, { buf = 0 })
 
   require("cmdhndlr").use({
     normal_runner = {
@@ -554,26 +549,26 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.keymap.set("n", "gI", function()
     require("notomo.lib.jsx").go_to_first_child()
     vim.cmd.startinsert()
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("n", "gA", function()
     require("notomo.lib.jsx").go_to_last_child()
     vim.fn.feedkeys("a", "nt")
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "<Space>rn", function()
     require("notomo.lib.jsx").change_tag()
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "[keyword]A", function()
     require("notomo.lib.jsx").add_component_parameter()
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
     require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
     require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "sD", function()
     require("notomo.lib.jsx").unwrap()
@@ -581,11 +576,11 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
 
   vim.keymap.set("n", "[finder]o", function()
     require("thetto.util.source").start_by_name("aerial")
-  end, { buffer = true })
+  end, { buf = 0 })
 
   vim.keymap.set("n", "[file]W", function()
     require("notomo.plugin.aliaser").format_biome_unsafe()
-  end, { buffer = true })
+  end, { buf = 0 })
 
   require("cmdhndlr").use({
     format_runner = {
@@ -609,7 +604,7 @@ runtime.after.ftplugin["vim.lua"] = function()
   ---@diagnostic disable-next-line: undefined-field
   vim.opt_local.iskeyword:remove("#")
 
-  vim.keymap.set("n", "[exec]s", [[<Cmd>source %<CR>]], { buffer = true })
+  vim.keymap.set("n", "[exec]s", [[<Cmd>source %<CR>]], { buf = 0 })
   require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
 
   require("notomo.lib.treesitter").setup()
@@ -640,7 +635,7 @@ runtime.after.ftplugin["unionbuf.lua"] = function()
     vim.cmd.tabedit()
     vim.cmd.buffer(entry.bufnr)
     vim.cmd.normal({ args = { tostring(entry.start_row + 1) .. "gg" }, bang = true })
-  end, { buffer = true })
+  end, { buf = 0 })
 
   local visual_range = function()
     local rows = {
@@ -658,16 +653,16 @@ runtime.after.ftplugin["unionbuf.lua"] = function()
 
   vim.keymap.set("n", "J", function()
     require("unionbuf").shift({ end_row = 1 })
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("x", "J", function()
     require("unionbuf").shift({ end_row = 1 }, visual_range())
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("n", "K", function()
     require("unionbuf").shift({ start_row = -1 })
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set("x", "K", function()
     require("unionbuf").shift({ start_row = -1 }, visual_range())
-  end, { buffer = true })
+  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["prisma.lua"] = function()
@@ -677,7 +672,7 @@ runtime.after.ftplugin["prisma.lua"] = function()
 
   require("notomo.lsp").setup()
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-    buffer = 0,
+    buf = 0,
     callback = function(args)
       if vim.b[args.buf].notomo_format_disabled then
         return
@@ -690,10 +685,10 @@ runtime.after.ftplugin["prisma.lua"] = function()
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
     require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
     require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
-  end, { buffer = true })
+  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["css.lua"] = function()
@@ -736,10 +731,10 @@ runtime.after.ftplugin["moonbit.lua"] = function()
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
     require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
-  end, { buffer = true })
+  end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
     require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
-  end, { buffer = true })
+  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["moonbitpkg.lua"] = function()

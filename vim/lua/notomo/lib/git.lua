@@ -76,7 +76,7 @@ function M.branch_component()
   local branch = M._current_branch(head_file_path)
   local events = vim.tbl_contains({ "kivi-file" }, vim.bo.filetype) and { "BufReadCmd" } or { "BufRead" }
   vim.api.nvim_create_autocmd(events, {
-    buffer = bufnr,
+    buf = bufnr,
     callback = function()
       local watcher = watchers[bufnr]
       if watcher then

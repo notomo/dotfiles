@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
   pattern = { "dap-float" },
   callback = function()
-    vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { nowait = true, buffer = true })
+    vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { nowait = true, buf = 0 })
   end,
 })
 

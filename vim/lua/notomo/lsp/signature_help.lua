@@ -33,13 +33,13 @@ function M.setup()
   local bufnr = vim.api.nvim_get_current_buf()
   local group = vim.api.nvim_create_augroup("notomo.lsp.signature_help_" .. bufnr, {})
   vim.api.nvim_create_autocmd({ "InsertEnter", "TextChangedI" }, {
-    buffer = bufnr,
+    buf = bufnr,
     group = group,
     callback = function()
       show(bufnr)
     end,
   })
-  vim.keymap.set("i", "[main_input]i", M._land, { buffer = true })
+  vim.keymap.set("i", "[main_input]i", M._land, { buf = 0 })
 end
 
 function M._land()

@@ -386,7 +386,7 @@ snippet autocmd
 snippet buffer_autocmd
 	vim.api.nvim_create_autocmd({"${1:event_name}"}, {
 		group = "${2:group_name}",
-		buffer = ${3:bufnr}
+		buf = ${3:bufnr}
 		callback = function()
 			${0:TARGET}
 		end

@@ -122,7 +122,7 @@ vim.api.nvim_create_autocmd({ "OptionSet" }, {
   callback = function()
     vim.wo.cursorline = false
     vim.keymap.set("n", "q", [[<Cmd>tabclose<CR>]], {
-      buffer = true,
+      buf = 0,
       nowait = true,
     })
   end,

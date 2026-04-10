@@ -6,8 +6,8 @@ require("gitsigns").setup({
   on_attach = function(bufnr)
     local gs = package.loaded.gitsigns
 
-    vim.keymap.set("x", "[git]S", ":Gitsigns stage_hunk<CR>", { buffer = bufnr })
-    vim.keymap.set("x", "[git]R", ":Gitsigns reset_hunk<CR>", { buffer = bufnr })
+    vim.keymap.set("x", "[git]S", ":Gitsigns stage_hunk<CR>", { buf = bufnr })
+    vim.keymap.set("x", "[git]R", ":Gitsigns reset_hunk<CR>", { buf = bufnr })
 
     vim.keymap.set("n", "[git]t", gs.toggle_current_line_blame)
   end,
