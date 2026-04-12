@@ -445,7 +445,7 @@ vim.keymap.set("n", "[term]N", function()
             return false
           end
 
-          return path:match("[:/]claude")
+          return path:match("[:/]claude$")
         end),
       }),
       consumer_opts = {
