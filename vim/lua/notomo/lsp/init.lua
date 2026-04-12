@@ -35,7 +35,7 @@ function M.setup(raw_opts)
   local servers = filetype_servers[filetype] or {}
   local bufnr = vim.api.nvim_get_current_buf()
   for _, name in ipairs(servers) do
-    local config = vim.deepcopy(vim.lsp.config[name])
+    local config = vim.deepcopy(vim.lsp.config[name] or {})
     if type(config.root_dir) == "function" then
       config.root_dir(bufnr, function(root_dir)
         config.root_dir = root_dir
