@@ -58,6 +58,3 @@ components = "rust-analyzer,rust-src,rustfmt"
 
 [tools."github:dalance/procs"]
 version = "latest"
-postinstall = '''
-ln -sf {{env.DOTFILES}}/tool/.procs.toml ~/.procs.toml
-'''
