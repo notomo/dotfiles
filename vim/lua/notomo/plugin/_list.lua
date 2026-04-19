@@ -110,18 +110,6 @@ mypack.add("notomo/genvdoc", {
   load_on = { modules = { "genvdoc" } },
 })
 
-optpack.add("LeafCage/yankround.vim", {
-  load_on = {
-    keymaps = function(vim)
-      vim.g.yankround_use_region_hl = 1
-      vim.keymap.set({ "n", "x" }, "p", [[<Plug>(yankround-p)]])
-      vim.keymap.set("n", "P", [[<Plug>(yankround-P)]])
-      vim.keymap.set("n", "<C-p>", [[<Plug>(yankround-prev)]])
-      vim.keymap.set("n", "<C-n>", [[<Plug>(yankround-next)]])
-    end,
-  },
-})
-
 optpack.add("kana/vim-smartword", {
   load_on = {
     keymaps = function(vim)
@@ -686,6 +674,15 @@ mypack.add("notomo/requireall.nvim", {
 mypack.add("notomo/redraw-inspect.nvim", {
   load_on = {
     modules = { "redraw-inspect" },
+  },
+})
+
+mypack.add("notomo/clpb.nvim", {
+  load_on = {
+    modules = { "clpb" },
+  },
+  hooks = {
+    post_add = require_fn("notomo.plugin.clpb"),
   },
 })
 

@@ -1,6 +1,6 @@
 local pallet = require("ultramarine").pallet
 vim.api.nvim_set_hl(0, "Flashy", { bold = true, fg = pallet.black, bg = pallet.lightest_blue })
-vim.api.nvim_set_hl(0, "YankRoundRegion", { fg = pallet.black, bg = pallet.yellow })
+vim.api.nvim_set_hl(0, "ClpbPasted", { fg = pallet.black, bg = pallet.yellow })
 
 vim.api.nvim_set_hl(0, "markdownCode", { fg = pallet.yellow })
 vim.api.nvim_set_hl(0, "markdownUrl", { fg = pallet.lightest_blue })
