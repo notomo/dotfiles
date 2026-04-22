@@ -278,11 +278,6 @@ vim.keymap.set({ "n", "x", "o" }, "<Leader>w", "<Plug>CamelCaseMotion_w")
 vim.keymap.set({ "n", "x", "o" }, "<Leader>b", "<Plug>CamelCaseMotion_b")
 vim.keymap.set({ "n", "x", "o" }, "<Leader>e", "<Plug>CamelCaseMotion_e")
 
-vim.cmd.packadd([[vim-operator-replace]])
-vim.keymap.set("n", "r", [[<Plug>(operator-replace)]])
-vim.keymap.set("x", "r", [[<Plug>(operator-replace)]])
-vim.keymap.set("o", "r", [[<Plug>(operator-replace)]])
-
 vim.cmd.packadd([[vim-smartword]])
 vim.keymap.set({ "n", "x", "o" }, "w", [[<Plug>(smartword-w)]])
 vim.keymap.set({ "n", "x", "o" }, "b", [[<Plug>(smartword-b)]])
