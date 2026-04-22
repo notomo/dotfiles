@@ -773,3 +773,7 @@ end)
 vim.keymap.set("x", "[exec]t", function()
   return require("notomo.lib.todo").operator()
 end, { expr = true })
+
+vim.keymap.set({ "x", "o" }, "<CR>", "an", { remap = true })
+vim.keymap.set({ "x" }, "<Space><CR>", "in", { remap = true })
+vim.keymap.set("n", "<CR>", "van", { remap = true })
