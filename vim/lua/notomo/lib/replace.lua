@@ -9,7 +9,7 @@ function M.operator(operator_type)
     return "g@"
   end
 
-  local reg = vim.fn.getreg('"')
+  local reg = vim.fn.getreg("+")
   local start_pos = vim.fn.getpos("'[")
   local end_pos = vim.fn.getpos("']")
 
@@ -29,10 +29,10 @@ function M.operator(operator_type)
 end
 
 function M.search_pattern()
-  local tmp = vim.fn.getreg('"')
+  local tmp = vim.fn.getreg("+")
   vim.cmd.normal({ args = { [[""y]] }, bang = true })
   local text = vim.fn.escape(vim.fn.getreg('"'), [[\/]])
-  vim.fn.setreg('"', tmp)
+  vim.fn.setreg("+", tmp)
   return [[\V]] .. vim.fn.substitute(text, "\n", [[\\n]], "g")
 end
 
