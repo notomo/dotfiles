@@ -403,8 +403,6 @@ mypack.add("notomo/aliaser.nvim", {
   load_on = { modules = { "aliaser" } },
 })
 
-local vim_operator_user = optpack.add("kana/vim-operator-user")
-
 optpack.add("Shougo/neosnippet.vim", {
   load_on = { events = { "InsertEnter" } },
   hooks = {
@@ -413,23 +411,6 @@ optpack.add("Shougo/neosnippet.vim", {
       vim.cmd.runtime([[ftdetect/neosnippet.vim]])
     end,
   },
-})
-
-optpack.add("rhysd/vim-operator-surround", {
-  depends = { vim_operator_user.name },
-  load_on = {
-    keymaps = function(vim)
-      vim.keymap.set({ "n", "x" }, "[surround]", "<Nop>")
-      vim.keymap.set({ "n", "x" }, "s", "[surround]", { remap = true })
-
-      vim.keymap.set({ "n", "x" }, "[surround]a", [[<Plug>(operator-surround-append)]], { silent = true })
-      vim.keymap.set("n", "[surround]d", [[vaj<Plug>(operator-surround-delete)]], { silent = true, remap = true })
-      vim.keymap.set("x", "[surround]d", [[<Plug>(operator-surround-delete)]], { silent = true })
-      vim.keymap.set("n", "[surround]r", [[vaj<Plug>(operator-surround-replace)]], { silent = true, remap = true })
-      vim.keymap.set("x", "[surround]r", [[<Plug>(operator-surround-replace)]], { silent = true })
-    end,
-  },
-  hooks = { pre_load = require_fn("notomo.plugin.operator-surround") },
 })
 
 mypack.add("notomo/promise.nvim", {

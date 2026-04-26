@@ -269,8 +269,6 @@ vim.keymap.set("n", "sk", [[#N]])
 local pack_dir = vim.fs.joinpath(vim.fn.stdpath("config"), "packages")
 vim.opt.packpath:prepend(pack_dir)
 
-vim.cmd.packadd([[vim-textobj-user]])
-vim.cmd.packadd([[vim-operator-user]])
 vim.cmd.packadd([[misclib.nvim]])
 
 vim.cmd.packadd([[CamelCaseMotion]])
