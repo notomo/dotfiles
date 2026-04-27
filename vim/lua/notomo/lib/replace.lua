@@ -24,7 +24,9 @@ function M.operator(operator_type)
     if lines[#lines] == "" then
       table.remove(lines)
     end
-    vim.api.nvim_buf_set_text(0, start_pos[2] - 1, start_pos[3] - 1, end_pos[2] - 1, end_pos[3], lines)
+    local end_line = vim.api.nvim_buf_get_lines(0, end_pos[2] - 1, end_pos[2], false)[1] or ""
+    local end_col = math.min(end_pos[3], #end_line)
+    vim.api.nvim_buf_set_text(0, start_pos[2] - 1, start_pos[3] - 1, end_pos[2] - 1, end_col, lines)
   end
 end
 
