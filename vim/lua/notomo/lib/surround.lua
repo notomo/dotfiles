@@ -238,10 +238,12 @@ end
 local add_state = {
   fresh = true,
   char = nil,
+  end_of_line = false,
 }
 function M.add_operator(operator_type)
   if operator_type == nil then
     add_state.fresh = true
+    add_state.end_of_line = vim.fn.getcurpos()[5] == vim.v.maxcol
     vim.o.operatorfunc = "v:lua.require'notomo.lib.surround'.add_operator"
     return "g@"
   end
@@ -301,7 +303,7 @@ function M.add_operator(operator_type)
   elseif operator_type == "block" then
     for row = end_pos[2], start_pos[2], -1 do
       local line_len = #(vim.api.nvim_buf_get_lines(bufnr, row - 1, row, false)[1] or "")
-      local end_col = math.min(end_pos[3], line_len)
+      local end_col = add_state.end_of_line and line_len or math.min(end_pos[3], line_len)
       local start_col = math.min(start_pos[3] - 1, line_len)
       vim.api.nvim_buf_set_text(bufnr, row - 1, end_col, row - 1, end_col, { pair[2] })
       vim.api.nvim_buf_set_text(bufnr, row - 1, start_col, row - 1, start_col, { pair[1] })
