@@ -72,12 +72,18 @@ function M.e(opts)
   if opts.pattern then
     local pat = searchpos_result(opts.pattern, "Wen")
     if pat and (opts.bound == false or fb == nil or pos_before(pat, fb)) then
-      move_cursor(pat[1], pat[2] + (is_op and 1 or 0))
+      move_cursor(pat[1], pat[2])
+      if is_op then
+        vim.cmd.normal({ args = { "l" }, bang = true })
+      end
       return
     end
   end
   if fb then
-    move_cursor(fb[1], fb[2] + (is_op and 1 or 0))
+    move_cursor(fb[1], fb[2])
+    if is_op then
+      vim.cmd.normal({ args = { "l" }, bang = true })
+    end
   end
 end
 
