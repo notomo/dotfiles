@@ -270,13 +270,3 @@ local pack_dir = vim.fs.joinpath(vim.fn.stdpath("config"), "packages")
 vim.opt.packpath:prepend(pack_dir)
 
 vim.cmd.packadd([[misclib.nvim]])
-
-vim.cmd.packadd([[CamelCaseMotion]])
-vim.keymap.set({ "n", "x", "o" }, "<Leader>w", "<Plug>CamelCaseMotion_w")
-vim.keymap.set({ "n", "x", "o" }, "<Leader>b", "<Plug>CamelCaseMotion_b")
-vim.keymap.set({ "n", "x", "o" }, "<Leader>e", "<Plug>CamelCaseMotion_e")
-
-vim.cmd.packadd([[vim-smartword]])
-vim.keymap.set({ "n", "x", "o" }, "w", [[<Plug>(smartword-w)]])
-vim.keymap.set({ "n", "x", "o" }, "b", [[<Plug>(smartword-b)]])
-vim.keymap.set({ "n", "x", "o" }, "e", [[<Plug>(smartword-e)]])
