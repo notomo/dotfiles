@@ -202,15 +202,6 @@ mypack.add("notomo/searcho.nvim", {
   },
 })
 
-optpack.add("AndrewRadev/linediff.vim", {
-  load_on = { cmds = { "Linediff*" } },
-  hooks = {
-    post_add = function()
-      vim.keymap.set("x", "[diff]l", [[:Linediff<CR>]])
-    end,
-  },
-})
-
 optpack.add("tmhedberg/matchit", {
   load_on = { filetypes = { "html", "vim", "sql", "astro" } },
   hooks = {

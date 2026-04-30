@@ -835,3 +835,7 @@ end)
 vim.keymap.set({ "n", "x", "o" }, "e", function()
   require("notomo.lib.move").e({ pattern = [[\v\w+]], bound = false })
 end)
+
+vim.keymap.set("x", "[diff]l", function()
+  require("notomo.lib.diff").selected()
+end)

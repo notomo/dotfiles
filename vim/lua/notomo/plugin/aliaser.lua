@@ -104,15 +104,7 @@ function M.reload_vimrc()
 end
 
 function M.diff()
-  local window_ids = vim.api.nvim_tabpage_list_wins(0)
-  if #window_ids ~= 2 then
-    return require("notomo.lib.message").warn(("must have 2 windows, but: %d"):format(#window_ids))
-  end
-  for _, window_id in ipairs(window_ids) do
-    vim.api.nvim_win_call(window_id, function()
-      vim.cmd.diffthis()
-    end)
-  end
+  require("notomo.lib.diff").windows()
 end
 
 function M.generate_helptags()
