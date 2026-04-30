@@ -119,8 +119,6 @@ optpack.add("haya14busa/vim-edgemotion", {
   },
 })
 
-optpack.add("junegunn/vim-emoji", { load_on = { modules = { "thetto" } } })
-
 optpack.add("lambdalisue/suda.vim", {
   enabled = vim.fn.has("unix") == 1,
   load_on = { events = { { "BufReadPre", "*/*" } } },
