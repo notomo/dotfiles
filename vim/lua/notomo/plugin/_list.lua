@@ -110,15 +110,6 @@ mypack.add("notomo/genvdoc", {
   load_on = { modules = { "genvdoc" } },
 })
 
-optpack.add("haya14busa/vim-edgemotion", {
-  load_on = {
-    keymaps = function(vim)
-      vim.keymap.set({ "n", "x", "o" }, "gJ", "<Cmd>normal! m'<CR><Plug>(edgemotion-j)")
-      vim.keymap.set({ "n", "x", "o" }, "gK", "<Cmd>normal! m'<CR><Plug>(edgemotion-k)")
-    end,
-  },
-})
-
 optpack.add("lambdalisue/suda.vim", {
   enabled = vim.fn.has("unix") == 1,
   load_on = { events = { { "BufReadPre", "*/*" } } },

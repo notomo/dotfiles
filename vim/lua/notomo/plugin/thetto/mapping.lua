@@ -845,3 +845,10 @@ vim.keymap.set({ "i" }, "[main_input];", function()
     },
   })
 end)
+
+vim.keymap.set("n", "gJ", function()
+  require("thetto.util.source").go_to_next("vim/cursor_column")
+end)
+vim.keymap.set("n", "gK", function()
+  require("thetto.util.source").go_to_previous("vim/cursor_column")
+end)
