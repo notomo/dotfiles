@@ -842,3 +842,10 @@ end)
 
 vim.keymap.set("n", "<Space>c", "gcc", { remap = true })
 vim.keymap.set("x", "<Space>c", "gc", { remap = true })
+
+vim.keymap.set("x", "T", function()
+  require("notomo.lib.translate").english_to_japanese()
+end)
+vim.keymap.set("x", "<Leader>T", function()
+  require("notomo.lib.translate").japanese_to_english()
+end)
