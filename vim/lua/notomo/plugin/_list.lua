@@ -507,20 +507,6 @@ optpack.add("previm/previm", {
   },
 })
 
-optpack.add("folke/ts-comments.nvim", {
-  load_on = {
-    keymaps = function(vim)
-      vim.keymap.set("n", "<Space>c", "gcc", { remap = true })
-      vim.keymap.set("x", "<Space>c", "gc", { remap = true })
-    end,
-  },
-  hooks = {
-    post_load = function()
-      require("ts-comments").setup()
-    end,
-  },
-})
-
 optpack.add("Wansmer/treesj", {
   depends = { nvim_treesitter.name },
   load_on = {

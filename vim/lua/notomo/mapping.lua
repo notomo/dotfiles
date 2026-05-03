@@ -839,3 +839,6 @@ end)
 vim.keymap.set("x", "[diff]l", function()
   require("notomo.lib.diff").selected()
 end)
+
+vim.keymap.set("n", "<Space>c", "gcc", { remap = true })
+vim.keymap.set("x", "<Space>c", "gc", { remap = true })
