@@ -849,3 +849,16 @@ end)
 vim.keymap.set("x", "<Leader>T", function()
   require("notomo.lib.translate").japanese_to_english()
 end)
+
+vim.keymap.set("n", "[file]W", function()
+  local path = vim.api.nvim_buf_get_name(0)
+  local bufnr = vim.api.nvim_create_buf(false, true)
+  local window_id = vim.api.nvim_open_win(bufnr, true, {
+    split = "below",
+    height = 1,
+  })
+  vim.api.nvim_win_call(window_id, function()
+    vim.fn.jobstart({ "sudoedit", path }, { term = true })
+    vim.cmd.startinsert()
+  end)
+end)

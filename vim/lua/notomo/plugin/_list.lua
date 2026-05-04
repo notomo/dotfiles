@@ -110,16 +110,6 @@ mypack.add("notomo/genvdoc", {
   load_on = { modules = { "genvdoc" } },
 })
 
-optpack.add("lambdalisue/suda.vim", {
-  enabled = vim.fn.has("unix") == 1,
-  load_on = { events = { { "BufReadPre", "*/*" } } },
-  hooks = {
-    pre_load = function()
-      vim.keymap.set("n", "[file]W", [[<Cmd>write suda://%<CR>]])
-    end,
-  },
-})
-
 mypack.add("notomo/wintablib.nvim", {
   load_on = { modules = { "wintablib" } },
   hooks = { post_add = require_fn("notomo.plugin.wintablib") },
@@ -506,6 +496,7 @@ mypack.add("notomo/waitevent.nvim", {
       local editor = require("waitevent").editor()
       vim.env.GIT_EDITOR = editor
       vim.env.REACT_EDITOR = editor
+      vim.env.SUDO_EDITOR = editor
 
       vim.env.EDITOR = require("waitevent").editor({
         done_events = {},
