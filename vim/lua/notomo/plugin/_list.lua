@@ -174,17 +174,6 @@ mypack.add("notomo/searcho.nvim", {
   },
 })
 
-optpack.add("tmhedberg/matchit", {
-  load_on = { filetypes = { "html", "vim", "sql", "astro" } },
-  hooks = {
-    post_load = function(plugin)
-      -- prior than builtin
-      vim.opt.runtimepath:remove(plugin.directory)
-      vim.opt.runtimepath:prepend(plugin.directory)
-    end,
-  },
-})
-
 mypack.add("notomo/curstr.nvim", {
   load_on = { modules = { "curstr" } },
   hooks = {
