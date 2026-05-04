@@ -200,7 +200,7 @@ mypack.add("notomo/thetto.nvim", {
   },
 })
 
-local nvim_lspconfig = optpack.add("neovim/nvim-lspconfig", {
+optpack.add("neovim/nvim-lspconfig", {
   load_on = { events = { "FileType" } },
   hooks = {
     post_load = function()
@@ -546,9 +546,4 @@ mypack.add("notomo/clpb.nvim", {
   hooks = {
     post_add = require_fn("notomo.plugin.clpb"),
   },
-})
-
-optpack.add("SmiteshP/nvim-navic", {
-  depends = { nvim_lspconfig.name },
-  load_on = { modules = { "nvim-navic" } },
 })

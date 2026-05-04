@@ -12,8 +12,6 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
 
     vim.bo[bufnr].omnifunc = nil
 
-    require("notomo.lsp.navigation").attach(client, bufnr)
-
     if client:supports_method("textDocument/documentColor") then
       vim.lsp.document_color.enable(true, { bufnr = bufnr }, { style = "virtual" })
     end

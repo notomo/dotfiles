@@ -63,7 +63,6 @@ function M.setup(raw_opts)
   end
 
   require("notomo.lsp.mapping").setup({ symbol_source = opts.symbol_source })
-  require("notomo.lsp.navigation").setup()
   require("notomo.lsp.signature_help").setup()
 end
 
