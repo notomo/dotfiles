@@ -378,7 +378,6 @@ optpack.add("mfussenegger/nvim-dap", {
       vim.keymap.set("n", "[term]C", [[<Cmd>lua require("dap").run_to_cursor()<CR>]])
       vim.keymap.set("n", "[term]R", [[<Cmd>lua require("dap").restart()<CR>]])
       vim.keymap.set("n", "[term]f", function()
-        require("nvim-dap-virtual-text.virtual_text").clear_virtual_text()
         require("dap").disconnect()
         require("dap").close()
       end)
@@ -395,9 +394,6 @@ optpack.add("mfussenegger/nvim-dap", {
     end,
     post_load = require_fn("notomo.plugin.nvim-dap"),
   },
-})
-optpack.add("theHamsta/nvim-dap-virtual-text", {
-  load_on = { modules = { "nvim-dap-virtual-text" } },
 })
 
 mypack.add("notomo/vendorlib.nvim", {

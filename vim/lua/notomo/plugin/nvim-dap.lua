@@ -49,11 +49,6 @@ dap.adapters["local-lua"] = {
   end,
 }
 
-require("nvim-dap-virtual-text").setup({
-  commented = true,
-  virt_text_pos = "eol",
-})
-
 local highlightlib = require("misclib.highlight")
 highlightlib.define("DapStopped", {
   bg = vim.api.nvim_get_hl(0, { name = "CursorLine", link = false }).bg,
