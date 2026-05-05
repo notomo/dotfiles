@@ -231,7 +231,8 @@ runtime.after.ftplugin["lua.lua"] = function()
   vim.opt_local.completeopt:remove("preview")
   vim.opt_local.tabstop = 2
   vim.opt_local.softtabstop = 2
-  vim.keymap.set("n", "[exec]s", [[<Cmd>luafile %<CR>]], { buf = 0 })
+  vim.keymap.set("n", "[exec]s", [[<Cmd>source %<CR>]], { buf = 0 })
+  vim.keymap.set("x", "[exec]s", [[:source<CR>]], { buf = 0 })
   vim.keymap.set("n", "[exec]l", [[':lua ' . getline('.') . '<CR>']], { expr = true, buf = 0 })
   vim.keymap.set("n", "[yank]I", function()
     require("notomo.lib.edit").yank(require("misclib.module.path").detect(vim.fn.expand("%:p")))
@@ -601,6 +602,7 @@ runtime.after.ftplugin["vim.lua"] = function()
   vim.opt_local.iskeyword:remove("#")
 
   vim.keymap.set("n", "[exec]s", [[<Cmd>source %<CR>]], { buf = 0 })
+  vim.keymap.set("x", "[exec]s", [[:source<CR>]], { buf = 0 })
   require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
 
   require("notomo.lib.treesitter").setup()
