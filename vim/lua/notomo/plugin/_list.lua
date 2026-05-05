@@ -465,23 +465,6 @@ optpack.add("previm/previm", {
   },
 })
 
-optpack.add("Wansmer/treesj", {
-  depends = { nvim_treesitter.name },
-  load_on = {
-    keymaps = function(vim)
-      vim.keymap.set("n", "[exec]J", [[<Cmd>TSJSplit<CR>]])
-      vim.keymap.set("n", "[exec]K", [[<Cmd>TSJJoin<CR>]])
-    end,
-  },
-  hooks = {
-    post_load = function()
-      require("treesj").setup({
-        use_default_keymaps = false,
-      })
-    end,
-  },
-})
-
 mypack.add("notomo/waitevent.nvim", {
   load_on = {
     modules = { "waitevent" },
