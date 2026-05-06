@@ -432,13 +432,6 @@ mypack.add("notomo/listdefined.nvim", {
   load_on = { modules = { "listdefined" } },
 })
 
-optpack.add("lewis6991/gitsigns.nvim", {
-  load_on = { modules = { "gitsigns" }, events = { { "BufReadPre", "*/*" } } },
-  hooks = {
-    post_load = require_fn("notomo.plugin.gitsigns"),
-  },
-})
-
 optpack.add("previm/previm", {
   load_on = {
     filetypes = { "markdown", "html" },
