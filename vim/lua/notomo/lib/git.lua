@@ -156,4 +156,63 @@ function M.yank_commit_message(revision)
   require("notomo.lib.edit").yank(message)
 end
 
+function M.reset_selection()
+  local v_row = vim.fn.getpos("v")[2]
+  local cur_row = vim.fn.getpos(".")[2]
+  require("misclib.visual_mode").leave()
+
+  local sel_start = math.min(v_row, cur_row)
+  local sel_end = math.max(v_row, cur_row)
+
+  local git_root = M.root()
+  if not git_root then
+    return require("notomo.lib.message").warn("not a git repository")
+  end
+
+  local full_path = vim.fs.normalize(vim.api.nvim_buf_get_name(0))
+  local rel_path = vim.fs.relpath(git_root, full_path)
+  if not rel_path then
+    return require("notomo.lib.message").warn("not under git root")
+  end
+
+  local result = vim.system({ "git", "-C", git_root, "show", "HEAD:" .. rel_path }):wait()
+  if result.code ~= 0 then
+    return require("notomo.lib.message").warn(vim.trim(result.stderr or ""))
+  end
+
+  local head_lines = vim.split(result.stdout:gsub("\n$", ""), "\n", { plain = true })
+  local current_lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+
+  local head_text = table.concat(head_lines, "\n") .. "\n"
+  local current_text = table.concat(current_lines, "\n") .. "\n"
+
+  local hunks = vim.text.diff(head_text, current_text, { result_type = "indices" })
+  if not hunks or #hunks == 0 then
+    return
+  end
+
+  for i = #hunks, 1, -1 do
+    local h = hunks[i]
+    local start_a, count_a, start_b, count_b = h[1], h[2], h[3], h[4]
+
+    local overlaps
+    if count_b == 0 then
+      overlaps = start_b + 1 >= sel_start and start_b <= sel_end
+    else
+      local b_first = start_b
+      local b_last = start_b + count_b - 1
+      overlaps = not (b_last < sel_start or b_first > sel_end)
+    end
+    if overlaps then
+      local replacement = {}
+      for j = start_a, start_a + count_a - 1 do
+        table.insert(replacement, head_lines[j])
+      end
+      local set_first = count_b == 0 and start_b or (start_b - 1)
+      local set_last = count_b == 0 and start_b or (start_b - 1 + count_b)
+      vim.api.nvim_buf_set_lines(0, set_first, set_last, false, replacement)
+    end
+  end
+end
+
 return M
