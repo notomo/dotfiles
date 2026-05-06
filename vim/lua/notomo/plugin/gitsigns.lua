@@ -1,16 +1,4 @@
-require("gitsigns").setup({
-  current_line_blame_opts = {
-    delay = 300,
-  },
-  current_line_blame_formatter = " <author_time:%Y-%m-%d> <author>: <summary>",
-  on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
-
-    vim.keymap.set("x", "[git]S", ":Gitsigns stage_hunk<CR>", { buf = bufnr })
-
-    vim.keymap.set("n", "[git]t", gs.toggle_current_line_blame)
-  end,
-})
+require("gitsigns").setup({})
 
 vim.api.nvim_create_autocmd({ "User" }, {
   group = vim.api.nvim_create_augroup("notomo.gitsigns.refresh", {}),
