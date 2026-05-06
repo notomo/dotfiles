@@ -1,6 +1,5 @@
 /vim/lua/notomo/local/*
 !/vim/lua/notomo/local/*.sample
 /vim/lua/notomo/local/after/*
-/vim/snippets/*/*
 
 !.gitkeep

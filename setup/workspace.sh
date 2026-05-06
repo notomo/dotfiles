@@ -12,7 +12,6 @@ if [ ! -d "$DOTFILES_DIR" ]; then
 fi
 
 ln -sf "$DOTFILES_DIR/vim/lua" "$HOME/.config/nvim/lua"
-ln -sf "$DOTFILES_DIR/vim/snippets" "$HOME/.config/nvim/snippets"
 ln -sf "$DOTFILES_DIR/vim/lua/notomo/init.lua" "$HOME/.config/nvim/init.lua"
 ln -sf "$DOTFILES_DIR/mise/config.toml" "$HOME/.config/mise/config.toml"
 ln -sf "$DOTFILES_DIR/tool/.procs.toml" "$HOME/.procs.toml"

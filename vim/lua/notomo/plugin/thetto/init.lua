@@ -645,7 +645,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     end
 
     require("thetto.util.completion").enable({
-      require("thetto.util.source").by_name("neosnippet"),
+      require("thetto.util.source").by_name("snippet"),
       require("thetto.util.source").by_name("vim/lsp/completion"),
       require("thetto.util.source").by_name("file/path"),
       require("thetto.util.source").by_name("vim/buffer_word"),

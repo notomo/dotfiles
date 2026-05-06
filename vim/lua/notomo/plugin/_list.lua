@@ -325,16 +325,6 @@ mypack.add("notomo/aliaser.nvim", {
   load_on = { modules = { "aliaser" } },
 })
 
-optpack.add("Shougo/neosnippet.vim", {
-  load_on = { events = { "InsertEnter" } },
-  hooks = {
-    pre_load = require_fn("notomo.plugin.neosnippet"),
-    post_load = function()
-      vim.cmd.runtime([[ftdetect/neosnippet.vim]])
-    end,
-  },
-})
-
 mypack.add("notomo/promise.nvim", {
   load_on = { modules = { "promise" } },
 })

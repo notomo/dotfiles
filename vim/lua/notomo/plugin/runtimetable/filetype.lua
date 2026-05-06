@@ -399,10 +399,6 @@ runtime.after.ftplugin["mydiary.lua"] = function()
   vim.opt_local.expandtab = true
 end
 
-runtime.after.ftplugin["neosnippet.lua"] = function()
-  vim.opt_local.expandtab = false
-end
-
 runtime.after.ftplugin["ocaml.lua"] = function()
   require("notomo.lsp").setup()
   vim.schedule(function()

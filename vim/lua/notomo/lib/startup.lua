@@ -67,11 +67,6 @@ function M._test()
 
       vim.fn.feedkeys("th", "mx")
       assert(vim.fn.tabpagenr() == 1, "tab current")
-
-      vim.fn.feedkeys("tt", "mx")
-      vim.fn.feedkeys("idate", "ix")
-      vim.fn.feedkeys(vim.keycode("<Plug>(neosnippet_expand)"), "ixm")
-      assert(vim.fn.getline(".") ~= "date", "snippet expand")
     end)
 end
 
