@@ -5,8 +5,8 @@ local pre_hooks = {
       modeline = false,
     })
   end,
-  ["notomo.lib.git"] = function()
-    require("notomo.lib.git").cleanup_decorators()
+  ["notomo.lib.git.decorator"] = function()
+    require("notomo.lib.git.decorator").cleanup()
   end,
 }
 
@@ -66,8 +66,8 @@ table.insert(settings, {
   post_hook = post_hooks.ultramarine,
 })
 table.insert(settings, {
-  name = "notomo.lib.git",
-  pre_hook = pre_hooks["notomo.lib.git"],
+  name = "notomo.lib.git.decorator",
+  pre_hook = pre_hooks["notomo.lib.git.decorator"],
 })
 
 for _, setting in ipairs(settings) do

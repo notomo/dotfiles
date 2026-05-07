@@ -64,7 +64,7 @@ function M.yank_commit_url(revision)
 end
 
 function M.yank()
-  local git_root = require("notomo.lib.git").root()
+  local git_root = require("notomo.lib.git.repository").root()
   if not git_root then
     return require("notomo.lib.message").warn("no .git")
   end
@@ -72,7 +72,7 @@ function M.yank()
   local root_url = M.repo_url()
 
   local state = require("thetto.util.git").state() or {}
-  local revision = state.revision or require("notomo.lib.git").current_branch()
+  local revision = state.revision or require("notomo.lib.git.branch").current()
 
   local full_path = state.path or vim.api.nvim_buf_get_name(0)
   local path = full_path:sub(#git_root + 2)

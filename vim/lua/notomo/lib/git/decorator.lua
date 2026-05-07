@@ -1,0 +1,260 @@
+local M = {}
+
+local SIGN_TEXT = { added = "┃", changed = "┃", deleted = "━" }
+local SIGN_HL = {
+  added = "@diff.plus",
+  changed = "@diff.delta",
+  deleted = "@diff.minus",
+}
+
+local ns = vim.api.nvim_create_namespace("notomo.lib.git.decorator")
+local state = {}
+
+local function _resolve_target(bufnr)
+  local buf_name = vim.api.nvim_buf_get_name(bufnr)
+  if buf_name == "" then
+    return nil
+  end
+  local git_root = vim.fs.root(bufnr, ".git")
+  if not git_root then
+    return nil
+  end
+  local rel_path = vim.fs.relpath(git_root, vim.fs.normalize(buf_name))
+  if not rel_path then
+    return nil
+  end
+  if rel_path == ".git" or vim.startswith(rel_path, ".git/") then
+    return nil
+  end
+  return git_root, rel_path
+end
+
+local function _compute_line_kinds(bufnr)
+  local git_root, rel_path = _resolve_target(bufnr)
+  if not git_root then
+    return {}
+  end
+
+  local source_lines = {}
+  local result = vim.system({ "git", "-C", git_root, "show", "HEAD:" .. rel_path }):wait()
+  if result.code == 0 then
+    source_lines = vim.split(result.stdout:gsub("\n$", ""), "\n", { plain = true })
+  end
+
+  local current_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+  local source_text = table.concat(source_lines, "\n") .. "\n"
+  local current_text = table.concat(current_lines, "\n") .. "\n"
+
+  local hunks = vim.text.diff(source_text, current_text, { result_type = "indices" }) --[[@as integer[][] ]]
+  hunks = hunks or {}
+
+  local line_kinds = {}
+  for _, h in ipairs(hunks) do
+    local _, count_a, start_b, count_b = h[1], h[2], h[3], h[4]
+    if count_a == 0 and count_b > 0 then
+      for r = start_b, start_b + count_b - 1 do
+        line_kinds[r - 1] = "added"
+      end
+    elseif count_a > 0 and count_b == 0 then
+      local row = start_b == 0 and 0 or (start_b - 1)
+      line_kinds[row] = "deleted"
+    else
+      for r = start_b, start_b + count_b - 1 do
+        line_kinds[r - 1] = "changed"
+      end
+    end
+  end
+  return line_kinds
+end
+
+local function _apply_extmarks(bufnr, line_kinds, old_extmarks)
+  if not vim.api.nvim_buf_is_valid(bufnr) then
+    return old_extmarks
+  end
+
+  local new_extmarks = {}
+  for row, kind in pairs(line_kinds) do
+    local opts = {
+      sign_text = SIGN_TEXT[kind],
+      sign_hl_group = SIGN_HL[kind],
+      priority = 10,
+    }
+    local id = old_extmarks[row]
+    if id then
+      opts.id = id
+      old_extmarks[row] = nil
+    end
+    new_extmarks[row] = vim.api.nvim_buf_set_extmark(bufnr, ns, row, 0, opts)
+  end
+
+  for _, id in pairs(old_extmarks) do
+    pcall(vim.api.nvim_buf_del_extmark, bufnr, ns, id)
+  end
+  return new_extmarks
+end
+
+local function _start_watcher(bufnr, on_change)
+  local git_root = vim.fs.root(bufnr, ".git")
+  if not git_root then
+    return nil
+  end
+
+  local watchers = {}
+  local function add(path, names)
+    local w = vim.uv.new_fs_event()
+    if not w then
+      return
+    end
+    local ok = pcall(function()
+      w:start(path, {}, function(_, filename)
+        if not names[filename] then
+          return
+        end
+        vim.schedule(on_change)
+      end)
+    end)
+    if not ok then
+      w:close()
+      return
+    end
+    table.insert(watchers, w)
+  end
+
+  add(vim.fs.joinpath(git_root, ".git"), { index = true, HEAD = true })
+  add(vim.fs.joinpath(git_root, ".git/logs"), { HEAD = true })
+
+  if #watchers == 0 then
+    return nil
+  end
+  return watchers
+end
+
+local function _stop_watcher(watchers)
+  if not watchers then
+    return
+  end
+  for _, w in ipairs(watchers) do
+    w:stop()
+    w:close()
+  end
+end
+
+local function _cleanup(bufnr)
+  local entry = state[bufnr]
+  if entry then
+    _stop_watcher(entry.watcher)
+    if vim.api.nvim_buf_is_valid(bufnr) then
+      vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
+    end
+  end
+
+  pcall(vim.api.nvim_del_augroup_by_name, ("notomo.git.decorator.%d"):format(bufnr))
+  state[bufnr] = nil
+end
+
+function M.cleanup()
+  for bufnr in pairs(state) do
+    _cleanup(bufnr)
+  end
+end
+
+function M.setup(bufnr)
+  if state[bufnr] then
+    return
+  end
+  if not _resolve_target(bufnr) then
+    return
+  end
+  local entry = {
+    line_kinds = {},
+    extmarks = {},
+    watcher = nil,
+  }
+  state[bufnr] = entry
+
+  local refresh = require("misclib.debounce").wrap(
+    50,
+    vim.schedule_wrap(function()
+      local current = state[bufnr]
+      if not current or not vim.api.nvim_buf_is_valid(bufnr) then
+        return
+      end
+      current.line_kinds = _compute_line_kinds(bufnr)
+      current.extmarks = _apply_extmarks(bufnr, current.line_kinds, current.extmarks)
+    end)
+  )
+  local on_index_change = function()
+    if vim.api.nvim_buf_is_valid(bufnr) then
+      pcall(vim.cmd.checktime, bufnr)
+    end
+    refresh()
+  end
+
+  refresh()
+
+  vim.api.nvim_buf_attach(bufnr, false, {
+    on_lines = function()
+      if not state[bufnr] then
+        return true
+      end
+      refresh()
+    end,
+    on_reload = function()
+      if not state[bufnr] then
+        return
+      end
+      refresh()
+    end,
+    on_detach = function()
+      _cleanup(bufnr)
+    end,
+  })
+
+  local augroup = vim.api.nvim_create_augroup(("notomo.lib.git.decorator.%d"):format(bufnr), {})
+
+  vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      local current = state[bufnr]
+      if not current or current.watcher then
+        return
+      end
+      current.watcher = _start_watcher(bufnr, on_index_change)
+    end,
+  })
+  vim.api.nvim_create_autocmd({ "WinClosed" }, {
+    group = augroup,
+    callback = function(args)
+      local closing_winid = tonumber(args.match)
+      if not closing_winid or not vim.api.nvim_win_is_valid(closing_winid) then
+        return
+      end
+      if vim.api.nvim_win_get_buf(closing_winid) ~= bufnr then
+        return
+      end
+      if #vim.fn.win_findbuf(bufnr) > 1 then
+        return
+      end
+      local current = state[bufnr]
+      if not current then
+        return
+      end
+      _stop_watcher(current.watcher)
+      current.watcher = nil
+    end,
+  })
+  vim.api.nvim_create_autocmd({ "BufWipeout" }, {
+    group = augroup,
+    buffer = bufnr,
+    callback = function()
+      _cleanup(bufnr)
+    end,
+  })
+
+  if vim.fn.win_findbuf(bufnr)[1] then
+    entry.watcher = _start_watcher(bufnr, on_index_change)
+  end
+end
+
+return M

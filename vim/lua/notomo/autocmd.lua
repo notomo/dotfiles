@@ -178,11 +178,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufNew" }, {
       return
     end
 
-    local root = require("notomo.lib.git").root()
+    local root = require("notomo.lib.git.repository").root()
     if not root then
       return
     end
 
-    require("notomo.lib.git").setup_decorator(args.buf)
+    require("notomo.lib.git.decorator").setup(args.buf)
   end,
 })

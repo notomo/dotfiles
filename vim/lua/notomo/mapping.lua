@@ -350,7 +350,7 @@ vim.keymap.set("n", "[yank]i", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn
 vim.keymap.set(
   "n",
   "[yank]b",
-  [[<Cmd>lua require("notomo.lib.edit").yank(require("notomo.lib.git").current_branch())<CR>]],
+  [[<Cmd>lua require("notomo.lib.edit").yank(require("notomo.lib.git.branch").current())<CR>]],
   { silent = true }
 )
 vim.keymap.set("n", "[yank]l", [[<Cmd>lua require("notomo.lib.edit").yank(vim.fn.line('.'))<CR>]], { silent = true })
@@ -673,7 +673,7 @@ vim.keymap.set("n", "[term]v", [[<Cmd>vsplit|terminal<CR>]], { silent = true })
 vim.keymap.set("n", "[term]h", [[<Cmd>split|terminal<CR>]], { silent = true })
 vim.keymap.set("n", "[term]t", [[<Cmd>tabedit|terminal<CR>]], { silent = true })
 vim.keymap.set("n", "[term]g", function()
-  local git_root = require("notomo.lib.git").root() or "."
+  local git_root = require("notomo.lib.git.repository").root() or "."
   vim.cmd.tabedit()
   vim.fn.jobstart(vim.opt.shell:get(), { cwd = git_root, term = true })
 end, { silent = true })
@@ -698,31 +698,31 @@ vim.keymap.set("n", "[term]S", [[<Cmd>lua require("notomo.plugin.termdebug").sta
 vim.keymap.set("n", "[term]q", [[<Cmd>lua require("notomo.plugin.termdebug").quit()<CR>]])
 
 vim.keymap.set("n", "[git]H", function()
-  return require("notomo.lib.git").pull({ "--autostash" })
+  return require("notomo.lib.git.repository").pull({ "--autostash" })
 end, { expr = true })
 vim.keymap.set("n", "[git]F", function()
-  return require("notomo.lib.git").fetch()
+  return require("notomo.lib.git.repository").fetch()
 end, { expr = true })
 vim.keymap.set("n", "[git]P", function()
-  return require("notomo.lib.git").push()
+  return require("notomo.lib.git.repository").push()
 end, { expr = true })
 vim.keymap.set("n", "[git]ma", function()
-  return require("notomo.lib.git").cmd({ "merge", "--abort" })
+  return require("notomo.lib.git.repository").cmd({ "merge", "--abort" })
 end, { expr = true })
 vim.keymap.set("n", "[git]ca", function()
-  return require("notomo.lib.git").cmd({ "cherry-pick", "--abort" })
+  return require("notomo.lib.git.repository").cmd({ "cherry-pick", "--abort" })
 end, { expr = true })
 vim.keymap.set("n", "[git]ra", function()
-  return require("notomo.lib.git").cmd({ "rebase", "--abort" })
+  return require("notomo.lib.git.repository").cmd({ "rebase", "--abort" })
 end, { expr = true })
 vim.keymap.set("n", "[git]A", function()
-  return require("notomo.lib.git").apply()
+  return require("notomo.lib.git.repository").apply()
 end, { expr = true })
 vim.keymap.set("x", "[git]R", function()
-  require("notomo.lib.git").reset_selection()
+  require("notomo.lib.git.hunk").reset()
 end)
 vim.keymap.set("x", "[git]S", function()
-  require("notomo.lib.git").stage_selection()
+  require("notomo.lib.git.hunk").stage()
 end)
 vim.keymap.set({ "n", "x" }, "[yank]U", function()
   require("notomo.lib.github").yank()
