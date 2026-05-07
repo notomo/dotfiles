@@ -831,7 +831,7 @@ vim.keymap.set({ "n", "x", "o" }, "<Leader>e", function()
   require("notomo.lib.move").e({ pattern = [[\v\u\l*\d*|\l+\d*]] })
 end)
 
-local nonsym_boundary = [[\<\w]]
+local nonsym_boundary = [[\<\k]]
 vim.keymap.set({ "n", "x", "o" }, "w", function()
   require("notomo.lib.move").w({ pattern = nonsym_boundary })
 end)
