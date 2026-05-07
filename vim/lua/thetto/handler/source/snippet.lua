@@ -11,7 +11,7 @@ function M.collect(source_ctx)
 
   local items = {}
   for name, snippet in pairs(snippets) do
-    local body = snippet.body:sub(1, -2)
+    local body = snippet.body:sub(-1) == "\n" and snippet.body:sub(1, -2) or snippet.body
     items[#items + 1] = {
       value = name,
       body = body,
@@ -19,10 +19,6 @@ function M.collect(source_ctx)
     }
   end
   return items
-end
-
-function M.should_collect()
-  return false
 end
 
 function M.resolve(params, _, offset)
