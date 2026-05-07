@@ -170,19 +170,10 @@ if vim.fn.has("wsl") == 1 or vim.fn.has("win32") == 1 then
   })
 end
 
-vim.api.nvim_create_autocmd({ "BufEnter", "BufNew" }, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = group,
   pattern = { "*" },
   callback = function(args)
-    if vim.bo[args.buf].buftype ~= "" then
-      return
-    end
-
-    local root = require("notomo.lib.git.repository").root()
-    if not root then
-      return
-    end
-
     require("notomo.lib.git.decorator").setup(args.buf)
   end,
 })

@@ -9,8 +9,13 @@ local SIGN_HL = {
 
 local ns = vim.api.nvim_create_namespace("notomo.lib.git.decorator")
 local state = {}
+local attach_ids = {}
+local _next_attach_id = 0
 
 local function _resolve_target(bufnr)
+  if vim.bo[bufnr].buftype ~= "" then
+    return nil
+  end
   local buf_name = vim.api.nvim_buf_get_name(bufnr)
   if buf_name == "" then
     return nil
@@ -68,10 +73,6 @@ local function _compute_line_kinds(bufnr)
 end
 
 local function _apply_extmarks(bufnr, line_kinds, old_extmarks)
-  if not vim.api.nvim_buf_is_valid(bufnr) then
-    return old_extmarks
-  end
-
   local new_extmarks = {}
   for row, kind in pairs(line_kinds) do
     local opts = {
@@ -110,7 +111,7 @@ local function _start_watcher(bufnr, on_change)
         if not names[filename] then
           return
         end
-        vim.schedule(on_change)
+        on_change()
       end)
     end)
     if not ok then
@@ -146,6 +147,9 @@ local function _cleanup(bufnr)
     if vim.api.nvim_buf_is_valid(bufnr) then
       vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
     end
+    if entry.attach_id then
+      attach_ids[entry.attach_id] = nil
+    end
   end
 
   pcall(vim.api.nvim_del_augroup_by_name, ("notomo.git.decorator.%d"):format(bufnr))
@@ -165,42 +169,45 @@ function M.setup(bufnr)
   if not _resolve_target(bufnr) then
     return
   end
+
+  _next_attach_id = _next_attach_id + 1
+  local id = _next_attach_id
+  attach_ids[id] = bufnr
+
   local entry = {
     line_kinds = {},
     extmarks = {},
     watcher = nil,
+    attach_id = id,
   }
   state[bufnr] = entry
 
   local refresh = require("misclib.debounce").wrap(
-    50,
-    vim.schedule_wrap(function()
+    200,
+    vim.schedule_wrap(function(with_checktime)
       local current = state[bufnr]
       if not current or not vim.api.nvim_buf_is_valid(bufnr) then
         return
+      end
+      if with_checktime then
+        pcall(vim.cmd.checktime, bufnr)
       end
       current.line_kinds = _compute_line_kinds(bufnr)
       current.extmarks = _apply_extmarks(bufnr, current.line_kinds, current.extmarks)
     end)
   )
-  local on_index_change = function()
-    if vim.api.nvim_buf_is_valid(bufnr) then
-      pcall(vim.cmd.checktime, bufnr)
-    end
-    refresh()
-  end
 
   refresh()
 
   vim.api.nvim_buf_attach(bufnr, false, {
     on_lines = function()
-      if not state[bufnr] then
+      if attach_ids[id] ~= bufnr then
         return true
       end
       refresh()
     end,
     on_reload = function()
-      if not state[bufnr] then
+      if attach_ids[id] ~= bufnr then
         return
       end
       refresh()
@@ -214,13 +221,15 @@ function M.setup(bufnr)
 
   vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
     group = augroup,
-    buffer = bufnr,
+    buf = bufnr,
     callback = function()
       local current = state[bufnr]
-      if not current or current.watcher then
-        return
+      if current and not current.watcher then
+        current.watcher = _start_watcher(bufnr, function()
+          refresh(true)
+        end)
       end
-      current.watcher = _start_watcher(bufnr, on_index_change)
+      refresh()
     end,
   })
   vim.api.nvim_create_autocmd({ "WinClosed" }, {
@@ -246,14 +255,16 @@ function M.setup(bufnr)
   })
   vim.api.nvim_create_autocmd({ "BufWipeout" }, {
     group = augroup,
-    buffer = bufnr,
+    buf = bufnr,
     callback = function()
       _cleanup(bufnr)
     end,
   })
 
   if vim.fn.win_findbuf(bufnr)[1] then
-    entry.watcher = _start_watcher(bufnr, on_index_change)
+    entry.watcher = _start_watcher(bufnr, function()
+      refresh(true)
+    end)
   end
 end
 
