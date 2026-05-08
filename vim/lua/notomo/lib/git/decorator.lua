@@ -44,6 +44,11 @@ local function _compute_line_kinds(bufnr)
   local result = vim.system({ "git", "-C", git_root, "show", "HEAD:" .. rel_path }):wait()
   if result.code == 0 then
     source_lines = vim.split(result.stdout:gsub("\n$", ""), "\n", { plain = true })
+  else
+    local ignored = vim.system({ "git", "-C", git_root, "check-ignore", "-q", rel_path }):wait()
+    if ignored.code == 0 then
+      return {}
+    end
   end
 
   local current_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
