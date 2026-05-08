@@ -868,3 +868,9 @@ vim.keymap.set("n", "[file]W", function()
     vim.cmd.startinsert()
   end)
 end)
+
+vim.keymap.set("n", "[file]s", function()
+  local filetype = vim.bo.filetype
+  local path = vim.fs.joinpath(vim.env.DOTFILES, "vim/lua/notomo/lsp/snippet", filetype .. ".lua")
+  vim.cmd.edit(path)
+end)
