@@ -96,16 +96,21 @@ local set_statusline = function()
     })
   end
 
-  stlparts.set("statusline", {
-    " ",
-    SwitchByFiletype({
-      ["kivi-file"] = Truncate(join_by({ cwd, branch }, " ")),
-      ["thetto"] = Base(alter_path),
-      ["thetto-inputter"] = Base(alter_path),
-      _ = Base(path),
-    }),
-    " ",
-  })
+  local ErrorBoundary = stlparts.component.error_boundary
+
+  stlparts.set(
+    "statusline",
+    ErrorBoundary({
+      " ",
+      SwitchByFiletype({
+        ["kivi-file"] = Truncate(join_by({ cwd, branch }, " ")),
+        ["thetto"] = Base(alter_path),
+        ["thetto-inputter"] = Base(alter_path),
+        _ = Base(path),
+      }),
+      " ",
+    })
+  )
 
   vim.opt.statusline = [[%!v:lua.require("stlparts").build("statusline")]]
 end
@@ -280,9 +285,11 @@ local set_tabline = function()
       :totable()
   end
 
+  local ErrorBoundary = stlparts.component.error_boundary
+
   stlparts.set(
     "tabline",
-    DefaultHighlight(
+    ErrorBoundary(DefaultHighlight(
       "TabLineFill",
       Builder(function()
         local tab_ids = api.nvim_list_tabpages()
@@ -320,7 +327,7 @@ local set_tabline = function()
 
         return components
       end)
-    )
+    ))
   )
 
   local group = vim.api.nvim_create_augroup("notomo.stlparts.diagnostic", {})
