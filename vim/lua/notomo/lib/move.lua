@@ -29,8 +29,7 @@ end
 
 local function is_word_char(pos)
   local line = vim.api.nvim_buf_get_lines(0, pos[1] - 1, pos[1], true)[1]
-  local byte = line:sub(pos[2] + 1, pos[2] + 1)
-  return byte:match("[0-9A-Za-z_]") ~= nil
+  return vim.fn.match(line:sub(pos[2] + 1), [[^\k]]) == 0
 end
 
 function M.w(opts)
@@ -39,7 +38,7 @@ function M.w(opts)
   local effective_fb = (fb and is_word_char(fb)) and fb or nil
   if opts.pattern then
     local pat = searchpos_result(opts.pattern, "Wn")
-    if pat and (opts.bound == false or effective_fb == nil or pos_before(pat, effective_fb)) then
+    if pat and (effective_fb == nil or pos_before(pat, effective_fb)) then
       move_cursor(pat[1], pat[2])
       return
     end
@@ -55,7 +54,7 @@ function M.b(opts)
   local effective_fb = (fb and is_word_char(fb)) and fb or nil
   if opts.pattern then
     local pat = searchpos_result(opts.pattern, "bWn")
-    if pat and (opts.bound == false or effective_fb == nil or pos_before(effective_fb, pat)) then
+    if pat and (effective_fb == nil or pos_before(effective_fb, pat)) then
       move_cursor(pat[1], pat[2])
       return
     end
@@ -68,10 +67,11 @@ end
 function M.e(opts)
   opts = opts or {}
   local fb = get_motion_pos("e")
+  local effective_fb = (fb and is_word_char(fb)) and fb or nil
   local is_op = vim.fn.mode(1):sub(1, 2) == "no"
   if opts.pattern then
     local pat = searchpos_result(opts.pattern, "Wen")
-    if pat and (opts.bound == false or fb == nil or pos_before(pat, fb)) then
+    if pat and (effective_fb == nil or pos_before(pat, effective_fb)) then
       move_cursor(pat[1], pat[2])
       if is_op then
         vim.cmd.normal({ args = { "l" }, bang = true })
