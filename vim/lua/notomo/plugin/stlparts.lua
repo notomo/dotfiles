@@ -6,12 +6,12 @@ local stlparts = require("stlparts")
 local C = stlparts.component
 local join_by = require("misclib.collection.list").join_by
 
-local escape = function(s)
+local function escape(s)
   s = s:gsub("%%", "%%%%")
   return s
 end
 
-local alter_path = function(ctx)
+local function alter_path(ctx)
   local bufnr = vim.api.nvim_win_call(ctx.window_id, function()
     return fn.bufnr("#")
   end)
@@ -22,41 +22,41 @@ local alter_path = function(ctx)
   return fn.fnamemodify(path, ":~")
 end
 
-local get_bufnr = function(ctx)
+local function get_bufnr(ctx)
   return vim.api.nvim_win_get_buf(ctx.window_id)
 end
-local get_filetype = function(ctx)
+local function get_filetype(ctx)
   return vim.bo[get_bufnr(ctx)].filetype
 end
 local Switch = C.switch
-local SwitchByFiletype = function(...)
+local function SwitchByFiletype(...)
   return Switch(get_filetype, ...)
 end
 
-local set_statusline = function()
-  local surround = function(s)
+local function set_statusline()
+  local function surround(s)
     return ("[%s]"):format(s)
   end
-  local cwd = function()
+  local function cwd()
     return escape(fn.getcwd())
   end
-  local filetype = function(ctx)
+  local function filetype(ctx)
     return surround(get_filetype(ctx))
   end
-  local column = function()
+  local function column()
     return surround(fn.col("."))
   end
-  local path = function()
+  local function path()
     return escape(fn.expand("%:p:~"))
   end
-  local branch = function()
+  local function branch()
     local branch_name = require("notomo.lib.git.branch").component()
     if #branch_name == 0 then
       return ""
     end
     return surround(branch_name)
   end
-  local active_ls_names = function(ctx)
+  local function active_ls_names(ctx)
     local bufnr = get_bufnr(ctx)
     if vim.bo[bufnr].filetype == "" then
       return surround("")
@@ -80,7 +80,7 @@ local set_statusline = function()
   end
 
   local TruncateLeft = C.truncate_left
-  local Truncate = function(component)
+  local function Truncate(component)
     return TruncateLeft(component, {
       max_width = function(ctx)
         return ctx:width() * 0.8
@@ -89,7 +89,7 @@ local set_statusline = function()
   end
   local Separate = C.separate
 
-  local Base = function(path_component)
+  local function Base(path_component)
     return Separate({
       Truncate(join_by({ path_component, branch }, " ")),
       join_by({ column, active_ls_names, filetype }, " "),
@@ -116,7 +116,7 @@ local set_statusline = function()
 end
 set_statusline()
 
-local window_count = function(window_ids)
+local function window_count(window_ids)
   local floating_window_ids = vim
     .iter(window_ids)
     :filter(function(window_id)
@@ -130,7 +130,7 @@ local window_count = function(window_ids)
   return tostring(count)
 end
 
-local modified = function(current_bufnr, window_ids)
+local function modified(current_bufnr, window_ids)
   if vim.bo[current_bufnr].modified then
     return "+"
   end
@@ -149,7 +149,7 @@ local modified = function(current_bufnr, window_ids)
   return ""
 end
 
-local tab_label = function(tab_id, window_id)
+local function tab_label(tab_id, window_id)
   local bufnr = api.nvim_win_get_buf(window_id)
   local name = fs.basename(api.nvim_buf_get_name(bufnr))
   if name == "" then
@@ -164,35 +164,35 @@ local tab_label = function(tab_id, window_id)
   return ("%s[%s]"):format(name, opt)
 end
 
-local set_tabline = function()
+local function set_tabline()
   local Builder = C.builder
   local Highlight = C.highlight
   local DefaultHighlight = C.default_highlight
   local Tab = C.tab
   local ContextBuilder = C.context_builder
 
-  local TruncateRight = function(component)
+  local function TruncateRight(component)
     return C.truncate_right(component, {
       max_width = 30,
     })
   end
-  local TruncateLeft = function(component)
+  local function TruncateLeft(component)
     return C.truncate_left(component, {
       max_width = 30,
     })
   end
 
-  local get_buftype = function(ctx)
+  local function get_buftype(ctx)
     return vim.bo[get_bufnr(ctx)].buftype
   end
-  local Truncate = function(component)
+  local function Truncate(component)
     return Switch(get_buftype, {
       terminal = TruncateRight(component),
       _ = TruncateLeft(component),
     })
   end
 
-  local alter = function(ctx)
+  local function alter(ctx)
     local bufnr = vim.api.nvim_win_call(ctx.window_id, function()
       return fn.bufnr("#")
     end)
@@ -207,11 +207,11 @@ local set_tabline = function()
 
     return ctx:with_window(window_id)
   end
-  local TruncateAlter = function(component)
+  local function TruncateAlter(component)
     return ContextBuilder(alter, Truncate(component))
   end
 
-  local TabLabel = function(ctx)
+  local function TabLabel(ctx)
     return escape(tab_label(ctx.tab_id, ctx.window_id))
   end
   local Content = {
@@ -229,7 +229,7 @@ local set_tabline = function()
     " ",
   }
 
-  local current_buffer_diagnostic = function(window_id)
+  local function current_buffer_diagnostic(window_id)
     local is_float = require("misclib.window").is_floating(window_id)
     local bufnr = is_float
         and vim.api.nvim_win_call(window_id, function()

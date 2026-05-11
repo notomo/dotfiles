@@ -631,7 +631,7 @@ runtime.after.ftplugin["unionbuf.lua"] = function()
     vim.cmd.normal({ args = { tostring(entry.start_row + 1) .. "gg" }, bang = true })
   end, { buf = 0 })
 
-  local visual_range = function()
+  local function visual_range()
     local rows = {
       vim.fn.line(".") - 1,
       vim.fn.line("v") - 1,

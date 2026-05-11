@@ -1,7 +1,7 @@
 vim.keymap.set("n", "<Leader>Q", [[<Cmd>lua require("cmdhndlr").run()<CR>]])
 vim.keymap.set("x", "<Leader>Q", [[<Cmd>lua require("cmdhndlr").run()<CR>]])
 
-local build_cmd = function(default_cmd, callback)
+local function build_cmd(default_cmd, callback)
   local cmd
   if type(default_cmd) == "table" then
     cmd = table.concat(default_cmd, " ")
@@ -32,7 +32,7 @@ vim.keymap.set("n", "<Leader>qb", function()
   require("cmdhndlr").build({ build_cmd = build_cmd })
 end)
 
-local decide_runner = function()
+local function decide_runner()
   if require("cmdhndlr").get("build_runner/make/make").working_dir_marker() then
     return "make/make"
   end

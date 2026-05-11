@@ -1,6 +1,6 @@
 local M = {}
 
-local find_parent = function()
+local function find_parent()
   local node = vim.treesitter.get_node({})
   if not node then
     return nil
@@ -95,7 +95,7 @@ function M.select_class_name(str_node)
   vim.cmd.normal({ args = { "gv" }, bang = true })
 end
 
-local get_tag_name_node = function(jsx_node, field_name)
+local function get_tag_name_node(jsx_node, field_name)
   local open_tag = jsx_node:field(field_name)[1]
   if not open_tag then
     return "not found jsx " .. field_name

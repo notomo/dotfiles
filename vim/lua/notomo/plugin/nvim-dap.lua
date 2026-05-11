@@ -11,7 +11,7 @@ local dap = require("dap")
 
 dap.defaults.fallback.switchbuf = "uselast"
 
-local on_finished = function(session, _)
+local function on_finished(session, _)
   print("Finished:", vim.inspect(session.config, { newline = " ", indent = " " }))
 end
 dap.listeners.before["event_exited"]["notomo"] = on_finished

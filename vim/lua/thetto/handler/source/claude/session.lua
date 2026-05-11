@@ -16,7 +16,7 @@ end
 
 M.kind_name = "word"
 
-local get_lines = function(item)
+local function get_lines(item)
   return vim
     .iter(item.head_messages)
     :map(function(message)

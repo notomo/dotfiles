@@ -2,7 +2,7 @@ local util = vim.lsp.util
 
 local M = {}
 
-local go_to = function(method)
+local function go_to(method)
   local bufnr = vim.api.nvim_get_current_buf()
   require("thetto.util.lsp").request({
     bufnr = bufnr,

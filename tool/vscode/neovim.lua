@@ -1,7 +1,7 @@
 vim.g.mapleader = ","
 vim.g.maplocalleader = "<Leader>l"
 
-local set_prefix = function(modes, name, key)
+local function set_prefix(modes, name, key)
   local name_key = ("[%s]"):format(name)
   vim.keymap.set(modes, name_key, "<Nop>")
   vim.keymap.set(modes, key, name_key, { remap = true })
@@ -144,7 +144,7 @@ vim.keymap.set("n", ":", [[;]])
 vim.keymap.set("x", ";", [[:]])
 vim.keymap.set("x", ":", [[;]])
 
-local set_ia_xo = function(lhs, rhs)
+local function set_ia_xo(lhs, rhs)
   local inner_lhs = "i" .. lhs
   local inner_rhs = "i" .. rhs
   local around_lhs = "a" .. lhs

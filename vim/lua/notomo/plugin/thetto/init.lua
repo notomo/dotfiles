@@ -1,7 +1,7 @@
 local thetto = require("thetto")
 
 local kinds = {}
-local register_kind = function(kind_name, fields)
+local function register_kind(kind_name, fields)
   kinds[kind_name] = function()
     return require("thetto.util.kind").by_name(kind_name, fields, { use_registered = false })
   end
@@ -9,7 +9,7 @@ end
 
 local sources = {}
 
-local register_source = function(source_name, fields)
+local function register_source(source_name, fields)
   sources[source_name] = function()
     if type(fields) == "function" then
       fields = fields()
@@ -18,7 +18,7 @@ local register_source = function(source_name, fields)
   end
 end
 
-local register_source_alias = function(alias_name, source_name, fields)
+local function register_source_alias(alias_name, source_name, fields)
   sources[alias_name] = function()
     if type(fields) == "function" then
       fields = fields()
@@ -320,7 +320,7 @@ register_source("vim/line", function()
   }
 end)
 
-local value_path_filters = function()
+local function value_path_filters()
   return require("thetto.util.pipeline").list({
     require("thetto.util.filter").by_name("substring"),
     require("thetto.util.filter").by_name("substring", {

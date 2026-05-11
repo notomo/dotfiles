@@ -1,6 +1,6 @@
 local group = vim.api.nvim_create_augroup("notomo.kivi", {})
 
-local execute = function(action_name, opts)
+local function execute(action_name, opts)
   return function()
     require("kivi").execute(action_name, opts)
   end
@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   group = group,
   pattern = { "kivi-file" },
   callback = function()
-    local navigate = function(path)
+    local function navigate(path)
       return function()
         require("kivi").navigate(path)
       end

@@ -8,7 +8,7 @@ function M.component()
   end
 
   local bufnr = vim.api.nvim_get_current_buf()
-  local clear = function()
+  local function clear()
     if not vim.api.nvim_buf_is_valid(bufnr) then
       return
     end

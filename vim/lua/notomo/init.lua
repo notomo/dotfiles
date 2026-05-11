@@ -1,11 +1,11 @@
-local safe_call = function(f)
+local function safe_call(f)
   local ok, result = pcall(f)
   if not ok then
     vim.api.nvim_echo({ { result, "Error" } }, true, {})
   end
 end
 
-local safe_require = function(name)
+local function safe_require(name)
   local ok, result = pcall(require, name)
   if not ok then
     vim.api.nvim_echo({ { result, "Error" } }, true, {})

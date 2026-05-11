@@ -1,7 +1,7 @@
 local M = {}
 
 function M.text_object_mapping()
-  local select_ob = function(query)
+  local function select_ob(query)
     return function()
       require("nvim-treesitter-textobjects.select").select_textobject(query, "textobjects")
     end

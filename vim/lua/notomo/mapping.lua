@@ -154,7 +154,7 @@ vim.keymap.set("n", "[indent]s", [[==]])
 vim.keymap.set("x", "[indent]s", [[=gv]])
 vim.keymap.set("n", "[indent]r", [[<Cmd>left<CR>]])
 vim.keymap.set("x", "[indent]r", [[:left<CR>gv]])
-local convert_indent_style = function(to_hard)
+local function convert_indent_style(to_hard)
   local tmp = vim.opt.expandtab
   vim.opt_local.expandtab = not to_hard
   local is_visual = require("misclib.visual_mode").leave()
@@ -254,7 +254,7 @@ vim.keymap.set("i", "<4-MiddleMouse>", [[<Nop>]])
 vim.keymap.set("n", "q", [[<Nop>]])
 vim.keymap.set("n", "[edit]w", [[<Cmd>lua require("notomo.lib.diary").open()<CR>]])
 
-local substitute = function(cmd, is_visual)
+local function substitute(cmd, is_visual)
   return function()
     return require("notomo.lib.edit").gen_substitute(cmd, is_visual)
   end
@@ -451,7 +451,7 @@ vim.keymap.set("i", "[main_input]<Space>", [[<ESC>gUiwea]])
 vim.keymap.set("i", "[main_input]z", [[<C-a>]])
 vim.keymap.set("c", "[main_input]o", [[<C-n>]])
 
-local with_undo = function(rhs)
+local function with_undo(rhs)
   return vim.fn.substitute(rhs, "\\ze<Left>$", "\\<C-g>U", "")
 end
 
@@ -630,7 +630,7 @@ vim.api.nvim_create_autocmd({ "TermOpen" }, {
       return
     end
 
-    local enter = function()
+    local function enter()
       local ok, err = pcall(function()
         require("notomo.lib.edit").set_term_title()
       end)

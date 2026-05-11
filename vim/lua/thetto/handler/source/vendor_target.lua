@@ -1,6 +1,6 @@
 local M = {}
 
-local collect_one = function(full_name)
+local function collect_one(full_name)
   local parts = vim.split(full_name, "/", { plain = true })
   local account_name = parts[1]
   local plugin_name = parts[2]

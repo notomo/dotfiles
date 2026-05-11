@@ -7,7 +7,7 @@ M.opts = {
   end,
 }
 
-local to_item = function(test, path, is_toplevel)
+local function to_item(test, path, is_toplevel)
   local name_node = test.name_nodes[#test.name_nodes]
   local row, column = name_node:start()
   local end_row, end_column = name_node:end_()

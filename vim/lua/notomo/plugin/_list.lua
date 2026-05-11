@@ -1,7 +1,7 @@
 vim.cmd.packadd([[optpack.nvim]])
 local optpack = require("optpack")
 
-local require_fn = function(name)
+local function require_fn(name)
   return function()
     package.loaded[name] = nil
     require(name)
@@ -148,7 +148,7 @@ mypack.add("notomo/searcho.nvim", {
         return require("searcho").backward() .. pattern
       end, { expr = true })
 
-      local convert = function(word)
+      local function convert(word)
         return [[\v<]] .. word .. ">" .. vim.keycode("<Left><Space><BS>")
       end
       vim.keymap.set({ "n", "x" }, "sJ", function()

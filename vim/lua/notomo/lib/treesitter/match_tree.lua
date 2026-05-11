@@ -1,6 +1,6 @@
 local M = {}
 
-local new_match_tree = function(scope_node, captured)
+local function new_match_tree(scope_node, captured)
   return {
     scope_node = scope_node,
     captured = captured or {},

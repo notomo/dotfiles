@@ -1,6 +1,6 @@
 local M = {}
 
-local create_cancel = function(on_confirm, close)
+local function create_cancel(on_confirm, close)
   local canceled = false
   return function()
     if canceled then
@@ -13,7 +13,7 @@ local create_cancel = function(on_confirm, close)
 end
 
 local group = vim.api.nvim_create_augroup("notomo.input", {})
-local create_confirm = function(on_confirm, close)
+local function create_confirm(on_confirm, close)
   return function()
     vim.cmd.stopinsert()
 
@@ -23,7 +23,7 @@ local create_confirm = function(on_confirm, close)
   end
 end
 
-local create_inputter_buffer = function(default_line)
+local function create_inputter_buffer(default_line)
   local bufnr = vim.api.nvim_create_buf(false, true)
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { default_line })
   vim.bo[bufnr].bufhidden = "wipe"
@@ -41,7 +41,7 @@ local create_inputter_buffer = function(default_line)
   return bufnr
 end
 
-local open_inputter = function(bufnr)
+local function open_inputter(bufnr)
   local window_id = vim.api.nvim_open_win(bufnr, true, {
     width = vim.o.columns,
     height = 1,
@@ -57,7 +57,7 @@ local open_inputter = function(bufnr)
   return window_id
 end
 
-local open_prompt = function(prompt, base_window_id)
+local function open_prompt(prompt, base_window_id)
   local prompt_line = prompt or ""
   local bufnr = vim.api.nvim_create_buf(false, true)
   local lines = vim.split(prompt_line, "\n", { plain = true })
@@ -81,7 +81,7 @@ local open_prompt = function(prompt, base_window_id)
   return window_id
 end
 
-local create_close = function(window_id, prompt_window_id, save_history)
+local function create_close(window_id, prompt_window_id, save_history)
   return function()
     save_history()
     vim.api.nvim_clear_autocmds({ group = group })
@@ -112,7 +112,7 @@ function M.open(opts, on_confirm)
     end,
   })
 
-  local save_history = function()
+  local function save_history()
     if not vim.api.nvim_buf_is_valid(bufnr) then
       return
     end
@@ -120,7 +120,7 @@ function M.open(opts, on_confirm)
     history_store:save(current_line)
   end
 
-  local recall_history = function(offset)
+  local function recall_history(offset)
     local current_line = vim.api.nvim_buf_get_lines(bufnr, 0, -1, true)[1]
     local history = history_store:recall(offset, current_line)
 

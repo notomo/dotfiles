@@ -1,34 +1,34 @@
-local action = function(action_name, execute_opts)
+local function action(action_name, execute_opts)
   return function()
     require("thetto.util.action").execute(action_name, {}, execute_opts)
   end
 end
 
-local action_with_fallback = function(action_names, execute_opts)
+local function action_with_fallback(action_names, execute_opts)
   return function()
     require("thetto.util.action").execute_with_fallback(action_names, {}, execute_opts)
   end
 end
 
-local thetto_starter = function(source_name, fields, opts)
+local function thetto_starter(source_name, fields, opts)
   return function()
     require("thetto").start(require("thetto.util.source").by_name(source_name, fields), opts)
   end
 end
 
-local call_consumer = function(action_name, opts)
+local function call_consumer(action_name, opts)
   return function()
     return require("thetto").call_consumer(action_name, opts)
   end
 end
 
-local quit = function()
+local function quit()
   return function()
     return require("thetto").quit()
   end
 end
 
-local call_consumer_key = function(prev, action_name, next)
+local function call_consumer_key(prev, action_name, next)
   return ([[%s<Cmd>lua require("thetto").call_consumer(%q)<CR>%s]]):format(prev, action_name, next)
 end
 
@@ -238,7 +238,7 @@ local source_specific = {
     end, { buf = list_bufnr })
   end,
   ["git/status"] = function(list_bufnr)
-    local action_without_message = function(action_name, execute_opts)
+    local function action_without_message(action_name, execute_opts)
       return function()
         local items, metadata = require("thetto").get()
         local filtered = vim
@@ -267,7 +267,7 @@ local source_specific = {
     vim.keymap.set("n", "dd", action("compare", { quit = true }), { buf = list_bufnr })
     vim.keymap.set("n", "D", action("diff"), { buf = list_bufnr })
 
-    local move = function(flag, fallback_key)
+    local function move(flag, fallback_key)
       local _, column = unpack(vim.api.nvim_win_get_cursor(0))
       vim.cmd.normal({ args = { "0" }, bang = true })
       local result = vim.fn.search("^    ", flag)
@@ -580,7 +580,7 @@ vim.keymap.set("n", "[keyword]n", function()
   }))
 end)
 
-local get_paths = function(cwd)
+local function get_paths(cwd)
   local regex = vim.regex([[\v(_spec.lua|_test.go)$]])
   return vim
     .iter(vim.fs.find(function(name)
