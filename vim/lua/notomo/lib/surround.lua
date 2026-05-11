@@ -283,6 +283,7 @@ function M.add_operator(operator_type)
       start_pos[3] - 1,
       { pair[1] }
     )
+    vim.api.nvim_win_set_cursor(0, { start_pos[2], start_pos[3] - 1 })
   elseif operator_type == "line" then
     local prefix_new, prefix_inline, suffix_inline, suffix_new = split_pair_for_line(pair)
     local start_row = start_pos[2] - 1
@@ -300,6 +301,7 @@ function M.add_operator(operator_type)
     if #prefix_inline > 0 then
       vim.api.nvim_buf_set_text(bufnr, start_row, 0, start_row, 0, { prefix_inline })
     end
+    vim.api.nvim_win_set_cursor(0, { start_pos[2], 0 })
   elseif operator_type == "block" then
     for row = end_pos[2], start_pos[2], -1 do
       local line_len = #(vim.api.nvim_buf_get_lines(bufnr, row - 1, row, false)[1] or "")
@@ -308,6 +310,7 @@ function M.add_operator(operator_type)
       vim.api.nvim_buf_set_text(bufnr, row - 1, end_col, row - 1, end_col, { pair[2] })
       vim.api.nvim_buf_set_text(bufnr, row - 1, start_col, row - 1, start_col, { pair[1] })
     end
+    vim.api.nvim_win_set_cursor(0, { start_pos[2], start_pos[3] - 1 })
   end
 end
 
