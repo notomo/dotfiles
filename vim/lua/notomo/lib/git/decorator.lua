@@ -11,6 +11,7 @@ local ns = vim.api.nvim_create_namespace("notomo.lib.git.decorator")
 local state = {}
 local attach_ids = {}
 local _next_attach_id = 0
+local watchers_by_root = {}
 
 local function _resolve_target(bufnr)
   if vim.bo[bufnr].buftype ~= "" then
@@ -99,13 +100,8 @@ local function _apply_extmarks(bufnr, line_kinds, old_extmarks)
   return new_extmarks
 end
 
-local function _start_watcher(bufnr, on_change)
-  local git_root = vim.fs.root(bufnr, ".git")
-  if not git_root then
-    return nil
-  end
-
-  local watchers = {}
+local function _start_watchers_for_root(git_root, on_change)
+  local handles = {}
   local function add(path, names)
     local w = vim.uv.new_fs_event()
     if not w then
@@ -123,32 +119,50 @@ local function _start_watcher(bufnr, on_change)
       w:close()
       return
     end
-    table.insert(watchers, w)
+    table.insert(handles, w)
   end
 
   add(vim.fs.joinpath(git_root, ".git"), { index = true, HEAD = true })
   add(vim.fs.joinpath(git_root, ".git/logs"), { HEAD = true })
 
-  if #watchers == 0 then
-    return nil
-  end
-  return watchers
+  return handles
 end
 
-local function _stop_watcher(watchers)
-  if not watchers then
+local function _subscribe(git_root, bufnr, refresh)
+  local entry = watchers_by_root[git_root]
+  if not entry then
+    entry = { handles = {}, subscribers = {} }
+    watchers_by_root[git_root] = entry
+    entry.handles = _start_watchers_for_root(git_root, function()
+      for _, fn in pairs(entry.subscribers) do
+        fn(true)
+      end
+    end)
+  end
+  entry.subscribers[bufnr] = refresh
+end
+
+local function _unsubscribe(git_root, bufnr)
+  local entry = watchers_by_root[git_root]
+  if not entry then
     return
   end
-  for _, w in ipairs(watchers) do
-    w:stop()
-    w:close()
+  entry.subscribers[bufnr] = nil
+  if next(entry.subscribers) == nil then
+    for _, w in ipairs(entry.handles) do
+      w:stop()
+      w:close()
+    end
+    watchers_by_root[git_root] = nil
   end
 end
 
 local function _cleanup(bufnr)
   local entry = state[bufnr]
   if entry then
-    _stop_watcher(entry.watcher)
+    if entry.git_root then
+      _unsubscribe(entry.git_root, bufnr)
+    end
     if vim.api.nvim_buf_is_valid(bufnr) then
       vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
     end
@@ -157,7 +171,7 @@ local function _cleanup(bufnr)
     end
   end
 
-  pcall(vim.api.nvim_del_augroup_by_name, ("notomo.git.decorator.%d"):format(bufnr))
+  pcall(vim.api.nvim_del_augroup_by_name, ("notomo.lib.git.decorator.%d"):format(bufnr))
   state[bufnr] = nil
 end
 
@@ -171,7 +185,8 @@ function M.setup(bufnr)
   if state[bufnr] then
     return
   end
-  if not _resolve_target(bufnr) then
+  local git_root = _resolve_target(bufnr)
+  if not git_root then
     return
   end
 
@@ -182,7 +197,7 @@ function M.setup(bufnr)
   local entry = {
     line_kinds = {},
     extmarks = {},
-    watcher = nil,
+    git_root = git_root,
     attach_id = id,
   }
   state[bufnr] = entry
@@ -194,6 +209,9 @@ function M.setup(bufnr)
       if not current or not vim.api.nvim_buf_is_valid(bufnr) then
         return
       end
+      if vim.fn.win_findbuf(bufnr)[1] == nil then
+        return
+      end
       if with_checktime then
         pcall(vim.cmd.checktime, bufnr)
       end
@@ -202,6 +220,7 @@ function M.setup(bufnr)
     end)
   )
 
+  _subscribe(git_root, bufnr, refresh)
   refresh()
 
   vim.api.nvim_buf_attach(bufnr, false, {
@@ -228,34 +247,7 @@ function M.setup(bufnr)
     group = augroup,
     buf = bufnr,
     callback = function()
-      local current = state[bufnr]
-      if current and not current.watcher then
-        current.watcher = _start_watcher(bufnr, function()
-          refresh(true)
-        end)
-      end
       refresh()
-    end,
-  })
-  vim.api.nvim_create_autocmd({ "WinClosed" }, {
-    group = augroup,
-    callback = function(args)
-      local closing_winid = tonumber(args.match)
-      if not closing_winid or not vim.api.nvim_win_is_valid(closing_winid) then
-        return
-      end
-      if vim.api.nvim_win_get_buf(closing_winid) ~= bufnr then
-        return
-      end
-      if #vim.fn.win_findbuf(bufnr) > 1 then
-        return
-      end
-      local current = state[bufnr]
-      if not current then
-        return
-      end
-      _stop_watcher(current.watcher)
-      current.watcher = nil
     end,
   })
   vim.api.nvim_create_autocmd({ "BufWipeout" }, {
@@ -265,12 +257,6 @@ function M.setup(bufnr)
       _cleanup(bufnr)
     end,
   })
-
-  if vim.fn.win_findbuf(bufnr)[1] then
-    entry.watcher = _start_watcher(bufnr, function()
-      refresh(true)
-    end)
-  end
 end
 
 return M
