@@ -839,7 +839,7 @@ vim.keymap.set({ "n", "x", "o" }, "b", function()
   require("notomo.lib.move").b({ pattern = nonsym_boundary })
 end)
 vim.keymap.set({ "n", "x", "o" }, "e", function()
-  require("notomo.lib.move").e({ pattern = [[\v\k+]] })
+  require("notomo.lib.move").e({ pattern = [[\v[a-zA-Z0-9_]+|(\k&[^a-zA-Z0-9_])+]] })
 end)
 
 vim.keymap.set("x", "[diff]l", function()
