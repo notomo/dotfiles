@@ -33,6 +33,33 @@ local function SwitchByFiletype(...)
   return Switch(get_filetype, ...)
 end
 
+local spinner_frames = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+local spinner_index = 1
+local spinner_timer = nil
+
+local function ensure_spinner_timer(bufnr)
+  if spinner_timer then
+    return
+  end
+  spinner_timer = assert(vim.uv.new_timer())
+  spinner_timer:start(
+    100,
+    100,
+    vim.schedule_wrap(function()
+      if not api.nvim_buf_is_valid(bufnr) or vim.bo[bufnr].busy <= 0 then
+        if spinner_timer then
+          spinner_timer:stop()
+          spinner_timer:close()
+          spinner_timer = nil
+        end
+        return
+      end
+      spinner_index = spinner_index % #spinner_frames + 1
+      vim.cmd.redrawstatus()
+    end)
+  )
+end
+
 local function set_statusline()
   local function surround(s)
     return ("[%s]"):format(s)
@@ -45,6 +72,14 @@ local function set_statusline()
   end
   local function column()
     return surround(fn.col("."))
+  end
+  local function busy(ctx)
+    local bufnr = get_bufnr(ctx)
+    if vim.bo[bufnr].busy <= 0 then
+      return ""
+    end
+    ensure_spinner_timer(bufnr)
+    return spinner_frames[spinner_index]
   end
   local function path()
     return escape(fn.expand("%:p:~"))
@@ -103,7 +138,7 @@ local function set_statusline()
     ErrorBoundary({
       " ",
       SwitchByFiletype({
-        ["kivi-file"] = Truncate(join_by({ cwd, branch }, " ")),
+        ["kivi-file"] = Truncate(join_by({ cwd, branch, busy }, " ")),
         ["thetto"] = Base(alter_path),
         ["thetto-inputter"] = Base(alter_path),
         _ = Base(path),
