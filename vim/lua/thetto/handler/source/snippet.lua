@@ -1,13 +1,7 @@
 local M = {}
 
 function M.collect(source_ctx)
-  local bufnr = source_ctx.bufnr
-  local filetype = vim.bo[bufnr].filetype
-
-  local ok, snippets = pcall(require, "notomo.lsp.snippet." .. filetype)
-  if not ok then
-    return {}
-  end
+  local snippets = require("notomo.lib.snippet").get_snippets(source_ctx.bufnr)
 
   local items = {}
   for name, snippet in pairs(snippets) do
@@ -22,11 +16,7 @@ function M.collect(source_ctx)
 end
 
 function M.resolve(params, _, offset)
-  local window_id = vim.api.nvim_get_current_win()
-  local bufnr = vim.api.nvim_win_get_buf(window_id)
-  local row, column = unpack(vim.api.nvim_win_get_cursor(window_id))
-  vim.api.nvim_buf_set_text(bufnr, row - 1, offset - 1, row - 1, column, { "" })
-  vim.snippet.expand(params.body)
+  require("notomo.lib.snippet").expand(params.body, offset)
 end
 
 M.kind_name = "word"

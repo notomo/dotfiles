@@ -1,5 +1,15 @@
 local M = {}
 
+M.m = {
+  body = [[
+local M = {}
+
+${0}
+
+return M
+]],
+}
+
 M.if_only = {
   body = [[
 if ${1:condition} then
@@ -7,6 +17,7 @@ if ${1:condition} then
 end
 ]],
 }
+M["if"] = M.if_only
 
 M.module = {
   body = [[

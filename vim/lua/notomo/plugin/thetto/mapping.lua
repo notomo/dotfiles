@@ -787,12 +787,8 @@ vim.keymap.set("n", "[git]k", function()
 end)
 
 vim.keymap.set("i", "[main_input]o", function()
-  if vim.snippet.active({ direction = 1 }) then
-    vim.api.nvim_feedkeys(vim.keycode("<Cmd>lua vim.snippet.jump(1)<CR>"), "n", true)
-    return
-  end
-  if vim.snippet.active({ direction = -1 }) then
-    vim.api.nvim_feedkeys(vim.keycode("<Cmd>lua vim.snippet.jump(-1)<CR>"), "n", true)
+  if require("notomo.lib.snippet").can_expand() then
+    vim.api.nvim_feedkeys(vim.keycode("<Cmd>lua require('notomo.lib.snippet').expand_cword()<CR>"), "n", true)
     return
   end
 
@@ -803,12 +799,6 @@ vim.keymap.set("i", "[main_input]o", function()
     end
 
     vim.schedule(function()
-      if vim.snippet.active({ direction = 1 }) then
-        vim.api.nvim_feedkeys(vim.keycode("<Cmd>lua vim.snippet.jump(1)<CR>"), "n", true)
-      end
-      if vim.snippet.active({ direction = -1 }) then
-        vim.api.nvim_feedkeys(vim.keycode("<Cmd>lua vim.snippet.jump(-1)<CR>"), "n", true)
-      end
       return vim.api.nvim_feedkeys(vim.keycode("<C-y>"), "m", true)
     end)
     vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "m", true)
