@@ -53,7 +53,10 @@ function M.operator(operator_type)
       table.remove(lines)
     end
     local end_line = vim.api.nvim_buf_get_lines(0, end_pos[2] - 1, end_pos[2], false)[1] or ""
-    local end_col = math.min(end_pos[3], #end_line)
+    local last_byte = math.min(end_pos[3], #end_line)
+    -- getpos("']") points to the first byte of the last character, so extend
+    -- end_col to cover its whole multibyte sequence (exclusive end).
+    local end_col = last_byte > 0 and (last_byte + vim.str_utf_end(end_line, last_byte)) or 0
     vim.api.nvim_buf_set_text(0, start_pos[2] - 1, start_pos[3] - 1, end_pos[2] - 1, end_col, lines)
     local hl_end_row = start_pos[2] + #lines - 1
     local hl_end_col = #lines == 1 and (start_pos[3] + #lines[1] - 1) or #lines[#lines]
