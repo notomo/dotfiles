@@ -123,6 +123,7 @@ local function _start_watchers_for_root(git_root, on_change)
   end
 
   add(vim.fs.joinpath(git_root, ".git"), { index = true, HEAD = true })
+  add(vim.fs.joinpath(git_root, ".git/logs"), { HEAD = true })
 
   return handles
 end
