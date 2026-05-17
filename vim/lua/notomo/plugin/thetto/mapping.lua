@@ -410,6 +410,9 @@ vim.keymap.set("n", "[term]n", function()
     modify_pipeline = require("thetto.util.pipeline").append({
       require("thetto.util.sorter").field_by_name("bufnr", true),
       require("thetto.util.filter").item(function(item)
+        if item.value:match("/claude$") then
+          return false
+        end
         return vim.bo[item.bufnr].filetype ~= "cmdhndlr"
       end),
     }),
