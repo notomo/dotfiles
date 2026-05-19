@@ -69,21 +69,21 @@ function M.e(opts)
   local fb = get_motion_pos("e")
   local effective_fb = (fb and is_word_char(fb)) and fb or nil
   local is_op = vim.fn.mode(1):sub(1, 2) == "no"
+  local function go(pos)
+    if is_op then
+      vim.cmd.normal({ args = { "v" }, bang = true })
+    end
+    move_cursor(pos[1], pos[2])
+  end
   if opts.pattern then
     local pat = searchpos_result(opts.pattern, "Wen")
     if pat and (effective_fb == nil or pos_before(pat, effective_fb)) then
-      move_cursor(pat[1], pat[2])
-      if is_op then
-        vim.cmd.normal({ args = { "l" }, bang = true })
-      end
+      go(pat)
       return
     end
   end
   if fb then
-    move_cursor(fb[1], fb[2])
-    if is_op then
-      vim.cmd.normal({ args = { "l" }, bang = true })
-    end
+    go(fb)
   end
 end
 
