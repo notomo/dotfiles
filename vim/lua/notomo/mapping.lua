@@ -820,7 +820,7 @@ vim.keymap.set({ "x" }, "sr", function()
   return require("notomo.lib.surround").replace_operator()
 end, { expr = true })
 
-local boundary = [=[\v\u|_\zs[A-Za-z0-9]|\W\zs\w]=]
+local boundary = [=[\v\W\zs\w|_\zs[A-Za-z0-9]|[a-z0-9]\zs\u|\u\zs\u\l]=]
 vim.keymap.set({ "n", "x", "o" }, "<Leader>w", function()
   require("notomo.lib.move").w({ pattern = boundary })
 end)
@@ -828,7 +828,7 @@ vim.keymap.set({ "n", "x", "o" }, "<Leader>b", function()
   require("notomo.lib.move").b({ pattern = boundary })
 end)
 vim.keymap.set({ "n", "x", "o" }, "<Leader>e", function()
-  require("notomo.lib.move").e({ pattern = [[\v\u\l*\d*|\l+\d*]] })
+  require("notomo.lib.move").e({ pattern = [[\v\u\l+\d*|\u+\ze\u\l|\u+\d*|\l+\d*]] })
 end)
 
 local nonsym_boundary = [[\<\k]]
