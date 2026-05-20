@@ -132,7 +132,7 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    vim.hl.on_yank({ higroup = "YankedText", timeout = 200, on_macro = true, on_visual = true })
+    vim.hl.hl_op({ higroup = "YankedText", timeout = 200, on_macro = true, on_visual = true })
   end,
 })
 
