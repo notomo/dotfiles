@@ -136,6 +136,16 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = group,
+  once = true,
+  pattern = { "*" },
+  callback = function()
+    require("notomo.lsp.handler")
+    require("notomo.plugin.nvim-lspconfig")
+  end,
+})
+
 if vim.fn.has("gui_running") == 1 then
   vim.api.nvim_create_autocmd({ "UIEnter" }, {
     group = group,

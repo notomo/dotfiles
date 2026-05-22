@@ -200,17 +200,6 @@ mypack.add("notomo/thetto.nvim", {
   },
 })
 
-optpack.add("neovim/nvim-lspconfig", {
-  load_on = { events = { "FileType" } },
-  hooks = {
-    post_load = function()
-      require("notomo.lsp.handler")
-      require("notomo.plugin.nvim-lspconfig")
-      vim.cmd.edit({ mods = { silent = true, emsg_silent = true } }) -- restart
-    end,
-  },
-})
-
 optpack.add("yioneko/nvim-vtsls", {
   load_on = {
     modules = { "vtsls" },

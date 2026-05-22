@@ -59,6 +59,8 @@ vim.lsp.config("*", {
 })
 
 vim.lsp.config("lua_ls", {
+  cmd = { "lua-language-server" },
+  root_markers = { ".git" },
   settings = {
     Lua = {
       diagnostics = {
@@ -120,6 +122,7 @@ vim.lsp.config("lua_ls", {
 
 local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
 vim.lsp.config("vtsls", {
+  cmd = { "vtsls", "--stdio" },
   root_dir = function(bufnr, cb)
     local path = vim.api.nvim_buf_get_name(bufnr)
     if path:find("deno:") then
@@ -134,8 +137,8 @@ vim.lsp.config("vtsls", {
       or vim.uv.cwd()
     cb(found)
   end,
-  single_file_support = false,
   init_options = {
+    hostInfo = "neovim",
     preferences = {
       includeInlayParameterNameHints = "all",
       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
@@ -161,6 +164,8 @@ vim.lsp.config("vtsls", {
 })
 
 vim.lsp.config("denols", {
+  cmd = { "deno", "lsp" },
+  cmd_env = { NO_COLOR = true },
   root_dir = function(bufnr, cb)
     local path = vim.api.nvim_buf_get_name(bufnr)
     local found = vim.fs.root(path, deno_pattern)
@@ -175,18 +180,23 @@ vim.lsp.config("denols", {
     end
     config.initializationOptions["importMap"] = import_map
   end,
-}, { "unix" })
-
-vim.lsp.config("rust_analyzer", {
-  cmd = {
-    "rustup",
-    "run",
-    "nightly",
-    "rust-analyzer",
+  settings = {
+    deno = {
+      enable = true,
+      suggest = {
+        imports = {
+          hosts = {
+            ["https://deno.land"] = true,
+          },
+        },
+      },
+    },
   },
 })
 
 vim.lsp.config("gopls", {
+  cmd = { "gopls" },
+  root_markers = { "go.mod" },
   init_options = {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks
@@ -208,11 +218,35 @@ vim.lsp.config("gopls", {
   },
 })
 
-vim.lsp.config("ocamllsp", {
-  root_markers = { "*.opam", ".git", "dune-project", ".opam-switch" },
-})
+local function root_dir_with_package(root_markers, package_names)
+  return function(bufnr, cb)
+    local path = vim.api.nvim_buf_get_name(bufnr)
+    local root = vim.fs.root(path, root_markers)
+    if not root then
+      return
+    end
+    local package_json = vim.fs.joinpath(root, "package.json")
+    if vim.fn.filereadable(package_json) ~= 1 then
+      return
+    end
+    local ok, decoded = pcall(vim.json.decode, table.concat(vim.fn.readfile(package_json), "\n"))
+    if not ok or type(decoded) ~= "table" then
+      return
+    end
+    local deps = vim.tbl_extend("force", decoded.dependencies or {}, decoded.devDependencies or {})
+    for _, name in ipairs(package_names) do
+      if deps[name] then
+        cb(root)
+        return
+      end
+    end
+  end
+end
 
 vim.lsp.config("tailwindcss", {
+  cmd = { "tailwindcss-language-server" },
+  root_dir = root_dir_with_package({ ".git" }, { "tailwindcss" }),
+  workspace_required = true,
   settings = {
     tailwindCSS = {
       experimental = {
@@ -229,10 +263,11 @@ vim.lsp.config("tailwindcss", {
 
 vim.lsp.config("biome", {
   cmd = { "npx", "biome", "lsp-proxy" },
+  root_dir = root_dir_with_package({ "biome.json", "biome.jsonc" }, { "@biomejs/biome" }),
+  workspace_required = true,
 })
 
 vim.lsp.config("moonbit-lsp", {
   cmd = { "moonbit-lsp" },
   root_markers = { "moon.mod.json" },
-  filetypes = { "moonbit" },
 })
