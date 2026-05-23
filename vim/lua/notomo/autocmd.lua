@@ -142,7 +142,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "*" },
   callback = function()
     require("notomo.lsp.handler")
-    require("notomo.plugin.nvim-lspconfig")
+    require("notomo.lsp.config")
   end,
 })
 

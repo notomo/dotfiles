@@ -136,3 +136,8 @@ vim.filetype.add({
     mbt = "moonbit",
   },
 })
+
+---@diagnostic disable-next-line: duplicate-set-field
+vim.ui.input = function(...)
+  return require("notomo.lib.input").open(...)
+end
