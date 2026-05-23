@@ -304,11 +304,6 @@ local nvim_treesitter = optpack.add("nvim-treesitter/nvim-treesitter", {
     end,
   },
 })
-optpack.add("nvim-treesitter/nvim-treesitter-textobjects", {
-  depends = { nvim_treesitter.name },
-  load_on = { modules = { "nvim-treesitter-textobjects" } },
-  fetch = { version = "main" },
-})
 
 mypack.add("notomo/aliaser.nvim", {
   load_on = { modules = { "aliaser" } },

@@ -547,6 +547,13 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
     require("notomo.lib.treesitter.navigation").go_to_prev()
   end, { buf = 0 })
 
+  vim.keymap.set({ "o", "x" }, "ar", function()
+    require("notomo.lib.treesitter.select").textobject("@attribute.outer")
+  end, { buf = 0, silent = true })
+  vim.keymap.set({ "o", "x" }, "ir", function()
+    require("notomo.lib.treesitter.select").textobject("@attribute.inner")
+  end, { buf = 0, silent = true })
+
   vim.keymap.set("n", "sD", function()
     require("notomo.lib.jsx").unwrap()
   end, { silent = true })
@@ -568,6 +575,13 @@ runtime.after.queries.tsx["textobjects.scm"] = [=[
   (jsx_element)
   (jsx_self_closing_element)
 ] @jsx_element.outer
+
+(jsx_attribute) @attribute.outer
+
+(jsx_attribute
+  (property_identifier)
+  (_
+    (_) @attribute.inner))
 ]=]
 
 runtime.after.ftplugin["vim.lua"] = function()

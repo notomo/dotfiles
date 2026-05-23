@@ -73,7 +73,6 @@ function M.start()
 end
 
 function M.setup()
-  require("notomo.plugin.nvim-treesitter").mapping()
   M.start()
 end
 
