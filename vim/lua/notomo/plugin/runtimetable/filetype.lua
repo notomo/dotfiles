@@ -84,6 +84,13 @@ runtime.after.ftplugin["go.lua"] = function()
   vim.keymap.set("ia", "~=", [[!=]], { buf = 0 })
 
   require("notomo.lib.treesitter").setup()
+
+  vim.keymap.set({ "n", "x" }, "sgj", function()
+    require("notomo.lib.treesitter.navigation").go_to_next()
+  end, { buf = 0 })
+  vim.keymap.set({ "n", "x" }, "sgk", function()
+    require("notomo.lib.treesitter.navigation").go_to_prev()
+  end, { buf = 0 })
 end
 
 runtime.after.queries.go["highlights.scm"] = [=[
@@ -266,6 +273,13 @@ runtime.after.ftplugin["lua.lua"] = function()
 
   require("notomo.lib.treesitter").setup()
 
+  vim.keymap.set({ "n", "x" }, "sgj", function()
+    require("notomo.lib.treesitter.navigation").go_to_next()
+  end, { buf = 0 })
+  vim.keymap.set({ "n", "x" }, "sgk", function()
+    require("notomo.lib.treesitter.navigation").go_to_prev()
+  end, { buf = 0 })
+
   if vim.endswith(vim.api.nvim_buf_get_name(0), "/runtimetable/filetype.lua") then
     vim.keymap.set({ "n", "x" }, "sgj", function()
       require("thetto.util.source").go_to_next("vim/line", {
@@ -404,13 +418,6 @@ runtime.after.ftplugin["python.lua"] = function()
   vim.b.cursorword = 0
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
-
-  vim.keymap.set({ "n", "x" }, "sgj", function()
-    require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
-  end, { buf = 0 })
-  vim.keymap.set({ "n", "x" }, "sgk", function()
-    require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
-  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["requirements.lua"] = function()
@@ -427,13 +434,6 @@ runtime.after.ftplugin["rust.lua"] = function()
   vim.opt_local.modeline = false
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
-
-  vim.keymap.set({ "n", "x" }, "sgj", function()
-    require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
-  end, { buf = 0 })
-  vim.keymap.set({ "n", "x" }, "sgk", function()
-    require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
-  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["scheme.lua"] = function()
@@ -460,10 +460,10 @@ runtime.after.ftplugin["terraform.lua"] = function()
   end)
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
-    require("notomo.lib.terraform").go_to_next_resouce()
+    require("notomo.lib.treesitter.navigation").go_to_next()
   end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
-    require("notomo.lib.terraform").go_to_prev_resouce()
+    require("notomo.lib.treesitter.navigation").go_to_prev()
   end, { buf = 0 })
 end
 
@@ -484,10 +484,10 @@ runtime.after.ftplugin["typescript.lua"] = function()
   require("notomo.lib.treesitter").setup()
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
-    require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
+    require("notomo.lib.treesitter.navigation").go_to_next()
   end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
-    require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
+    require("notomo.lib.treesitter.navigation").go_to_prev()
   end, { buf = 0 })
 
   vim.keymap.set("n", "[file]W", function()
@@ -541,10 +541,10 @@ runtime.after.ftplugin["typescriptreact.lua"] = function()
   end, { buf = 0 })
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
-    require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
+    require("notomo.lib.treesitter.navigation").go_to_next()
   end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
-    require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
+    require("notomo.lib.treesitter.navigation").go_to_prev()
   end, { buf = 0 })
 
   vim.keymap.set("n", "sD", function()
@@ -658,10 +658,10 @@ runtime.after.ftplugin["prisma.lua"] = function()
   require("notomo.lib.treesitter").setup()
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
-    require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
+    require("notomo.lib.treesitter.navigation").go_to_next()
   end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
-    require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
+    require("notomo.lib.treesitter.navigation").go_to_prev()
   end, { buf = 0 })
 end
 
@@ -704,10 +704,10 @@ runtime.after.ftplugin["moonbit.lua"] = function()
   require("notomo.lib.treesitter").setup()
 
   vim.keymap.set({ "n", "x" }, "sgj", function()
-    require("thetto.util.source").go_to_next("vim/lsp/document_symbol")
+    require("notomo.lib.treesitter.navigation").go_to_next()
   end, { buf = 0 })
   vim.keymap.set({ "n", "x" }, "sgk", function()
-    require("thetto.util.source").go_to_previous("vim/lsp/document_symbol")
+    require("notomo.lib.treesitter.navigation").go_to_prev()
   end, { buf = 0 })
 end
 
