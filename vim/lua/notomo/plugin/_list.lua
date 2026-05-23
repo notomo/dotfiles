@@ -330,51 +330,6 @@ mypack.add("notomo/gettest.nvim", {
   load_on = { modules = { "gettest" } },
 })
 
-optpack.add("mfussenegger/nvim-dap", {
-  load_on = {
-    modules = { "dap" },
-    filetypes = { "go", "lua" },
-  },
-  hooks = {
-    post_add = function()
-      vim.keymap.set("n", "[term]s", [[<Cmd>lua require("dap").step_into()<CR>]])
-      vim.keymap.set("n", "[term]S", [[<Cmd>lua require("dap").step_out()<CR>]])
-      vim.keymap.set("n", "[term]b", [[<Cmd>lua require("dap").toggle_breakpoint()<CR>]])
-      vim.keymap.set("n", "[term]B", function()
-        vim.ui.input({
-          prompt = "Break point condition expr: ",
-        }, function(condition)
-          if not condition then
-            return
-          end
-          vim.schedule(function()
-            require("dap").set_breakpoint(condition)
-          end)
-        end)
-      end)
-      vim.keymap.set("n", "[term]l", [[<Cmd>lua require("dap").step_over()<CR>]])
-      vim.keymap.set("n", "[term]c", [[<Cmd>lua require("dap").continue()<CR>]])
-      vim.keymap.set("n", "[term]C", [[<Cmd>lua require("dap").run_to_cursor()<CR>]])
-      vim.keymap.set("n", "[term]R", [[<Cmd>lua require("dap").restart()<CR>]])
-      vim.keymap.set("n", "[term]f", function()
-        require("dap").disconnect()
-        require("dap").close()
-      end)
-      vim.keymap.set("n", "[term]F", [[<Cmd>lua require("dap").clear_breakpoints()<CR>]])
-      vim.keymap.set("n", "<CR>", function()
-        if not require("dap").session() then
-          return "<CR>"
-        end
-        vim.schedule(function()
-          require("dap.ui.widgets").hover()
-        end)
-        return ""
-      end, { expr = true })
-    end,
-    post_load = require_fn("notomo.plugin.nvim-dap"),
-  },
-})
-
 mypack.add("notomo/vendorlib.nvim", {
   load_on = { modules = { "vendorlib" } },
 })

@@ -284,26 +284,6 @@ runtime.after.ftplugin["lua.lua"] = function()
   end
 
   if vim.endswith(vim.fn.bufname(), "_spec.lua") then
-    vim.keymap.set("n", "[test]d", function()
-      local test = require("gettest").nodes({
-        scope = "smallest_ancestor",
-        target = { row = vim.fn.line(".") },
-      })[1]
-      if not test then
-        require("notomo.lib.message").warn("not found test")
-        return nil
-      end
-
-      require("dap").run({
-        name = "Debug vusted",
-        type = "local-lua",
-        cwd = vim.fs.root(0, ".git") or vim.uv.cwd(),
-        request = "launch",
-        program = { command = "vusted" },
-        args = { "${file}" },
-      })
-    end, { buf = 0 })
-
     vim.keymap.set("n", "[test]D", function()
       local test = require("gettest").nodes({
         scope = "smallest_ancestor",
