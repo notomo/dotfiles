@@ -5,7 +5,7 @@ M.select = {
 SELECT
   ${1:*}
 FROM
-  ${0:table}
+  ${2:table}
 ]],
 }
 
@@ -16,50 +16,50 @@ SELECT
 FROM
   ${2:table}
 WHERE
-  ${0:condition}
+  ${3:condition}
 ]],
 }
 
 M.insert_into = {
   body = [[
-INSERT INTO ${1:table} (${2:columns}) VALUES (${0:values});
+INSERT INTO ${1:table} (${2:columns}) VALUES (${3:values});
 ]],
 }
 
 M.update = {
   body = [[
-UPDATE ${1:table} SET ${2:column} = ${3:value} WHERE ${0:condition};
+UPDATE ${1:table} SET ${2:column} = ${3:value} WHERE ${4:condition};
 ]],
 }
 
 M.left_join = {
   body = [[
-LEFT JOIN ${1:table} ${2:t} ON $2.${3:id} = ${4:other}.${0:id}
+LEFT JOIN ${1:table} ${2:t} ON $2.${3:id} = ${4:other}.${5:id}
 ]],
 }
 
 M.where = {
   body = [[
 WHERE
-  ${0:condition}
+  ${1:condition}
 ]],
 }
 
 M.group_by = {
   body = [[
-GROUP BY ${0:column}
+GROUP BY ${1:column}
 ]],
 }
 
 M.order_by = {
   body = [[
-ORDER BY ${0:column}
+ORDER BY ${1:column}
 ]],
 }
 
 M.count = {
   body = [[
-COUNT(${0:column})
+COUNT(${1:column})
 ]],
 }
 

@@ -108,27 +108,27 @@ M.augroup = {
 }
 
 M.namespace = {
-  body = [[local ns = vim.api.nvim_create_namespace("${0:name}")]],
+  body = [[local ns = vim.api.nvim_create_namespace("${1:name}")]],
 }
 
 M.doc = {
-  body = [[--- ${0:description}]],
+  body = [[--- ${1:description}]],
 }
 
 M.doc_param = {
-  body = [[--- @param ${1:name} ${2:type} ${0:description}]],
+  body = [[--- @param ${1:name} ${2:type} ${3:description}]],
 }
 
 M.doc_return = {
-  body = [[--- @return ${1:type} # ${0:description}]],
+  body = [[--- @return ${1:type} # ${2:description}]],
 }
 
 M.doc_class = {
-  body = [[--- @class ${0:name}]],
+  body = [[--- @class ${1:name}]],
 }
 
 M.doc_field = {
-  body = [[--- @field ${1:name} ${2:type} ${0:description}]],
+  body = [[--- @field ${1:name} ${2:type} ${3:description}]],
 }
 
 return M
