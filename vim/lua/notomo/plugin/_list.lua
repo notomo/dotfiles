@@ -276,13 +276,12 @@ mypack.add("notomo/suball.nvim", {
   hooks = { post_add = require_fn("notomo.plugin.suball") },
 })
 
-local nvim_treesitter = optpack.add("nvim-treesitter/nvim-treesitter", {
+local nvim_treesitter = mypack.add("notomo/nvim-treesitter", {
   load_on = {
     cmds = { "TS*" },
     modules = { "nvim-treesitter" },
     events = { "FileType" },
   },
-  fetch = { version = "main" },
   hooks = {
     post_load = function(plugin)
       vim.api.nvim_create_autocmd("User", {
@@ -290,7 +289,7 @@ local nvim_treesitter = optpack.add("nvim-treesitter/nvim-treesitter", {
         callback = function()
           require("nvim-treesitter.parsers").moonbit = {
             install_info = {
-              revision = "a5a7e0b9cb2db740cfcc4232b2f16493b42a0c82",
+              revision = "ebdb3f38d46309a3a7f81c2af357da05ec8a4470",
               url = "https://github.com/moonbitlang/tree-sitter-moonbit",
               queries = "queries",
             },
