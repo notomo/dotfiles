@@ -109,3 +109,11 @@ vim.api.nvim_create_autocmd({ "BufRead" }, {
     vim.keymap.set("i", "jq", [[<ESC><Cmd>quit!<CR>]], { buf = 0 })
   end,
 })
+
+vim.api.nvim_create_autocmd({ "User" }, {
+  group = group,
+  pattern = { "KiviRenamed" },
+  callback = function(args)
+    require("notomo.lsp.rename").apply(args.data.renames)
+  end,
+})
