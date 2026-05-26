@@ -200,16 +200,6 @@ mypack.add("notomo/thetto.nvim", {
   },
 })
 
-optpack.add("yioneko/nvim-vtsls", {
-  load_on = {
-    modules = { "vtsls" },
-    filetypes = { "typescript", "typescriptreact" },
-  },
-  hooks = {
-    post_load = require_fn("notomo.plugin.nvim-vtsls"),
-  },
-})
-
 mypack.add("notomo/kivi.nvim", {
   load_on = { modules = { "kivi" } },
   hooks = {
