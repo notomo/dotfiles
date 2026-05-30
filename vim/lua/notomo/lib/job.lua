@@ -1,17 +1,18 @@
 local M = {}
 
-function M.run(cmd, raw_opts)
+function M.run(cmd, raw_opts, on_exit)
   raw_opts = raw_opts or {}
 
   local cmd_name = table.concat(cmd, " ")
-  local prefix = ("[%s]: "):format(cmd_name)
+  local prefix = raw_opts.prefix or ("[%s]: "):format(cmd_name)
 
   local notify = raw_opts.notify or vim.notify
   local cwd = raw_opts.cwd or "."
   notify(prefix .. "starting")
   return vim.system(cmd, {
     cwd = cwd,
-    stdout = function(_, data)
+    env = raw_opts.env,
+    stdout = raw_opts.stdout or function(_, data)
       if not data then
         return
       end
@@ -33,7 +34,7 @@ function M.run(cmd, raw_opts)
         end
       end)
     end,
-  }, function(o)
+  }, on_exit or function(o)
     vim.schedule(function()
       notify(prefix .. ("exit: %d"):format(o.code))
     end)

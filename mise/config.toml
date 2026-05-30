@@ -16,6 +16,7 @@ sqlite = "latest"
 gh = "latest"
 "github:neovim/neovim" = "nightly"
 
+"github:k1LoW/mo" = "latest"
 "go:golang.org/x/tools/cmd/goimports" = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
 "go:github.com/go-delve/delve/cmd/dlv" = "latest"

@@ -122,7 +122,8 @@ function M.install_plugins()
 end
 
 function M.preview()
-  vim.cmd.PrevimOpen()
+  local cwd = require("notomo.lib.git.repository").root() or vim.fn.getcwd()
+  require("notomo.lib.browser").preview(cwd)
 end
 
 function M.test_highlight()

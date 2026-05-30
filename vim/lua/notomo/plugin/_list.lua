@@ -360,22 +360,6 @@ mypack.add("notomo/listdefined.nvim", {
   load_on = { modules = { "listdefined" } },
 })
 
-optpack.add("previm/previm", {
-  load_on = {
-    filetypes = { "markdown", "html" },
-  },
-  hooks = {
-    pre_load = function()
-      if vim.fn.has("wsl") == 1 then
-        vim.g.previm_open_cmd = "wslview"
-      elseif vim.fn.has("mac") == 1 then
-        vim.g.previm_open_cmd = "open -a Google\\ Chrome"
-      end
-      vim.g.previm_enable_realtime = 1
-    end,
-  },
-})
-
 mypack.add("notomo/waitevent.nvim", {
   load_on = {
     modules = { "waitevent" },
