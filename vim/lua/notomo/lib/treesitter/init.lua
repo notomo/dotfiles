@@ -68,12 +68,8 @@ function M.get_current_function_range()
   return "not found"
 end
 
-function M.start()
-  vim.treesitter.start()
-end
-
 function M.setup()
-  M.start()
+  vim.treesitter.start()
 end
 
 function M.get_expanded_row_range(bufnr, row, column)

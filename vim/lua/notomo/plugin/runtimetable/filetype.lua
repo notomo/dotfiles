@@ -418,6 +418,13 @@ runtime.after.ftplugin["python.lua"] = function()
   vim.b.cursorword = 0
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
+
+  vim.keymap.set({ "n", "x" }, "sgj", function()
+    require("notomo.lib.treesitter.navigation").go_to_next()
+  end, { buf = 0 })
+  vim.keymap.set({ "n", "x" }, "sgk", function()
+    require("notomo.lib.treesitter.navigation").go_to_prev()
+  end, { buf = 0 })
 end
 
 runtime.after.ftplugin["requirements.lua"] = function()

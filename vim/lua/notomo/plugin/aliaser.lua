@@ -60,6 +60,7 @@ function M.ready_parser()
     "bash", -- workaround: not to use builtin bash parser
     "cpp",
     "rust",
+    "python",
   }) do
     vim.cmd.TSInstall(language)
   end

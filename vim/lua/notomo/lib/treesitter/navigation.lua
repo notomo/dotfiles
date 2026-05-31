@@ -35,6 +35,11 @@ local declarations_by_filetype = {
     "generator_declaration",
     "type_declaration",
   },
+  python = {
+    "function_definition",
+    "class_definition",
+    "decorated_definition",
+  },
   moonbit = {
     "function_definition",
     "trait_definition",
