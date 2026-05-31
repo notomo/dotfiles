@@ -218,6 +218,41 @@ vim.lsp.config("gopls", {
   },
 })
 
+vim.lsp.config("pyrefly", {
+  cmd = { "pyrefly", "lsp" },
+  root_markers = {
+    "requirements.txt",
+    ".git",
+  },
+})
+
+vim.lsp.config("jsonls", {
+  cmd = { "vscode-json-language-server" },
+  root_markers = {
+    ".git",
+  },
+  init_options = {
+    provideFormatter = true,
+  },
+})
+
+vim.lsp.config("prismals", {
+  cmd = { "prisma-language-server", "--stdio" },
+  root_markers = {
+    "package.json",
+  },
+  settings = {
+    prisma = {
+      prismaFmtBinPath = "",
+    },
+  },
+})
+
+vim.lsp.config("terraformls", {
+  cmd = { "terraform-ls", "serve" },
+  root_markers = { ".terraform" },
+})
+
 local function root_dir_with_package(root_markers, package_names)
   return function(bufnr, cb)
     local path = vim.api.nvim_buf_get_name(bufnr)

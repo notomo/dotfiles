@@ -4,24 +4,15 @@ local M = {}
 
 local filetype_servers = {
   lua = { "lua_ls" },
-  typescript = { "vtsls", "biome", "denols", "copilot" },
-  typescriptreact = { "vtsls", "tailwindcss", "biome", "copilot" },
-  css = { "cssls" },
-  yaml = { "yamlls" },
-  rust = { "rust_analyzer" },
-  go = { "gopls", "copilot" },
-  python = { "pylsp" },
+  typescript = { "vtsls", "biome", "denols" },
+  typescriptreact = { "vtsls", "tailwindcss", "biome" },
+  go = { "gopls" },
+  python = { "pyrefly" },
   json = { "jsonls" },
   jsonc = { "jsonls" },
   prisma = { "prismals" },
-  zig = { "zls" },
-  astro = { "astro" },
-  terraform = { "terraformls", "copilot" },
-  graphql = { "graphql" },
-  c = { "clangd" },
-  ocaml = { "ocamllsp" },
+  terraform = { "terraformls" },
   moonbit = { "moonbit-lsp", "tailwindcss" },
-  svelte = { "svelte" },
 }
 
 function M.setup(raw_opts)
