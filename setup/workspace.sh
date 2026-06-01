@@ -14,6 +14,7 @@ fi
 ln -sf "$DOTFILES_DIR/vim/lua" "$HOME/.config/nvim/lua"
 ln -sf "$DOTFILES_DIR/vim/lua/notomo/init.lua" "$HOME/.config/nvim/init.lua"
 ln -sf "$DOTFILES_DIR/mise/config.toml" "$HOME/.config/mise/config.toml"
+command -v mise &>/dev/null && mise trust "$DOTFILES_DIR" >/dev/null 2>&1 || true
 ln -sf "$DOTFILES_DIR/tool/.procs.toml" "$HOME/.procs.toml"
 mkdir -p "$HOME/.config/wezterm"
 ln -sf "$DOTFILES_DIR/tool/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"

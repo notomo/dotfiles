@@ -1,5 +1,7 @@
 [settings]
 exec_auto_install = false
+lockfile = true
+minimum_release_age = "14d"
 
 [tools]
 go = "1.26"
@@ -14,7 +16,6 @@ sqlite = "latest"
 
 "aws-cli" = "latest"
 gh = "latest"
-"github:neovim/neovim" = "nightly"
 
 "github:k1LoW/mo" = "latest"
 "go:golang.org/x/tools/cmd/goimports" = "latest"
@@ -52,6 +53,10 @@ lua = "5.1"
 
 opam = "latest"
 "github:containers/bubblewrap" = "latest"
+
+[tools."github:neovim/neovim"]
+version = "nightly"
+minimum_release_age = "0s"
 
 [tools.rust]
 version = "nightly"
