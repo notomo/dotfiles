@@ -726,43 +726,43 @@ url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.zip
 url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/434283997"
 
 [[tools."github:universal-ctags/ctags-nightly-build"]]
-version = "2025.11.14+4df2e1047d3be2fe1024efaacf59d030f7dad218"
+version = "2026.05.14+173707379ee89beaea30896652bd23931cb2f08d"
 backend = "github:universal-ctags/ctags-nightly-build"
 
 [tools."github:universal-ctags/ctags-nightly-build"."platforms.linux-arm64"]
-checksum = "sha256:2718dac8e97892472e4e7c076c7bf5e330c4e13d311d1991684245de0ae4c405"
-url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2025.11.14%2B4df2e1047d3be2fe1024efaacf59d030f7dad218/uctags-2025.11.14-linux-aarch64.release.tar.gz"
-url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/316305339"
+checksum = "sha256:efd116f9791832822d5431d46d17db97992feb8807170f4b3e9aff0ce4543d4e"
+url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2026.05.14%2B173707379ee89beaea30896652bd23931cb2f08d/uctags-2026.05.14-linux-aarch64.release.tar.gz"
+url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/420228761"
 
 [tools."github:universal-ctags/ctags-nightly-build"."platforms.linux-arm64-musl"]
-checksum = "sha256:2718dac8e97892472e4e7c076c7bf5e330c4e13d311d1991684245de0ae4c405"
-url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2025.11.14%2B4df2e1047d3be2fe1024efaacf59d030f7dad218/uctags-2025.11.14-linux-aarch64.release.tar.gz"
-url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/316305339"
+checksum = "sha256:efd116f9791832822d5431d46d17db97992feb8807170f4b3e9aff0ce4543d4e"
+url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2026.05.14%2B173707379ee89beaea30896652bd23931cb2f08d/uctags-2026.05.14-linux-aarch64.release.tar.gz"
+url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/420228761"
 
 [tools."github:universal-ctags/ctags-nightly-build"."platforms.linux-x64"]
-checksum = "sha256:e96384d80db5c2924f13279843618c272e5c95935b1dc306d56d3bb585c779b5"
-url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2025.11.14%2B4df2e1047d3be2fe1024efaacf59d030f7dad218/uctags-2025.11.14-linux-x86_64.release.tar.gz"
-url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/316305370"
+checksum = "sha256:aa3d85c13b95030ff4634aa7a8b293a8416c1e3124f109814c7f0dfb23edbedb"
+url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2026.05.14%2B173707379ee89beaea30896652bd23931cb2f08d/uctags-2026.05.14-linux-x86_64.release.tar.gz"
+url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/420228805"
 
 [tools."github:universal-ctags/ctags-nightly-build"."platforms.linux-x64-musl"]
-checksum = "sha256:e96384d80db5c2924f13279843618c272e5c95935b1dc306d56d3bb585c779b5"
-url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2025.11.14%2B4df2e1047d3be2fe1024efaacf59d030f7dad218/uctags-2025.11.14-linux-x86_64.release.tar.gz"
-url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/316305370"
+checksum = "sha256:aa3d85c13b95030ff4634aa7a8b293a8416c1e3124f109814c7f0dfb23edbedb"
+url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2026.05.14%2B173707379ee89beaea30896652bd23931cb2f08d/uctags-2026.05.14-linux-x86_64.release.tar.gz"
+url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/420228805"
 
 [tools."github:universal-ctags/ctags-nightly-build"."platforms.macos-arm64"]
-checksum = "sha256:6b565709ca9154ae8e012d3aad36113606a617806d17cd811734b4f1e61137f4"
-url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2025.11.14%2B4df2e1047d3be2fe1024efaacf59d030f7dad218/uctags-2025.11.14-macos-11.0-arm64.release.tar.gz"
-url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/316305386"
+checksum = "sha256:3525a5b16ef6448a7b03e26251e47c21c232cddc9ff60659f308bfd19a0aeaf0"
+url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2026.05.14%2B173707379ee89beaea30896652bd23931cb2f08d/uctags-2026.05.14-macos-11.0-arm64.release.tar.gz"
+url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/420228824"
 
 [tools."github:universal-ctags/ctags-nightly-build"."platforms.macos-x64"]
-checksum = "sha256:571e8adeede76ad3cd2f6efdebdbee75b1475219718f58685947d2a74073c54e"
-url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2025.11.14%2B4df2e1047d3be2fe1024efaacf59d030f7dad218/uctags-2025.11.14-macos-11.0-x86_64.release.tar.gz"
-url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/316305389"
+checksum = "sha256:45c28ef8d9a7140d1475d1058870cf9cd837231da43ca1ba6c8e35702a2102f1"
+url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2026.05.14%2B173707379ee89beaea30896652bd23931cb2f08d/uctags-2026.05.14-macos-11.0-x86_64.release.tar.gz"
+url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/420228829"
 
 [tools."github:universal-ctags/ctags-nightly-build"."platforms.windows-x64"]
-checksum = "sha256:18260e6ab6830f90eab3996143ebad37cdfdfc844accfd509bcd5beb061416bf"
-url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2025.11.14%2B4df2e1047d3be2fe1024efaacf59d030f7dad218/uctags-2025.11.14-1-x86_64.pkg.tar.xz"
-url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/316305268"
+checksum = "sha256:8d4e0200427a3f366f3b7404b17c7aa3d85cedbfcfee787a21c8b26825d606eb"
+url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/2026.05.14%2B173707379ee89beaea30896652bd23931cb2f08d/uctags-2026.05.14-1-x86_64.pkg.tar.xz"
+url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/420228584"
 
 [[tools.go]]
 version = "1.26.1"
@@ -872,10 +872,6 @@ backend = "npm:@tailwindcss/language-server"
 version = "0.3.0"
 backend = "npm:@vtsls/language-server"
 
-[[tools."npm:eslint"]]
-version = "10.4.0"
-backend = "npm:eslint"
-
 [[tools."npm:fixjson"]]
 version = "1.1.2"
 backend = "npm:fixjson"
@@ -975,10 +971,6 @@ provenance = "github-attestations"
 checksum = "sha256:4d26ade49e9571ccb3bd1a88cfc72c52b11a9a9f6e204a57f38592aed137566a"
 url = "https://github.com/astral-sh/python-build-standalone/releases/download/20260510/cpython-3.14.5+20260510-x86_64-pc-windows-msvc-install_only_stripped.tar.gz"
 provenance = "github-attestations"
-
-[[tools.rust]]
-version = "nightly"
-backend = "core:rust"
 
 [[tools.sqlite]]
 version = "3.53.1"

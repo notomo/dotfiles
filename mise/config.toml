@@ -26,7 +26,6 @@ gh = "latest"
 "npm:fixjson" = "latest"
 "npm:typescript-language-server" = "latest"
 "npm:vscode-langservers-extracted" = "latest"
-"npm:eslint" = "latest"
 "npm:prettier" = "latest"
 "npm:@aikidosec/safe-chain" = "latest"
 "npm:yaml-language-server" = "latest"
@@ -48,7 +47,8 @@ lua = "5.1"
 "aqua:tomnomnom/gron" = "latest"
 "aqua:nektos/act" = "latest"
 "aqua:rhysd/actionlint" = "latest"
-"github:universal-ctags/ctags-nightly-build" = "latest"
+# nightly-build is just for prebuilt binaries; pin a specific build so it never auto-updates
+"github:universal-ctags/ctags-nightly-build" = "2026.05.14+173707379ee89beaea30896652bd23931cb2f08d"
 "aqua:cloudflare/cloudflared" = "latest"
 
 opam = "latest"
@@ -57,10 +57,6 @@ opam = "latest"
 [tools."github:neovim/neovim"]
 version = "nightly"
 minimum_release_age = "0s"
-
-[tools.rust]
-version = "nightly"
-components = "rust-analyzer,rust-src,rustfmt"
 
 [tools."github:dalance/procs"]
 version = "latest"
