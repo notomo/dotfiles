@@ -784,7 +784,16 @@ end, { expr = true })
 
 vim.keymap.set({ "x", "o" }, "<CR>", "an", { remap = true })
 vim.keymap.set({ "x" }, "<Space><CR>", "in", { remap = true })
-vim.keymap.set("n", "<CR>", "van", { remap = true })
+vim.keymap.set("n", "<CR>", function()
+  local parser = vim.treesitter.get_parser(0)
+  if parser then
+    return "van"
+  end
+  if #vim.lsp.get_clients({ bufnr = 0, method = "textDocument/selectionRange" }) > 0 then
+    return "van"
+  end
+  return "<CR>"
+end, { expr = true, remap = true })
 
 vim.keymap.set({ "n", "x", "o" }, "r", function()
   return require("notomo.lib.replace").operator()
