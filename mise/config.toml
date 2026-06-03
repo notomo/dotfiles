@@ -53,6 +53,7 @@ lua = "5.1"
 
 opam = "latest"
 "github:containers/bubblewrap" = "latest"
+uv = "latest"
 
 [tools."github:neovim/neovim"]
 version = "nightly"
