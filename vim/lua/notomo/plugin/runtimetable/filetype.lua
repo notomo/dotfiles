@@ -459,6 +459,16 @@ runtime.after.ftplugin["sql.lua"] = function()
   require("notomo.lsp").setup()
 end
 
+runtime.after.ftplugin["jinja.lua"] = function()
+  require("notomo.lib.treesitter").setup()
+end
+
+runtime.after.queries.jinja["injections.scm"] = [=[
+;; extends
+((content) @injection.content
+  (#set! injection.language "sql"))
+]=]
+
 runtime.after.ftplugin["terraform.lua"] = function()
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()

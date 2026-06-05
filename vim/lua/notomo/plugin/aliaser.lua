@@ -61,6 +61,9 @@ function M.ready_parser()
     "cpp",
     "rust",
     "python",
+    "jinja",
+    "jinja_inline",
+    "sql",
   }) do
     vim.cmd.TSInstall(language)
   end

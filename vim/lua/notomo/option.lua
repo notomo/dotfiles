@@ -134,6 +134,12 @@ vim.filetype.add({
     tf = "terraform",
     mdx = "mdx",
     mbt = "moonbit",
+    sql = function(path)
+      if path:find("/dbt/") then
+        return "jinja"
+      end
+      return "sql"
+    end,
   },
 })
 
