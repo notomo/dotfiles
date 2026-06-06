@@ -218,10 +218,10 @@ vim.lsp.config("gopls", {
   },
 })
 
-vim.lsp.config("pyrefly", {
-  cmd = { "pyrefly", "lsp" },
+vim.lsp.config("ty", {
+  cmd = { "ty", "server" },
   root_markers = {
-    "requirements.txt",
+    "pyproject.toml",
     ".git",
   },
 })
