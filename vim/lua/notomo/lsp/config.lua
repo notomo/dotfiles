@@ -200,7 +200,10 @@ vim.lsp.config("gopls", {
   init_options = {
     staticcheck = true,
     -- https://staticcheck.io/docs/checks
-    analyses = { ST1000 = false },
+    analyses = {
+      ST1000 = false,
+      ST1003 = false,
+    },
     -- codelenses = {test = true},
   },
   settings = {
