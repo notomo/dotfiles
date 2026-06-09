@@ -230,7 +230,7 @@ vim.lsp.config("ty", {
 })
 
 vim.lsp.config("jsonls", {
-  cmd = { "vscode-json-language-server" },
+  cmd = { "vscode-json-language-server", "--stdio" },
   root_markers = {
     ".git",
   },
