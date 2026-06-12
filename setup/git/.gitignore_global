@@ -11,3 +11,4 @@ core
 .mcp.json
 .playwright-mcp
 *.tsbuildinfo
+.venv/
