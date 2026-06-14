@@ -72,6 +72,9 @@ end
 
 function M.plugins()
   local dirs = M._get_plugin_dirs(function(plugin)
+    if plugin.name == "nvim-treesitter" then
+      return false
+    end
     local makefile = vim.fs.joinpath(plugin.directory, "Makefile")
     return vim.fn.filereadable(makefile) == 1
   end)
