@@ -106,6 +106,13 @@ mypack.add("notomo/optpack.nvim", {
 
 mypack.add("notomo/workflow")
 mypack.add("notomo/vusted")
+mypack.add("notomo/ntf", {
+  hooks = {
+    post_add = function(plugin)
+      vim.env.PATH = vim.env.PATH .. ":" .. vim.fs.joinpath(plugin.directory, "bin")
+    end,
+  },
+})
 mypack.add("notomo/genvdoc", {
   load_on = { modules = { "genvdoc" } },
 })
