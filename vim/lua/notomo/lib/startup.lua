@@ -167,7 +167,10 @@ end
 
 function M.requireall()
   ---@diagnostic disable-next-line: duplicate-set-field
-  vim.notify = function(msg)
+  vim.notify = function(msg, level)
+    if (level or vim.log.levels.INFO) < vim.log.levels.INFO then
+      return
+    end
     io.stdout:write(msg .. "\n")
   end
 
