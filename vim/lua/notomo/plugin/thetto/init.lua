@@ -450,6 +450,7 @@ register_source("file/alter", {
   opts = {
     pattern_groups = {
       { "%_test.go", "%.go" },
+      { "test_%.py", "%.py" },
       { "%/spec/lua/%_spec.lua", "%/lua/%.lua" },
       { "%/test/lua/%_spec.lua", "%/lua/%.lua" },
       { "%.c", "%.h" },
