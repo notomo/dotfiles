@@ -112,6 +112,7 @@ mypack.add("notomo/ntf", {
       vim.env.PATH = vim.env.PATH .. ":" .. vim.fs.joinpath(plugin.directory, "bin")
     end,
   },
+  load_on = { modules = { "ntf" } },
 })
 mypack.add("notomo/genvdoc", {
   load_on = { modules = { "genvdoc" } },

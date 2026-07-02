@@ -226,4 +226,8 @@ function M.open_undotree()
   require("misclib.cursor").to_bottom()
 end
 
+function M.toggle_coverage()
+  require("notomo.lib.coverage").toggle()
+end
+
 return M
