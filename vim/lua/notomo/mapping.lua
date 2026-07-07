@@ -875,7 +875,7 @@ vim.keymap.set("n", "[file]W", function()
     height = 1,
   })
   vim.api.nvim_win_call(window_id, function()
-    vim.fn.jobstart({ "sudoedit", path }, { term = true })
+    vim.fn.jobstart({ "sudo", "-e", path }, { term = true })
     vim.cmd.startinsert()
   end)
 end)
