@@ -3,7 +3,6 @@ NVIM := ${NVIM_DIR}/build/bin/nvim
 NVIM_WITH_RUNTIME := VIMRUNTIME=${NVIM_DIR}/runtime ${NVIM}
 ASAN_NVIM := ./bin/asan_nvim
 
-export CC=clang
 unexport LUA_PATH
 unexport LUA_CPATH
 
