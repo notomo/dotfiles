@@ -369,6 +369,18 @@ vim.keymap.set({ "n", "x" }, "[yank]s", function()
   local path = ("%s:%s"):format(relative_path, range_part)
   require("notomo.lib.edit").yank(path)
 end)
+vim.keymap.set({ "x" }, "[yank]p", function()
+  local home = vim.fs.normalize("$HOME")
+  local path = vim.fs.normalize(vim.fn.expand("%:p"))
+  if vim.bo.filetype == "kivi-file" then
+    path = vim.fs.normalize(vim.fn.getcwd())
+  end
+  ---@diagnostic disable-next-line: cast-local-type
+  path = vim.fn.substitute(path, "^" .. home, "~", "")
+  local range = require("misclib.visual_mode").row_range()
+  local range_part = range and ("%d-%d"):format(range.first, range.last) or vim.fn.line(".")
+  require("notomo.lib.edit").yank(("%s:%s"):format(path, range_part))
+end)
 
 vim.keymap.set({ "x", "o" }, "io", "ip")
 vim.keymap.set({ "x", "o" }, "ao", "ap")
