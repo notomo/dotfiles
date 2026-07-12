@@ -24,7 +24,7 @@ local function decorate(bufnr)
   if not path then
     return
   end
-  require("ntf").decorate_coverage({ enable = true, buffer = bufnr, path = path })
+  require("ntf.coverage").decorate({ enable = true, buffer = bufnr, path = path })
 end
 
 function M.toggle()
@@ -48,7 +48,7 @@ function M.toggle()
   pcall(vim.api.nvim_del_augroup_by_name, group_name)
   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
     if vim.api.nvim_buf_is_valid(bufnr) then
-      require("ntf").decorate_coverage({ enable = false, buffer = bufnr })
+      require("ntf.coverage").decorate({ enable = false, buffer = bufnr })
     end
   end
 end
