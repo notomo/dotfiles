@@ -227,7 +227,11 @@ function M.open_undotree()
 end
 
 function M.toggle_coverage()
-  require("notomo.lib.coverage").toggle()
+  require("notomo.lib.ntf").toggle_coverage()
+end
+
+function M.toggle_mutation()
+  require("notomo.lib.ntf").toggle_mutation()
 end
 
 return M
