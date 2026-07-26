@@ -88,6 +88,3 @@ _PUSH:
 	then \
 	  git -C ${TARGET_PATH} push; \
 	fi
-
-install_vusted:
-	luarocks --lua-version=5.1 install vusted

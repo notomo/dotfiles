@@ -105,7 +105,6 @@ mypack.add("notomo/optpack.nvim", {
 })
 
 mypack.add("notomo/workflow")
-mypack.add("notomo/vusted")
 mypack.add("notomo/ntf", {
   hooks = {
     post_add = function(plugin)
