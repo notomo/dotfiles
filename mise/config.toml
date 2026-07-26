@@ -39,7 +39,6 @@ gh = "latest"
 lua = "5.1"
 "aqua:LuaLS/lua-language-server" = "latest"
 "github:JohnnyMorganz/StyLua" = "latest"
-"github:luarocks/luarocks" = "latest"
 
 "aqua:BurntSushi/ripgrep" = "latest"
 "aqua:sharkdp/fd" = "latest"

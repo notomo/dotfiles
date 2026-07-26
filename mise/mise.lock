@@ -647,45 +647,6 @@ url = "https://github.com/k1LoW/mo/releases/download/v1.5.5/mo_v1.5.5_windows_am
 url_api = "https://api.github.com/repos/k1LoW/mo/releases/assets/418525568"
 provenance = "github-attestations"
 
-[[tools."github:luarocks/luarocks"]]
-version = "3.12.2"
-backend = "github:luarocks/luarocks"
-
-[tools."github:luarocks/luarocks"."platforms.linux-arm64"]
-checksum = "sha256:b0e0c85205841ddd7be485f53d6125766d18a81d226588d2366931e9a1484492"
-url = "https://github.com/luarocks/luarocks/releases/download/v3.12.2/luarocks-3.12.2.tar.gz"
-url_api = "https://api.github.com/repos/luarocks/luarocks/releases/assets/267760372"
-
-[tools."github:luarocks/luarocks"."platforms.linux-arm64-musl"]
-checksum = "sha256:b0e0c85205841ddd7be485f53d6125766d18a81d226588d2366931e9a1484492"
-url = "https://github.com/luarocks/luarocks/releases/download/v3.12.2/luarocks-3.12.2.tar.gz"
-url_api = "https://api.github.com/repos/luarocks/luarocks/releases/assets/267760372"
-
-[tools."github:luarocks/luarocks"."platforms.linux-x64"]
-checksum = "sha256:c459bda7773e09bf1b30d162699621863df406d3c832dbe30170daada43679e8"
-url = "https://github.com/luarocks/luarocks/releases/download/v3.12.2/luarocks-3.12.2-linux-x86_64.zip"
-url_api = "https://api.github.com/repos/luarocks/luarocks/releases/assets/267760359"
-
-[tools."github:luarocks/luarocks"."platforms.linux-x64-musl"]
-checksum = "sha256:c459bda7773e09bf1b30d162699621863df406d3c832dbe30170daada43679e8"
-url = "https://github.com/luarocks/luarocks/releases/download/v3.12.2/luarocks-3.12.2-linux-x86_64.zip"
-url_api = "https://api.github.com/repos/luarocks/luarocks/releases/assets/267760359"
-
-[tools."github:luarocks/luarocks"."platforms.macos-arm64"]
-checksum = "sha256:b0e0c85205841ddd7be485f53d6125766d18a81d226588d2366931e9a1484492"
-url = "https://github.com/luarocks/luarocks/releases/download/v3.12.2/luarocks-3.12.2.tar.gz"
-url_api = "https://api.github.com/repos/luarocks/luarocks/releases/assets/267760372"
-
-[tools."github:luarocks/luarocks"."platforms.macos-x64"]
-checksum = "sha256:b0e0c85205841ddd7be485f53d6125766d18a81d226588d2366931e9a1484492"
-url = "https://github.com/luarocks/luarocks/releases/download/v3.12.2/luarocks-3.12.2.tar.gz"
-url_api = "https://api.github.com/repos/luarocks/luarocks/releases/assets/267760372"
-
-[tools."github:luarocks/luarocks"."platforms.windows-x64"]
-checksum = "sha256:735f478c529aca5c52f16913b47b5a25dff8c1fb399cd3dbe179a73841d1bad7"
-url = "https://github.com/luarocks/luarocks/releases/download/v3.12.2/luarocks-3.12.2-win32.zip"
-url_api = "https://api.github.com/repos/luarocks/luarocks/releases/assets/267760379"
-
 [[tools."github:neovim/neovim"]]
 version = "nightly"
 backend = "github:neovim/neovim"

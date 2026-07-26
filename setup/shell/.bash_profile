@@ -10,7 +10,6 @@ fi
 
 export PATH=$HOME/.local/nvim/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.luarocks/bin:$PATH
 export PATH=$PATH:$HOME/bin
 
 osrelease=/proc/sys/kernel/osrelease
