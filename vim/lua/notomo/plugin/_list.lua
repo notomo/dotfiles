@@ -104,7 +104,14 @@ mypack.add("notomo/optpack.nvim", {
   },
 })
 
-mypack.add("notomo/workflow")
+mypack.add("notomo/workflow", {
+  hooks = {
+    post_add = function(plugin)
+      vim.env.WORKFLOW_DIR = plugin.directory
+    end,
+  },
+})
+
 mypack.add("notomo/ntf", {
   hooks = {
     post_add = function(plugin)
