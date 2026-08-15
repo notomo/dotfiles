@@ -1,6 +1,6 @@
 local M = {}
 
---- @param opts {name:string, group_name:string, relative_path:string, decorate:fun(o:table)}
+--- @param opts {name:string, group_name:string, path_of:fun(dir:string):string, decorate:fun(o:table)}
 local function toggler(opts)
   local function is_enabled()
     local ok, autocmds = pcall(vim.api.nvim_get_autocmds, { group = opts.group_name })
@@ -12,7 +12,7 @@ local function toggler(opts)
     if not git_root then
       return
     end
-    local path = vim.fs.joinpath(git_root, opts.relative_path)
+    local path = opts.path_of(git_root)
     if not vim.uv.fs_stat(path) then
       return
     end
@@ -51,7 +51,9 @@ end
 M.toggle_coverage = toggler({
   name = "coverage",
   group_name = "notomo.ntf.coverage",
-  relative_path = "spec/.shared/luacov.stats.out",
+  path_of = function(dir)
+    return require("ntf.coverage").stats_path({ working_dir = dir })
+  end,
   decorate = function(o)
     require("ntf.coverage").decorate(o)
   end,
@@ -60,7 +62,9 @@ M.toggle_coverage = toggler({
 M.toggle_mutation = toggler({
   name = "mutation",
   group_name = "notomo.ntf.mutation",
-  relative_path = "spec/.shared/ntf-mutation.json",
+  path_of = function(dir)
+    return require("ntf.mutation").results_path({ working_dir = dir })
+  end,
   decorate = function(o)
     require("ntf.mutation").decorate(o)
   end,
