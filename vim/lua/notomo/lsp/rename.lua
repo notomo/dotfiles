@@ -69,19 +69,23 @@ local function collect_files(renames, filters)
   return files
 end
 
+--- @async
 local function request_will_rename(client, files)
-  local Promise = require("promise")
-  local promise, resolve, reject = Promise.with_resolvers()
-  local ok = client:request("workspace/willRenameFiles", { files = files }, function(err, result, ctx)
-    if err then
-      return reject(err)
+  local err, value = vim.async.await(function(callback)
+    local ok = client:request("workspace/willRenameFiles", { files = files }, function(request_err, result, ctx)
+      if request_err then
+        return callback(request_err)
+      end
+      callback(nil, { result = result, ctx = ctx })
+    end)
+    if not ok then
+      callback(("willRenameFiles request failed: %s"):format(client.name))
     end
-    resolve({ result = result, ctx = ctx })
   end)
-  if not ok then
-    reject(("willRenameFiles request failed: %s"):format(client.name))
+  if err then
+    error(err, 0)
   end
-  return promise
+  return value
 end
 
 local function apply_will_rename_result(value)
@@ -104,22 +108,24 @@ local function apply_for_client(client, renames)
   local did_files = file_ops.didRename and collect_files(renames, file_ops.didRename.filters) or {}
   local will_files = file_ops.willRename and collect_files(renames, file_ops.willRename.filters) or {}
 
-  local Promise = require("promise")
-  local will_done
-  if #will_files == 0 then
-    will_done = Promise.resolve()
-  else
-    will_done = request_will_rename(client, will_files):next(apply_will_rename_result):catch(function(err)
-      require("notomo.lib.message").warn(err)
-    end)
-  end
+  --- @async
+  --- @return nil
+  local apply = function()
+    if #will_files > 0 then
+      local ok, err = pcall(function()
+        apply_will_rename_result(request_will_rename(client, will_files))
+      end)
+      if not ok then
+        require("notomo.lib.message").warn(err)
+      end
+    end
 
-  will_done:finally(function()
     if #did_files == 0 then
       return
     end
     client:notify("workspace/didRenameFiles", { files = did_files })
-  end)
+  end
+  require("notomo.lib.async").run(apply)
 end
 
 function M.apply(renames)

@@ -1,16 +1,25 @@
 local M = {}
 
+--- @async
+--- @return nil
 function M._load_plugins()
   local optpack = require("optpack")
-  local promises = vim
+  local tasks = vim
     .iter(optpack.list())
     :map(function(plugin)
-      return require("promise").new(function(resolve)
-        optpack.load(plugin.name, { on_finished = resolve })
-      end)
+      --- @async
+      --- @return nil
+      local load = function()
+        vim.async.await(function(callback)
+          optpack.load(plugin.name, { on_finished = callback })
+        end)
+      end
+      return vim.async.run(load)
     end)
     :totable()
-  return require("promise").all(promises)
+  for _, task in ipairs(tasks) do
+    vim.async.await(task)
+  end
 end
 
 function M.update_plugins()
@@ -27,47 +36,55 @@ function M.update_plugins()
 end
 
 function M.generate_help_tags()
-  M._load_plugins()
-    :next(function()
+  --- @async
+  --- @return nil
+  local generate = function()
+    local ok, err = pcall(function()
+      M._load_plugins()
       vim.cmd.helptags([[ALL]])
     end)
-    :finally(function()
-      vim.cmd([[message | quitall!]])
-    end)
+    if not ok then
+      vim.api.nvim_echo({ { tostring(err), "Error" } }, true, {})
+    end
+    vim.cmd([[message | quitall!]])
+  end
+  vim.async.run(generate)
 end
 
 function M.test()
-  M._load_plugins()
-    :next(function()
+  --- @async
+  --- @return nil
+  local test = function()
+    local ok, err = pcall(function()
+      M._load_plugins()
       for _, name in ipairs(require("notomo.plugin.lreload")) do
         require("lreload").refresh(name)
       end
+      M._test()
     end)
-    :next(M._test)
-    :next(function()
-      vim.cmd([[message | quitall!]])
-    end)
-    :catch(function(err)
-      vim.api.nvim_echo({ { err, "Error" } }, true, {})
+    if not ok then
+      vim.api.nvim_echo({ { tostring(err), "Error" } }, true, {})
       vim.cmd([[message | cquit!]])
-    end)
+      return
+    end
+    vim.cmd([[message | quitall!]])
+  end
+  vim.async.run(test)
 end
 
+--- @async
+--- @return nil
 function M._test()
-  return require("promise")
-    .new(function(resolve)
-      return resolve(require("kivi").open())
-    end)
-    :next(function()
-      vim.cmd.tabedit()
-      vim.cmd.tabonly()
+  vim.async.await(require("kivi").open())
 
-      vim.fn.feedkeys("tt", "mx")
-      assert(vim.fn.tabpagenr("$") == 2, "tab count")
+  vim.cmd.tabedit()
+  vim.cmd.tabonly()
 
-      vim.fn.feedkeys("th", "mx")
-      assert(vim.fn.tabpagenr() == 1, "tab current")
-    end)
+  vim.fn.feedkeys("tt", "mx")
+  assert(vim.fn.tabpagenr("$") == 2, "tab count")
+
+  vim.fn.feedkeys("th", "mx")
+  assert(vim.fn.tabpagenr() == 1, "tab current")
 end
 
 function M.plugins()
@@ -175,9 +192,13 @@ function M.requireall()
     io.stdout:write(msg .. "\n")
   end
 
-  M._load_plugins():next(function()
+  --- @async
+  --- @return nil
+  local run = function()
+    M._load_plugins()
     require("requireall").execute()
-  end)
+  end
+  vim.async.run(run)
 end
 
 return M

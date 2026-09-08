@@ -47,6 +47,7 @@ M.actions = {
     require("notomo.lib.browser").open(url)
   end,
 
+  --- @async
   action_tab_open = function(items)
     local item = items[1]
     if item == nil then
@@ -62,20 +63,18 @@ M.actions = {
       :totable()
     table.insert(cmd, "help")
 
-    return require("thetto.util.job")
-      .promise(cmd, {
-        on_exit = function() end,
-      })
-      :next(function(output)
-        local bufnr = vim.api.nvim_create_buf(false, true)
+    local output = require("thetto.util.job").await(cmd, {
+      on_exit = function() end,
+    })
 
-        local ch = vim.api.nvim_open_term(bufnr, {})
-        vim.api.nvim_chan_send(ch, output)
+    local bufnr = vim.api.nvim_create_buf(false, true)
 
-        vim.cmd.tabedit()
-        vim.cmd.buffer(bufnr)
-        vim.bo.bufhidden = "wipe"
-      end)
+    local ch = vim.api.nvim_open_term(bufnr, {})
+    vim.api.nvim_chan_send(ch, output)
+
+    vim.cmd.tabedit()
+    vim.cmd.buffer(bufnr)
+    vim.bo.bufhidden = "wipe"
   end,
 }
 

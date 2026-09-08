@@ -12,48 +12,50 @@ function M.collect(source_ctx)
     "--configpath",
     vim.fs.joinpath(require("optpack").get("workflow").directory, ".luarc.json"),
   }
-  return require("thetto.util.job")
-    .promise(cmd, {
+  --- @async
+  local collect = function()
+    require("thetto.util.job").await(cmd, {
       cwd = source_ctx.cwd,
       on_exit = function() end,
     })
-    :next(function()
-      local f = assert(io.open(output_path))
-      local content = f:read("*a")
-      f:close()
 
-      local items_map = vim
-        .iter(vim.json.decode(content))
-        :map(function(uri, diagnostics)
-          return vim
-            .iter(diagnostics)
-            :map(function(diagnostic)
-              local path = vim.uri_to_fname(uri)
-              local relative_path = pathlib.to_relative(path, source_ctx.cwd)
-              local row = diagnostic.range.start.line + 1
-              local column = diagnostic.range.start.character
-              local path_part = ("%s:%d:%d"):format(relative_path, row, column)
-              local message = diagnostic.message:gsub("\n", " ")
-              local desc = ("%s %s [%s:%s]"):format(path_part, message, diagnostic.source, diagnostic.code)
-              return {
-                value = message,
-                desc = desc,
-                row = row,
-                column = diagnostic.range.start.character,
-                end_column = diagnostic.range["end"].character,
-                path = path,
-                severity = diagnostic.severity,
-                column_offsets = {
-                  path = 0,
-                  value = #path_part + 1,
-                },
-              }
-            end)
-            :totable()
-        end)
-        :totable()
-      return vim.iter(vim.tbl_values(items_map)):flatten():totable()
-    end)
+    local f = assert(io.open(output_path))
+    local content = f:read("*a")
+    f:close()
+
+    local items_map = vim
+      .iter(vim.json.decode(content))
+      :map(function(uri, diagnostics)
+        return vim
+          .iter(diagnostics)
+          :map(function(diagnostic)
+            local path = vim.uri_to_fname(uri)
+            local relative_path = pathlib.to_relative(path, source_ctx.cwd)
+            local row = diagnostic.range.start.line + 1
+            local column = diagnostic.range.start.character
+            local path_part = ("%s:%d:%d"):format(relative_path, row, column)
+            local message = diagnostic.message:gsub("\n", " ")
+            local desc = ("%s %s [%s:%s]"):format(path_part, message, diagnostic.source, diagnostic.code)
+            return {
+              value = message,
+              desc = desc,
+              row = row,
+              column = diagnostic.range.start.character,
+              end_column = diagnostic.range["end"].character,
+              path = path,
+              severity = diagnostic.severity,
+              column_offsets = {
+                path = 0,
+                value = #path_part + 1,
+              },
+            }
+          end)
+          :totable()
+      end)
+      :totable()
+    return vim.iter(vim.tbl_values(items_map)):flatten():totable()
+  end
+  return vim.async.run(collect)
 end
 
 M.kind_name = "file"

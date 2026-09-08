@@ -431,45 +431,48 @@ vim.keymap.set("n", "[term]N", function()
     return
   end
 
-  require("thetto.util.source")
-    .start_by_name("vim/terminal", {
-      modify_pipeline = require("thetto.util.pipeline").append({
-        require("thetto.util.sorter").field_by_name("bufnr", true),
-        require("thetto.util.filter").item(function(item)
-          local name = vim.api.nvim_buf_get_name(item.bufnr)
-          local path = name:match("^term://(.*)") or ""
-          local root = vim.split(path, "//", { plain = true })[1]
-          if not root then
-            return false
-          end
+  local task = require("thetto.util.source").start_by_name("vim/terminal", {
+    modify_pipeline = require("thetto.util.pipeline").append({
+      require("thetto.util.sorter").field_by_name("bufnr", true),
+      require("thetto.util.filter").item(function(item)
+        local name = vim.api.nvim_buf_get_name(item.bufnr)
+        local path = name:match("^term://(.*)") or ""
+        local root = vim.split(path, "//", { plain = true })[1]
+        if not root then
+          return false
+        end
 
-          local normalized = vim.fs.normalize(root)
-          if not vim.startswith(normalized, git_root) then
-            return false
-          end
+        local normalized = vim.fs.normalize(root)
+        if not vim.startswith(normalized, git_root) then
+          return false
+        end
 
-          return path:match("[:/]claude$")
-        end),
-      }),
-      consumer_opts = {
-        ui = {
-          insert = false,
-        },
+        return path:match("[:/]claude$")
+      end),
+    }),
+    consumer_opts = {
+      ui = {
+        insert = false,
       },
-    }, {
-      consumer_factory = require("thetto.util.consumer").immediate({ action_name = "tab_drop" }),
-    })
-    :next(function(result)
-      if not result or #result > 0 then
-        return
-      end
+    },
+  }, {
+    consumer_factory = require("thetto.util.consumer").immediate({ action_name = "tab_drop" }),
+  })
+  --- @async
+  --- @return nil
+  local open_claude = function()
+    local result = vim.async.await(task)
+    if not result or #result > 0 then
+      return
+    end
 
-      vim.cmd.tabedit()
-      vim.fn.jobstart({ "claude" }, {
-        cwd = git_root,
-        term = true,
-      })
-    end)
+    vim.cmd.tabedit()
+    vim.fn.jobstart({ "claude" }, {
+      cwd = git_root,
+      term = true,
+    })
+  end
+  require("notomo.lib.async").run(open_claude)
 end)
 
 vim.keymap.set("n", "[finder]M", function()
@@ -752,10 +755,14 @@ vim.keymap.set("n", "[git]D", function()
     return require("notomo.lib.message").warn(err)
   end
   local bufnr = require("thetto.util.git").diff_buffer()
-  require("thetto.util.git").diff(git_root, bufnr):next(function()
+  --- @async
+  --- @return nil
+  local open_diff = function()
+    require("thetto.util.git").diff(git_root, bufnr)
     require("thetto.lib.buffer").open_scratch_tab()
     vim.cmd.buffer(bufnr)
-  end)
+  end
+  require("notomo.lib.async").run(open_diff)
 end)
 vim.keymap.set("n", "[git]dd", function()
   local git_root, err = require("thetto.util.git").root()
@@ -764,9 +771,13 @@ vim.keymap.set("n", "[git]dd", function()
   end
   local path = vim.api.nvim_buf_get_name(0)
   local original_cursor = vim.api.nvim_win_get_cursor(0)
-  require("thetto.util.git").compare(git_root, path, "HEAD", path):next(function()
+  --- @async
+  --- @return nil
+  local compare = function()
+    require("thetto.util.git").compare(git_root, path, "HEAD", path)
     vim.api.nvim_win_set_cursor(0, original_cursor)
-  end)
+  end
+  require("notomo.lib.async").run(compare)
 end)
 
 vim.keymap.set("n", "[git]j", function()
