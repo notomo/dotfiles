@@ -34,7 +34,6 @@ end
 function M.collect()
   return vim
     .iter({
-      "notomo/promise.nvim",
       "notomo/misclib.nvim",
       "notomo/assertlib.nvim",
     })

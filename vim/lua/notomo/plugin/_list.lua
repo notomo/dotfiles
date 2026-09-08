@@ -312,10 +312,6 @@ mypack.add("notomo/aliaser.nvim", {
   load_on = { modules = { "aliaser" } },
 })
 
-mypack.add("notomo/promise.nvim", {
-  load_on = { modules = { "promise" } },
-})
-
 mypack.add("notomo/stlparts.nvim", {
   load_on = { events = { "VimEnter" } },
   hooks = {
