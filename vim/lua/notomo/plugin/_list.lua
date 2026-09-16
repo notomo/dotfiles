@@ -108,6 +108,7 @@ mypack.add("notomo/workflow", {
   hooks = {
     post_add = function(plugin)
       vim.env.WORKFLOW_DIR = plugin.directory
+      vim.env.TESTPACK_PACKPATH = vim.fs.joinpath(plugin.directory, "packages")
     end,
   },
 })
