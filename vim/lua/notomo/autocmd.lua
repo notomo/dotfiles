@@ -6,12 +6,18 @@ vim.api.nvim_create_autocmd({
 }, {
   group = group,
   pattern = { "*" },
-  callback = function()
-    if vim.w.notomo_disable_autocd then
+  callback = function(args)
+    local bufnr = args.buf
+    if vim.b[bufnr].notomo_disable_autocd then
+      return
+    end
+    if vim.api.nvim_buf_get_name(bufnr) == "" then
       return
     end
     pcall(function()
-      vim.fn.chdir(vim.fn.expand("%:p:h"), "window")
+      vim.api.nvim_buf_call(bufnr, function()
+        vim.fn.chdir(vim.fn.expand("%:p:h"), "buffer")
+      end)
     end)
   end,
 })
@@ -36,7 +42,9 @@ vim.api.nvim_create_autocmd({
     end
 
     pcall(function()
-      vim.fn.chdir(vim.fs.abspath(working_dir), "window")
+      vim.api.nvim_buf_call(bufnr, function()
+        vim.fn.chdir(vim.fs.abspath(working_dir), "buffer")
+      end)
     end)
   end,
 })

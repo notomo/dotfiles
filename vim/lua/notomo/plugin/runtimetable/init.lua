@@ -8,8 +8,8 @@ vim.keymap.set("n", "[exec]do", function()
     mods = { tab = vim.fn.tabpagenr() },
     args = { vim.fn.expand("~/.local/.mytodo") },
   })
-  vim.w[0].notomo_disable_autocd = true
-  vim.fn.chdir(cwd, "window")
+  vim.b.notomo_disable_autocd = true
+  vim.fn.chdir(cwd, "buffer")
 end)
 vim.filetype.add({
   filename = {
