@@ -418,12 +418,6 @@ mypack.add("notomo/requireall.nvim", {
   },
 })
 
-mypack.add("notomo/redraw-inspect.nvim", {
-  load_on = {
-    modules = { "redraw-inspect" },
-  },
-})
-
 mypack.add("notomo/clpb.nvim", {
   load_on = {
     modules = { "clpb" },

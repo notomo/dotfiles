@@ -144,12 +144,6 @@ function M.reset_runtimetable()
   require("notomo.plugin.runtimetable").save_all()
 end
 
-function M.inspect_redraw()
-  require("redraw-inspect").start({
-    on_redraw = require("redraw-inspect.util").highlight_line(),
-  })
-end
-
 function M.open_in_vscode()
   local git_root = vim.fs.root(".", { ".git" })
   local cmd = { "code", "-r" }
