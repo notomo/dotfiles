@@ -253,8 +253,7 @@ local function set_tabline()
     " ",
     SwitchByFiletype({
       ["kivi-file"] = TruncateLeft(function(ctx)
-        local tab_number = api.nvim_tabpage_get_number(ctx.tab_id)
-        local name = fs.basename(fn.getcwd(ctx.window_id, tab_number)) .. "/"
+        local name = fs.basename(fn.getcwd(-1, -1, get_bufnr(ctx))) .. "/"
         return escape(name)
       end),
       ["thetto"] = TruncateAlter(TabLabel),
