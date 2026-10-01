@@ -127,6 +127,10 @@ end
 
 function M.preview()
   local cwd = require("notomo.lib.git.repository").root() or vim.fn.getcwd()
+  local has_markdown = #vim.fn.glob(cwd .. "/*.md", false, true) > 0
+  if not has_markdown and vim.bo.filetype == "markdown" and vim.fn.filereadable(vim.fn.expand("%:p")) == 1 then
+    cwd = vim.fn.expand("%:p:h")
+  end
   require("notomo.lib.browser").preview(cwd)
 end
 

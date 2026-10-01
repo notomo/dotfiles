@@ -46,6 +46,22 @@ function M.preview(cwd)
         M.open(first_url)
       end)
     end,
+    stderr = function(_, data)
+      if not data then
+        return
+      end
+      local messages = vim.iter(vim.split(vim.trim(data), "\n", { plain = true }))
+        :filter(function(line)
+          local ok, log = pcall(vim.json.decode, line)
+          return not (ok and type(log) == "table" and log.level == "INFO")
+        end)
+        :totable()
+      vim.schedule(function()
+        for _, message in ipairs(messages) do
+          vim.notify("[preview] " .. message, vim.log.levels.WARN)
+        end
+      end)
+    end,
   }, function()
     if is_first then
       preview_url = nil
