@@ -16,7 +16,5 @@ if initializing then
     end,
   })
 else
-  vim.schedule(function()
-    vim.cmd.colorscheme(vim.g.notomo_colorscheme)
-  end)
+  vim.cmd.colorscheme(vim.g.notomo_colorscheme)
 end
