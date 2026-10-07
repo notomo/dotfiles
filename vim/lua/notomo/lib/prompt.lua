@@ -3,7 +3,7 @@ local M = {}
 function M.open()
   vim.api.nvim_create_autocmd({ "BufRead" }, {
     group = vim.api.nvim_create_augroup("notomo.lib.prompt", {}),
-    pattern = { "*/text/prompt.txt" },
+    pattern = { "*/text/*/prompt.txt" },
     callback = function()
       vim.keymap.set("n", "[exec]I", function()
         local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
@@ -25,7 +25,10 @@ function M.open()
     end,
   })
 
-  local file_path = require("notomo.lib.edit").scratch_path("prompt.txt", "text")
+  local cwd = vim.fn.getcwd()
+  local root = vim.fs.root(cwd, ".git") or cwd
+  local file_path =
+    require("notomo.lib.edit").scratch_path(vim.fs.joinpath(vim.fs.basename(root), "prompt.txt"), "text")
   if vim.fn.filereadable(file_path) ~= 1 then
     vim.fn.writefile({}, file_path, "p")
   end
@@ -37,8 +40,6 @@ function M.open()
       return window
     end
   end)
-
-  local cwd = vim.fn.getcwd()
 
   if not window_id then
     vim.api.nvim_open_win(0, true, {
