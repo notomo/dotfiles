@@ -138,30 +138,6 @@ register_kind("github/repository", {
   end,
 })
 
-register_source("github/project", {
-  actions = {
-    action_list_children = function(items)
-      local item = items[1]
-      if not item then
-        return
-      end
-      return require("thetto").start("github/project/item", {
-        opts = {
-          project_url = item.url,
-          query = vim.g.notomo_gh_project_item_query,
-        },
-      })
-    end,
-  },
-})
-
-register_source_alias("github/project/item_with_close", "github/project/item", {
-  opts = {
-    project_url = vim.g.notomo_gh_project_url,
-    query = [[.[] | select((.fieldValues.nodes|any(.field.name == "Iteration")))]],
-  },
-})
-
 register_source_alias("github/pull_request_review", "github/pull_request", {
   opts = {
     extra_args = { "--review-requested=@me" },
