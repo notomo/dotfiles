@@ -70,7 +70,6 @@ RUN <<EOF
   eval "$(cat /home/$USERNAME/.local/.bash_profile)"
   GITHUB_TOKEN=$(echo $GITHUB_TOKEN) mise install \
     node \
-    deno \
     go \
     github:universal-ctags/ctags \
     github:neovim/neovim \

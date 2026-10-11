@@ -494,11 +494,9 @@ runtime.after.ftplugin["typescript.lua"] = function()
 
   require("cmdhndlr").use({
     normal_runner = {
-      { name = "typescript/deno" },
       { name = "typescript/tsx", is_default = true },
     },
     test_runner = {
-      { name = "typescript/deno" },
       { name = "javascript/vitest" },
     },
     format_runner = {

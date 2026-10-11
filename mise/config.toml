@@ -6,7 +6,6 @@ minimum_release_age = "14d"
 [tools]
 go = "1.26"
 node = "24"
-deno = "latest"
 python = "3.14"
 
 terraform = "latest"

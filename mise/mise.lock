@@ -413,39 +413,6 @@ url = "https://awscli.amazonaws.com/AWSCLIV2-2.34.57.pkg"
 [tools.aws-cli."platforms.macos-x64"]
 url = "https://awscli.amazonaws.com/AWSCLIV2-2.34.57.pkg"
 
-[[tools.deno]]
-version = "2.6.3"
-backend = "core:deno"
-
-[tools.deno."platforms.linux-arm64"]
-checksum = "sha256:92c9496e8c71e6b18abf1f728d6223bb682749e4946f24589a7ef8972fec423e"
-url = "https://dl.deno.land/release/v2.6.3/deno-aarch64-unknown-linux-gnu.zip"
-
-[tools.deno."platforms.linux-arm64-musl"]
-checksum = "sha256:92c9496e8c71e6b18abf1f728d6223bb682749e4946f24589a7ef8972fec423e"
-url = "https://dl.deno.land/release/v2.6.3/deno-aarch64-unknown-linux-gnu.zip"
-
-[tools.deno."platforms.linux-x64"]
-checksum = "sha256:b3c24dc6f3982607896bd795fd6bcbdc53f3d11e8d8190b2a07fd1881eb1148a"
-url = "https://dl.deno.land/release/v2.6.3/deno-x86_64-unknown-linux-gnu.zip"
-
-[tools.deno."platforms.linux-x64-musl"]
-checksum = "sha256:b3c24dc6f3982607896bd795fd6bcbdc53f3d11e8d8190b2a07fd1881eb1148a"
-url = "https://dl.deno.land/release/v2.6.3/deno-x86_64-unknown-linux-gnu.zip"
-
-[tools.deno."platforms.macos-arm64"]
-checksum = "sha256:7fdc01002a90a6ac58b8936e5d7a872fa7885db71d51bac7f776b7b790c82085"
-url = "https://dl.deno.land/release/v2.6.3/deno-aarch64-apple-darwin.zip"
-
-[tools.deno."platforms.macos-x64"]
-checksum = "sha256:3942e5af4d25588b506f49155278239c9fa09e7683a912ca091a346a1fc40733"
-url = "https://dl.deno.land/release/v2.6.3/deno-x86_64-apple-darwin.zip"
-
-[tools.deno."platforms.windows-x64"]
-checksum = "sha256:Algorithm"
-url = "https://dl.deno.land/release/v2.6.3/deno-x86_64-pc-windows-msvc.zip"
-
-[[tools.gh]]
 version = "2.92.0"
 backend = "aqua:cli/cli"
 

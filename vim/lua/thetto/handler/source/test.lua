@@ -37,9 +37,7 @@ end
 
 function M.collect(source_ctx)
   local tool_name
-  if require("cmdhndlr").get("test_runner/typescript/deno").working_dir_marker() then
-    tool_name = "deno_test"
-  elseif vim.bo[source_ctx.bufnr].filetype == "moonbit" then
+  if vim.bo[source_ctx.bufnr].filetype == "moonbit" then
     -- noop
   elseif require("cmdhndlr").get("test_runner/typescript/playwright").working_dir_marker() then
     tool_name = "playwright"

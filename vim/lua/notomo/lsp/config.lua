@@ -120,18 +120,10 @@ vim.lsp.config("lua_ls", {
   },
 })
 
-local deno_pattern = { "deno.json", "deno.jsonc", "denops" }
 vim.lsp.config("vtsls", {
   cmd = { "vtsls", "--stdio" },
   root_dir = function(bufnr, cb)
     local path = vim.api.nvim_buf_get_name(bufnr)
-    if path:find("deno:") then
-      return
-    end
-    local is_deno = vim.fs.root(path, deno_pattern)
-    if is_deno then
-      return
-    end
     local found = vim.fs.root(path, { "tsconfig.json" })
       or vim.fs.root(path, { "package.json", "jsconfig.json", ".git" })
       or vim.uv.cwd()
@@ -159,37 +151,6 @@ vim.lsp.config("vtsls", {
     },
     vtsls = {
       enableMoveToFileCodeAction = true,
-    },
-  },
-})
-
-vim.lsp.config("denols", {
-  cmd = { "deno", "lsp" },
-  cmd_env = { NO_COLOR = true },
-  root_dir = function(bufnr, cb)
-    local path = vim.api.nvim_buf_get_name(bufnr)
-    local found = vim.fs.root(path, deno_pattern)
-    if found then
-      cb(found)
-    end
-  end,
-  before_init = function(config)
-    local import_map = vim.fs.joinpath(config.rootPath, "import_map.json")
-    if vim.fn.filereadable(import_map) ~= 1 then
-      return
-    end
-    config.initializationOptions["importMap"] = import_map
-  end,
-  settings = {
-    deno = {
-      enable = true,
-      suggest = {
-        imports = {
-          hosts = {
-            ["https://deno.land"] = true,
-          },
-        },
-      },
     },
   },
 })

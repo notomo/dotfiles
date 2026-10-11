@@ -9,7 +9,6 @@ function M.collect()
       github_api = [[https://docs.github.com/en?query=]],
       ansible = [[https://docs.ansible.com/ansible/latest/index.html#stq=]],
       git = [[http://git-scm.com/search/results?search=]],
-      deno = [[https://deno.land/x?query=]],
       google = [[https://google.com/search?q=]],
     })
     :map(function(name, url_prefix)
