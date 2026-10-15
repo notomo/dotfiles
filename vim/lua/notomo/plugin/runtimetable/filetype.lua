@@ -2,13 +2,13 @@ local runtime = require("runtimetable").new(require("notomo.plugin.runtimetable"
 
 runtime.after.ftplugin["Jenkinsfile.lua"] = function()
   vim.bo.commentstring = "//%s"
-  vim.opt_local.expandtab = true
+  vim.bo.expandtab = true
 end
 
 runtime.after.ftplugin["ansible.lua"] = function()
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
 end
 
 runtime.after.ftplugin["autohotkey.lua"] = function()
@@ -25,9 +25,9 @@ runtime.after.ftplugin["autohotkey.lua"] = function()
 end
 
 runtime.after.ftplugin["c.lua"] = function()
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
 end
@@ -37,8 +37,8 @@ runtime.after.ftplugin["cpp.lua"] = function()
 end
 
 runtime.after.ftplugin["cs.lua"] = function()
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.expandtab = true
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.expandtab = true
 end
 
 runtime.after.ftplugin["diff.lua"] = function()
@@ -46,21 +46,19 @@ runtime.after.ftplugin["diff.lua"] = function()
 end
 
 runtime.after.ftplugin["dune.lua"] = function()
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt_local.iskeyword:remove(".")
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt_local.iskeyword:remove("/")
+  require("notomo.lib.option").remove_local("iskeyword", ".")
+  require("notomo.lib.option").remove_local("iskeyword", "/")
 end
 
 runtime.after.ftplugin["gitcommit.lua"] = function()
-  vim.opt_local.spell = true
-  vim.opt_local.textwidth = 0
+  vim.wo[0][0].spell = true
+  vim.bo.textwidth = 0
   vim.keymap.set("n", "q", [[<Cmd>quit<CR>]], { buf = 0, nowait = true })
 end
 
 runtime.after.ftplugin["go.lua"] = function()
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.expandtab = false
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.expandtab = false
   require("notomo.lsp").setup({ symbol_source = "cmd/ctags" })
 
   vim.keymap.set(
@@ -125,41 +123,41 @@ runtime.after.ftplugin["gomod.lua"] = function()
 end
 
 runtime.after.ftplugin["graphql.lua"] = function()
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["groovy.lua"] = function()
-  vim.opt_local.expandtab = false
+  vim.bo.expandtab = false
 end
 
 runtime.after.ftplugin["help.lua"] = function()
   if vim.bo.buftype ~= "help" then
-    vim.opt_local.list = true
-    vim.opt_local.tabstop = 8
-    vim.opt_local.shiftwidth = 8
-    vim.opt_local.softtabstop = 8
-    vim.opt_local.expandtab = false
-    vim.opt_local.textwidth = 78
-    vim.opt_local.colorcolumn = "+1"
-    vim.opt_local.iskeyword = [=[@,33-126,_,192-255,^|]=]
+    vim.wo[0][0].list = true
+    vim.bo.tabstop = 8
+    vim.bo.shiftwidth = 8
+    vim.bo.softtabstop = 8
+    vim.bo.expandtab = false
+    vim.bo.textwidth = 78
+    vim.wo[0][0].colorcolumn = "+1"
+    vim.bo.iskeyword = [=[@,33-126,_,192-255,^|]=]
   end
 end
 
 runtime.after.ftplugin["html.lua"] = function()
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
 end
 
 runtime.after.ftplugin["javascript.lua"] = function()
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
   require("notomo.lsp").setup()
 
   require("cmdhndlr").use({
@@ -170,10 +168,10 @@ runtime.after.ftplugin["javascript.lua"] = function()
 end
 
 runtime.after.ftplugin["javascriptreact.lua"] = function()
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
 
   require("notomo.lib.treesitter").setup()
 
@@ -206,18 +204,18 @@ runtime.after.ftplugin["json.lua"] = function()
 
     vim.cmd.normal({ args = { "$%k$%" }, bang = true })
   end, { buf = 0 })
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
 
   vim.keymap.set({ "n" }, "<Space>of", function()
     if vim.wo.foldmethod == "indent" then
-      vim.opt_local.foldenable = false
-      vim.opt_local.foldmethod = "manual"
+      vim.wo[0][0].foldenable = false
+      vim.wo[0][0].foldmethod = "manual"
       return
     end
 
-    vim.opt_local.foldenable = true
-    vim.opt_local.foldmethod = "indent"
+    vim.wo[0][0].foldenable = true
+    vim.wo[0][0].foldmethod = "indent"
   end, { buf = 0 })
 
   require("cmdhndlr").use({
@@ -233,10 +231,10 @@ runtime.after.ftplugin["jsonc.lua"] = function()
 end
 
 runtime.after.ftplugin["lua.lua"] = function()
-  vim.opt_local.modeline = false
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
+  vim.bo.modeline = false
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
   vim.keymap.set("n", "[exec]s", [[<Cmd>source %<CR>]], { buf = 0 })
   vim.keymap.set("x", "[exec]s", [[:source<CR>]], { buf = 0 })
   vim.keymap.set("n", "[exec]l", [[':lua ' . getline('.') . '<CR>']], { expr = true, buf = 0 })
@@ -343,19 +341,17 @@ runtime.after.queries.lua["injections.scm"] = [=[
 ]=]
 
 runtime.after.ftplugin["query.lua"] = function()
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  -- vim.opt_local.iskeyword:remove("@-@")
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt_local.iskeyword:remove("?")
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt_local.iskeyword:remove(":")
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  -- require("notomo.lib.option").remove_local("iskeyword", "@-@")
+  require("notomo.lib.option").remove_local("iskeyword", "?")
+  require("notomo.lib.option").remove_local("iskeyword", ":")
 end
 
 runtime.after.ftplugin["markdown.lua"] = function()
-  vim.opt_local.shiftwidth = 0
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
+  vim.bo.shiftwidth = 0
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
 
   vim.keymap.set("n", "[finder]o", function()
     require("thetto.util.source").start_by_name("markdown")
@@ -363,21 +359,21 @@ runtime.after.ftplugin["markdown.lua"] = function()
 end
 
 runtime.after.ftplugin["mdx.lua"] = function()
-  vim.opt_local.shiftwidth = 0
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
+  vim.bo.shiftwidth = 0
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
   vim.treesitter.language.register("markdown", "mdx")
   require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["mydiary.lua"] = function()
-  vim.opt_local.expandtab = true
+  vim.bo.expandtab = true
 end
 
 runtime.after.ftplugin["ocaml.lua"] = function()
   require("notomo.lsp").setup()
   vim.schedule(function()
-    vim.opt_local.indentkeys = ""
+    vim.bo.indentkeys = ""
   end)
   require("cmdhndlr").use({
     normal_runner = {
@@ -394,8 +390,8 @@ runtime.after.ftplugin["ocaml.lua"] = function()
 end
 
 runtime.after.ftplugin["python.lua"] = function()
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.modeline = false
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.modeline = false
   vim.b.cursorword = 0
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
@@ -413,29 +409,29 @@ runtime.after.ftplugin["requirements.lua"] = function()
 end
 
 runtime.after.ftplugin["ruby.lua"] = function()
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
 end
 
 runtime.after.ftplugin["rust.lua"] = function()
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.modeline = false
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.modeline = false
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
 end
 
 runtime.after.ftplugin["scheme.lua"] = function()
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
 end
 
 runtime.after.ftplugin["sql.lua"] = function()
   vim.b.match_ignorecase = 1
   vim.b.match_words = [[\<select\>:\<from\>:\<join\>:\<where\>]]
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
 
   require("notomo.lsp").setup()
 end
@@ -470,11 +466,11 @@ runtime.after.ftplugin["flux.lua"] = function()
 end
 
 runtime.after.ftplugin["typescript.lua"] = function()
-  vim.opt_local.modeline = false
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  vim.bo.modeline = false
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
   require("notomo.lsp").setup()
 
   vim.keymap.set("n", "[exec]bL", [[<Cmd>lua require("cmdhndlr").build({name = 'typescript/tsc'})<CR>]], { buf = 0 })
@@ -507,14 +503,12 @@ end
 
 runtime.after.ftplugin["typescriptreact.lua"] = function()
   vim.treesitter.language.register("tsx", "typescriptreact")
-
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt_local.iskeyword:append("-")
-  vim.opt_local.modeline = false
-  vim.opt_local.completeopt:remove("preview")
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  require("notomo.lib.option").append_local("iskeyword", "-")
+  vim.bo.modeline = false
+  require("notomo.lib.option").remove_local("completeopt", "preview")
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
   require("notomo.lsp").setup()
 
   require("notomo.lib.treesitter").setup()
@@ -581,11 +575,10 @@ runtime.after.queries.tsx["textobjects.scm"] = [=[
 ]=]
 
 runtime.after.ftplugin["vim.lua"] = function()
-  vim.opt_local.foldmethod = "marker"
+  vim.wo[0][0].foldmethod = "marker"
   vim.b.match_words =
     [[\<if\>:\<elseif\>:\<else\>:\<endif\>,\<for\>:\<endfor\>,\<while\>:\<endwhile\>,\<try\>:\<catch\>:\<finally\>:\<endtry\>,\<func\(tion\)\?\>:\<endfunc\(tion\)\?\>,\<augroup [^E]\w*\>:\<augroup END\>]]
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt_local.iskeyword:remove("#")
+  require("notomo.lib.option").remove_local("iskeyword", "#")
 
   vim.keymap.set("n", "[exec]s", [[<Cmd>source %<CR>]], { buf = 0 })
   vim.keymap.set("x", "[exec]s", [[:source<CR>]], { buf = 0 })
@@ -595,13 +588,13 @@ runtime.after.ftplugin["vim.lua"] = function()
 end
 
 runtime.after.ftplugin["vue.lua"] = function()
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
 end
 
 runtime.after.ftplugin["xml.lua"] = function()
-  vim.opt_local.expandtab = false
+  vim.bo.expandtab = false
 end
 
 runtime.after.ftplugin["yaml.lua"] = function()
@@ -650,9 +643,9 @@ runtime.after.ftplugin["unionbuf.lua"] = function()
 end
 
 runtime.after.ftplugin["prisma.lua"] = function()
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
 
   require("notomo.lsp").setup()
   vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -676,16 +669,15 @@ runtime.after.ftplugin["prisma.lua"] = function()
 end
 
 runtime.after.ftplugin["css.lua"] = function()
-  vim.opt_local.tabstop = 2
-  vim.opt_local.softtabstop = 2
-  vim.opt_local.expandtab = true
+  vim.bo.tabstop = 2
+  vim.bo.softtabstop = 2
+  vim.bo.expandtab = true
 
   require("notomo.lsp").setup()
 end
 
 runtime.after.ftplugin["zig.lua"] = function()
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt_local.iskeyword:remove("@-@")
+  require("notomo.lib.option").remove_local("iskeyword", "@-@")
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()
 end
@@ -693,10 +685,9 @@ end
 runtime.after.ftplugin["astro.lua"] = function()
   vim.b.match_words =
     [[<!--:-->,<:>,<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>,<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,<\@<=\([^/!][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>]]
-  ---@diagnostic disable-next-line: undefined-field
-  vim.opt_local.iskeyword:remove("-")
+  require("notomo.lib.option").remove_local("iskeyword", "-")
   vim.schedule(function()
-    vim.opt_local.indentkeys = ""
+    vim.bo.indentkeys = ""
   end)
   require("notomo.lsp").setup()
   require("notomo.lib.treesitter").setup()

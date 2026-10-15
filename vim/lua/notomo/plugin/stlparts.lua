@@ -147,7 +147,7 @@ local function set_statusline()
     })
   )
 
-  vim.opt.statusline = [[%!v:lua.require("stlparts").build("statusline")]]
+  vim.o.statusline = [[%!v:lua.require("stlparts").build("statusline")]]
 end
 set_statusline()
 
@@ -372,6 +372,6 @@ local function set_tabline()
     end,
   })
 
-  vim.opt.tabline = [[%!v:lua.require("stlparts").build("tabline")]]
+  vim.o.tabline = [[%!v:lua.require("stlparts").build("tabline")]]
 end
 set_tabline()

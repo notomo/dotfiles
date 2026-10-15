@@ -303,8 +303,8 @@ local nvim_treesitter = mypack.add("notomo/nvim-treesitter", {
       })
 
       -- prior than builtin
-      vim.opt.runtimepath:remove(plugin.directory)
-      vim.opt.runtimepath:prepend(plugin.directory)
+      require("notomo.lib.option").remove("runtimepath", plugin.directory)
+      require("notomo.lib.option").prepend("runtimepath", plugin.directory)
     end,
   },
 })

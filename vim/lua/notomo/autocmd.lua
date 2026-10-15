@@ -103,7 +103,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   group = group,
   pattern = { "*" },
   callback = function()
-    vim.opt.iminsert = 0
+    vim.o.iminsert = 0
   end,
 })
 

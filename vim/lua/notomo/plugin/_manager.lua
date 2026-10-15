@@ -1,5 +1,5 @@
 local pack_dir = vim.fs.joinpath(vim.fn.stdpath("config"), "packages")
-vim.opt.packpath:prepend(pack_dir)
+require("notomo.lib.option").prepend("packpath", pack_dir)
 
 local manager_dir = vim.fs.joinpath(pack_dir, "pack/mypack/opt/optpack.nvim")
 local initializing = vim.fn.isdirectory(manager_dir) ~= 1

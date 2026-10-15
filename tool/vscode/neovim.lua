@@ -261,12 +261,12 @@ vim.keymap.set("n", "[yank]w", function()
   require("notomo.lib.edit").yank(vim.fn.expand("%:p:h:t"))
 end, { silent = true })
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 vim.keymap.set("n", "sj", [[*N]])
 vim.keymap.set("n", "sk", [[#N]])
 
 local pack_dir = vim.fs.joinpath(vim.fn.stdpath("config"), "packages")
-vim.opt.packpath:prepend(pack_dir)
+require("notomo.lib.option").prepend("packpath", pack_dir)
 
 vim.cmd.packadd([[misclib.nvim]])

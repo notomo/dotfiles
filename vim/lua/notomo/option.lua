@@ -1,5 +1,6 @@
 local vim = vim
-local opt = vim.opt
+local o = vim.o
+local option = require("notomo.lib.option")
 local g = vim.g
 
 if vim.fn.has("mac") ~= 1 then
@@ -48,81 +49,81 @@ if vim.fn.has("win32") == 1 or vim.fn.has("wsl") == 1 then
   vim.g.clipboard = "win32yank"
 end
 
-opt.wrap = false
-opt.showtabline = 2
-opt.signcolumn = "yes"
-opt.ignorecase = true
-opt.smartcase = true
-opt.startofline = true
-opt.lazyredraw = true
-opt.ruler = false
-opt.number = true
-opt.whichwrap = "b,s,h,l,<,>,[,]"
-opt.cursorline = true
-opt.listchars = { tab = "»-", trail = "-", eol = "↲", extends = "»", precedes = "«", nbsp = "%" }
-opt.list = true
-opt.cmdheight = 1
-opt.scrolloff = 8
-opt.sidescrolloff = 24
-opt.showmatch = true
-opt.wildmode = "noselect:lastused,full"
-opt.wildoptions:append("fuzzy")
-opt.switchbuf = "useopen"
-opt.matchpairs:append("<:>")
-opt.shiftwidth = 0
-opt.softtabstop = 4
-opt.tabstop = 4
-opt.clipboard = "unnamed,unnamedplus"
-opt.showmode = false
-opt.nrformats:append("unsigned")
-opt.shortmess:append("I")
-opt.shortmess:append("c")
-opt.shortmess:remove("S")
-opt.diffopt:append("vertical")
-opt.diffopt:append("iwhite")
-opt.diffopt:append("hiddenoff")
-opt.diffopt:append("algorithm:histogram")
-opt.mouse = "a"
-opt.grepprg = [[git\ grep\ -n\ $*]]
-opt.swapfile = false
-opt.expandtab = true
-opt.foldenable = false
-opt.foldtext = ""
-opt.fillchars = "fold: "
+o.wrap = false
+o.showtabline = 2
+o.signcolumn = "yes"
+o.ignorecase = true
+o.smartcase = true
+o.startofline = true
+o.lazyredraw = true
+o.ruler = false
+o.number = true
+o.whichwrap = "b,s,h,l,<,>,[,]"
+o.cursorline = true
+o.listchars = { tab = "»-", trail = "-", eol = "↲", extends = "»", precedes = "«", nbsp = "%" }
+o.list = true
+o.cmdheight = 1
+o.scrolloff = 8
+o.sidescrolloff = 24
+o.showmatch = true
+o.wildmode = "noselect:lastused,full"
+option.append("wildoptions", "fuzzy")
+o.switchbuf = "useopen"
+option.append("matchpairs", "<:>")
+o.shiftwidth = 0
+o.softtabstop = 4
+o.tabstop = 4
+o.clipboard = "unnamed,unnamedplus"
+o.showmode = false
+option.append("nrformats", "unsigned")
+option.append("shortmess", "I")
+option.append("shortmess", "c")
+option.remove("shortmess", "S")
+option.append("diffopt", "vertical")
+option.append("diffopt", "iwhite")
+option.append("diffopt", "hiddenoff")
+option.append("diffopt", "algorithm:histogram")
+o.mouse = "a"
+o.grepprg = [[git\ grep\ -n\ $*]]
+o.swapfile = false
+o.expandtab = true
+o.foldenable = false
+o.foldtext = ""
+o.fillchars = "fold: "
 vim.cmd([[set wildcharm=<C-z>]])
-opt.undofile = true
-opt.undoreload = 10
-opt.updatecount = 0
-opt.keywordprg = ":help"
-opt.sessionoptions:remove("blank")
-opt.sessionoptions:remove("buffers")
-opt.spelllang = "en,cjk"
-opt.shiftround = true
-opt.linebreak = true
-opt.copyindent = true
-opt.preserveindent = true
-opt.fixendofline = false
-opt.tagcase = "match"
-opt.completeopt = "menu,menuone,noselect,fuzzy,popup,nosort"
-opt.termguicolors = true
-opt.spelloptions = "camel"
-opt.cedit = [[<C-q>]]
-opt.cmdwinheight = 12
-opt.guicursor =
+o.undofile = true
+o.undoreload = 10
+o.updatecount = 0
+o.keywordprg = ":help"
+option.remove("sessionoptions", "blank")
+option.remove("sessionoptions", "buffers")
+o.spelllang = "en,cjk"
+o.shiftround = true
+o.linebreak = true
+o.copyindent = true
+o.preserveindent = true
+o.fixendofline = false
+o.tagcase = "match"
+o.completeopt = "menu,menuone,noselect,fuzzy,popup,nosort"
+o.termguicolors = true
+o.spelloptions = "camel"
+o.cedit = [[<C-q>]]
+o.cmdwinheight = 12
+o.guicursor =
   [[n-v-c:block,i-ci-ve-t:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
-opt.pumblend = 30
-opt.pumheight = 20
-opt.pumborder = "rounded"
-opt.shada = [['10,!,<50,/0,s10,h,@10,:100]]
+o.pumblend = 30
+o.pumheight = 20
+o.pumborder = "rounded"
+o.shada = [['10,!,<50,/0,s10,h,@10,:100]]
 if vim.fn.has("win32") ~= 1 then
-  opt.shell = "zsh"
+  o.shell = "zsh"
 end
-opt.shelltemp = false
-opt.laststatus = 3
-opt.mousescroll = "ver:2,hor:6"
-opt.mousemodel = "extend" -- to disable default popup
-opt.isfname:append("@-@,[,],$")
-opt.tabclose = "left"
+o.shelltemp = false
+o.laststatus = 3
+o.mousescroll = "ver:2,hor:6"
+o.mousemodel = "extend" -- to disable default popup
+option.append("isfname", "@-@,[,],$")
+o.tabclose = "left"
 
 vim.filetype.add({
   filename = {

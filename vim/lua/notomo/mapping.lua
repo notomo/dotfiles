@@ -155,12 +155,12 @@ vim.keymap.set("x", "[indent]s", [[=gv]])
 vim.keymap.set("n", "[indent]r", [[<Cmd>left<CR>]])
 vim.keymap.set("x", "[indent]r", [[:left<CR>gv]])
 local function convert_indent_style(to_hard)
-  local tmp = vim.opt.expandtab
-  vim.opt_local.expandtab = not to_hard
+  local tmp = vim.bo.expandtab
+  vim.bo.expandtab = not to_hard
   local is_visual = require("misclib.visual_mode").leave()
   local range = is_visual and "'<,'>" or "."
   vim.cmd(range .. "retab!")
-  vim.opt.expandtab = tmp
+  vim.bo.expandtab = tmp
 end
 vim.keymap.set({ "n", "x" }, "[indent]t", function()
   convert_indent_style(true)
@@ -692,7 +692,7 @@ vim.keymap.set("n", "[term]t", [[<Cmd>tabedit|terminal<CR>]], { silent = true })
 vim.keymap.set("n", "[term]g", function()
   local git_root = require("notomo.lib.git.repository").root() or "."
   vim.cmd.tabedit()
-  vim.fn.jobstart(vim.opt.shell:get(), { cwd = git_root, term = true })
+  vim.fn.jobstart(vim.o.shell, { cwd = git_root, term = true })
 end, { silent = true })
 vim.keymap.set(
   "n",
