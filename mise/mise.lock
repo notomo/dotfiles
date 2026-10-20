@@ -905,6 +905,9 @@ provenance = "github-attestations"
 version = "3.53.1"
 backend = "conda:sqlite"
 
+[tools.sqlite.options]
+channel = "conda-forge"
+
 [tools.sqlite."platforms.linux-arm64"]
 checksum = "sha256:27467e4bfb0681546f149718c33b806fec078185fbaa6a4d17d440bc8f56185c"
 url = "https://conda.anaconda.org/conda-forge/linux-aarch64/sqlite-3.53.1-he8854b5_0.conda"
