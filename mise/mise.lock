@@ -112,6 +112,42 @@ checksum = "sha256:fc89f74bbe362fb29fa3c037697a89bec140b346a2469a90f7936d1d7ea4d
 url = "https://conda.anaconda.org/conda-forge/linux-64/readline-8.3-h853b02a_0.conda"
 checksum = "sha256:12ffde5a6f958e285aa22c191ca01bbd3d6e710aa852e00618fa6ddc59149002"
 
+[conda-packages.macos-arm64."libsqlite-3.53.1-h1b79a29_0"]
+url = "https://conda.anaconda.org/conda-forge/osx-arm64/libsqlite-3.53.1-h1b79a29_0.conda"
+checksum = "sha256:49daec7c83e70d4efc17b813547824bc2bcf2f7256d84061d24fbfe537da9f74"
+
+[conda-packages.macos-arm64."libzlib-1.3.2-h8088a28_3"]
+url = "https://conda.anaconda.org/conda-forge/osx-arm64/libzlib-1.3.2-h8088a28_3.conda"
+checksum = "sha256:a18fa5d5bac452401459f966cf0d872224e8080c4ff93c77e168d43ab42ef9d7"
+
+[conda-packages.macos-arm64."ncurses-6.6-he64c551_1"]
+url = "https://conda.anaconda.org/conda-forge/osx-arm64/ncurses-6.6-he64c551_1.conda"
+checksum = "sha256:7024a48c8c0d0114ed4ab53c76bf9275d50e91ba7cea367a9aead638d3c29c68"
+
+[conda-packages.macos-arm64."readline-8.3-h8b90a29_1"]
+url = "https://conda.anaconda.org/conda-forge/osx-arm64/readline-8.3-h8b90a29_1.conda"
+checksum = "sha256:d6782b430e6dce4fe8c7ac118cd988d5a193eb4a7f60741edfaede58016b6110"
+
+[conda-packages.macos-x64."icu-78.3-py313hbf1d544_2"]
+url = "https://conda.anaconda.org/conda-forge/osx-64/icu-78.3-py313hbf1d544_2.conda"
+checksum = "sha256:3abd86f3441f143b6b3203c92ae0d88dd8396a8857940af468f1fab854cdae57"
+
+[conda-packages.macos-x64."libsqlite-3.53.1-h8f8c405_0"]
+url = "https://conda.anaconda.org/conda-forge/osx-64/libsqlite-3.53.1-h8f8c405_0.conda"
+checksum = "sha256:5e964e07a14180ce20decfd4897e8f81d48ec78c1cbf4af85c5520f535d9510c"
+
+[conda-packages.macos-x64."libzlib-1.3.2-hbb4bfdb_3"]
+url = "https://conda.anaconda.org/conda-forge/osx-64/libzlib-1.3.2-hbb4bfdb_3.conda"
+checksum = "sha256:b2dba286dd6632292b12296e761193b5ef9fb0eaeecaa481f5ba9af72c0c18e1"
+
+[conda-packages.macos-x64."ncurses-6.6-hcc0dc9a_1"]
+url = "https://conda.anaconda.org/conda-forge/osx-64/ncurses-6.6-hcc0dc9a_1.conda"
+checksum = "sha256:12c1d676b9a0e8109b576672519312c5428308f3f3d7706f8717e2f536d5d9e7"
+
+[conda-packages.macos-x64."readline-8.3-h000c2f7_1"]
+url = "https://conda.anaconda.org/conda-forge/osx-64/readline-8.3-h000c2f7_1.conda"
+checksum = "sha256:feb9248a062b7a0738e56339d8c9e87bc9adf8e8c76549fb55b0b2456bec3a57"
+
 [conda-packages.windows-x64."libsqlite-3.53.1-hf5d6505_0"]
 url = "https://conda.anaconda.org/conda-forge/win-64/libsqlite-3.53.1-hf5d6505_0.conda"
 checksum = "sha256:e70562450332ca8954bc16f3455468cca5ef3695c7d7187ecc87f8fc3c70e9eb"
@@ -139,6 +175,11 @@ backend = "aqua:BurntSushi/ripgrep"
 [tools."aqua:BurntSushi/ripgrep"."platforms.linux-arm64"]
 checksum = "sha256:2b661c6ef508e902f388e9098d9c4c5aca72c87b55922d94abdba830b4dc885e"
 url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-aarch64-unknown-linux-gnu.tar.gz"
+
+[tools."aqua:BurntSushi/ripgrep"."platforms.linux-arm64-musl"]
+checksum = "sha256:2b661c6ef508e902f388e9098d9c4c5aca72c87b55922d94abdba830b4dc885e"
+url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/BurntSushi/ripgrep/releases/assets/307306472"
 
 [tools."aqua:BurntSushi/ripgrep"."platforms.linux-x64"]
 checksum = "sha256:1c9297be4a084eea7ecaedf93eb03d058d6faae29bbc57ecdaf5063921491599"
@@ -372,46 +413,54 @@ backend = "aqua:tomnomnom/gron"
 
 [tools."aqua:tomnomnom/gron"."platforms.linux-arm64"]
 url = "https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-arm64-0.7.1.tgz"
+url_api = "https://api.github.com/repos/tomnomnom/gron/releases/assets/62461400"
 
 [tools."aqua:tomnomnom/gron"."platforms.linux-arm64-musl"]
 url = "https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-arm64-0.7.1.tgz"
+url_api = "https://api.github.com/repos/tomnomnom/gron/releases/assets/62461400"
 
 [tools."aqua:tomnomnom/gron"."platforms.linux-x64"]
 url = "https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-amd64-0.7.1.tgz"
+url_api = "https://api.github.com/repos/tomnomnom/gron/releases/assets/62461393"
 
 [tools."aqua:tomnomnom/gron"."platforms.linux-x64-musl"]
 url = "https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-linux-amd64-0.7.1.tgz"
+url_api = "https://api.github.com/repos/tomnomnom/gron/releases/assets/62461393"
 
 [tools."aqua:tomnomnom/gron"."platforms.macos-arm64"]
 url = "https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-darwin-arm64-0.7.1.tgz"
+url_api = "https://api.github.com/repos/tomnomnom/gron/releases/assets/62461399"
 
 [tools."aqua:tomnomnom/gron"."platforms.macos-x64"]
 url = "https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-darwin-amd64-0.7.1.tgz"
+url_api = "https://api.github.com/repos/tomnomnom/gron/releases/assets/62461391"
 
 [tools."aqua:tomnomnom/gron"."platforms.windows-x64"]
 url = "https://github.com/tomnomnom/gron/releases/download/v0.7.1/gron-windows-amd64-0.7.1.zip"
+url_api = "https://api.github.com/repos/tomnomnom/gron/releases/assets/62461392"
 
 [[tools.aws-cli]]
-version = "2.34.57"
+version = "2.38.4"
 backend = "aqua:aws/aws-cli"
 
 [tools.aws-cli."platforms.linux-arm64"]
-url = "https://awscli.amazonaws.com/awscli-exe-linux-aarch64-2.34.57.zip"
+url = "https://awscli.amazonaws.com/awscli-exe-linux-aarch64-2.38.4.zip"
 
 [tools.aws-cli."platforms.linux-arm64-musl"]
-url = "https://awscli.amazonaws.com/awscli-exe-linux-aarch64-2.34.57.zip"
+url = "https://awscli.amazonaws.com/awscli-exe-linux-aarch64-2.38.4.zip"
 
 [tools.aws-cli."platforms.linux-x64"]
-url = "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.34.57.zip"
+checksum = "blake3:d20ce60275e34d4bec95094985c30d7b6d1fd36806332b29e6882f9ca74140b2"
+url = "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.38.4.zip"
 
 [tools.aws-cli."platforms.linux-x64-musl"]
-url = "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.34.57.zip"
+url = "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.38.4.zip"
 
 [tools.aws-cli."platforms.macos-arm64"]
-url = "https://awscli.amazonaws.com/AWSCLIV2-2.34.57.pkg"
+url = "https://awscli.amazonaws.com/AWSCLIV2-2.38.4.pkg"
 
 [tools.aws-cli."platforms.macos-x64"]
-url = "https://awscli.amazonaws.com/AWSCLIV2-2.34.57.pkg"
+url = "https://awscli.amazonaws.com/AWSCLIV2-2.38.4.pkg"
 
 [[tools.gh]]
 version = "2.92.0"
@@ -694,36 +743,36 @@ url = "https://github.com/universal-ctags/ctags-nightly-build/releases/download/
 url_api = "https://api.github.com/repos/universal-ctags/ctags-nightly-build/releases/assets/420228584"
 
 [[tools.go]]
-version = "1.26.1"
+version = "1.26.10"
 backend = "core:go"
 
 [tools.go."platforms.linux-arm64"]
-checksum = "sha256:a290581cfe4fe28ddd737dde3095f3dbeb7f2e4065cab4eae44dfc53b760c2f7"
-url = "https://dl.google.com/go/go1.26.1.linux-arm64.tar.gz"
+checksum = "sha256:3f4227ce7b206a513e794f1393adb473a07b46e94d18bd15d1c684bbb7319797"
+url = "https://dl.google.com/go/go1.26.10.linux-arm64.tar.gz"
 
 [tools.go."platforms.linux-arm64-musl"]
-checksum = "sha256:a290581cfe4fe28ddd737dde3095f3dbeb7f2e4065cab4eae44dfc53b760c2f7"
-url = "https://dl.google.com/go/go1.26.1.linux-arm64.tar.gz"
+checksum = "sha256:3f4227ce7b206a513e794f1393adb473a07b46e94d18bd15d1c684bbb7319797"
+url = "https://dl.google.com/go/go1.26.10.linux-arm64.tar.gz"
 
 [tools.go."platforms.linux-x64"]
-checksum = "sha256:031f088e5d955bab8657ede27ad4e3bc5b7c1ba281f05f245bcc304f327c987a"
-url = "https://dl.google.com/go/go1.26.1.linux-amd64.tar.gz"
+checksum = "sha256:ccfe7ae822d2c2f41f4fe7c956199967a4dac22d0ee0d2b2bfdb440aab3b20c5"
+url = "https://dl.google.com/go/go1.26.10.linux-amd64.tar.gz"
 
 [tools.go."platforms.linux-x64-musl"]
-checksum = "sha256:031f088e5d955bab8657ede27ad4e3bc5b7c1ba281f05f245bcc304f327c987a"
-url = "https://dl.google.com/go/go1.26.1.linux-amd64.tar.gz"
+checksum = "sha256:ccfe7ae822d2c2f41f4fe7c956199967a4dac22d0ee0d2b2bfdb440aab3b20c5"
+url = "https://dl.google.com/go/go1.26.10.linux-amd64.tar.gz"
 
 [tools.go."platforms.macos-arm64"]
-checksum = "sha256:353df43a7811ce284c8938b5f3c7df40b7bfb6f56cb165b150bc40b5e2dd541f"
-url = "https://dl.google.com/go/go1.26.1.darwin-arm64.tar.gz"
+checksum = "sha256:0b5183492292ada170f9b561a834863808dd02edba599e4ad0e89899330020b3"
+url = "https://dl.google.com/go/go1.26.10.darwin-arm64.tar.gz"
 
 [tools.go."platforms.macos-x64"]
-checksum = "sha256:65773dab2f8cc4cd23d93ba6d0a805de150ca0b78378879292be0b903b8cdd08"
-url = "https://dl.google.com/go/go1.26.1.darwin-amd64.tar.gz"
+checksum = "sha256:e820ab780c273ae4a340b79d0f3c4313b74ee029aa3874792145d44b9f4f91da"
+url = "https://dl.google.com/go/go1.26.10.darwin-amd64.tar.gz"
 
 [tools.go."platforms.windows-x64"]
-checksum = "sha256:9b68112c913f45b7aebbf13c036721264bbba7e03a642f8f7490c561eebd1ecc"
-url = "https://dl.google.com/go/go1.26.1.windows-amd64.zip"
+checksum = "sha256:7ecd2d7260e82c59bcbd7f1077a07cee2dea607295b858df67195a1e4e09629b"
+url = "https://dl.google.com/go/go1.26.10.windows-amd64.zip"
 
 [[tools."go:github.com/go-delve/delve/cmd/dlv"]]
 version = "1.26.3"
@@ -746,36 +795,36 @@ version = "5.1"
 backend = "asdf:lua"
 
 [[tools.node]]
-version = "24.21.0"
+version = "24.22.1"
 backend = "core:node"
 
 [tools.node."platforms.linux-arm64"]
-checksum = "sha256:724282c3b43aec998aa9527380465b45d229e021b58035f5f4f63095eabfe5d5"
-url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-linux-arm64.tar.gz"
+checksum = "sha256:33c37be234ba8bee041961047b19160f4d7d0f164e8e246f78bdd10feff148b3"
+url = "https://nodejs.org/dist/v24.22.1/node-v24.22.1-linux-arm64.tar.gz"
 
 [tools.node."platforms.linux-arm64-musl"]
-checksum = "sha256:3048b0811e158ca0d8672b59c839861763e144492980d8d29b369dfee45747e4"
-url = "https://unofficial-builds.nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-arm64-musl.tar.gz"
+checksum = "sha256:8254125825a3e5e834bd8a260dab4c8303f720464a741506ec27989b9ba1769b"
+url = "https://unofficial-builds.nodejs.org/download/release/v24.22.1/node-v24.22.1-linux-arm64-musl.tar.gz"
 
 [tools.node."platforms.linux-x64"]
-checksum = "sha256:6e1db87ef58b8819e5d5402eff1536491b18edd8eb7bee5ef7897876e88dc5ff"
-url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-linux-x64.tar.gz"
+checksum = "sha256:eb6728e77c576a35162c122c45ccadf224d89ff00abc8dae46cc2897c6002d7c"
+url = "https://nodejs.org/dist/v24.22.1/node-v24.22.1-linux-x64.tar.gz"
 
 [tools.node."platforms.linux-x64-musl"]
-checksum = "sha256:01a713e34da98e7b4d2a3191ee7ca3f93dd0384d1a2ef23c379b2161ee6e133a"
-url = "https://unofficial-builds.nodejs.org/download/release/v24.21.0/node-v24.21.0-linux-x64-musl.tar.gz"
+checksum = "sha256:0a9eddce2d2e8f3addbe94fa46d751325b2d74f7fd1ce63296164d36b6dfc6e5"
+url = "https://unofficial-builds.nodejs.org/download/release/v24.22.1/node-v24.22.1-linux-x64-musl.tar.gz"
 
 [tools.node."platforms.macos-arm64"]
-checksum = "sha256:bed7eea5325e1108f32ce5228ddd6a5f0f08a499ee42aa7442aea583702f6057"
-url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-darwin-arm64.tar.gz"
+checksum = "sha256:89c682593d76cd44233fa53b1563264e7de9cbb189cad169135c5b4fadfbc0a7"
+url = "https://nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-arm64.tar.gz"
 
 [tools.node."platforms.macos-x64"]
-checksum = "sha256:1462cb3b3046b815cf8ea436d3da450ec1a9f11dac7e5a46b0ada5305d7e8097"
-url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-darwin-x64.tar.gz"
+checksum = "sha256:d132557e7ee2b85af08b0c8c34338e65c6430f2238d01f727728ef42dc83b035"
+url = "https://nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-x64.tar.gz"
 
 [tools.node."platforms.windows-x64"]
-checksum = "sha256:158f7685b44de51f6c0df1d153526cbcd3e1bc739a8dfc607721cef75de9e541"
-url = "https://nodejs.org/dist/v24.21.0/node-v24.21.0-win-x64.zip"
+checksum = "sha256:d2046d28c2c3dcd211ac5145c0bf30e2047ef9dfb306693c8c6e2eccd8b95fa5"
+url = "https://nodejs.org/dist/v24.22.1/node-v24.22.1-win-x64.zip"
 
 [[tools."npm:@aikidosec/safe-chain"]]
 version = "1.3.3"
@@ -960,6 +1009,27 @@ conda_deps = [
     "libgomp-15.2.0-he0feb66_19",
 ]
 
+[tools.sqlite."platforms.macos-arm64"]
+checksum = "sha256:b26e0b8d945799f53a505192694599c0dd0ee422d9afa7d98c15e6144b6f99f9"
+url = "https://conda.anaconda.org/conda-forge/osx-arm64/sqlite-3.53.1-h85ec8f2_0.conda"
+conda_deps = [
+    "libsqlite-3.53.1-h1b79a29_0",
+    "libzlib-1.3.2-h8088a28_3",
+    "ncurses-6.6-he64c551_1",
+    "readline-8.3-h8b90a29_1",
+]
+
+[tools.sqlite."platforms.macos-x64"]
+checksum = "sha256:0e956bcb99103410108808019f4c85267e1f4ba74250e9f966a29f3e5d854330"
+url = "https://conda.anaconda.org/conda-forge/osx-64/sqlite-3.53.1-h6775aab_0.conda"
+conda_deps = [
+    "libsqlite-3.53.1-h8f8c405_0",
+    "libzlib-1.3.2-hbb4bfdb_3",
+    "ncurses-6.6-hcc0dc9a_1",
+    "readline-8.3-h000c2f7_1",
+    "icu-78.3-py313hbf1d544_2",
+]
+
 [tools.sqlite."platforms.windows-x64"]
 checksum = "sha256:cdac82f7ff491ac4915161e560094ad830606b1316099046e565ef3dda9f58ce"
 url = "https://conda.anaconda.org/conda-forge/win-64/sqlite-3.53.1-hdb435a2_0.conda"
@@ -1036,40 +1106,47 @@ checksum = "sha256:8dcc3a23a8166f5942575d64f6ff5467f6d501fa72bff89941b8cbaeb5ee3
 url = "https://releases.hashicorp.com/terraform-ls/0.38.6/terraform-ls_0.38.6_windows_amd64.zip"
 
 [[tools.uv]]
-version = "0.11.15"
+version = "0.13.5"
 backend = "aqua:astral-sh/uv"
 
 [tools.uv."platforms.linux-arm64"]
-checksum = "sha256:6505075cec3f551fad4fe9026922967ff9c895c9f513c97682b24e7a1c9becd3"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.15/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:4bb69cf95ed13f23713bb7bc09f241896ea0c75b7c557e615a20604b82f9c403"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-aarch64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664335837"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-arm64-musl"]
-checksum = "sha256:6505075cec3f551fad4fe9026922967ff9c895c9f513c97682b24e7a1c9becd3"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.15/uv-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:7906c79adb21c81abd559841ba76bb1d9af9d791acac7a041b2972e03ae16538"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-aarch64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664335857"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64"]
-checksum = "sha256:200ccf2f351849c5d6698714e7e7eb9ead1e8c097dbdbb43730e1a4e059ceb87"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.15/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664336023"
 provenance = "github-attestations"
 
 [tools.uv."platforms.linux-x64-musl"]
-checksum = "sha256:200ccf2f351849c5d6698714e7e7eb9ead1e8c097dbdbb43730e1a4e059ceb87"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.15/uv-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:57ef9d9ccb01fb1bd998df995b0dd221b52f7d7841fbea93f2d4463bf61fb7a9"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664336027"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-arm64"]
-checksum = "sha256:7e5b336108f8576eda1939920ca0a805b4a9a3c3d3eb2f6140e38b7092fbe4f3"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.15/uv-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:743f85035a1996ecb350659e01cd9faea9709829be09b1b4b03c73eaf3c9cd73"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-aarch64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664335803"
 provenance = "github-attestations"
 
 [tools.uv."platforms.macos-x64"]
-checksum = "sha256:42bca7cc879d117ed7139a0e26de8cab0b6f033ad439a32144f324d1f8580d8c"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.15/uv-x86_64-apple-darwin.tar.gz"
+checksum = "sha256:b0f52b0e3945b4107d89024ea38e625683011fbfc05a0d98f9fa2d6dcee28c66"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-apple-darwin.tar.gz"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664335993"
 provenance = "github-attestations"
 
 [tools.uv."platforms.windows-x64"]
-checksum = "sha256:04b98d414a9000e25e5e0e7c9f53749e66b790cdaffc582829e6f58c544ee11c"
-url = "https://github.com/astral-sh/uv/releases/download/0.11.15/uv-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:a38b8d1902b7cfbc76b423ba1bb456f623f42064cdc72628b6075b89afd1019a"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/astral-sh/uv/releases/assets/664336006"
 provenance = "github-attestations"

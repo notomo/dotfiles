@@ -2,6 +2,8 @@
 exec_auto_install = false
 lockfile = true
 minimum_release_age = "14d"
+# TODO: remove after 2026-11-04 (eMudhra intermediate CA compromise fixes: https://emudhra.we-have-a-problem.com/)
+minimum_release_age_excludes = ["aws-cli", "go", "node", "uv"]
 
 [tools]
 go = "1.26"
