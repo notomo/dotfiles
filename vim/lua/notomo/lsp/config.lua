@@ -266,9 +266,9 @@ vim.lsp.config("biome", {
   workspace_required = true,
 })
 
-vim.lsp.config("moonbit-lsp", {
-  cmd = { "moonbit-lsp" },
-  root_markers = { "moon.mod.json" },
+vim.lsp.config("moon-lsp", {
+  cmd = { "moon-lsp" },
+  root_markers = { "moon.mod", "moon.mod.json" },
 })
 
 vim.api.nvim_create_autocmd({ "LspProgress" }, {

@@ -12,7 +12,7 @@ local filetype_servers = {
   jsonc = { "jsonls" },
   prisma = { "prismals" },
   terraform = { "terraformls" },
-  moonbit = { "moonbit-lsp", "tailwindcss" },
+  moonbit = { "moon-lsp", "tailwindcss" },
 }
 
 function M.setup(raw_opts)
