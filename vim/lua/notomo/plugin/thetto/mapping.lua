@@ -335,12 +335,16 @@ vim.keymap.set("n", "[finder]a", function()
 end)
 
 vim.keymap.set("n", "[finder]b", thetto_starter("url/bookmark"))
-vim.keymap.set("n", "[finder]p", thetto_starter("plugin"))
+vim.keymap.set("n", "[finder]p", function()
+  require("thetto").start(require("thetto.util.source").merge({
+    require("thetto.util.source").by_name("plugin"),
+    require("thetto.util.source").by_name("file/bookmark"),
+  }))
+end)
 vim.keymap.set("n", "[finder]e", thetto_starter("emoji"))
 vim.keymap.set("n", "[finder]O", thetto_starter("vim/option"))
 vim.keymap.set("n", "[finder]H", thetto_starter("vim/highlight_group"))
 vim.keymap.set("n", "[finder]B", thetto_starter("vim/buffer"))
-vim.keymap.set("n", "[finder]y", thetto_starter("file/bookmark"))
 vim.keymap.set("n", "[finder]E", thetto_starter("env/variable"))
 vim.keymap.set("n", "[finder]z", thetto_starter("cmd/zsh/history"))
 vim.keymap.set("n", "[finder]J", thetto_starter("vim/jump"))
