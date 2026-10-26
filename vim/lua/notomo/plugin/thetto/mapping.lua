@@ -306,7 +306,18 @@ vim.api.nvim_create_autocmd({ "User" }, {
 
 vim.keymap.set("n", "[finder]R", thetto_starter("vim/runtimepath"))
 vim.keymap.set("n", "<Space>usf", thetto_starter("file/recursive/all"))
-vim.keymap.set("n", "[finder]f", thetto_starter("file/in_dir"))
+vim.keymap.set(
+  "n",
+  "[finder]f",
+  thetto_starter("file/in_dir", {
+    cwd = function()
+      if vim.bo.buftype == "" then
+        return vim.fn.expand("%:p:h")
+      end
+      return "."
+    end,
+  })
+)
 vim.keymap.set("n", "[finder]h", thetto_starter("vim/help"))
 
 vim.keymap.set("n", "[finder]l", thetto_starter("vim/line"))
