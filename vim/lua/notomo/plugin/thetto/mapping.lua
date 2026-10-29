@@ -489,6 +489,18 @@ vim.keymap.set("n", "[term]N", function()
   end
   require("notomo.lib.async").run(open_claude)
 end)
+vim.keymap.set("n", "[term]M", function()
+  local git_root = vim.fs.root(0, ".git")
+  if not git_root then
+    return
+  end
+
+  vim.cmd.tabedit()
+  vim.fn.jobstart({ "claude" }, {
+    cwd = git_root,
+    term = true,
+  })
+end)
 
 vim.keymap.set("n", "[finder]M", function()
   require("thetto.util.source").start_by_name("vim/modified_buffer", {}, {
