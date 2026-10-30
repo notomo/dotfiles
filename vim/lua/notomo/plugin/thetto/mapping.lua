@@ -440,7 +440,41 @@ vim.keymap.set("n", "[term]n", function()
     consumer_factory = require("thetto.util.consumer").immediate({ action_name = "tab_drop" }),
   })
 end)
+--- @return string?
+local claude_terminal_cwd = function(bufnr)
+  local name = vim.api.nvim_buf_get_name(bufnr)
+  local path = name:match("^term://(.*)") or ""
+  if not path:match("[:/]claude$") then
+    return nil
+  end
+  local cwd = vim.split(path, "//", { plain = true })[1]
+  return vim.fs.normalize(cwd)
+end
 vim.keymap.set("n", "[term]N", function()
+  local current = vim.api.nvim_get_current_buf()
+  local current_cwd = claude_terminal_cwd(current)
+  local current_git_root = current_cwd and vim.fs.root(current_cwd, ".git")
+  if current_git_root then
+    local bufnrs = vim
+      .iter(vim.api.nvim_list_bufs())
+      :filter(function(bufnr)
+        if not vim.api.nvim_buf_is_loaded(bufnr) then
+          return false
+        end
+        local cwd = claude_terminal_cwd(bufnr)
+        return cwd ~= nil and vim.startswith(cwd, current_git_root)
+      end)
+      :totable()
+    local next_bufnr = vim.iter(bufnrs):find(function(bufnr)
+      return bufnr > current
+    end) or bufnrs[1]
+    if next_bufnr == current then
+      return
+    end
+    vim.cmd.buffer(next_bufnr)
+    return
+  end
+
   local git_root = vim.fs.root(0, ".git")
   if not git_root then
     return
@@ -450,19 +484,8 @@ vim.keymap.set("n", "[term]N", function()
     modify_pipeline = require("thetto.util.pipeline").append({
       require("thetto.util.sorter").field_by_name("bufnr", true),
       require("thetto.util.filter").item(function(item)
-        local name = vim.api.nvim_buf_get_name(item.bufnr)
-        local path = name:match("^term://(.*)") or ""
-        local root = vim.split(path, "//", { plain = true })[1]
-        if not root then
-          return false
-        end
-
-        local normalized = vim.fs.normalize(root)
-        if not vim.startswith(normalized, git_root) then
-          return false
-        end
-
-        return path:match("[:/]claude$")
+        local cwd = claude_terminal_cwd(item.bufnr)
+        return cwd ~= nil and vim.startswith(cwd, git_root)
       end),
     }),
     consumer_opts = {
