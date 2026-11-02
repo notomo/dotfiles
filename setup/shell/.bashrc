@@ -24,6 +24,12 @@ function kill_process() {
     pkill -KILL -f "$1"
 }
 
+function ghp() {
+    local token
+    token="$(op.exe read "${GH_PRIVATE_TOKEN_OP_REF:-op://Private/github-private-token/credential}" | tr -d '\r')" || return
+    GH_TOKEN="${token}" gh "$@"
+}
+
 if [ -f "$HOME/.local/.bashrc" ]; then
     source "$HOME/.local/.bashrc"
 fi
