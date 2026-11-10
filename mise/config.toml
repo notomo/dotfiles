@@ -51,7 +51,7 @@ lua = "5.1"
 "github:universal-ctags/ctags-nightly-build" = "2026.05.14+173707379ee89beaea30896652bd23931cb2f08d"
 "aqua:cloudflare/cloudflared" = "latest"
 
-opam = "latest"
+opam = { version = "latest", asset_pattern = "{% raw %}opam-*-{{ gnu_arch }}-{{ os }}{% endraw %}" }
 "github:containers/bubblewrap" = "latest"
 uv = "latest"
 

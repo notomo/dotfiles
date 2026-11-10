@@ -879,7 +879,7 @@ version = "2.5.1"
 backend = "github:ocaml/opam"
 
 [tools.opam.options]
-asset_pattern = "opam-*-{gnu_arch}-{os}"
+asset_pattern = "opam-*-{{ gnu_arch }}-{{ os }}"
 
 [tools.opam."platforms.linux-arm64"]
 checksum = "sha256:fab63e2a594afeb0acc2cbc3f796d365a0ee1d55447d1dd4104f2ea2dbd9a0d3"
