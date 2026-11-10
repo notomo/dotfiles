@@ -669,39 +669,39 @@ version = "nightly"
 backend = "github:neovim/neovim"
 
 [tools."github:neovim/neovim"."platforms.linux-arm64"]
-checksum = "sha256:1399087963b27032ae5fd7f6209e8acf8153ca406b1e74aa41e6640a4fc5abff"
+checksum = "sha256:86bf16c9bc4ab43dc94e0b4de94d5301e00c572e2d8af955978842a2df3f2a90"
 url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/434283979"
+url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/732606506"
 
 [tools."github:neovim/neovim"."platforms.linux-arm64-musl"]
-checksum = "sha256:1399087963b27032ae5fd7f6209e8acf8153ca406b1e74aa41e6640a4fc5abff"
+checksum = "sha256:86bf16c9bc4ab43dc94e0b4de94d5301e00c572e2d8af955978842a2df3f2a90"
 url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-arm64.tar.gz"
-url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/434283979"
+url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/732606506"
 
 [tools."github:neovim/neovim"."platforms.linux-x64"]
-checksum = "sha256:d68b1eabdba564428d104a47a988c9c9dc2eecbc492f3d770046cde84cf39e65"
+checksum = "sha256:deab8ced028653883c4bdc2a409f1b68e91ec67a6118b009eeff0efa1cefea0b"
 url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz"
-url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/434283977"
+url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/732606500"
 
 [tools."github:neovim/neovim"."platforms.linux-x64-musl"]
-checksum = "sha256:d68b1eabdba564428d104a47a988c9c9dc2eecbc492f3d770046cde84cf39e65"
+checksum = "sha256:deab8ced028653883c4bdc2a409f1b68e91ec67a6118b009eeff0efa1cefea0b"
 url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz"
-url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/434283977"
+url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/732606500"
 
 [tools."github:neovim/neovim"."platforms.macos-arm64"]
-checksum = "sha256:07ca7644ea89fe71ccdb1401ea92768b0630f901b1ed676a14bfaa054a6e3350"
+checksum = "sha256:ba96e66fd512606165c41f55f88e44a358ffba17347f4baf922af7ca758ca197"
 url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz"
-url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/434283980"
+url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/732606499"
 
 [tools."github:neovim/neovim"."platforms.macos-x64"]
-checksum = "sha256:afa98c3934e85807c5e101867d19cd90c430f89aea5ae65f44017315c0ab28e7"
+checksum = "sha256:6719074e0c2627e28a7621118dc2682de826132791d33b43403f64dccebb7ad7"
 url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz"
-url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/434283978"
+url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/732606504"
 
 [tools."github:neovim/neovim"."platforms.windows-x64"]
-checksum = "sha256:6cc3e7a1a8bc3cb74eb2e3174e0428ffcaf4e984a9291031e660092b1328664a"
+checksum = "sha256:7dd31abaf7711b6a4562cc2ce5c044a82d0a5897eb4ca1dd92e0542c4a76b267"
 url = "https://github.com/neovim/neovim/releases/download/nightly/nvim-win64.zip"
-url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/434283997"
+url_api = "https://api.github.com/repos/neovim/neovim/releases/assets/732606617"
 
 [[tools."github:universal-ctags/ctags-nightly-build"]]
 version = "2026.05.14+173707379ee89beaea30896652bd23931cb2f08d"
