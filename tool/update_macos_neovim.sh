@@ -9,6 +9,8 @@ if [ -d "$install_dir" ]; then
 fi
 
 mise cache clear
+# nightly assets are re-uploaded under the same version, so refresh the locked checksums first
+mise lock --global github:neovim/neovim
 mise install -f github:neovim/neovim@nightly
 popd
 nvim --version
