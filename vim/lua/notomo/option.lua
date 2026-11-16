@@ -135,6 +135,7 @@ vim.filetype.add({
     tf = "terraform",
     mdx = "mdx",
     mbt = "moonbit",
+    mbtx = "moonbit",
     gs = "javascript",
     sql = function(path)
       if path:find("/dbt/") then
