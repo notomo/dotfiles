@@ -342,27 +342,6 @@ mypack.add("notomo/ultramarine.nvim", {
   load_on = { events = { "ColorSchemePre" } },
 })
 
-mypack.add("notomo/hlmsg.nvim", {
-  load_on = { modules = { "hlmsg" } },
-  hooks = {
-    post_add = function()
-      vim.keymap.set("n", "[exec]cm", function()
-        vim.o.cmdheight = 1 -- workaround
-        require("thetto.util.source").start_by_name("hlmsg", {
-          consumer_opts = {
-            ui = {
-              insert = false,
-              display_limit = 10000,
-            },
-          },
-        }, {
-          item_cursor_factory = require("thetto.util.item_cursor").bottom(),
-        })
-      end)
-    end,
-  },
-})
-
 mypack.add("notomo/assertlib.nvim", {
   load_on = { modules = { "assertlib" } },
 })

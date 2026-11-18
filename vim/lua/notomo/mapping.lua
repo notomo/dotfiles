@@ -566,6 +566,18 @@ vim.keymap.set("n", "[exec]q", [[<Cmd>lua require("notomo.lib.edit").jq()<CR>]])
 vim.keymap.set("n", "[exec]N", [[<Cmd>lua require("notomo.lib.edit").note()<CR>]])
 vim.keymap.set("n", "[exec]O", [[<Cmd>lua require("notomo.lib.github").view_repo()<CR>]])
 vim.keymap.set("n", "[exec]P", [[<Cmd>lua require("notomo.lib.github").view_pr()<CR>]])
+vim.keymap.set("n", "[exec]cm", function()
+  vim.cmd.messages()
+  vim.schedule(function()
+    if vim.bo.filetype ~= "pager" then
+      vim.api.nvim_echo({ { "No messages", "Comment" } }, false, {})
+      return
+    end
+    local height = require("vim._core.ui2").cfg.msg.pager.height
+    vim.api.nvim_win_resize(0, -1, height < 1 and math.ceil(vim.o.lines * height) or height)
+    vim.cmd.normal({ "G", bang = true })
+  end)
+end)
 
 vim.keymap.set("n", "[winmv]a", [[<C-w>h]])
 vim.keymap.set("n", "[winmv]x", [[<C-w>j]])

@@ -77,14 +77,6 @@ function M.count_characters()
   vim.notify(("Characters: %d"):format(vim.fn.wordcount().chars))
 end
 
-function M.hlmsg()
-  local bufnr = vim.api.nvim_create_buf(false, true)
-  require("hlmsg").render(bufnr)
-  vim.cmd.tabedit()
-  vim.cmd.buffer(bufnr)
-  require("misclib.cursor").to_bottom()
-end
-
 function M.cmdline_window_for_excmd()
   vim.fn.feedkeys("q:", "n")
 end

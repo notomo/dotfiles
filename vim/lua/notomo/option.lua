@@ -63,6 +63,12 @@ o.cursorline = true
 o.listchars = { tab = "»-", trail = "-", eol = "↲", extends = "»", precedes = "«", nbsp = "%" }
 o.list = true
 o.cmdheight = 1
+require("vim._core.ui2").enable({
+  msg = {
+    pager = { height = 12 },
+  },
+})
+option.append("messagesopt", "pager:G,timeout:4000")
 o.scrolloff = 8
 o.sidescrolloff = 24
 o.showmatch = true
@@ -89,7 +95,7 @@ o.swapfile = false
 o.expandtab = true
 o.foldenable = false
 o.foldtext = ""
-o.fillchars = "fold: "
+o.fillchars = "fold: ,msgsep:─"
 vim.cmd([[set wildcharm=<C-z>]])
 o.undofile = true
 o.undoreload = 10
