@@ -40,7 +40,7 @@ format:
 	$(MAKE) --no-print-directory _format TARGET_PATH=${HOME}/dotfiles
 _format:
 	@echo
-	zsh -f -c 'stylua --config-path ${HOME}/.vim/packages/pack/mypack/opt/cmdbuf.nvim/stylua.toml -- ${TARGET_PATH}/**/*.lua'
+	zsh -f -c 'stylua --config-path ${HOME}/.vim/packages/pack/mypack/opt/workflow/stylua.toml -- ${TARGET_PATH}/**/*.lua'
 
 vendor:
 	${NVIM} --headless +'lua require("notomo.lib.startup").vendorlib_used_plugins()' +quitall! | xargs -I{} make vendor -C {}

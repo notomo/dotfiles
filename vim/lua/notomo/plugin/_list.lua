@@ -225,11 +225,6 @@ mypack.add("notomo/kivi.nvim", {
   },
 })
 
-mypack.add("notomo/cmdbuf.nvim", {
-  load_on = { modules = { "cmdbuf" } },
-  hooks = { post_add = require_fn("notomo.plugin.cmdbuf") },
-})
-
 mypack.add("notomo/filetypext.nvim", {
   load_on = { modules = { "filetypext" } },
   hooks = {

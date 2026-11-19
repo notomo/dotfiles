@@ -195,3 +195,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     require("notomo.lib.git.decorator").setup(args.buf)
   end,
 })
+
+vim.api.nvim_create_autocmd({ "CmdwinEnter" }, {
+  group = group,
+  pattern = { "*" },
+  callback = function(args)
+    require("notomo.lib.cmdwin").on_enter(args.buf)
+  end,
+})

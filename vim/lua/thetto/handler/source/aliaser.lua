@@ -22,7 +22,7 @@ M.actions = {
       local alias = item.alias
       if alias.params_count > 0 then
         local line = require("aliaser").to_string(alias)
-        return require("cmdbuf").split_open(vim.o.cmdwinheight, { line = line, type = "lua/cmd" })
+        return require("notomo.lib.cmdwin").open({ line = "lua " .. line, type = "lua" })
       end
       alias.call()
     end

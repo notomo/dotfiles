@@ -98,8 +98,7 @@ register_kind("vim/variable", {
     if item == nil then
       return
     end
-    require("cmdbuf").split_open(vim.o.cmdwinheight, { line = "let " .. item.value })
-    vim.cmd.normal({ args = { "$" }, bang = true })
+    require("notomo.lib.cmdwin").open({ line = "let " .. item.value })
   end,
   default_action = "edit",
 })
@@ -110,8 +109,7 @@ register_kind("vim/option", {
     if item == nil then
       return
     end
-    require("cmdbuf").split_open(vim.o.cmdwinheight, { line = "setlocal " .. item.value })
-    vim.cmd.normal({ args = { "$" }, bang = true })
+    require("notomo.lib.cmdwin").open({ line = "setlocal " .. item.value })
   end,
 })
 
@@ -121,8 +119,7 @@ register_kind("vim/command", {
     if item == nil then
       return
     end
-    require("cmdbuf").split_open(vim.o.cmdwinheight, { line = item.value })
-    vim.cmd.normal({ args = { "$" }, bang = true })
+    require("notomo.lib.cmdwin").open({ line = item.value })
   end,
 })
 
