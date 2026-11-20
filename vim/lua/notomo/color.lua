@@ -27,6 +27,7 @@ vim.api.nvim_set_hl(0, "SpellCap", { link = "NONE" })
 
 vim.api.nvim_set_hl(0, "MoreMsg", { link = "Comment" })
 vim.api.nvim_set_hl(0, "MsgSeparator", { link = "WinSeparator" })
+vim.api.nvim_set_hl(0, "@function.macro.vim", {})
 
 if vim.fn.has("mac") == 1 then
   vim.api.nvim_set_hl(0, "Cursor", { bg = "#bbbbba" })
