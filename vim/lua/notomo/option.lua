@@ -68,7 +68,7 @@ require("vim._core.ui2").enable({
     pager = { height = 12 },
   },
 })
-option.append("messagesopt", "pager:G,timeout:4000")
+option.append("messagesopt", "pager:G,timeout:4000,maxheight:1")
 o.scrolloff = 8
 o.sidescrolloff = 24
 o.showmatch = true
