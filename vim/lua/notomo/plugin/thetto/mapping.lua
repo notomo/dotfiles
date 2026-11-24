@@ -525,6 +525,21 @@ vim.keymap.set("n", "[term]M", function()
   })
 end)
 
+vim.keymap.set("n", "[term]R", function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local cwd = claude_terminal_cwd(bufnr)
+  if not cwd then
+    return
+  end
+
+  vim.cmd.enew()
+  vim.fn.jobstart({ "claude" }, {
+    cwd = cwd,
+    term = true,
+  })
+  vim.api.nvim_buf_delete(bufnr, { force = true })
+end)
+
 vim.keymap.set("n", "[finder]M", function()
   require("thetto.util.source").start_by_name("vim/modified_buffer", {}, {
     consumer_factory = require("thetto.util.consumer").immediate({ action_name = "tab_drop" }),
